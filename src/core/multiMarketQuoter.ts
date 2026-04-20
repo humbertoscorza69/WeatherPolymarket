@@ -80,9 +80,33 @@ export function buildBuyQuotes(
 
     // Round to the market's actual tick, falling back to config default
     const tick = market.tickSize ?? config.tickSize;
-    const bid = roundPriceToTickDown(mid - halfSpread, tick);
-    if (bid < tick || bid > 1 - tick) continue;
+    // Cap bid at min(mid - halfSpread, fairValue - halfSpread) so we never
+    // quote above our own fair value. Buying above fair value is guaranteed
+    // adverse selection — if the forecast is right, the market will converge
+    // below our entry and our SELL at entry+tick never fills. The fair-value
+    // cap turns pure spread-capture into spread-capture-with-edge-guard.
+    const midBid = mid - halfSpread;
+    const fairBid = forecastProb - halfSpread;
+    const rawBid = Math.min(midBid, fairBid);
+    const bid = roundPriceToTickDown(rawBid, tick);
+    if (bid < tick || bid > 1 - tick) {
+      skipped.push({
+        conditionId: market.conditionId,
+        outcomeLabel: market.outcomeLabel,
+        reason: `bid_out_of_bounds bid=${bid} fair=${roundPrice(forecastProb)} mid=${roundPrice(mid)}`
+      });
+      continue;
+    }
     if (bid >= book.bestAsk) continue;
+    if (bid > forecastProb) {
+      // Would cross our own fair-value guard after rounding — skip
+      skipped.push({
+        conditionId: market.conditionId,
+        outcomeLabel: market.outcomeLabel,
+        reason: `bid_above_fair bid=${bid} fair=${roundPrice(forecastProb)}`
+      });
+      continue;
+    }
 
     if (totalExposure + config.orderSizeUsdc > config.maxTotalExposureUsdc) break;
 
@@ -101,7 +125,7 @@ export function buildBuyQuotes(
       sizeUsdc: config.orderSizeUsdc,
       shares,
       postOnly: true,
-      reason: `mid=${roundPrice(mid)} forecast=${roundPrice(forecastProb)} divergence=${roundPrice(divergence)} halfSpread=${halfSpread}`
+      reason: `mid=${roundPrice(mid)} forecast=${roundPrice(forecastProb)} binding=${fairBid < midBid ? "fair" : "mid"} divergence=${roundPrice(divergence)} halfSpread=${halfSpread}`
     });
     totalExposure += config.orderSizeUsdc;
   }
@@ -143,10 +167,12 @@ export function roundPriceDown(value: number): number {
   return Math.floor(value * 100) / 100;
 }
 
-/** Round a price DOWN to the nearest tick (for BUY side — better price for maker). */
+/** Round a price DOWN to the nearest tick (for BUY side — better price for maker).
+ *  Adds a 1e-9 epsilon to absorb IEEE-754 error: without it, 0.17 - 0.01 floors
+ *  to 0.15 on a 0.01 tick because 0.17 - 0.01 = 0.15999999999999998 in JS. */
 export function roundPriceToTickDown(value: number, tickSize: number): number {
   const factor = Math.round(1 / tickSize);
-  return Math.floor(value * factor) / factor;
+  return Math.floor(value * factor + 1e-9) / factor;
 }
 
 export function filterPostOnlySafeQuotes(quotes: QuoteIntent[], books: QuoteBookTop[]): PostOnlyFilterResult {

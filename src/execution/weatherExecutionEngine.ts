@@ -168,7 +168,7 @@ export class WeatherExecutionEngine {
           side: "SELL",
           price
         });
-        this.logger.error("[STARTUP-PRESERVE-SELL]", {
+        this.logger.info("[STARTUP-PRESERVE-SELL]", {
           outcome: market.outcomeLabel,
           orderId: id,
           price
@@ -179,7 +179,7 @@ export class WeatherExecutionEngine {
       if (side === "BUY") {
         try {
           await this.driver.cancelOrder(id);
-          this.logger.error("[STARTUP-CANCEL-STALE-BUY]", { outcome: market.outcomeLabel, orderId: id });
+          this.logger.info("[STARTUP-CANCEL-STALE-BUY]", { outcome: market.outcomeLabel, orderId: id });
         } catch (err) {
           this.logger.error("[STARTUP-CANCEL-ERROR]", { orderId: id, error: String(err) });
         }
@@ -224,7 +224,7 @@ export class WeatherExecutionEngine {
           entryEstimate = book.bestBid ?? 0.5;
         }
 
-        this.logger.error("[STARTUP-POSITION]", {
+        this.logger.info("[STARTUP-POSITION]", {
           outcome: market.outcomeLabel,
           conditionId,
           shares: floored,
@@ -253,16 +253,16 @@ export class WeatherExecutionEngine {
   async cancelActiveBuys(): Promise<void> {
     // Log every SELL order we are preserving — proof we are NOT touching them
     for (const [conditionId, order] of this.activeSells) {
-      this.logger.error("[CANCEL-SKIP-SELL]", { conditionId, orderId: order.orderId, price: order.price });
+      this.logger.info("[CANCEL-SKIP-SELL]", { conditionId, orderId: order.orderId, price: order.price });
     }
 
     const buyConditions = [...this.activeBuys.keys()];
     for (const conditionId of buyConditions) {
       const order = this.activeBuys.get(conditionId)!;
-      this.logger.error("[CANCEL-CHECK]", { conditionId, side: order.side, orderId: order.orderId });
+      this.logger.debug("[CANCEL-CHECK]", { conditionId, side: order.side, orderId: order.orderId });
       try {
         await this.driver.cancelOrder(order.orderId);
-        this.logger.error("[CANCEL-BUY]", { orderId: order.orderId, conditionId });
+        this.logger.info("[CANCEL-BUY]", { orderId: order.orderId, conditionId });
       } catch (err) {
         this.logger.error("[CANCEL-ERROR]", { orderId: order.orderId, error: String(err) });
       }
@@ -276,7 +276,7 @@ export class WeatherExecutionEngine {
       if (this.activeSells.has(conditionId)) continue;
       const market = this.marketByConditionId.get(conditionId)!;
       const position = this.inventory.getPosition(conditionId);
-      this.logger.error("[SELL-MISSING] position held but no active SELL — re-placing", {
+      this.logger.warn("[SELL-MISSING] position held but no active SELL — re-placing", {
         outcome: market.outcomeLabel,
         shares: position.shares
       });
@@ -300,7 +300,7 @@ export class WeatherExecutionEngine {
         return { outcome: market.outcomeLabel, shares: pos.shares, entry: pos.avgEntryPrice, sellOrderId: sellOrder?.orderId ?? null, sellPrice: sellOrder?.price ?? null };
       });
     if (positions.length > 0) {
-      this.logger.error("[INVENTORY]", { positions, total: positions.length });
+      this.logger.info("[INVENTORY]", { positions, total: positions.length });
     }
   }
 
@@ -329,7 +329,7 @@ export class WeatherExecutionEngine {
       if (!market) continue;
       if (this.inventory.hasPosition(conditionId)) continue; // WS already handled it
 
-      this.logger.error("[FILL-DETECTED-REST]", {
+      this.logger.info("[FILL-DETECTED-REST]", {
         outcome: market.outcomeLabel,
         conditionId,
         orderId: buyOrder.orderId,
@@ -372,14 +372,14 @@ export class WeatherExecutionEngine {
         // Round-trip confirmed by zero balance.
         const realizedPerShare = sellOrder.price - position.avgEntryPrice;
         const realizedUsdc = realizedPerShare * position.shares;
-        this.logger.error("[FILL-DETECTED-REST]", {
+        this.logger.info("[FILL-DETECTED-REST]", {
           outcome: market.outcomeLabel,
           conditionId,
           orderId: sellOrder.orderId,
           price: sellOrder.price,
           side: "SELL"
         });
-        this.logger.error("[ROUND-TRIP]", {
+        this.logger.info("[ROUND-TRIP]", {
           outcome: market.outcomeLabel,
           entry: position.avgEntryPrice,
           exit: sellOrder.price,
@@ -398,7 +398,7 @@ export class WeatherExecutionEngine {
       } else {
         // Balance still present — the SELL vanished but we still hold shares.
         // Treat as cancellation and re-queue.
-        this.logger.error("[SELL-VANISHED]", {
+        this.logger.warn("[SELL-VANISHED]", {
           outcome: market.outcomeLabel,
           balance,
           positionShares: position.shares
@@ -462,7 +462,7 @@ export class WeatherExecutionEngine {
   }
 
   async onUserFill(fill: UserFill): Promise<void> {
-    this.logger.error("[FILL-RECEIVED]", {
+    this.logger.info("[FILL-RECEIVED]", {
       side: fill.side,
       assetId: fill.assetId,
       price: fill.price,
@@ -476,7 +476,7 @@ export class WeatherExecutionEngine {
       return;
     }
 
-    this.logger.error("[FILL-MARKET]", { outcome: market.outcomeLabel, conditionId: market.conditionId });
+    this.logger.info("[FILL-MARKET]", { outcome: market.outcomeLabel, conditionId: market.conditionId });
 
     if (fill.traderSide === "TAKER") {
       this.logger.error("[TAKER-CRITICAL]", { conditionId: market.conditionId, outcome: market.outcomeLabel });
@@ -505,7 +505,7 @@ export class WeatherExecutionEngine {
 
     if (fill.side === "BUY") {
       this.activeBuys.delete(market.conditionId);
-      this.logger.error("[FILL-BUY] BUY filled, removed from activeBuys, placing SELL now", {
+      this.logger.info("[FILL-BUY] BUY filled, removed from activeBuys, placing SELL now", {
         outcome: market.outcomeLabel
       });
       this.eventLog.record({
@@ -527,7 +527,7 @@ export class WeatherExecutionEngine {
       const realizedPerShare = fill.price - entryBasis;
       const realizedUsdc = realizedPerShare * fill.shares;
       const remaining = this.inventory.getPosition(market.conditionId).shares;
-      this.logger.error("[ROUND-TRIP]", {
+      this.logger.info("[ROUND-TRIP]", {
         outcome: market.outcomeLabel,
         conditionId: market.conditionId,
         entry: entryBasis,
@@ -555,7 +555,7 @@ export class WeatherExecutionEngine {
       });
       // Partial fill: inventory still holds shares → re-place SELL for the remainder
       if (remaining >= this.config.clobMinShares) {
-        this.logger.error("[SELL-PARTIAL-REMAINDER]", {
+        this.logger.info("[SELL-PARTIAL-REMAINDER]", {
           outcome: market.outcomeLabel,
           remainingShares: remaining
         });
@@ -592,7 +592,7 @@ export class WeatherExecutionEngine {
           price: position.avgEntryPrice,
           shares: position.shares
         };
-        this.logger.error("[SELL-REQUEUE]", { outcome: market.outcomeLabel });
+        this.logger.info("[SELL-REQUEUE]", { outcome: market.outcomeLabel });
         await this.placeSellForFill(market, retryFill);
       }
     }
@@ -606,7 +606,7 @@ export class WeatherExecutionEngine {
     const tickSize = this.tickSizeFor(market);
     const sell = buildSellOnFill(fill, tickSize);
     if (!sell) {
-      this.logger.error("[SELL-SKIP] buildSellOnFill returned null — price too high?", {
+      this.logger.warn("[SELL-SKIP] buildSellOnFill returned null — price too high?", {
         outcome: market.outcomeLabel,
         entryPrice: fill.price
       });
@@ -616,7 +616,7 @@ export class WeatherExecutionEngine {
     sell.city = "unknown";
     sell.date = "unknown";
     sell.outcomeLabel = market.outcomeLabel;
-    this.logger.error("[SELL-COMPUTING]", {
+    this.logger.info("[SELL-COMPUTING]", {
       outcome: market.outcomeLabel,
       entry: fill.price,
       tickSize,
@@ -624,7 +624,7 @@ export class WeatherExecutionEngine {
       shares: sell.shares
     });
     const result = await this.driver.placeQuote(sell, true);
-    this.logger.error("[SELL-RESULT]", {
+    this.logger.info("[SELL-RESULT]", {
       outcome: market.outcomeLabel,
       success: result.success,
       status: result.status,
@@ -639,7 +639,7 @@ export class WeatherExecutionEngine {
         side: "SELL",
         price: sell.price
       });
-      this.logger.error("[SELL-PLACED]", { outcome: market.outcomeLabel, orderId: result.orderId, price: sell.price });
+      this.logger.info("[SELL-PLACED]", { outcome: market.outcomeLabel, orderId: result.orderId, price: sell.price });
       this.eventLog.record({
         type: "SELL_PLACED",
         outcome: market.outcomeLabel,

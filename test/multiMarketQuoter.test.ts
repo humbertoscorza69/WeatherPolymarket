@@ -107,6 +107,50 @@ test("buildBuyQuotes skips outcomes with no book data", () => {
   assert.ok(skipped.every((s) => s.reason === "no_book_data"));
 });
 
+test("buildBuyQuotes caps bid at min(mid - halfSpread, fair - halfSpread)", () => {
+  // 20°C has fair ≈ 0.292 (peak of distribution), mid = 0.29. Fair > mid so midBid binds.
+  // Add a synthetic outcome where mid is above fair by a notable amount.
+  // We'll use the 22°C outcome (fair ≈ 0.12) and quote its book with an inflated mid to simulate
+  // the 14°C-style "market overvalues" case from the session analysis.
+  const overvaluedBooks = [
+    { tokenId: "yes-22", bestBid: 0.28, bestAsk: 0.32 } // mid=0.30, fair≈0.12
+  ];
+  // Bump MAX_FORECAST_DIVERGENCE so the divergence gate doesn't reject first
+  const { quotes, skipped } = buildBuyQuotes(
+    event,
+    forecast,
+    { ...config, maxForecastDivergence: 0.5, halfSpreadCents: 1, tickSize: 0.01 },
+    overvaluedBooks
+  );
+  // Expected: fairBid = 0.12 - 0.01 = 0.11; midBid = 0.30 - 0.01 = 0.29;
+  //   min = 0.11 rounded down to tick 0.01 = 0.11, and 0.11 ≤ fair (0.12) — quote should be placed at 0.11.
+  const q22 = quotes.find((q) => q.conditionId === "0x22");
+  assert.ok(q22, "expected a quote for 22C once divergence gate is loosened");
+  assert.ok(q22.price <= 0.12, `bid ${q22.price} must not exceed fair value 0.12`);
+  assert.equal(q22.price, 0.11);
+  assert.ok(q22.reason.includes("binding=fair"), `reason should mark fair as binding: ${q22.reason}`);
+  // All other outcomes have no books supplied → skipped as no_book_data
+  assert.ok(skipped.every((s) => s.reason === "no_book_data" || s.conditionId === "0x22"));
+});
+
+test("buildBuyQuotes prefers mid-based bid when fair >= mid (market undervalues)", () => {
+  // 20°C outcome: fair ≈ 0.292, mid we set below that so fair should not bind.
+  const undervaluedBooks = [
+    { tokenId: "yes-20", bestBid: 0.15, bestAsk: 0.19 } // mid=0.17, fair≈0.29
+  ];
+  const { quotes } = buildBuyQuotes(
+    event,
+    forecast,
+    { ...config, maxForecastDivergence: 0.5 },
+    undervaluedBooks
+  );
+  const q20 = quotes.find((q) => q.conditionId === "0x20");
+  assert.ok(q20);
+  // mid - halfSpread = 0.16; fair - halfSpread = 0.28; min = 0.16
+  assert.equal(q20.price, 0.16);
+  assert.ok(q20.reason.includes("binding=mid"));
+});
+
 test("buildBuyQuotes skips outcomes where market diverges too far from forecast", () => {
   const divergedBooks = [
     { tokenId: "yes-20", bestBid: 0.55, bestAsk: 0.60 } // mid=0.575, forecast≈0.29 → divergence=0.285 > 0.15
