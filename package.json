@@ -11,6 +11,12 @@
   },
   "devDependencies": {
     "@types/node": "20.12.12",
+    "@types/ws": "^8.18.1",
     "typescript": "5.4.5"
+  },
+  "dependencies": {
+    "@ethersproject/wallet": "^5.8.0",
+    "@polymarket/clob-client": "^5.8.1",
+    "ws": "^8.20.0"
   }
 }

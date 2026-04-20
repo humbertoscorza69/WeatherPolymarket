@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { Config } from "../src/config.js";
-import { buildBuyQuotes, buildSellOnFill, roundShares } from "../src/core/multiMarketQuoter.js";
+import { buildBuyQuotes, buildSellOnFill, filterPostOnlySafeQuotes, roundShares } from "../src/core/multiMarketQuoter.js";
 import { Forecast, WeatherEvent } from "../src/types.js";
 
 const config: Config = {
@@ -21,7 +21,9 @@ const config: Config = {
   maxTotalExposureUsdc: 10,
   refreshIntervalMs: 30_000,
   orderPostOnly: true,
-  dataDir: "data"
+  dataDir: "data",
+  clobHost: "https://clob.polymarket.com",
+  polymarketSignatureType: 1
 };
 
 const event: WeatherEvent = {
@@ -113,4 +115,24 @@ test("buildSellOnFill rejects exits above 98 cents", () => {
 
 test("roundShares floors to four decimals", () => {
   assert.equal(roundShares(6.666666), 6.6666);
+});
+
+test("filterPostOnlySafeQuotes skips BUY quotes that cross best ask", () => {
+  const quote = buildBuyQuotes(event, forecast, config).find((item) => item.outcomeLabel === "20C");
+  assert.ok(quote);
+
+  const result = filterPostOnlySafeQuotes([quote], [{ tokenId: quote.tokenId, bestAsk: 0.1 }]);
+
+  assert.equal(result.safeQuotes.length, 0);
+  assert.equal(result.skippedQuotes[0]?.reason, "buy_crosses_best_ask=0.1");
+});
+
+test("filterPostOnlySafeQuotes keeps BUY quotes below best ask", () => {
+  const quote = buildBuyQuotes(event, forecast, config).find((item) => item.outcomeLabel === "20C");
+  assert.ok(quote);
+
+  const result = filterPostOnlySafeQuotes([quote], [{ tokenId: quote.tokenId, bestAsk: 0.99 }]);
+
+  assert.equal(result.safeQuotes.length, 1);
+  assert.equal(result.skippedQuotes.length, 0);
 });

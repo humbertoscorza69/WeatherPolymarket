@@ -7,6 +7,17 @@ export interface PositionSnapshot {
   exposureUsdc: number;
 }
 
+export interface QuoteBookTop {
+  tokenId: string;
+  bestBid?: number;
+  bestAsk?: number;
+}
+
+export interface PostOnlyFilterResult {
+  safeQuotes: QuoteIntent[];
+  skippedQuotes: Array<{ quote: QuoteIntent; reason: string }>;
+}
+
 export function buildBuyQuotes(
   event: WeatherEvent,
   forecast: Forecast,
@@ -91,4 +102,25 @@ function capTotalExposure(quotes: QuoteIntent[], maxTotalExposureUsdc: number): 
 
 export function roundShares(value: number): number {
   return Math.floor(value * 10000) / 10000;
+}
+
+export function filterPostOnlySafeQuotes(quotes: QuoteIntent[], books: QuoteBookTop[]): PostOnlyFilterResult {
+  const bookByToken = new Map(books.map((book) => [book.tokenId, book]));
+  const safeQuotes: QuoteIntent[] = [];
+  const skippedQuotes: Array<{ quote: QuoteIntent; reason: string }> = [];
+
+  for (const quote of quotes) {
+    const book = bookByToken.get(quote.tokenId);
+    if (quote.side === "BUY" && book?.bestAsk !== undefined && quote.price >= book.bestAsk) {
+      skippedQuotes.push({ quote, reason: `buy_crosses_best_ask=${book.bestAsk}` });
+      continue;
+    }
+    if (quote.side === "SELL" && book?.bestBid !== undefined && quote.price <= book.bestBid) {
+      skippedQuotes.push({ quote, reason: `sell_crosses_best_bid=${book.bestBid}` });
+      continue;
+    }
+    safeQuotes.push(quote);
+  }
+
+  return { safeQuotes, skippedQuotes };
 }

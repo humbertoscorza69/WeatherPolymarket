@@ -16,6 +16,13 @@ export interface Config {
   refreshIntervalMs: number;
   orderPostOnly: true;
   dataDir: string;
+  clobHost: string;
+  polymarketPrivateKey?: string;
+  polymarketApiKey?: string;
+  polymarketApiSecret?: string;
+  polymarketApiPassphrase?: string;
+  polymarketFunderAddress?: string;
+  polymarketSignatureType: number;
 }
 
 function envBool(name: string, fallback: boolean): boolean {
@@ -55,11 +62,24 @@ export function loadConfig(): Config {
     maxTotalExposureUsdc: envNum("MAX_TOTAL_EXPOSURE_USDC", 15),
     refreshIntervalMs: envNum("REFRESH_INTERVAL_MS", 30_000),
     orderPostOnly: true,
-    dataDir: process.env.DATA_DIR ?? "data"
+    dataDir: process.env.DATA_DIR ?? "data",
+    clobHost: process.env.POLYMARKET_CLOB_HOST ?? "https://clob.polymarket.com",
+    polymarketPrivateKey: process.env.POLYMARKET_PRIVATE_KEY,
+    polymarketApiKey: process.env.POLYMARKET_API_KEY,
+    polymarketApiSecret: process.env.POLYMARKET_API_SECRET,
+    polymarketApiPassphrase: process.env.POLYMARKET_API_PASSPHRASE,
+    polymarketFunderAddress: process.env.POLYMARKET_FUNDER_ADDRESS,
+    polymarketSignatureType: envNum("POLYMARKET_SIGNATURE_TYPE", 1)
   };
 
   if (config.liveApiEnabled && !config.dryRunLive) {
-    for (const name of ["POLYMARKET_API_KEY", "POLYMARKET_API_SECRET", "POLYMARKET_API_PASSPHRASE"]) {
+    for (const name of [
+      "POLYMARKET_PRIVATE_KEY",
+      "POLYMARKET_API_KEY",
+      "POLYMARKET_API_SECRET",
+      "POLYMARKET_API_PASSPHRASE",
+      "POLYMARKET_FUNDER_ADDRESS"
+    ]) {
       if (!process.env[name]) throw new Error(`${name} is required when real live trading is enabled`);
     }
   }
