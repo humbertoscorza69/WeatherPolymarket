@@ -27,7 +27,8 @@ async function main() {
     dryRunLive: config.dryRunLive
   });
 
-  const events = await findActiveWeatherEvents(config);
+  const discoveryConfig = { ...config, maxOutcomesPerEvent: Math.max(config.maxOutcomesPerEvent, 20) };
+  const events = await findActiveWeatherEvents(discoveryConfig);
   if (events.length === 0) throw new Error("No active weather temperature events discovered");
 
   const broker = new DryRunBroker(join(config.dataDir, "dry-run-orders.jsonl"));
@@ -64,7 +65,8 @@ async function main() {
       }
     }
     const { safeQuotes, skippedQuotes } = filterPostOnlySafeQuotes(quotes, books);
-    const receipts = execution ? await execution.engine.placeBuyQuotes(safeQuotes) : await broker.placeMany(safeQuotes);
+    const selectedQuotes = selectQuotesClosestToForecast(safeQuotes, event, forecast.temperatureMaxC, config.maxOutcomesPerEvent);
+    const receipts = execution ? await execution.engine.placeBuyQuotes(selectedQuotes) : await broker.placeMany(selectedQuotes);
 
     log.info("weather event quoted", {
       event: event.title,
@@ -72,7 +74,7 @@ async function main() {
       date: event.date,
       forecastTempC: forecast.temperatureMaxC,
       outcomes: event.markets.length,
-      quoteCount: safeQuotes.length,
+      quoteCount: selectedQuotes.length,
       skippedQuoteCount: skippedQuotes.length,
       takerCritical: 0
     });
@@ -88,7 +90,7 @@ async function main() {
         yesTokenId: market.yesTokenId
       })),
       fairValue: distribution,
-      quotes: safeQuotes,
+      quotes: selectedQuotes,
       skippedQuotes,
       books,
       receiptCount: receipts.length
@@ -134,7 +136,7 @@ function createLiveExecution(config: ReturnType<typeof loadConfig>, events: Awai
 async function refreshLiveQuotes(config: ReturnType<typeof loadConfig>, engine: WeatherExecutionEngine): Promise<void> {
   try {
     await engine.startupCleanup();
-    const events = await findActiveWeatherEvents(config);
+    const events = await findActiveWeatherEvents({ ...config, maxOutcomesPerEvent: Math.max(config.maxOutcomesPerEvent, 20) });
     for (const event of events) {
       const forecast = await fetchOpenMeteoForecast(event);
       const quotes = buildBuyQuotes(event, forecast, config);
@@ -143,12 +145,30 @@ async function refreshLiveQuotes(config: ReturnType<typeof loadConfig>, engine: 
         books.push({ tokenId: quote.tokenId, ...(await fetchOrderBookTop(quote.tokenId, config.clobHost)) });
       }
       const { safeQuotes } = filterPostOnlySafeQuotes(quotes, books);
-      await engine.placeBuyQuotes(safeQuotes);
+      const selectedQuotes = selectQuotesClosestToForecast(safeQuotes, event, forecast.temperatureMaxC, config.maxOutcomesPerEvent);
+      await engine.placeBuyQuotes(selectedQuotes);
     }
     log.info("live quote refresh complete", { refreshIntervalMs: config.refreshIntervalMs });
   } catch (error) {
     log.error("live quote refresh failed", { error: error instanceof Error ? error.message : String(error) });
   }
+}
+
+function selectQuotesClosestToForecast(
+  quotes: ReturnType<typeof buildBuyQuotes>,
+  event: Awaited<ReturnType<typeof findActiveWeatherEvents>>[number],
+  forecastTempC: number,
+  limit: number
+) {
+  if (quotes.length <= limit) return quotes;
+  const marketByConditionId = new Map(event.markets.map((market) => [market.conditionId, market]));
+  return [...quotes]
+    .sort((left, right) => {
+      const leftTemp = marketByConditionId.get(left.conditionId)?.temperatureC ?? Number.POSITIVE_INFINITY;
+      const rightTemp = marketByConditionId.get(right.conditionId)?.temperatureC ?? Number.POSITIVE_INFINITY;
+      return Math.abs(leftTemp - forecastTempC) - Math.abs(rightTemp - forecastTempC);
+    })
+    .slice(0, limit);
 }
 
 main().catch((error: unknown) => {
