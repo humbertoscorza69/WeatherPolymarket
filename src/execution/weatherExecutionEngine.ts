@@ -1,5 +1,6 @@
 import { InventoryEngine } from "../core/inventoryEngine.js";
 import { buildSellOnFill, PositionSnapshot } from "../core/multiMarketQuoter.js";
+import { EventLog } from "../core/eventLog.js";
 import { Config } from "../config.js";
 import { Logger } from "../logger.js";
 import { FillEvent, QuoteIntent, WeatherEvent, WeatherMarket } from "../types.js";
@@ -23,10 +24,14 @@ export class WeatherExecutionEngine {
 
   constructor(
     events: WeatherEvent[],
-    private readonly driver: Pick<ClobDriver, "placeQuote" | "cancelAll" | "cancelOrder" | "getOpenOrders" | "fetchTokenBalance">,
+    private readonly driver: Pick<
+      ClobDriver,
+      "placeQuote" | "cancelAll" | "cancelOrder" | "getOpenOrders" | "fetchTokenBalance" | "resolveTickSize"
+    >,
     private readonly inventory: InventoryEngine,
     private readonly config: Config,
-    private readonly logger = new Logger("weather-execution")
+    private readonly logger = new Logger("weather-execution"),
+    private readonly eventLog: EventLog = new EventLog()
   ) {
     for (const event of events) {
       for (const market of event.markets) {
@@ -39,6 +44,82 @@ export class WeatherExecutionEngine {
 
   conditionIds(): string[] {
     return [...this.marketByConditionId.keys()];
+  }
+
+  /** Expose snapshot data for the dashboard. */
+  snapshot() {
+    return {
+      activeBuys: [...this.activeBuys.entries()].map(([conditionId, order]) => {
+        const market = this.marketByConditionId.get(conditionId);
+        return {
+          conditionId,
+          orderId: order.orderId,
+          price: order.price,
+          city: undefined as string | undefined,
+          outcome: market?.outcomeLabel,
+          temperatureC: market?.temperatureC
+        };
+      }),
+      activeSells: [...this.activeSells.entries()].map(([conditionId, order]) => {
+        const market = this.marketByConditionId.get(conditionId);
+        return {
+          conditionId,
+          orderId: order.orderId,
+          price: order.price,
+          outcome: market?.outcomeLabel,
+          temperatureC: market?.temperatureC
+        };
+      }),
+      positions: [...this.marketByConditionId.entries()]
+        .filter(([cid]) => this.inventory.hasPosition(cid))
+        .map(([cid, market]) => {
+          const pos = this.inventory.getPosition(cid);
+          const sell = this.activeSells.get(cid);
+          return {
+            conditionId: cid,
+            outcome: market.outcomeLabel,
+            temperatureC: market.temperatureC,
+            shares: pos.shares,
+            avgEntryPrice: pos.avgEntryPrice,
+            realizedPnl: pos.realizedPnl,
+            activeSellPrice: sell?.price,
+            activeSellOrderId: sell?.orderId
+          };
+        }),
+      markets: [...this.marketByConditionId.values()].map((market) => ({
+        conditionId: market.conditionId,
+        outcome: market.outcomeLabel,
+        temperatureC: market.temperatureC,
+        tickSize: market.tickSize,
+        volume24hr: market.volume24hr
+      }))
+    };
+  }
+
+  /**
+   * Resolve per-market tickSize from the exchange and cache it on the market.
+   * This lets buildBuyQuotes / buildSellOnFill price at the market's true tick
+   * (0.001 markets get 0.1-cent quotes instead of being flattened to 0.01).
+   * Safe to call multiple times; results are cached in-memory on the market.
+   */
+  async resolveMarketTickSizes(): Promise<void> {
+    for (const [conditionId, market] of this.marketByConditionId) {
+      if (market.tickSize !== undefined) continue;
+      try {
+        const tick = await this.driver.resolveTickSize(market.yesTokenId);
+        market.tickSize = tick;
+        this.logger.info("[TICK-RESOLVED]", {
+          outcome: market.outcomeLabel,
+          conditionId,
+          tickSize: tick
+        });
+      } catch (err) {
+        this.logger.error("[TICK-RESOLVE-ERROR]", {
+          outcome: market.outcomeLabel,
+          error: String(err)
+        });
+      }
+    }
   }
 
   getPositionSnapshots(): PositionSnapshot[] {
@@ -224,12 +305,12 @@ export class WeatherExecutionEngine {
   }
 
   /**
-   * REST-based fill detection: query CLOB open orders and find any BUY
-   * that disappeared without us cancelling it — that means it was filled
-   * and the User WS missed the event.
+   * REST-based fill detection: query CLOB open orders and find any tracked
+   * order that disappeared without us cancelling it — that means it was
+   * filled and the User WS missed the event. Covers both BUYs and SELLs.
    */
   async detectMissedFills(): Promise<void> {
-    if (this.activeBuys.size === 0) return;
+    if (this.activeBuys.size === 0 && this.activeSells.size === 0) return;
 
     let openOrders: Array<{ id: string }>;
     try {
@@ -242,7 +323,7 @@ export class WeatherExecutionEngine {
     const openIds = new Set(openOrders.map((o) => o.id));
 
     for (const [conditionId, buyOrder] of this.activeBuys) {
-      if (openIds.has(buyOrder.orderId)) continue; // still resting, no fill
+      if (openIds.has(buyOrder.orderId)) continue;
 
       const market = this.marketByConditionId.get(conditionId);
       if (!market) continue;
@@ -252,7 +333,8 @@ export class WeatherExecutionEngine {
         outcome: market.outcomeLabel,
         conditionId,
         orderId: buyOrder.orderId,
-        price: buyOrder.price
+        price: buyOrder.price,
+        side: "BUY"
       });
 
       const shares = Math.floor((this.config.orderSizeUsdc / buyOrder.price) * 10000) / 10000;
@@ -267,6 +349,70 @@ export class WeatherExecutionEngine {
       this.activeBuys.delete(conditionId);
 
       await this.placeSellForFill(market, fillEvent);
+    }
+
+    for (const [conditionId, sellOrder] of this.activeSells) {
+      if (openIds.has(sellOrder.orderId)) continue;
+
+      const market = this.marketByConditionId.get(conditionId);
+      if (!market) continue;
+
+      // SELL no longer open — either filled or externally cancelled.
+      // Check on-chain balance: 0 means the round-trip completed.
+      let balance = 0;
+      try {
+        balance = await this.driver.fetchTokenBalance(market.yesTokenId);
+      } catch (err) {
+        this.logger.error("[REST-BAL-ERROR]", { error: String(err) });
+        continue;
+      }
+
+      const position = this.inventory.getPosition(conditionId);
+      if (balance < this.config.clobMinShares) {
+        // Round-trip confirmed by zero balance.
+        const realizedPerShare = sellOrder.price - position.avgEntryPrice;
+        const realizedUsdc = realizedPerShare * position.shares;
+        this.logger.error("[FILL-DETECTED-REST]", {
+          outcome: market.outcomeLabel,
+          conditionId,
+          orderId: sellOrder.orderId,
+          price: sellOrder.price,
+          side: "SELL"
+        });
+        this.logger.error("[ROUND-TRIP]", {
+          outcome: market.outcomeLabel,
+          entry: position.avgEntryPrice,
+          exit: sellOrder.price,
+          shares: position.shares,
+          profitUsdc: Number(realizedUsdc.toFixed(4)),
+          source: "REST"
+        });
+        this.inventory.applyFill({
+          conditionId,
+          tokenId: market.yesTokenId,
+          side: "SELL",
+          price: sellOrder.price,
+          shares: position.shares
+        });
+        this.activeSells.delete(conditionId);
+      } else {
+        // Balance still present — the SELL vanished but we still hold shares.
+        // Treat as cancellation and re-queue.
+        this.logger.error("[SELL-VANISHED]", {
+          outcome: market.outcomeLabel,
+          balance,
+          positionShares: position.shares
+        });
+        this.activeSells.delete(conditionId);
+        const retryFill: FillEvent = {
+          conditionId,
+          tokenId: market.yesTokenId,
+          side: "BUY",
+          price: position.avgEntryPrice,
+          shares: position.shares
+        };
+        await this.placeSellForFill(market, retryFill);
+      }
     }
   }
 
@@ -285,6 +431,30 @@ export class WeatherExecutionEngine {
           conditionId: quote.conditionId,
           side: "BUY",
           price: quote.price
+        });
+        this.eventLog.record({
+          type: "BUY_PLACED",
+          city: quote.city,
+          outcome: quote.outcomeLabel,
+          conditionId: quote.conditionId,
+          orderId: result.orderId,
+          side: "BUY",
+          price: quote.price,
+          shares: quote.shares,
+          sizeUsdc: quote.sizeUsdc,
+          data: { reason: quote.reason }
+        });
+      } else {
+        this.eventLog.record({
+          type: "BUY_REJECTED",
+          city: quote.city,
+          outcome: quote.outcomeLabel,
+          conditionId: quote.conditionId,
+          side: "BUY",
+          price: quote.price,
+          shares: quote.shares,
+          message: result.errorMsg ?? result.status,
+          data: { reason: quote.reason }
         });
       }
     }
@@ -310,7 +480,19 @@ export class WeatherExecutionEngine {
 
     if (fill.traderSide === "TAKER") {
       this.logger.error("[TAKER-CRITICAL]", { conditionId: market.conditionId, outcome: market.outcomeLabel });
+      this.eventLog.record({
+        type: "TAKER_CRITICAL",
+        outcome: market.outcomeLabel,
+        conditionId: market.conditionId,
+        side: fill.side,
+        price: fill.price,
+        shares: fill.shares
+      });
     }
+
+    // Capture cost-basis BEFORE applying the fill so SELL P&L uses the actual entry
+    const preFillPosition = this.inventory.getPosition(market.conditionId);
+    const entryBasis = preFillPosition.avgEntryPrice;
 
     const normalized: FillEvent = {
       conditionId: market.conditionId,
@@ -326,7 +508,66 @@ export class WeatherExecutionEngine {
       this.logger.error("[FILL-BUY] BUY filled, removed from activeBuys, placing SELL now", {
         outcome: market.outcomeLabel
       });
+      this.eventLog.record({
+        type: "BUY_FILLED",
+        outcome: market.outcomeLabel,
+        conditionId: market.conditionId,
+        side: "BUY",
+        price: fill.price,
+        shares: fill.shares
+      });
       await this.placeSellForFill(market, normalized);
+      return;
+    }
+
+    // SELL side — round-trip completed (or partial). Clear the resting SELL,
+    // log realized P&L, and let the next refresh cycle quote a fresh BUY.
+    if (fill.side === "SELL") {
+      this.activeSells.delete(market.conditionId);
+      const realizedPerShare = fill.price - entryBasis;
+      const realizedUsdc = realizedPerShare * fill.shares;
+      const remaining = this.inventory.getPosition(market.conditionId).shares;
+      this.logger.error("[ROUND-TRIP]", {
+        outcome: market.outcomeLabel,
+        conditionId: market.conditionId,
+        entry: entryBasis,
+        exit: fill.price,
+        shares: fill.shares,
+        profitUsdc: Number(realizedUsdc.toFixed(4)),
+        remainingShares: remaining
+      });
+      this.eventLog.record({
+        type: "SELL_FILLED",
+        outcome: market.outcomeLabel,
+        conditionId: market.conditionId,
+        side: "SELL",
+        price: fill.price,
+        shares: fill.shares
+      });
+      this.eventLog.record({
+        type: "ROUND_TRIP",
+        outcome: market.outcomeLabel,
+        conditionId: market.conditionId,
+        price: fill.price,
+        shares: fill.shares,
+        profitUsdc: Number(realizedUsdc.toFixed(4)),
+        data: { entry: entryBasis, exit: fill.price, remainingShares: remaining }
+      });
+      // Partial fill: inventory still holds shares → re-place SELL for the remainder
+      if (remaining >= this.config.clobMinShares) {
+        this.logger.error("[SELL-PARTIAL-REMAINDER]", {
+          outcome: market.outcomeLabel,
+          remainingShares: remaining
+        });
+        const retryFill: FillEvent = {
+          conditionId: market.conditionId,
+          tokenId: market.yesTokenId,
+          side: "BUY",
+          price: entryBasis,
+          shares: remaining
+        };
+        await this.placeSellForFill(market, retryFill);
+      }
     }
   }
 
@@ -399,6 +640,26 @@ export class WeatherExecutionEngine {
         price: sell.price
       });
       this.logger.error("[SELL-PLACED]", { outcome: market.outcomeLabel, orderId: result.orderId, price: sell.price });
+      this.eventLog.record({
+        type: "SELL_PLACED",
+        outcome: market.outcomeLabel,
+        conditionId: market.conditionId,
+        orderId: result.orderId,
+        side: "SELL",
+        price: sell.price,
+        shares: sell.shares
+      });
+    } else {
+      this.eventLog.record({
+        type: "SELL_REJECTED",
+        outcome: market.outcomeLabel,
+        conditionId: market.conditionId,
+        side: "SELL",
+        price: sell.price,
+        shares: sell.shares,
+        message: result.errorMsg ?? result.status,
+        data: { raw: result.raw }
+      });
     }
   }
 }

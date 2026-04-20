@@ -8,11 +8,13 @@ import { forecastToProbabilities } from "./core/weatherFairValue.js";
 import { buildBuyQuotes } from "./core/multiMarketQuoter.js";
 import { QuoteIntent } from "./types.js";
 import { InventoryEngine } from "./core/inventoryEngine.js";
+import { EventLog } from "./core/eventLog.js";
 import { DryRunBroker } from "./execution/dryRunBroker.js";
 import { fetchOrderBookTop } from "./execution/orderBookClient.js";
 import { createClobDriverFromConfig } from "./execution/clobDriver.js";
 import { WeatherExecutionEngine } from "./execution/weatherExecutionEngine.js";
 import { UserWebSocket } from "./execution/userWebSocket.js";
+import { startDashboard } from "./dashboard/server.js";
 
 const log = new Logger("weather-mm");
 
@@ -28,16 +30,60 @@ async function main() {
     dryRunLive: config.dryRunLive
   });
 
+  const startTime = Date.now();
+  const eventLog = new EventLog({ filePath: join(config.dataDir, "events.jsonl") });
+  eventLog.record({
+    type: "STARTUP",
+    data: {
+      dryRunLive: config.dryRunLive,
+      maxEvents: config.maxEvents,
+      maxOutcomesPerEvent: config.maxOutcomesPerEvent,
+      orderSizeUsdc: config.orderSizeUsdc,
+      halfSpreadCents: config.halfSpreadCents
+    }
+  });
+
   const discoveryConfig = { ...config, maxOutcomesPerEvent: Math.max(config.maxOutcomesPerEvent, 20) };
   const events = await findActiveWeatherEvents(discoveryConfig);
   if (events.length === 0) throw new Error("No active weather temperature events discovered");
+  for (const event of events) {
+    eventLog.record({
+      type: "DISCOVERY",
+      city: event.city,
+      message: event.title,
+      data: {
+        date: event.date,
+        outcomes: event.markets.length
+      }
+    });
+  }
 
   const broker = new DryRunBroker(join(config.dataDir, "dry-run-orders.jsonl"));
-  const execution = config.dryRunLive ? undefined : createLiveExecution(config, events);
+  const execution = config.dryRunLive ? undefined : createLiveExecution(config, events, eventLog);
   if (execution) {
+    await execution.engine.resolveMarketTickSizes();
     await execution.engine.startupCleanup();
     await execution.engine.loadStartupPositions();
     execution.userWs.connect();
+  }
+
+  const dashboardPort = Number(process.env.DASHBOARD_PORT ?? "8787");
+  if (process.env.DASHBOARD_ENABLED !== "false") {
+    startDashboard({
+      port: dashboardPort,
+      eventLog,
+      startTime,
+      engine: execution?.engine,
+      config: {
+        dryRunLive: config.dryRunLive,
+        maxEvents: config.maxEvents,
+        maxOutcomesPerEvent: config.maxOutcomesPerEvent,
+        orderSizeUsdc: config.orderSizeUsdc,
+        halfSpreadCents: config.halfSpreadCents,
+        refreshIntervalMs: config.refreshIntervalMs,
+        maxForecastDivergence: config.maxForecastDivergence
+      }
+    });
   }
   const evidence = {
     generatedAt: new Date().toISOString(),
@@ -108,10 +154,14 @@ async function main() {
   }
 }
 
-function createLiveExecution(config: ReturnType<typeof loadConfig>, events: Awaited<ReturnType<typeof findActiveWeatherEvents>>) {
+function createLiveExecution(
+  config: ReturnType<typeof loadConfig>,
+  events: Awaited<ReturnType<typeof findActiveWeatherEvents>>,
+  eventLog: EventLog
+) {
   const driver = createClobDriverFromConfig(config);
   const inventory = new InventoryEngine();
-  const engine = new WeatherExecutionEngine(events, driver, inventory, config);
+  const engine = new WeatherExecutionEngine(events, driver, inventory, config, undefined, eventLog);
   const userWs = new UserWebSocket({
     auth: {
       apiKey: config.polymarketApiKey as string,

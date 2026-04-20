@@ -60,6 +60,7 @@ test("WeatherExecutionEngine maps BUY fill to inventory and immediate SELL", asy
       cancelOrder: async () => ({}),
       getOpenOrders: async () => [],
       fetchTokenBalance: async () => 0,
+      resolveTickSize: async () => 0.01,
       placeQuote: async (quote: QuoteIntent) => {
         placed.push(quote);
         return { success: true, status: "live", orderId: `order-${placed.length}`, raw: {} };
@@ -94,6 +95,7 @@ test("startupCleanup preserves existing SELL orders and cancels stale BUYs", asy
         { id: "buy-drop", asset_id: "yes-17", side: "BUY", price: "0.28" }
       ] as unknown as never,
       fetchTokenBalance: async () => 0,
+      resolveTickSize: async () => 0.01,
       placeQuote: async () => ({ success: true, status: "live", orderId: "n/a", raw: {} })
     },
     inventory,
@@ -113,6 +115,7 @@ test("startupCleanup preserves existing SELL orders and cancels stale BUYs", asy
       cancelOrder: async () => ({}),
       getOpenOrders: async () => [{ id: "sell-keep", asset_id: "yes-17", side: "SELL", price: "0.30" }] as unknown as never,
       fetchTokenBalance: async () => 6,
+      resolveTickSize: async () => 0.01,
       placeQuote: async (quote: QuoteIntent) => {
         placed.push(quote.side);
         return { success: true, status: "live", orderId: "x", raw: {} };
@@ -138,6 +141,7 @@ test("WeatherExecutionEngine requeues cancelled SELL when inventory remains", as
       cancelOrder: async () => ({}),
       getOpenOrders: async () => [],
       fetchTokenBalance: async () => 0,
+      resolveTickSize: async () => 0.01,
       placeQuote: async (quote: QuoteIntent) => {
         placed.push(quote);
         return { success: true, status: "live", orderId: `order-${placed.length}`, raw: {} };

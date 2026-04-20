@@ -78,8 +78,10 @@ export function buildBuyQuotes(
       continue;
     }
 
-    const bid = roundPriceDown(mid - halfSpread);
-    if (bid < 0.02 || bid > 0.98) continue;
+    // Round to the market's actual tick, falling back to config default
+    const tick = market.tickSize ?? config.tickSize;
+    const bid = roundPriceToTickDown(mid - halfSpread, tick);
+    if (bid < tick || bid > 1 - tick) continue;
     if (bid >= book.bestAsk) continue;
 
     if (totalExposure + config.orderSizeUsdc > config.maxTotalExposureUsdc) break;
@@ -139,6 +141,12 @@ export function roundShares(value: number): number {
 
 export function roundPriceDown(value: number): number {
   return Math.floor(value * 100) / 100;
+}
+
+/** Round a price DOWN to the nearest tick (for BUY side — better price for maker). */
+export function roundPriceToTickDown(value: number, tickSize: number): number {
+  const factor = Math.round(1 / tickSize);
+  return Math.floor(value * factor) / factor;
 }
 
 export function filterPostOnlySafeQuotes(quotes: QuoteIntent[], books: QuoteBookTop[]): PostOnlyFilterResult {
