@@ -5,7 +5,8 @@ import { Logger } from "./logger.js";
 import { findActiveWeatherEvents } from "./adapters/weatherDiscovery.js";
 import { fetchOpenMeteoForecast } from "./adapters/weatherFeed.js";
 import { forecastToProbabilities } from "./core/weatherFairValue.js";
-import { buildBuyQuotes, filterPostOnlySafeQuotes } from "./core/multiMarketQuoter.js";
+import { buildBuyQuotes } from "./core/multiMarketQuoter.js";
+import { QuoteIntent } from "./types.js";
 import { InventoryEngine } from "./core/inventoryEngine.js";
 import { DryRunBroker } from "./execution/dryRunBroker.js";
 import { fetchOrderBookTop } from "./execution/orderBookClient.js";
@@ -51,21 +52,16 @@ async function main() {
       config.weatherUncertaintyC,
       event.markets.map((market) => market.temperatureC)
     );
-    const quotes = buildBuyQuotes(event, forecast, config);
     const books = [];
-    for (const quote of quotes) {
+    for (const market of event.markets) {
       try {
-        books.push({ tokenId: quote.tokenId, outcomeLabel: quote.outcomeLabel, ...(await fetchOrderBookTop(quote.tokenId, config.clobHost)) });
+        books.push({ tokenId: market.yesTokenId, outcomeLabel: market.outcomeLabel, ...(await fetchOrderBookTop(market.yesTokenId, config.clobHost)) });
       } catch (error) {
-        books.push({
-          tokenId: quote.tokenId,
-          outcomeLabel: quote.outcomeLabel,
-          error: error instanceof Error ? error.message : String(error)
-        });
+        books.push({ tokenId: market.yesTokenId, outcomeLabel: market.outcomeLabel, error: error instanceof Error ? error.message : String(error) });
       }
     }
-    const { safeQuotes, skippedQuotes } = filterPostOnlySafeQuotes(quotes, books);
-    const selectedQuotes = selectQuotesClosestToForecast(safeQuotes, event, forecast.temperatureMaxC, config.maxOutcomesPerEvent);
+    const { quotes, skipped: skippedQuotes } = buildBuyQuotes(event, forecast, config, books);
+    const selectedQuotes = selectQuotesClosestToForecast(quotes, event, forecast.temperatureMaxC, config.maxOutcomesPerEvent);
     const receipts = execution ? await execution.engine.placeBuyQuotes(selectedQuotes) : await broker.placeMany(selectedQuotes);
 
     log.info("weather event quoted", {
@@ -134,16 +130,23 @@ function createLiveExecution(config: ReturnType<typeof loadConfig>, events: Awai
 async function refreshLiveQuotes(config: ReturnType<typeof loadConfig>, engine: WeatherExecutionEngine): Promise<void> {
   try {
     await engine.startupCleanup();
+    const positions = engine.getPositionSnapshots();
     const events = await findActiveWeatherEvents({ ...config, maxOutcomesPerEvent: Math.max(config.maxOutcomesPerEvent, 20) });
     for (const event of events) {
       const forecast = await fetchOpenMeteoForecast(event);
-      const quotes = buildBuyQuotes(event, forecast, config);
       const books = [];
-      for (const quote of quotes) {
-        books.push({ tokenId: quote.tokenId, ...(await fetchOrderBookTop(quote.tokenId, config.clobHost)) });
+      for (const market of event.markets) {
+        try {
+          books.push({ tokenId: market.yesTokenId, ...(await fetchOrderBookTop(market.yesTokenId, config.clobHost)) });
+        } catch {
+          books.push({ tokenId: market.yesTokenId });
+        }
       }
-      const { safeQuotes } = filterPostOnlySafeQuotes(quotes, books);
-      const selectedQuotes = selectQuotesClosestToForecast(safeQuotes, event, forecast.temperatureMaxC, config.maxOutcomesPerEvent);
+      const { quotes, skipped } = buildBuyQuotes(event, forecast, config, books, positions);
+      if (skipped.length > 0) {
+        log.info("skipped outcomes", { event: event.title, skipped });
+      }
+      const selectedQuotes = selectQuotesClosestToForecast(quotes, event, forecast.temperatureMaxC, config.maxOutcomesPerEvent);
       await engine.placeBuyQuotes(selectedQuotes);
     }
     log.info("live quote refresh complete", { refreshIntervalMs: config.refreshIntervalMs });
@@ -159,7 +162,7 @@ async function scheduleRefreshLoop(config: ReturnType<typeof loadConfig>, engine
 }
 
 function selectQuotesClosestToForecast(
-  quotes: ReturnType<typeof buildBuyQuotes>,
+  quotes: QuoteIntent[],
   event: Awaited<ReturnType<typeof findActiveWeatherEvents>>[number],
   forecastTempC: number,
   limit: number

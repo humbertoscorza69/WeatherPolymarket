@@ -14,7 +14,8 @@ const config: Config = {
   minMarketVolumeUsdc: 0,
   weatherApi: "open-meteo",
   weatherUncertaintyC: 1.5,
-  halfSpreadCents: 2,
+  halfSpreadCents: 1,
+  maxForecastDivergence: 0.15,
   orderSizeUsdc: 2,
   clobMinShares: 5,
   maxSharesPerMarket: 5,
@@ -69,7 +70,7 @@ test("WeatherExecutionEngine maps BUY fill to inventory and immediate SELL", asy
   assert.equal(inventory.getPosition("0x17").shares, 6);
   assert.equal(placed.length, 1);
   assert.equal(placed[0]?.side, "SELL");
-  assert.equal(placed[0]?.price, 0.33);
+  assert.equal(placed[0]?.price, 0.31);
   assert.equal(placed[0]?.postOnly, true);
 });
 
@@ -94,5 +95,5 @@ test("WeatherExecutionEngine requeues cancelled SELL when inventory remains", as
 
   assert.equal(placed.length, 1);
   assert.equal(placed[0]?.side, "SELL");
-  assert.equal(placed[0]?.price, 0.33);
+  assert.equal(placed[0]?.price, 0.31);
 });

@@ -8,6 +8,7 @@ export interface Config {
   weatherApi: "open-meteo";
   weatherUncertaintyC: number;
   halfSpreadCents: number;
+  maxForecastDivergence: number;
   orderSizeUsdc: number;
   clobMinShares: number;
   maxSharesPerMarket: number;
@@ -54,7 +55,8 @@ export function loadConfig(): Config {
     minMarketVolumeUsdc: envNum("MIN_MARKET_VOLUME_USDC", 0),
     weatherApi: "open-meteo",
     weatherUncertaintyC: envNum("WEATHER_UNCERTAINTY_C", 1.5),
-    halfSpreadCents: envNum("HALF_SPREAD_CENTS", 2),
+    halfSpreadCents: envNum("HALF_SPREAD_CENTS", 1),
+    maxForecastDivergence: envNum("MAX_FORECAST_DIVERGENCE", 0.15),
     orderSizeUsdc: envNum("ORDER_SIZE_USDC", 2),
     clobMinShares: envNum("CLOB_MIN_SHARES", 5),
     maxSharesPerMarket: envNum("MAX_SHARES_PER_MARKET", 5),

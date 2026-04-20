@@ -1,5 +1,5 @@
 import { InventoryEngine } from "../core/inventoryEngine.js";
-import { buildSellOnFill } from "../core/multiMarketQuoter.js";
+import { buildSellOnFill, PositionSnapshot } from "../core/multiMarketQuoter.js";
 import { Config } from "../config.js";
 import { Logger } from "../logger.js";
 import { FillEvent, QuoteIntent, WeatherEvent, WeatherMarket } from "../types.js";
@@ -36,6 +36,13 @@ export class WeatherExecutionEngine {
 
   conditionIds(): string[] {
     return [...this.marketByConditionId.keys()];
+  }
+
+  getPositionSnapshots(): PositionSnapshot[] {
+    return [...this.marketByConditionId.keys()].map((conditionId) => ({
+      conditionId,
+      exposureUsdc: this.inventory.hasPosition(conditionId) ? 1 : 0
+    }));
   }
 
   async startupCleanup(): Promise<void> {
