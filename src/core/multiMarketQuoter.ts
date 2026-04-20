@@ -28,12 +28,14 @@ export function buildBuyQuotes(
   forecast: Forecast,
   config: Config,
   books: QuoteBookTop[],
-  positions: PositionSnapshot[] = []
+  positions: PositionSnapshot[] = [],
+  now: Date = new Date()
 ): BuildBuyQuotesResult {
   const probabilities = forecastToProbabilities(
     forecast.temperatureMaxC,
     config.weatherUncertaintyC,
-    event.markets.map((market) => market.temperatureC)
+    event.markets.map((market) => market.temperatureC),
+    { hoursToResolution: hoursUntilResolution(event.date, now) }
   );
   const fairByTemp = new Map(probabilities.map((point) => [point.temperatureC, point.probability]));
   const bookByToken = new Map(books.map((book) => [book.tokenId, book]));
@@ -173,6 +175,16 @@ export function roundPriceDown(value: number): number {
 export function roundPriceToTickDown(value: number, tickSize: number): number {
   const factor = Math.round(1 / tickSize);
   return Math.floor(value * factor + 1e-9) / factor;
+}
+
+/**
+ * Hours until market resolution. For Polymarket weather markets, resolution is
+ * end-of-day (23:59 UTC) of the event date. If the date has already passed,
+ * returns 0 (do not grow sigma into the past).
+ */
+export function hoursUntilResolution(eventDateIso: string, now: Date): number {
+  const resolution = new Date(`${eventDateIso}T23:59:59Z`).getTime();
+  return Math.max(0, (resolution - now.getTime()) / 3_600_000);
 }
 
 export function filterPostOnlySafeQuotes(quotes: QuoteIntent[], books: QuoteBookTop[]): PostOnlyFilterResult {

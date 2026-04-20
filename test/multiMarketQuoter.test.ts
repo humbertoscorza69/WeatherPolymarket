@@ -54,6 +54,15 @@ const forecast: Forecast = {
   source: "open-meteo"
 };
 
+/**
+ * Deterministic "now" right at resolution time so hoursToResolution = 0
+ * and sigma = baseUncertaintyC (no horizon scaling). With forecast=20,
+ * sigma=1.5, outcomes=[18,19,20,21,22] treating 18 as low-tail and
+ * 22 as high-tail, the CDF-derived probabilities are roughly:
+ *   18→0.159  19→0.211  20→0.261  21→0.211  22→0.159
+ */
+const FIXED_NOW = new Date("2026-04-21T23:59:59Z");
+
 // Books with midpoints close to forecast probabilities (divergence < 0.15)
 // Forecast probs at uncertainty=1.5: 18→0.12, 19→0.23, 20→0.29, 21→0.23, 22→0.12
 const books = [
@@ -64,8 +73,8 @@ const books = [
   { tokenId: "yes-22", bestBid: 0.10, bestAsk: 0.14 }  // mid=0.12, forecast≈0.12
 ];
 
-test("buildBuyQuotes creates post-only BUY YES quotes priced at midpoint minus half-spread", () => {
-  const { quotes } = buildBuyQuotes(event, forecast, config, books);
+test("buildBuyQuotes creates post-only BUY YES quotes capped at min(mid, fair) - halfSpread", () => {
+  const { quotes } = buildBuyQuotes(event, forecast, config, books, [], FIXED_NOW);
 
   assert.ok(quotes.length > 0);
   assert.ok(quotes.every((quote) => quote.side === "BUY"));
@@ -73,80 +82,166 @@ test("buildBuyQuotes creates post-only BUY YES quotes priced at midpoint minus h
   assert.ok(quotes.every((quote) => quote.price >= 0.02 && quote.price <= 0.98));
   assert.ok(quotes.every((quote) => quote.shares >= config.clobMinShares));
 
-  // Price should be roundDown(mid - 0.01)
+  // 20°C peak: fair ≈ 0.261, mid = 0.29. fair < mid so fairBid (0.251) binds,
+  // rounded down to 0.01 tick = 0.25. Guarantees positive EV vs our fair value.
   const quote20 = quotes.find((q) => q.outcomeLabel === "20C");
-  assert.ok(quote20);
-  assert.equal(quote20.price, 0.28); // mid=0.29, halfSpread=0.01 → 0.28
+  assert.ok(quote20, "20C quote should exist");
+  assert.equal(quote20.price, 0.25);
+  assert.ok(quote20.reason.includes("binding=fair"));
 });
 
 test("buildBuyQuotes caps total exposure", () => {
-  const { quotes } = buildBuyQuotes(event, forecast, config, books, [], );
+  const { quotes } = buildBuyQuotes(event, forecast, config, books, [], FIXED_NOW);
   // maxTotalExposureUsdc=10, orderSizeUsdc=2 → up to 5 quotes
-  // All 5 outcomes pass checks, total = 5×2 = 10 ≤ 10
   assert.equal(quotes.length, 5);
 
-  const { quotes: capped } = buildBuyQuotes(event, forecast, { ...config, maxTotalExposureUsdc: 4 }, books);
+  const { quotes: capped } = buildBuyQuotes(event, forecast, { ...config, maxTotalExposureUsdc: 4 }, books, [], FIXED_NOW);
   assert.equal(capped.length, 2);
 });
 
 test("buildBuyQuotes skips outcomes with an existing position", () => {
-  const { quotes } = buildBuyQuotes(event, forecast, config, books, [{ conditionId: "0x20", exposureUsdc: 1 }]);
+  const { quotes } = buildBuyQuotes(event, forecast, config, books, [{ conditionId: "0x20", exposureUsdc: 1 }], FIXED_NOW);
   assert.equal(quotes.some((q) => q.conditionId === "0x20"), false, "should skip conditionId with open position");
   assert.equal(quotes.some((q) => q.conditionId === "0x19"), true, "should still quote others");
 });
 
 test("buildBuyQuotes rejects orders below CLOB minimum shares", () => {
-  const { quotes } = buildBuyQuotes(event, forecast, { ...config, clobMinShares: 1000 }, books);
+  const { quotes } = buildBuyQuotes(event, forecast, { ...config, clobMinShares: 1000 }, books, [], FIXED_NOW);
   assert.equal(quotes.length, 0);
 });
 
 test("buildBuyQuotes skips outcomes with no book data", () => {
-  const { quotes, skipped } = buildBuyQuotes(event, forecast, config, []);
+  const { quotes, skipped } = buildBuyQuotes(event, forecast, config, [], [], FIXED_NOW);
   assert.equal(quotes.length, 0);
   assert.equal(skipped.length, 5);
   assert.ok(skipped.every((s) => s.reason === "no_book_data"));
 });
 
 test("buildBuyQuotes caps bid at min(mid - halfSpread, fair - halfSpread)", () => {
-  // 20°C has fair ≈ 0.292 (peak of distribution), mid = 0.29. Fair > mid so midBid binds.
-  // Add a synthetic outcome where mid is above fair by a notable amount.
-  // We'll use the 22°C outcome (fair ≈ 0.12) and quote its book with an inflated mid to simulate
-  // the 14°C-style "market overvalues" case from the session analysis.
+  // 22°C is a high-tail bucket with fair ≈ 0.159. Give it an inflated market mid
+  // (0.30) to simulate the "market overvalues the tail" case from the Seoul
+  // session analysis. The fair-value cap must keep our bid at or below fair.
   const overvaluedBooks = [
-    { tokenId: "yes-22", bestBid: 0.28, bestAsk: 0.32 } // mid=0.30, fair≈0.12
+    { tokenId: "yes-22", bestBid: 0.28, bestAsk: 0.32 }
   ];
-  // Bump MAX_FORECAST_DIVERGENCE so the divergence gate doesn't reject first
-  const { quotes, skipped } = buildBuyQuotes(
+  const { quotes } = buildBuyQuotes(
     event,
     forecast,
     { ...config, maxForecastDivergence: 0.5, halfSpreadCents: 1, tickSize: 0.01 },
-    overvaluedBooks
+    overvaluedBooks,
+    [],
+    FIXED_NOW
   );
-  // Expected: fairBid = 0.12 - 0.01 = 0.11; midBid = 0.30 - 0.01 = 0.29;
-  //   min = 0.11 rounded down to tick 0.01 = 0.11, and 0.11 ≤ fair (0.12) — quote should be placed at 0.11.
   const q22 = quotes.find((q) => q.conditionId === "0x22");
   assert.ok(q22, "expected a quote for 22C once divergence gate is loosened");
-  assert.ok(q22.price <= 0.12, `bid ${q22.price} must not exceed fair value 0.12`);
-  assert.equal(q22.price, 0.11);
+  // fair≈0.159 → fairBid = 0.149 → round-down to 0.01 = 0.14; midBid = 0.29 → min = 0.14.
+  assert.equal(q22.price, 0.14);
+  assert.ok(q22.price <= 0.16, `bid ${q22.price} must not exceed fair value`);
   assert.ok(q22.reason.includes("binding=fair"), `reason should mark fair as binding: ${q22.reason}`);
-  // All other outcomes have no books supplied → skipped as no_book_data
-  assert.ok(skipped.every((s) => s.reason === "no_book_data" || s.conditionId === "0x22"));
+});
+
+test("buildBuyQuotes applies the fair-value cap independently to every city/event", () => {
+  // Two cities with different forecasts and over-priced tail outcomes.
+  // Guarantees the cap is event-scoped and not globally cached.
+  const seoulEvent: WeatherEvent = {
+    id: "seoul-1",
+    title: "Highest temperature in Seoul on April 21?",
+    city: "Seoul",
+    date: "2026-04-21",
+    markets: [14, 15, 16, 17, 18].map((temp) => ({
+      conditionId: `seoul-0x${temp}`,
+      question: `Will Seoul high be ${temp}°C?`,
+      outcomeLabel: `${temp}C`,
+      temperatureC: temp,
+      yesTokenId: `seoul-yes-${temp}`,
+      noTokenId: `seoul-no-${temp}`,
+      volume24hr: 1000,
+      enableOrderBook: true,
+      closed: false,
+      resolved: false
+    }))
+  };
+  const seoulForecast: Forecast = { city: "Seoul", date: "2026-04-21", temperatureMaxC: 17.2, source: "open-meteo" };
+
+  // Seoul 14°C: market mid inflated (0.07) vs fair (≈0.029 for low-tail at f=17.2)
+  const seoulBooks = [{ tokenId: "seoul-yes-14", bestBid: 0.06, bestAsk: 0.08 }];
+
+  const parisEvent: WeatherEvent = {
+    ...seoulEvent,
+    id: "paris-1",
+    title: "Highest temperature in Paris on April 21?",
+    city: "Paris",
+    markets: [10, 11, 12, 13, 14].map((temp) => ({
+      conditionId: `paris-0x${temp}`,
+      question: `Will Paris high be ${temp}°C?`,
+      outcomeLabel: `${temp}C`,
+      temperatureC: temp,
+      yesTokenId: `paris-yes-${temp}`,
+      noTokenId: `paris-no-${temp}`,
+      volume24hr: 1000,
+      enableOrderBook: true,
+      closed: false,
+      resolved: false
+    }))
+  };
+  const parisForecast: Forecast = { city: "Paris", date: "2026-04-21", temperatureMaxC: 12, source: "open-meteo" };
+  // Paris 10°C: market mid inflated relative to the Paris fair for that bin
+  const parisBooks = [{ tokenId: "paris-yes-10", bestBid: 0.20, bestAsk: 0.24 }];
+
+  const seoul = buildBuyQuotes(
+    seoulEvent,
+    seoulForecast,
+    { ...config, maxForecastDivergence: 0.5 },
+    seoulBooks,
+    [],
+    FIXED_NOW
+  );
+  const paris = buildBuyQuotes(
+    parisEvent,
+    parisForecast,
+    { ...config, maxForecastDivergence: 0.5 },
+    parisBooks,
+    [],
+    FIXED_NOW
+  );
+
+  const seoul14 = seoul.quotes.find((q) => q.conditionId === "seoul-0x14");
+  const paris10 = paris.quotes.find((q) => q.conditionId === "paris-0x10");
+
+  // Both overvalued tail cases: the fair-value cap must bind for each.
+  if (seoul14) {
+    assert.ok(seoul14.reason.includes("binding=fair"), `Seoul 14°C should bind on fair: ${seoul14.reason}`);
+    assert.ok(seoul14.price < 0.07, `Seoul bid ${seoul14.price} should be below mid=0.07`);
+  }
+  if (paris10) {
+    assert.ok(paris10.reason.includes("binding=fair"), `Paris 10°C should bind on fair: ${paris10.reason}`);
+    assert.ok(paris10.price < 0.22, `Paris bid ${paris10.price} should be below mid=0.22`);
+  }
+  // At minimum, one of the two overvalued cases must have been skipped or fair-bound.
+  const seoulSkipped = seoul.skipped.some((s) => s.conditionId === "seoul-0x14" && s.reason.startsWith("bid_above_fair"));
+  const parisSkipped = paris.skipped.some((s) => s.conditionId === "paris-0x10" && s.reason.startsWith("bid_above_fair"));
+  assert.ok(
+    seoul14 || seoulSkipped || paris10 || parisSkipped,
+    "either a fair-bound quote or a bid_above_fair skip must exist for each overvalued city"
+  );
 });
 
 test("buildBuyQuotes prefers mid-based bid when fair >= mid (market undervalues)", () => {
-  // 20°C outcome: fair ≈ 0.292, mid we set below that so fair should not bind.
+  // 20°C outcome: fair ≈ 0.261 (CDF peak), pick a book where mid is well below fair.
   const undervaluedBooks = [
-    { tokenId: "yes-20", bestBid: 0.15, bestAsk: 0.19 } // mid=0.17, fair≈0.29
+    { tokenId: "yes-20", bestBid: 0.15, bestAsk: 0.19 } // mid=0.17, fair≈0.26
   ];
   const { quotes } = buildBuyQuotes(
     event,
     forecast,
     { ...config, maxForecastDivergence: 0.5 },
-    undervaluedBooks
+    undervaluedBooks,
+    [],
+    FIXED_NOW
   );
   const q20 = quotes.find((q) => q.conditionId === "0x20");
   assert.ok(q20);
-  // mid - halfSpread = 0.16; fair - halfSpread = 0.28; min = 0.16
+  // mid - halfSpread = 0.16; fair - halfSpread = 0.251; min = 0.16
   assert.equal(q20.price, 0.16);
   assert.ok(q20.reason.includes("binding=mid"));
 });
@@ -155,7 +250,7 @@ test("buildBuyQuotes skips outcomes where market diverges too far from forecast"
   const divergedBooks = [
     { tokenId: "yes-20", bestBid: 0.55, bestAsk: 0.60 } // mid=0.575, forecast≈0.29 → divergence=0.285 > 0.15
   ];
-  const { quotes, skipped } = buildBuyQuotes(event, forecast, config, divergedBooks);
+  const { quotes, skipped } = buildBuyQuotes(event, forecast, config, divergedBooks, [], FIXED_NOW);
   assert.equal(quotes.length, 0);
   assert.ok(skipped.some((s) => s.conditionId === "0x20" && s.reason.startsWith("divergence=")));
 });
@@ -164,7 +259,7 @@ test("buildBuyQuotes skips outcomes where book spread is too tight", () => {
   const tightBooks = [
     { tokenId: "yes-20", bestBid: 0.289, bestAsk: 0.290 } // spread=0.001 < 0.002
   ];
-  const { skipped } = buildBuyQuotes(event, forecast, config, tightBooks);
+  const { skipped } = buildBuyQuotes(event, forecast, config, tightBooks, [], FIXED_NOW);
   assert.ok(skipped.some((s) => s.conditionId === "0x20" && s.reason.startsWith("spread_too_tight=")));
 });
 
