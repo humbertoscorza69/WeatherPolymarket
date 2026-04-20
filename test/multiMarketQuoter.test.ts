@@ -117,7 +117,7 @@ test("buildBuyQuotes skips outcomes where market diverges too far from forecast"
 
 test("buildBuyQuotes skips outcomes where book spread is too tight", () => {
   const tightBooks = [
-    { tokenId: "yes-20", bestBid: 0.285, bestAsk: 0.295 } // spread=0.01 < 0.02
+    { tokenId: "yes-20", bestBid: 0.289, bestAsk: 0.290 } // spread=0.001 < 0.002
   ];
   const { skipped } = buildBuyQuotes(event, forecast, config, tightBooks);
   assert.ok(skipped.some((s) => s.conditionId === "0x20" && s.reason.startsWith("spread_too_tight=")));

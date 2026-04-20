@@ -54,7 +54,7 @@ export function buildBuyQuotes(
     }
 
     const spread = book.bestAsk - book.bestBid;
-    if (spread < 0.02) {
+    if (spread < 0.002) {
       skipped.push({ conditionId: market.conditionId, outcomeLabel: market.outcomeLabel, reason: `spread_too_tight=${spread}` });
       continue;
     }
