@@ -92,6 +92,17 @@ export class ClobDriver {
     return this.placePostOnlyOrder(signed, OrderType.GTC, postOnly);
   }
 
+  /**
+   * Marketable exit. Submits as FAK (fill-and-kill) with postOnly=false so it
+   * crosses the book and closes the position. Pays taker fees. Reserved for
+   * stop-loss; never used in normal quoting.
+   */
+  async placeTakerExit(quote: QuoteIntent): Promise<PostOrderResult> {
+    const signed = await this.createSignedOrder(quote);
+    const payload = buildRawOrderPayload(signed, this.deps.creds.key, OrderType.FAK, false);
+    return this.authenticatedPost(POST_ORDER, payload);
+  }
+
   async placePostOnlyOrder(
     signedOrder: SignedOrder,
     orderType: OrderType = OrderType.GTC,

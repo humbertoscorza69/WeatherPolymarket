@@ -1,6 +1,7 @@
 import { InventoryEngine } from "../core/inventoryEngine.js";
-import { buildSellOnFill, PositionSnapshot } from "../core/multiMarketQuoter.js";
+import { buildSellOnFill, hoursUntilResolution, PositionSnapshot } from "../core/multiMarketQuoter.js";
 import { EventLog } from "../core/eventLog.js";
+import { evaluateStopLoss, StopLossConfig } from "../core/stopLoss.js";
 import { Config } from "../config.js";
 import { Logger } from "../logger.js";
 import { FillEvent, QuoteIntent, WeatherEvent, WeatherMarket } from "../types.js";
@@ -21,12 +22,22 @@ export class WeatherExecutionEngine {
   // Separate maps — SELLs must never be touched by cancelActiveBuys
   private readonly activeBuys = new Map<string, ActiveOrder>();  // keyed by conditionId
   private readonly activeSells = new Map<string, ActiveOrder>(); // keyed by conditionId
+  // Track the event date for each conditionId so we can compute hoursToResolution
+  private readonly eventDateByConditionId = new Map<string, string>();
+  // Track when each position was opened for stop-loss time-based rules
+  private readonly positionEntryTime = new Map<string, number>();
 
   constructor(
     events: WeatherEvent[],
     private readonly driver: Pick<
       ClobDriver,
-      "placeQuote" | "cancelAll" | "cancelOrder" | "getOpenOrders" | "fetchTokenBalance" | "resolveTickSize"
+      | "placeQuote"
+      | "placeTakerExit"
+      | "cancelAll"
+      | "cancelOrder"
+      | "getOpenOrders"
+      | "fetchTokenBalance"
+      | "resolveTickSize"
     >,
     private readonly inventory: InventoryEngine,
     private readonly config: Config,
@@ -38,6 +49,7 @@ export class WeatherExecutionEngine {
         this.marketByAssetId.set(market.yesTokenId, market);
         this.marketByAssetId.set(market.noTokenId, market);
         this.marketByConditionId.set(market.conditionId, market);
+        this.eventDateByConditionId.set(market.conditionId, event.date);
       }
     }
   }
@@ -123,10 +135,14 @@ export class WeatherExecutionEngine {
   }
 
   getPositionSnapshots(): PositionSnapshot[] {
-    return [...this.marketByConditionId.keys()].map((conditionId) => ({
-      conditionId,
-      exposureUsdc: this.inventory.hasPosition(conditionId) ? 1 : 0
-    }));
+    return [...this.marketByConditionId.keys()].map((conditionId) => {
+      const pos = this.inventory.getPosition(conditionId);
+      return {
+        conditionId,
+        exposureUsdc: pos.shares * pos.avgEntryPrice,
+        shares: pos.shares
+      };
+    });
   }
 
   /**
@@ -240,6 +256,9 @@ export class WeatherExecutionEngine {
           shares: floored
         };
         this.inventory.applyFill(fill);
+        // On restart we don't know the true entry time; use "now" so the
+        // stop-loss holding-time counter starts fresh.
+        this.positionEntryTime.set(conditionId, Date.now());
 
         if (!existingSell) {
           await this.placeSellForFill(market, fill);
@@ -301,6 +320,151 @@ export class WeatherExecutionEngine {
       });
     if (positions.length > 0) {
       this.logger.info("[INVENTORY]", { positions, total: positions.length });
+    }
+  }
+
+  /**
+   * Evaluate stop-loss rules for every held position and execute taker
+   * exits where rules fire. Call from the refresh loop.
+   */
+  async evaluateStopLosses(): Promise<void> {
+    if (!this.config.stopLossEnabled) return;
+    const stopCfg: StopLossConfig = {
+      enabled: this.config.stopLossEnabled,
+      catastrophicDropRatio: this.config.stopLossCatastrophicDropRatio,
+      deepDropRatio: this.config.stopLossDeepDropRatio,
+      deepDropMaxMinutes: this.config.stopLossDeepDropMaxMinutes,
+      resolutionStopHours: this.config.stopLossResolutionHours,
+      resolutionDropRatio: this.config.stopLossResolutionDropRatio,
+      maxHoldingHours: this.config.stopLossMaxHoldingHours
+    };
+    const now = Date.now();
+
+    for (const [conditionId, market] of this.marketByConditionId) {
+      if (!this.inventory.hasPosition(conditionId)) continue;
+      const position = this.inventory.getPosition(conditionId);
+      const entryTime = this.positionEntryTime.get(conditionId) ?? now;
+      const eventDate = this.eventDateByConditionId.get(conditionId) ?? "";
+      const hoursToResolution = hoursUntilResolution(eventDate, new Date(now));
+
+      let book: { bestBid?: number; bestAsk?: number };
+      try {
+        book = await fetchOrderBookTop(market.yesTokenId, this.config.clobHost);
+      } catch (err) {
+        this.logger.error("[STOP-LOSS-BOOK-ERROR]", { outcome: market.outcomeLabel, error: String(err) });
+        continue;
+      }
+      if (book.bestBid === undefined || book.bestAsk === undefined) continue;
+      const mid = (book.bestBid + book.bestAsk) / 2;
+
+      const decision = evaluateStopLoss(
+        {
+          conditionId,
+          outcomeLabel: market.outcomeLabel,
+          avgEntryPrice: position.avgEntryPrice,
+          shares: position.shares,
+          currentMid: mid,
+          entryTime,
+          now,
+          hoursToResolution
+        },
+        stopCfg
+      );
+      if (!decision.shouldStop) continue;
+
+      this.logger.warn("[STOP-LOSS-TRIGGERED]", {
+        outcome: market.outcomeLabel,
+        rule: decision.rule,
+        detail: decision.detail
+      });
+      this.eventLog.record({
+        type: "ERROR",
+        outcome: market.outcomeLabel,
+        conditionId,
+        message: `STOP_LOSS:${decision.rule}`,
+        data: decision.detail
+      });
+
+      await this.executeStopLossExit(market, position, book);
+    }
+  }
+
+  private async executeStopLossExit(
+    market: WeatherMarket,
+    position: { shares: number; avgEntryPrice: number },
+    book: { bestBid?: number; bestAsk?: number }
+  ): Promise<void> {
+    // Cancel any resting SELL first so the taker exit owns the shares
+    const existingSell = this.activeSells.get(market.conditionId);
+    if (existingSell) {
+      try {
+        await this.driver.cancelOrder(existingSell.orderId);
+      } catch (err) {
+        this.logger.error("[STOP-LOSS-CANCEL-ERROR]", { error: String(err) });
+      }
+      this.activeSells.delete(market.conditionId);
+    }
+
+    if (book.bestBid === undefined) return;
+    // Sell into the best bid (crosses the book → taker). FAK ensures the
+    // order either fills against available liquidity or dies; no resting.
+    const exitPrice = book.bestBid;
+    const tick = market.tickSize ?? this.config.tickSize;
+    const shares = Math.floor(position.shares * 10_000) / 10_000;
+    if (shares < this.config.clobMinShares) return;
+
+    const exit: QuoteIntent = {
+      eventId: "stop-loss",
+      city: "stop-loss",
+      date: this.eventDateByConditionId.get(market.conditionId) ?? "",
+      conditionId: market.conditionId,
+      tokenId: market.yesTokenId,
+      outcomeLabel: market.outcomeLabel,
+      side: "SELL",
+      price: exitPrice,
+      sizeUsdc: exitPrice * shares,
+      shares,
+      postOnly: true, // required by QuoteIntent literal type; placeTakerExit overrides with postOnly=false
+      reason: `stop_loss_exit tick=${tick}`
+    };
+
+    try {
+      const result = await this.driver.placeTakerExit(exit);
+      this.logger.warn("[STOP-LOSS-EXIT]", {
+        outcome: market.outcomeLabel,
+        exitPrice,
+        shares,
+        success: result.success,
+        status: result.status
+      });
+      if (result.success) {
+        // Reflect the exit in inventory. Exact fill size may be partial under FAK;
+        // the user WS will deliver a TRADE event to reconcile. This apply is best-effort.
+        this.inventory.applyFill({
+          conditionId: market.conditionId,
+          tokenId: market.yesTokenId,
+          side: "SELL",
+          price: exitPrice,
+          shares
+        });
+        this.positionEntryTime.delete(market.conditionId);
+        const realizedPerShare = exitPrice - position.avgEntryPrice;
+        this.eventLog.record({
+          type: "ROUND_TRIP",
+          outcome: market.outcomeLabel,
+          conditionId: market.conditionId,
+          price: exitPrice,
+          shares,
+          profitUsdc: Number((realizedPerShare * shares).toFixed(4)),
+          message: "STOP_LOSS",
+          data: { entry: position.avgEntryPrice, exit: exitPrice }
+        });
+      }
+    } catch (err) {
+      this.logger.error("[STOP-LOSS-EXIT-ERROR]", {
+        outcome: market.outcomeLabel,
+        error: String(err)
+      });
     }
   }
 
@@ -505,6 +669,10 @@ export class WeatherExecutionEngine {
 
     if (fill.side === "BUY") {
       this.activeBuys.delete(market.conditionId);
+      // Record entry time on first BUY only — partial fills shouldn't reset it
+      if (!this.positionEntryTime.has(market.conditionId)) {
+        this.positionEntryTime.set(market.conditionId, Date.now());
+      }
       this.logger.info("[FILL-BUY] BUY filled, removed from activeBuys, placing SELL now", {
         outcome: market.outcomeLabel
       });
@@ -524,6 +692,11 @@ export class WeatherExecutionEngine {
     // log realized P&L, and let the next refresh cycle quote a fresh BUY.
     if (fill.side === "SELL") {
       this.activeSells.delete(market.conditionId);
+      // If SELL closes the position fully, forget the entry timestamp
+      const remainingShares = this.inventory.getPosition(market.conditionId).shares;
+      if (remainingShares < this.config.clobMinShares) {
+        this.positionEntryTime.delete(market.conditionId);
+      }
       const realizedPerShare = fill.price - entryBasis;
       const realizedUsdc = realizedPerShare * fill.shares;
       const remaining = this.inventory.getPosition(market.conditionId).shares;

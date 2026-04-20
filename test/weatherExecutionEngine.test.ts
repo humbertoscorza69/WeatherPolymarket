@@ -17,6 +17,14 @@ const config: Config = {
   halfSpreadCents: 1,
   maxForecastDivergence: 0.15,
   enableFairValueCap: false,
+  inventorySkewCents: 0,
+  stopLossEnabled: false,
+  stopLossCatastrophicDropRatio: 0.3,
+  stopLossDeepDropRatio: 0.6,
+  stopLossDeepDropMaxMinutes: 120,
+  stopLossResolutionHours: 1,
+  stopLossResolutionDropRatio: 0.7,
+  stopLossMaxHoldingHours: 12,
   orderSizeUsdc: 2,
   clobMinShares: 5,
   maxSharesPerMarket: 5,
@@ -62,6 +70,7 @@ test("WeatherExecutionEngine maps BUY fill to inventory and immediate SELL", asy
       getOpenOrders: async () => [],
       fetchTokenBalance: async () => 0,
       resolveTickSize: async () => 0.01,
+      placeTakerExit: async () => ({ success: true, status: "matched", orderId: "taker", raw: {} }),
       placeQuote: async (quote: QuoteIntent) => {
         placed.push(quote);
         return { success: true, status: "live", orderId: `order-${placed.length}`, raw: {} };
@@ -97,6 +106,7 @@ test("startupCleanup preserves existing SELL orders and cancels stale BUYs", asy
       ] as unknown as never,
       fetchTokenBalance: async () => 0,
       resolveTickSize: async () => 0.01,
+      placeTakerExit: async () => ({ success: true, status: "matched", orderId: "taker", raw: {} }),
       placeQuote: async () => ({ success: true, status: "live", orderId: "n/a", raw: {} })
     },
     inventory,
@@ -117,6 +127,7 @@ test("startupCleanup preserves existing SELL orders and cancels stale BUYs", asy
       getOpenOrders: async () => [{ id: "sell-keep", asset_id: "yes-17", side: "SELL", price: "0.30" }] as unknown as never,
       fetchTokenBalance: async () => 6,
       resolveTickSize: async () => 0.01,
+      placeTakerExit: async () => ({ success: true, status: "matched", orderId: "taker", raw: {} }),
       placeQuote: async (quote: QuoteIntent) => {
         placed.push(quote.side);
         return { success: true, status: "live", orderId: "x", raw: {} };
@@ -143,6 +154,7 @@ test("WeatherExecutionEngine requeues cancelled SELL when inventory remains", as
       getOpenOrders: async () => [],
       fetchTokenBalance: async () => 0,
       resolveTickSize: async () => 0.01,
+      placeTakerExit: async () => ({ success: true, status: "matched", orderId: "taker", raw: {} }),
       placeQuote: async (quote: QuoteIntent) => {
         placed.push(quote);
         return { success: true, status: "live", orderId: `order-${placed.length}`, raw: {} };

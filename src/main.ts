@@ -181,6 +181,8 @@ function createLiveExecution(
 
 async function refreshLiveQuotes(config: ReturnType<typeof loadConfig>, engine: WeatherExecutionEngine): Promise<void> {
   try {
+    // Stop-loss runs before re-quoting so we don't race our own exits
+    await engine.evaluateStopLosses();
     await engine.cancelActiveBuys();
     const positions = engine.getPositionSnapshots();
     const events = await findActiveWeatherEvents({ ...config, maxOutcomesPerEvent: Math.max(config.maxOutcomesPerEvent, 20) });

@@ -10,6 +10,14 @@ export interface Config {
   halfSpreadCents: number;
   maxForecastDivergence: number;
   enableFairValueCap: boolean;
+  inventorySkewCents: number;
+  stopLossEnabled: boolean;
+  stopLossCatastrophicDropRatio: number;
+  stopLossDeepDropRatio: number;
+  stopLossDeepDropMaxMinutes: number;
+  stopLossResolutionHours: number;
+  stopLossResolutionDropRatio: number;
+  stopLossMaxHoldingHours: number;
   orderSizeUsdc: number;
   clobMinShares: number;
   maxSharesPerMarket: number;
@@ -63,6 +71,17 @@ export function loadConfig(): Config {
     // of the bot's own forecast. Turn ON if you want the fair-value safety
     // guard that skips outcomes where market mid exceeds our fair estimate.
     enableFairValueCap: envBool("ENABLE_FAIR_VALUE_CAP", false),
+    // Widen the BUY spread as inventory grows. At full utilization the
+    // effective halfSpread = halfSpreadCents + inventorySkewCents.
+    inventorySkewCents: envNum("INVENTORY_SKEW_CENTS", 2),
+    // Stop-loss system. Closes a position via taker exit if any rule fires.
+    stopLossEnabled: envBool("STOP_LOSS_ENABLED", true),
+    stopLossCatastrophicDropRatio: envNum("STOP_LOSS_CATASTROPHIC_DROP", 0.3),
+    stopLossDeepDropRatio: envNum("STOP_LOSS_DEEP_DROP", 0.6),
+    stopLossDeepDropMaxMinutes: envNum("STOP_LOSS_DEEP_DROP_MINUTES", 120),
+    stopLossResolutionHours: envNum("STOP_LOSS_RESOLUTION_HOURS", 1),
+    stopLossResolutionDropRatio: envNum("STOP_LOSS_RESOLUTION_DROP", 0.7),
+    stopLossMaxHoldingHours: envNum("STOP_LOSS_MAX_HOLDING_HOURS", 12),
     orderSizeUsdc: envNum("ORDER_SIZE_USDC", 2),
     clobMinShares: envNum("CLOB_MIN_SHARES", 5),
     maxSharesPerMarket: envNum("MAX_SHARES_PER_MARKET", 5),

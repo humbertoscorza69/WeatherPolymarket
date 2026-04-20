@@ -1,10 +1,13 @@
 import { Config } from "../config.js";
 import { FillEvent, Forecast, QuoteIntent, WeatherEvent } from "../types.js";
 import { forecastToProbabilities, roundPrice } from "./weatherFairValue.js";
+import { skewedHalfSpreadCents } from "./inventorySkew.js";
 
 export interface PositionSnapshot {
   conditionId: string;
   exposureUsdc: number;
+  /** Optional share count so the dedupe check works even when entry price is unknown. */
+  shares?: number;
 }
 
 export interface QuoteBookTop {
@@ -39,8 +42,22 @@ export function buildBuyQuotes(
   );
   const fairByTemp = new Map(probabilities.map((point) => [point.temperatureC, point.probability]));
   const bookByToken = new Map(books.map((book) => [book.tokenId, book]));
-  const heldConditions = new Set(positions.filter((p) => p.exposureUsdc > 0).map((p) => p.conditionId));
-  const halfSpread = config.halfSpreadCents / 100;
+  // A position is "held" if either USDC exposure is > 0 OR we have ≥ 1 share
+  // (share count is more reliable when entry price was unknown on startup).
+  const heldConditions = new Set(
+    positions.filter((p) => p.exposureUsdc > 0 || (p.shares ?? 0) > 0).map((p) => p.conditionId)
+  );
+  // Apply inventory skew: widen the spread as current exposure grows toward the cap.
+  const currentExposureUsdc = positions.reduce((sum, p) => sum + (p.exposureUsdc ?? 0), 0);
+  const effectiveHalfSpreadCents = skewedHalfSpreadCents(
+    {
+      baseHalfSpreadCents: config.halfSpreadCents,
+      inventorySkewCents: config.inventorySkewCents,
+      maxExposureUsdc: config.maxTotalExposureUsdc
+    },
+    currentExposureUsdc
+  );
+  const halfSpread = effectiveHalfSpreadCents / 100;
   const quotes: QuoteIntent[] = [];
   const skipped: Array<{ conditionId: string; outcomeLabel: string; reason: string }> = [];
   let totalExposure = 0;
