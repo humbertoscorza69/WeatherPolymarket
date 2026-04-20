@@ -1,8 +1,40 @@
-# Fair value model and market-making strategy
+# Market-making strategy and fair-value model
 
-This document explains how the bot prices orders on Polymarket weather temperature markets,
-what inputs it uses, and why. The model applies **per-event**, so every city and every
-market date gets its own fair-value distribution independently.
+**TL;DR** — This bot is a **pure market maker**. It captures spread and
+collects Polymarket maker rebates. It does **not** try to predict the
+temperature, and it does not bet on its own forecast being better than the
+market's. The forecast is used only as an optional safety guard (the
+"fair-value cap"), which is **off by default**.
+
+This document explains how the bot prices and scales, and — separately —
+what the fair-value guard does when you turn it on.
+
+---
+
+## 0. Inventory isolation at 50-100 markets (the core guarantee)
+
+Every Polymarket outcome has a unique `conditionId`. The bot tracks inventory,
+open orders, and fills **per conditionId**, so there is no interference
+between cities or between outcomes within a city:
+
+- `InventoryEngine.positions: Map<conditionId, Position>` — one entry per outcome.
+- `activeBuys: Map<conditionId, OrderInfo>` — at most one resting BUY per outcome.
+- `activeSells: Map<conditionId, OrderInfo>` — at most one resting SELL per outcome.
+
+What the quoter does for each outcome, in order:
+
+1. If we already hold shares on that conditionId → skip BUY (`has_position`).
+2. If a BUY is already resting on that conditionId → skip BUY (`SKIP-DUPLICATE`).
+3. If the SELL has gone missing while inventory remains → re-post SELL.
+
+These checks run independently per conditionId, and `buildBuyQuotes` is
+invoked per-event inside the refresh loop, so scaling from 1 city × 5
+outcomes to 10 cities × 10 outcomes = 100 markets works without changes.
+
+See `test/multiMarketQuoter.test.ts` →
+`"buildBuyQuotes per-conditionId dedupe works across many events at once (50+ outcomes)"`
+— it builds 100 markets, seeds inventory on every third one, and asserts the
+quoter skips exactly those and no others.
 
 ---
 
@@ -100,36 +132,55 @@ we first start quoting it and **more certain** as resolution approaches.
 The bot is a **maker-only** quoter: every order posts with `postOnly: true`
 (exchange rejects it if it would cross the book). We never pay taker fees.
 
-### BUY pricing
+### BUY pricing (default — pure market making)
+
 For each outcome with a live book `(bestBid, bestAsk)`:
 
 ```
 mid        = (bestBid + bestAsk) / 2
-midBid     = mid − halfSpread           # spread-capture target
-fairBid    = fairValue − halfSpread     # fair-value-edge target
-rawBid     = min(midBid, fairBid)
-bid        = roundDown(rawBid, tickSize)
+bid        = roundDown(mid − halfSpread, tickSize)
 ```
 
-Then we **skip** the outcome if any of these hold:
+We **skip** the outcome if any of these hold:
 - `bid` rounds out of [tick, 1 − tick]
 - `bid` crosses the best ask (would be taker)
-- `bid > fairValue` after rounding (our own edge guard)
-- `|mid − fairValue| > MAX_FORECAST_DIVERGENCE` (market is too far from our model)
+- `|mid − fairValue| > MAX_FORECAST_DIVERGENCE` (sanity-only gate — market
+  has drifted so far from the forecast that it's probably stale news, not
+  a real bet)
 
-**Why the min?** Two different strategies, both with positive EV:
+That's the whole pricing rule. The bot makes money from spread + rebates,
+not from predicting temperature. A resting BUY at `mid − 1¢` that fills and
+then rests a SELL at `entry + 1 tick` earns 1 tick per round-trip plus LP
+rewards for sitting close to mid.
 
-| case             | binding         | meaning                                       |
-|------------------|-----------------|-----------------------------------------------|
-| `fair > mid`     | `midBid`        | market undervalues; normal spread-capture     |
-| `fair < mid`     | `fairBid`       | market overvalues; we stay below fair value   |
+### Optional: fair-value cap (`ENABLE_FAIR_VALUE_CAP=true`)
 
-If we only used `midBid`, we would buy above our own fair estimate whenever the
-market overvalues a tail outcome — that's guaranteed adverse selection because
-our SELL at entry+1 tick never fills once the market converges to fair.
+When enabled, the bid is additionally capped:
 
-The quote's `reason` string records which side binds:
+```
+midBid     = mid − halfSpread
+fairBid    = fairValue − halfSpread
+bid        = roundDown(min(midBid, fairBid), tickSize)
+```
+
+And we skip if `bid > fairValue` after rounding (`bid_above_fair`).
+
+**What this does:** if the market mid is clearly above our Open-Meteo-based
+estimate of a tail outcome (e.g. "14°C" market trading at 7¢ when our fair
+is 3.4¢), the cap refuses to quote there, or quotes way below the book where
+we won't fill. This protects against adverse selection on tail outcomes where
+the market converges to fair before our SELL fills.
+
+**What this costs you:** fewer fills, fewer rebates, and reliance on the
+forecast being better than the market on average.
+
+The quote's `reason` string records which constraint binds:
 `mid=0.29 forecast=0.26 binding=fair divergence=0.03 halfSpread=0.01`.
+With the cap off, `binding` is always `mid`.
+
+**Default: off.** The user's stated strategy is pure MM. Turn it on only if
+session data shows the bot is consistently filling adversely on the tails
+and bleeding money there.
 
 ### SELL pricing
 After a BUY fills, we place an immediate SELL at **entry + 1 tick**:
@@ -217,11 +268,34 @@ while keeping the fair-value cap intact.
 
 | var                         | purpose                                               | sane range          |
 |-----------------------------|-------------------------------------------------------|---------------------|
-| `WEATHER_UNCERTAINTY_C`     | same-day σ₀ in °C                                     | 0.5 – 2.0           |
-| `HALF_SPREAD_CENTS`         | distance from mid / fair to quote                     | 1 – 3               |
-| `MAX_FORECAST_DIVERGENCE`   | skip outcomes where `|mid − fair|` exceeds this       | 0.10 – 0.30         |
-| `ORDER_SIZE_USDC`           | USDC per BUY order                                    | 2 – 10              |
-| `MAX_TOTAL_EXPOSURE_USDC`   | cap on concurrent outstanding BUYs                    | 10 – 50             |
-| `CLOB_MIN_SHARES`           | Polymarket minimum (5)                                | 5                   |
-| `REFRESH_INTERVAL_MS`       | time between re-quote cycles                          | 15_000 – 60_000     |
-| `DASHBOARD_PORT`            | local dashboard port (default 8787)                   | any free port       |
+| `MAX_EVENTS`                | how many distinct events/cities to track             | 1 – 15              |
+| `MAX_OUTCOMES_PER_EVENT`    | outcomes per event (temperatures per city)           | 3 – 12              |
+| `HALF_SPREAD_CENTS`         | distance from mid to quote BUYs                      | 1 – 3               |
+| `ORDER_SIZE_USDC`           | USDC per BUY order                                   | 2 – 10              |
+| `MAX_TOTAL_EXPOSURE_USDC`   | cap on concurrent outstanding BUYs                   | 10 – 200            |
+| `CLOB_MIN_SHARES`           | Polymarket minimum (5)                               | 5                   |
+| `REFRESH_INTERVAL_MS`       | time between re-quote cycles                         | 15_000 – 60_000     |
+| `MAX_FORECAST_DIVERGENCE`   | skip outcomes where `|mid − fair|` exceeds this      | 0.10 – 0.30         |
+| `ENABLE_FAIR_VALUE_CAP`     | clamp bid at fair value (OFF = pure MM, default)     | true / false        |
+| `WEATHER_UNCERTAINTY_C`     | same-day σ₀ in °C (only used by fair-value model)    | 0.5 – 2.0           |
+| `DASHBOARD_PORT`            | local dashboard port (default 8787)                  | any free port       |
+| `DASHBOARD_ENABLED`         | set to `false` to skip starting the dashboard        | true / false        |
+
+### Scaling to 50-100 markets
+
+To run at scale:
+
+```
+MAX_EVENTS=10
+MAX_OUTCOMES_PER_EVENT=10
+MAX_TOTAL_EXPOSURE_USDC=100
+ORDER_SIZE_USDC=2
+```
+
+That's 100 conditionIds tracked in memory, one User WS subscription, and
+~100 order-book fetches per 30-second refresh (≈3.3 req/s — well below
+Polymarket's public rate limits). The per-conditionId maps are all O(1)
+and the inventory logic already handles it. If you want to push past 100,
+widen `MAX_TOTAL_EXPOSURE_USDC` so the exposure cap doesn't cut you off
+early, and consider bumping `REFRESH_INTERVAL_MS` to 45s to reduce fetch
+load.

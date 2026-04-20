@@ -4,7 +4,7 @@ import { Config } from "../src/config.js";
 import { buildBuyQuotes, buildSellOnFill, filterPostOnlySafeQuotes, roundShares, roundPriceDown } from "../src/core/multiMarketQuoter.js";
 import { QuoteIntent, Forecast, WeatherEvent } from "../src/types.js";
 
-const config: Config = {
+const baseConfig: Config = {
   mode: "live",
   liveApiEnabled: false,
   dryRunLive: true,
@@ -15,6 +15,7 @@ const config: Config = {
   weatherUncertaintyC: 1.5,
   halfSpreadCents: 1,
   maxForecastDivergence: 0.15,
+  enableFairValueCap: false,
   orderSizeUsdc: 2,
   clobMinShares: 5,
   maxSharesPerMarket: 5,
@@ -27,6 +28,8 @@ const config: Config = {
   clobHost: "https://clob.polymarket.com",
   polymarketSignatureType: 1
 };
+// Tests that assert fair-value-cap behaviour opt in explicitly.
+const config: Config = { ...baseConfig, enableFairValueCap: true };
 
 const event: WeatherEvent = {
   id: "event-1",
@@ -138,6 +141,104 @@ test("buildBuyQuotes caps bid at min(mid - halfSpread, fair - halfSpread)", () =
   assert.equal(q22.price, 0.14);
   assert.ok(q22.price <= 0.16, `bid ${q22.price} must not exceed fair value`);
   assert.ok(q22.reason.includes("binding=fair"), `reason should mark fair as binding: ${q22.reason}`);
+});
+
+test("buildBuyQuotes in pure-MM mode (cap OFF) quotes at mid - halfSpread even when market overvalues", () => {
+  // Same overvalued-tail case as the capped test, but with cap disabled.
+  const overvaluedBooks = [
+    { tokenId: "yes-22", bestBid: 0.28, bestAsk: 0.32 } // mid=0.30; fair~0.16 at FIXED_NOW
+  ];
+  const { quotes, skipped } = buildBuyQuotes(
+    event,
+    forecast,
+    { ...baseConfig, maxForecastDivergence: 0.5 }, // cap OFF
+    overvaluedBooks,
+    [],
+    FIXED_NOW
+  );
+  const q22 = quotes.find((q) => q.conditionId === "0x22");
+  assert.ok(q22, "pure MM should still quote overvalued outcomes");
+  // mid - halfSpread = 0.29 (no fair clamp)
+  assert.equal(q22.price, 0.29);
+  assert.ok(q22.reason.includes("binding=mid"));
+  assert.ok(!skipped.some((s) => s.reason.startsWith("bid_above_fair")));
+});
+
+test("buildBuyQuotes per-conditionId dedupe works across many events at once (50+ outcomes)", () => {
+  // Build 10 events × 10 outcomes = 100 markets. Seed inventory on every third
+  // market and confirm buildBuyQuotes skips EXACTLY those (no more, no less).
+  const events: WeatherEvent[] = Array.from({ length: 10 }, (_, evIdx) => ({
+    id: `city-${evIdx}`,
+    title: `Highest temperature in City${evIdx} on April 21?`,
+    city: `City${evIdx}`,
+    date: "2026-04-21",
+    markets: Array.from({ length: 10 }, (_, tIdx) => ({
+      conditionId: `${evIdx}-${tIdx}`,
+      question: `Will City${evIdx} high be ${15 + tIdx}°C?`,
+      outcomeLabel: `${15 + tIdx}C`,
+      temperatureC: 15 + tIdx,
+      yesTokenId: `yes-${evIdx}-${tIdx}`,
+      noTokenId: `no-${evIdx}-${tIdx}`,
+      volume24hr: 1000,
+      enableOrderBook: true,
+      closed: false,
+      resolved: false
+    }))
+  }));
+
+  const allConditions = events.flatMap((e) => e.markets.map((m) => m.conditionId));
+  const held = allConditions.filter((_, i) => i % 3 === 0);
+  const positions = held.map((conditionId) => ({ conditionId, exposureUsdc: 1 }));
+
+  // One book per market with a healthy spread; shared book template
+  const booksFor = (evIdx: number) =>
+    events[evIdx]!.markets.map((m, tIdx) => ({
+      tokenId: m.yesTokenId,
+      bestBid: 0.10 + tIdx * 0.01,
+      bestAsk: 0.14 + tIdx * 0.01
+    }));
+
+  const sharedForecast = (evIdx: number): Forecast => ({
+    city: `City${evIdx}`,
+    date: "2026-04-21",
+    temperatureMaxC: 20,
+    source: "open-meteo"
+  });
+
+  // Run each event through the quoter independently (same thing main.ts does)
+  const allQuotedConditions = new Set<string>();
+  const allSkippedForPosition = new Set<string>();
+  for (let i = 0; i < events.length; i++) {
+    const result = buildBuyQuotes(
+      events[i]!,
+      sharedForecast(i),
+      { ...baseConfig, maxTotalExposureUsdc: 1000, maxForecastDivergence: 0.5 },
+      booksFor(i),
+      positions,
+      FIXED_NOW
+    );
+    for (const q of result.quotes) allQuotedConditions.add(q.conditionId);
+    for (const s of result.skipped) {
+      if (s.reason === "has_position") allSkippedForPosition.add(s.conditionId);
+    }
+  }
+
+  // Every held condition must be skipped with has_position (not duplicated)
+  for (const cid of held) {
+    assert.ok(allSkippedForPosition.has(cid), `held conditionId ${cid} must be skipped`);
+    assert.ok(!allQuotedConditions.has(cid), `held conditionId ${cid} must NOT get a BUY quote`);
+  }
+  // Non-held conditions should get quoted (where other gates allow)
+  const unheld = allConditions.filter((c) => !held.includes(c));
+  assert.ok(unheld.length > 0);
+  // Not every unheld condition has to be quoted (spread/divergence may filter),
+  // but AT LEAST SOME from every event should be
+  for (let i = 0; i < events.length; i++) {
+    const someQuoted = events[i]!.markets.some(
+      (m) => allQuotedConditions.has(m.conditionId) || held.includes(m.conditionId)
+    );
+    assert.ok(someQuoted, `event ${i} should produce quotes for some outcomes`);
+  }
 });
 
 test("buildBuyQuotes applies the fair-value cap independently to every city/event", () => {

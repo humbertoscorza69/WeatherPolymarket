@@ -82,14 +82,19 @@ export function buildBuyQuotes(
 
     // Round to the market's actual tick, falling back to config default
     const tick = market.tickSize ?? config.tickSize;
-    // Cap bid at min(mid - halfSpread, fairValue - halfSpread) so we never
-    // quote above our own fair value. Buying above fair value is guaranteed
-    // adverse selection — if the forecast is right, the market will converge
-    // below our entry and our SELL at entry+tick never fills. The fair-value
-    // cap turns pure spread-capture into spread-capture-with-edge-guard.
+
+    // Pricing: pure market making by default. We quote at `mid - halfSpread`
+    // and let the spread + maker rebates be our edge.
+    //
+    // Optional: if ENABLE_FAIR_VALUE_CAP is on, we additionally cap the bid
+    // at `fair - halfSpread`. This is a safety guard against adverse
+    // selection (buying into an outcome that will converge below our entry),
+    // NOT a forecast-driven prediction. It reduces fills on tail outcomes
+    // where the market clearly over-prices relative to Open-Meteo.
     const midBid = mid - halfSpread;
     const fairBid = forecastProb - halfSpread;
-    const rawBid = Math.min(midBid, fairBid);
+    const cap = config.enableFairValueCap;
+    const rawBid = cap ? Math.min(midBid, fairBid) : midBid;
     const bid = roundPriceToTickDown(rawBid, tick);
     if (bid < tick || bid > 1 - tick) {
       skipped.push({
@@ -100,7 +105,7 @@ export function buildBuyQuotes(
       continue;
     }
     if (bid >= book.bestAsk) continue;
-    if (bid > forecastProb) {
+    if (cap && bid > forecastProb) {
       // Would cross our own fair-value guard after rounding — skip
       skipped.push({
         conditionId: market.conditionId,
@@ -127,7 +132,7 @@ export function buildBuyQuotes(
       sizeUsdc: config.orderSizeUsdc,
       shares,
       postOnly: true,
-      reason: `mid=${roundPrice(mid)} forecast=${roundPrice(forecastProb)} binding=${fairBid < midBid ? "fair" : "mid"} divergence=${roundPrice(divergence)} halfSpread=${halfSpread}`
+      reason: `mid=${roundPrice(mid)} forecast=${roundPrice(forecastProb)} binding=${cap && fairBid < midBid ? "fair" : "mid"} divergence=${roundPrice(divergence)} halfSpread=${halfSpread}`
     });
     totalExposure += config.orderSizeUsdc;
   }

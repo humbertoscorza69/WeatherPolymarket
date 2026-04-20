@@ -9,6 +9,7 @@ export interface Config {
   weatherUncertaintyC: number;
   halfSpreadCents: number;
   maxForecastDivergence: number;
+  enableFairValueCap: boolean;
   orderSizeUsdc: number;
   clobMinShares: number;
   maxSharesPerMarket: number;
@@ -58,6 +59,10 @@ export function loadConfig(): Config {
     weatherUncertaintyC: envNum("WEATHER_UNCERTAINTY_C", 1.5),
     halfSpreadCents: envNum("HALF_SPREAD_CENTS", 1),
     maxForecastDivergence: envNum("MAX_FORECAST_DIVERGENCE", 0.15),
+    // Default OFF: pure market making captures spread + rebates regardless
+    // of the bot's own forecast. Turn ON if you want the fair-value safety
+    // guard that skips outcomes where market mid exceeds our fair estimate.
+    enableFairValueCap: envBool("ENABLE_FAIR_VALUE_CAP", false),
     orderSizeUsdc: envNum("ORDER_SIZE_USDC", 2),
     clobMinShares: envNum("CLOB_MIN_SHARES", 5),
     maxSharesPerMarket: envNum("MAX_SHARES_PER_MARKET", 5),

@@ -16,6 +16,7 @@ const config: Config = {
   weatherUncertaintyC: 1.5,
   halfSpreadCents: 1,
   maxForecastDivergence: 0.15,
+  enableFairValueCap: false,
   orderSizeUsdc: 2,
   clobMinShares: 5,
   maxSharesPerMarket: 5,
