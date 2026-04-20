@@ -129,7 +129,7 @@ function createLiveExecution(config: ReturnType<typeof loadConfig>, events: Awai
 
 async function refreshLiveQuotes(config: ReturnType<typeof loadConfig>, engine: WeatherExecutionEngine): Promise<void> {
   try {
-    await engine.startupCleanup();
+    await engine.cancelActiveBuys();
     const positions = engine.getPositionSnapshots();
     const events = await findActiveWeatherEvents({ ...config, maxOutcomesPerEvent: Math.max(config.maxOutcomesPerEvent, 20) });
     for (const event of events) {
