@@ -77,6 +77,10 @@ export class UserWebSocket {
 
   async handleMessage(raw: string): Promise<void> {
     const parsed = JSON.parse(raw) as Record<string, unknown>;
+    // Log every raw message so we can see what the exchange actually sends
+    process.stderr.write(
+      `[USER-WS-RAW] type=${String(parsed.event_type ?? parsed.type ?? "?")} asset=${String(parsed.asset_id ?? "?")} side=${String(parsed.side ?? "?")} size=${String(parsed.size ?? parsed.matched_size ?? "?")}\n`
+    );
     const fill = normalizeFillMessage(parsed);
     if (fill) {
       await this.options.handlers.onFill(fill);

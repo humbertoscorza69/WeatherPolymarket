@@ -103,6 +103,7 @@ async function main() {
 
   if (execution) {
     void scheduleRefreshLoop(config, execution.engine);
+    void scheduleDetectLoop(execution.engine);
   }
 }
 
@@ -153,6 +154,12 @@ async function refreshLiveQuotes(config: ReturnType<typeof loadConfig>, engine: 
   } catch (error) {
     log.error("live quote refresh failed", { error: error instanceof Error ? error.message : String(error) });
   }
+}
+
+async function scheduleDetectLoop(engine: WeatherExecutionEngine): Promise<void> {
+  await new Promise<void>((resolve) => setTimeout(resolve, 10_000));
+  await engine.detectMissedFills();
+  void scheduleDetectLoop(engine);
 }
 
 async function scheduleRefreshLoop(config: ReturnType<typeof loadConfig>, engine: WeatherExecutionEngine): Promise<void> {

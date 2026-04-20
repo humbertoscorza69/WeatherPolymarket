@@ -57,6 +57,7 @@ test("WeatherExecutionEngine maps BUY fill to inventory and immediate SELL", asy
     {
       cancelAll: async () => ({}),
       cancelOrder: async () => ({}),
+      getOpenOrders: async () => [],
       placeQuote: async (quote: QuoteIntent) => {
         placed.push(quote);
         return { success: true, status: "live", orderId: `order-${placed.length}`, raw: {} };
@@ -84,6 +85,7 @@ test("WeatherExecutionEngine requeues cancelled SELL when inventory remains", as
     {
       cancelAll: async () => ({}),
       cancelOrder: async () => ({}),
+      getOpenOrders: async () => [],
       placeQuote: async (quote: QuoteIntent) => {
         placed.push(quote);
         return { success: true, status: "live", orderId: `order-${placed.length}`, raw: {} };

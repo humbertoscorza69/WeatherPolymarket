@@ -16,11 +16,13 @@ interface ActiveOrder {
 export class WeatherExecutionEngine {
   private readonly marketByAssetId = new Map<string, WeatherMarket>();
   private readonly marketByConditionId = new Map<string, WeatherMarket>();
-  private readonly activeOrders = new Map<string, ActiveOrder>();
+  // Separate maps — SELLs must never be touched by cancelActiveBuys
+  private readonly activeBuys = new Map<string, ActiveOrder>();  // keyed by conditionId
+  private readonly activeSells = new Map<string, ActiveOrder>(); // keyed by conditionId
 
   constructor(
     events: WeatherEvent[],
-    private readonly driver: Pick<ClobDriver, "placeQuote" | "cancelAll" | "cancelOrder">,
+    private readonly driver: Pick<ClobDriver, "placeQuote" | "cancelAll" | "cancelOrder" | "getOpenOrders">,
     private readonly inventory: InventoryEngine,
     private readonly config: Config,
     private readonly logger = new Logger("weather-execution")
@@ -47,41 +49,93 @@ export class WeatherExecutionEngine {
 
   async startupCleanup(): Promise<void> {
     const result = await this.driver.cancelAll();
-    this.activeOrders.clear();
+    this.activeBuys.clear();
+    this.activeSells.clear();
     this.logger.info("cancelled open orders", { result });
   }
 
   async cancelActiveBuys(): Promise<void> {
-    const buyEntries = [...this.activeOrders.entries()].filter(([, o]) => o.side === "BUY");
-    for (const [key, order] of buyEntries) {
+    // Log every SELL order we are preserving — proof we are NOT touching them
+    for (const [conditionId, order] of this.activeSells) {
+      this.logger.error("[CANCEL-SKIP-SELL]", { conditionId, orderId: order.orderId, price: order.price });
+    }
+
+    const buyConditions = [...this.activeBuys.keys()];
+    for (const conditionId of buyConditions) {
+      const order = this.activeBuys.get(conditionId)!;
+      this.logger.error("[CANCEL-CHECK]", { conditionId, side: order.side, orderId: order.orderId });
       try {
         await this.driver.cancelOrder(order.orderId);
-      } catch {
-        // order may already be filled or cancelled
+        this.logger.error("[CANCEL-BUY]", { orderId: order.orderId, conditionId });
+      } catch (err) {
+        this.logger.error("[CANCEL-ERROR]", { orderId: order.orderId, error: String(err) });
       }
-      this.activeOrders.delete(key);
+      this.activeBuys.delete(conditionId);
     }
-    this.logger.info("cancelled active BUY orders", { count: buyEntries.length });
+    this.logger.info("cancelActiveBuys done", { cancelled: buyConditions.length, activeSells: this.activeSells.size });
+  }
+
+  /**
+   * REST-based fill detection: query CLOB open orders and find any BUY
+   * that disappeared without us cancelling it — that means it was filled
+   * and the User WS missed the event.
+   */
+  async detectMissedFills(): Promise<void> {
+    if (this.activeBuys.size === 0) return;
+
+    let openOrders: Array<{ id: string }>;
+    try {
+      openOrders = (await this.driver.getOpenOrders()) as Array<{ id: string }>;
+    } catch (err) {
+      this.logger.error("[REST-DETECT-ERROR]", { error: String(err) });
+      return;
+    }
+
+    const openIds = new Set(openOrders.map((o) => o.id));
+
+    for (const [conditionId, buyOrder] of this.activeBuys) {
+      if (openIds.has(buyOrder.orderId)) continue; // still resting, no fill
+
+      const market = this.marketByConditionId.get(conditionId);
+      if (!market) continue;
+      if (this.inventory.hasPosition(conditionId)) continue; // WS already handled it
+
+      this.logger.error("[FILL-DETECTED-REST]", {
+        outcome: market.outcomeLabel,
+        conditionId,
+        orderId: buyOrder.orderId,
+        price: buyOrder.price
+      });
+
+      const shares = Math.floor((this.config.orderSizeUsdc / buyOrder.price) * 10000) / 10000;
+      const fillEvent: FillEvent = {
+        conditionId,
+        tokenId: market.yesTokenId,
+        side: "BUY",
+        price: buyOrder.price,
+        shares
+      };
+      this.inventory.applyFill(fillEvent);
+      this.activeBuys.delete(conditionId);
+
+      await this.placeSellForFill(market, fillEvent);
+    }
   }
 
   async placeBuyQuotes(quotes: QuoteIntent[]): Promise<PostOrderResult[]> {
     const results: PostOrderResult[] = [];
     for (const quote of quotes) {
-      const key = orderKey(quote.conditionId, quote.side);
-      if (this.activeOrders.has(key)) {
-        this.logger.debug("[SKIP-DUPLICATE] already have resting order", {
-          conditionId: quote.conditionId,
-          side: quote.side
-        });
+      if (this.activeBuys.has(quote.conditionId)) {
+        this.logger.debug("[SKIP-DUPLICATE] already have resting BUY", { conditionId: quote.conditionId });
         continue;
       }
       const result = await this.driver.placeQuote(quote, true);
       results.push(result);
       if (result.status === "live" && result.orderId) {
-        this.activeOrders.set(key, {
+        this.activeBuys.set(quote.conditionId, {
           orderId: result.orderId,
           conditionId: quote.conditionId,
-          side: quote.side,
+          side: "BUY",
           price: quote.price
         });
       }
@@ -90,16 +144,21 @@ export class WeatherExecutionEngine {
   }
 
   async onUserFill(fill: UserFill): Promise<void> {
-    const market = this.marketByAssetId.get(fill.assetId);
-    if (!market) return;
-
-    this.logger.info("[FILL]", {
-      outcome: market.outcomeLabel,
+    this.logger.error("[FILL-RECEIVED]", {
       side: fill.side,
+      assetId: fill.assetId,
       price: fill.price,
       shares: fill.shares,
       traderSide: fill.traderSide
     });
+
+    const market = this.marketByAssetId.get(fill.assetId);
+    if (!market) {
+      this.logger.error("[FILL-ERROR] cannot find market for asset", { assetId: fill.assetId });
+      return;
+    }
+
+    this.logger.error("[FILL-MARKET]", { outcome: market.outcomeLabel, conditionId: market.conditionId });
 
     if (fill.traderSide === "TAKER") {
       this.logger.error("[TAKER-CRITICAL]", { conditionId: market.conditionId, outcome: market.outcomeLabel });
@@ -115,26 +174,11 @@ export class WeatherExecutionEngine {
     this.inventory.applyFill(normalized);
 
     if (fill.side === "BUY") {
-      // Remove filled BUY from tracking so cancelActiveBuys won't try to cancel it
-      this.activeOrders.delete(orderKey(market.conditionId, "BUY"));
-
-      const sell = buildSellOnFill(normalized, this.config.halfSpreadCents);
-      if (!sell) return;
-      sell.eventId = "fill";
-      sell.city = "unknown";
-      sell.date = "unknown";
-      sell.outcomeLabel = market.outcomeLabel;
-      this.logger.info("[SELL-ATTEMPT]", { outcome: market.outcomeLabel, price: sell.price, shares: sell.shares });
-      const result = await this.driver.placeQuote(sell, true);
-      this.logger.info("[SELL-RESULT]", { outcome: market.outcomeLabel, status: result.status, orderId: result.orderId, errorMsg: result.errorMsg });
-      if (result.status === "live" && result.orderId) {
-        this.activeOrders.set(orderKey(market.conditionId, "SELL"), {
-          orderId: result.orderId,
-          conditionId: market.conditionId,
-          side: "SELL",
-          price: sell.price
-        });
-      }
+      this.activeBuys.delete(market.conditionId);
+      this.logger.error("[FILL-BUY] BUY filled, removed from activeBuys, placing SELL now", {
+        outcome: market.outcomeLabel
+      });
+      await this.placeSellForFill(market, normalized);
     }
   }
 
@@ -144,25 +188,70 @@ export class WeatherExecutionEngine {
     const market = update.assetId ? this.marketByAssetId.get(update.assetId) : undefined;
     if (!market) return;
     if (update.type !== "CANCELLATION" && update.status !== "CANCELLED") return;
-    this.activeOrders.delete(orderKey(market.conditionId, side));
-    if (side === "SELL" && this.inventory.hasPosition(market.conditionId)) {
-      const position = this.inventory.getPosition(market.conditionId);
-      const retryFill: FillEvent = {
-        conditionId: market.conditionId,
-        tokenId: market.yesTokenId,
-        side: "BUY",
-        price: position.avgEntryPrice,
-        shares: position.shares
-      };
-      const retry = buildSellOnFill(retryFill, this.config.halfSpreadCents);
-      if (retry) {
-        retry.outcomeLabel = market.outcomeLabel;
-        await this.driver.placeQuote(retry, true);
+
+    if (side === "BUY") {
+      this.activeBuys.delete(market.conditionId);
+    } else if (side === "SELL") {
+      this.activeSells.delete(market.conditionId);
+      // SELL was cancelled externally — re-queue it if we still hold the position
+      if (this.inventory.hasPosition(market.conditionId)) {
+        const position = this.inventory.getPosition(market.conditionId);
+        const retryFill: FillEvent = {
+          conditionId: market.conditionId,
+          tokenId: market.yesTokenId,
+          side: "BUY",
+          price: position.avgEntryPrice,
+          shares: position.shares
+        };
+        const retry = buildSellOnFill(retryFill, this.config.halfSpreadCents);
+        if (retry) {
+          retry.outcomeLabel = market.outcomeLabel;
+          this.logger.error("[SELL-REQUEUE]", { outcome: market.outcomeLabel, price: retry.price });
+          await this.placeSellForFill(market, retryFill);
+        }
       }
     }
   }
-}
 
-function orderKey(conditionId: string, side: "BUY" | "SELL"): string {
-  return `${conditionId}:${side}`;
+  private async placeSellForFill(market: WeatherMarket, fill: FillEvent): Promise<void> {
+    const sell = buildSellOnFill(fill, this.config.halfSpreadCents);
+    if (!sell) {
+      this.logger.error("[SELL-SKIP] buildSellOnFill returned null — price too high?", {
+        outcome: market.outcomeLabel,
+        entryPrice: fill.price
+      });
+      return;
+    }
+    sell.eventId = "fill";
+    sell.city = "unknown";
+    sell.date = "unknown";
+    sell.outcomeLabel = market.outcomeLabel;
+    const exitPrice = fill.price + (this.config.halfSpreadCents * 2) / 100;
+    this.logger.error("[SELL-COMPUTING]", {
+      outcome: market.outcomeLabel,
+      entry: fill.price,
+      fullSpread: (this.config.halfSpreadCents * 2) / 100,
+      exit: exitPrice,
+      price: sell.price,
+      shares: sell.shares
+    });
+    const result = await this.driver.placeQuote(sell, true);
+    this.logger.error("[SELL-RESULT]", {
+      outcome: market.outcomeLabel,
+      success: result.success,
+      status: result.status,
+      orderId: result.orderId,
+      errorMsg: result.errorMsg,
+      raw: result.raw
+    });
+    if (result.status === "live" && result.orderId) {
+      this.activeSells.set(market.conditionId, {
+        orderId: result.orderId,
+        conditionId: market.conditionId,
+        side: "SELL",
+        price: sell.price
+      });
+      this.logger.error("[SELL-PLACED]", { outcome: market.outcomeLabel, orderId: result.orderId, price: sell.price });
+    }
+  }
 }
