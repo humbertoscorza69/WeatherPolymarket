@@ -19,3 +19,7 @@ test("roundPrice rounds to cents", () => {
   assert.equal(roundPrice(0.374), 0.37);
   assert.equal(roundPrice(0.375), 0.38);
 });
+
+test("forecastToProbabilities rejects empty outcomes", () => {
+  assert.throws(() => forecastToProbabilities(20, 1.5, []), /outcomesC/);
+});

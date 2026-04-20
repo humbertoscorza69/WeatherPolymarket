@@ -9,7 +9,9 @@ export interface Config {
   weatherUncertaintyC: number;
   halfSpreadCents: number;
   orderSizeUsdc: number;
+  clobMinShares: number;
   maxSharesPerMarket: number;
+  maxPositionPerMarketUsdc: number;
   maxTotalExposureUsdc: number;
   refreshIntervalMs: number;
   orderPostOnly: true;
@@ -47,7 +49,9 @@ export function loadConfig(): Config {
     weatherUncertaintyC: envNum("WEATHER_UNCERTAINTY_C", 1.5),
     halfSpreadCents: envNum("HALF_SPREAD_CENTS", 2),
     orderSizeUsdc: envNum("ORDER_SIZE_USDC", 2),
+    clobMinShares: envNum("CLOB_MIN_SHARES", 5),
     maxSharesPerMarket: envNum("MAX_SHARES_PER_MARKET", 5),
+    maxPositionPerMarketUsdc: envNum("MAX_POSITION_PER_MARKET_USDC", 3),
     maxTotalExposureUsdc: envNum("MAX_TOTAL_EXPOSURE_USDC", 15),
     refreshIntervalMs: envNum("REFRESH_INTERVAL_MS", 30_000),
     orderPostOnly: true,

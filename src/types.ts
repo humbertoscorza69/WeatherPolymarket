@@ -40,7 +40,8 @@ export interface QuoteIntent {
   outcomeLabel: string;
   side: Side;
   price: number;
-  size: number;
+  sizeUsdc: number;
+  shares: number;
   postOnly: true;
   reason: string;
 }

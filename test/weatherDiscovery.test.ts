@@ -13,6 +13,7 @@ test("parseWeatherEvents parses binary outcome markets from Gamma shape", () => 
       {
         id: "event-1",
         title: "Highest temperature in Shanghai on April 21?",
+        eventDate: "2026-04-21",
         markets: [
           {
             conditionId: "0xabc",
@@ -35,4 +36,64 @@ test("parseWeatherEvents parses binary outcome markets from Gamma shape", () => 
   assert.equal(events[0]?.markets.length, 1);
   assert.equal(events[0]?.markets[0]?.temperatureC, 20);
   assert.equal(events[0]?.markets[0]?.yesTokenId, "yes-token");
+});
+
+test("parseWeatherEvents excludes resolved and closed markets", () => {
+  const events = parseWeatherEvents(
+    [
+      {
+        id: "event-1",
+        title: "Highest temperature in Seoul on April 21?",
+        eventDate: "2026-04-21",
+        markets: [
+          {
+            conditionId: "0xclosed",
+            question: "Will the high be 16°C?",
+            clobTokenIds: JSON.stringify(["yes", "no"]),
+            volume24hr: "1000",
+            enableOrderBook: true,
+            closed: true
+          },
+          {
+            conditionId: "0xopen",
+            question: "Will the high be 17°C?",
+            clobTokenIds: JSON.stringify(["yes2", "no2"]),
+            volume24hr: "1000",
+            enableOrderBook: true,
+            closed: false,
+            resolved: false
+          }
+        ]
+      }
+    ],
+    { maxEvents: 5, maxOutcomesPerEvent: 10, minMarketVolumeUsdc: 0 }
+  );
+
+  assert.equal(events[0]?.markets.length, 1);
+  assert.equal(events[0]?.markets[0]?.conditionId, "0xopen");
+});
+
+test("parseWeatherEvents excludes same-day events", () => {
+  const today = new Date().toISOString().slice(0, 10);
+  const events = parseWeatherEvents(
+    [
+      {
+        id: "event-1",
+        title: "Highest temperature in Seoul on April 21?",
+        eventDate: today,
+        markets: [
+          {
+            conditionId: "0xopen",
+            question: "Will the high be 17°C?",
+            clobTokenIds: JSON.stringify(["yes2", "no2"]),
+            volume24hr: "1000",
+            enableOrderBook: true
+          }
+        ]
+      }
+    ],
+    { maxEvents: 5, maxOutcomesPerEvent: 10, minMarketVolumeUsdc: 0 }
+  );
+
+  assert.equal(events.length, 0);
 });
