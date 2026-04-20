@@ -20,6 +20,7 @@ const config: Config = {
   maxSharesPerMarket: 5,
   maxPositionPerMarketUsdc: 3,
   maxTotalExposureUsdc: 10,
+  tickSize: 0.01,
   refreshIntervalMs: 30_000,
   orderPostOnly: true,
   dataDir: "data",
@@ -123,23 +124,23 @@ test("buildBuyQuotes skips outcomes where book spread is too tight", () => {
   assert.ok(skipped.some((s) => s.conditionId === "0x20" && s.reason.startsWith("spread_too_tight=")));
 });
 
-test("buildSellOnFill creates immediate maker sell at entry plus full spread", () => {
+test("buildSellOnFill creates immediate maker sell at entry plus one tick", () => {
   const sell = buildSellOnFill(
     { conditionId: "0x20", tokenId: "yes-20", side: "BUY", price: 0.29, shares: 6 },
-    2
+    0.01
   );
 
   assert.equal(sell?.side, "SELL");
-  assert.equal(sell?.price, 0.33);
+  assert.equal(sell?.price, 0.30);
   assert.equal(sell?.shares, 6);
-  assert.equal(sell?.sizeUsdc, 1.98);
+  assert.equal(sell?.sizeUsdc, 1.8);
   assert.equal(sell?.postOnly, true);
 });
 
 test("buildSellOnFill ignores non-BUY fills", () => {
   const sell = buildSellOnFill(
     { conditionId: "0x20", tokenId: "yes-20", side: "SELL", price: 0.31, shares: 6 },
-    2
+    0.01
   );
   assert.equal(sell, null);
 });
@@ -147,7 +148,7 @@ test("buildSellOnFill ignores non-BUY fills", () => {
 test("buildSellOnFill rejects exits above 98 cents", () => {
   const sell = buildSellOnFill(
     { conditionId: "0x20", tokenId: "yes-20", side: "BUY", price: 0.98, shares: 6 },
-    2
+    0.01
   );
   assert.equal(sell, null);
 });

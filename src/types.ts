@@ -22,6 +22,7 @@ export interface WeatherMarket {
   resolved: boolean;
   bestBid?: number;
   bestAsk?: number;
+  tickSize?: number;
 }
 
 export interface Forecast {

@@ -107,10 +107,9 @@ export function buildBuyQuotes(
   return { quotes, skipped };
 }
 
-export function buildSellOnFill(fill: FillEvent, halfSpreadCents: number): QuoteIntent | null {
+export function buildSellOnFill(fill: FillEvent, tickSize: number): QuoteIntent | null {
   if (fill.side !== "BUY") return null;
-  const fullSpread = (halfSpreadCents * 2) / 100;
-  const price = roundPrice(fill.price + fullSpread);
+  const price = roundPriceToTick(fill.price + tickSize, tickSize);
   if (price > 0.98) return null;
   return {
     eventId: "fill",
@@ -121,11 +120,17 @@ export function buildSellOnFill(fill: FillEvent, halfSpreadCents: number): Quote
     outcomeLabel: "filled-outcome",
     side: "SELL",
     price,
-    sizeUsdc: roundPrice(price * fill.shares),
+    sizeUsdc: roundPriceToTick(price * fill.shares, tickSize),
     shares: fill.shares,
     postOnly: true,
-    reason: `sell_on_fill entry=${fill.price} halfSpreadCents=${halfSpreadCents} fullSpread=${fullSpread}`
+    reason: `sell_on_fill entry=${fill.price} tickSize=${tickSize} exit=${price}`
   };
+}
+
+/** Round a price to the nearest tick, always rounding towards a valid resting price. */
+export function roundPriceToTick(price: number, tickSize: number): number {
+  const factor = Math.round(1 / tickSize);
+  return Math.round(price * factor) / factor;
 }
 
 export function roundShares(value: number): number {

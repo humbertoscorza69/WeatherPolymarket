@@ -1,5 +1,6 @@
 import {
   ApiKeyCreds,
+  AssetType,
   ClobClient,
   createL2Headers,
   OrderSide,
@@ -134,6 +135,12 @@ export class ClobDriver {
 
   getBalanceAllowance(params: BalanceAllowanceParams) {
     return this.deps.client.getBalanceAllowance(params);
+  }
+
+  async fetchTokenBalance(tokenId: string): Promise<number> {
+    const result = await this.deps.client.getBalanceAllowance({ asset_type: AssetType.CONDITIONAL, token_id: tokenId });
+    const raw = (result as { balance?: string } | null)?.balance ?? "0";
+    return parseFloat(raw);
   }
 }
 

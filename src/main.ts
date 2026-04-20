@@ -36,6 +36,7 @@ async function main() {
   const execution = config.dryRunLive ? undefined : createLiveExecution(config, events);
   if (execution) {
     await execution.engine.startupCleanup();
+    await execution.engine.loadStartupPositions();
     execution.userWs.connect();
   }
   const evidence = {

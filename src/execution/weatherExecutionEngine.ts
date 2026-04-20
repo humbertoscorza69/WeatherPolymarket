@@ -22,7 +22,7 @@ export class WeatherExecutionEngine {
 
   constructor(
     events: WeatherEvent[],
-    private readonly driver: Pick<ClobDriver, "placeQuote" | "cancelAll" | "cancelOrder" | "getOpenOrders">,
+    private readonly driver: Pick<ClobDriver, "placeQuote" | "cancelAll" | "cancelOrder" | "getOpenOrders" | "fetchTokenBalance">,
     private readonly inventory: InventoryEngine,
     private readonly config: Config,
     private readonly logger = new Logger("weather-execution")
@@ -54,6 +54,35 @@ export class WeatherExecutionEngine {
     this.logger.info("cancelled open orders", { result });
   }
 
+  /**
+   * On startup: query exchange token balances for all markets.
+   * If we hold shares from a prior session, load them into inventory and place SELLs.
+   */
+  async loadStartupPositions(): Promise<void> {
+    for (const [conditionId, market] of this.marketByConditionId) {
+      try {
+        const shares = await this.driver.fetchTokenBalance(market.yesTokenId);
+        const floored = Math.floor(shares * 10000) / 10000;
+        if (floored < this.config.clobMinShares) continue;
+
+        this.logger.error("[STARTUP-POSITION] holding shares from prior session — loading + placing SELL", {
+          outcome: market.outcomeLabel,
+          conditionId,
+          shares: floored
+        });
+
+        // Load into inventory at unknown entry price (0)
+        const fill: FillEvent = { conditionId, tokenId: market.yesTokenId, side: "BUY", price: 0, shares: floored };
+        this.inventory.applyFill(fill);
+
+        // Place SELL immediately using current tick size
+        await this.placeSellForFill(market, fill);
+      } catch (err) {
+        this.logger.error("[STARTUP-POSITION-ERROR]", { outcome: market.outcomeLabel, error: String(err) });
+      }
+    }
+  }
+
   async cancelActiveBuys(): Promise<void> {
     // Log every SELL order we are preserving — proof we are NOT touching them
     for (const [conditionId, order] of this.activeSells) {
@@ -73,6 +102,39 @@ export class WeatherExecutionEngine {
       this.activeBuys.delete(conditionId);
     }
     this.logger.info("cancelActiveBuys done", { cancelled: buyConditions.length, activeSells: this.activeSells.size });
+
+    // Detect any positions with no active SELL and re-place
+    for (const [conditionId] of this.marketByConditionId) {
+      if (!this.inventory.hasPosition(conditionId)) continue;
+      if (this.activeSells.has(conditionId)) continue;
+      const market = this.marketByConditionId.get(conditionId)!;
+      const position = this.inventory.getPosition(conditionId);
+      this.logger.error("[SELL-MISSING] position held but no active SELL — re-placing", {
+        outcome: market.outcomeLabel,
+        shares: position.shares
+      });
+      const retryFill: FillEvent = {
+        conditionId,
+        tokenId: market.yesTokenId,
+        side: "BUY",
+        price: position.avgEntryPrice,
+        shares: position.shares
+      };
+      await this.placeSellForFill(market, retryFill);
+    }
+
+    // Log inventory summary
+    const positions = [...this.marketByConditionId.keys()]
+      .filter((cid) => this.inventory.hasPosition(cid))
+      .map((cid) => {
+        const pos = this.inventory.getPosition(cid);
+        const market = this.marketByConditionId.get(cid)!;
+        const sellOrder = this.activeSells.get(cid);
+        return { outcome: market.outcomeLabel, shares: pos.shares, entry: pos.avgEntryPrice, sellOrderId: sellOrder?.orderId ?? null, sellPrice: sellOrder?.price ?? null };
+      });
+    if (positions.length > 0) {
+      this.logger.error("[INVENTORY]", { positions, total: positions.length });
+    }
   }
 
   /**
@@ -203,18 +265,19 @@ export class WeatherExecutionEngine {
           price: position.avgEntryPrice,
           shares: position.shares
         };
-        const retry = buildSellOnFill(retryFill, this.config.halfSpreadCents);
-        if (retry) {
-          retry.outcomeLabel = market.outcomeLabel;
-          this.logger.error("[SELL-REQUEUE]", { outcome: market.outcomeLabel, price: retry.price });
-          await this.placeSellForFill(market, retryFill);
-        }
+        this.logger.error("[SELL-REQUEUE]", { outcome: market.outcomeLabel });
+        await this.placeSellForFill(market, retryFill);
       }
     }
   }
 
+  private tickSizeFor(market: WeatherMarket): number {
+    return market.tickSize ?? this.config.tickSize;
+  }
+
   private async placeSellForFill(market: WeatherMarket, fill: FillEvent): Promise<void> {
-    const sell = buildSellOnFill(fill, this.config.halfSpreadCents);
+    const tickSize = this.tickSizeFor(market);
+    const sell = buildSellOnFill(fill, tickSize);
     if (!sell) {
       this.logger.error("[SELL-SKIP] buildSellOnFill returned null — price too high?", {
         outcome: market.outcomeLabel,
@@ -226,13 +289,11 @@ export class WeatherExecutionEngine {
     sell.city = "unknown";
     sell.date = "unknown";
     sell.outcomeLabel = market.outcomeLabel;
-    const exitPrice = fill.price + (this.config.halfSpreadCents * 2) / 100;
     this.logger.error("[SELL-COMPUTING]", {
       outcome: market.outcomeLabel,
       entry: fill.price,
-      fullSpread: (this.config.halfSpreadCents * 2) / 100,
-      exit: exitPrice,
-      price: sell.price,
+      tickSize,
+      exit: sell.price,
       shares: sell.shares
     });
     const result = await this.driver.placeQuote(sell, true);

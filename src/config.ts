@@ -14,6 +14,7 @@ export interface Config {
   maxSharesPerMarket: number;
   maxPositionPerMarketUsdc: number;
   maxTotalExposureUsdc: number;
+  tickSize: number;
   refreshIntervalMs: number;
   orderPostOnly: true;
   dataDir: string;
@@ -62,6 +63,7 @@ export function loadConfig(): Config {
     maxSharesPerMarket: envNum("MAX_SHARES_PER_MARKET", 5),
     maxPositionPerMarketUsdc: envNum("MAX_POSITION_PER_MARKET_USDC", 3),
     maxTotalExposureUsdc: envNum("MAX_TOTAL_EXPOSURE_USDC", 15),
+    tickSize: envNum("TICK_SIZE", 0.01),
     refreshIntervalMs: envNum("REFRESH_INTERVAL_MS", 30_000),
     orderPostOnly: true,
     dataDir: process.env.DATA_DIR ?? "data",

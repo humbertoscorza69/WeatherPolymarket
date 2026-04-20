@@ -21,6 +21,7 @@ const config: Config = {
   maxSharesPerMarket: 5,
   maxPositionPerMarketUsdc: 3,
   maxTotalExposureUsdc: 10,
+  tickSize: 0.01,
   refreshIntervalMs: 30_000,
   orderPostOnly: true,
   dataDir: "data",
@@ -58,6 +59,7 @@ test("WeatherExecutionEngine maps BUY fill to inventory and immediate SELL", asy
       cancelAll: async () => ({}),
       cancelOrder: async () => ({}),
       getOpenOrders: async () => [],
+      fetchTokenBalance: async () => 0,
       placeQuote: async (quote: QuoteIntent) => {
         placed.push(quote);
         return { success: true, status: "live", orderId: `order-${placed.length}`, raw: {} };
@@ -72,7 +74,7 @@ test("WeatherExecutionEngine maps BUY fill to inventory and immediate SELL", asy
   assert.equal(inventory.getPosition("0x17").shares, 6);
   assert.equal(placed.length, 1);
   assert.equal(placed[0]?.side, "SELL");
-  assert.equal(placed[0]?.price, 0.31);
+  assert.equal(placed[0]?.price, 0.30);
   assert.equal(placed[0]?.postOnly, true);
 });
 
@@ -86,6 +88,7 @@ test("WeatherExecutionEngine requeues cancelled SELL when inventory remains", as
       cancelAll: async () => ({}),
       cancelOrder: async () => ({}),
       getOpenOrders: async () => [],
+      fetchTokenBalance: async () => 0,
       placeQuote: async (quote: QuoteIntent) => {
         placed.push(quote);
         return { success: true, status: "live", orderId: `order-${placed.length}`, raw: {} };
@@ -99,5 +102,5 @@ test("WeatherExecutionEngine requeues cancelled SELL when inventory remains", as
 
   assert.equal(placed.length, 1);
   assert.equal(placed[0]?.side, "SELL");
-  assert.equal(placed[0]?.price, 0.31);
+  assert.equal(placed[0]?.price, 0.30);
 });
