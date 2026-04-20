@@ -85,7 +85,7 @@ export class ClobDriver {
     orderType: OrderType = OrderType.GTC,
     postOnly = true
   ): Promise<PostOrderResult> {
-    const payload = buildRawOrderPayload(signedOrder, this.deps.funderAddress, orderType, postOnly);
+    const payload = buildRawOrderPayload(signedOrder, this.deps.creds.key, orderType, postOnly);
     return this.authenticatedPost(POST_ORDER, payload);
   }
 
