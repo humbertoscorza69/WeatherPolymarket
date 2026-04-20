@@ -39,18 +39,26 @@ export class WeatherExecutionEngine {
   }
 
   async startupCleanup(): Promise<void> {
-    await this.driver.cancelAll();
+    const result = await this.driver.cancelAll();
     this.activeOrders.clear();
-    this.logger.info("cancelled open orders on startup");
+    this.logger.info("cancelled open orders", { result });
   }
 
   async placeBuyQuotes(quotes: QuoteIntent[]): Promise<PostOrderResult[]> {
     const results: PostOrderResult[] = [];
     for (const quote of quotes) {
+      const key = orderKey(quote.conditionId, quote.side);
+      if (this.activeOrders.has(key)) {
+        this.logger.debug("[SKIP-DUPLICATE] already have resting order", {
+          conditionId: quote.conditionId,
+          side: quote.side
+        });
+        continue;
+      }
       const result = await this.driver.placeQuote(quote, true);
       results.push(result);
       if (result.status === "live" && result.orderId) {
-        this.activeOrders.set(orderKey(quote.conditionId, quote.side), {
+        this.activeOrders.set(key, {
           orderId: result.orderId,
           conditionId: quote.conditionId,
           side: quote.side,

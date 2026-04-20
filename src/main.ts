@@ -106,9 +106,7 @@ async function main() {
   });
 
   if (execution) {
-    setInterval(() => {
-      void refreshLiveQuotes(config, execution.engine);
-    }, config.refreshIntervalMs);
+    void scheduleRefreshLoop(config, execution.engine);
   }
 }
 
@@ -152,6 +150,12 @@ async function refreshLiveQuotes(config: ReturnType<typeof loadConfig>, engine: 
   } catch (error) {
     log.error("live quote refresh failed", { error: error instanceof Error ? error.message : String(error) });
   }
+}
+
+async function scheduleRefreshLoop(config: ReturnType<typeof loadConfig>, engine: WeatherExecutionEngine): Promise<void> {
+  await new Promise<void>((resolve) => setTimeout(resolve, config.refreshIntervalMs));
+  await refreshLiveQuotes(config, engine);
+  void scheduleRefreshLoop(config, engine);
 }
 
 function selectQuotesClosestToForecast(
