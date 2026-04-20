@@ -78,6 +78,55 @@ test("WeatherExecutionEngine maps BUY fill to inventory and immediate SELL", asy
   assert.equal(placed[0]?.postOnly, true);
 });
 
+test("startupCleanup preserves existing SELL orders and cancels stale BUYs", async () => {
+  const cancelled: string[] = [];
+  const inventory = new InventoryEngine();
+  const engine = new WeatherExecutionEngine(
+    [event],
+    {
+      cancelAll: async () => ({}),
+      cancelOrder: async (orderId: string) => {
+        cancelled.push(orderId);
+        return {};
+      },
+      getOpenOrders: async () => [
+        { id: "sell-keep", asset_id: "yes-17", side: "SELL", price: "0.30" },
+        { id: "buy-drop", asset_id: "yes-17", side: "BUY", price: "0.28" }
+      ] as unknown as never,
+      fetchTokenBalance: async () => 0,
+      placeQuote: async () => ({ success: true, status: "live", orderId: "n/a", raw: {} })
+    },
+    inventory,
+    config
+  );
+
+  await engine.startupCleanup();
+
+  assert.deepEqual(cancelled, ["buy-drop"]);
+  // Trigger onOrderUpdate cancellation path on the preserved SELL to prove it is registered
+  inventory.applyFill({ conditionId: "0x17", tokenId: "yes-17", side: "BUY", price: 0.29, shares: 6 });
+  const placed: string[] = [];
+  const engine2 = new WeatherExecutionEngine(
+    [event],
+    {
+      cancelAll: async () => ({}),
+      cancelOrder: async () => ({}),
+      getOpenOrders: async () => [{ id: "sell-keep", asset_id: "yes-17", side: "SELL", price: "0.30" }] as unknown as never,
+      fetchTokenBalance: async () => 6,
+      placeQuote: async (quote: QuoteIntent) => {
+        placed.push(quote.side);
+        return { success: true, status: "live", orderId: "x", raw: {} };
+      }
+    },
+    new InventoryEngine(),
+    config
+  );
+  await engine2.startupCleanup();
+  await engine2.loadStartupPositions();
+  // Existing SELL was preserved → do NOT place another SELL for the same position
+  assert.equal(placed.length, 0, "no new SELL should be placed when one already rests on the book");
+});
+
 test("WeatherExecutionEngine requeues cancelled SELL when inventory remains", async () => {
   const placed: QuoteIntent[] = [];
   const inventory = new InventoryEngine();

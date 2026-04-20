@@ -5,6 +5,7 @@ import { Logger } from "../logger.js";
 import { FillEvent, QuoteIntent, WeatherEvent, WeatherMarket } from "../types.js";
 import { ClobDriver, PostOrderResult } from "./clobDriver.js";
 import { UserFill, UserOrderUpdate } from "./userWebSocket.js";
+import { fetchOrderBookTop } from "./orderBookClient.js";
 
 interface ActiveOrder {
   orderId: string;
@@ -47,16 +48,77 @@ export class WeatherExecutionEngine {
     }));
   }
 
+  /**
+   * Reconcile with the exchange on startup WITHOUT cancelling existing SELLs.
+   *
+   * - Query open orders; cancel stale BUYs (we'll re-quote them at current mid),
+   *   but PRESERVE existing SELLs at their prior exit prices and register them
+   *   in activeSells so cancelActiveBuys skips them.
+   * - This lets us resume a session without giving away positions at bad prices.
+   */
   async startupCleanup(): Promise<void> {
-    const result = await this.driver.cancelAll();
     this.activeBuys.clear();
     this.activeSells.clear();
-    this.logger.info("cancelled open orders", { result });
+    let openOrders: Array<Record<string, unknown>> = [];
+    try {
+      openOrders = (await this.driver.getOpenOrders()) as unknown as Array<Record<string, unknown>>;
+    } catch (err) {
+      this.logger.error("[STARTUP-OPEN-ORDERS-ERROR]", { error: String(err) });
+      return;
+    }
+
+    for (const order of openOrders) {
+      const id = typeof order.id === "string" ? order.id : undefined;
+      const assetId = typeof order.asset_id === "string" ? order.asset_id : undefined;
+      const side = String(order.side ?? "").toUpperCase();
+      const price = Number.parseFloat(String(order.price ?? ""));
+      if (!id || !assetId || !Number.isFinite(price)) continue;
+
+      const market = this.marketByAssetId.get(assetId);
+      if (!market) {
+        // Order on a market we don't know — leave it alone.
+        continue;
+      }
+
+      if (side === "SELL") {
+        this.activeSells.set(market.conditionId, {
+          orderId: id,
+          conditionId: market.conditionId,
+          side: "SELL",
+          price
+        });
+        this.logger.error("[STARTUP-PRESERVE-SELL]", {
+          outcome: market.outcomeLabel,
+          orderId: id,
+          price
+        });
+        continue;
+      }
+
+      if (side === "BUY") {
+        try {
+          await this.driver.cancelOrder(id);
+          this.logger.error("[STARTUP-CANCEL-STALE-BUY]", { outcome: market.outcomeLabel, orderId: id });
+        } catch (err) {
+          this.logger.error("[STARTUP-CANCEL-ERROR]", { orderId: id, error: String(err) });
+        }
+      }
+    }
+
+    this.logger.info("startup reconcile done", {
+      preservedSells: this.activeSells.size,
+      openOrderCount: openOrders.length
+    });
   }
 
   /**
    * On startup: query exchange token balances for all markets.
-   * If we hold shares from a prior session, load them into inventory and place SELLs.
+   * If we hold shares from a prior session, load them into inventory and
+   * ensure a SELL rests on the book. If an existing SELL was preserved in
+   * startupCleanup, use its price as the entry estimate so the inventory
+   * reflects the true cost basis. Otherwise use current bestBid as a
+   * conservative entry — the SELL rests at bestBid + 1 tick, which is
+   * maker-safe and still profitable if filled.
    */
   async loadStartupPositions(): Promise<void> {
     for (const [conditionId, market] of this.marketByConditionId) {
@@ -65,18 +127,42 @@ export class WeatherExecutionEngine {
         const floored = Math.floor(shares * 10000) / 10000;
         if (floored < this.config.clobMinShares) continue;
 
-        this.logger.error("[STARTUP-POSITION] holding shares from prior session — loading + placing SELL", {
+        const existingSell = this.activeSells.get(conditionId);
+        const tickSize = this.tickSizeFor(market);
+
+        // Determine an entry-price estimate for inventory cost basis.
+        let entryEstimate: number;
+        if (existingSell) {
+          // Existing SELL at price P implies original entry ~= P - tick.
+          entryEstimate = Math.max(0, existingSell.price - tickSize);
+        } else {
+          const book = await fetchOrderBookTop(market.yesTokenId, this.config.clobHost).catch(() => ({
+            bestBid: undefined,
+            bestAsk: undefined
+          }));
+          entryEstimate = book.bestBid ?? 0.5;
+        }
+
+        this.logger.error("[STARTUP-POSITION]", {
           outcome: market.outcomeLabel,
           conditionId,
-          shares: floored
+          shares: floored,
+          entryEstimate,
+          existingSellPrice: existingSell?.price ?? null
         });
 
-        // Load into inventory at unknown entry price (0)
-        const fill: FillEvent = { conditionId, tokenId: market.yesTokenId, side: "BUY", price: 0, shares: floored };
+        const fill: FillEvent = {
+          conditionId,
+          tokenId: market.yesTokenId,
+          side: "BUY",
+          price: entryEstimate,
+          shares: floored
+        };
         this.inventory.applyFill(fill);
 
-        // Place SELL immediately using current tick size
-        await this.placeSellForFill(market, fill);
+        if (!existingSell) {
+          await this.placeSellForFill(market, fill);
+        }
       } catch (err) {
         this.logger.error("[STARTUP-POSITION-ERROR]", { outcome: market.outcomeLabel, error: String(err) });
       }

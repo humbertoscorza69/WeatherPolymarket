@@ -65,15 +65,26 @@ export class ClobDriver {
   }
 
   async createSignedOrder(quote: QuoteIntent): Promise<SignedOrder> {
-    return this.deps.client.createOrder(
-      {
-        tokenID: quote.tokenId,
-        price: quote.price,
-        size: quote.shares,
-        side: toClobSide(quote.side)
-      },
-      { tickSize: "0.01", negRisk: true }
-    );
+    // Do not hardcode tickSize or negRisk — let the SDK resolve them per tokenID
+    // from the exchange. Passing "0.01" when a market uses "0.001" produces a
+    // signed order the server rejects; passing negRisk=true when the market is
+    // not negRisk likewise corrupts the signature. See _resolveTickSize /
+    // getNegRisk in @polymarket/clob-client.
+    return this.deps.client.createOrder({
+      tokenID: quote.tokenId,
+      price: quote.price,
+      size: quote.shares,
+      side: toClobSide(quote.side)
+    });
+  }
+
+  async resolveTickSize(tokenId: string): Promise<number> {
+    const raw = await this.deps.client.getTickSize(tokenId);
+    return Number.parseFloat(raw);
+  }
+
+  async resolveNegRisk(tokenId: string): Promise<boolean> {
+    return this.deps.client.getNegRisk(tokenId);
   }
 
   async placeQuote(quote: QuoteIntent, postOnly = true): Promise<PostOrderResult> {
