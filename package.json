@@ -14,6 +14,7 @@
     "sweep": "npm run build && node --env-file=.env scripts/sweep.mjs",
     "analyze-markets": "npm run build && node --env-file=.env scripts/analyze-markets.mjs",
     "analyze-rewards": "npm run build && node --env-file=.env scripts/analyze-rewards.mjs",
+    "analyze-wallets": "node scripts/analyze-wallets.mjs",
     "stop-crypto": "powershell -ExecutionPolicy Bypass -File scripts/stop-crypto.ps1"
   },
   "engines": {
