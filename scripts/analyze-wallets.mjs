@@ -47,6 +47,7 @@ const lookbackDays = Number(args.days ?? "90");
 const cutoffTs = Math.floor(Date.now() / 1000) - lookbackDays * 86400;
 const wallets = args.wallet ? [args.wallet] : args.dump ? [args.dump] : WALLETS;
 const dumpMode = Boolean(args.dump);
+const patternMode = Boolean(args.pattern);
 
 function num(x, d = 0) { const n = Number(x); return Number.isFinite(n) ? n : d; }
 
@@ -255,6 +256,146 @@ function summarize(activity, positions, user, truncated) {
   };
 }
 
+/**
+ * Extract a compact "strategy fingerprint" for a wallet. Answers:
+ *   - What side do they enter (YES vs NO)?
+ *   - What price range do they enter at?
+ *   - What price do they exit at?
+ *   - How long do they hold?
+ *   - Is the edge coming from small-spread scalping or large-delta directional bets?
+ * We FIFO-match BUYs with SELLs on the same market to produce round-trip
+ * pairs, then aggregate distributions across all pairs.
+ */
+function extractPattern(activity) {
+  const trades = activity
+    .filter((a) => (a?.type ?? "TRADE") === "TRADE" && a.side)
+    .sort((a, b) => num(a.timestamp) - num(b.timestamp));
+
+  const byMarket = new Map();
+  for (const t of trades) {
+    const key = `${t.conditionId ?? "?"}:${t.outcome ?? t.outcomeIndex ?? "0"}`;
+    if (!byMarket.has(key)) byMarket.set(key, []);
+    byMarket.get(key).push(t);
+  }
+
+  const pairs = [];
+  for (const [, mtrades] of byMarket) {
+    const lots = [];
+    for (const t of mtrades) {
+      const shares = num(t.size);
+      const price = num(t.price);
+      if (t.side === "BUY") {
+        lots.push({ shares, price, ts: num(t.timestamp), outcome: String(t.outcome ?? "") });
+      } else if (t.side === "SELL") {
+        let remaining = shares;
+        while (remaining > 1e-9 && lots.length > 0) {
+          const lot = lots[0];
+          const m = Math.min(lot.shares, remaining);
+          pairs.push({
+            buyPrice: lot.price,
+            sellPrice: price,
+            buySide: lot.outcome,
+            holdMinutes: (num(t.timestamp) - lot.ts) / 60,
+            shares: m,
+            delta: price - lot.price,
+            profit: m * (price - lot.price)
+          });
+          lot.shares -= m; remaining -= m;
+          if (lot.shares < 1e-9) lots.shift();
+        }
+      }
+    }
+  }
+
+  if (pairs.length === 0) return null;
+
+  const bucketPrice = (p) => {
+    if (p < 0.05) return "0.00-0.05";
+    if (p < 0.10) return "0.05-0.10";
+    if (p < 0.30) return "0.10-0.30";
+    if (p < 0.50) return "0.30-0.50";
+    if (p < 0.70) return "0.50-0.70";
+    if (p < 0.90) return "0.70-0.90";
+    if (p < 0.95) return "0.90-0.95";
+    if (p < 0.99) return "0.95-0.99";
+    return "0.99-1.00";
+  };
+  const bucketHold = (m) => {
+    if (m < 1) return "<1min";
+    if (m < 10) return "1-10min";
+    if (m < 60) return "10-60min";
+    if (m < 360) return "1-6h";
+    if (m < 1440) return "6-24h";
+    return ">24h";
+  };
+  const bucketCount = (arr, fn) => {
+    const out = {};
+    for (const x of arr) out[fn(x)] = (out[fn(x)] || 0) + 1;
+    return out;
+  };
+
+  const buyDist = bucketCount(pairs.map((p) => p.buyPrice), bucketPrice);
+  const sellDist = bucketCount(pairs.map((p) => p.sellPrice), bucketPrice);
+  const holdDist = bucketCount(pairs.map((p) => p.holdMinutes), bucketHold);
+  const deltaDist = bucketCount(pairs.map((p) => p.delta), (d) => {
+    if (d < -0.05) return "<-0.05";
+    if (d < -0.01) return "-0.05..-0.01";
+    if (d < 0.005) return "-0.01..0.005";
+    if (d < 0.02) return "0.005..0.02";
+    if (d < 0.05) return "0.02..0.05";
+    return ">0.05";
+  });
+
+  let buyYes = 0, buyNo = 0;
+  for (const p of pairs) {
+    if (p.buySide.toLowerCase().startsWith("y")) buyYes++;
+    else buyNo++;
+  }
+
+  const holds = pairs.map((p) => p.holdMinutes).sort((a, b) => a - b);
+  const deltas = pairs.map((p) => p.delta).sort((a, b) => a - b);
+  const profits = pairs.map((p) => p.profit).sort((a, b) => a - b);
+
+  const pick = (a, q) => a[Math.max(0, Math.min(a.length - 1, Math.floor(a.length * q)))];
+
+  return {
+    pairsMatched: pairs.length,
+    uniqueMarkets: byMarket.size,
+    buyYes, buyNo,
+    buyDist, sellDist, holdDist, deltaDist,
+    holdMedianMin: pick(holds, 0.5),
+    holdP05Min: pick(holds, 0.05),
+    holdP95Min: pick(holds, 0.95),
+    deltaMedian: pick(deltas, 0.5),
+    deltaAvg: deltas.reduce((s, d) => s + d, 0) / deltas.length,
+    profitablePct: pairs.filter((p) => p.profit > 0).length / pairs.length,
+    profitMedian: pick(profits, 0.5),
+    profitTotal: profits.reduce((s, x) => s + x, 0)
+  };
+}
+
+function printPattern(wallet, p) {
+  const label = (name, dist, total) => {
+    const sorted = Object.entries(dist).sort((a, b) => b[1] - a[1]);
+    const parts = sorted.slice(0, 6).map(([k, v]) => `${k}=${((v / total) * 100).toFixed(0)}%`);
+    return `${name}: ${parts.join("  ")}`;
+  };
+  const total = p.pairsMatched;
+  console.log(`\n  ${wallet}`);
+  console.log(`    ${p.pairsMatched} round-trips across ${p.uniqueMarkets} markets`);
+  console.log(`    Side mix:  BUY NO=${((p.buyNo / total) * 100).toFixed(0)}%   BUY YES=${((p.buyYes / total) * 100).toFixed(0)}%`);
+  console.log(`    ${label("Entry price", p.buyDist, total)}`);
+  console.log(`    ${label("Exit price ", p.sellDist, total)}`);
+  console.log(`    ${label("Hold time  ", p.holdDist, total)}`);
+  console.log(`    ${label("Delta      ", p.deltaDist, total)}`);
+  console.log(
+    `    Hold (min): p05=${p.holdP05Min.toFixed(1)}  med=${p.holdMedianMin.toFixed(1)}  p95=${p.holdP95Min.toFixed(1)}   ` +
+    `Delta: med=$${p.deltaMedian.toFixed(4)}  avg=$${p.deltaAvg.toFixed(4)}   ` +
+    `profitable=${(p.profitablePct * 100).toFixed(0)}%`
+  );
+  console.log(`    Realized from paired trades: $${p.profitTotal.toFixed(0)}   median per pair: $${p.profitMedian.toFixed(2)}`);
+}
+
 function dumpTrades(activity, wallet) {
   const trades = activity.filter((a) => (a?.type ?? "TRADE") === "TRADE");
   trades.sort((a, b) => num(b.timestamp) - num(a.timestamp));
@@ -280,6 +421,13 @@ async function main() {
     process.stdout.write(`${events.length} events${truncated ? " [truncated at 3000 cap]" : ""}`);
     if (events.length === 0) { console.log(" (inactive or blocked)"); continue; }
     if (dumpMode) { console.log(""); dumpTrades(events, w); return; }
+    if (patternMode) {
+      const p = extractPattern(events);
+      if (!p) { console.log(" (no paired trades)"); continue; }
+      console.log(` ${p.pairsMatched} pairs`);
+      printPattern(w, p);
+      continue;
+    }
     const positions = await fetchPositions(w);
     const s = summarize(events, positions, w, truncated);
     console.log(
@@ -290,6 +438,7 @@ async function main() {
     results.push(s);
   }
 
+  if (patternMode) return;
   if (results.length === 0) {
     console.log("\nNo activity found.");
     return;
