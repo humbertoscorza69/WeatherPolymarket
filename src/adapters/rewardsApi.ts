@@ -92,24 +92,39 @@ export function parseRewardsList(raw: MarketReward[]): RewardsSnapshot[] {
 /**
  * Estimated daily LP reward for quoting `size` USDC at `distanceCents` from
  * mid on a market with rewards config, assuming we capture `competitiveShare`
- * of the daily pool.
+ * of the daily pool AND meet the market's minimum order size.
  *
- *   quoteScore = size × max(0, 1 − distance / maxSpread)
- *   estReward  = quoteScore / maxScorePossible × competitiveShare × ratePerDay
+ * IMPORTANT: This enforces the min_size check. Markets with high pool sizes
+ * tend to have high min_size (250-1000 shares), which requires $50-$500 per
+ * order to qualify at typical prices. Ignoring this returns fantasy numbers.
  *
- * `maxScorePossible` is size × 1 (at mid) × 1 (full day). This lets us read
- * the estimate as "$ per day if we were quoting continuously at this position".
+ * quoteScore = size × max(0, 1 − distance / maxSpread)
+ * estReward  = quoteScore share × competitiveShare × ratePerDay
  */
 export function estimatedDailyReward(
   snapshot: RewardsSnapshot,
   sizeUsdc: number,
   distanceCents: number,
-  competitiveShare = 0.1
+  competitiveShare = 0.1,
+  assumedPrice = 0.5
 ): number {
   if (sizeUsdc <= 0 || snapshot.ratePerDay <= 0) return 0;
   if (distanceCents >= snapshot.maxSpreadCents) return 0;
+  // Enforce the min_size gate. At `sizeUsdc` and a typical market price,
+  // shares = sizeUsdc / assumedPrice. If this is below the rewards-program
+  // minimum, we earn nothing.
+  const shares = sizeUsdc / assumedPrice;
+  if (shares < snapshot.minSize) return 0;
   const proximity = Math.max(0, 1 - distanceCents / snapshot.maxSpreadCents);
-  // Our quoting score scales with proximity; the pool share we capture is
-  // an opaque function of competition — modeled as a scalar knob.
   return proximity * competitiveShare * snapshot.ratePerDay;
+}
+
+/** Returns true if a given bankroll/order-size can satisfy the min-size gate
+ *  on this market at a given expected price. */
+export function isFeasible(
+  snapshot: RewardsSnapshot,
+  sizeUsdc: number,
+  expectedPrice = 0.5
+): boolean {
+  return sizeUsdc / expectedPrice >= snapshot.minSize;
 }
