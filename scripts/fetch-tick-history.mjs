@@ -1,24 +1,23 @@
 #!/usr/bin/env node
 /**
- * Tick-level trade fetcher for markets traded by a wallet.
+ * Tick-level trade fetcher v3.
  *
- * v2: probes multiple Polymarket endpoints since data-api /activity?market=
- *     returns HTTP 400 without a user filter. Tries in order:
- *       1. data-api.polymarket.com/trades?market=<cid>  (preferred)
- *       2. data-api.polymarket.com/trades?market=<tokenId>
- *       3. gamma-api.polymarket.com/trades?market=<cid>
- *       4. clob.polymarket.com/trades?market=<tokenId>
- *       5. Goldsky subgraph GraphQL (fallback)
- *     First endpoint that returns a non-empty array on a test market wins.
+ * Winner (from v2 probe): data-api.polymarket.com/trades?market=<conditionId>
+ *   Returns array of trades with both YES and NO sides, fields:
+ *     proxyWallet, side ("BUY"|"SELL" = taker aggressor), asset (tokenId),
+ *     conditionId, size, price, timestamp, outcomeIndex, transactionHash, ...
+ *
+ * Pagination: offset=, max 2500 based on /activity pattern. Order: newest first.
  *
  * Output:
- *   data/tick-history/<conditionId>-<outcomeIndex>.jsonl
- *     one line per trade
+ *   data/tick-history/<conditionId>.jsonl    one line per trade (both sides)
  *   data/tick-history/_summary.json
  *
  * Usage:
  *   npm run fetch-tick-history
- *   node scripts/fetch-tick-history.mjs -- --probe     # only probe endpoints, no fetch
+ *   node scripts/fetch-tick-history.mjs -- --maxMarkets=50   (partial test)
+ *
+ * Runtime estimate: 10-25 min for 261 markets.
  */
 
 import fs from "node:fs/promises";
@@ -31,120 +30,126 @@ const argv = Object.fromEntries(process.argv.slice(2).map(a => {
 }));
 
 const WALLET     = argv.wallet ?? "0x937bcac3a8a30c07d827ad0550c3fe3a6756bfab";
+const DATA_API   = "https://data-api.polymarket.com";
+const PAGE_SIZE  = 500;
 const MAX_OFFSET = Number(argv.maxOffset ?? "2500");
 const MAX_MARKETS= Number(argv.maxMarkets ?? "1000");
 const PAD_SEC_PRE  = Number(argv.padpre ?? String(3 * 3600));
 const PAD_SEC_POST = Number(argv.padpost?? String(1 * 3600));
 const REFRESH    = argv.refresh === "true";
-const PROBE_ONLY = argv.probe === "true";
 
 const TRADE_FILE = path.resolve(`data/wallet-trades/${WALLET}.jsonl`);
 const OUT_DIR    = path.resolve("data/tick-history");
 await fs.mkdir(OUT_DIR, { recursive: true });
 
-// ----------- endpoint probe strategies -----------
-
-/** Each returns { ticks, done } where ticks is array of normalized {ts, price, size, side, taker}
- *  and done=true means no more data. null ticks => endpoint not usable. */
-
-async function tryJson(url) {
-  try {
-    const r = await fetch(url, { headers: { accept: "application/json" } });
-    if (!r.ok) return { err: `HTTP ${r.status}` };
-    const j = await r.json();
-    return { j };
-  } catch (e) { return { err: e.message }; }
-}
-
-async function probeEndpoint(testMarket) {
-  const { conditionId, tokenId } = testMarket;
-  const candidates = [
-    { name: "data-api/trades?market=cid",     url: `https://data-api.polymarket.com/trades?market=${conditionId}&limit=10` },
-    { name: "data-api/trades?market=tokenId", url: `https://data-api.polymarket.com/trades?market=${tokenId}&limit=10` },
-    { name: "gamma/trades?market=cid",        url: `https://gamma-api.polymarket.com/trades?market=${conditionId}&limit=10` },
-    { name: "gamma/trades?condition_id=cid",  url: `https://gamma-api.polymarket.com/trades?condition_id=${conditionId}&limit=10` },
-    { name: "clob/trades?market=tokenId",     url: `https://clob.polymarket.com/trades?market=${tokenId}&limit=10` },
-    { name: "clob/price-history?market=tokenId", url: `https://clob.polymarket.com/prices-history?market=${tokenId}&interval=max&fidelity=1` },
-    { name: "data-api/activity?market=cid&limit=1 (needs user; reference)", url: `https://data-api.polymarket.com/activity?market=${conditionId}&limit=1` }
-  ];
-  console.log(`\nPROBING endpoints with market: ${conditionId.slice(0, 12)}... tokenId: ${tokenId.slice(0, 15)}...\n`);
-  const results = [];
-  for (const c of candidates) {
-    const { j, err } = await tryJson(c.url);
-    if (err) {
-      console.log(`  [FAIL] ${c.name.padEnd(45)} ${err}`);
-      results.push({ ...c, ok: false, err });
-      continue;
-    }
-    const arr = Array.isArray(j) ? j : j?.trades ?? j?.data ?? j?.history ?? [];
-    const n = Array.isArray(arr) ? arr.length : 0;
-    console.log(`  [${n > 0 ? " OK " : "EMPTY"}] ${c.name.padEnd(45)} returned ${n} items`);
-    if (n > 0) {
-      console.log(`        keys:`, Object.keys(arr[0]).join(","));
-      console.log(`        sample:`, JSON.stringify(arr[0]).slice(0, 260));
-    }
-    results.push({ ...c, ok: n > 0, n, sample: n > 0 ? arr[0] : null });
-    await new Promise(r => setTimeout(r, 150));
+async function fetchJson(url) {
+  const r = await fetch(url, { headers: { accept: "application/json" } });
+  if (!r.ok) {
+    const t = await r.text().catch(() => "");
+    throw new Error(`HTTP ${r.status} ${url.split("?")[0]}: ${t.slice(0, 100)}`);
   }
-  return results;
+  return r.json();
 }
 
-// ----------- subgraph (fallback) -----------
-// Polymarket migrated from The Graph to Goldsky. Public orderbook subgraph URL
-// has changed over time; we try a couple.
-const SUBGRAPHS = [
-  "https://api.goldsky.com/api/public/project_cl6mb8i9h0003e201j6li0diw/subgraphs/orderbook-subgraph/0.0.1/gn",
-  "https://api.goldsky.com/api/public/project_cl6mb8i9h0003e201j6li0diw/subgraphs/polymarket-orderbook/prod/gn",
-  "https://api.thegraph.com/subgraphs/name/polymarket/matic-markets"
-];
+/** Paginates /trades for a market, returning everything in [startTs, endTs]. */
+async function fetchMarketTrades(conditionId, startTs, endTs) {
+  const out = [];
+  let hitCap = false;
+  for (let offset = 0; offset < MAX_OFFSET; offset += PAGE_SIZE) {
+    const url = `${DATA_API}/trades?market=${conditionId}&limit=${PAGE_SIZE}&offset=${offset}`;
+    let page;
+    try { page = await fetchJson(url); }
+    catch (e) { return { trades: out, error: e.message, hitCap }; }
+    if (!Array.isArray(page) || !page.length) break;
 
-async function probeSubgraph() {
-  console.log(`\n-- probing subgraph endpoints --`);
-  const query = `{ _meta { block { number } } }`;
-  for (const url of SUBGRAPHS) {
-    try {
-      const r = await fetch(url, {
-        method: "POST",
-        headers: { "content-type": "application/json", "accept": "application/json" },
-        body: JSON.stringify({ query })
-      });
-      const j = await r.json();
-      if (j?.data?._meta) console.log(`  [ OK ] ${url} (block ${j.data._meta.block.number})`);
-      else console.log(`  [FAIL] ${url} ${JSON.stringify(j).slice(0, 100)}`);
-    } catch (e) { console.log(`  [FAIL] ${url} ${e.message}`); }
+    let sawInWindow = false;
+    for (const ev of page) {
+      const ts = Number(ev.timestamp);
+      if (!Number.isFinite(ts)) continue;
+      if (ts >= startTs && ts <= endTs) { out.push(ev); sawInWindow = true; }
+    }
+    const oldest = Number(page[page.length - 1]?.timestamp);
+    // Newest-first: if the oldest item on this page is already before startTs,
+    // the next page will be even older — stop.
+    if (Number.isFinite(oldest) && oldest < startTs) break;
+    if (offset + PAGE_SIZE >= MAX_OFFSET) { hitCap = true; break; }
+    await new Promise(r => setTimeout(r, 40));
   }
+  return { trades: out, hitCap };
 }
 
-// ----------- main -----------
 async function main() {
   if (!existsSync(TRADE_FILE)) { console.error(`Missing ${TRADE_FILE}`); process.exit(1); }
   const lines = (await fs.readFile(TRADE_FILE, "utf8")).trim().split("\n").filter(Boolean);
-  const trades = lines.map(l => JSON.parse(l));
-  // Grab one market we know has liquidity for probe
-  const firstTrade = trades[0];
-  const testMarket = {
-    conditionId: firstTrade.conditionId,
-    tokenId: firstTrade.asset,
-    title: firstTrade.title
+  const walletTrades = lines.map(l => JSON.parse(l));
+  console.log(`Loaded ${walletTrades.length} wallet trades for ${WALLET}`);
+
+  // Group by conditionId only (one query covers both sides)
+  const groups = new Map();
+  for (const t of walletTrades) {
+    if (!groups.has(t.conditionId)) {
+      groups.set(t.conditionId, {
+        conditionId: t.conditionId,
+        title: t.title,
+        minTs: t.openTs,
+        maxTs: t.closeTs ?? t.openTs
+      });
+    } else {
+      const g = groups.get(t.conditionId);
+      if (t.openTs < g.minTs) g.minTs = t.openTs;
+      if ((t.closeTs ?? t.openTs) > g.maxTs) g.maxTs = t.closeTs ?? t.openTs;
+    }
+  }
+  const targets = [...groups.values()].slice(0, MAX_MARKETS);
+  console.log(`Unique conditionIds: ${groups.size} (fetching ${targets.length})\n`);
+
+  const startedAt = Date.now();
+  let fetched = 0, skipped = 0, failed = 0, capped = 0, totalTicks = 0;
+
+  for (let i = 0; i < targets.length; i++) {
+    const m = targets[i];
+    const tag = `[${i + 1}/${targets.length}]`;
+    const outFile = path.join(OUT_DIR, `${m.conditionId}.jsonl`);
+    if (!REFRESH && existsSync(outFile)) {
+      const sz = (await fs.stat(outFile)).size;
+      if (sz > 50) { skipped++; continue; }
+    }
+    const startTs = m.minTs - PAD_SEC_PRE;
+    const endTs   = m.maxTs + PAD_SEC_POST;
+    process.stdout.write(`${tag} ${m.conditionId.slice(0, 12)} "${(m.title||"").slice(0,55)}" `);
+    const { trades: ticks, hitCap, error } = await fetchMarketTrades(m.conditionId, startTs, endTs);
+    if (error) {
+      console.log(`ERR: ${error.slice(0,80)}`);
+      failed++;
+      continue;
+    }
+    ticks.sort((a, b) => a.timestamp - b.timestamp);
+    const body = ticks.map(t => JSON.stringify(t)).join("\n");
+    await fs.writeFile(outFile, body + (body ? "\n" : ""));
+    const span = ticks.length
+      ? ((ticks[ticks.length-1].timestamp - ticks[0].timestamp)/3600).toFixed(1) + "h"
+      : "-";
+    console.log(`${ticks.length} ticks ${span}${hitCap ? " (CAP)" : ""}`);
+    if (hitCap) capped++;
+    fetched++;
+    totalTicks += ticks.length;
+    if ((i + 1) % 10 === 0) await new Promise(r => setTimeout(r, 400));
+  }
+
+  const elapsedMin = ((Date.now() - startedAt) / 60000).toFixed(1);
+  const summary = {
+    wallet: WALLET,
+    fetchedAt: new Date().toISOString(),
+    marketsTotal: targets.length,
+    marketsFetched: fetched,
+    marketsSkipped: skipped,
+    marketsFailed: failed,
+    marketsCapped: capped,
+    totalTicks,
+    elapsedMin: Number(elapsedMin)
   };
-
-  const results = await probeEndpoint(testMarket);
-  await probeSubgraph();
-  const winner = results.find(r => r.ok);
-  if (!winner) {
-    console.log(`\nNO endpoint returned usable data. Options:`);
-    console.log(`  1. Paste the network request made by the Polymarket UI trade-history tab.`);
-    console.log(`  2. If tick data is not accessible, we pivot to the classifier on 1-min features.`);
-    process.exit(2);
-  }
-  console.log(`\nWINNER: ${winner.name}  -> ${winner.url.split("?")[0]}`);
-  if (PROBE_ONLY) {
-    console.log(`(probe-only mode; not fetching)`);
-    return;
-  }
-
-  console.log(`\nFull fetch not implemented for this endpoint yet — re-run with the winning endpoint after inspecting the sample above.`);
-  console.log(`(Once we know the response schema & pagination, I'll plug it into this script and push v3.)`);
+  await fs.writeFile(path.join(OUT_DIR, "_summary.json"), JSON.stringify(summary, null, 2));
+  console.log(`\nDone. fetched=${fetched} skipped=${skipped} failed=${failed} capped=${capped} ticks=${totalTicks} elapsed=${elapsedMin}min`);
 }
 
 main().catch(e => { console.error("fatal:", e); process.exit(1); });
