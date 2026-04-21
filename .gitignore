@@ -9,3 +9,5 @@ data/dry-run-orders.jsonl
 data/weather-dry-run-evidence.json
 data/backtest-cache/
 data/events.jsonl
+data/wallet-trades/
+data/resolved-market-cache/
