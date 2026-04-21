@@ -17,6 +17,7 @@
     "analyze-wallets": "node scripts/analyze-wallets.mjs",
     "fetch-wallet-trades": "node scripts/fetch-wallet-trades.mjs",
     "fetch-wallet-market-history": "node scripts/fetch-wallet-market-history.mjs",
+    "fetch-tick-history": "node scripts/fetch-tick-history.mjs",
     "validate-backtest": "node scripts/validate-backtest.mjs",
     "fetch-resolved-markets": "npm run build && node --env-file=.env scripts/fetch-resolved-markets.mjs",
     "backtest-restaker": "npm run build && node scripts/backtest-restaker.mjs",
