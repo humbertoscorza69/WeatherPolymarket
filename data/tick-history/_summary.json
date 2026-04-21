@@ -1,0 +1,11 @@
+{
+  "wallet": "0x937bcac3a8a30c07d827ad0550c3fe3a6756bfab",
+  "fetchedAt": "2026-04-21T23:43:58.943Z",
+  "marketsTotal": 261,
+  "marketsFetched": 261,
+  "marketsSkipped": 0,
+  "marketsFailed": 0,
+  "marketsCapped": 0,
+  "totalTicks": 35214,
+  "elapsedMin": 0.6
+}
