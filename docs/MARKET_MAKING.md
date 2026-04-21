@@ -280,7 +280,57 @@ mixed ($0.198), adverse p05 = $0.001 (tail fully protected).
    might be consistently wrong there — consider `ENABLE_FAIR_VALUE_CAP=true`
    for that session.
 
-## 7. What we did NOT build and why
+## 8. Cross-side hedged MM (YES + NO)
+
+On Polymarket, every binary outcome has two tokens trading on **independent
+order books**: a YES token that pays $1 if the outcome wins, and a NO token
+that pays $1 if it loses. By no-arb, `price(YES) + price(NO) ≈ 1`.
+
+Today we only quote on YES. Cross-side MM means running a second,
+independent market-making loop on NO. Key observation:
+
+```
+BUY YES @ 0.29 + BUY NO @ 0.69  cost = $0.98 per share-pair
+  outcome YES wins:  YES = $1.00, NO = $0     → payout = $1.00
+  outcome NO  wins:  YES = $0,    NO = $1.00  → payout = $1.00
+  risk-free profit at resolution  = $0.02 per share-pair
+```
+
+A completed YES-and-NO pair locks in **guaranteed** $0.02, regardless of
+the resolution. On top of that, each side's SELL at entry+tick gives us a
+faster way to exit with 1 tick of profit.
+
+### Why we haven't shipped it yet
+
+1. **Capital is 2×.** A paired position costs `$1 × shares` independent of
+   price. Our $29 wallet supports ~10 concurrent YES-only positions; with
+   cross-side that drops to ~5 pairs. Worth it only if fill rate is our
+   binding constraint, which we haven't shown yet.
+2. **Fill asymmetry.** We might fill YES but not NO, leaving directional
+   exposure. Needs explicit gating: "only place NO BUY after YES BUY has
+   filled" (hedge-on-demand) or accept the unhedged window.
+3. **Tail-outcome illiquidity.** If YES = 0.05, NO = 0.95 — the NO book at
+   0.95 has very thin volume. Cross-side works at midpoint outcomes, not
+   tails (exactly where our weather markets have the most interesting fair
+   values).
+4. **Rewards don't double.** Polymarket's LP reward formula is per-market,
+   not per-side.
+
+### When to turn it on
+
+- One-side live profitability demonstrated (positive backtest + positive
+  first ~50 live round-trips)
+- Capital increased past ~$100 so 2× per-pair doesn't cut concurrency
+- Book depth on both sides of the target markets is non-trivial
+
+### Implementation shape when we get there
+
+See `docs/ROADMAP.md` item 4: extend `InventoryEngine` to track paired
+hedges, duplicate the BUY/SELL loop on `market.noTokenId`, update stop-loss
+to compute NET exposure (long-YES + long-NO ≈ zero), gate the NO leg on
+the YES fill.
+
+## 9. What we did NOT build and why
 
 - **Avellaneda-Stoikov optimal spread.** Designed for continuous price
   processes with terminal inventory penalty. Polymarket weather has
