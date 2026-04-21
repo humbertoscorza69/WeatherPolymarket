@@ -230,29 +230,29 @@ async function main() {
   }
 
   // 3) Stage 1: coarse grid
+  // Stage 1 coarse grid
+  //
+  // halfSpreadTicks: 1-3 is classic tight MM. 5-12 tests "wide-spread LP"
+  // behaviour on markets with naturally big spreads (entertainment markets
+  // routinely show 10-50¢ spreads). On a 0.01-tick market, 10 ticks = 10¢.
+  // Wider = fewer fills but bigger profit per fill; the product may be
+  // bigger on spread-rich markets.
   const coarseGrid = {
-    halfSpreadTicks: [1, 2, 3],
+    halfSpreadTicks: [1, 2, 3, 5, 8, 12],
     inventorySkewCents: [0, 2],
-    volMultiplier: [0, 0.5, 1.0],
-    minOutcomeMid: [0.05, 0.10],
-    maxOutcomeMid: [0.90, 0.95],
+    volMultiplier: [0, 1.0],
+    minOutcomeMid: [0.1],
+    maxOutcomeMid: [0.9, 0.95],
     maxForecastDivergence: [0.15, 0.30],
     stopLossEnabled: [true],
     stopLossCatastrophicDropRatio: [0.30],
     stopLossDeepDropRatio: [0.60],
     orderSizeUsdc: [2, 3],
-    // Dynamic take-profit search:
-    //   tpTicksBase=1 is classic MM (lock a tick).
-    //   tpTicksBase=2 is wider but halves fill rate.
-    //   tpVolMultiplier>0 scales TP with realized vol.
-    tpTicksBase: [1, 2],
+    tpTicksBase: [1, 2, 3, 5],
     tpVolMultiplier: [0, 0.5],
-    // Drift filter: the fix for the trend-risk failure mode found in the
-    // previous sweep run. When mid has been drifting down persistently,
-    // skip the BUY (the market is converging away from our quote).
     driftFilterEnabled: [false, true],
-    driftFilterDownDriftCents: [1, 2, 3],
-    driftFilterRatio: [1.0, 1.5]
+    driftFilterDownDriftCents: [1, 3],
+    driftFilterRatio: [1.0]
   };
   const stage1Configs = expandGrid(coarseGrid);
   console.log(`\nStage 1: ${stage1Configs.length} configs × ${markets.length} markets = ${stage1Configs.length * markets.length} backtests`);
