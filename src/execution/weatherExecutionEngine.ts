@@ -889,7 +889,19 @@ export class WeatherExecutionEngine {
 
   private async placeSellForFill(market: WeatherMarket, fill: FillEvent): Promise<void> {
     const tickSize = this.tickSizeFor(market);
-    const sell = buildSellOnFill(fill, tickSize);
+    // Compute take-profit ticks. Default = config.tpTicksBase (1 = classic MM).
+    // If vol-adjustment is on, scale TP up in proportion to current realized vol,
+    // capped at tpTicksMax. Calm markets: TP=1; volatile: 2-5.
+    const volMul = this.config.tpVolMultiplier;
+    const tpBase = Math.max(1, Math.floor(this.config.tpTicksBase));
+    let tpTicks = tpBase;
+    if (volMul > 0) {
+      const volCents = this.volTracker.snapshot(market.conditionId).stddevCents;
+      const tickCents = tickSize * 100;
+      const extra = Math.floor((volMul * volCents) / tickCents);
+      tpTicks = Math.min(this.config.tpTicksMax, tpBase + Math.max(0, extra));
+    }
+    const sell = buildSellOnFill(fill, tickSize, tpTicks);
     if (!sell) {
       this.logger.warn("[SELL-SKIP] buildSellOnFill returned null — price too high?", {
         outcome: market.outcomeLabel,

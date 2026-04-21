@@ -23,6 +23,9 @@ const baseConfig: Config = {
   volWindowSize: 60,
   volMultiplier: 0,
   volMaxExtraCents: 3,
+  tpTicksBase: 1,
+  tpVolMultiplier: 0,
+  tpTicksMax: 5,
   stopLossEnabled: false,
   stopLossCatastrophicDropRatio: 0.3,
   stopLossDeepDropRatio: 0.6,
@@ -393,6 +396,31 @@ test("buildSellOnFill creates immediate maker sell at entry plus one tick", () =
   assert.equal(sell?.shares, 6);
   assert.equal(sell?.sizeUsdc, 1.8);
   assert.equal(sell?.postOnly, true);
+});
+
+test("buildSellOnFill places SELL at entry + N ticks when tpTicks > 1", () => {
+  const sell = buildSellOnFill(
+    { conditionId: "0x20", tokenId: "yes-20", side: "BUY", price: 0.29, shares: 6 },
+    0.01,
+    3 // tpTicks
+  );
+  assert.equal(sell?.price, 0.32);
+  assert.ok(sell?.reason.includes("tpTicks=3"));
+});
+
+test("buildSellOnFill floors fractional tpTicks and enforces min 1", () => {
+  const frac = buildSellOnFill(
+    { conditionId: "0x20", tokenId: "yes-20", side: "BUY", price: 0.29, shares: 6 },
+    0.01,
+    2.7 // should floor to 2
+  );
+  assert.equal(frac?.price, 0.31);
+  const zero = buildSellOnFill(
+    { conditionId: "0x20", tokenId: "yes-20", side: "BUY", price: 0.29, shares: 6 },
+    0.01,
+    0 // should clamp up to 1
+  );
+  assert.equal(zero?.price, 0.30);
 });
 
 test("buildSellOnFill ignores non-BUY fills", () => {

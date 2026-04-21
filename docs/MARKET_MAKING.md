@@ -426,7 +426,69 @@ Run for **one full week** at your chosen bankroll. After that:
 Key: don't deploy more capital until you've seen at least **100 completed
 round-trips** with positive P&L. Variance on small samples lies.
 
-## 13. What we did NOT build and why
+## 13. Take-profit: fixed vs dynamic vs laddered
+
+The default SELL is `entry + 1 tick` — minimum profitable exit, classic MM.
+A common question from traders with futures/HFT backgrounds: "shouldn't we
+let winners run further with dynamic TP?"
+
+### Short answer
+
+On Polymarket weather: mostly no. On volatile-news markets: yes.
+
+### The three options
+
+**1. Fixed 1-tick TP (current default).** Lock the tick, rotate capital.
+Pro: high fill rate, short holding time, predictable.
+Con: leaves money on the table during genuine rallies.
+
+**2. Volatility-adjusted TP (`TP_VOL_MULTIPLIER` > 0).** Formula:
+```
+tp_ticks = TP_TICKS_BASE + floor(TP_VOL_MULTIPLIER × realized_stddev_cents / tick_cents)
+         capped at TP_TICKS_MAX
+```
+Calm markets → TP=1 (same as default). Volatile markets → 2-5 ticks.
+The adjustment uses the same realized-vol tracker as the spread widener,
+so it responds to actual observed volatility.
+
+**3. Laddered scale-out TP.** Split position into 50% at entry+1, 30% at
+entry+2, 20% at entry+3. Not implemented yet — see roadmap.
+
+### The hidden cost nobody talks about
+
+Wider TP = slower fill = longer capital holding = more stop-loss risk:
+
+| TP setting              | typical fill time on weather | fill rate | round-trips/day |
+|-------------------------|------------------------------|-----------|-----------------|
+| entry + 1 tick          | 15-60 min                    | 85-95%    | 5-15            |
+| entry + 3 ticks         | 1-4 hours                    | 50-70%    | 2-5             |
+| entry + 5 ticks         | 4-12 hours                   | 20-40%    | 0.5-2           |
+
+Fewer round-trips per day, even if each winner is bigger, often loses on
+total daily P&L. And the positions that *don't* fill are exposed to the
+stop-loss: if mid drifts down while we're waiting for TP=5, we eat a
+stop-out loss bigger than the extra ticks would have earned.
+
+This is why weather-market MM typically uses TP=1: the market doesn't move
+fast enough to make wider TPs pay. On sports markets with bursty flow,
+TP=2-3 often beats TP=1.
+
+### How the sweep tests this
+
+The grid search now searches over `tpTicksBase ∈ {1, 2}` and
+`tpVolMultiplier ∈ {0, 0.5}` by default. If TP=1 wins on your market
+universe, stick with it. If TP=2 or vol-adjusted TP wins, use it.
+Decisions based on backtest numbers, not theory.
+
+### Diagnostic after going live
+
+| symptom                                       | verdict           | action                         |
+|-----------------------------------------------|-------------------|--------------------------------|
+| TP=1 fills in ~15min, 80%+ hit rate           | perfect for market | keep                           |
+| TP=1 fills fast but you see mid move +3¢ after| leaving money      | try TP=2 or vol multiplier     |
+| TP=1 fills take > 2h, stops firing often      | market too slow    | retarget markets, not tune TP  |
+
+## 14. What we did NOT build and why
 
 - **Avellaneda-Stoikov optimal spread.** Designed for continuous price
   processes with terminal inventory penalty. Polymarket weather has

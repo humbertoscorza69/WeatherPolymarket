@@ -22,6 +22,8 @@ function cfg(overrides: Partial<ConfigPoint> = {}): ConfigPoint {
     stopLossCatastrophicDropRatio: 0.3,
     stopLossDeepDropRatio: 0.6,
     orderSizeUsdc: 2,
+    tpTicksBase: 1,
+    tpVolMultiplier: 0,
     ...overrides
   };
 }

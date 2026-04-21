@@ -226,9 +226,21 @@ export function buildBuyQuotes(
   return { quotes, skipped };
 }
 
-export function buildSellOnFill(fill: FillEvent, tickSize: number): QuoteIntent | null {
+/**
+ * Compute the take-profit SELL for a given BUY fill.
+ *
+ * tpTicks defaults to 1 (the classic "entry + one tick" MM exit). Higher
+ * values capture bigger moves but fill rate drops — see MARKET_MAKING.md
+ * §14 for the tradeoff analysis.
+ */
+export function buildSellOnFill(
+  fill: FillEvent,
+  tickSize: number,
+  tpTicks = 1
+): QuoteIntent | null {
   if (fill.side !== "BUY") return null;
-  const price = roundPriceToTick(fill.price + tickSize, tickSize);
+  const ticks = Math.max(1, Math.floor(tpTicks));
+  const price = roundPriceToTick(fill.price + ticks * tickSize, tickSize);
   if (price > 0.98) return null;
   return {
     eventId: "fill",
@@ -242,7 +254,7 @@ export function buildSellOnFill(fill: FillEvent, tickSize: number): QuoteIntent 
     sizeUsdc: roundPriceToTick(price * fill.shares, tickSize),
     shares: fill.shares,
     postOnly: true,
-    reason: `sell_on_fill entry=${fill.price} tickSize=${tickSize} exit=${price}`
+    reason: `sell_on_fill entry=${fill.price} tickSize=${tickSize} tpTicks=${ticks} exit=${price}`
   };
 }
 

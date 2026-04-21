@@ -20,6 +20,13 @@ export interface Config {
   maxOutcomeMid: number;
   enableFairValueCap: boolean;
   inventorySkewCents: number;
+  /** Base TP ticks above entry. Default 1 = current "entry + 1 tick" behavior. */
+  tpTicksBase: number;
+  /** Volatility-adjusted TP: tp_ticks = base + floor(multiplier × realized_vol_cents / tick_cents).
+   *  0 disables. Positive values widen TP in volatile markets, keep it tight in calm ones. */
+  tpVolMultiplier: number;
+  /** Hard cap on TP ticks to prevent infinite-wait SELLs. */
+  tpTicksMax: number;
   volWindowSize: number;
   volMultiplier: number;
   volMaxExtraCents: number;
@@ -96,6 +103,14 @@ export function loadConfig(): Config {
     // Widen the BUY spread as inventory grows. At full utilization the
     // effective halfSpread = halfSpreadCents + inventorySkewCents.
     inventorySkewCents: envNum("INVENTORY_SKEW_CENTS", 2),
+    // Take-profit ticks above entry. Default 1 = "lock in one tick" (MM classic).
+    // Set TP_VOL_MULTIPLIER > 0 to let the TP scale up in volatile markets.
+    // tp_ticks = TP_TICKS_BASE + floor(TP_VOL_MULTIPLIER × stddev_cents / tick_cents)
+    //          clamped to TP_TICKS_MAX.
+    // Warning: wider TP = slower fill = more capital held = more stop-loss risk.
+    tpTicksBase: envNum("TP_TICKS_BASE", 1),
+    tpVolMultiplier: envNum("TP_VOL_MULTIPLIER", 0),
+    tpTicksMax: envNum("TP_TICKS_MAX", 5),
     // Realized-volatility-aware spread widening (Avellaneda-Stoikov light).
     // MC sweep over 5000 episodes × 9 variants showed VOL_MULTIPLIER=1.0 gives
     // the best mixed-vs-adverse trade-off (Sharpe 0.314 in adverse, on par

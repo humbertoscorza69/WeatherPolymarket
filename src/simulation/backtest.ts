@@ -52,6 +52,13 @@ export interface BacktestStrategy {
   stopLossResolutionDropRatio: number;
   stopLossMaxHoldingHours: number;
   takerFeeRate: number;
+  /** Take-profit ticks above entry. 1 = classic MM exit; higher captures
+   *  bigger moves at the cost of fill rate. */
+  tpTicksBase?: number;
+  /** Volatility-adjusted TP: tp_ticks = base + floor(mult × stddev_cents / tick_cents). */
+  tpVolMultiplier?: number;
+  /** Cap on tp_ticks when using vol adjustment. */
+  tpTicksMax?: number;
 }
 
 export interface BacktestResult {
@@ -123,11 +130,21 @@ export function backtest(
     //    Refreshing first would shadow the still-resting order with a new price.
     if (restingBuy !== null && p <= restingBuy + 1e-9) {
       const shares = Math.max(strategy.minShares, strategy.orderSizeUsdc / restingBuy);
+      // Dynamic TP: base + vol-adjusted extra ticks, capped.
+      const tpBase = Math.max(1, Math.floor(strategy.tpTicksBase ?? 1));
+      const volMul = strategy.tpVolMultiplier ?? 0;
+      const tpMax = strategy.tpTicksMax ?? 5;
+      let tpTicks = tpBase;
+      if (volMul > 0) {
+        const volCents = stddevCents();
+        const extra = Math.floor((volMul * volCents) / (strategy.tickSize * 100));
+        tpTicks = Math.min(tpMax, tpBase + Math.max(0, extra));
+      }
       positions.push({
         shares,
         entryPrice: restingBuy,
         entryTimeSec: ts,
-        restingSell: roundDownToTick(restingBuy + strategy.tickSize, strategy.tickSize)
+        restingSell: roundDownToTick(restingBuy + tpTicks * strategy.tickSize, strategy.tickSize)
       });
       buyFills++;
       restingBuy = null;

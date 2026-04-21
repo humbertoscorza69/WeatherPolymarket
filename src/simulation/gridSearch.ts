@@ -46,6 +46,8 @@ export interface ParamGrid {
   stopLossCatastrophicDropRatio: number[];
   stopLossDeepDropRatio: number[];
   orderSizeUsdc: number[];
+  tpTicksBase: number[];
+  tpVolMultiplier: number[];
 }
 
 export interface ConfigPoint {
@@ -59,6 +61,8 @@ export interface ConfigPoint {
   stopLossCatastrophicDropRatio: number;
   stopLossDeepDropRatio: number;
   orderSizeUsdc: number;
+  tpTicksBase: number;
+  tpVolMultiplier: number;
 }
 
 export interface ConfigResult {
@@ -92,18 +96,22 @@ export function expandGrid(grid: ParamGrid): ConfigPoint[] {
                 for (const stopLossCatastrophicDropRatio of grid.stopLossCatastrophicDropRatio)
                   for (const stopLossDeepDropRatio of grid.stopLossDeepDropRatio)
                     for (const orderSizeUsdc of grid.orderSizeUsdc)
-                      out.push({
-                        halfSpreadTicks,
-                        inventorySkewCents,
-                        volMultiplier,
-                        minOutcomeMid,
-                        maxOutcomeMid,
-                        maxForecastDivergence,
-                        stopLossEnabled,
-                        stopLossCatastrophicDropRatio,
-                        stopLossDeepDropRatio,
-                        orderSizeUsdc
-                      });
+                      for (const tpTicksBase of grid.tpTicksBase)
+                        for (const tpVolMultiplier of grid.tpVolMultiplier)
+                          out.push({
+                            halfSpreadTicks,
+                            inventorySkewCents,
+                            volMultiplier,
+                            minOutcomeMid,
+                            maxOutcomeMid,
+                            maxForecastDivergence,
+                            stopLossEnabled,
+                            stopLossCatastrophicDropRatio,
+                            stopLossDeepDropRatio,
+                            orderSizeUsdc,
+                            tpTicksBase,
+                            tpVolMultiplier
+                          });
   return out;
 }
 
@@ -134,7 +142,10 @@ export function runConfig(config: ConfigPoint, markets: CachedMarket[]): ConfigR
       stopLossResolutionHours: 1,
       stopLossResolutionDropRatio: 0.7,
       stopLossMaxHoldingHours: 12,
-      takerFeeRate: 0.0125
+      takerFeeRate: 0.0125,
+      tpTicksBase: config.tpTicksBase,
+      tpVolMultiplier: config.tpVolMultiplier,
+      tpTicksMax: 5
     };
     perMarket.push(backtest(market.label, market.samples, strategy));
   }
@@ -221,6 +232,8 @@ export function refineAround(winner: ConfigPoint, grid: ParamGrid): ParamGrid {
     stopLossEnabled: [winner.stopLossEnabled],
     stopLossCatastrophicDropRatio: neighbours(grid.stopLossCatastrophicDropRatio, winner.stopLossCatastrophicDropRatio),
     stopLossDeepDropRatio: neighbours(grid.stopLossDeepDropRatio, winner.stopLossDeepDropRatio),
-    orderSizeUsdc: neighbours(grid.orderSizeUsdc, winner.orderSizeUsdc)
+    orderSizeUsdc: neighbours(grid.orderSizeUsdc, winner.orderSizeUsdc),
+    tpTicksBase: neighbours(grid.tpTicksBase, winner.tpTicksBase),
+    tpVolMultiplier: neighbours(grid.tpVolMultiplier, winner.tpVolMultiplier)
   };
 }

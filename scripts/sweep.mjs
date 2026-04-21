@@ -138,6 +138,7 @@ function formatCfg(c) {
     `vol=${c.volMultiplier}`,
     `band=${c.minOutcomeMid}-${c.maxOutcomeMid}`,
     `div=${c.maxForecastDivergence === Infinity ? "∞" : c.maxForecastDivergence}`,
+    `tp=${c.tpTicksBase}${c.tpVolMultiplier ? `+${c.tpVolMultiplier}v` : ""}`,
     `sl=${c.stopLossEnabled ? "on" : "off"}`,
     `drop=${c.stopLossCatastrophicDropRatio}`,
     `$${c.orderSizeUsdc}`
@@ -229,7 +230,13 @@ async function main() {
     stopLossEnabled: [true],
     stopLossCatastrophicDropRatio: [0.30],
     stopLossDeepDropRatio: [0.60],
-    orderSizeUsdc: [2, 3]
+    orderSizeUsdc: [2, 3],
+    // Dynamic take-profit search:
+    //   tpTicksBase=1 is classic MM (lock a tick).
+    //   tpTicksBase=2 is wider but halves fill rate.
+    //   tpVolMultiplier>0 scales TP with realized vol.
+    tpTicksBase: [1, 2],
+    tpVolMultiplier: [0, 0.5]
   };
   const stage1Configs = expandGrid(coarseGrid);
   console.log(`\nStage 1: ${stage1Configs.length} configs × ${markets.length} markets = ${stage1Configs.length * markets.length} backtests`);
@@ -305,6 +312,8 @@ async function main() {
     console.log(`  STOP_LOSS_CATASTROPHIC_DROP=${best.config.stopLossCatastrophicDropRatio}`);
     console.log(`  STOP_LOSS_DEEP_DROP=${best.config.stopLossDeepDropRatio}`);
     console.log(`  ORDER_SIZE_USDC=${best.config.orderSizeUsdc}`);
+    console.log(`  TP_TICKS_BASE=${best.config.tpTicksBase}`);
+    console.log(`  TP_VOL_MULTIPLIER=${best.config.tpVolMultiplier}`);
     console.log(`  Expected (out-of-sample): mean $${best.oosMeanPnl.toFixed(3)}/market, p05 $${best.oosP05.toFixed(3)}`);
     console.log(`  Stability: ${(best.stability * 100).toFixed(0)}% of folds landed in test top-10%. Train-test gap: $${best.trainTestGap.toFixed(3)}.`);
   }
