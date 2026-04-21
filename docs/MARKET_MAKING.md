@@ -330,7 +330,48 @@ hedges, duplicate the BUY/SELL loop on `market.noTokenId`, update stop-loss
 to compute NET exposure (long-YES + long-NO ≈ zero), gate the NO leg on
 the YES fill.
 
-## 9. What we did NOT build and why
+## 9. Spread × frequency — the capital-constrained version
+
+Sharpe scales as `√N × edge_per_trade / stddev`. So *in principle* a
+strategy with lots of tiny edges beats one with few big edges — HFT shops
+live here. **But at small capital the math doesn't apply** because we're
+constrained by capital-cycling, not statistics.
+
+```
+max_trades_per_day = (capital / order_size) × (24h / round_trip_duration)
+```
+
+At $29 with $2 orders and 30-min round trips: ~14 concurrent positions ×
+48 slots/day ≈ 672 theoretical, 20-50 realistic. We can't grind 1¢ edges
+often enough to let √N work. We need **meaningful edge per trade**.
+
+Implication for market selection:
+
+| market profile | fit at $29-$500 | fit at $5k+ |
+|---|---|---|
+| wide-spread low-volume (3-8¢, 5-20 trades/day) | ✓ | marginal (capacity-constrained) |
+| medium-spread medium-volume (2-3¢, 20-50/day) | ✓ best | ✓ |
+| tight-spread high-volume (0.5-1¢, 500+/day) | ✗ capital-constrained | ✓ |
+
+At our scale, target the **2-5¢ spread / 5-50 round-trips per day** band.
+The `npm run analyze-markets` command scores every active outcome on this
+profile. Use it to pick markets before running the sweep.
+
+## 10. Overfitting defense
+
+See `docs/SWEEP.md §"Overfitting defense"` for walk-forward cross-validation
+(the sweep runs it automatically in stage 3).
+
+Minimum bar for deploying a swept config:
+- OOS mean PnL ≥ $0.05/market
+- Train-test gap ≤ $0.05 (≤ 25% of OOS mean)
+- Stability ≥ 50% (rank-1 lands in test top-10 on ≥ half the folds)
+
+If any of these fails, don't deploy. Retarget the market universe (sports,
+entertainment), gather more data (longer window or finer fidelity), or
+conclude the strategy has no edge at the current scale.
+
+## 11. What we did NOT build and why
 
 - **Avellaneda-Stoikov optimal spread.** Designed for continuous price
   processes with terminal inventory penalty. Polymarket weather has

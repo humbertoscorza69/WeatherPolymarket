@@ -26,6 +26,7 @@ import { join, resolve } from "node:path";
 import { ClobClient } from "@polymarket/clob-client";
 import { Wallet } from "@ethersproject/wallet";
 import { expandGrid, rankResults, refineAround, runGridSearch } from "../dist/src/simulation/gridSearch.js";
+import { walkForward } from "../dist/src/simulation/walkForward.js";
 import { findActiveWeatherEvents } from "../dist/src/adapters/weatherDiscovery.js";
 
 const args = Object.fromEntries(
@@ -251,9 +252,49 @@ async function main() {
   const stage2Ranked = rankResults(stage2Results);
   printLeaderboard(stage2Ranked, `Stage 2 top 10 (after refinement)`, 10);
 
-  const best = stage2Ranked[0];
+  // Stage 3: walk-forward cross-validation on the stage-2 top 20
+  // Defend against overfitting: rank by OUT-OF-SAMPLE PnL, not in-sample.
+  console.log(`\nStage 3: walk-forward cross-validation (${Number(args.folds ?? "4")} folds) on stage-2 top 20`);
+  const folds = Number(args.folds ?? "4");
+  const wfCandidates = stage2Ranked.slice(0, 20).map((r) => r.config);
+  const wf = walkForward(wfCandidates, markets, folds, 0.10);
+  console.log(
+    "\nrank".padEnd(5),
+    "config".padEnd(70),
+    "OOS mean".padStart(10),
+    "IS mean".padStart(10),
+    "gap".padStart(8),
+    "OOS p05".padStart(9),
+    "stability".padStart(10),
+    "rtrips".padStart(7)
+  );
+  console.log("-".repeat(140));
+  for (const r of wf.slice(0, 10)) {
+    console.log(
+      String(r.rank).padEnd(5),
+      formatCfg(r.config).padEnd(70),
+      r.oosMeanPnl.toFixed(4).padStart(10),
+      r.isMeanPnl.toFixed(4).padStart(10),
+      r.trainTestGap.toFixed(4).padStart(8),
+      r.oosP05.toFixed(4).padStart(9),
+      (r.stability * 100).toFixed(0).padStart(9) + "%",
+      String(r.oosRoundTrips).padStart(7)
+    );
+  }
+
+  const best = wf[0];
+  const overfit = best && best.trainTestGap > 0.10;
+  if (overfit) {
+    console.log(`\n⚠️  OVERFITTING WARNING: rank-1 config's in-sample mean ($${best.isMeanPnl.toFixed(3)}) exceeds OOS mean ($${best.oosMeanPnl.toFixed(3)}) by $${best.trainTestGap.toFixed(3)}.`);
+    console.log(`    Trust the OOS number (the lower one). Consider wider fold count or more data.`);
+  }
+  if (best && best.stability < 0.5) {
+    console.log(`\n⚠️  LOW STABILITY: rank-1 stayed in the test top-10% only ${(best.stability * 100).toFixed(0)}% of folds.`);
+    console.log(`    Could be noise-fit rather than real edge. Prefer a lower-ranked config with higher stability.`);
+  }
+
   if (best) {
-    console.log(`\n=== RECOMMENDED CONFIG ===`);
+    console.log(`\n=== RECOMMENDED CONFIG (out-of-sample validated) ===`);
     console.log(`  HALF_SPREAD_TICKS=${best.config.halfSpreadTicks}`);
     console.log(`  INVENTORY_SKEW_CENTS=${best.config.inventorySkewCents}`);
     console.log(`  VOL_MULTIPLIER=${best.config.volMultiplier}`);
@@ -264,7 +305,8 @@ async function main() {
     console.log(`  STOP_LOSS_CATASTROPHIC_DROP=${best.config.stopLossCatastrophicDropRatio}`);
     console.log(`  STOP_LOSS_DEEP_DROP=${best.config.stopLossDeepDropRatio}`);
     console.log(`  ORDER_SIZE_USDC=${best.config.orderSizeUsdc}`);
-    console.log(`  Expected: mean $${best.meanPnl.toFixed(3)}/market, p05 $${best.p05.toFixed(3)}, ${best.marketsUsed} markets passed the filter`);
+    console.log(`  Expected (out-of-sample): mean $${best.oosMeanPnl.toFixed(3)}/market, p05 $${best.oosP05.toFixed(3)}`);
+    console.log(`  Stability: ${(best.stability * 100).toFixed(0)}% of folds landed in test top-10%. Train-test gap: $${best.trainTestGap.toFixed(3)}.`);
   }
   console.log(
     `\nNOTE: backtest is an OPTIMISTIC upper bound (queue position not modeled).`

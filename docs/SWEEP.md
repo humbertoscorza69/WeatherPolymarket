@@ -76,6 +76,35 @@ CONFIG" block you can paste into `.env`.
 
 ---
 
+## Overfitting defense (walk-forward cross-validation)
+
+With 288 configs × one historical window we'll find a config that looks great
+by chance even if no real edge exists. A pure-noise strategy passes "p<0.05"
+on ~1 in 20 trials; with 288 trials ~14 look significant by luck alone.
+
+The sweep runs a third stage after the refinement pass:
+
+1. Split each market's history into K sequential folds (default K=4).
+2. For each fold boundary i in 0..K-2:
+   - TRAIN = samples across folds [0..i]
+   - TEST  = samples in fold [i+1]
+3. Re-run the stage-2 top 20 configs with walk-forward. Each config's
+   **OOS (out-of-sample)** P&L is the average of its test-fold scores.
+4. Rank by OOS mean.
+5. Report the **train-test gap** (`IS mean - OOS mean`). Positive = overfit.
+6. Report **stability**: fraction of folds where this config landed in
+   the TEST top-10%. Below ~0.5 is a red flag.
+
+Warnings fire automatically when:
+- `trainTestGap > $0.10` (in-sample inflated relative to out-of-sample) → OVERFITTING
+- `stability < 50%` (rank varies wildly across folds) → LOW STABILITY
+
+Trust the **OOS** number in the final recommendation — it's the honest
+estimate. If the warning flags fire, manually pick a lower-ranked config
+whose train/test numbers agree.
+
+Tunable: `--folds=N` (default 4).
+
 ## Ranking metric details
 
 ```
