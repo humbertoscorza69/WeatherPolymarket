@@ -27,15 +27,19 @@ const TRADE_FILE  = path.resolve(`data/wallet-trades/${WALLET_ADDR}.jsonl`);
 const CACHE_DIR   = path.resolve("data/resolved-market-cache");
 const OUT_CSV     = path.resolve("data/backtest-937-replay.csv");
 
-// -------- strategy config --------
+// -------- strategy config (override via CLI: --ask=0.999 --maxhold=15) --------
+const argv = Object.fromEntries(process.argv.slice(2).map(a => {
+  const [k, v] = a.replace(/^--/, "").split("=");
+  return [k, v ?? "true"];
+}));
 const CFG = {
-  ASK_TARGET:     0.999,  // resting ask price we post on exit
-  MAX_HOLD_MIN:   5,      // hard cutoff: cancel + liquidate at this point
-  MIN_ENTRY:      0.95,   // skip trades cheaper than this (outside 937's sweet spot)
-  MAX_ENTRY:      0.998,  // skip ≥0.999 entries (0% WR bucket)
-  LIQUIDATE_MODE: "last-sample",  // "last-sample" = use last cache sample in window as exit
+  ASK_TARGET:     Number(argv.ask      ?? "0.999"),
+  MAX_HOLD_MIN:   Number(argv.maxhold  ?? "5"),
+  MIN_ENTRY:      Number(argv.minentry ?? "0.95"),
+  MAX_ENTRY:      Number(argv.maxentry ?? "0.998"),
+  LIQ_MODE:       argv.liq ?? "last-sample",  // last-sample | entry | skip
 };
-// ---------------------------------
+// -----------------------------------------------------------------------------
 
 const fmt = (n, d=2) => Number.isFinite(n) ? n.toFixed(d) : "nan";
 
@@ -69,8 +73,16 @@ function simulateExit(samples, entryTs, entryPrice) {
       };
     }
   }
-  // Timeout: liquidate at last-seen sample in window
+  // Timeout: behavior depends on CFG.LIQ_MODE
   const last = window[window.length - 1];
+  if (CFG.LIQ_MODE === "skip") {
+    // Pretend we never entered this trade
+    return { status: "skipped-timeout", exitPrice: entryPrice, exitTs: windowEnd, holdMin: CFG.MAX_HOLD_MIN };
+  }
+  if (CFG.LIQ_MODE === "entry") {
+    // Unwind flat at entry (best-case maker: cancel + no fill)
+    return { status: "timeout-flat", exitPrice: entryPrice, exitTs: windowEnd, holdMin: CFG.MAX_HOLD_MIN };
+  }
   return {
     status: "timeout-liquidate",
     exitPrice: last.p,
