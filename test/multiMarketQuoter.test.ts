@@ -48,11 +48,14 @@ const event: WeatherEvent = {
   title: "Highest temperature in Shanghai on April 21?",
   city: "Shanghai",
   date: "2026-04-21",
-  markets: [18, 19, 20, 21, 22].map((temp) => ({
+  markets: [18, 19, 20, 21, 22].map((temp, i, arr) => ({
     conditionId: `0x${temp}`,
     question: `Will the high be ${temp}°C?`,
     outcomeLabel: `${temp}C`,
     temperatureC: temp,
+    binWidthC: 1,
+    isLowTail: i === 0,
+    isHighTail: i === arr.length - 1,
     yesTokenId: `yes-${temp}`,
     noTokenId: `no-${temp}`,
     volume24hr: 1000,

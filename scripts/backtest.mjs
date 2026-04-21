@@ -94,13 +94,21 @@ async function resolveTokens() {
 async function fetchHistory(tokenId) {
   const endTs = Math.floor(Date.now() / 1000);
   const startTs = endTs - days * 86400;
-  const data = await client.getPricesHistory({
+  const raw = await client.getPricesHistory({
     market: tokenId,
     startTs,
     endTs,
     interval
   });
-  return data;
+  // SDK type says MarketPrice[] but the exchange actually returns
+  // {history: MarketPrice[]} in some versions. Handle both shapes and a
+  // bare `null`/empty-object defensively.
+  if (Array.isArray(raw)) return raw;
+  if (raw && typeof raw === "object") {
+    if (Array.isArray(raw.history)) return raw.history;
+    if (Array.isArray(raw.data)) return raw.data;
+  }
+  return [];
 }
 
 async function main() {

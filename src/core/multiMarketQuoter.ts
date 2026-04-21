@@ -35,13 +35,22 @@ export function buildBuyQuotes(
   now: Date = new Date(),
   volExtraCents: (conditionId: string) => number = () => 0
 ): BuildBuyQuotesResult {
+  // Build a richer description of each outcome's bucket for the CDF solver so
+  // Fahrenheit / range / tail markets are handled correctly.
+  const buckets = event.markets.map((market) => ({
+    conditionId: market.conditionId,
+    temperatureC: market.temperatureC,
+    binWidthC: market.binWidthC ?? 1,
+    isLowTail: market.isLowTail ?? false,
+    isHighTail: market.isHighTail ?? false
+  }));
   const probabilities = forecastToProbabilities(
     forecast.temperatureMaxC,
     config.weatherUncertaintyC,
-    event.markets.map((market) => market.temperatureC),
+    buckets,
     { hoursToResolution: hoursUntilResolution(event.date, now) }
   );
-  const fairByTemp = new Map(probabilities.map((point) => [point.temperatureC, point.probability]));
+  const fairByConditionId = new Map(probabilities.map((point) => [point.conditionId, point.probability]));
   const bookByToken = new Map(books.map((book) => [book.tokenId, book]));
   // A position is "held" if either USDC exposure is > 0 OR we have ≥ 1 share
   // (share count is more reliable when entry price was unknown on startup).
@@ -74,8 +83,18 @@ export function buildBuyQuotes(
     }
 
     const spread = book.bestAsk - book.bestBid;
-    if (spread < 0.002) {
-      skipped.push({ conditionId: market.conditionId, outcomeLabel: market.outcomeLabel, reason: `spread_too_tight=${spread}` });
+    // Minimum profitable spread. Our exit is entry + 1 tick, so the absolute
+    // floor is 2 ticks (one for our BUY edge, one for our SELL edge). Using
+    // 2 × market tick makes this threshold scale with the market's tick size
+    // instead of a hardcoded 0.002 that was tuned for 0.01-tick markets.
+    const tick = market.tickSize ?? config.tickSize;
+    const minProfitableSpread = 2 * tick;
+    if (spread < minProfitableSpread - 1e-9) {
+      skipped.push({
+        conditionId: market.conditionId,
+        outcomeLabel: market.outcomeLabel,
+        reason: `spread_too_tight=${roundPrice(spread)} minRequired=${minProfitableSpread}`
+      });
       continue;
     }
 
@@ -85,7 +104,7 @@ export function buildBuyQuotes(
     }
 
     const mid = (book.bestBid + book.bestAsk) / 2;
-    const forecastProb = fairByTemp.get(market.temperatureC);
+    const forecastProb = fairByConditionId.get(market.conditionId);
     if (forecastProb === undefined) continue;
 
     const divergence = Math.abs(mid - forecastProb);
@@ -97,9 +116,6 @@ export function buildBuyQuotes(
       });
       continue;
     }
-
-    // Round to the market's actual tick, falling back to config default
-    const tick = market.tickSize ?? config.tickSize;
 
     // Combine: base + inventory skew + per-market vol widening.
     const volExtra = Math.max(0, volExtraCents(market.conditionId));

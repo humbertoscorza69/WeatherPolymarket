@@ -97,7 +97,13 @@ async function main() {
     const distribution = forecastToProbabilities(
       forecast.temperatureMaxC,
       config.weatherUncertaintyC,
-      event.markets.map((market) => market.temperatureC)
+      event.markets.map((market) => ({
+        conditionId: market.conditionId,
+        temperatureC: market.temperatureC,
+        binWidthC: market.binWidthC ?? 1,
+        isLowTail: market.isLowTail ?? false,
+        isHighTail: market.isHighTail ?? false
+      }))
     );
     const books = [];
     for (const market of event.markets) {

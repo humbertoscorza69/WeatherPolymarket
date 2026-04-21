@@ -1,75 +1,75 @@
 export interface ProbabilityPoint {
+  conditionId?: string;
   temperatureC: number;
   probability: number;
-  /** Kind of bucket used: "low-tail" (open ≤), "point" (bin around value), or "high-tail" (open ≥). */
-  kind?: "low-tail" | "point" | "high-tail";
+  kind: "low-tail" | "point" | "high-tail";
+}
+
+export interface OutcomeBucket {
+  /** Optional per-market id so callers can correlate results. */
+  conditionId?: string;
+  /** Bin centre in Celsius. For range bins this is the centre; for tails, the closed edge. */
+  temperatureC: number;
+  /** Bin width in Celsius. Ignored for tails. */
+  binWidthC: number;
+  isLowTail: boolean;
+  isHighTail: boolean;
 }
 
 export interface FairValueOptions {
-  /**
-   * Hours until the market resolves. Uncertainty scales as σ(h) = σ₀·√(1 + h/24)
-   * to match empirical NWP forecast error growth. If omitted, σ₀ is used unscaled.
-   */
+  /** Hours until market resolution for horizon-scaled σ. */
   hoursToResolution?: number;
-  /**
-   * Width of a temperature bin in °C. Default 1. "17°C" outcome means max rounds
-   * to 17, i.e. P(16.5 ≤ T < 17.5).
-   */
-  binWidthC?: number;
 }
 
 /**
- * Convert a point forecast of daily max temperature into a probability distribution
- * over a list of discrete °C outcomes, using CDF integration over each bin.
+ * Convert a point forecast of daily max temperature into a probability
+ * distribution over a list of outcome buckets, using proper CDF integration.
  *
- * Unlike a raw-pdf implementation, this:
- *  - integrates the Gaussian over each bin's ±½ range (so the probability mass
- *    is actually correct, not just a pdf height),
- *  - treats the MIN and MAX outcomes as open-ended tail buckets (P(T ≤ min+½)
- *    and P(T > max−½) respectively), which is how Polymarket publishes the
- *    "below X" and "above X" outcomes on weather markets,
- *  - scales σ with √(1 + h/24) when hoursToResolution is provided.
+ * Each bucket carries its own width and an explicit tail flag. This lets the
+ * solver handle:
+ *   - Celsius 1°C bins (width 1, non-tail)
+ *   - Fahrenheit 2°F range bins → width ≈ 1.11°C, non-tail
+ *   - "X or below" → low-tail (CDF up to the closed edge)
+ *   - "X or higher" → high-tail (survival above the closed edge)
+ *   - mixed-unit grids
  *
- * The result is normalized so the sum over the provided outcomes equals 1.
+ * Normalized so the sum equals 1 over the provided buckets.
  */
 export function forecastToProbabilities(
   forecastTempC: number,
   baseUncertaintyC: number,
-  outcomesC: number[],
+  buckets: OutcomeBucket[],
   options: FairValueOptions = {}
 ): ProbabilityPoint[] {
   if (!Number.isFinite(forecastTempC)) throw new Error("forecastTempC must be finite");
   if (!Number.isFinite(baseUncertaintyC) || baseUncertaintyC <= 0) {
     throw new Error("uncertaintyC must be > 0");
   }
-  if (outcomesC.length === 0) throw new Error("outcomesC must not be empty");
+  if (buckets.length === 0) throw new Error("buckets must not be empty");
 
   const sigma = horizonScaledSigma(baseUncertaintyC, options.hoursToResolution);
-  const binHalf = (options.binWidthC ?? 1) / 2;
 
-  const sorted = [...outcomesC].sort((a, b) => a - b);
-  const minT = sorted[0]!;
-  const maxT = sorted[sorted.length - 1]!;
-
-  const raw = outcomesC.map<ProbabilityPoint>((temp) => {
+  const raw = buckets.map<ProbabilityPoint>((bucket) => {
+    const { temperatureC: centre, binWidthC, isLowTail, isHighTail } = bucket;
+    const halfWidth = binWidthC / 2;
     let p: number;
     let kind: ProbabilityPoint["kind"];
-    if (temp === minT && sorted.length > 1) {
-      // Left tail: cumulative probability up to min + ½ bin
-      p = normalCdf((minT + binHalf - forecastTempC) / sigma);
+    if (isLowTail) {
+      // Low tail: "31°F or below" uses 31°F as the closed upper edge, so the
+      // bucket covers T ≤ centre + halfWidth (the outside of the range edge).
+      p = normalCdf((centre + halfWidth - forecastTempC) / sigma);
       kind = "low-tail";
-    } else if (temp === maxT && sorted.length > 1) {
-      // Right tail: survival probability above max − ½ bin
-      p = 1 - normalCdf((maxT - binHalf - forecastTempC) / sigma);
+    } else if (isHighTail) {
+      // High tail: "50°F or higher" → T > centre − halfWidth.
+      p = 1 - normalCdf((centre - halfWidth - forecastTempC) / sigma);
       kind = "high-tail";
     } else {
-      // Interior bin: integrate Gaussian over [temp − ½, temp + ½]
       p =
-        normalCdf((temp + binHalf - forecastTempC) / sigma) -
-        normalCdf((temp - binHalf - forecastTempC) / sigma);
+        normalCdf((centre + halfWidth - forecastTempC) / sigma) -
+        normalCdf((centre - halfWidth - forecastTempC) / sigma);
       kind = "point";
     }
-    return { temperatureC: temp, probability: p, kind };
+    return { conditionId: bucket.conditionId, temperatureC: centre, probability: p, kind };
   });
 
   const total = raw.reduce((sum, point) => sum + point.probability, 0);
