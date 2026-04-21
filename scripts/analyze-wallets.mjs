@@ -20,7 +20,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const WALLETS = [
+// First batch: weather-focused wallets (claimed 80-98% win rates).
+const WEATHER_WALLETS = [
   "0x594edb9112f526fa6a80b8f858a6379c8a2c1c11",
   "0x15ceffed7bf820cd2d90f90ea24ae9909f5cd5fa",
   "0x38cc1d1f95d12039324809d8bb6ca6da6cbef88e",
@@ -33,6 +34,25 @@ const WALLETS = [
   "0x875e974594985283c999765461bf2e15b4dee6b5",
   "0x104171232971a6db8cf938f76fdbebbb81c5f452"
 ];
+
+// Second batch: top-leaderboard wallets (>=90% win rate across all markets,
+// not only weather). These may reveal strategies beyond the scalper pattern.
+const LEADERBOARD_WALLETS = [
+  "0x1521b47bf0c41f6b7fd3ad41cdec566812c8f23e",
+  "0x9b979a065641e8cfde3022a30ed2d9415cf55e12",
+  "0x6ffb4354cbe6e0f9989e3b55564ec5fb8646a834",
+  "0xfc25f141ed27bb1787338d2c4e7f51e3a15e1f7f",
+  "0xe40ea00e74059c76c0035c919ef6b99c3e25a94d",
+  "0xcae693bcf9696a2ebf0a62de767719b45f354f85",
+  "0x2e0b70d482e6b389e81dea528be57d825dd48070",
+  "0xa9b44dca52ed35e59ac2a6f49d1203b8155464ed",
+  "0x2785e7022dc20757108204b13c08cea8613b70ae",
+  "0x7e97bd09c2ccc632fb728d91b7c37d8ec5f34d54",
+  "0xf9151529abce6aa8357b99707ec06607cf238720",
+  "0x2d99e29c4f066ba32098c65e4c7454b277d94ca3"
+];
+
+const WALLETS = [...WEATHER_WALLETS, ...LEADERBOARD_WALLETS];
 
 const DATA_API = "https://data-api.polymarket.com";
 const MAX_OFFSET = 2500; // API hard-caps at 3000
@@ -374,6 +394,55 @@ function extractPattern(activity) {
   };
 }
 
+/** Auto-classify a wallet's strategy from its fingerprint distributions. */
+function classifyStrategy(p) {
+  if (!p || p.pairsMatched < 10) return "INSUFFICIENT_DATA";
+  const total = p.pairsMatched;
+  const pct = (dist, keys) =>
+    keys.reduce((s, k) => s + (dist[k] || 0), 0) / total;
+  const entryHigh = pct(p.buyDist, ["0.95-0.99", "0.99-1.00"]);
+  const exitHigh = pct(p.sellDist, ["0.99-1.00"]);
+  const entryLow = pct(p.buyDist, ["0.00-0.05", "0.05-0.10", "0.10-0.30"]);
+  const entryMid = pct(p.buyDist, ["0.30-0.50", "0.50-0.70"]);
+  const exitMid = pct(p.sellDist, ["0.30-0.50", "0.50-0.70", "0.70-0.90"]);
+  const shortHold = pct(p.holdDist, ["<1min", "1-10min"]);
+  const longHold = pct(p.holdDist, ["6-24h", ">24h"]);
+  const bigLossRate = pct(p.deltaDist, ["<-0.05"]);
+  const noHeavy = p.buyNo / total >= 0.70;
+
+  // Losing strategies first
+  if (p.profitablePct < 0.40 || p.deltaAvg < -0.01 || p.profitTotal < -50) {
+    return "LOSER";
+  }
+
+  // Hidden loser: looks like scalper but bleeds via tail losses
+  if (entryHigh >= 0.70 && exitHigh >= 0.70 && bigLossRate >= 0.05 && p.profitTotal < 50) {
+    return "SCALPER_NO_RISKMGMT";
+  }
+
+  // Clean scalper: enter at 0.95+, exit at 0.99+, short hold, positive avg delta
+  if (entryHigh >= 0.65 && exitHigh >= 0.70 && shortHold >= 0.50 && p.deltaAvg > 0 && noHeavy) {
+    return "SCALPER_NO";
+  }
+
+  // Deep-OTM buy-and-hold for resolution: buy <=0.30, exit near 1.00 or 0.00
+  if (entryLow >= 0.40 && longHold >= 0.30) {
+    return "DEEP_OTM_HOLD";
+  }
+
+  // Directional swing: mid-priced entries, decent deltas, 1h-24h holds
+  if (entryMid >= 0.30 && p.deltaMedian > 0.01 && p.profitablePct >= 0.55) {
+    return "DIRECTIONAL_SWING";
+  }
+
+  // Mixed / swing: balanced entries, medium hold
+  if (p.deltaMedian > 0.01 && p.profitablePct >= 0.55) {
+    return "MIXED_SWING";
+  }
+
+  return "UNCLEAR";
+}
+
 function printPattern(wallet, p) {
   const label = (name, dist, total) => {
     const sorted = Object.entries(dist).sort((a, b) => b[1] - a[1]);
@@ -415,6 +484,7 @@ async function main() {
   console.log(`\nAnalyzing ${wallets.length} wallet(s) over last ${lookbackDays} days...\n`);
 
   const results = [];
+  const patterns = [];
   for (const w of wallets) {
     process.stdout.write(`  ${w.slice(0, 12)}... `);
     const { events, truncated } = await fetchActivity(w);
@@ -424,8 +494,10 @@ async function main() {
     if (patternMode) {
       const p = extractPattern(events);
       if (!p) { console.log(" (no paired trades)"); continue; }
-      console.log(` ${p.pairsMatched} pairs`);
+      const strat = classifyStrategy(p);
+      console.log(` ${p.pairsMatched} pairs → ${strat}`);
       printPattern(w, p);
+      patterns.push({ wallet: w, strat, p });
       continue;
     }
     const positions = await fetchPositions(w);
@@ -438,7 +510,63 @@ async function main() {
     results.push(s);
   }
 
-  if (patternMode) return;
+  if (patternMode) {
+    // Compact cross-wallet comparison so 23 signatures are scannable at a glance.
+    patterns.sort((a, b) => b.p.profitTotal - a.p.profitTotal);
+    console.log(`\n\n=== SUMMARY (${patterns.length} wallets, sorted by paired-trade PnL) ===\n`);
+    console.log(
+      "wallet".padEnd(14),
+      "strategy".padEnd(24),
+      "pairs".padStart(6),
+      "mkts".padStart(5),
+      "PnL".padStart(9),
+      "profit%".padStart(8),
+      "medDelta".padStart(10),
+      "medHold".padStart(10),
+      "BUY NO%".padStart(8)
+    );
+    console.log("-".repeat(105));
+    for (const { wallet, strat, p } of patterns) {
+      const holdStr = p.holdMedianMin < 60
+        ? `${p.holdMedianMin.toFixed(1)}m`
+        : p.holdMedianMin < 1440
+          ? `${(p.holdMedianMin / 60).toFixed(1)}h`
+          : `${(p.holdMedianMin / 1440).toFixed(1)}d`;
+      console.log(
+        `${wallet.slice(0, 12)}..`.padEnd(14),
+        strat.padEnd(24),
+        String(p.pairsMatched).padStart(6),
+        String(p.uniqueMarkets).padStart(5),
+        `${p.profitTotal >= 0 ? "+" : ""}$${p.profitTotal.toFixed(0)}`.padStart(9),
+        `${(p.profitablePct * 100).toFixed(0)}%`.padStart(8),
+        `$${p.deltaMedian.toFixed(4)}`.padStart(10),
+        holdStr.padStart(10),
+        `${((p.buyNo / p.pairsMatched) * 100).toFixed(0)}%`.padStart(8)
+      );
+    }
+
+    // Group by strategy so we see how many examples of each exist.
+    const byStrat = {};
+    for (const { strat, p } of patterns) {
+      if (!byStrat[strat]) byStrat[strat] = { count: 0, pnl: 0, pairs: 0 };
+      byStrat[strat].count++;
+      byStrat[strat].pnl += p.profitTotal;
+      byStrat[strat].pairs += p.pairsMatched;
+    }
+    console.log(`\n=== Strategy clusters ===\n`);
+    console.log("strategy".padEnd(26), "wallets".padStart(8), "total PnL".padStart(12), "total pairs".padStart(13));
+    console.log("-".repeat(65));
+    const order = Object.entries(byStrat).sort((a, b) => b[1].pnl - a[1].pnl);
+    for (const [strat, s] of order) {
+      console.log(
+        strat.padEnd(26),
+        String(s.count).padStart(8),
+        `${s.pnl >= 0 ? "+" : ""}$${s.pnl.toFixed(0)}`.padStart(12),
+        String(s.pairs).padStart(13)
+      );
+    }
+    return;
+  }
   if (results.length === 0) {
     console.log("\nNo activity found.");
     return;
