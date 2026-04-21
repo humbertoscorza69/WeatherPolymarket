@@ -36,7 +36,12 @@ const args = Object.fromEntries(
 );
 
 const days = Number(args.days ?? "3");
-const fidelity = Number(args.fidelity ?? "15");
+// fidelity = minutes between samples. Default 5 min is a compromise:
+//   - 15 min was what Polymarket returns by default; too coarse vs live 30s refresh
+//   - 1 min is ideal but Polymarket truncates long windows at fine fidelities
+//   - 5 min gives 288 samples/day/market which matches the live 30s cadence
+//     reasonably for a slow market like weather
+const fidelity = Number(args.fidelity ?? "5");
 const topN = Number(args.top ?? "3");
 const refreshCache = args["refresh-cache"] === "true";
 const maxEvents = Number(args["max-events"] ?? args.events ?? "50");

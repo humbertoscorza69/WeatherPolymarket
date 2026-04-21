@@ -6,12 +6,32 @@ then iterate around the winners.
 
 Usage:
 ```
-npm run sweep                         # defaults: 3 days, 15-min samples
-npm run sweep -- --days=7 --fidelity=30
+npm run sweep                         # defaults: 3 days, 5-min samples
+npm run sweep -- --days=1 --fidelity=1    # high-resolution short-window sanity check
+npm run sweep -- --days=7 --fidelity=30   # long-window coarse check
 npm run sweep -- --max-events=50 --max-outcomes=15
 npm run sweep -- --refresh-cache      # ignore cache, re-fetch from Polymarket
 npm run sweep -- --top=5              # refine around the top 5 winners
 ```
+
+### Fidelity vs the live refresh cadence
+
+`--fidelity=N` means the historical tape has ONE sample every N minutes.
+That is NOT the same as our live refresh cadence (default 30s); it's the
+resolution Polymarket's `/prices-history` endpoint returns. We can't get
+tick-by-tick history from any public endpoint.
+
+The effect: during a backtest our simulated quote sits stale between
+samples. At `fidelity=5` that's 5 minutes between re-prices — 10× slower
+than live. This biases backtest fill rate DOWN relative to live (our quote
+misses micro-moves that would have repriced it live), while the mid-reaches-
+our-quote fill model biases fill rate UP (real queue depth not modeled).
+The two effects partially cancel. Read the sweep as directional guidance,
+not exact P&L forecast.
+
+The real live-speed upgrade is wiring the Polymarket market WebSocket
+(`wss://ws-subscriptions-clob.polymarket.com/ws/market`) so we re-price on
+every book event. That's roadmap item 2 in `docs/ROADMAP.md`.
 
 Output: top-10 leaderboards after each stage, plus a single "RECOMMENDED
 CONFIG" block you can paste into `.env`.
