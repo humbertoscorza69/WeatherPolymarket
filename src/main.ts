@@ -3,6 +3,8 @@ import { join } from "node:path";
 import { loadConfig } from "./config.js";
 import { Logger } from "./logger.js";
 import { findActiveWeatherEvents } from "./adapters/weatherDiscovery.js";
+import { findGenericEvents, GAMMA_PRESETS } from "./adapters/genericDiscovery.js";
+import type { WeatherEvent } from "./types.js";
 import { fetchOpenMeteoForecast } from "./adapters/weatherFeed.js";
 import { forecastToProbabilities } from "./core/weatherFairValue.js";
 import { buildBuyQuotes } from "./core/multiMarketQuoter.js";
@@ -17,6 +19,43 @@ import { UserWebSocket } from "./execution/userWebSocket.js";
 import { startDashboard } from "./dashboard/server.js";
 
 const log = new Logger("weather-mm");
+
+/**
+ * Route to the right discovery based on config.discoveryMode.
+ *   - weather: weatherDiscovery (CDF-based fair value, temperature parsing)
+ *   - generic: genericDiscovery (any Polymarket category via tag/URL, forecast bypassed)
+ */
+async function discoverEvents(discoveryConfig: {
+  discoveryMode: string;
+  discoveryPreset: string;
+  gammaEventsUrl?: string;
+  maxEvents: number;
+  maxOutcomesPerEvent: number;
+  minMarketVolumeUsdc: number;
+}): Promise<WeatherEvent[]> {
+  if (discoveryConfig.discoveryMode === "generic") {
+    const presetUrl =
+      GAMMA_PRESETS[discoveryConfig.discoveryPreset as keyof typeof GAMMA_PRESETS];
+    const url = discoveryConfig.gammaEventsUrl || presetUrl;
+    if (!url) {
+      throw new Error(
+        `DISCOVERY_MODE=generic requires either DISCOVERY_PRESET (one of: ${Object.keys(GAMMA_PRESETS).join(", ")}) or GAMMA_EVENTS_URL`
+      );
+    }
+    log.info("using generic discovery", { preset: discoveryConfig.discoveryPreset, url });
+    return findGenericEvents({
+      gammaUrl: url,
+      maxEvents: discoveryConfig.maxEvents,
+      maxOutcomesPerEvent: discoveryConfig.maxOutcomesPerEvent,
+      minMarketVolumeUsdc: discoveryConfig.minMarketVolumeUsdc
+    });
+  }
+  return findActiveWeatherEvents({
+    maxEvents: discoveryConfig.maxEvents,
+    maxOutcomesPerEvent: discoveryConfig.maxOutcomesPerEvent,
+    minMarketVolumeUsdc: discoveryConfig.minMarketVolumeUsdc
+  });
+}
 
 async function main() {
   const config = loadConfig();
@@ -44,7 +83,7 @@ async function main() {
   });
 
   const discoveryConfig = { ...config, maxOutcomesPerEvent: Math.max(config.maxOutcomesPerEvent, 20) };
-  const events = await findActiveWeatherEvents(discoveryConfig);
+  const events = await discoverEvents(discoveryConfig);
   if (events.length === 0) throw new Error("No active weather temperature events discovered");
   for (const event of events) {
     eventLog.record({
@@ -171,7 +210,7 @@ async function main() {
 
 function createLiveExecution(
   config: ReturnType<typeof loadConfig>,
-  events: Awaited<ReturnType<typeof findActiveWeatherEvents>>,
+  events: WeatherEvent[],
   eventLog: EventLog
 ) {
   const driver = createClobDriverFromConfig(config);
@@ -200,7 +239,7 @@ async function refreshLiveQuotes(config: ReturnType<typeof loadConfig>, engine: 
     await engine.evaluateStopLosses();
     await engine.cancelActiveBuys();
     const positions = engine.getPositionSnapshots();
-    const events = await findActiveWeatherEvents({ ...config, maxOutcomesPerEvent: Math.max(config.maxOutcomesPerEvent, 20) });
+    const events = await discoverEvents({ ...config, maxOutcomesPerEvent: Math.max(config.maxOutcomesPerEvent, 20) });
     for (const event of events) {
       const forecast = await fetchOpenMeteoForecast(event);
       const books = [];
@@ -255,7 +294,7 @@ async function scheduleRefreshLoop(config: ReturnType<typeof loadConfig>, engine
 
 function selectQuotesClosestToForecast(
   quotes: QuoteIntent[],
-  event: Awaited<ReturnType<typeof findActiveWeatherEvents>>[number],
+  event: WeatherEvent,
   forecastTempC: number,
   limit: number
 ) {

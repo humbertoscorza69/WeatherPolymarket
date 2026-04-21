@@ -28,6 +28,7 @@ import { Wallet } from "@ethersproject/wallet";
 import { expandGrid, rankResults, refineAround, runGridSearch } from "../dist/src/simulation/gridSearch.js";
 import { walkForward } from "../dist/src/simulation/walkForward.js";
 import { findActiveWeatherEvents } from "../dist/src/adapters/weatherDiscovery.js";
+import { findGenericEvents, GAMMA_PRESETS } from "../dist/src/adapters/genericDiscovery.js";
 
 const args = Object.fromEntries(
   process.argv.slice(2).map((a) => {
@@ -181,13 +182,21 @@ async function main() {
   console.log(`\nSweep parameters: days=${days}  fidelity=${fidelity}min  topN=${topN}  maxEvents=${maxEvents}`);
   console.log(`Cache: ${CACHE_DIR}  refresh=${refreshCache}\n`);
 
-  // 1) Discover events
-  console.log("Discovering active weather events...");
-  const events = await findActiveWeatherEvents({
-    maxEvents,
-    maxOutcomesPerEvent,
-    minMarketVolumeUsdc: 0
-  });
+  // 1) Discover events (routes by DISCOVERY_MODE env)
+  const discoveryMode = process.env.DISCOVERY_MODE ?? "weather";
+  const discoveryPreset = process.env.DISCOVERY_PRESET ?? "weather";
+  console.log(`Discovering events... (mode=${discoveryMode}, preset=${discoveryPreset})`);
+  let events;
+  if (discoveryMode === "generic") {
+    const url = process.env.GAMMA_EVENTS_URL || GAMMA_PRESETS[discoveryPreset];
+    if (!url) {
+      console.error(`DISCOVERY_MODE=generic requires DISCOVERY_PRESET (${Object.keys(GAMMA_PRESETS).join(", ")}) or GAMMA_EVENTS_URL`);
+      process.exit(1);
+    }
+    events = await findGenericEvents({ gammaUrl: url, maxEvents, maxOutcomesPerEvent, minMarketVolumeUsdc: 0 });
+  } else {
+    events = await findActiveWeatherEvents({ maxEvents, maxOutcomesPerEvent, minMarketVolumeUsdc: 0 });
+  }
   console.log(`  found ${events.length} events, ${events.reduce((s, e) => s + e.markets.length, 0)} outcomes total`);
 
   // 2) Fetch / cache history for every outcome

@@ -551,7 +551,43 @@ If `ENABLED=false` still wins: the filter doesn't help enough. Weather is
 structurally wrong for this strategy. Retarget to sports or politics
 (markets that oscillate during news cycles).
 
-## 15. What we did NOT build and why
+## 15. Retargeting: DISCOVERY_MODE + GAMMA presets
+
+The weather-only discovery is now optional. When weather shows no edge, the
+same infrastructure can be pointed at any Polymarket category via two env
+vars — no code changes needed.
+
+```
+DISCOVERY_MODE=weather           # fair-value CDF, temperature parsing
+DISCOVERY_MODE=generic           # any category, forecast bypassed
+DISCOVERY_PRESET=politics        # weather / politics / sports / crypto / entertainment
+GAMMA_EVENTS_URL=https://...     # full override — custom Gamma query
+```
+
+When `DISCOVERY_MODE=generic` the quoter auto-enables `BYPASS_FORECAST=true`:
+- No fair-value CDF (no temperature data to feed it)
+- No divergence filter
+- Forecast probability is treated as the current midpoint itself, so
+  everything degenerates to pure-spread MM
+
+Every other layer (drift filter, stop-loss, inventory skew, vol-adjusted
+spread, grid search, walk-forward validation) works unchanged — they
+operate on book and price data, not on forecasts.
+
+### Procedure when weather underperforms
+
+1. Run `DISCOVERY_MODE=generic DISCOVERY_PRESET=politics npm run analyze-markets`.
+   Look at the tradability-score distribution.
+2. If ≥ 20 markets score ≥ 4: run
+   `DISCOVERY_MODE=generic DISCOVERY_PRESET=politics npm run sweep`.
+3. Compare the resulting OOS mean to weather's (-$0.057). If politics is
+   meaningfully less negative or positive, retarget. If similar, try sports
+   or entertainment.
+4. If no category shows OOS mean ≥ $0.05: pure 1-tick MM on Polymarket at
+   $100 scale doesn't have edge. Stop, pivot strategy, or scale capital
+   first.
+
+## 16. What we did NOT build and why
 
 - **Avellaneda-Stoikov optimal spread.** Designed for continuous price
   processes with terminal inventory penalty. Polymarket weather has

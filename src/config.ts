@@ -7,6 +7,18 @@ export interface Config {
   minMarketVolumeUsdc: number;
   weatherApi: "open-meteo";
   weatherUncertaintyC: number;
+  /** Which Polymarket category to target. "weather" uses the CDF-based fair
+   *  value; everything else bypasses the forecast entirely (pure spread MM). */
+  discoveryMode: "weather" | "generic";
+  /** Preset category name (politics, sports, entertainment, crypto) or
+   *  "custom" to use GAMMA_EVENTS_URL directly. Only used when
+   *  discoveryMode=generic. */
+  discoveryPreset: string;
+  /** Optional full Gamma events URL override. Takes precedence over preset. */
+  gammaEventsUrl: string;
+  /** When true, buildBuyQuotes skips forecast probability / divergence
+   *  filter. Auto-set to true when discoveryMode=generic. */
+  bypassForecast: boolean;
   halfSpreadCents: number;
   /** Override: half-spread in TICKS rather than cents. When > 0 takes precedence
    *  over halfSpreadCents. On 0.001-tick markets, 1 tick = 0.1¢, so halfSpreadCents=1
@@ -96,6 +108,13 @@ export function loadConfig(): Config {
     minMarketVolumeUsdc: envNum("MIN_MARKET_VOLUME_USDC", 0),
     weatherApi: "open-meteo",
     weatherUncertaintyC: envNum("WEATHER_UNCERTAINTY_C", 1.5),
+    discoveryMode: (process.env.DISCOVERY_MODE === "generic" ? "generic" : "weather"),
+    discoveryPreset: process.env.DISCOVERY_PRESET ?? "weather",
+    gammaEventsUrl: process.env.GAMMA_EVENTS_URL ?? "",
+    bypassForecast:
+      process.env.BYPASS_FORECAST !== undefined
+        ? envBool("BYPASS_FORECAST", false)
+        : process.env.DISCOVERY_MODE === "generic",
     halfSpreadCents: envNum("HALF_SPREAD_CENTS", 1),
     // 0 disables; if > 0 the quoter uses halfSpread = N × market tickSize
     // instead of halfSpreadCents/100. This is the right default for

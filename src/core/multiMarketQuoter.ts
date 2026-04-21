@@ -114,7 +114,14 @@ export function buildBuyQuotes(
     }
 
     const mid = (book.bestBid + book.bestAsk) / 2;
-    const forecastProb = fairByConditionId.get(market.conditionId);
+    // When bypassForecast is on (generic-discovery mode: sports / politics /
+    // entertainment), we don't have a temperature-based probability model.
+    // Use the current mid itself as the "forecast" so divergence = 0 and the
+    // fair-value cap, if turned on, degenerates to `bid ≤ mid - halfSpread`
+    // (same as pure MM). This lets the rest of the pipeline run unchanged.
+    const forecastProb = config.bypassForecast
+      ? mid
+      : fairByConditionId.get(market.conditionId);
     if (forecastProb === undefined) continue;
 
     const divergence = Math.abs(mid - forecastProb);

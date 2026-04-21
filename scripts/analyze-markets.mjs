@@ -23,6 +23,7 @@ import { join, resolve } from "node:path";
 import { ClobClient } from "@polymarket/clob-client";
 import { Wallet } from "@ethersproject/wallet";
 import { findActiveWeatherEvents } from "../dist/src/adapters/weatherDiscovery.js";
+import { findGenericEvents, GAMMA_PRESETS } from "../dist/src/adapters/genericDiscovery.js";
 
 const args = Object.fromEntries(
   process.argv.slice(2).map((a) => {
@@ -166,9 +167,21 @@ function tradabilityScore(m) {
 }
 
 async function main() {
-  console.log(`\nAnalyzing active weather markets (days=${days} fidelity=${fidelity}min)\n`);
+  const discoveryMode = process.env.DISCOVERY_MODE ?? "weather";
+  const discoveryPreset = process.env.DISCOVERY_PRESET ?? "weather";
+  console.log(`\nAnalyzing active markets (mode=${discoveryMode}, preset=${discoveryPreset}, days=${days} fidelity=${fidelity}min)\n`);
 
-  const events = await findActiveWeatherEvents({ maxEvents, maxOutcomesPerEvent, minMarketVolumeUsdc: 0 });
+  let events;
+  if (discoveryMode === "generic") {
+    const url = process.env.GAMMA_EVENTS_URL || GAMMA_PRESETS[discoveryPreset];
+    if (!url) {
+      console.error(`DISCOVERY_MODE=generic requires DISCOVERY_PRESET (${Object.keys(GAMMA_PRESETS).join(", ")}) or GAMMA_EVENTS_URL`);
+      process.exit(1);
+    }
+    events = await findGenericEvents({ gammaUrl: url, maxEvents, maxOutcomesPerEvent, minMarketVolumeUsdc: 0 });
+  } else {
+    events = await findActiveWeatherEvents({ maxEvents, maxOutcomesPerEvent, minMarketVolumeUsdc: 0 });
+  }
   const outcomes = events.flatMap((e) => e.markets.map((m) => ({ city: e.city, outcomeLabel: m.outcomeLabel, yesTokenId: m.yesTokenId })));
   console.log(`  ${events.length} events, ${outcomes.length} outcomes`);
 
