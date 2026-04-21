@@ -11,6 +11,7 @@
     "live": "npm run build && node --env-file=.env dist/src/main.js",
     "simulate": "npm run build && node scripts/simulate.mjs",
     "backtest": "npm run build && node --env-file=.env scripts/backtest.mjs",
+    "sweep": "npm run build && node --env-file=.env scripts/sweep.mjs",
     "stop-crypto": "powershell -ExecutionPolicy Bypass -File scripts/stop-crypto.ps1"
   },
   "engines": {
