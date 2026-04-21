@@ -1,0 +1,6 @@
+{"ts":"2026-04-21T00:30:22.621Z","type":"STARTUP","data":{"dryRunLive":true,"maxEvents":1,"maxOutcomesPerEvent":12,"orderSizeUsdc":2,"halfSpreadCents":2}}
+{"ts":"2026-04-21T00:30:23.219Z","type":"DISCOVERY","city":"Chicago","message":"Highest temperature in Chicago on April 22?","data":{"date":"2026-04-22","outcomes":11}}
+{"ts":"2026-04-21T00:40:32.254Z","type":"STARTUP","data":{"dryRunLive":true,"maxEvents":1,"maxOutcomesPerEvent":12,"orderSizeUsdc":2,"halfSpreadCents":2}}
+{"ts":"2026-04-21T00:40:32.782Z","type":"DISCOVERY","city":"Chicago","message":"Highest temperature in Chicago on April 22?","data":{"date":"2026-04-22","outcomes":11}}
+{"ts":"2026-04-21T00:44:58.758Z","type":"STARTUP","data":{"dryRunLive":true,"maxEvents":1,"maxOutcomesPerEvent":12,"orderSizeUsdc":2,"halfSpreadCents":2}}
+{"ts":"2026-04-21T00:44:58.877Z","type":"DISCOVERY","city":"Chicago","message":"Highest temperature in Chicago on April 22?","data":{"date":"2026-04-22","outcomes":11}}

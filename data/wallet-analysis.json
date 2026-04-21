@@ -1,0 +1,764 @@
+[
+  {
+    "user": "0x7bd9019211677f5db6e221d6a6da030ebcd0bd75",
+    "truncated": true,
+    "trades": 2840,
+    "buys": 2012,
+    "sells": 828,
+    "closed": 801,
+    "redeemed": 0,
+    "openPositions": 154,
+    "realized": 3000.1405937073796,
+    "unrealized": 1569.2055,
+    "currentValue": 10742.198199999997,
+    "wins": 597,
+    "losses": 174,
+    "winRate": 0.77431906614786,
+    "avgWin": 6.718477292347792,
+    "avgLoss": -5.809139941518701,
+    "p05": -4.95423771693055,
+    "p95": 23.53214608670801,
+    "volume": 194559.2389599998,
+    "medSize": 11.06,
+    "maxSize": 5586.408,
+    "catPct": {
+      "other": 0.6183098591549295,
+      "sports": 0.06795774647887325,
+      "weather": 0.31338028169014087,
+      "politics": 0.00035211267605633805
+    },
+    "catCount": {
+      "other": 1756,
+      "sports": 193,
+      "weather": 890,
+      "politics": 1
+    },
+    "catPnl": {
+      "other": 2847.7849980449873,
+      "sports": -106.9569595830001,
+      "weather": 259.31255524539375
+    },
+    "firstTs": 1769946318,
+    "lastTs": 1776787186,
+    "daysSinceLast": 0.01800063657539862,
+    "topWinners": [
+      [
+        "Will there be at least 1800 measles cases in the U.S. by April 30, 2026?",
+        547.61837853171
+      ],
+      [
+        "Will there be at least 1,100 measles cases in the U.S. by February 28, 2026?",
+        393.14504106000015
+      ],
+      [
+        "Will there be at least 1,200 measles cases in the U.S. by February 28, 2026?",
+        282.41386286
+      ],
+      [
+        "Will there be at least 5000 measles cases in the U.S. in 2026?",
+        260.00413800000007
+      ],
+      [
+        "Will there be at least 1,000 measles cases in the U.S. by February 28, 2026?",
+        256.3751790862798
+      ]
+    ],
+    "topLosers": [
+      [
+        "Will Ferrari be the 2026 F1 Constructors' Champion?",
+        -137.4033495200002
+      ],
+      [
+        "Will there be at least 1,050 measles cases in the U.S. by February 28, 2026?",
+        -68.23805999999999
+      ],
+      [
+        "Will the highest temperature in London be 17°C on April 7?",
+        -66.65359288048435
+      ]
+    ]
+  },
+  {
+    "user": "0x937bcac3a8a30c07d827ad0550c3fe3a6756bfab",
+    "truncated": true,
+    "trades": 2145,
+    "buys": 1464,
+    "sells": 681,
+    "closed": 681,
+    "redeemed": 0,
+    "openPositions": 862,
+    "realized": 2374.2063083354633,
+    "unrealized": 2.1942,
+    "currentValue": 86.9482,
+    "wins": 582,
+    "losses": 3,
+    "winRate": 0.9948717948717949,
+    "avgWin": 4.108601219021414,
+    "avgLoss": -5.666533711666667,
+    "p05": 0,
+    "p95": 13.410000000000082,
+    "volume": 623841.7462109985,
+    "medSize": 79.92,
+    "maxSize": 2994,
+    "catPct": {
+      "weather": 1
+    },
+    "catCount": {
+      "weather": 2145
+    },
+    "catPnl": {
+      "weather": 2374.2063083354633
+    },
+    "firstTs": 1775325853,
+    "lastTs": 1776783862,
+    "daysSinceLast": 0.05643353009389507,
+    "topWinners": [
+      [
+        "Will the highest temperature in Taipei be 29°C on April 21?",
+        434.50611343556557
+      ],
+      [
+        "Will the highest temperature in Paris be 22°C on April 15?",
+        243.38942411195325
+      ],
+      [
+        "Will the highest temperature in Toronto be 20°C on April 13?",
+        215.8320891354765
+      ],
+      [
+        "Will the highest temperature in Taipei be 28°C on April 17?",
+        106.49891468044694
+      ],
+      [
+        "Will the highest temperature in Lagos be 33°C on April 14?",
+        99.37595775862076
+      ]
+    ],
+    "topLosers": [
+      [
+        "Will the highest temperature in Atlanta be between 70-71°F on April 19?",
+        -16.9996
+      ],
+      [
+        "Will the highest temperature in Shanghai be 28°C on April 9?",
+        -8.780000002595045e-7
+      ],
+      [
+        "Will the highest temperature in Amsterdam be 15°C or higher on April 8?",
+        -2.569999999479933e-7
+      ]
+    ]
+  },
+  {
+    "user": "0x15ceffed7bf820cd2d90f90ea24ae9909f5cd5fa",
+    "truncated": true,
+    "trades": 2574,
+    "buys": 2556,
+    "sells": 18,
+    "closed": 18,
+    "redeemed": 0,
+    "openPositions": 453,
+    "realized": 1533.2089053517832,
+    "unrealized": 231.77269999999993,
+    "currentValue": 15646.709099999993,
+    "wins": 17,
+    "losses": 1,
+    "winRate": 0.9444444444444444,
+    "avgWin": 90.18875913834023,
+    "avgLoss": -6.821210263296962e-13,
+    "p05": -6.821210263296962e-13,
+    "p95": 668.0311375218508,
+    "volume": 651782.0358739991,
+    "medSize": 19.98,
+    "maxSize": 5156.81802,
+    "catPct": {
+      "weather": 1
+    },
+    "catCount": {
+      "weather": 2574
+    },
+    "catPnl": {
+      "weather": 1533.2089053517832
+    },
+    "firstTs": 1775770141,
+    "lastTs": 1776788280,
+    "daysSinceLast": 0.005229872685891611,
+    "topWinners": [
+      [
+        "Will the highest temperature in Paris be 18°C on April 15?",
+        1378.8225875609255
+      ],
+      [
+        "Will the highest temperature in London be 13°C on April 21?",
+        80.4361763755033
+      ],
+      [
+        "Will the highest temperature in London be 14°C on April 21?",
+        32.202383422459896
+      ],
+      [
+        "Will the highest temperature in London be 16°C on April 18?",
+        23.509646249999996
+      ],
+      [
+        "Will the lowest temperature in New York City be between 66-67°F on April 15?",
+        11.38740175487465
+      ]
+    ],
+    "topLosers": [
+      [
+        "Will the highest temperature in Paris be 19°C on April 15?",
+        -6.821210263296962e-13
+      ],
+      [
+        "Will the highest temperature in Paris be 21°C on April 15?",
+        2.842170943040401e-14
+      ],
+      [
+        "Will the lowest temperature in London be 11°C on April 15?",
+        0.10924998802078681
+      ]
+    ]
+  },
+  {
+    "user": "0xeb258a5ba5cec11981a2619894824103e1a12fde",
+    "truncated": false,
+    "trades": 964,
+    "buys": 792,
+    "sells": 172,
+    "closed": 172,
+    "redeemed": 0,
+    "openPositions": 137,
+    "realized": 1237.83275494834,
+    "unrealized": 18.6057,
+    "currentValue": 2866.9037,
+    "wins": 119,
+    "losses": 52,
+    "winRate": 0.695906432748538,
+    "avgWin": 21.17504617697527,
+    "avgLoss": -24.653802694456108,
+    "p05": -28.51153140895792,
+    "p95": 72.39225794069085,
+    "volume": 220664.7461679999,
+    "medSize": 67.49925,
+    "maxSize": 3681.399928,
+    "catPct": {
+      "weather": 0.9885892116182573,
+      "other": 0.008298755186721992,
+      "sports": 0.0031120331950207467
+    },
+    "catCount": {
+      "weather": 953,
+      "other": 8,
+      "sports": 3
+    },
+    "catPnl": {
+      "weather": 1296.83275494834,
+      "other": -59
+    },
+    "firstTs": 1774402345,
+    "lastTs": 1776775706,
+    "daysSinceLast": 0.1508409375007506,
+    "topWinners": [
+      [
+        "Will the highest temperature in Seoul be 24°C or higher on April 14?",
+        767.0025011710475
+      ],
+      [
+        "Will the highest temperature in Seoul be 17°C on April 17?",
+        689.7827329937047
+      ],
+      [
+        "Will the highest temperature in Seoul be 13°C on April 2?",
+        131.721194749377
+      ],
+      [
+        "Will the highest temperature in Seoul be 21°C or higher on April 15?",
+        99.32269133039699
+      ],
+      [
+        "Will the highest temperature in Seoul be 18°C on April 18?",
+        85.02096447796657
+      ]
+    ],
+    "topLosers": [
+      [
+        "Will the highest temperature in Seoul be 11°C on April 7?",
+        -335.6036709644451
+      ],
+      [
+        "Will the highest temperature in Seoul be 16°C on April 17?",
+        -280.07018020000004
+      ],
+      [
+        "Will the highest temperature in Seoul be 18°C on April 12?",
+        -189.02010261323062
+      ]
+    ]
+  },
+  {
+    "user": "0x875e974594985283c999765461bf2e15b4dee6b5",
+    "truncated": true,
+    "trades": 2701,
+    "buys": 2691,
+    "sells": 10,
+    "closed": 10,
+    "redeemed": 0,
+    "openPositions": 304,
+    "realized": 460.76364805112416,
+    "unrealized": 13.8881,
+    "currentValue": 14065.5177,
+    "wins": 7,
+    "losses": 2,
+    "winRate": 0.7777777777777778,
+    "avgWin": 65.82337829301794,
+    "avgLoss": -6.963318810448982e-13,
+    "p05": -1.3642420526593924e-12,
+    "p95": 297.0078573827518,
+    "volume": 374810.34997000487,
+    "medSize": 96.63327,
+    "maxSize": 3219.64713,
+    "catPct": {
+      "weather": 1
+    },
+    "catCount": {
+      "weather": 2701
+    },
+    "catPnl": {
+      "weather": 460.76364805112416
+    },
+    "firstTs": 1776153539,
+    "lastTs": 1776787314,
+    "daysSinceLast": 0.01656659722328186,
+    "topWinners": [
+      [
+        "Will the highest temperature in Paris be 18°C on April 15?",
+        297.0078573827518
+      ],
+      [
+        "Will the highest temperature in Sao Paulo be 26°C on April 15?",
+        151.7469606683735
+      ],
+      [
+        "Will the highest temperature in Sao Paulo be 25°C on April 15?",
+        8.999999999999886
+      ],
+      [
+        "Will the highest temperature in Ankara be 13°C on April 18?",
+        2.9288700000000745
+      ],
+      [
+        "Will the highest temperature in London be 13°C on April 22?",
+        0.07995999999999981
+      ]
+    ],
+    "topLosers": [
+      [
+        "Will the highest temperature in Paris be 19°C on April 15?",
+        -1.3926637620897964e-12
+      ],
+      [
+        "Will the highest temperature in London be 13°C on April 14?",
+        0
+      ],
+      [
+        "Will the highest temperature in Paris be 14°C on April 16?",
+        2.842170943040401e-14
+      ]
+    ]
+  },
+  {
+    "user": "0xf39349b4ac2d7a46b2b286e21f388d4533e9d509",
+    "truncated": false,
+    "trades": 259,
+    "buys": 256,
+    "sells": 3,
+    "closed": 3,
+    "redeemed": 0,
+    "openPositions": 239,
+    "realized": 2.139920003999805,
+    "unrealized": 74.2791,
+    "currentValue": 1522.6253,
+    "wins": 2,
+    "losses": 0,
+    "winRate": 1,
+    "avgWin": 1.0699600019999025,
+    "avgLoss": 0,
+    "p05": 0,
+    "p95": 1.2799200039998198,
+    "volume": 45200.38147899998,
+    "medSize": 88.5753,
+    "maxSize": 780.099998,
+    "catPct": {
+      "weather": 1
+    },
+    "catCount": {
+      "weather": 259
+    },
+    "catPnl": {
+      "weather": 2.139920003999805
+    },
+    "firstTs": 1770630677,
+    "lastTs": 1776770472,
+    "daysSinceLast": 0.21142218750108172,
+    "topWinners": [
+      [
+        "Will the highest temperature in Tel Aviv be 20°C on March 16?",
+        1.2799200039998198
+      ],
+      [
+        "Will the highest temperature in Tel Aviv be 19°C on March 16?",
+        0.8599999999999852
+      ],
+      [
+        "Will the highest temperature in Wellington be 20°C on March 17?",
+        0
+      ]
+    ],
+    "topLosers": [
+      [
+        "Will the highest temperature in Wellington be 20°C on March 17?",
+        0
+      ],
+      [
+        "Will the highest temperature in Tel Aviv be 19°C on March 16?",
+        0.8599999999999852
+      ],
+      [
+        "Will the highest temperature in Tel Aviv be 20°C on March 16?",
+        1.2799200039998198
+      ]
+    ]
+  },
+  {
+    "user": "0x8796b01a723066063eba805833778c276162eb9f",
+    "truncated": true,
+    "trades": 2607,
+    "buys": 2601,
+    "sells": 6,
+    "closed": 6,
+    "redeemed": 0,
+    "openPositions": 383,
+    "realized": 0.07180000000090882,
+    "unrealized": 6.961300000000001,
+    "currentValue": 13916.947599999998,
+    "wins": 4,
+    "losses": 1,
+    "winRate": 0.8,
+    "avgWin": 0.03000000000022721,
+    "avgLoss": -0.04820000000000002,
+    "p05": -0.04820000000000002,
+    "p95": 0.06839999999999957,
+    "volume": 581381.9960520008,
+    "medSize": 24.86511,
+    "maxSize": 5327.667,
+    "catPct": {
+      "weather": 0.9992328346758726,
+      "crypto": 0.0007671653241273494
+    },
+    "catCount": {
+      "weather": 2605,
+      "crypto": 2
+    },
+    "catPnl": {
+      "weather": 0.12000000000090884,
+      "crypto": -0.04820000000000002
+    },
+    "firstTs": 1776236066,
+    "lastTs": 1776787354,
+    "daysSinceLast": 0.016076458333819002,
+    "topWinners": [
+      [
+        "Will the highest temperature in Singapore be 34°C on April 17?",
+        0.11999999999999934
+      ],
+      [
+        "Will the highest temperature in Ankara be 13°C on April 18?",
+        9.094947017729282e-13
+      ],
+      [
+        "Bitcoin Up or Down - April 20, 8:50AM-8:55AM ET",
+        -0.04820000000000002
+      ]
+    ],
+    "topLosers": [
+      [
+        "Bitcoin Up or Down - April 20, 8:50AM-8:55AM ET",
+        -0.04820000000000002
+      ],
+      [
+        "Will the highest temperature in Ankara be 13°C on April 18?",
+        9.094947017729282e-13
+      ],
+      [
+        "Will the highest temperature in Singapore be 34°C on April 17?",
+        0.11999999999999934
+      ]
+    ]
+  },
+  {
+    "user": "0xd28021317c1be36239e8d930dee7d6c3a40082b3",
+    "truncated": true,
+    "trades": 2587,
+    "buys": 2527,
+    "sells": 60,
+    "closed": 44,
+    "redeemed": 0,
+    "openPositions": 456,
+    "realized": 20.790660348999936,
+    "unrealized": -91.41,
+    "currentValue": 15822.9024,
+    "wins": 36,
+    "losses": 8,
+    "winRate": 0.8181818181818182,
+    "avgWin": 2.5647144141388782,
+    "avgLoss": -8.942382319999957,
+    "p05": -14.040285759999968,
+    "p95": 5.958403864000019,
+    "volume": 467877.34760399826,
+    "medSize": 27.972,
+    "maxSize": 4261.79394,
+    "catPct": {
+      "weather": 0.8979512949362196,
+      "other": 0.07228449942017781,
+      "crypto": 0.029764205643602628
+    },
+    "catCount": {
+      "weather": 2323,
+      "other": 187,
+      "crypto": 77
+    },
+    "catPnl": {
+      "other": 14.780920063999911,
+      "weather": 6.009740285000019
+    },
+    "firstTs": 1776076481,
+    "lastTs": 1776788376,
+    "daysSinceLast": 0.004158622685957838,
+    "topWinners": [
+      [
+        "Will the highest temperature in New York City be between 84-85°F on April 14?",
+        6.009740285000019
+      ],
+      [
+        "Will the next Prime Minister of Hungary be Péter Magyar?",
+        6
+      ],
+      [
+        "Iran leadership change by December 31?",
+        5.520000000000012
+      ],
+      [
+        "Will the Iranian regime fall by April 30?",
+        4.499979143999932
+      ],
+      [
+        "Will the Iranian regime fall before 2027?",
+        3.0000000000000018
+      ]
+    ],
+    "topLosers": [
+      [
+        "S&P 500 (SPX) Up or Down on April 17?",
+        -4.439059080000055
+      ],
+      [
+        "Iran leadership change by April 30?",
+        -2.299999999999983
+      ],
+      [
+        "Iran leadership change by May 31?",
+        2.5
+      ]
+    ]
+  },
+  {
+    "user": "0x38cc1d1f95d12039324809d8bb6ca6da6cbef88e",
+    "truncated": true,
+    "trades": 2237,
+    "buys": 1745,
+    "sells": 492,
+    "closed": 492,
+    "redeemed": 0,
+    "openPositions": 638,
+    "realized": -152.146664110622,
+    "unrealized": 11.8996,
+    "currentValue": 998.8919,
+    "wins": 439,
+    "losses": 53,
+    "winRate": 0.8922764227642277,
+    "avgWin": 3.9069419037024544,
+    "avgLoss": -35.23196527992454,
+    "p05": -10.440000000000001,
+    "p95": 14.8272300000001,
+    "volume": 728173.8777650017,
+    "medSize": 60.07601,
+    "maxSize": 4581.38403,
+    "catPct": {
+      "weather": 0.9271345552078677,
+      "other": 0.07241841752346893,
+      "crypto": 0.0004470272686633885
+    },
+    "catCount": {
+      "weather": 2074,
+      "other": 162,
+      "crypto": 1
+    },
+    "catPnl": {
+      "weather": -152.146664110622
+    },
+    "firstTs": 1772402071,
+    "lastTs": 1776782090,
+    "daysSinceLast": 0.07689334490784892,
+    "topWinners": [
+      [
+        "Will the highest temperature in New York City be between 42-43°F on March 5?",
+        276.7022899999998
+      ],
+      [
+        "Will the highest temperature in New York City be between 46-47°F on March 4?",
+        213.58369999999923
+      ],
+      [
+        "Will the highest temperature in London be 8°C or below on March 7?",
+        128.10071000000016
+      ],
+      [
+        "Will the highest temperature in Seoul be 4°C on March 7?",
+        126.63383633399981
+      ],
+      [
+        "Will the highest temperature in Seattle be between 54-55°F on March 1?",
+        111.53189999999995
+      ]
+    ],
+    "topLosers": [
+      [
+        "Will the highest temperature in New York City be between 46-47°F on March 7?",
+        -991.7822903600008
+      ],
+      [
+        "Will the highest temperature in New York City be 48°F or higher on March 7?",
+        -803.9307587499975
+      ],
+      [
+        "Will the highest temperature in Dallas be 84°F or higher on March 3?",
+        0.004999999999999893
+      ]
+    ]
+  },
+  {
+    "user": "0x594edb9112f526fa6a80b8f858a6379c8a2c1c11",
+    "truncated": true,
+    "trades": 2935,
+    "buys": 2935,
+    "sells": 0,
+    "closed": 0,
+    "redeemed": 0,
+    "openPositions": 68,
+    "realized": 0,
+    "unrealized": -1128.3937999999996,
+    "currentValue": 61372.774399999995,
+    "wins": 0,
+    "losses": 0,
+    "winRate": 0,
+    "avgWin": 0,
+    "avgLoss": 0,
+    "p05": 0,
+    "p95": 0,
+    "volume": 61843.37800600029,
+    "medSize": 0.32243,
+    "maxSize": 22252.79343,
+    "catPct": {
+      "weather": 0.9894378194207837,
+      "other": 0.010562180579216355
+    },
+    "catCount": {
+      "weather": 2904,
+      "other": 31
+    },
+    "catPnl": {},
+    "firstTs": 1776759048,
+    "lastTs": 1776788700,
+    "daysSinceLast": 0.00034541666783668377,
+    "topWinners": [],
+    "topLosers": []
+  },
+  {
+    "user": "0x104171232971a6db8cf938f76fdbebbb81c5f452",
+    "truncated": true,
+    "trades": 2174,
+    "buys": 134,
+    "sells": 2040,
+    "closed": 33,
+    "redeemed": 0,
+    "openPositions": 45,
+    "realized": -1202.4204001544717,
+    "unrealized": -28289.350700000003,
+    "currentValue": 13549.050500000001,
+    "wins": 7,
+    "losses": 26,
+    "winRate": 0.21212121212121213,
+    "avgWin": 10.570605036598428,
+    "avgLoss": -49.092870592717716,
+    "p05": -321.961,
+    "p95": 15.386626303780481,
+    "volume": 35527.82902000001,
+    "medSize": 0.45624,
+    "maxSize": 4481.55892,
+    "catPct": {
+      "weather": 0.9664213431462741,
+      "other": 0.028518859245630176,
+      "sports": 0.005059797608095676
+    },
+    "catCount": {
+      "weather": 2101,
+      "other": 62,
+      "sports": 11
+    },
+    "catPnl": {
+      "weather": -16.486339744471806,
+      "other": -1199.87308866,
+      "sports": 13.939028250000035
+    },
+    "firstTs": 1776059147,
+    "lastTs": 1776787622,
+    "daysSinceLast": 0.013021111110294307,
+    "topWinners": [
+      [
+        "Dota 2: Team Spirit vs Team Falcons - Game 1 Winner",
+        13.939028250000035
+      ],
+      [
+        "Dota 2: Aurora vs South America Rejects (BO3) - PGL Wallachia Group Stage",
+        1.7989200000000096
+      ],
+      [
+        "Will the highest temperature in Lagos be 29°C on April 19?",
+        0.5198699999999999
+      ],
+      [
+        "Will the highest temperature in Lagos be 28°C on April 18?",
+        0.39652442202818605
+      ],
+      [
+        "Will the highest temperature in Lagos be 29°C on April 17?",
+        -2.504551104
+      ]
+    ],
+    "topLosers": [
+      [
+        "Spread: San Jose Earthquakes (-1.5)",
+        -1190.49709866
+      ],
+      [
+        "Will the highest temperature in Lagos be 27°C or below on April 17?",
+        -14.898183062499998
+      ],
+      [
+        "Spread: San Jose Earthquakes (-2.5)",
+        -11.17491
+      ]
+    ]
+  }
+]
