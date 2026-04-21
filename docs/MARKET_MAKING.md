@@ -371,7 +371,62 @@ If any of these fails, don't deploy. Retarget the market universe (sports,
 entertainment), gather more data (longer window or finer fidelity), or
 conclude the strategy has no edge at the current scale.
 
-## 11. What we did NOT build and why
+## 11. Round-trip duration — what to expect per market type
+
+Real MM wants fast capital rotation, but round-trip duration is determined
+by **counterparty order flow**, not by our infrastructure. A perfect WS-driven
+bot on a thin market is still bounded by how often retail arrives.
+
+| market | typical round-trip duration | why |
+|---|---|---|
+| Binance BTC perp (pro HFT)          | **5-500 ms**   | constant flow, sub-tick spreads |
+| Polymarket NFL spread during game   | **10-60 sec**  | retail hammering in 3-hour window |
+| Polymarket politics during news     | **1-30 min**   | news-driven flow clusters |
+| Polymarket weather (current)        | **15 min - 2 h** | thin flow, slow books |
+| Polymarket long-horizon (1y+)       | **hours - days** | patient market, wide spreads |
+
+If the analyzer (`npm run analyze-markets`) shows most outcomes with
+expected round-trip > 30 min, that's a signal the market is too slow for
+our capital. Retarget to sports / politics-news-cycle windows where the
+flow is bursty — those give the 10-60 sec round-trips that actually rotate
+capital.
+
+## 12. Win rate benchmarks — what's realistic
+
+| operator                   | per-trade win rate | per-day win rate | mean $/trade        |
+|----------------------------|--------------------|------------------|---------------------|
+| Virtu / Citadel equity MM  | 55-60%             | **99.6%** pub    | fractions of a cent |
+| Jane Street options MM     | ~60%               | 95%+             | cents               |
+| Retail crypto HFT          | 50-65%             | 70-85%           | $0.10-1             |
+| **Our target (weather MM)**| **60-75%**         | **60-80%**       | **$0.02-0.05**      |
+
+Key insight: **per-trade win rate can be 55% and the strategy can still be
+wildly profitable.** MM wins small many times (1 tick captured) and loses
+small few times (stop-loss-capped tail). Winners are small-but-certain;
+losers are small-but-rare. That's the game.
+
+### Diagnostic thresholds (what to watch for after going live)
+
+| observed metric              | diagnosis                                           | action                |
+|------------------------------|-----------------------------------------------------|-----------------------|
+| Per-trade win rate > 55%     | Stop-loss is saving us from tail losses             | keep current config   |
+| Per-trade win rate > 75%     | Stopping too conservatively, leaving P&L on table   | loosen stop thresholds|
+| Per-trade win rate < 45%     | Adverse selection / informed flow / bad forecast    | retarget markets      |
+| Winner / loser $ ratio < 0.3 | Stops firing too late — losing trades too large     | tighten catastrophic  |
+| Round-trips/day < 5          | Market too slow for our capital                     | retarget markets      |
+
+### Minimum-viable-edge test after going live
+
+Run for **one full week** at your chosen bankroll. After that:
+
+- **Net P&L > $5/week at $100 bankroll** → edge is real, scale capital gradually
+- **Net P&L $0 to $5/week** → inconclusive, run another week with tuned params
+- **Net P&L < $0/week** → no edge at this scale on this market. Retarget or stop.
+
+Key: don't deploy more capital until you've seen at least **100 completed
+round-trips** with positive P&L. Variance on small samples lies.
+
+## 13. What we did NOT build and why
 
 - **Avellaneda-Stoikov optimal spread.** Designed for continuous price
   processes with terminal inventory penalty. Polymarket weather has
