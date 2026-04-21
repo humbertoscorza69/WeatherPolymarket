@@ -15,6 +15,9 @@
     "analyze-markets": "npm run build && node --env-file=.env scripts/analyze-markets.mjs",
     "analyze-rewards": "npm run build && node --env-file=.env scripts/analyze-rewards.mjs",
     "analyze-wallets": "node scripts/analyze-wallets.mjs",
+    "fetch-resolved-markets": "npm run build && node --env-file=.env scripts/fetch-resolved-markets.mjs",
+    "backtest-restaker": "npm run build && node scripts/backtest-restaker.mjs",
+    "backtest-scalper": "npm run build && node scripts/backtest-scalper.mjs",
     "stop-crypto": "powershell -ExecutionPolicy Bypass -File scripts/stop-crypto.ps1"
   },
   "engines": {
