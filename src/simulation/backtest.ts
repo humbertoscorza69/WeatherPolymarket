@@ -64,16 +64,28 @@ export interface BacktestStrategy {
   driftFilterMinSamples?: number;
   driftFilterDownDriftCents?: number;
   driftFilterRatio?: number;
+  /** Polymarket LP reward config for THIS market. When provided, the
+   *  backtest replaces the crude proxy with the real proximity-weighted
+   *  formula: reward_per_step = size × (1 − distance/maxSpread) × (step/86400) ×
+   *  competitiveShare × ratePerDay. When omitted, the crude proxy is used
+   *  (backward compatible). */
+  rewardsRatePerDay?: number;
+  rewardsMaxSpreadCents?: number;
+  rewardsMinSize?: number;
+  rewardsCompetitiveShare?: number;
 }
 
 export interface BacktestResult {
   market: string;
   samples: number;
   spanHours: number;
+  /** Total PnL including LP rewards. Spread PnL + LP rewards − stop-loss cost. */
   realizedPnlUsdc: number;
   roundTrips: number;
   stopLosses: number;
   stopLossPnlUsdc: number;
+  /** LP reward contribution only. Useful to split spread-vs-rewards revenue. */
+  lpRewardsUsdc: number;
   leftoverShares: number;
   leftoverEntryValueUsdc: number;
   buyFills: number;
@@ -98,6 +110,14 @@ export function backtest(
   if (samples.length < 2) return emptyResult(marketId, samples);
   const ordered = [...samples].sort((a, b) => a.t - b.t);
   const resolutionTs = ordered[ordered.length - 1]!.t;
+  // LP reward accumulator — uses the Polymarket formula when rewards config
+  // is on the strategy, otherwise stays zero.
+  let lpRewards = 0;
+  const rewardsActive =
+    (strategy.rewardsRatePerDay ?? 0) > 0 &&
+    (strategy.rewardsMaxSpreadCents ?? 0) > 0;
+  const competitiveShare = strategy.rewardsCompetitiveShare ?? 0.1;
+  let lastSampleTs = ordered[0]!.t;
 
   const positions: Position[] = [];
   let realizedPnl = 0;
@@ -228,6 +248,45 @@ export function backtest(
         positions.splice(j, 1);
       }
     }
+
+    // 5) LP rewards — accumulate while orders rest near mid.
+    //
+    // Per Polymarket's rewards program, the reward pool is distributed by:
+    //   our_score  = size × proximity × time-on-book
+    //   our_share  = our_score / total_score_of_all_makers  (≈ competitiveShare)
+    //   reward     = our_share × rate_per_day
+    //
+    // competitiveShare abstracts away the total-maker-score term; it's a
+    // conservative estimate of our slice of the pool. So per step:
+    //   reward = proximity × (step_sec / 86400) × competitiveShare × rate_per_day
+    // Per order: both BUY and SELL earn independently when each sits within
+    // max_spread of mid AND meets min_size.
+    if (rewardsActive) {
+      const stepSec = Math.max(0, ts - lastSampleTs);
+      const timeFraction = stepSec / 86400;
+      const maxSpread = strategy.rewardsMaxSpreadCents ?? 0;
+      const minSize = strategy.rewardsMinSize ?? 0;
+      const ratePerDay = strategy.rewardsRatePerDay ?? 0;
+      // Resting BUY
+      if (restingBuy !== null) {
+        const distanceCents = Math.abs(p - restingBuy) * 100;
+        const shares = strategy.orderSizeUsdc / restingBuy;
+        if (distanceCents < maxSpread && shares >= minSize) {
+          const proximity = 1 - distanceCents / maxSpread;
+          lpRewards += proximity * timeFraction * competitiveShare * ratePerDay;
+        }
+      }
+      // Resting SELLs (one per open position)
+      for (const pos of positions) {
+        if (pos.restingSell === null) continue;
+        const distanceCents = Math.abs(p - pos.restingSell) * 100;
+        if (distanceCents < maxSpread && pos.shares >= minSize) {
+          const proximity = 1 - distanceCents / maxSpread;
+          lpRewards += proximity * timeFraction * competitiveShare * ratePerDay;
+        }
+      }
+    }
+    lastSampleTs = ts;
   }
 
   // Settlement
@@ -245,10 +304,11 @@ export function backtest(
     market: marketId,
     samples: ordered.length,
     spanHours: (resolutionTs - ordered[0]!.t) / 3600,
-    realizedPnlUsdc: realizedPnl,
+    realizedPnlUsdc: realizedPnl + lpRewards,
     roundTrips,
     stopLosses,
     stopLossPnlUsdc: stopLossPnl,
+    lpRewardsUsdc: lpRewards,
     leftoverShares,
     leftoverEntryValueUsdc: leftoverEntryValue,
     buyFills,
@@ -267,6 +327,7 @@ function emptyResult(marketId: string, samples: BacktestPriceSample[]): Backtest
     roundTrips: 0,
     stopLosses: 0,
     stopLossPnlUsdc: 0,
+    lpRewardsUsdc: 0,
     leftoverShares: 0,
     leftoverEntryValueUsdc: 0,
     buyFills: 0,

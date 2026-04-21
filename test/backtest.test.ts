@@ -78,10 +78,10 @@ test("backtest: resolution outcome settles leftover inventory", () => {
 test("backtest: summarizeBatch computes mean/median/p05/p95 correctly", () => {
   // Synthetic direct-construct results to verify the summary math
   const results = [
-    { realizedPnlUsdc: -0.5, samples: 10, spanHours: 1, roundTrips: 0, stopLosses: 1, stopLossPnlUsdc: -0.5, leftoverShares: 0, leftoverEntryValueUsdc: 0, buyFills: 1, sellFills: 0, firstPrice: 0.3, lastPrice: 0.1, market: "A" },
-    { realizedPnlUsdc: 0.1, samples: 10, spanHours: 1, roundTrips: 1, stopLosses: 0, stopLossPnlUsdc: 0, leftoverShares: 0, leftoverEntryValueUsdc: 0, buyFills: 1, sellFills: 1, firstPrice: 0.3, lastPrice: 0.3, market: "B" },
-    { realizedPnlUsdc: 0.2, samples: 10, spanHours: 1, roundTrips: 2, stopLosses: 0, stopLossPnlUsdc: 0, leftoverShares: 0, leftoverEntryValueUsdc: 0, buyFills: 2, sellFills: 2, firstPrice: 0.3, lastPrice: 0.3, market: "C" },
-    { realizedPnlUsdc: 0.3, samples: 10, spanHours: 1, roundTrips: 3, stopLosses: 0, stopLossPnlUsdc: 0, leftoverShares: 0, leftoverEntryValueUsdc: 0, buyFills: 3, sellFills: 3, firstPrice: 0.3, lastPrice: 0.3, market: "D" }
+    { realizedPnlUsdc: -0.5, samples: 10, spanHours: 1, roundTrips: 0, stopLosses: 1, stopLossPnlUsdc: -0.5, lpRewardsUsdc: 0, leftoverShares: 0, leftoverEntryValueUsdc: 0, buyFills: 1, sellFills: 0, firstPrice: 0.3, lastPrice: 0.1, market: "A" },
+    { realizedPnlUsdc: 0.1, samples: 10, spanHours: 1, roundTrips: 1, stopLosses: 0, stopLossPnlUsdc: 0, lpRewardsUsdc: 0, leftoverShares: 0, leftoverEntryValueUsdc: 0, buyFills: 1, sellFills: 1, firstPrice: 0.3, lastPrice: 0.3, market: "B" },
+    { realizedPnlUsdc: 0.2, samples: 10, spanHours: 1, roundTrips: 2, stopLosses: 0, stopLossPnlUsdc: 0, lpRewardsUsdc: 0, leftoverShares: 0, leftoverEntryValueUsdc: 0, buyFills: 2, sellFills: 2, firstPrice: 0.3, lastPrice: 0.3, market: "C" },
+    { realizedPnlUsdc: 0.3, samples: 10, spanHours: 1, roundTrips: 3, stopLosses: 0, stopLossPnlUsdc: 0, lpRewardsUsdc: 0, leftoverShares: 0, leftoverEntryValueUsdc: 0, buyFills: 3, sellFills: 3, firstPrice: 0.3, lastPrice: 0.3, market: "D" }
   ];
   const s = summarizeBatch(results);
   assert.equal(s.markets, 4);

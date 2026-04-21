@@ -81,7 +81,11 @@ function strategyForMarket(config: ConfigPoint, market: CachedMarket): BacktestS
     driftFilterEnabled: config.driftFilterEnabled,
     driftFilterMinSamples: 10,
     driftFilterDownDriftCents: config.driftFilterDownDriftCents,
-    driftFilterRatio: config.driftFilterRatio
+    driftFilterRatio: config.driftFilterRatio,
+    rewardsRatePerDay: market.rewardsRatePerDay,
+    rewardsMaxSpreadCents: market.rewardsMaxSpreadCents,
+    rewardsMinSize: market.rewardsMinSize,
+    rewardsCompetitiveShare: 0.1
   };
 }
 

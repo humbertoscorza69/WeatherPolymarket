@@ -33,6 +33,10 @@ export interface CachedMarket {
   tickSize: number;
   samples: { t: number; p: number }[];
   medianPrice: number;
+  /** Rewards-program config for this market, if it's in the program. */
+  rewardsRatePerDay?: number;
+  rewardsMaxSpreadCents?: number;
+  rewardsMinSize?: number;
 }
 
 export interface ParamGrid {
@@ -76,6 +80,7 @@ export interface ConfigResult {
   marketsUsed: number;
   totalRoundTrips: number;
   totalStopLosses: number;
+  totalLpRewards: number;
   meanPnl: number;
   medianPnl: number;
   stdPnl: number;
@@ -161,7 +166,11 @@ export function runConfig(config: ConfigPoint, markets: CachedMarket[]): ConfigR
       driftFilterEnabled: config.driftFilterEnabled,
       driftFilterMinSamples: 10,
       driftFilterDownDriftCents: config.driftFilterDownDriftCents,
-      driftFilterRatio: config.driftFilterRatio
+      driftFilterRatio: config.driftFilterRatio,
+      rewardsRatePerDay: market.rewardsRatePerDay,
+      rewardsMaxSpreadCents: market.rewardsMaxSpreadCents,
+      rewardsMinSize: market.rewardsMinSize,
+      rewardsCompetitiveShare: 0.1
     };
     perMarket.push(backtest(market.label, market.samples, strategy));
   }
@@ -172,6 +181,7 @@ export function runConfig(config: ConfigPoint, markets: CachedMarket[]): ConfigR
       marketsUsed: 0,
       totalRoundTrips: 0,
       totalStopLosses: 0,
+      totalLpRewards: 0,
       meanPnl: 0,
       medianPnl: 0,
       stdPnl: 0,
@@ -193,6 +203,7 @@ export function runConfig(config: ConfigPoint, markets: CachedMarket[]): ConfigR
     marketsUsed: perMarket.length,
     totalRoundTrips: perMarket.reduce((s, r) => s + r.roundTrips, 0),
     totalStopLosses: perMarket.reduce((s, r) => s + r.stopLosses, 0),
+    totalLpRewards: perMarket.reduce((s, r) => s + (r.lpRewardsUsdc ?? 0), 0),
     meanPnl: mean,
     medianPnl: pnls[Math.floor(pnls.length / 2)]!,
     stdPnl: std,

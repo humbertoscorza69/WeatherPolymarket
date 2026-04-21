@@ -29,6 +29,7 @@ import { expandGrid, rankResults, refineAround, runGridSearch } from "../dist/sr
 import { walkForward } from "../dist/src/simulation/walkForward.js";
 import { findActiveWeatherEvents } from "../dist/src/adapters/weatherDiscovery.js";
 import { findGenericEvents, GAMMA_PRESETS } from "../dist/src/adapters/genericDiscovery.js";
+import { parseRewardsList } from "../dist/src/adapters/rewardsApi.js";
 
 const args = Object.fromEntries(
   process.argv.slice(2).map((a) => {
@@ -47,6 +48,7 @@ const fidelity = Number(args.fidelity ?? "5");
 const topN = Number(args.top ?? "3");
 const refreshCache = args["refresh-cache"] === "true";
 const maxEvents = Number(args["max-events"] ?? args.events ?? "50");
+const rewardsOnly = args["rewards-only"] === "true";
 const maxOutcomesPerEvent = Number(args["max-outcomes"] ?? "15");
 
 const host = process.env.POLYMARKET_CLOB_HOST ?? "https://clob.polymarket.com";
@@ -159,9 +161,10 @@ function printLeaderboard(ranked, title, limit = 10) {
     "win%".padStart(6),
     "n_mkts".padStart(7),
     "rtrips".padStart(7),
-    "stops".padStart(6)
+    "stops".padStart(6),
+    "LP$".padStart(7)
   );
-  console.log("-".repeat(135));
+  console.log("-".repeat(145));
   for (const r of ranked.slice(0, limit)) {
     console.log(
       String(r.rank).padEnd(5),
@@ -173,7 +176,8 @@ function printLeaderboard(ranked, title, limit = 10) {
       (r.winRate * 100).toFixed(1).padStart(6),
       String(r.marketsUsed).padStart(7),
       String(r.totalRoundTrips).padStart(7),
-      String(r.totalStopLosses).padStart(6)
+      String(r.totalStopLosses).padStart(6),
+      `$${(r.totalLpRewards ?? 0).toFixed(2)}`.padStart(7)
     );
   }
 }
@@ -199,22 +203,44 @@ async function main() {
   }
   console.log(`  found ${events.length} events, ${events.reduce((s, e) => s + e.markets.length, 0)} outcomes total`);
 
-  // 2) Fetch / cache history for every outcome
+  // 2) Fetch the Liquidity Rewards Program catalogue. LP rewards are a
+  // significant revenue source our first sweeps ignored — the backtest now
+  // uses the real per-market rate_per_day and max_spread when attached.
+  console.log("\nFetching rewards-program catalogue...");
+  let rewardsByConditionId = new Map();
+  try {
+    const rawRewards = await client.getCurrentRewards();
+    const parsed = parseRewardsList(rawRewards);
+    for (const r of parsed) rewardsByConditionId.set(r.conditionId, r);
+    console.log(`  ${parsed.length} markets in the rewards program today`);
+  } catch (err) {
+    console.log(`  rewards fetch failed (${String(err).slice(0, 80)}); continuing without LP modeling`);
+  }
+
+  // 3) Fetch / cache history for every outcome. Attach rewards data per market.
   console.log("\nLoading market data (cache first, then API)...");
   const markets = [];
   let fetched = 0;
   let loaded = 0;
+  let skippedNoRewards = 0;
   for (const event of events) {
     for (const m of event.markets) {
       const label = `${event.city} ${m.outcomeLabel}`.slice(0, 40);
+      const reward = rewardsByConditionId.get(m.conditionId);
+      if (rewardsOnly && !reward) {
+        skippedNoRewards++;
+        continue;
+      }
       try {
         const market = await loadMarketData(m.yesTokenId, label);
         if (market.samples.length < 10) continue;
+        if (reward) {
+          market.rewardsRatePerDay = reward.ratePerDay;
+          market.rewardsMaxSpreadCents = reward.maxSpreadCents;
+          market.rewardsMinSize = reward.minSize;
+        }
         markets.push(market);
         loaded++;
-        if (market === null) {
-          // placeholder
-        }
       } catch (err) {
         // don't stop the sweep on one bad market
       }
@@ -223,6 +249,9 @@ async function main() {
     }
   }
   console.log(`  loaded ${loaded} markets with ≥10 samples (${fetched} attempted)`);
+  if (rewardsOnly) console.log(`  --rewards-only: skipped ${skippedNoRewards} non-rewards markets`);
+  const rewardsCount = markets.filter((m) => m.rewardsRatePerDay).length;
+  console.log(`  ${rewardsCount}/${markets.length} loaded markets are in the rewards program`);
 
   if (markets.length === 0) {
     console.error("No markets usable for backtest — try increasing --days or --fidelity.");

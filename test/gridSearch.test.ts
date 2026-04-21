@@ -89,9 +89,9 @@ test("rankResults: best-by-mean + best-by-p05 outranks worst on both axes", () =
     driftFilterEnabled: false, driftFilterDownDriftCents: 2, driftFilterRatio: 1.2
   };
   // Winner dominates on both axes, loser loses on both. Middle is middle.
-  const winner = { config: { ...cfg }, marketsUsed: 10, totalRoundTrips: 0, totalStopLosses: 0, meanPnl: 1.0, medianPnl: 0, stdPnl: 1, p05: 0.5, p95: 2, winRate: 0.9, totalPnl: 10, sharpe: 1 };
-  const middle = { config: { ...cfg }, marketsUsed: 10, totalRoundTrips: 0, totalStopLosses: 0, meanPnl: 0.5, medianPnl: 0, stdPnl: 0.5, p05: 0.1, p95: 1, winRate: 0.6, totalPnl: 5, sharpe: 1 };
-  const loser = { config: { ...cfg }, marketsUsed: 10, totalRoundTrips: 0, totalStopLosses: 0, meanPnl: -0.1, medianPnl: 0, stdPnl: 0.1, p05: -0.5, p95: 0, winRate: 0.3, totalPnl: -1, sharpe: 1 };
+  const winner = { config: { ...cfg }, marketsUsed: 10, totalRoundTrips: 0, totalStopLosses: 0, meanPnl: 1.0, medianPnl: 0, stdPnl: 1, p05: 0.5, p95: 2, winRate: 0.9, totalPnl: 10, sharpe: 1, totalLpRewards: 0 };
+  const middle = { config: { ...cfg }, marketsUsed: 10, totalRoundTrips: 0, totalStopLosses: 0, meanPnl: 0.5, medianPnl: 0, stdPnl: 0.5, p05: 0.1, p95: 1, winRate: 0.6, totalPnl: 5, sharpe: 1, totalLpRewards: 0 };
+  const loser = { config: { ...cfg }, marketsUsed: 10, totalRoundTrips: 0, totalStopLosses: 0, meanPnl: -0.1, medianPnl: 0, stdPnl: 0.1, p05: -0.5, p95: 0, winRate: 0.3, totalPnl: -1, sharpe: 1, totalLpRewards: 0 };
   const ranked = rankResults([loser, middle, winner]);
   assert.equal(ranked[0]!.meanPnl, 1.0, "winner should be first");
   assert.equal(ranked[2]!.meanPnl, -0.1, "loser should be last");
