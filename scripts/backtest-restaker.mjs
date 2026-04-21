@@ -54,6 +54,27 @@ const bootstrapSamples = Number(args["bootstrap-samples"] ?? "100");
 const walkFolds = Number(args["walk-folds"] ?? "4");
 const outPath = args.out;
 
+/**
+ * Categories we exclude by default — these are Polymarket's 5-minute / 15-minute
+ * crypto price-prediction gimmicks and admin-use tags. They don't develop the
+ * "clear favorite at 0.95 with retail sellers" pattern the taker needs and
+ * their inclusion poisons the backtest sample (608 of 924 markets in the
+ * first real run were 'up-or-down' 5-min BTC flips).
+ *
+ * Override with --include-all to disable, or --exclude-categories=a,b,c to customize.
+ */
+const DEFAULT_EXCLUDE_CATEGORIES = [
+  "up-or-down", "5m", "15m", "1m", "crypto-prices",
+  "hype", "hide-from-new", "recurring",
+  "bitcoin", "ethereum", "solana", "ripple"
+];
+const excludeCategories = (args["exclude-categories"] ?? DEFAULT_EXCLUDE_CATEGORIES.join(","))
+  .toLowerCase()
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+const includeAll = args["include-all"] === "true";
+
 const CACHE_DIR = resolve("data/resolved-market-cache");
 
 async function loadMarkets() {
@@ -66,12 +87,20 @@ async function loadMarkets() {
     process.exit(1);
   }
   const markets = [];
+  let excludedByCategory = 0;
+  let excludedByCounts = { empty: 0, rangeBound: 0, neverInBand: 0 };
   for (const f of files) {
     if (!f.endsWith(".json")) continue;
     try {
       const raw = JSON.parse(await readFile(join(CACHE_DIR, f), "utf8"));
-      if (!raw.samples || raw.samples.length < 10) continue;
-      if (category && (raw.category ?? "").toLowerCase() !== category.toLowerCase()) continue;
+      if (!raw.samples || raw.samples.length < 10) { excludedByCounts.empty++; continue; }
+      const cat = (raw.category ?? "").toLowerCase();
+      if (category && cat !== category.toLowerCase()) continue;
+      if (!includeAll && excludeCategories.includes(cat)) { excludedByCategory++; continue; }
+      // Drop markets that never approached resolution price range
+      // (binary mid stuck in [0.30, 0.70] throughout — no trapped-retail dynamic)
+      const maxPrice = Math.max(...raw.samples.map((s) => s.p));
+      if (maxPrice < 0.70) { excludedByCounts.rangeBound++; continue; }
       markets.push({
         id: raw.id ?? raw.conditionId,
         label: raw.title ?? raw.question ?? raw.conditionId,
@@ -83,7 +112,7 @@ async function loadMarkets() {
       });
     } catch (_) { /* ignore malformed */ }
   }
-  return markets;
+  return { markets, excludedByCategory, excludedByCounts };
 }
 
 function formatPct(x) {
@@ -103,16 +132,27 @@ function formatCfg(c) {
 
 async function main() {
   console.log(`\nLoading resolved-market cache from ${CACHE_DIR}...`);
-  const markets = await loadMarkets();
+  const { markets, excludedByCategory, excludedByCounts } = await loadMarkets();
+  console.log(
+    `  excluded ${excludedByCategory} markets by category filter ` +
+    `(${includeAll ? "disabled" : `excluded: ${excludeCategories.join(", ")}`})`
+  );
+  console.log(`  excluded ${excludedByCounts.rangeBound} range-bound markets (max price < 0.70)`);
+  console.log(`  excluded ${excludedByCounts.empty} markets with < 10 samples`);
   if (markets.length < 20) {
-    console.error(`\nNot enough cached markets (${markets.length}). Need at least 20 — run fetch-resolved-markets with more coverage.`);
+    console.error(`\nNot enough backtestable markets (${markets.length}).`);
+    console.error(`Fetch more with:`);
+    console.error(`  npm run fetch-resolved-markets -- --preset=sports --max-events=800`);
+    console.error(`  npm run fetch-resolved-markets -- --preset=politics --max-events=500`);
+    console.error(`  npm run fetch-resolved-markets -- --preset=weather --max-events=500`);
+    console.error(`Or pass --include-all to use the garbage-category markets anyway.`);
     process.exit(1);
   }
   const byCategory = markets.reduce((m, x) => {
     m[x.category ?? "other"] = (m[x.category ?? "other"] ?? 0) + 1;
     return m;
   }, {});
-  console.log(`  loaded ${markets.length} markets:`, byCategory);
+  console.log(`  loaded ${markets.length} real markets:`, byCategory);
   console.log(`  walk-forward folds=${walkFolds}  MC replays=${replays}  bootstrap=${bootstrapSamples}\n`);
 
   // ---------------------------------------------------------------- Stage 1
