@@ -226,7 +226,8 @@ async function refreshLiveQuotes(config: ReturnType<typeof loadConfig>, engine: 
         books,
         positions,
         new Date(),
-        (cid) => engine.volExtraCents(cid)
+        (cid) => engine.volExtraCents(cid),
+        (cid) => engine.driftSignal(cid)
       );
       if (skipped.length > 0) {
         log.info("skipped outcomes", { event: event.title, skipped });

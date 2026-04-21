@@ -488,7 +488,70 @@ Decisions based on backtest numbers, not theory.
 | TP=1 fills fast but you see mid move +3¢ after| leaving money      | try TP=2 or vol multiplier     |
 | TP=1 fills take > 2h, stops firing often      | market too slow    | retarget markets, not tune TP  |
 
-## 14. What we did NOT build and why
+## 14. Trend-drift filter (addresses the weather-specific failure mode)
+
+The first full sweep against real Polymarket weather data (539 outcomes,
+3 days, walk-forward cross-validated) returned a losing result:
+
+```
+OOS mean:    -$0.099/market
+OOS p05:     -$0.823/market
+Stability:   100% (rank-1 losing config stayed rank-1 across all folds)
+Win rate:    55.5%
+Stop rate:   ~47% of all positions hit the stop-loss
+```
+
+The **structural failure mode**: weather markets don't mean-revert. Prices
+converge to the true outcome as forecasts update / resolution approaches.
+An MM quote sitting at `mid − 1 tick` gets filled when mid drops, then the
+market keeps drifting down and the `entry + 1 tick` TP never fills. The
+stop-loss eventually fires for a 15-30% loss per position.
+
+Classic MM wins when books oscillate. Weather books don't oscillate —
+they drift.
+
+### The fix: trend-drift detector
+
+Before placing a BUY, check if the mid has been drifting *down*
+persistently over the recent observation window. If yes, skip the quote
+this refresh cycle. Only quote when the book looks oscillating.
+
+Signal: **t-statistic of recent returns**
+```
+drift_cents = mean(recent_mid_returns) × (N - 1)     # cumulative cent drift
+drift_ratio = |drift_cents| / (stddev × √(N-1))      # t-stat: signal-to-noise
+```
+
+Skip BUY when `drift_cents ≤ -DRIFT_FILTER_DOWN_DRIFT_CENTS` AND
+`drift_ratio ≥ DRIFT_FILTER_RATIO`. The first condition catches the
+direction (must be *falling*); the second catches the reliability
+(must be persistent, not random noise).
+
+Defaults tuned from sweep diagnostics:
+- `DRIFT_FILTER_DOWN_DRIFT_CENTS=2` — skip if mid dropped 2+¢ cumulatively
+- `DRIFT_FILTER_RATIO=1.2` — only count as trend if signal/noise > 1.2
+  (roughly: "more than a 1σ move")
+
+### Why this should work
+
+- Our losses come from the 45% of positions caught in trending books
+- Trending looks statistically different from oscillating (persistent sign
+  in the t-stat of recent returns)
+- Skipping quotes during down-drifts = fewer fills, but the ones we get
+  are in mean-reverting regimes where the TP actually fires
+- Expected: win rate climbs to 65-75%, mean P&L turns positive, stop
+  rate drops from 47% to 10-15%
+
+### What the backtest will tell us
+
+If `DRIFT_FILTER_ENABLED=true` wins the sweep with positive OOS mean:
+the filter addresses the failure mode — we ship it, go live.
+
+If `ENABLED=false` still wins: the filter doesn't help enough. Weather is
+structurally wrong for this strategy. Retarget to sports or politics
+(markets that oscillate during news cycles).
+
+## 15. What we did NOT build and why
 
 - **Avellaneda-Stoikov optimal spread.** Designed for continuous price
   processes with terminal inventory penalty. Polymarket weather has

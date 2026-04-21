@@ -139,6 +139,7 @@ function formatCfg(c) {
     `band=${c.minOutcomeMid}-${c.maxOutcomeMid}`,
     `div=${c.maxForecastDivergence === Infinity ? "∞" : c.maxForecastDivergence}`,
     `tp=${c.tpTicksBase}${c.tpVolMultiplier ? `+${c.tpVolMultiplier}v` : ""}`,
+    `drf=${c.driftFilterEnabled ? `${c.driftFilterDownDriftCents}¢@${c.driftFilterRatio}` : "off"}`,
     `sl=${c.stopLossEnabled ? "on" : "off"}`,
     `drop=${c.stopLossCatastrophicDropRatio}`,
     `$${c.orderSizeUsdc}`
@@ -236,7 +237,13 @@ async function main() {
     //   tpTicksBase=2 is wider but halves fill rate.
     //   tpVolMultiplier>0 scales TP with realized vol.
     tpTicksBase: [1, 2],
-    tpVolMultiplier: [0, 0.5]
+    tpVolMultiplier: [0, 0.5],
+    // Drift filter: the fix for the trend-risk failure mode found in the
+    // previous sweep run. When mid has been drifting down persistently,
+    // skip the BUY (the market is converging away from our quote).
+    driftFilterEnabled: [false, true],
+    driftFilterDownDriftCents: [1, 2, 3],
+    driftFilterRatio: [1.0, 1.5]
   };
   const stage1Configs = expandGrid(coarseGrid);
   console.log(`\nStage 1: ${stage1Configs.length} configs × ${markets.length} markets = ${stage1Configs.length * markets.length} backtests`);
@@ -314,6 +321,9 @@ async function main() {
     console.log(`  ORDER_SIZE_USDC=${best.config.orderSizeUsdc}`);
     console.log(`  TP_TICKS_BASE=${best.config.tpTicksBase}`);
     console.log(`  TP_VOL_MULTIPLIER=${best.config.tpVolMultiplier}`);
+    console.log(`  DRIFT_FILTER_ENABLED=${best.config.driftFilterEnabled}`);
+    console.log(`  DRIFT_FILTER_DOWN_DRIFT_CENTS=${best.config.driftFilterDownDriftCents}`);
+    console.log(`  DRIFT_FILTER_RATIO=${best.config.driftFilterRatio}`);
     console.log(`  Expected (out-of-sample): mean $${best.oosMeanPnl.toFixed(3)}/market, p05 $${best.oosP05.toFixed(3)}`);
     console.log(`  Stability: ${(best.stability * 100).toFixed(0)}% of folds landed in test top-10%. Train-test gap: $${best.trainTestGap.toFixed(3)}.`);
   }

@@ -26,6 +26,15 @@ export interface BuildBuyQuotesResult {
   skipped: Array<{ conditionId: string; outcomeLabel: string; reason: string }>;
 }
 
+export interface DriftSignal {
+  /** Number of mid observations used. If < driftFilterMinSamples we skip the filter. */
+  samples: number;
+  /** Signed cent drift over the observation window (negative = down-trending). */
+  driftCents: number;
+  /** |driftCents| / stddev — how directional vs noisy the recent moves are. */
+  driftRatio: number;
+}
+
 export function buildBuyQuotes(
   event: WeatherEvent,
   forecast: Forecast,
@@ -33,7 +42,8 @@ export function buildBuyQuotes(
   books: QuoteBookTop[],
   positions: PositionSnapshot[] = [],
   now: Date = new Date(),
-  volExtraCents: (conditionId: string) => number = () => 0
+  volExtraCents: (conditionId: string) => number = () => 0,
+  driftSignal: (conditionId: string) => DriftSignal = () => ({ samples: 0, driftCents: 0, driftRatio: 0 })
 ): BuildBuyQuotesResult {
   // Build a richer description of each outcome's bucket for the CDF solver so
   // Fahrenheit / range / tail markets are handled correctly.
@@ -182,6 +192,27 @@ export function buildBuyQuotes(
       continue;
     }
 
+    // Drift filter: skip BUY quotes on markets where the mid is persistently
+    // drifting down. Weather markets don't mean-revert — they converge to
+    // the true outcome. The sweep showed 47% stop-out rate on naive quoting
+    // due to this; the filter aims to quote only when the book looks
+    // oscillating.
+    if (config.driftFilterEnabled) {
+      const ds = driftSignal(market.conditionId);
+      if (ds.samples >= config.driftFilterMinSamples) {
+        const downTrending =
+          ds.driftCents <= -config.driftFilterDownDriftCents &&
+          ds.driftRatio >= config.driftFilterRatio;
+        if (downTrending) {
+          skipped.push({
+            conditionId: market.conditionId,
+            outcomeLabel: market.outcomeLabel,
+            reason: `drift_down drift=${ds.driftCents.toFixed(2)}¢ ratio=${ds.driftRatio.toFixed(2)}`
+          });
+          continue;
+        }
+      }
+    }
     if (totalExposure + config.orderSizeUsdc > config.maxTotalExposureUsdc) break;
 
     // Adaptive order size: at high prices, $2 may not buy enough shares to

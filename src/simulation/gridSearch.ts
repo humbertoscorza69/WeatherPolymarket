@@ -48,6 +48,9 @@ export interface ParamGrid {
   orderSizeUsdc: number[];
   tpTicksBase: number[];
   tpVolMultiplier: number[];
+  driftFilterEnabled: boolean[];
+  driftFilterDownDriftCents: number[];
+  driftFilterRatio: number[];
 }
 
 export interface ConfigPoint {
@@ -63,6 +66,9 @@ export interface ConfigPoint {
   orderSizeUsdc: number;
   tpTicksBase: number;
   tpVolMultiplier: number;
+  driftFilterEnabled: boolean;
+  driftFilterDownDriftCents: number;
+  driftFilterRatio: number;
 }
 
 export interface ConfigResult {
@@ -98,20 +104,26 @@ export function expandGrid(grid: ParamGrid): ConfigPoint[] {
                     for (const orderSizeUsdc of grid.orderSizeUsdc)
                       for (const tpTicksBase of grid.tpTicksBase)
                         for (const tpVolMultiplier of grid.tpVolMultiplier)
-                          out.push({
-                            halfSpreadTicks,
-                            inventorySkewCents,
-                            volMultiplier,
-                            minOutcomeMid,
-                            maxOutcomeMid,
-                            maxForecastDivergence,
-                            stopLossEnabled,
-                            stopLossCatastrophicDropRatio,
-                            stopLossDeepDropRatio,
-                            orderSizeUsdc,
-                            tpTicksBase,
-                            tpVolMultiplier
-                          });
+                          for (const driftFilterEnabled of grid.driftFilterEnabled)
+                            for (const driftFilterDownDriftCents of grid.driftFilterDownDriftCents)
+                              for (const driftFilterRatio of grid.driftFilterRatio)
+                                out.push({
+                                  halfSpreadTicks,
+                                  inventorySkewCents,
+                                  volMultiplier,
+                                  minOutcomeMid,
+                                  maxOutcomeMid,
+                                  maxForecastDivergence,
+                                  stopLossEnabled,
+                                  stopLossCatastrophicDropRatio,
+                                  stopLossDeepDropRatio,
+                                  orderSizeUsdc,
+                                  tpTicksBase,
+                                  tpVolMultiplier,
+                                  driftFilterEnabled,
+                                  driftFilterDownDriftCents,
+                                  driftFilterRatio
+                                });
   return out;
 }
 
@@ -145,7 +157,11 @@ export function runConfig(config: ConfigPoint, markets: CachedMarket[]): ConfigR
       takerFeeRate: 0.0125,
       tpTicksBase: config.tpTicksBase,
       tpVolMultiplier: config.tpVolMultiplier,
-      tpTicksMax: 5
+      tpTicksMax: 5,
+      driftFilterEnabled: config.driftFilterEnabled,
+      driftFilterMinSamples: 10,
+      driftFilterDownDriftCents: config.driftFilterDownDriftCents,
+      driftFilterRatio: config.driftFilterRatio
     };
     perMarket.push(backtest(market.label, market.samples, strategy));
   }
@@ -234,6 +250,9 @@ export function refineAround(winner: ConfigPoint, grid: ParamGrid): ParamGrid {
     stopLossDeepDropRatio: neighbours(grid.stopLossDeepDropRatio, winner.stopLossDeepDropRatio),
     orderSizeUsdc: neighbours(grid.orderSizeUsdc, winner.orderSizeUsdc),
     tpTicksBase: neighbours(grid.tpTicksBase, winner.tpTicksBase),
-    tpVolMultiplier: neighbours(grid.tpVolMultiplier, winner.tpVolMultiplier)
+    tpVolMultiplier: neighbours(grid.tpVolMultiplier, winner.tpVolMultiplier),
+    driftFilterEnabled: [winner.driftFilterEnabled],
+    driftFilterDownDriftCents: neighbours(grid.driftFilterDownDriftCents, winner.driftFilterDownDriftCents),
+    driftFilterRatio: neighbours(grid.driftFilterRatio, winner.driftFilterRatio)
   };
 }

@@ -79,6 +79,12 @@ export class WeatherExecutionEngine {
     return this.volTracker.snapshot(conditionId).extraCents;
   }
 
+  /** Signed drift snapshot for the drift-filter / directional signals. */
+  driftSignal(conditionId: string): { samples: number; driftCents: number; driftRatio: number } {
+    const snap = this.volTracker.snapshot(conditionId);
+    return { samples: snap.samples, driftCents: snap.driftCents, driftRatio: snap.driftRatio };
+  }
+
   volSnapshots() {
     return this.volTracker.allSnapshots();
   }

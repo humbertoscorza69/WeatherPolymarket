@@ -61,3 +61,35 @@ test("VolatilityTracker: effectiveHalfSpreadCents adds extra to base", () => {
   assert.ok(eff > base);
   assert.ok(eff <= base + 3);
 });
+
+test("VolatilityTracker: driftCents is near zero for oscillating prices", () => {
+  const tracker = new VolatilityTracker({ windowSize: 60, volMultiplier: 1, maxExtraCents: 3 });
+  [0.29, 0.31, 0.29, 0.31, 0.29, 0.31, 0.29].forEach((m) => tracker.update("osc", m));
+  const snap = tracker.snapshot("osc");
+  assert.ok(Math.abs(snap.driftCents) < 0.5, `osc drift should be ~0, got ${snap.driftCents}`);
+});
+
+test("VolatilityTracker: driftCents is strongly negative for a monotonic decline", () => {
+  const tracker = new VolatilityTracker({ windowSize: 60, volMultiplier: 1, maxExtraCents: 3 });
+  // Steadily falling from 0.30 to 0.20 over 10 samples = -10 cents of drift
+  for (let i = 0; i < 11; i++) tracker.update("down", 0.30 - i * 0.01);
+  const snap = tracker.snapshot("down");
+  assert.ok(snap.driftCents < -5, `down drift should be < -5¢, got ${snap.driftCents}`);
+  assert.ok(snap.driftRatio > 1.0, `down driftRatio should be > 1, got ${snap.driftRatio}`);
+});
+
+test("VolatilityTracker: driftRatio distinguishes trend from noise", () => {
+  const tracker = new VolatilityTracker({ windowSize: 60, volMultiplier: 1, maxExtraCents: 3 });
+  // Noisy oscillation: driftRatio should be small
+  const noisy = [0.30, 0.32, 0.28, 0.31, 0.29, 0.33, 0.27, 0.30, 0.31, 0.29];
+  noisy.forEach((m) => tracker.update("noisy", m));
+  const noisySnap = tracker.snapshot("noisy");
+
+  // Clean trend of same magnitude: driftRatio should be large
+  const tracker2 = new VolatilityTracker({ windowSize: 60, volMultiplier: 1, maxExtraCents: 3 });
+  for (let i = 0; i < 10; i++) tracker2.update("trend", 0.30 - i * 0.003);
+  const trendSnap = tracker2.snapshot("trend");
+
+  assert.ok(trendSnap.driftRatio > noisySnap.driftRatio * 2,
+    `trend ratio (${trendSnap.driftRatio}) should dominate noisy ratio (${noisySnap.driftRatio})`);
+});

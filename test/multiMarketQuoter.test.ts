@@ -26,6 +26,10 @@ const baseConfig: Config = {
   tpTicksBase: 1,
   tpVolMultiplier: 0,
   tpTicksMax: 5,
+  driftFilterEnabled: false,
+  driftFilterMinSamples: 10,
+  driftFilterDownDriftCents: 2,
+  driftFilterRatio: 1.2,
   stopLossEnabled: false,
   stopLossCatastrophicDropRatio: 0.3,
   stopLossDeepDropRatio: 0.6,
@@ -260,6 +264,47 @@ test("buildBuyQuotes per-conditionId dedupe works across many events at once (50
     );
     assert.ok(someQuoted, `event ${i} should produce quotes for some outcomes`);
   }
+});
+
+test("buildBuyQuotes drift filter skips BUYs on down-trending markets", () => {
+  const downtrendingBooks = [{ tokenId: "yes-20", bestBid: 0.27, bestAsk: 0.29 }];
+  // driftSignal returns a strong downward drift for this conditionId
+  const drift = (cid: string): { samples: number; driftCents: number; driftRatio: number } =>
+    cid === "0x20"
+      ? { samples: 20, driftCents: -4.0, driftRatio: 1.8 }
+      : { samples: 0, driftCents: 0, driftRatio: 0 };
+  const { quotes, skipped } = buildBuyQuotes(
+    event,
+    forecast,
+    { ...baseConfig, driftFilterEnabled: true, driftFilterDownDriftCents: 2, driftFilterRatio: 1.2, maxForecastDivergence: 0.5 },
+    downtrendingBooks,
+    [],
+    FIXED_NOW,
+    () => 0,
+    drift
+  );
+  // 20°C should be skipped with drift_down reason
+  const drift20 = skipped.find((s) => s.conditionId === "0x20");
+  assert.ok(drift20, "20°C should be in skipped list");
+  assert.ok(drift20.reason.startsWith("drift_down"), `reason should be drift_down, got: ${drift20.reason}`);
+  assert.equal(quotes.find((q) => q.conditionId === "0x20"), undefined);
+});
+
+test("buildBuyQuotes drift filter does NOT skip oscillating markets", () => {
+  const books = [{ tokenId: "yes-20", bestBid: 0.27, bestAsk: 0.29 }];
+  // Drift is noisy (ratio below threshold)
+  const drift = () => ({ samples: 20, driftCents: -0.3, driftRatio: 0.4 });
+  const { quotes } = buildBuyQuotes(
+    event,
+    forecast,
+    { ...baseConfig, driftFilterEnabled: true, driftFilterDownDriftCents: 2, driftFilterRatio: 1.2, maxForecastDivergence: 0.5 },
+    books,
+    [],
+    FIXED_NOW,
+    () => 0,
+    drift
+  );
+  assert.ok(quotes.find((q) => q.conditionId === "0x20"), "oscillating market should still get a quote");
 });
 
 test("buildBuyQuotes applies the fair-value cap independently to every city/event", () => {

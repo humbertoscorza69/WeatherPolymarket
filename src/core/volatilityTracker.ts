@@ -40,6 +40,16 @@ export interface VolSnapshot {
   stddevCents: number;
   samples: number;
   extraCents: number;
+  /** Signed drift in cents over the recent window: positive = up-trending,
+   *  negative = down-trending, zero = oscillating. Computed as the mean of
+   *  the recent returns (not stddev). Used by the trend-drift filter. */
+  driftCents: number;
+  /** |driftCents| / stddevCents — a normalized "how trend-y is this?" signal.
+   *  Large values (> 1.0) indicate persistent directional movement (informed
+   *  flow / news); small values (< 0.3) indicate oscillating book. Skip BUYs
+   *  when driftRatio is large AND direction is down (market converging below
+   *  our entry target). */
+  driftRatio: number;
 }
 
 export class VolatilityTracker {
@@ -60,17 +70,42 @@ export class VolatilityTracker {
   snapshot(conditionId: string): VolSnapshot {
     const buf = this.buffers.get(conditionId);
     if (!buf || buf.length < 3) {
-      return { stddevCents: 0, samples: buf?.length ?? 0, extraCents: 0 };
+      return {
+        stddevCents: 0,
+        samples: buf?.length ?? 0,
+        extraCents: 0,
+        driftCents: 0,
+        driftRatio: 0
+      };
     }
-    // First-difference log returns are overkill for cent-scale probabilities.
-    // Cent-denominated raw differences are the natural unit here.
+    // First-difference returns in cents. Mean = signed drift, stddev = noise.
     const diffsCents: number[] = [];
     for (let i = 1; i < buf.length; i++) diffsCents.push((buf[i]! - buf[i - 1]!) * 100);
     const mean = diffsCents.reduce((s, v) => s + v, 0) / diffsCents.length;
     const variance = diffsCents.reduce((s, v) => s + (v - mean) ** 2, 0) / diffsCents.length;
     const stddev = Math.sqrt(variance);
+    // driftCents = total cent move per step on average (signed).
+    // Over the full window that's mean × (buf.length - 1) cents of drift.
+    const windowDriftCents = mean * (buf.length - 1);
+    // driftRatio: t-statistic style — |mean| / (stddev / √(N-1)). Large values
+    // mean "this drift is reliable, not noise". When stddev ≈ 0 and drift ≠ 0
+    // (perfect monotonic trend), treat as very high signal (capped at 999).
+    let driftRatio = 0;
+    if (Math.abs(windowDriftCents) > 1e-9) {
+      if (stddev > 1e-9) {
+        driftRatio = Math.abs(windowDriftCents) / (stddev * Math.sqrt(buf.length - 1));
+      } else {
+        driftRatio = 999;
+      }
+    }
     const extra = Math.min(this.options.maxExtraCents, this.options.volMultiplier * stddev);
-    return { stddevCents: stddev, samples: buf.length, extraCents: extra };
+    return {
+      stddevCents: stddev,
+      samples: buf.length,
+      extraCents: extra,
+      driftCents: windowDriftCents,
+      driftRatio
+    };
   }
 
   /** Effective cents of halfSpread given base cents and current vol. */

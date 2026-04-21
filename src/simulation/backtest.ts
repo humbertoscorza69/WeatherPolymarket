@@ -59,6 +59,11 @@ export interface BacktestStrategy {
   tpVolMultiplier?: number;
   /** Cap on tp_ticks when using vol adjustment. */
   tpTicksMax?: number;
+  /** Drift filter: skip quotes on down-trending mids. See multiMarketQuoter. */
+  driftFilterEnabled?: boolean;
+  driftFilterMinSamples?: number;
+  driftFilterDownDriftCents?: number;
+  driftFilterRatio?: number;
 }
 
 export interface BacktestResult {
@@ -118,6 +123,17 @@ export function backtest(
     const variance = diffs.reduce((s, v) => s + (v - mean) ** 2, 0) / diffs.length;
     return Math.sqrt(variance);
   };
+  const driftStats = (): { samples: number; driftCents: number; driftRatio: number } => {
+    if (mids.length < 3) return { samples: mids.length, driftCents: 0, driftRatio: 0 };
+    const diffs: number[] = [];
+    for (let i = 1; i < mids.length; i++) diffs.push((mids[i]! - mids[i - 1]!) * 100);
+    const mean = diffs.reduce((s, v) => s + v, 0) / diffs.length;
+    const variance = diffs.reduce((s, v) => s + (v - mean) ** 2, 0) / diffs.length;
+    const sd = Math.sqrt(variance);
+    const windowDrift = mean * (mids.length - 1);
+    const ratio = sd > 1e-9 ? Math.abs(windowDrift) / (sd * Math.sqrt(mids.length - 1)) : 0;
+    return { samples: mids.length, driftCents: windowDrift, driftRatio: ratio };
+  };
 
   for (const sample of ordered) {
     const ts = sample.t;
@@ -162,7 +178,18 @@ export function backtest(
     // 2) Refresh the BUY quote only AFTER resolving fills against the prior bid.
     if (ts - lastRefreshTs >= strategy.refreshIntervalSec) {
       lastRefreshTs = ts;
-      if (positions.length < strategy.maxInventoryPositions) {
+      let skipQuote = false;
+      // Drift filter: skip quote if the mid has been trending down.
+      if (strategy.driftFilterEnabled) {
+        const ds = driftStats();
+        if (ds.samples >= (strategy.driftFilterMinSamples ?? 10)) {
+          const downTrending =
+            ds.driftCents <= -(strategy.driftFilterDownDriftCents ?? 2) &&
+            ds.driftRatio >= (strategy.driftFilterRatio ?? 1.2);
+          if (downTrending) skipQuote = true;
+        }
+      }
+      if (!skipQuote && positions.length < strategy.maxInventoryPositions) {
         const utilization = positions.length / Math.max(1, strategy.maxInventoryPositions);
         const volExtra = Math.min(
           strategy.volMaxExtraCents,

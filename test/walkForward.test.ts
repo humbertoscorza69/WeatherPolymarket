@@ -24,6 +24,9 @@ function cfg(overrides: Partial<ConfigPoint> = {}): ConfigPoint {
     orderSizeUsdc: 2,
     tpTicksBase: 1,
     tpVolMultiplier: 0,
+    driftFilterEnabled: false,
+    driftFilterDownDriftCents: 2,
+    driftFilterRatio: 1.2,
     ...overrides
   };
 }

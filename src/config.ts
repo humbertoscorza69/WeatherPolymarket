@@ -30,6 +30,17 @@ export interface Config {
   volWindowSize: number;
   volMultiplier: number;
   volMaxExtraCents: number;
+  /** Drift filter: skip BUY quotes when the market has been trending against us.
+   *  driftFilterEnabled: master toggle.
+   *  driftFilterMinSamples: don't apply until we have N observations (bootstrap).
+   *  driftFilterDownDriftCents: skip BUY if driftCents < -N (mid dropping by N cents over window).
+   *  driftFilterRatio: skip BUY if driftRatio > R AND direction is DOWN. Ratio is
+   *    |drift| / stddev; values > 1.0 signal persistent directional movement
+   *    (vs. random oscillation). Default 1.2 is a reasonable "probably trending" bar. */
+  driftFilterEnabled: boolean;
+  driftFilterMinSamples: number;
+  driftFilterDownDriftCents: number;
+  driftFilterRatio: number;
   stopLossEnabled: boolean;
   stopLossCatastrophicDropRatio: number;
   stopLossDeepDropRatio: number;
@@ -118,6 +129,15 @@ export function loadConfig(): Config {
     volWindowSize: envNum("VOL_WINDOW_SIZE", 60),
     volMultiplier: envNum("VOL_MULTIPLIER", 1.0),
     volMaxExtraCents: envNum("VOL_MAX_EXTRA_CENTS", 3),
+    // Drift filter: addresses the biggest failure mode found in the live
+    // sweep — weather markets trend (prices converge to true outcome as
+    // forecast updates), which destroys 1-tick MM. Skip BUYs when the mid
+    // has been drifting down persistently; quote only when the book looks
+    // oscillating. Defaults tuned from sweep diagnostics.
+    driftFilterEnabled: envBool("DRIFT_FILTER_ENABLED", true),
+    driftFilterMinSamples: envNum("DRIFT_FILTER_MIN_SAMPLES", 10),
+    driftFilterDownDriftCents: envNum("DRIFT_FILTER_DOWN_DRIFT_CENTS", 2),
+    driftFilterRatio: envNum("DRIFT_FILTER_RATIO", 1.2),
     // Stop-loss system. Closes a position via hybrid ladder (maker-then-taker
     // for patient rules, immediate taker for urgent rules).
     stopLossEnabled: envBool("STOP_LOSS_ENABLED", true),

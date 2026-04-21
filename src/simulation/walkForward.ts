@@ -74,7 +74,14 @@ function strategyForMarket(config: ConfigPoint, market: CachedMarket): BacktestS
     stopLossResolutionHours: 1,
     stopLossResolutionDropRatio: 0.7,
     stopLossMaxHoldingHours: 12,
-    takerFeeRate: 0.0125
+    takerFeeRate: 0.0125,
+    tpTicksBase: config.tpTicksBase,
+    tpVolMultiplier: config.tpVolMultiplier,
+    tpTicksMax: 5,
+    driftFilterEnabled: config.driftFilterEnabled,
+    driftFilterMinSamples: 10,
+    driftFilterDownDriftCents: config.driftFilterDownDriftCents,
+    driftFilterRatio: config.driftFilterRatio
   };
 }
 

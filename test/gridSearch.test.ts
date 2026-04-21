@@ -32,7 +32,10 @@ const tinyGrid: ParamGrid = {
   stopLossDeepDropRatio: [0.6],
   orderSizeUsdc: [2],
   tpTicksBase: [1],
-  tpVolMultiplier: [0]
+  tpVolMultiplier: [0],
+  driftFilterEnabled: [false],
+  driftFilterDownDriftCents: [2],
+  driftFilterRatio: [1.2]
 };
 
 test("expandGrid produces the full cartesian product", () => {
@@ -58,7 +61,10 @@ test("runConfig excludes markets outside the config's outcome band", () => {
     stopLossDeepDropRatio: 0.6,
     orderSizeUsdc: 2,
     tpTicksBase: 1,
-    tpVolMultiplier: 0
+    tpVolMultiplier: 0,
+    driftFilterEnabled: false,
+    driftFilterDownDriftCents: 2,
+    driftFilterRatio: 1.2
   };
   const r = runConfig(cfg, [inBand, outOfBandHigh, outOfBandLow]);
   assert.equal(r.marketsUsed, 1);
@@ -79,7 +85,8 @@ test("rankResults: best-by-mean + best-by-p05 outranks worst on both axes", () =
     halfSpreadTicks: 1, inventorySkewCents: 0, volMultiplier: 0, minOutcomeMid: 0.05,
     maxOutcomeMid: 0.95, maxForecastDivergence: 0.3, stopLossEnabled: true,
     stopLossCatastrophicDropRatio: 0.3, stopLossDeepDropRatio: 0.6, orderSizeUsdc: 2,
-    tpTicksBase: 1, tpVolMultiplier: 0
+    tpTicksBase: 1, tpVolMultiplier: 0,
+    driftFilterEnabled: false, driftFilterDownDriftCents: 2, driftFilterRatio: 1.2
   };
   // Winner dominates on both axes, loser loses on both. Middle is middle.
   const winner = { config: { ...cfg }, marketsUsed: 10, totalRoundTrips: 0, totalStopLosses: 0, meanPnl: 1.0, medianPnl: 0, stdPnl: 1, p05: 0.5, p95: 2, winRate: 0.9, totalPnl: 10, sharpe: 1 };
@@ -103,13 +110,17 @@ test("refineAround: produces neighbourhood grid pinned at the winner", () => {
     stopLossDeepDropRatio: [0.5, 0.6, 0.7],
     orderSizeUsdc: [2, 3, 5],
     tpTicksBase: [1, 2, 3],
-    tpVolMultiplier: [0, 0.5, 1.0]
+    tpVolMultiplier: [0, 0.5, 1.0],
+    driftFilterEnabled: [false, true],
+    driftFilterDownDriftCents: [1, 2, 3],
+    driftFilterRatio: [1.0, 1.2, 1.5]
   };
   const winner: ConfigPoint = {
     halfSpreadTicks: 3, inventorySkewCents: 2, volMultiplier: 1.0, minOutcomeMid: 0.10,
     maxOutcomeMid: 0.90, maxForecastDivergence: 0.2, stopLossEnabled: true,
     stopLossCatastrophicDropRatio: 0.3, stopLossDeepDropRatio: 0.6, orderSizeUsdc: 3,
-    tpTicksBase: 2, tpVolMultiplier: 0.5
+    tpTicksBase: 2, tpVolMultiplier: 0.5,
+    driftFilterEnabled: true, driftFilterDownDriftCents: 2, driftFilterRatio: 1.2
   };
   const refined = refineAround(winner, broadGrid);
   // Winner's value is inside every returned neighbourhood
