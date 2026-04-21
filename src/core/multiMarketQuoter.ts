@@ -32,7 +32,8 @@ export function buildBuyQuotes(
   config: Config,
   books: QuoteBookTop[],
   positions: PositionSnapshot[] = [],
-  now: Date = new Date()
+  now: Date = new Date(),
+  volExtraCents: (conditionId: string) => number = () => 0
 ): BuildBuyQuotesResult {
   const probabilities = forecastToProbabilities(
     forecast.temperatureMaxC,
@@ -48,8 +49,9 @@ export function buildBuyQuotes(
     positions.filter((p) => p.exposureUsdc > 0 || (p.shares ?? 0) > 0).map((p) => p.conditionId)
   );
   // Apply inventory skew: widen the spread as current exposure grows toward the cap.
+  // Vol widening is applied per-outcome inside the loop (different per market).
   const currentExposureUsdc = positions.reduce((sum, p) => sum + (p.exposureUsdc ?? 0), 0);
-  const effectiveHalfSpreadCents = skewedHalfSpreadCents(
+  const inventorySkewedHalfCents = skewedHalfSpreadCents(
     {
       baseHalfSpreadCents: config.halfSpreadCents,
       inventorySkewCents: config.inventorySkewCents,
@@ -57,7 +59,6 @@ export function buildBuyQuotes(
     },
     currentExposureUsdc
   );
-  const halfSpread = effectiveHalfSpreadCents / 100;
   const quotes: QuoteIntent[] = [];
   const skipped: Array<{ conditionId: string; outcomeLabel: string; reason: string }> = [];
   let totalExposure = 0;
@@ -100,14 +101,18 @@ export function buildBuyQuotes(
     // Round to the market's actual tick, falling back to config default
     const tick = market.tickSize ?? config.tickSize;
 
+    // Combine: base + inventory skew + per-market vol widening.
+    const volExtra = Math.max(0, volExtraCents(market.conditionId));
+    const effectiveHalfCents = inventorySkewedHalfCents + volExtra;
+    const halfSpread = effectiveHalfCents / 100;
+
     // Pricing: pure market making by default. We quote at `mid - halfSpread`
     // and let the spread + maker rebates be our edge.
     //
     // Optional: if ENABLE_FAIR_VALUE_CAP is on, we additionally cap the bid
     // at `fair - halfSpread`. This is a safety guard against adverse
     // selection (buying into an outcome that will converge below our entry),
-    // NOT a forecast-driven prediction. It reduces fills on tail outcomes
-    // where the market clearly over-prices relative to Open-Meteo.
+    // NOT a forecast-driven prediction.
     const midBid = mid - halfSpread;
     const fairBid = forecastProb - halfSpread;
     const cap = config.enableFairValueCap;

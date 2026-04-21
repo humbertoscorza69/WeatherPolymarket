@@ -11,6 +11,9 @@ export interface Config {
   maxForecastDivergence: number;
   enableFairValueCap: boolean;
   inventorySkewCents: number;
+  volWindowSize: number;
+  volMultiplier: number;
+  volMaxExtraCents: number;
   stopLossEnabled: boolean;
   stopLossCatastrophicDropRatio: number;
   stopLossDeepDropRatio: number;
@@ -18,6 +21,7 @@ export interface Config {
   stopLossResolutionHours: number;
   stopLossResolutionDropRatio: number;
   stopLossMaxHoldingHours: number;
+  stopLossMakerExitWaitSeconds: number;
   orderSizeUsdc: number;
   clobMinShares: number;
   maxSharesPerMarket: number;
@@ -74,7 +78,15 @@ export function loadConfig(): Config {
     // Widen the BUY spread as inventory grows. At full utilization the
     // effective halfSpread = halfSpreadCents + inventorySkewCents.
     inventorySkewCents: envNum("INVENTORY_SKEW_CENTS", 2),
-    // Stop-loss system. Closes a position via taker exit if any rule fires.
+    // Realized-volatility-aware spread widening (Avellaneda-Stoikov light).
+    // MC sweep over 5000 episodes × 9 variants showed VOL_MULTIPLIER=1.0 gives
+    // the best mixed-vs-adverse trade-off (Sharpe 0.314 in adverse, on par
+    // with tighter variants in calm). See docs/MARKET_MAKING.md §5.
+    volWindowSize: envNum("VOL_WINDOW_SIZE", 60),
+    volMultiplier: envNum("VOL_MULTIPLIER", 1.0),
+    volMaxExtraCents: envNum("VOL_MAX_EXTRA_CENTS", 3),
+    // Stop-loss system. Closes a position via hybrid ladder (maker-then-taker
+    // for patient rules, immediate taker for urgent rules).
     stopLossEnabled: envBool("STOP_LOSS_ENABLED", true),
     stopLossCatastrophicDropRatio: envNum("STOP_LOSS_CATASTROPHIC_DROP", 0.3),
     stopLossDeepDropRatio: envNum("STOP_LOSS_DEEP_DROP", 0.6),
@@ -82,6 +94,7 @@ export function loadConfig(): Config {
     stopLossResolutionHours: envNum("STOP_LOSS_RESOLUTION_HOURS", 1),
     stopLossResolutionDropRatio: envNum("STOP_LOSS_RESOLUTION_DROP", 0.7),
     stopLossMaxHoldingHours: envNum("STOP_LOSS_MAX_HOLDING_HOURS", 12),
+    stopLossMakerExitWaitSeconds: envNum("STOP_LOSS_MAKER_EXIT_WAIT_SECONDS", 90),
     orderSizeUsdc: envNum("ORDER_SIZE_USDC", 2),
     clobMinShares: envNum("CLOB_MIN_SHARES", 5),
     maxSharesPerMarket: envNum("MAX_SHARES_PER_MARKET", 5),

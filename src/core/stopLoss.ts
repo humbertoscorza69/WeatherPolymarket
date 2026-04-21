@@ -34,6 +34,37 @@
  * known loss instead of a 100% loss at resolution.
  */
 
+export type StopLossRule =
+  | "CATASTROPHIC_DROP"
+  | "DEEP_DROP_STALE"
+  | "NEAR_RESOLUTION_ADVERSE"
+  | "MAX_HOLDING";
+
+/**
+ * Exit ladder per rule:
+ *  - "urgent" rules exit via taker immediately. Certainty dominates slippage.
+ *  - "patient" rules first try a maker SELL at bestAsk for a fixed time
+ *    window. Only fall back to taker if that doesn't fill. This captures the
+ *    maker rebate + avoids the taker fee when we're not in a hurry.
+ *
+ *  Catastrophic and near-resolution are ALWAYS urgent — the market is either
+ *  collapsing or running out of time, and waiting is strictly worse.
+ *
+ *  Deep-drop-stale and max-holding are patient — the position has been
+ *  stuck but not cratering, so waiting a minute for a maker fill is
+ *  reasonable.
+ */
+export function exitUrgency(rule: StopLossRule): "urgent" | "patient" {
+  switch (rule) {
+    case "CATASTROPHIC_DROP":
+    case "NEAR_RESOLUTION_ADVERSE":
+      return "urgent";
+    case "DEEP_DROP_STALE":
+    case "MAX_HOLDING":
+      return "patient";
+  }
+}
+
 export interface StopLossConfig {
   enabled: boolean;
   catastrophicDropRatio: number;
@@ -42,6 +73,8 @@ export interface StopLossConfig {
   resolutionStopHours: number;
   resolutionDropRatio: number;
   maxHoldingHours: number;
+  /** Seconds to wait on a maker SELL before falling back to taker. Patient rules only. */
+  makerExitWaitSeconds: number;
 }
 
 export const DEFAULT_STOP_LOSS_CONFIG: StopLossConfig = {
@@ -51,7 +84,8 @@ export const DEFAULT_STOP_LOSS_CONFIG: StopLossConfig = {
   deepDropMaxMinutes: 120,
   resolutionStopHours: 1,
   resolutionDropRatio: 0.7,
-  maxHoldingHours: 12
+  maxHoldingHours: 12,
+  makerExitWaitSeconds: 90
 };
 
 export interface StopLossInput {
@@ -70,7 +104,7 @@ export interface StopLossInput {
 
 export type StopLossDecision =
   | { shouldStop: false }
-  | { shouldStop: true; rule: string; detail: Record<string, number | string> };
+  | { shouldStop: true; rule: StopLossRule; detail: Record<string, number | string> };
 
 export function evaluateStopLoss(input: StopLossInput, config: StopLossConfig): StopLossDecision {
   if (!config.enabled) return { shouldStop: false };

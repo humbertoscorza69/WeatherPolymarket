@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { DEFAULT_STOP_LOSS_CONFIG, evaluateStopLoss } from "../src/core/stopLoss.js";
+import { DEFAULT_STOP_LOSS_CONFIG, evaluateStopLoss, exitUrgency } from "../src/core/stopLoss.js";
 
 const NOW = 1_700_000_000_000;
 
@@ -78,4 +78,11 @@ test("stop-loss: unknown entry price (0) skips evaluation", () => {
     DEFAULT_STOP_LOSS_CONFIG
   );
   assert.equal(d.shouldStop, false);
+});
+
+test("exit urgency: catastrophic and near-resolution are urgent; deep-stale and max-holding are patient", () => {
+  assert.equal(exitUrgency("CATASTROPHIC_DROP"), "urgent");
+  assert.equal(exitUrgency("NEAR_RESOLUTION_ADVERSE"), "urgent");
+  assert.equal(exitUrgency("DEEP_DROP_STALE"), "patient");
+  assert.equal(exitUrgency("MAX_HOLDING"), "patient");
 });

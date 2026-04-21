@@ -7,13 +7,24 @@ test("parseWeatherTitle extracts city and current-year date", () => {
   assert.deepEqual(parsed, { city: "Shanghai", date: "2026-04-21" });
 });
 
+// Use a future date so the `meta.date <= today` filter in parseWeatherEvents
+// doesn't exclude these tests after the clock rolls forward.
+function futureDate(): { iso: string; title: string } {
+  const d = new Date(Date.now() + 30 * 24 * 3600_000);
+  const iso = d.toISOString().slice(0, 10);
+  const monthName = d.toLocaleString("en-US", { month: "long", timeZone: "UTC" });
+  const day = d.getUTCDate();
+  return { iso, title: `${monthName} ${day}` };
+}
+
 test("parseWeatherEvents parses binary outcome markets from Gamma shape", () => {
+  const { iso, title } = futureDate();
   const events = parseWeatherEvents(
     [
       {
         id: "event-1",
-        title: "Highest temperature in Shanghai on April 21?",
-        eventDate: "2026-04-21",
+        title: `Highest temperature in Shanghai on ${title}?`,
+        eventDate: iso,
         markets: [
           {
             conditionId: "0xabc",
@@ -39,12 +50,13 @@ test("parseWeatherEvents parses binary outcome markets from Gamma shape", () => 
 });
 
 test("parseWeatherEvents excludes resolved and closed markets", () => {
+  const { iso, title } = futureDate();
   const events = parseWeatherEvents(
     [
       {
         id: "event-1",
-        title: "Highest temperature in Seoul on April 21?",
-        eventDate: "2026-04-21",
+        title: `Highest temperature in Seoul on ${title}?`,
+        eventDate: iso,
         markets: [
           {
             conditionId: "0xclosed",

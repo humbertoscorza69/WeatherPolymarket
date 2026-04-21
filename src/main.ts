@@ -191,12 +191,24 @@ async function refreshLiveQuotes(config: ReturnType<typeof loadConfig>, engine: 
       const books = [];
       for (const market of event.markets) {
         try {
-          books.push({ tokenId: market.yesTokenId, ...(await fetchOrderBookTop(market.yesTokenId, config.clobHost)) });
+          const top = await fetchOrderBookTop(market.yesTokenId, config.clobHost);
+          books.push({ tokenId: market.yesTokenId, ...top });
+          if (top.bestBid !== undefined && top.bestAsk !== undefined) {
+            engine.recordMid(market.conditionId, (top.bestBid + top.bestAsk) / 2);
+          }
         } catch {
           books.push({ tokenId: market.yesTokenId });
         }
       }
-      const { quotes, skipped } = buildBuyQuotes(event, forecast, config, books, positions);
+      const { quotes, skipped } = buildBuyQuotes(
+        event,
+        forecast,
+        config,
+        books,
+        positions,
+        new Date(),
+        (cid) => engine.volExtraCents(cid)
+      );
       if (skipped.length > 0) {
         log.info("skipped outcomes", { event: event.title, skipped });
       }

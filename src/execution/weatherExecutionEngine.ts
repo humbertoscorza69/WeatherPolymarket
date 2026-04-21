@@ -1,7 +1,8 @@
 import { InventoryEngine } from "../core/inventoryEngine.js";
 import { buildSellOnFill, hoursUntilResolution, PositionSnapshot } from "../core/multiMarketQuoter.js";
 import { EventLog } from "../core/eventLog.js";
-import { evaluateStopLoss, StopLossConfig } from "../core/stopLoss.js";
+import { evaluateStopLoss, exitUrgency, StopLossConfig, StopLossRule } from "../core/stopLoss.js";
+import { VolatilityTracker } from "../core/volatilityTracker.js";
 import { Config } from "../config.js";
 import { Logger } from "../logger.js";
 import { FillEvent, QuoteIntent, WeatherEvent, WeatherMarket } from "../types.js";
@@ -26,6 +27,11 @@ export class WeatherExecutionEngine {
   private readonly eventDateByConditionId = new Map<string, string>();
   // Track when each position was opened for stop-loss time-based rules
   private readonly positionEntryTime = new Map<string, number>();
+  // Per-market realized-volatility tracker for vol-aware spread widening.
+  private readonly volTracker: VolatilityTracker;
+  // When we placed a maker-exit, record the moment — if not filled within the
+  // maker wait window, the stop-loss escalates to taker.
+  private readonly makerExitStartedAt = new Map<string, number>();
 
   constructor(
     events: WeatherEvent[],
@@ -52,10 +58,29 @@ export class WeatherExecutionEngine {
         this.eventDateByConditionId.set(market.conditionId, event.date);
       }
     }
+    this.volTracker = new VolatilityTracker({
+      windowSize: config.volWindowSize,
+      volMultiplier: config.volMultiplier,
+      maxExtraCents: config.volMaxExtraCents
+    });
   }
 
   conditionIds(): string[] {
     return [...this.marketByConditionId.keys()];
+  }
+
+  /** Called by the refresh loop with the latest book for each tracked market. */
+  recordMid(conditionId: string, mid: number): void {
+    this.volTracker.update(conditionId, mid);
+  }
+
+  /** Per-market stddev of recent mid returns (cents). For the quoter and dashboard. */
+  volExtraCents(conditionId: string): number {
+    return this.volTracker.snapshot(conditionId).extraCents;
+  }
+
+  volSnapshots() {
+    return this.volTracker.allSnapshots();
   }
 
   /** Expose snapshot data for the dashboard. */
@@ -336,7 +361,8 @@ export class WeatherExecutionEngine {
       deepDropMaxMinutes: this.config.stopLossDeepDropMaxMinutes,
       resolutionStopHours: this.config.stopLossResolutionHours,
       resolutionDropRatio: this.config.stopLossResolutionDropRatio,
-      maxHoldingHours: this.config.stopLossMaxHoldingHours
+      maxHoldingHours: this.config.stopLossMaxHoldingHours,
+      makerExitWaitSeconds: this.config.stopLossMakerExitWaitSeconds
     };
     const now = Date.now();
 
@@ -375,6 +401,7 @@ export class WeatherExecutionEngine {
       this.logger.warn("[STOP-LOSS-TRIGGERED]", {
         outcome: market.outcomeLabel,
         rule: decision.rule,
+        urgency: exitUrgency(decision.rule),
         detail: decision.detail
       });
       this.eventLog.record({
@@ -382,19 +409,44 @@ export class WeatherExecutionEngine {
         outcome: market.outcomeLabel,
         conditionId,
         message: `STOP_LOSS:${decision.rule}`,
-        data: decision.detail
+        data: { ...decision.detail, urgency: exitUrgency(decision.rule) }
       });
 
-      await this.executeStopLossExit(market, position, book);
+      await this.executeStopLossExit(market, position, book, decision.rule);
     }
   }
 
+  /**
+   * Exit ladder.
+   *   Urgent rules (CATASTROPHIC_DROP, NEAR_RESOLUTION_ADVERSE) → taker now.
+   *   Patient rules (DEEP_DROP_STALE, MAX_HOLDING) → maker SELL at bestAsk for
+   *     makerExitWaitSeconds; if still resting next tick, escalate to taker.
+   *
+   * Maker attempt replaces the existing TP SELL (we cancel the TP first).
+   * We record the start time in makerExitStartedAt; on the next refresh cycle,
+   * if the replacement SELL is still resting AND the wait window has
+   * elapsed, we escalate — the next `evaluateStopLosses` pass will see the
+   * same trigger and route as urgent.
+   */
   private async executeStopLossExit(
     market: WeatherMarket,
     position: { shares: number; avgEntryPrice: number },
-    book: { bestBid?: number; bestAsk?: number }
+    book: { bestBid?: number; bestAsk?: number },
+    rule: StopLossRule
   ): Promise<void> {
-    // Cancel any resting SELL first so the taker exit owns the shares
+    const urgency = exitUrgency(rule);
+    const now = Date.now();
+
+    // If a maker-exit was already placed and the wait window has elapsed, escalate.
+    const makerStarted = this.makerExitStartedAt.get(market.conditionId);
+    const escalate =
+      urgency === "patient" &&
+      makerStarted !== undefined &&
+      (now - makerStarted) / 1000 >= this.config.stopLossMakerExitWaitSeconds;
+
+    const routeUrgent = urgency === "urgent" || escalate;
+
+    // Cancel any resting SELL first so whatever we place next owns the shares
     const existingSell = this.activeSells.get(market.conditionId);
     if (existingSell) {
       try {
@@ -405,16 +457,78 @@ export class WeatherExecutionEngine {
       this.activeSells.delete(market.conditionId);
     }
 
-    if (book.bestBid === undefined) return;
-    // Sell into the best bid (crosses the book → taker). FAK ensures the
-    // order either fills against available liquidity or dies; no resting.
-    const exitPrice = book.bestBid;
     const tick = market.tickSize ?? this.config.tickSize;
     const shares = Math.floor(position.shares * 10_000) / 10_000;
     if (shares < this.config.clobMinShares) return;
 
+    if (routeUrgent) {
+      await this.takerExit(market, position, book, shares, tick, rule);
+      this.makerExitStartedAt.delete(market.conditionId);
+      return;
+    }
+
+    // Patient: place a maker SELL at bestAsk (our new best ask) and record the time.
+    if (book.bestBid === undefined || book.bestAsk === undefined) {
+      // No book — fall back to taker to be safe.
+      await this.takerExit(market, position, book, shares, tick, rule);
+      this.makerExitStartedAt.delete(market.conditionId);
+      return;
+    }
+    const makerPrice = roundToTickAbove(book.bestBid + tick, tick);
+    // Make sure it's strictly above bestBid and at most bestAsk (resting, not taking)
+    const safePrice = Math.min(Math.max(makerPrice, book.bestBid + tick), book.bestAsk);
+    const quote: QuoteIntent = {
+      eventId: "stop-loss-maker",
+      city: "stop-loss",
+      date: this.eventDateByConditionId.get(market.conditionId) ?? "",
+      conditionId: market.conditionId,
+      tokenId: market.yesTokenId,
+      outcomeLabel: market.outcomeLabel,
+      side: "SELL",
+      price: safePrice,
+      sizeUsdc: safePrice * shares,
+      shares,
+      postOnly: true,
+      reason: `stop_loss_maker ${rule}`
+    };
+    try {
+      const result = await this.driver.placeQuote(quote, true);
+      if (result.status === "live" && result.orderId) {
+        this.activeSells.set(market.conditionId, {
+          orderId: result.orderId,
+          conditionId: market.conditionId,
+          side: "SELL",
+          price: safePrice
+        });
+        this.makerExitStartedAt.set(market.conditionId, now);
+        this.logger.warn("[STOP-LOSS-MAKER-EXIT]", {
+          outcome: market.outcomeLabel,
+          rule,
+          price: safePrice,
+          waitSec: this.config.stopLossMakerExitWaitSeconds
+        });
+      } else {
+        // postOnly rejected or other — fall back to taker immediately
+        await this.takerExit(market, position, book, shares, tick, rule);
+      }
+    } catch (err) {
+      this.logger.error("[STOP-LOSS-MAKER-ERROR]", { error: String(err) });
+      await this.takerExit(market, position, book, shares, tick, rule);
+    }
+  }
+
+  private async takerExit(
+    market: WeatherMarket,
+    position: { shares: number; avgEntryPrice: number },
+    book: { bestBid?: number; bestAsk?: number },
+    shares: number,
+    tick: number,
+    rule: StopLossRule
+  ): Promise<void> {
+    if (book.bestBid === undefined) return;
+    const exitPrice = book.bestBid;
     const exit: QuoteIntent = {
-      eventId: "stop-loss",
+      eventId: "stop-loss-taker",
       city: "stop-loss",
       date: this.eventDateByConditionId.get(market.conditionId) ?? "",
       conditionId: market.conditionId,
@@ -424,22 +538,20 @@ export class WeatherExecutionEngine {
       price: exitPrice,
       sizeUsdc: exitPrice * shares,
       shares,
-      postOnly: true, // required by QuoteIntent literal type; placeTakerExit overrides with postOnly=false
-      reason: `stop_loss_exit tick=${tick}`
+      postOnly: true, // literal type requirement; taker path sends postOnly=false
+      reason: `stop_loss_taker ${rule} tick=${tick}`
     };
-
     try {
       const result = await this.driver.placeTakerExit(exit);
-      this.logger.warn("[STOP-LOSS-EXIT]", {
+      this.logger.warn("[STOP-LOSS-TAKER-EXIT]", {
         outcome: market.outcomeLabel,
+        rule,
         exitPrice,
         shares,
         success: result.success,
         status: result.status
       });
       if (result.success) {
-        // Reflect the exit in inventory. Exact fill size may be partial under FAK;
-        // the user WS will deliver a TRADE event to reconcile. This apply is best-effort.
         this.inventory.applyFill({
           conditionId: market.conditionId,
           tokenId: market.yesTokenId,
@@ -456,7 +568,7 @@ export class WeatherExecutionEngine {
           price: exitPrice,
           shares,
           profitUsdc: Number((realizedPerShare * shares).toFixed(4)),
-          message: "STOP_LOSS",
+          message: `STOP_LOSS_TAKER:${rule}`,
           data: { entry: position.avgEntryPrice, exit: exitPrice }
         });
       }
@@ -835,4 +947,10 @@ export class WeatherExecutionEngine {
       });
     }
   }
+}
+
+/** Round a price UP to the nearest tick (for SELL side — maker-safe). */
+function roundToTickAbove(value: number, tickSize: number): number {
+  const factor = Math.round(1 / tickSize);
+  return Math.ceil(value * factor - 1e-9) / factor;
 }
