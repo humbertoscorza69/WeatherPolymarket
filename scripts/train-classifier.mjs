@@ -48,10 +48,20 @@ function loadPriceCache(conditionId, side) {
 // ----------------- feature extraction -----------------
 
 /** Extract features from ticks in [ts - windowSec, ts] filtered by outcomeIndex. */
+const EXCLUDE_WALLET = "0x937bcac3a8a30c07d827ad0550c3fe3a6756bfab";
+
 function windowFeatures(ticks, entryTs, windowSec, outcomeIndex) {
   const lo = entryTs - windowSec;
-  // Ticks are sorted asc; binary search would be ideal but linear is fine here.
-  const w = ticks.filter(t => t.timestamp >= lo && t.timestamp <= entryTs && t.outcomeIndex === outcomeIndex);
+  // Strict < entryTs to avoid including the entry tick itself.
+  // Exclude our own wallet's trades so the classifier learns from OTHER
+  // participants' flow, not our own (matches production: a fresh bot has
+  // no past trades of its own to reference).
+  const w = ticks.filter(t =>
+    t.timestamp >= lo &&
+    t.timestamp < entryTs &&
+    t.outcomeIndex === outcomeIndex &&
+    t.proxyWallet?.toLowerCase() !== EXCLUDE_WALLET
+  );
   const f = {
     n: w.length,
     buySize: 0, sellSize: 0,
