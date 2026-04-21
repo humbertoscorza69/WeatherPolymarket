@@ -28,7 +28,14 @@ const args = Object.fromEntries(
   })
 );
 
-const interval = args.interval ?? "1h";
+// Polymarket's `interval` is a fixed time window (1h/6h/1d/1w/max),
+// not a sample granularity — using interval=1h collapses the dataset
+// to the last hour regardless of startTs/endTs. For a custom date
+// range we use `fidelity` (minutes between samples) and omit interval.
+// --interval=<label> is a convenience mapping to fidelity minutes.
+const FIDELITY_BY_LABEL = { "1h": 60, "6h": 360, "1d": 1440 };
+const intervalLabel = args.interval ?? "1h";
+const fidelity = Number(args.fidelity ?? FIDELITY_BY_LABEL[intervalLabel] ?? 60);
 const days = Number(args.days ?? "7");
 const tokensArg = args.tokens;
 
@@ -98,7 +105,7 @@ async function fetchHistory(tokenId) {
     market: tokenId,
     startTs,
     endTs,
-    interval
+    fidelity
   });
   // SDK type says MarketPrice[] but the exchange actually returns
   // {history: MarketPrice[]} in some versions. Handle both shapes and a
@@ -113,7 +120,7 @@ async function fetchHistory(tokenId) {
 
 async function main() {
   console.log(`\nBacktest parameters:`);
-  console.log(`  interval=${interval}  days=${days}`);
+  console.log(`  window=${days}d  fidelity=${fidelity}min (interval-label=${intervalLabel})`);
   console.log(`  halfSpread=${strategy.halfSpreadCents}¢  skew=${strategy.inventorySkewCents}¢  vol×${strategy.volMultiplier}`);
   console.log(`  stop-loss=${strategy.stopLossEnabled}\n`);
 
@@ -132,13 +139,16 @@ async function main() {
       const history = await fetchHistory(tokenId);
       const samples = (history ?? []).map((p) => ({ t: p.t, p: p.p }));
       if (samples.length < 10) {
-        console.log(`  ${label.padEnd(28)}  skipped (only ${samples.length} samples)`);
+        const firstTs = samples[0]?.t;
+        const lastTs = samples[samples.length - 1]?.t;
+        const spanMin = firstTs && lastTs ? (lastTs - firstTs) / 60 : 0;
+        console.log(`  ${label.padEnd(28)}  skipped (only ${samples.length} samples, span=${spanMin.toFixed(1)}min — market may be too fresh for the window)`);
         continue;
       }
       const r = backtest(label, samples, strategy);
       results.push(r);
       console.log(
-        `  ${label.padEnd(28)}  span=${r.spanHours.toFixed(1)}h  fills=${r.buyFills}/${r.sellFills}  stops=${r.stopLosses}  PnL=$${r.realizedPnlUsdc.toFixed(4)}  leftover=${r.leftoverShares.toFixed(2)}sh`
+        `  ${label.padEnd(28)}  n=${samples.length}  span=${r.spanHours.toFixed(1)}h  fills=${r.buyFills}/${r.sellFills}  stops=${r.stopLosses}  PnL=$${r.realizedPnlUsdc.toFixed(4)}  leftover=${r.leftoverShares.toFixed(2)}sh`
       );
     } catch (err) {
       console.log(`  ${label.padEnd(28)}  error: ${String(err).slice(0, 80)}`);

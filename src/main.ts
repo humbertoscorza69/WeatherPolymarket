@@ -108,7 +108,16 @@ async function main() {
     const books = [];
     for (const market of event.markets) {
       try {
-        books.push({ tokenId: market.yesTokenId, outcomeLabel: market.outcomeLabel, ...(await fetchOrderBookTop(market.yesTokenId, config.clobHost)) });
+        const top = await fetchOrderBookTop(market.yesTokenId, config.clobHost);
+        // Populate market.tickSize from the book response so the quoter's
+        // tick-aware spread check uses the real per-market tick. Without this
+        // the 0.001-tick markets all get rejected for "spread_too_tight" by a
+        // 0.02 threshold (2 × config default of 0.01).
+        if (top.tickSize && market.tickSize === undefined) {
+          const parsed = Number.parseFloat(top.tickSize);
+          if (Number.isFinite(parsed) && parsed > 0) market.tickSize = parsed;
+        }
+        books.push({ tokenId: market.yesTokenId, outcomeLabel: market.outcomeLabel, ...top });
       } catch (error) {
         books.push({ tokenId: market.yesTokenId, outcomeLabel: market.outcomeLabel, error: error instanceof Error ? error.message : String(error) });
       }
@@ -198,6 +207,10 @@ async function refreshLiveQuotes(config: ReturnType<typeof loadConfig>, engine: 
       for (const market of event.markets) {
         try {
           const top = await fetchOrderBookTop(market.yesTokenId, config.clobHost);
+          if (top.tickSize && market.tickSize === undefined) {
+            const parsed = Number.parseFloat(top.tickSize);
+            if (Number.isFinite(parsed) && parsed > 0) market.tickSize = parsed;
+          }
           books.push({ tokenId: market.yesTokenId, ...top });
           if (top.bestBid !== undefined && top.bestAsk !== undefined) {
             engine.recordMid(market.conditionId, (top.bestBid + top.bestAsk) / 2);
