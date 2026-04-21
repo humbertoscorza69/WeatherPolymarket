@@ -94,6 +94,12 @@ export function parseResolvedEvents(
   const out: ResolvedMarketInfo[] = [];
   const afterMs = options.endDateAfter ? Date.parse(options.endDateAfter) : 0;
   const beforeMs = options.endDateBefore ? Date.parse(options.endDateBefore) : Infinity;
+  // Hard gate: Gamma's `closed=true` filter is unreliable — it returns
+  // markets whose CLOB trading closed even if resolution is far in the
+  // future ("Xabi Alonso out as Real Madrid Manager in 2026?" came back
+  // with endDate Dec 31 2026). A market isn't backtestable until its end
+  // date is in the past AND we have trading history for it.
+  const nowMs = Date.now();
 
   for (const event of raw) {
     const eventSlug = event.slug;
@@ -110,6 +116,7 @@ export function parseResolvedEvents(
       if (!endDateStr) continue;
       const endMs = Date.parse(endDateStr);
       if (!Number.isFinite(endMs)) continue;
+      if (endMs > nowMs) continue; // future-dated, hasn't actually resolved
       if (endMs < afterMs || endMs > beforeMs) continue;
 
       const tokenIds = normalizeStringArray(m.clobTokenIds);
@@ -186,21 +193,39 @@ function normalizeStringArray(value: unknown): string[] {
   return [];
 }
 
-/** Gamma URL templates for fetching CLOSED markets by category tag. The 90-day
- *  window is a compromise: enough markets to grid-search, recent enough to
- *  represent current retail-flow conditions. */
+/** Gamma URL templates for fetching markets that have actually resolved.
+ *  Requires BOTH bounds: end_date_min (recent enough to represent current
+ *  retail conditions) AND end_date_max=now (actually past the end date).
+ *  Without the max bound, Gamma happily returns future-dated markets whose
+ *  CLOB has been paused — those have no trading history to backtest. */
 export function buildResolvedUrl(
   tagId: number,
   lookbackDays: number,
   limit: number
 ): string {
   const after = new Date(Date.now() - lookbackDays * 86400_000).toISOString();
+  const before = new Date().toISOString();
   return (
     `https://gamma-api.polymarket.com/events` +
     `?tag_id=${tagId}` +
     `&closed=true` +
     `&limit=${limit}` +
     `&end_date_min=${after}` +
+    `&end_date_max=${before}` +
+    `&order=endDate` +
+    `&ascending=false`
+  );
+}
+
+function buildAllResolvedUrl(lookbackDays: number, limit: number): string {
+  const after = new Date(Date.now() - lookbackDays * 86400_000).toISOString();
+  const before = new Date().toISOString();
+  return (
+    `https://gamma-api.polymarket.com/events` +
+    `?closed=true` +
+    `&limit=${limit}` +
+    `&end_date_min=${after}` +
+    `&end_date_max=${before}` +
     `&order=endDate` +
     `&ascending=false`
   );
@@ -212,8 +237,5 @@ export const RESOLVED_PRESETS: Record<string, (lookbackDays: number, limit: numb
   sports: (d, l) => buildResolvedUrl(1, d, l),
   crypto: (d, l) => buildResolvedUrl(21, d, l),
   entertainment: (d, l) => buildResolvedUrl(596, d, l),
-  all: (d, l) =>
-    `https://gamma-api.polymarket.com/events?closed=true&limit=${l}&end_date_min=${new Date(
-      Date.now() - d * 86400_000
-    ).toISOString()}&order=endDate&ascending=false`
+  all: buildAllResolvedUrl
 };

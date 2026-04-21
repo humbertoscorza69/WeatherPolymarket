@@ -6,13 +6,39 @@ import {
   type ResolvedGammaEvent
 } from "../src/adapters/resolvedMarketDiscovery.js";
 
-test("buildResolvedUrl: constructs valid Gamma URL", () => {
+test("buildResolvedUrl: includes both end_date_min AND end_date_max bounds", () => {
   const url = buildResolvedUrl(84, 30, 100);
   assert.ok(url.includes("tag_id=84"));
   assert.ok(url.includes("closed=true"));
   assert.ok(url.includes("limit=100"));
-  assert.ok(url.includes("end_date_min="));
+  assert.ok(url.includes("end_date_min="), "recent-enough bound");
+  assert.ok(url.includes("end_date_max="), "actually-past-end bound prevents future-dated markets leaking in");
   assert.ok(url.includes("order=endDate"));
+});
+
+test("parseResolvedEvents: rejects markets whose endDate is in the future", () => {
+  const futureISO = new Date(Date.now() + 90 * 86400_000).toISOString();
+  const events: ResolvedGammaEvent[] = [{
+    id: "e1", title: "Will Xabi Alonso be out as Real Madrid Manager in 2026?",
+    endDate: futureISO,
+    markets: [{
+      conditionId: "0xfuture",
+      endDate: futureISO,
+      clobTokenIds: JSON.stringify(["a", "b"]),
+      // Gamma DOES sometimes ship [1,0] on unresolved markets — that's why
+      // we need the endDate<now gate in addition to the outcomePrices check.
+      outcomePrices: JSON.stringify(["1", "0"]),
+      enableOrderBook: true,
+      closed: true,
+      volumeClob: 5000
+    }]
+  }];
+  const parsed = parseResolvedEvents(events, {
+    gammaUrl: "x",
+    minVolumeUsdc: 100,
+    maxEvents: 100
+  });
+  assert.equal(parsed.length, 0, "future-dated market must be rejected even with clean outcomePrices");
 });
 
 test("parseResolvedEvents: emits YES+NO tokens for a resolved market", () => {
