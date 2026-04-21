@@ -59,27 +59,40 @@ const client = new ClobClient(
   process.env.POLYMARKET_FUNDER_ADDRESS
 );
 
-// Strategy mirrors the live defaults (MC-tuned from docs/MARKET_MAKING.md §5d)
-const strategy = {
-  halfSpreadCents: Number(process.env.HALF_SPREAD_CENTS ?? "1"),
-  inventorySkewCents: Number(process.env.INVENTORY_SKEW_CENTS ?? "2"),
-  volMultiplier: Number(process.env.VOL_MULTIPLIER ?? "1.0"),
-  volMaxExtraCents: Number(process.env.VOL_MAX_EXTRA_CENTS ?? "3"),
-  volWindowSize: Number(process.env.VOL_WINDOW_SIZE ?? "60"),
-  orderSizeUsdc: Number(process.env.ORDER_SIZE_USDC ?? "2"),
-  tickSize: 0.01,
-  minShares: Number(process.env.CLOB_MIN_SHARES ?? "5"),
-  refreshIntervalSec: 30,
-  maxInventoryPositions: 10,
-  stopLossEnabled: (process.env.STOP_LOSS_ENABLED ?? "true") !== "false",
-  stopLossCatastrophicDropRatio: Number(process.env.STOP_LOSS_CATASTROPHIC_DROP ?? "0.30"),
-  stopLossDeepDropRatio: Number(process.env.STOP_LOSS_DEEP_DROP ?? "0.60"),
-  stopLossDeepDropMaxMinutes: Number(process.env.STOP_LOSS_DEEP_DROP_MINUTES ?? "120"),
-  stopLossResolutionHours: Number(process.env.STOP_LOSS_RESOLUTION_HOURS ?? "1"),
-  stopLossResolutionDropRatio: Number(process.env.STOP_LOSS_RESOLUTION_DROP ?? "0.70"),
-  stopLossMaxHoldingHours: Number(process.env.STOP_LOSS_MAX_HOLDING_HOURS ?? "12"),
-  takerFeeRate: 0.0125
-};
+// Strategy template. tickSize and halfSpread are resolved per-market in main()
+// because Polymarket has both 0.001 and 0.01 tick markets.
+const HALF_SPREAD_TICKS = Number(process.env.HALF_SPREAD_TICKS ?? "1");
+const HALF_SPREAD_CENTS = Number(process.env.HALF_SPREAD_CENTS ?? "1");
+const MIN_OUTCOME_MID = Number(process.env.MIN_OUTCOME_MID ?? "0.05");
+const MAX_OUTCOME_MID = Number(process.env.MAX_OUTCOME_MID ?? "0.95");
+const MAX_POSITION_PER_MARKET_USDC = Number(process.env.MAX_POSITION_PER_MARKET_USDC ?? "3");
+
+function strategyFor(tickSize) {
+  // Match live quoter behaviour: prefer halfSpreadTicks if > 0, fall back to cents
+  const halfSpreadCents = HALF_SPREAD_TICKS > 0
+    ? HALF_SPREAD_TICKS * tickSize * 100  // cents
+    : HALF_SPREAD_CENTS;
+  return {
+    halfSpreadCents,
+    inventorySkewCents: Number(process.env.INVENTORY_SKEW_CENTS ?? "2"),
+    volMultiplier: Number(process.env.VOL_MULTIPLIER ?? "1.0"),
+    volMaxExtraCents: Number(process.env.VOL_MAX_EXTRA_CENTS ?? "3"),
+    volWindowSize: Number(process.env.VOL_WINDOW_SIZE ?? "60"),
+    orderSizeUsdc: Number(process.env.ORDER_SIZE_USDC ?? "2"),
+    tickSize,
+    minShares: Number(process.env.CLOB_MIN_SHARES ?? "5"),
+    refreshIntervalSec: 30,
+    maxInventoryPositions: 10,
+    stopLossEnabled: (process.env.STOP_LOSS_ENABLED ?? "true") !== "false",
+    stopLossCatastrophicDropRatio: Number(process.env.STOP_LOSS_CATASTROPHIC_DROP ?? "0.30"),
+    stopLossDeepDropRatio: Number(process.env.STOP_LOSS_DEEP_DROP ?? "0.60"),
+    stopLossDeepDropMaxMinutes: Number(process.env.STOP_LOSS_DEEP_DROP_MINUTES ?? "120"),
+    stopLossResolutionHours: Number(process.env.STOP_LOSS_RESOLUTION_HOURS ?? "1"),
+    stopLossResolutionDropRatio: Number(process.env.STOP_LOSS_RESOLUTION_DROP ?? "0.70"),
+    stopLossMaxHoldingHours: Number(process.env.STOP_LOSS_MAX_HOLDING_HOURS ?? "12"),
+    takerFeeRate: 0.0125
+  };
+}
 
 async function resolveTokens() {
   if (tokensArg) return tokensArg.split(",").map((s) => s.trim()).filter(Boolean);
@@ -121,8 +134,8 @@ async function fetchHistory(tokenId) {
 async function main() {
   console.log(`\nBacktest parameters:`);
   console.log(`  window=${days}d  fidelity=${fidelity}min (interval-label=${intervalLabel})`);
-  console.log(`  halfSpread=${strategy.halfSpreadCents}¢  skew=${strategy.inventorySkewCents}¢  vol×${strategy.volMultiplier}`);
-  console.log(`  stop-loss=${strategy.stopLossEnabled}\n`);
+  console.log(`  HALF_SPREAD_TICKS=${HALF_SPREAD_TICKS}  HALF_SPREAD_CENTS=${HALF_SPREAD_CENTS}`);
+  console.log(`  outcome band=${MIN_OUTCOME_MID}..${MAX_OUTCOME_MID}  per-market tick auto-resolved\n`);
 
   const tokens = await resolveTokens();
   if (tokens.length === 0) {
@@ -132,28 +145,49 @@ async function main() {
   console.log(`Backtesting ${tokens.length} markets...\n`);
 
   const results = [];
+  let bandSkips = 0;
   for (const t of tokens) {
     const tokenId = typeof t === "string" ? t : t.tokenId;
     const label = typeof t === "string" ? t.slice(0, 10) + "..." : t.label;
     try {
+      // Resolve per-market tickSize so halfSpread scales correctly. Falls back
+      // to 0.01 if the lookup fails.
+      let tickSize = 0.01;
+      try {
+        const raw = await client.getTickSize(tokenId);
+        const parsed = Number.parseFloat(raw);
+        if (Number.isFinite(parsed) && parsed > 0) tickSize = parsed;
+      } catch {
+        /* keep default */
+      }
       const history = await fetchHistory(tokenId);
       const samples = (history ?? []).map((p) => ({ t: p.t, p: p.p }));
       if (samples.length < 10) {
         const firstTs = samples[0]?.t;
         const lastTs = samples[samples.length - 1]?.t;
         const spanMin = firstTs && lastTs ? (lastTs - firstTs) / 60 : 0;
-        console.log(`  ${label.padEnd(28)}  skipped (only ${samples.length} samples, span=${spanMin.toFixed(1)}min — market may be too fresh for the window)`);
+        console.log(`  ${label.padEnd(28)}  skipped (only ${samples.length} samples, span=${spanMin.toFixed(1)}min — market may be too fresh)`);
         continue;
       }
+      // Outcome band filter: median price has to be in the tradable band.
+      const sortedPrices = [...samples.map((s) => s.p)].sort((a, b) => a - b);
+      const medianPrice = sortedPrices[Math.floor(sortedPrices.length / 2)];
+      if (medianPrice < MIN_OUTCOME_MID || medianPrice > MAX_OUTCOME_MID) {
+        bandSkips++;
+        console.log(`  ${label.padEnd(28)}  skipped band (median=${medianPrice.toFixed(3)} outside ${MIN_OUTCOME_MID}..${MAX_OUTCOME_MID}, tick=${tickSize})`);
+        continue;
+      }
+      const strategy = strategyFor(tickSize);
       const r = backtest(label, samples, strategy);
       results.push(r);
       console.log(
-        `  ${label.padEnd(28)}  n=${samples.length}  span=${r.spanHours.toFixed(1)}h  fills=${r.buyFills}/${r.sellFills}  stops=${r.stopLosses}  PnL=$${r.realizedPnlUsdc.toFixed(4)}  leftover=${r.leftoverShares.toFixed(2)}sh`
+        `  ${label.padEnd(28)}  tick=${tickSize}  n=${samples.length}  span=${r.spanHours.toFixed(1)}h  fills=${r.buyFills}/${r.sellFills}  stops=${r.stopLosses}  PnL=$${r.realizedPnlUsdc.toFixed(4)}  leftover=${r.leftoverShares.toFixed(2)}sh`
       );
     } catch (err) {
       console.log(`  ${label.padEnd(28)}  error: ${String(err).slice(0, 80)}`);
     }
   }
+  if (bandSkips > 0) console.log(`  (${bandSkips} markets skipped because median price was outside the tradable band)\n`);
 
   const batch = summarizeBatch(results);
   console.log(`\nSummary across ${batch.markets} markets:`);

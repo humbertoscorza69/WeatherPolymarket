@@ -117,10 +117,20 @@ export function buildBuyQuotes(
       continue;
     }
 
-    // Combine: base + inventory skew + per-market vol widening.
-    const volExtra = Math.max(0, volExtraCents(market.conditionId));
-    const effectiveHalfCents = inventorySkewedHalfCents + volExtra;
-    const halfSpread = effectiveHalfCents / 100;
+    // Compute half-spread.
+    //
+    // If HALF_SPREAD_TICKS is set (>0), use it: halfSpread = N × market tick.
+    // This is the right default — on a 0.001-tick market, halfSpreadCents=1
+    // (1¢) means 10 ticks below mid, which is way too wide for the very narrow
+    // tail-outcome books. Quoting in ticks adapts naturally.
+    //
+    // Inventory skew and vol widening still add cents on top.
+    const baseHalfSpread = config.halfSpreadTicks > 0
+      ? config.halfSpreadTicks * tick
+      : config.halfSpreadCents / 100;
+    const inventorySkew = (inventorySkewedHalfCents - config.halfSpreadCents) / 100; // contribution beyond base
+    const volExtra = Math.max(0, volExtraCents(market.conditionId)) / 100;
+    const halfSpread = baseHalfSpread + Math.max(0, inventorySkew) + volExtra;
 
     // Pricing: pure market making by default. We quote at `mid - halfSpread`
     // and let the spread + maker rebates be our edge.
@@ -142,7 +152,14 @@ export function buildBuyQuotes(
       });
       continue;
     }
-    if (bid >= book.bestAsk) continue;
+    if (bid >= book.bestAsk) {
+      skipped.push({
+        conditionId: market.conditionId,
+        outcomeLabel: market.outcomeLabel,
+        reason: `bid_crosses_ask bid=${bid} ask=${book.bestAsk}`
+      });
+      continue;
+    }
     if (cap && bid > forecastProb) {
       // Would cross our own fair-value guard after rounding — skip
       skipped.push({
@@ -153,10 +170,41 @@ export function buildBuyQuotes(
       continue;
     }
 
+    // Outcome-level price filter. Skip outcomes whose mid is outside the
+    // tradable band (default 0.05..0.95). Tail-extreme outcomes have either
+    // 1-tick spreads (no profit) or share-count constraints we can't satisfy.
+    if (mid < config.minOutcomeMid || mid > config.maxOutcomeMid) {
+      skipped.push({
+        conditionId: market.conditionId,
+        outcomeLabel: market.outcomeLabel,
+        reason: `mid_out_of_band mid=${roundPrice(mid)} band=${config.minOutcomeMid}..${config.maxOutcomeMid}`
+      });
+      continue;
+    }
+
     if (totalExposure + config.orderSizeUsdc > config.maxTotalExposureUsdc) break;
 
-    const shares = roundShares(config.orderSizeUsdc / bid);
-    if (shares < config.clobMinShares) continue;
+    // Adaptive order size: at high prices, $2 may not buy enough shares to
+    // meet Polymarket's minimum (default 5). Scale the order up to satisfy
+    // the minimum, capped by maxPositionPerMarketUsdc to stay within risk.
+    const baseShares = roundShares(config.orderSizeUsdc / bid);
+    let orderSizeUsdc = config.orderSizeUsdc;
+    let shares = baseShares;
+    if (shares < config.clobMinShares) {
+      const requiredUsdc = config.clobMinShares * bid;
+      if (requiredUsdc <= config.maxPositionPerMarketUsdc) {
+        orderSizeUsdc = Math.ceil(requiredUsdc * 100) / 100; // round up to next cent
+        shares = roundShares(orderSizeUsdc / bid);
+      }
+    }
+    if (shares < config.clobMinShares) {
+      skipped.push({
+        conditionId: market.conditionId,
+        outcomeLabel: market.outcomeLabel,
+        reason: `min_shares bid=${bid} shares=${shares} need=${config.clobMinShares} maxPosition=${config.maxPositionPerMarketUsdc}`
+      });
+      continue;
+    }
 
     quotes.push({
       eventId: event.id,
@@ -167,12 +215,12 @@ export function buildBuyQuotes(
       outcomeLabel: market.outcomeLabel,
       side: "BUY",
       price: bid,
-      sizeUsdc: config.orderSizeUsdc,
+      sizeUsdc: orderSizeUsdc,
       shares,
       postOnly: true,
-      reason: `mid=${roundPrice(mid)} forecast=${roundPrice(forecastProb)} binding=${cap && fairBid < midBid ? "fair" : "mid"} divergence=${roundPrice(divergence)} halfSpread=${halfSpread}`
+      reason: `mid=${roundPrice(mid)} forecast=${roundPrice(forecastProb)} binding=${cap && fairBid < midBid ? "fair" : "mid"} divergence=${roundPrice(divergence)} halfSpread=${halfSpread} sized=${orderSizeUsdc}`
     });
-    totalExposure += config.orderSizeUsdc;
+    totalExposure += orderSizeUsdc;
   }
 
   return { quotes, skipped };

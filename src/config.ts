@@ -8,7 +8,16 @@ export interface Config {
   weatherApi: "open-meteo";
   weatherUncertaintyC: number;
   halfSpreadCents: number;
+  /** Override: half-spread in TICKS rather than cents. When > 0 takes precedence
+   *  over halfSpreadCents. On 0.001-tick markets, 1 tick = 0.1¢, so halfSpreadCents=1
+   *  is 10× too wide. Quoting in ticks scales naturally across markets. */
+  halfSpreadTicks: number;
   maxForecastDivergence: number;
+  /** Outcome-level price filter. Skip outcomes whose mid is outside this band.
+   *  Tail-extreme outcomes have either 1-tick spreads (no profit) or
+   *  share-count constraints we can't satisfy. */
+  minOutcomeMid: number;
+  maxOutcomeMid: number;
   enableFairValueCap: boolean;
   inventorySkewCents: number;
   volWindowSize: number;
@@ -70,7 +79,16 @@ export function loadConfig(): Config {
     weatherApi: "open-meteo",
     weatherUncertaintyC: envNum("WEATHER_UNCERTAINTY_C", 1.5),
     halfSpreadCents: envNum("HALF_SPREAD_CENTS", 1),
+    // 0 disables; if > 0 the quoter uses halfSpread = N × market tickSize
+    // instead of halfSpreadCents/100. This is the right default for
+    // multi-tick-size environments (Polymarket has 0.001 and 0.01 markets).
+    halfSpreadTicks: envNum("HALF_SPREAD_TICKS", 1),
     maxForecastDivergence: envNum("MAX_FORECAST_DIVERGENCE", 0.15),
+    // Outcome filter band. Default 0.05..0.95 excludes both tails. Tail
+    // outcomes typically have 1-tick spreads and very thin opposing books;
+    // there's no spread for us to capture there.
+    minOutcomeMid: envNum("MIN_OUTCOME_MID", 0.05),
+    maxOutcomeMid: envNum("MAX_OUTCOME_MID", 0.95),
     // Default OFF: pure market making captures spread + rebates regardless
     // of the bot's own forecast. Turn ON if you want the fair-value safety
     // guard that skips outcomes where market mid exceeds our fair estimate.
