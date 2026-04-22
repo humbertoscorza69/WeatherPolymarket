@@ -1,34 +1,29 @@
 #!/usr/bin/env node
 /**
- * LIVE OPPORTUNITY DETECTION ENGINE
+ * LIVE OPPORTUNITY DETECTION + SIMULATED TRADING
  *
  * Runs continuously against live market + weather data. Applies the EXACT
- * same rules as the v10 backtest. When a signal fires, logs:
- *   - Market details (city, date, threshold, type)
- *   - Current price, TTR, observed max temperature
- *   - What our backtest predicted (NO will win)
+ * same rules as v12 backtest for NO, YES, and LOWEST markets. When a signal
+ * fires, logs it AND simulates a $SIZE trade (no real capital).
  *
- * It does NOT place orders. Purpose: confirm signals fire in real time
- * and track what actually happens (does NO resolve as predicted?).
+ * Maintains a simulated bankroll. Each position is tracked in memory and
+ * settled when the market resolves or max_hold expires.
  *
- * Data sources (all public, free):
- *   - Polymarket Gamma:  active weather markets + current prices
- *   - aviationweather.gov/api/data/metar: hourly station observations
- *   - api.open-meteo.com/v1/forecast: backup / cities w/o METAR mapping
+ * Data sources:
+ *   - Polymarket Gamma: active weather markets + prices
+ *   - aviationweather.gov/api/data/metar: hourly airport observations (PRIMARY)
+ *   - api.open-meteo.com/v1/forecast: forecast for future hours
  *
  * Output:
- *   data/detect-log.jsonl — append-only log of all signals fired
- *   data/detect-followup.jsonl — per-market outcome when it resolves
+ *   data/detect-log.jsonl     — append-only log of all signals
+ *   data/detect-positions.json — current open positions
+ *   data/detect-bankroll.json  — bankroll history
  *
  * Usage:
- *   node scripts/detect.mjs                         # default: check every 5min
- *   node scripts/detect.mjs --interval=60           # every 60 sec
- *   node scripts/detect.mjs --once                  # single pass
- *   node scripts/detect.mjs --minentry=0.70 ...    # same flags as backtest
- *
- * Integration with live bot later:
- *   Signals printed to stdout are actionable. A later live-bot script
- *   can consume this same detection logic and place real orders.
+ *   node scripts/detect.mjs                          # default: scan every 5 min, $5 per trade
+ *   node scripts/detect.mjs --interval=60            # scan every 60 sec
+ *   node scripts/detect.mjs --once                   # single pass
+ *   node scripts/detect.mjs --bankroll=100 --tradesize=5   # $100 daily, $5 per trade
  */
 import fs from "node:fs/promises";
 import { existsSync } from "node:fs";
@@ -40,20 +35,24 @@ const argv = Object.fromEntries(process.argv.slice(2).map(a => {
 }));
 
 const CFG = {
-  MIN_ENTRY:    Number(argv.minentry ?? "0.70"),
-  MAX_ENTRY:    Number(argv.maxentry ?? "0.99"),
-  TTR_MIN_SEC:  Number(argv.ttrmin ?? String(30*60)),       // 0.5h
-  TTR_MAX_SEC:  Number(argv.ttrmax ?? String(8*3600)),      // 8h
-  CROSSED_BUF:  Number(argv.crossedbuf ?? "0.5"),
-  INTERVAL_SEC: Number(argv.interval ?? "300"),             // 5 min
-  ONCE:         argv.once === "true",
-  FILTER_TYPE:  argv.filtertype ?? "exact",
-  FILTER_UNIT:  argv.filterunit ?? "C",
+  MIN_ENTRY_NO:     Number(argv.minentryno ?? "0.70"),
+  MAX_ENTRY_NO:     Number(argv.maxentryno ?? "0.99"),
+  MIN_ENTRY_YES:    Number(argv.minentryyes ?? "0.30"),
+  MAX_ENTRY_YES:    Number(argv.maxentryyes ?? "0.70"),
+  TTR_MIN_SEC:      Number(argv.ttrmin ?? String(30*60)),
+  TTR_MAX_SEC:      Number(argv.ttrmax ?? String(8*3600)),
+  CROSSED_BUF:      Number(argv.crossedbuf ?? "0.5"),
+  FORECAST_BUF:     Number(argv.forecastbuf ?? "2.0"),
+  INTERVAL_SEC:     Number(argv.interval ?? "300"),
+  ONCE:             argv.once === "true",
+  BANKROLL:         Number(argv.bankroll ?? "100"),
+  TRADE_SIZE:       Number(argv.tradesize ?? "5"),
+  MAX_HOLD_MIN:     Number(argv.maxhold ?? "240"),
 };
 
 const LOG = path.resolve("data/detect-log.jsonl");
-const FOLLOWUP = path.resolve("data/detect-followup.jsonl");
-const STATE = path.resolve("data/detect-state.json");
+const POSITIONS_FILE = path.resolve("data/detect-positions.json");
+const BANKROLL_FILE = path.resolve("data/detect-bankroll.json");
 const STATIONS_FILE = path.resolve("data/metar-stations.json");
 await fs.mkdir(path.dirname(LOG), { recursive: true });
 
@@ -66,6 +65,17 @@ const CLOB  = "https://clob.polymarket.com";
 const METAR_API = "https://aviationweather.gov/api/data/metar";
 const OM_FORECAST = "https://api.open-meteo.com/v1/forecast";
 const OM_GEO = "https://geocoding-api.open-meteo.com/v1/search";
+
+// ----- state (persisted) -----
+let state = { positions: [], bankroll: CFG.BANKROLL, realizedPnl: 0, trades: [] };
+if (existsSync(POSITIONS_FILE)) {
+  try { state = { ...state, ...JSON.parse(await fs.readFile(POSITIONS_FILE, "utf8")) }; }
+  catch {}
+}
+
+async function persist() {
+  await fs.writeFile(POSITIONS_FILE, JSON.stringify(state, null, 2));
+}
 
 // ----- small utilities -----
 async function fetchJson(url, retries = 2) {
@@ -87,6 +97,7 @@ async function fetchJson(url, retries = 2) {
 
 function parseWeatherTitle(t) {
   if (!t) return null;
+  const isLowest = /lowest temperature/i.test(t);
   let m = t.match(/temperature in ([A-Z][\w .\-']+?) be/i);
   if (!m) m = t.match(/temperature in ([A-Z][\w .\-']+?) on/i);
   if (!m) return null;
@@ -109,19 +120,18 @@ function parseWeatherTitle(t) {
     const y = mon[3] || String(new Date().getUTCFullYear());
     date = `${y}-${String(mi+1).padStart(2,"0")}-${String(mon[2]).padStart(2,"0")}`;
   }
-  return { city, date, unit, threshold: thr, thresholdHigh: thrHi, type: typ, isLowest: /lowest temperature/i.test(t) };
+  return { city, date, unit, threshold: thr, thresholdHigh: thrHi, type: typ, isLowest };
 }
 
 function toC(v, unit) { return unit === "F" ? (v - 32) * 5/9 : v; }
 
 async function fetchLiveWeatherMarkets() {
-  // Get all open weather markets with endDate in the next 24h
   const markets = [];
   const nowIso = new Date().toISOString();
-  const in24h = new Date(Date.now() + 86400_000 * 2).toISOString();
+  const in48h = new Date(Date.now() + 86400_000 * 2).toISOString();
   let offset = 0;
   while (offset < 5000) {
-    const url = `${GAMMA}/markets?closed=false&tag_slug=weather&limit=500&offset=${offset}&end_date_min=${nowIso}&end_date_max=${in24h}`;
+    const url = `${GAMMA}/markets?closed=false&tag_slug=weather&limit=500&offset=${offset}&end_date_min=${nowIso}&end_date_max=${in48h}`;
     const page = await fetchJson(url);
     if (!Array.isArray(page) || !page.length) break;
     for (const m of page) {
@@ -142,7 +152,6 @@ async function fetchLiveWeatherMarkets() {
 }
 
 async function fetchCurrentPrice(clobTokenIds) {
-  // clobTokenIds is [YES_token, NO_token]. We care about NO price.
   if (!Array.isArray(clobTokenIds) || clobTokenIds.length < 2) return null;
   const noTokenId = clobTokenIds[1];
   try {
@@ -151,9 +160,9 @@ async function fetchCurrentPrice(clobTokenIds) {
   } catch { return null; }
 }
 
-// METAR: fetch today's observations for a station
-async function fetchMetarToday(icao) {
-  const url = `${METAR_API}?ids=${icao}&format=json&hours=24`;
+// METAR = PRIMARY (matches Polymarket's resolver)
+async function fetchMetar(icao, hours = 24) {
+  const url = `${METAR_API}?ids=${icao}&format=json&hours=${hours}`;
   try {
     const data = await fetchJson(url);
     if (!Array.isArray(data)) return [];
@@ -162,8 +171,8 @@ async function fetchMetarToday(icao) {
   } catch { return []; }
 }
 
-// Open-Meteo forecast for the city (fallback when no METAR station)
-async function fetchOpenMeteoForecast(city) {
+// Open-Meteo = forecast for future hours (needed for YES signal)
+async function fetchOpenMeteo(city, tz) {
   try {
     const g = await fetchJson(`${OM_GEO}?name=${encodeURIComponent(city)}&count=1&format=json`);
     const r = g?.results?.[0];
@@ -173,112 +182,253 @@ async function fetchOpenMeteoForecast(city) {
     const times = j?.hourly?.time ?? [];
     const temps = j?.hourly?.temperature_2m ?? [];
     const samples = times.map((t, i) => ({ t: Math.floor(new Date(t + "Z").getTime()/1000), tempC: temps[i] }))
-      .filter(s => Number.isFinite(s.tempC));
+      .filter(s => Number.isFinite(s.tempC)).sort((a,b) => a.t - b.t);
     return { samples, tz: r.timezone };
   } catch { return { samples: [], tz: null }; }
 }
 
-function thresholdCrossed(market, obs, buffer) {
-  if (!market || market.threshold == null) return { crossed: false };
-  const nowSec = Math.floor(Date.now() / 1000);
-  let maxTemp = -999;
-  for (const [t, temp] of obs) {
-    if (t > nowSec) break;
-    if (temp > maxTemp) maxTemp = temp;
-  }
-  if (maxTemp <= -999) return { crossed: false, reason: "no observations" };
+// Merge METAR (past) + Open-Meteo (future) for best signal
+async function getObservationsForMarket(market) {
+  const icao = STATIONS[market.city];
+  const metarObs = icao ? await fetchMetar(icao, 48) : [];
+  const om = await fetchOpenMeteo(market.city, null);
+  return { metar: metarObs, openMeteo: om.samples };
+}
+
+/**
+ * Same logic as backtest.mjs computeEntrySignal.
+ * Returns {side, reason, cushion} or null.
+ */
+function computeEntrySignal(market, metarObs, omObs, nowSec, buffer, forecastBuf) {
+  if (!market || market.threshold == null) return null;
   const thrC = toC(market.threshold, market.unit);
-  const thrHiC = market.thresholdHigh != null ? toC(market.thresholdHigh, market.unit) : null;
-  if (market.type === "exact") return { crossed: Math.abs(maxTemp - thrC) > buffer, maxTemp, thrC };
-  if (market.type === "at_or_below") return { crossed: maxTemp > thrC + buffer, maxTemp, thrC };
-  if (market.type === "between" && thrHiC != null) return { crossed: maxTemp > thrHiC + buffer, maxTemp, thrC: thrHiC };
-  return { crossed: false, maxTemp, thrC };
+
+  // Observed max so far — PREFER METAR (Polymarket resolver source)
+  const primaryObs = metarObs.length ? metarObs : omObs;
+  if (!primaryObs.length) return null;
+  let obsMax = -999;
+  for (const o of primaryObs) {
+    if (o.t > nowSec) break;
+    if (o.tempC > obsMax) obsMax = o.tempC;
+  }
+  if (obsMax <= -999) obsMax = null;
+
+  // Forecast max — Open-Meteo only (METAR doesn't forecast)
+  let fMax = -999;
+  for (const o of omObs) if (o.tempC > fMax) fMax = o.tempC;
+  // Blend with past METAR observations (they may extend beyond Open-Meteo's past reach)
+  for (const o of metarObs) if (o.tempC > fMax) fMax = o.tempC;
+  if (fMax <= -999) fMax = null;
+
+  if (market.isLowest) {
+    if (!primaryObs.length) return null;
+    let obsMin = 999;
+    for (const o of primaryObs) { if (o.t > nowSec) break; if (o.tempC < obsMin) obsMin = o.tempC; }
+    if (obsMin >= 999) return null;
+    if (market.type === "exact" && obsMin < thrC - buffer)
+      return { side: "NO", reason: "lowest-observed-below", cushion: thrC - obsMin };
+    return null;
+  }
+
+  if (market.type === "exact") {
+    if (obsMax != null && obsMax > thrC + buffer)
+      return { side: "NO", reason: "observed-above", cushion: obsMax - thrC };
+    if (fMax != null && fMax < thrC - forecastBuf)
+      return { side: "NO", reason: "forecast-below", cushion: thrC - fMax };
+    if (fMax != null && Math.abs(fMax - thrC) <= 0.5 && (obsMax == null || obsMax <= thrC + buffer))
+      return { side: "YES", reason: "forecast-in-range", cushion: 0.5 - Math.abs(fMax - thrC) };
+  } else if (market.type === "at_or_below") {
+    if (obsMax != null && obsMax > thrC + buffer)
+      return { side: "NO", reason: "observed-above-threshold", cushion: obsMax - thrC };
+  } else if (market.type === "between" && market.thresholdHigh != null) {
+    const thrHiC = toC(market.thresholdHigh, market.unit);
+    if (obsMax != null && obsMax > thrHiC + buffer)
+      return { side: "NO", reason: "observed-above-range", cushion: obsMax - thrHiC };
+  }
+  return null;
+}
+
+// Dynamic sizing tier (same as backtest.mjs)
+function sizeMultiplier(sig) {
+  if (sig.side === "NO") {
+    if (sig.reason === "observed-above" && sig.cushion >= 1.5) return 1.0;
+    return 0.7;
+  }
+  return sig.cushion > 0.3 ? 0.4 : 0.2;
+}
+
+async function simulateEntry(market, mkt, sig, currentPrice) {
+  const sideMult = sizeMultiplier(sig);
+  const positionSize = CFG.TRADE_SIZE * sideMult;
+
+  if (positionSize > state.bankroll) {
+    console.log(`  ⏸  Insufficient bankroll for ${market.city} ${sig.side} (need $${positionSize.toFixed(2)}, have $${state.bankroll.toFixed(2)})`);
+    return null;
+  }
+
+  const entryPrice = sig.side === "NO" ? currentPrice : (1 - currentPrice);
+  if (sig.side === "NO") {
+    if (entryPrice < CFG.MIN_ENTRY_NO || entryPrice > CFG.MAX_ENTRY_NO) return null;
+  } else {
+    if (entryPrice < CFG.MIN_ENTRY_YES || entryPrice > CFG.MAX_ENTRY_YES) return null;
+  }
+
+  const shares = positionSize / entryPrice;
+  state.bankroll -= positionSize;
+  const position = {
+    openedAt: new Date().toISOString(),
+    openedTs: Math.floor(Date.now() / 1000),
+    conditionId: mkt.conditionId,
+    city: market.city,
+    date: market.date,
+    side: sig.side,
+    reason: sig.reason,
+    cushion: Math.round(sig.cushion * 10) / 10,
+    entryPrice: Math.round(entryPrice * 10000) / 10000,
+    shares: Math.round(shares * 100) / 100,
+    positionSize,
+    sizeMult: sideMult,
+    title: mkt.title,
+    endDate: mkt.endDate,
+    closed: false,
+  };
+  state.positions.push(position);
+  await fs.appendFile(LOG, JSON.stringify({ type: "OPEN", ...position }) + "\n");
+  console.log(`  🎯 ENTRY  ${sig.side.padEnd(3)} ${market.city.padEnd(15)} ${market.date}  price=${entryPrice.toFixed(4)}  size=$${positionSize.toFixed(2)} (${(sideMult*100).toFixed(0)}%) cushion=${position.cushion}°C`);
+  return position;
+}
+
+async function resolvePositions() {
+  // Check each open position:
+  //   - if past endDate: settle via Gamma/CLOB resolution price
+  //   - if past maxhold: exit at current market price
+  const nowSec = Math.floor(Date.now() / 1000);
+  for (const pos of state.positions) {
+    if (pos.closed) continue;
+    const marketEndSec = Math.floor(new Date(pos.endDate).getTime() / 1000);
+    const holdMin = (nowSec - pos.openedTs) / 60;
+    let exitPrice = null;
+    let status = null;
+
+    if (nowSec >= marketEndSec + 900) {
+      // 15min past market end = assume resolved
+      try {
+        const mkt = await fetchJson(`${GAMMA}/markets?conditionIds=${pos.conditionId}`);
+        const m = Array.isArray(mkt) ? mkt[0] : mkt;
+        const resolved = m?.closed && (m?.resolved || m?.resolvedBy);
+        if (resolved) {
+          const outcomeValues = m?.outcomeValues ? JSON.parse(m.outcomeValues) : null;
+          // outcomeValues is ["1", "0"] or similar — index 0 = YES, index 1 = NO
+          const noWon = outcomeValues?.[1] === "1" || outcomeValues?.[1] === 1;
+          const ourSideWon = (pos.side === "NO" && noWon) || (pos.side === "YES" && !noWon);
+          exitPrice = ourSideWon ? 1.0 : 0.0;
+          status = ourSideWon ? "settle-win" : "settle-lose";
+        }
+      } catch {}
+    }
+    if (exitPrice == null && holdMin >= CFG.MAX_HOLD_MIN) {
+      // Max hold reached — exit at current market price
+      try {
+        const m = await fetchJson(`${GAMMA}/markets?conditionIds=${pos.conditionId}`);
+        const mk = Array.isArray(m) ? m[0] : m;
+        const tokens = typeof mk?.clobTokenIds === "string" ? JSON.parse(mk.clobTokenIds) : mk?.clobTokenIds;
+        const currentNo = await fetchCurrentPrice(tokens);
+        if (currentNo != null) {
+          exitPrice = pos.side === "NO" ? currentNo : (1 - currentNo);
+          status = "maxhold-taker";
+        }
+      } catch {}
+    }
+
+    if (exitPrice != null) {
+      const pnl = pos.shares * (exitPrice - pos.entryPrice);
+      const returned = pos.shares * exitPrice;
+      state.bankroll += returned;
+      state.realizedPnl += pnl;
+      pos.closed = true;
+      pos.closedAt = new Date().toISOString();
+      pos.exitPrice = Math.round(exitPrice * 10000) / 10000;
+      pos.status = status;
+      pos.pnl = Math.round(pnl * 100) / 100;
+      state.trades.push({ ...pos });
+      await fs.appendFile(LOG, JSON.stringify({ type: "CLOSE", ...pos }) + "\n");
+      const emoji = pnl > 0 ? "✅" : (pnl < 0 ? "❌" : "⏸");
+      console.log(`  ${emoji} CLOSE ${pos.side.padEnd(3)} ${pos.city.padEnd(15)} ${pos.date}  exit=${exitPrice.toFixed(4)}  pnl=$${pnl.toFixed(2)}  ${status}`);
+    }
+  }
+  // Drop closed positions
+  state.positions = state.positions.filter(p => !p.closed);
 }
 
 async function scanOnce() {
   const tScan = new Date().toISOString();
-  console.log(`\n[${tScan}] Scanning live weather markets...`);
-  const markets = await fetchLiveWeatherMarkets();
-  console.log(`  fetched ${markets.length} open weather markets`);
+  console.log(`\n[${tScan}] Bankroll: $${state.bankroll.toFixed(2)}  Realized: $${state.realizedPnl.toFixed(2)}  Open: ${state.positions.length}  Total trades: ${state.trades.length}`);
 
-  const signals = [];
+  await resolvePositions();
+
+  const markets = await fetchLiveWeatherMarkets();
+  console.log(`  scanning ${markets.length} open weather markets...`);
+
+  let opened = 0;
   const nowSec = Math.floor(Date.now() / 1000);
 
   for (const mk of markets) {
     const parsed = parseWeatherTitle(mk.title);
     if (!parsed || !parsed.date || parsed.threshold == null) continue;
-    if (parsed.isLowest) continue;  // not modeled yet
-    if (CFG.FILTER_TYPE !== "any" && parsed.type !== CFG.FILTER_TYPE) continue;
-    if (CFG.FILTER_UNIT !== "any" && parsed.unit !== CFG.FILTER_UNIT) continue;
-
     const endSec = Math.floor(new Date(mk.endDate).getTime() / 1000);
     const ttr = endSec - nowSec;
     if (ttr < CFG.TTR_MIN_SEC || ttr > CFG.TTR_MAX_SEC) continue;
 
-    // Price check
-    const price = await fetchCurrentPrice(mk.clobTokenIds);
-    if (price == null) continue;
-    if (price < CFG.MIN_ENTRY || price > CFG.MAX_ENTRY) continue;
+    // Don't re-enter a market we already have a position in
+    if (state.positions.some(p => p.conditionId === mk.conditionId)) continue;
 
-    // Weather check (prefer METAR, fallback Open-Meteo)
-    const icao = STATIONS[parsed.city];
-    let obs = [];
-    let obsSource = null;
-    if (icao) {
-      obs = await fetchMetarToday(icao);
-      if (obs.length) obsSource = `metar:${icao}`;
-    }
-    if (!obs.length) {
-      const om = await fetchOpenMeteoForecast(parsed.city);
-      obs = om.samples;
-      if (obs.length) obsSource = "open-meteo";
-    }
+    // Fetch observations
+    const { metar, openMeteo } = await getObservationsForMarket(parsed);
+    if (metar.length === 0 && openMeteo.length === 0) continue;
 
-    const tc = thresholdCrossed(parsed, obs, CFG.CROSSED_BUF);
-    if (!tc.crossed) continue;
+    const sig = computeEntrySignal(parsed, metar, openMeteo, nowSec, CFG.CROSSED_BUF, CFG.FORECAST_BUF);
+    if (!sig) continue;
 
-    const signal = {
-      ts: tScan,
-      conditionId: mk.conditionId,
-      title: mk.title,
-      city: parsed.city,
-      date: parsed.date,
-      threshold: parsed.threshold,
-      type: parsed.type,
-      currentPrice: price,
-      ttrHours: Math.round(ttr / 360) / 10,
-      endDate: mk.endDate,
-      obsMaxTempC: Math.round(tc.maxTemp * 10) / 10,
-      thresholdC: Math.round(tc.thrC * 10) / 10,
-      cushionC: Math.round((tc.maxTemp - tc.thrC) * 10) / 10,
-      obsSource,
-      projectedPnLPerShare: 1.0 - price,  // if hold to NO resolution
-      projectedPct: Math.round((1.0 / price - 1) * 10000) / 100,
-    };
-    signals.push(signal);
-    await fs.appendFile(LOG, JSON.stringify(signal) + "\n");
-    console.log(`  🎯 SIGNAL  ${parsed.city.padEnd(15)} ${parsed.date}  thr=${parsed.threshold}${parsed.unit}  obs=${signal.obsMaxTempC}  cushion=+${signal.cushionC}  price=${price.toFixed(4)}  TTR=${signal.ttrHours}h  upside=+${signal.projectedPct}%`);
+    // Fetch current price
+    const noPrice = await fetchCurrentPrice(mk.clobTokenIds);
+    if (noPrice == null) continue;
+    const currentPrice = sig.side === "NO" ? noPrice : (1 - noPrice);
+    if (sig.side === "NO" && (noPrice < CFG.MIN_ENTRY_NO || noPrice > CFG.MAX_ENTRY_NO)) continue;
+    if (sig.side === "YES" && (currentPrice < CFG.MIN_ENTRY_YES || currentPrice > CFG.MAX_ENTRY_YES)) continue;
+
+    const pos = await simulateEntry(parsed, mk, sig, noPrice);
+    if (pos) opened++;
   }
 
-  if (signals.length === 0) {
-    console.log(`  (no signals fired this pass)`);
-  } else {
-    console.log(`\n[${tScan}] ${signals.length} signals logged to ${LOG}`);
-  }
-  return signals;
+  await persist();
+  console.log(`  opened ${opened} new positions this scan`);
 }
 
 async function main() {
-  console.log(`Detection engine config: TTR=[${CFG.TTR_MIN_SEC/3600}h, ${CFG.TTR_MAX_SEC/3600}h] price=[${CFG.MIN_ENTRY}, ${CFG.MAX_ENTRY}] buffer=${CFG.CROSSED_BUF}°C interval=${CFG.INTERVAL_SEC}s`);
-  console.log(`Logs: ${LOG}`);
-  console.log(`METAR stations mapped: ${Object.keys(STATIONS).length}`);
-  console.log();
+  console.log(`=== Detect engine + simulator ===`);
+  console.log(`Bankroll: $${CFG.BANKROLL}  Trade size: $${CFG.TRADE_SIZE} (base; dynamic 0.2-1.0x by confidence)`);
+  console.log(`Scan interval: ${CFG.INTERVAL_SEC}s  TTR=[${CFG.TTR_MIN_SEC/3600}h, ${CFG.TTR_MAX_SEC/3600}h]`);
+  console.log(`Data hierarchy:`);
+  console.log(`  METAR (airport stations, ~30min lag) — PRIMARY. Matches Polymarket resolver.`);
+  console.log(`  Open-Meteo forecast — used for FUTURE temps (YES signals need forecasts).`);
+  console.log(`METAR stations mapped: ${Object.keys(STATIONS).length}\n`);
+
   do {
     try { await scanOnce(); }
     catch (e) { console.error(`scan error: ${e.message}`); }
     if (CFG.ONCE) break;
     await new Promise(r => setTimeout(r, CFG.INTERVAL_SEC * 1000));
   } while (true);
+
+  console.log(`\n=== FINAL SUMMARY ===`);
+  console.log(`Bankroll: $${state.bankroll.toFixed(2)}`);
+  console.log(`Realized PnL: $${state.realizedPnl.toFixed(2)}`);
+  console.log(`Closed trades: ${state.trades.length}`);
+  if (state.trades.length) {
+    const wins = state.trades.filter(t => t.pnl > 0.01).length;
+    const losses = state.trades.filter(t => t.pnl < -0.01).length;
+    console.log(`WR: ${(100*wins/state.trades.length).toFixed(1)}% (${wins}W / ${losses}L / ${state.trades.length - wins - losses} flat)`);
+  }
 }
 
 main().catch(e => { console.error("fatal:", e); process.exit(1); });

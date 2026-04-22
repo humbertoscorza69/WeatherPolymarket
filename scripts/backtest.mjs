@@ -713,7 +713,10 @@ for (const ev of events) {
   // v12: if both weather sources are available, require them to agree. If
   // they disagree by more than AGREEMENT_TOL, the market is unreliable —
   // skip. 63%% of v11 losses came from markets with >1°C source disagreement.
-  const agreementTol = Number(argv.agreementtol ?? "1.0");
+  // Agreement gate is OFF by default — analysis showed disagreement isn't a
+  // reliable predictor (95% WR agree vs 94.2% WR disagree). Use --agreementtol=1.0
+  // to enable risk-averse mode (drops ~60% of trades for marginal WR improvement).
+  const agreementTol = Number(argv.agreementtol ?? "99");
   if (!sourcesAgree(ev.market, ev.t, agreementTol)) { gatedDisagree++; continue; }
 
   // Determine token we're buying + price filter
@@ -745,9 +748,22 @@ for (const ev of events) {
 
   attempted++;
   const ourBidPrice = Math.max(0.01, entryPrice - CFG.BID_OFFSET);
-  // v12: asymmetric sizing — YES side is higher variance (~85%% WR vs NO's 99%%),
-  // so we size YES at YES_SIZE_MULT × base (default 0.5 = half size).
-  const sizeMult = sig.side === "YES" ? (Number(argv.yessizemult ?? "0.5")) : 1.0;
+  // v12: dynamic sizing based on SIGNAL CONFIDENCE (cushion = °C margin).
+  // Tiers:
+  //   TIER 1 (full size):   NO with cushion ≥ 1.5°C (observed well above threshold)
+  //   TIER 2 (0.7x):        NO with cushion 0.5-1.5°C OR forecast-below NO
+  //   TIER 3 (0.4x):        YES forecast-in-range with cushion > 0.3 (safer)
+  //   TIER 4 (0.2x):        YES forecast-in-range with cushion ≤ 0.3 (risky)
+  let sizeMult;
+  if (sig.side === "NO") {
+    if (sig.reason === "observed-above" && sig.cushion >= 1.5) sizeMult = 1.0;
+    else sizeMult = 0.7;  // weaker NO signals (including forecast-below)
+  } else {
+    sizeMult = sig.cushion > 0.3 ? 0.4 : 0.2;  // YES: smaller because higher variance
+  }
+  // Override with flags if provided
+  if (sig.side === "YES" && argv.yessizemult) sizeMult = Number(argv.yessizemult);
+  if (sig.side === "NO" && argv.nosizemult) sizeMult = Number(argv.nosizemult);
   const usdcSize = CFG.TRADE_USDC * sizeMult;
   const shares = usdcSize / ourBidPrice;
   const resolution = RESOLUTION[ev.conditionId];
