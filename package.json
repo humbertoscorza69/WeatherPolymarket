@@ -18,6 +18,7 @@
     "fetch-wallet-trades": "node scripts/fetch-wallet-trades.mjs",
     "fetch-wallet-market-history": "node scripts/fetch-wallet-market-history.mjs",
     "fetch-tick-history": "node scripts/fetch-tick-history.mjs",
+    "fetch-tick-history-all": "node scripts/fetch-tick-history-all.mjs",
     "fetch-more-wallets": "node scripts/fetch-more-wallets.mjs",
     "fetch-historical-weather": "node scripts/fetch-historical-weather.mjs",
     "validate-backtest": "node scripts/validate-backtest.mjs",

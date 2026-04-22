@@ -159,21 +159,46 @@ async function fetchDay(lat, lon, date, tz = "UTC") {
 // ----- main -----
 
 async function main() {
-  const files = (await fs.readdir(CACHE_DIR)).filter(f => f.endsWith(".json"));
-  console.log(`Scanning ${files.length} cache files for weather markets...`);
-
+  // Scan BOTH resolved-market-cache titles AND wallet-trades titles so we cover
+  // every weather market referenced by any wallet, not just ones in the cache.
   const markets = new Map(); // city__date -> parsed
-  for (const f of files) {
-    try {
-      const j = JSON.parse(await fs.readFile(path.join(CACHE_DIR, f), "utf8"));
-      if (!/temperature/i.test(j.title || "")) continue;
-      const parsed = parseWeatherTitle(j.title);
-      if (!parsed) continue;
-      const key = `${parsed.city}__${parsed.date}`;
-      if (!markets.has(key)) markets.set(key, parsed);
-    } catch {}
+
+  // Source 1: resolved-market-cache
+  if (existsSync(CACHE_DIR)) {
+    const files = (await fs.readdir(CACHE_DIR)).filter(f => f.endsWith(".json"));
+    for (const f of files) {
+      try {
+        const j = JSON.parse(await fs.readFile(path.join(CACHE_DIR, f), "utf8"));
+        if (!/temperature/i.test(j.title || "")) continue;
+        const parsed = parseWeatherTitle(j.title);
+        if (!parsed) continue;
+        const key = `${parsed.city}__${parsed.date}`;
+        if (!markets.has(key)) markets.set(key, parsed);
+      } catch {}
+    }
+    console.log(`From resolved-market-cache: ${markets.size} (city, date) pairs`);
   }
-  console.log(`Unique (city, date) pairs: ${markets.size}\n`);
+
+  // Source 2: wallet-trades (catches markets that are in any winning wallet
+  // but not in our price-history cache)
+  const walletDir = path.resolve("data/wallet-trades");
+  if (existsSync(walletDir)) {
+    const walletFiles = (await fs.readdir(walletDir)).filter(f => f.endsWith(".jsonl"));
+    for (const wf of walletFiles) {
+      const lines = (await fs.readFile(path.join(walletDir, wf), "utf8")).trim().split("\n").filter(Boolean);
+      for (const l of lines) {
+        try {
+          const t = JSON.parse(l);
+          if (!/temperature/i.test(t.title || "")) continue;
+          const parsed = parseWeatherTitle(t.title);
+          if (!parsed) continue;
+          const key = `${parsed.city}__${parsed.date}`;
+          if (!markets.has(key)) markets.set(key, parsed);
+        } catch {}
+      }
+    }
+  }
+  console.log(`Total unique (city, date) pairs after including wallet-trades: ${markets.size}\n`);
 
   let ok = 0, skipped = 0, fail = 0, noGeo = 0;
   let i = 0;
