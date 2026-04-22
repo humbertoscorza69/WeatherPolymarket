@@ -7,9 +7,7 @@
         "shares": 0.006469000000000058,
         "price": 0.8499994474992542,
         "usdc": 0.999998,
-        "ts": 1770829663,
-        "fee": 0,
-        "maker": false
+        "ts": 1770829663
       }
     ],
     "totalShares": 0.006469000000000058
@@ -22,9 +20,7 @@
         "shares": 304,
         "price": 0.04,
         "usdc": 12.16,
-        "ts": 1771067563,
-        "fee": 0,
-        "maker": false
+        "ts": 1771067563
       }
     ],
     "totalShares": 304
@@ -37,33 +33,25 @@
         "shares": 32,
         "price": 0.1,
         "usdc": 3.2,
-        "ts": 1771068279,
-        "fee": 0,
-        "maker": false
+        "ts": 1771068279
       },
       {
         "shares": 93,
         "price": 0.15,
         "usdc": 13.95,
-        "ts": 1771068519,
-        "fee": 0,
-        "maker": false
+        "ts": 1771068519
       },
       {
         "shares": 133,
         "price": 0.18,
         "usdc": 23.94,
-        "ts": 1771068665,
-        "fee": 0,
-        "maker": false
+        "ts": 1771068665
       },
       {
         "shares": 46,
         "price": 0.2,
         "usdc": 9.2,
-        "ts": 1771068791,
-        "fee": 0,
-        "maker": false
+        "ts": 1771068791
       }
     ],
     "totalShares": 304
@@ -76,65 +64,49 @@
         "shares": 7.999999999999998,
         "price": 0.33,
         "usdc": 6.6,
-        "ts": 1771107483,
-        "fee": 0,
-        "maker": false
+        "ts": 1771107483
       },
       {
         "shares": 20,
         "price": 0.33,
         "usdc": 6.6,
-        "ts": 1771107583,
-        "fee": 0,
-        "maker": false
+        "ts": 1771107583
       },
       {
         "shares": 20,
         "price": 0.34,
         "usdc": 6.8,
-        "ts": 1771107719,
-        "fee": 0,
-        "maker": false
+        "ts": 1771107719
       },
       {
         "shares": 20,
         "price": 0.34,
         "usdc": 6.8,
-        "ts": 1771107759,
-        "fee": 0,
-        "maker": false
+        "ts": 1771107759
       },
       {
         "shares": 20,
         "price": 0.34,
         "usdc": 6.8,
-        "ts": 1771107815,
-        "fee": 0,
-        "maker": false
+        "ts": 1771107815
       },
       {
         "shares": 20,
         "price": 0.34,
         "usdc": 6.8,
-        "ts": 1771107861,
-        "fee": 0,
-        "maker": false
+        "ts": 1771107861
       },
       {
         "shares": 0.46,
         "price": 0.34,
         "usdc": 0.1564,
-        "ts": 1771107907,
-        "fee": 0,
-        "maker": false
+        "ts": 1771107907
       },
       {
         "shares": 19.54,
         "price": 0.34,
         "usdc": 6.6436,
-        "ts": 1771107923,
-        "fee": 0,
-        "maker": false
+        "ts": 1771107923
       }
     ],
     "totalShares": 128
@@ -147,387 +119,22 @@
         "shares": 77.28,
         "price": 0.08,
         "usdc": 6.1824,
-        "ts": 1771108229,
-        "fee": 0,
-        "maker": false
+        "ts": 1771108229
       },
       {
         "shares": 50,
         "price": 0.07,
         "usdc": 3.5,
-        "ts": 1771108233,
-        "fee": 0,
-        "maker": false
+        "ts": 1771108233
       },
       {
         "shares": 0.72,
         "price": 0.08,
         "usdc": 0.0576,
-        "ts": 1771108233,
-        "fee": 0,
-        "maker": false
+        "ts": 1771108233
       }
     ],
     "totalShares": 128
-  },
-  {
-    "key": "0x9c4da76bf86bd27e20d5564df145e225c5f8b7d27dadc8e556c8e7866c8be237-1",
-    "title": "Will the highest temperature in Buenos Aires be 29°C on February 15?",
-    "lots": [
-      {
-        "shares": 940,
-        "price": 0.8863404680851064,
-        "usdc": 833.16004,
-        "ts": 1771182137,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 940
-  },
-  {
-    "key": "0x3acc5e9a136e6ac6c2e72e16b3e63c3a22077757dd72c727afd376369950bdf7-1",
-    "title": "Will the highest temperature in Sao Paulo be 31°C on February 17?",
-    "lots": [
-      {
-        "shares": 380.4,
-        "price": 0.9836259989484752,
-        "usdc": 374.17133,
-        "ts": 1771354571,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 380.4
-  },
-  {
-    "key": "0xe74e36c023e04135aabc5e3efc3468044bb73529cec2981465d4ee48cdb37333-1",
-    "title": "Will the highest temperature in Buenos Aires be 29°C on February 19?",
-    "lots": [
-      {
-        "shares": 685.11,
-        "price": 0.9790327100757542,
-        "usdc": 670.7451,
-        "ts": 1771524252,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 685.11
-  },
-  {
-    "key": "0x9ccfdd97a1bd4b1e0e64dfe6bd1e17af17efdd985ccaa5ba9f38a4096e8fe98c-1",
-    "title": "Will the highest temperature in Wellington be 22°C on February 20?",
-    "lots": [
-      {
-        "shares": 871.28,
-        "price": 0.9220317234413736,
-        "usdc": 803.3478,
-        "ts": 1771554622,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 64,
-        "price": 0.99,
-        "usdc": 63.36,
-        "ts": 1771554630,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.99,
-        "usdc": 4.95,
-        "ts": 1771554650,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 52.63,
-        "price": 0.99,
-        "usdc": 52.1037,
-        "ts": 1771554720,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 992.91
-  },
-  {
-    "key": "0x8110d45db97551641ee7d5a2721b53297a6b80e00e1a07eb6325f280c87ea9c8-1",
-    "title": "Will the highest temperature in Paris be 14°C on February 21?",
-    "lots": [
-      {
-        "shares": 5,
-        "price": 0.88,
-        "usdc": 4.4,
-        "ts": 1771677068,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 5
-  },
-  {
-    "key": "0x617e52a626ac62326ddaf57e1ff25b3d5dea30fa1830e3c9dfc26df4668cfc80-1",
-    "title": "Will the highest temperature in Paris be 15°C on February 21?",
-    "lots": [
-      {
-        "shares": 5,
-        "price": 0.59,
-        "usdc": 2.95,
-        "ts": 1771680662,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 5
-  },
-  {
-    "key": "0xb48bb6b8fa57099c3543492488d871404d3a4b4dcdc491fee7aad9d55a60b43e-1",
-    "title": "Will the highest temperature in Sao Paulo be 28°C on February 21?",
-    "lots": [
-      {
-        "shares": 19.44,
-        "price": 0.99,
-        "usdc": 19.2456,
-        "ts": 1771685890,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.08,
-        "price": 0.99,
-        "usdc": 5.0292,
-        "ts": 1771685894,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 24.520000000000003
-  },
-  {
-    "key": "0xa503b89200b0f87da3080317c067db7007f4d4ac782f2013e3af244cb62ddd5b-1",
-    "title": "Will the highest temperature in Buenos Aires be 30°C on February 21?",
-    "lots": [
-      {
-        "shares": 500,
-        "price": 0.9577576,
-        "usdc": 478.8788,
-        "ts": 1771693456,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 500
-  },
-  {
-    "key": "0xd9fab894b83cbd6655ed78041363696e73199ee4c553ca42f569597d5c5c1954-1",
-    "title": "Will the highest temperature in Sao Paulo be 27°C on February 24?",
-    "lots": [
-      {
-        "shares": 642.432431,
-        "price": 0.9989999991143037,
-        "usdc": 641.789998,
-        "ts": 1771961086,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 642.432431
-  },
-  {
-    "key": "0x54855544980a987c352570fe3a0f7d5117f949b87a3e0e5db7ee517a4bb0c0b4-1",
-    "title": "Will the highest temperature in Wellington be 18°C on February 25?",
-    "lots": [
-      {
-        "shares": 224,
-        "price": 0.9866696428571429,
-        "usdc": 221.014,
-        "ts": 1771982374,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 30,
-        "price": 0.98,
-        "usdc": 29.4,
-        "ts": 1771982528,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 254
-  },
-  {
-    "key": "0x5d01db76c20dffe8126a962521184846a2ad19c47709a72f538d0dae7a6d6638-1",
-    "title": "Will the highest temperature in Wellington be 19°C on February 25?",
-    "lots": [
-      {
-        "shares": 959.31,
-        "price": 0.9699546861806924,
-        "usdc": 930.48723,
-        "ts": 1771982484,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.49,
-        "price": 0.949,
-        "usdc": 5.21001,
-        "ts": 1771982492,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 43.47,
-        "price": 0.9491262939958592,
-        "usdc": 41.25852,
-        "ts": 1771982502,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 20.66,
-        "price": 0.95,
-        "usdc": 19.627,
-        "ts": 1771982536,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1028.93
-  },
-  {
-    "key": "0x1aad6244763c90442425bf237a41de403c89f635dfaca7a66d18b307362ee37e-1",
-    "title": "Will the highest temperature in Wellington be 20°C on February 25?",
-    "lots": [
-      {
-        "shares": 26.248557,
-        "price": 0.868999998742788,
-        "usdc": 22.809996,
-        "ts": 1771982700,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 26.248557
-  },
-  {
-    "key": "0xbef70d0fb920990764e24fe43a33f92dfb6e8a65a78e11ce31fdc5bdffbe4aec-1",
-    "title": "Will the highest temperature in Buenos Aires be 27°C on February 26?",
-    "lots": [
-      {
-        "shares": 632.46,
-        "price": 0.9796391866679316,
-        "usdc": 619.5826,
-        "ts": 1772132532,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.99,
-        "usdc": 4.95,
-        "ts": 1772132592,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15.56,
-        "price": 0.99,
-        "usdc": 15.4044,
-        "ts": 1772132598,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15.56,
-        "price": 0.99,
-        "usdc": 15.4044,
-        "ts": 1772132620,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 668.5799999999999
-  },
-  {
-    "key": "0x2becc80c2d826fb01b04e1a73ec163b4c1b9296056e9cac2072e83d3004d2a93-1",
-    "title": "Will the highest temperature in Buenos Aires be 28°C on February 26?",
-    "lots": [
-      {
-        "shares": 685.52,
-        "price": 0.9901623293266425,
-        "usdc": 678.77608,
-        "ts": 1772136130,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11.48,
-        "price": 0.998,
-        "usdc": 11.45704,
-        "ts": 1772136132,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.998,
-        "usdc": 4.99,
-        "ts": 1772136132,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 702
-  },
-  {
-    "key": "0x4f184ffae734b715d6b1679333b13790708f9e0892f4d3cf5835fdc77c8023bf-1",
-    "title": "Will the highest temperature in Buenos Aires be 31°C on March 1?",
-    "lots": [
-      {
-        "shares": 710,
-        "price": 0.8421999718309859,
-        "usdc": 597.96198,
-        "ts": 1772388129,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 710
-  },
-  {
-    "key": "0x18b0f163ba5e81db1d6b0a724634f2802a40e6b8be15fc359946971d97069d58-1",
-    "title": "Will the highest temperature in Sao Paulo be 25°C or below on March 4?",
-    "lots": [
-      {
-        "shares": 511.49,
-        "price": 0.9963165848794698,
-        "usdc": 509.60597,
-        "ts": 1772636323,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 511.49
-  },
-  {
-    "key": "0x0e873dc39ac6fc8d16ffa6b2b8c5303a92810bdcf7d2449d10c6e4cef6c54da7-1",
-    "title": "Will the highest temperature in Wellington be 19°C on March 5?",
-    "lots": [
-      {
-        "shares": 1420,
-        "price": 0.7946769014084507,
-        "usdc": 1128.4412,
-        "ts": 1772676005,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1420
   },
   {
     "key": "0xfe6e6d9017a2c84c2f2fa8ce54bfeb42244f2ff843f16da2cc139977446b95b8-0",
@@ -537,9 +144,7 @@
         "shares": 165.39,
         "price": 0.9872785537215067,
         "usdc": 163.286,
-        "ts": 1772722927,
-        "fee": 0,
-        "maker": false
+        "ts": 1772722927
       }
     ],
     "totalShares": 165.39
@@ -552,112 +157,10 @@
         "shares": 925,
         "price": 0.99,
         "usdc": 915.75,
-        "ts": 1772726513,
-        "fee": 0,
-        "maker": false
+        "ts": 1772726513
       }
     ],
     "totalShares": 925
-  },
-  {
-    "key": "0xccd46fb65f806aff5ac077330f67491c56de1162e6756ec8e6723067e6061185-1",
-    "title": "Will the highest temperature in Sao Paulo be 27°C on March 5?",
-    "lots": [
-      {
-        "shares": 400,
-        "price": 0.989525,
-        "usdc": 395.81,
-        "ts": 1772729901,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 400
-  },
-  {
-    "key": "0x042684f1795494ec104bd5d132d74678d322365ab3f007f3db71eca32a2e00ff-1",
-    "title": "Will the highest temperature in Sao Paulo be 28°C on March 5?",
-    "lots": [
-      {
-        "shares": 400,
-        "price": 0.89380625,
-        "usdc": 357.5225,
-        "ts": 1772729901,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 400
-  },
-  {
-    "key": "0x25b3527b14932b8b1e10c7d1f3e6616223e3490c8e670238db03aee7b0ea5df2-1",
-    "title": "Will the highest temperature in Wellington be 19°C on March 6?",
-    "lots": [
-      {
-        "shares": 950,
-        "price": 0.9086912631578947,
-        "usdc": 863.2567,
-        "ts": 1772751617,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 950
-  },
-  {
-    "key": "0xc949eac2de9a933a7ee9836d7f9dd0e4bd20769f15bd3a9ccce5c056e784b6c0-1",
-    "title": "Will the highest temperature in Paris be 16°C on March 6?",
-    "lots": [
-      {
-        "shares": 999,
-        "price": 0.99,
-        "usdc": 989.01,
-        "ts": 1772807271,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 50.52,
-        "price": 0.981,
-        "usdc": 49.56012,
-        "ts": 1772807379,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10,
-        "price": 0.981,
-        "usdc": 9.81,
-        "ts": 1772807383,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 291.69,
-        "price": 0.981,
-        "usdc": 286.14789,
-        "ts": 1772807397,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 200,
-        "price": 0.981,
-        "usdc": 196.2,
-        "ts": 1772807415,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 108.31,
-        "price": 0.981,
-        "usdc": 106.25211,
-        "ts": 1772807425,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1659.52
   },
   {
     "key": "0x777daa6448f458a3b43b8957ce8efa1c0dad45a5c8e78a62941fbe12fa3d48f2-0",
@@ -667,65 +170,10 @@
         "shares": 0.00024300000000021527,
         "price": 0.04100000076720123,
         "usdc": 0.427528,
-        "ts": 1772830051,
-        "fee": 0,
-        "maker": false
+        "ts": 1772830051
       }
     ],
     "totalShares": 0.00024300000000021527
-  },
-  {
-    "key": "0x5b7ae3b24eada8e3362c4bbbf0b3912c13002397089b5eb975bc485a8dd698a1-1",
-    "title": "Will the highest temperature in Paris be 16°C on March 7?",
-    "lots": [
-      {
-        "shares": 709.57,
-        "price": 0.9893777358118298,
-        "usdc": 702.03276,
-        "ts": 1772891963,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 709.57
-  },
-  {
-    "key": "0x4262ccd2cd9e20150e65c79b5449e81e3a580d6e2ce86e76e2c65dc723668b96-1",
-    "title": "Will the highest temperature in Sao Paulo be 25°C or below on March 7?",
-    "lots": [
-      {
-        "shares": 682.89,
-        "price": 0.9468583959349236,
-        "usdc": 646.60013,
-        "ts": 1772902541,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 317.11,
-        "price": 0.998,
-        "usdc": 316.47578,
-        "ts": 1772902883,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1000
-  },
-  {
-    "key": "0x23ba75df6f98a9462b05eaaf9906eed8b3467685d8fe04297cfa3f0fec0cd021-1",
-    "title": "Will the highest temperature in Wellington be 18°C on March 8?",
-    "lots": [
-      {
-        "shares": 1025,
-        "price": 0.8345863804878049,
-        "usdc": 855.45104,
-        "ts": 1772940651,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1025
   },
   {
     "key": "0x4144e994c8f4016367222fa1ce3636aa6803bb0bf128f801be72bef14612abae-1",
@@ -735,82 +183,10 @@
         "shares": 0.009999999999990905,
         "price": 0.998,
         "usdc": 277.72344,
-        "ts": 1772980259,
-        "fee": 0,
-        "maker": false
+        "ts": 1772980259
       }
     ],
     "totalShares": 0.009999999999990905
-  },
-  {
-    "key": "0xa89b4674fff4e8ce7e5a2e6bc7d55d77dc4e451d34e872a0104e1e56bfbcc70b-1",
-    "title": "Will the highest temperature in Sao Paulo be 27°C on March 8?",
-    "lots": [
-      {
-        "shares": 57.73,
-        "price": 0.99,
-        "usdc": 57.1527,
-        "ts": 1772985481,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 23.45,
-        "price": 0.99,
-        "usdc": 23.2155,
-        "ts": 1772985535,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 81.17999999999999
-  },
-  {
-    "key": "0xd03552ab830062a540fa7d214ddf1e5c23461dd3ac2a653764969325c5271abd-1",
-    "title": "Will the highest temperature in Paris be 17°C on March 9?",
-    "lots": [
-      {
-        "shares": 405,
-        "price": 0.99,
-        "usdc": 400.95,
-        "ts": 1773061133,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9,
-        "price": 0.998,
-        "usdc": 8.982,
-        "ts": 1773061137,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 124.34,
-        "price": 0.998,
-        "usdc": 124.09132,
-        "ts": 1773061249,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 357.69,
-        "price": 0.998,
-        "usdc": 356.97462,
-        "ts": 1773061273,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 125,
-        "price": 0.992,
-        "usdc": 124,
-        "ts": 1773061309,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1021.03
   },
   {
     "key": "0x5e6d5f22cc90b411281f59ed860056bca7adfced5f6d302d05536c8c4669729b-0",
@@ -820,106 +196,10 @@
         "shares": 839.62,
         "price": 0.9950828350920654,
         "usdc": 835.49145,
-        "ts": 1773079617,
-        "fee": 0,
-        "maker": false
+        "ts": 1773079617
       }
     ],
     "totalShares": 839.62
-  },
-  {
-    "key": "0x3cb46cd672f1b0a7643330110d97e03e00783eae60f56b6bcca7f3f7a1767c1c-1",
-    "title": "Will the highest temperature in Buenos Aires be 27°C on March 9?",
-    "lots": [
-      {
-        "shares": 15.49,
-        "price": 0.99,
-        "usdc": 15.3351,
-        "ts": 1773082939,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100.4,
-        "price": 0.99,
-        "usdc": 99.396,
-        "ts": 1773082939,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6.82,
-        "price": 0.99,
-        "usdc": 6.7518,
-        "ts": 1773082971,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1773082997,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 54.7,
-        "price": 0.99,
-        "usdc": 54.153,
-        "ts": 1773083019,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1773083027,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 377.41
-  },
-  {
-    "key": "0x554a87007fb53c07d96790eb9baaba949334a2f0ed6c2c9c20a12f0638cca4f2-1",
-    "title": "Will the highest temperature in Wellington be 21°C or higher on March 11?",
-    "lots": [
-      {
-        "shares": 246.77,
-        "price": 0.898056125136767,
-        "usdc": 221.61331,
-        "ts": 1773183171,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 231.94,
-        "price": 0.9484996119686125,
-        "usdc": 219.995,
-        "ts": 1773183705,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 216.02,
-        "price": 0.93,
-        "usdc": 200.8986,
-        "ts": 1773184163,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 82.75,
-        "price": 0.92,
-        "usdc": 76.13,
-        "ts": 1773191633,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 777.48
   },
   {
     "key": "0xdc5f50f0791b27c05ab8949813eb22dcdf83cfc45b6be73498c4f0668946e7c1-0",
@@ -929,25 +209,19 @@
         "shares": 38.21,
         "price": 0.023497513739858675,
         "usdc": 0.89784,
-        "ts": 1773185751,
-        "fee": 0,
-        "maker": false
+        "ts": 1773185751
       },
       {
         "shares": 39.99,
         "price": 0.03875018754688672,
         "usdc": 1.54962,
-        "ts": 1773187263,
-        "fee": 0,
-        "maker": false
+        "ts": 1773187263
       },
       {
         "shares": 71.8,
         "price": 0.023,
         "usdc": 1.6514,
-        "ts": 1773188653,
-        "fee": 0,
-        "maker": false
+        "ts": 1773188653
       }
     ],
     "totalShares": 150
@@ -960,35 +234,10 @@
         "shares": 150,
         "price": 0.9848838703870387,
         "usdc": 1094.20598,
-        "ts": 1773190827,
-        "fee": 0,
-        "maker": false
+        "ts": 1773190827
       }
     ],
     "totalShares": 150
-  },
-  {
-    "key": "0xc700149c36645bde2cbba8c939a63f135f61a617e818f15f193ac2fe1c901d80-1",
-    "title": "Will the highest temperature in Sao Paulo be 21°C on March 11?",
-    "lots": [
-      {
-        "shares": 63.15,
-        "price": 0.99,
-        "usdc": 62.5185,
-        "ts": 1773244781,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12.05,
-        "price": 0.99,
-        "usdc": 11.9295,
-        "ts": 1773244819,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 75.2
   },
   {
     "key": "0x2383c420db79caeb86955e794b7398a6ddc626e43bd4360521e828561056b538-0",
@@ -998,147 +247,58 @@
         "shares": 0.0022039999999847737,
         "price": 0.18,
         "usdc": 9,
-        "ts": 1773262109,
-        "fee": 0,
-        "maker": false
+        "ts": 1773262109
       },
       {
         "shares": 798.67,
         "price": 0.9745598307185697,
         "usdc": 778.3517,
-        "ts": 1773277229,
-        "fee": 0,
-        "maker": false
+        "ts": 1773277229
       },
       {
         "shares": 1,
         "price": 0.99,
         "usdc": 0.99,
-        "ts": 1773277249,
-        "fee": 0,
-        "maker": false
+        "ts": 1773277249
       },
       {
         "shares": 34.99,
         "price": 0.99,
         "usdc": 34.6401,
-        "ts": 1773277283,
-        "fee": 0,
-        "maker": false
+        "ts": 1773277283
       },
       {
         "shares": 45.88,
         "price": 0.99,
         "usdc": 45.4212,
-        "ts": 1773277307,
-        "fee": 0,
-        "maker": false
+        "ts": 1773277307
       },
       {
         "shares": 24.5,
         "price": 0.99,
         "usdc": 24.255,
-        "ts": 1773277325,
-        "fee": 0,
-        "maker": false
+        "ts": 1773277325
       },
       {
         "shares": 1,
         "price": 0.99,
         "usdc": 0.99,
-        "ts": 1773277371,
-        "fee": 0,
-        "maker": false
+        "ts": 1773277371
       },
       {
         "shares": 100,
         "price": 0.99,
         "usdc": 99,
-        "ts": 1773277413,
-        "fee": 0,
-        "maker": false
+        "ts": 1773277413
       },
       {
         "shares": 192.96,
         "price": 0.99,
         "usdc": 191.0304,
-        "ts": 1773277441,
-        "fee": 0,
-        "maker": false
+        "ts": 1773277441
       }
     ],
     "totalShares": 1199.002204
-  },
-  {
-    "key": "0xaecd2dfdc5d876f3a03c3457c27a5144e619fb5b11d60b77615d791b77f8d488-1",
-    "title": "Will the highest temperature in Wellington be 20°C on March 12?",
-    "lots": [
-      {
-        "shares": 49.1,
-        "price": 0.99,
-        "usdc": 48.609,
-        "ts": 1773277227,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.66,
-        "price": 0.99,
-        "usdc": 2.6334,
-        "ts": 1773277271,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 28.52,
-        "price": 0.99,
-        "usdc": 28.2348,
-        "ts": 1773277273,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8.44,
-        "price": 0.99,
-        "usdc": 8.3556,
-        "ts": 1773277281,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 500,
-        "price": 0.99,
-        "usdc": 495,
-        "ts": 1773277347,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.99,
-        "usdc": 4.95,
-        "ts": 1773277373,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 605.28,
-        "price": 0.99,
-        "usdc": 599.2272,
-        "ts": 1773277391,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 320,
-        "price": 0.992,
-        "usdc": 317.44,
-        "ts": 1773278425,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1519
   },
   {
     "key": "0x1ee2469a1f77a5ea1f28e17c93329b889a0bb75493f019273036a1d631417499-0",
@@ -1148,741 +308,10 @@
         "shares": 1234,
         "price": 0.9688613452188006,
         "usdc": 1195.5749,
-        "ts": 1773358227,
-        "fee": 0,
-        "maker": false
+        "ts": 1773358227
       }
     ],
     "totalShares": 1234
-  },
-  {
-    "key": "0xb1ae2f9ca5cadffa3c3eadac06934b994f0856d1ebeb45e6114df17ac3a01cb8-1",
-    "title": "Will the highest temperature in Wellington be 21°C on March 13?",
-    "lots": [
-      {
-        "shares": 1029.74,
-        "price": 0.9728700448656943,
-        "usdc": 1001.8032,
-        "ts": 1773358227,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 127.7,
-        "price": 0.99,
-        "usdc": 126.423,
-        "ts": 1773358327,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1157.44
-  },
-  {
-    "key": "0x7f50d22cc337eb933a07f0301ba8a4ccb26c1ae65e785cf75d9382147497ffc1-1",
-    "title": "Will the highest temperature in Paris be 11°C on March 13?",
-    "lots": [
-      {
-        "shares": 471.68,
-        "price": 0.99,
-        "usdc": 466.9632,
-        "ts": 1773394101,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 20,
-        "price": 0.99,
-        "usdc": 19.8,
-        "ts": 1773394103,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1773394103,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9,
-        "price": 0.99,
-        "usdc": 8.91,
-        "ts": 1773394103,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.99,
-        "usdc": 4.95,
-        "ts": 1773394105,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1773394107,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1773394109,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 21.46,
-        "price": 0.99,
-        "usdc": 21.2454,
-        "ts": 1773394109,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 31.95,
-        "price": 0.99,
-        "usdc": 31.6305,
-        "ts": 1773394111,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.49,
-        "price": 0.99,
-        "usdc": 10.3851,
-        "ts": 1773394113,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1773394113,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.49,
-        "price": 0.99,
-        "usdc": 10.3851,
-        "ts": 1773394115,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1773394115,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 44.51,
-        "price": 0.99,
-        "usdc": 44.0649,
-        "ts": 1773394117,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.1,
-        "price": 0.99,
-        "usdc": 1.089,
-        "ts": 1773394127,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 108.32,
-        "price": 0.99,
-        "usdc": 107.2368,
-        "ts": 1773394203,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1234
-  },
-  {
-    "key": "0x7579ad9838ae1b221865469edde58104b3e0fe93842941b1592bf9f425b34255-1",
-    "title": "Will the highest temperature in Buenos Aires be 27°C on March 13?",
-    "lots": [
-      {
-        "shares": 959.09,
-        "price": 0.9595919152530002,
-        "usdc": 920.33501,
-        "ts": 1773428651,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 959.09
-  },
-  {
-    "key": "0x1717f088aedc17d789cf7a1b38beb309a8b58c05a13e26eabd686e71a07a44d9-1",
-    "title": "Will the highest temperature in Singapore be 31°C on March 14?",
-    "lots": [
-      {
-        "shares": 413.05,
-        "price": 0.9885660331678974,
-        "usdc": 408.3272,
-        "ts": 1773468055,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 413.05
-  },
-  {
-    "key": "0x873434e24be4cf7b3c87f68e4d7d3c87a7687c6237861f79c45f855d0d97177b-1",
-    "title": "Will the highest temperature in Paris be 9°C on March 14?",
-    "lots": [
-      {
-        "shares": 1234,
-        "price": 0.99,
-        "usdc": 1221.66,
-        "ts": 1773497033,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1234
-  },
-  {
-    "key": "0xdb3926bd011584a1e788da996912f2eec7ab081bc2428b12698f3bbc71575b48-1",
-    "title": "Will the highest temperature in Singapore be 29°C on March 15?",
-    "lots": [
-      {
-        "shares": 940.28,
-        "price": 0.9690315863359851,
-        "usdc": 911.16102,
-        "ts": 1773545449,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 940.28
-  },
-  {
-    "key": "0x66e222bc18f4c961c3f8c8b82e22ed6da0c3748dc303e0f1efa26f51a0a66e28-1",
-    "title": "Will the highest temperature in Tokyo be 13°C on March 15?",
-    "lots": [
-      {
-        "shares": 1310.57,
-        "price": 0.7564158953737686,
-        "usdc": 991.33598,
-        "ts": 1773558169,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 37.2,
-        "price": 0.998,
-        "usdc": 37.1256,
-        "ts": 1773558173,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.6,
-        "price": 0.76,
-        "usdc": 3.496,
-        "ts": 1773558229,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 32.93,
-        "price": 0.8206173701791679,
-        "usdc": 27.02293,
-        "ts": 1773558241,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 23.57,
-        "price": 0.8205345778532033,
-        "usdc": 19.34,
-        "ts": 1773558255,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1408.87
-  },
-  {
-    "key": "0x538cba9d84eadccb185f5fa84d6cc5cd8ea30e21cb48b8e828be2e51643a9d25-1",
-    "title": "Will the highest temperature in Wellington be 20°C on March 16?",
-    "lots": [
-      {
-        "shares": 263.54,
-        "price": 0.9893549366320104,
-        "usdc": 260.7346,
-        "ts": 1773622825,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1773622829,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9,
-        "price": 0.99,
-        "usdc": 8.91,
-        "ts": 1773622831,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 80,
-        "price": 0.99,
-        "usdc": 79.2,
-        "ts": 1773622831,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 61,
-        "price": 0.99,
-        "usdc": 60.39,
-        "ts": 1773622835,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 29,
-        "price": 0.99,
-        "usdc": 28.71,
-        "ts": 1773622835,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 162.52,
-        "price": 0.99,
-        "usdc": 160.8948,
-        "ts": 1773622841,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9,
-        "price": 0.99,
-        "usdc": 8.91,
-        "ts": 1773622841,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 44,
-        "price": 0.99,
-        "usdc": 43.56,
-        "ts": 1773622857,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11.01,
-        "price": 0.99,
-        "usdc": 10.8999,
-        "ts": 1773622877,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12.5,
-        "price": 0.99,
-        "usdc": 12.375,
-        "ts": 1773622921,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 300,
-        "price": 0.99,
-        "usdc": 297,
-        "ts": 1773622969,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1773622977,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.99,
-        "usdc": 4.95,
-        "ts": 1773623005,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9,
-        "price": 0.99,
-        "usdc": 8.91,
-        "ts": 1773623007,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1195.57
-  },
-  {
-    "key": "0x6c71220d25228ce018affd9043cd4a6a565077a2846a4761c6208117c7fc339e-1",
-    "title": "Will the highest temperature in Singapore be 31°C on March 16?",
-    "lots": [
-      {
-        "shares": 1072.97,
-        "price": 0.9476807366468774,
-        "usdc": 1016.833,
-        "ts": 1773637267,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1072.97
-  },
-  {
-    "key": "0x2e6153ad6326e47036f9746c9f64ec9de6b077ecfbfb5cd03e98e278cdd7397d-1",
-    "title": "Will the highest temperature in Wellington be 20°C on March 17?",
-    "lots": [
-      {
-        "shares": 1234,
-        "price": 0.8273800648298217,
-        "usdc": 1020.987,
-        "ts": 1773703851,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8,
-        "price": 0.98,
-        "usdc": 7.84,
-        "ts": 1773704005,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1242
-  },
-  {
-    "key": "0x13c6b03743b5acc63be418d086722f0e7862d6851fe0f28a774249900a7cddca-1",
-    "title": "Will the highest temperature in Singapore be 30°C on March 17?",
-    "lots": [
-      {
-        "shares": 1234,
-        "price": 0.9932562722852513,
-        "usdc": 1225.67824,
-        "ts": 1773718251,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 463.91,
-        "price": 0.9950153693604363,
-        "usdc": 461.59758,
-        "ts": 1773718251,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 18,
-        "price": 0.998,
-        "usdc": 17.964,
-        "ts": 1773718255,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15,
-        "price": 0.998,
-        "usdc": 14.97,
-        "ts": 1773718255,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15,
-        "price": 0.998,
-        "usdc": 14.97,
-        "ts": 1773718257,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 23,
-        "price": 0.998,
-        "usdc": 22.954,
-        "ts": 1773718257,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 16,
-        "price": 0.998,
-        "usdc": 15.968,
-        "ts": 1773718257,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 23,
-        "price": 0.998,
-        "usdc": 22.954,
-        "ts": 1773718257,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12,
-        "price": 0.998,
-        "usdc": 11.976,
-        "ts": 1773718259,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 20,
-        "price": 0.998,
-        "usdc": 19.96,
-        "ts": 1773718259,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 34,
-        "price": 0.998,
-        "usdc": 33.932,
-        "ts": 1773718423,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.27,
-        "price": 0.998,
-        "usdc": 5.25946,
-        "ts": 1773718423,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 28.13,
-        "price": 0.998,
-        "usdc": 28.07374,
-        "ts": 1773718425,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 37.79,
-        "price": 0.998,
-        "usdc": 37.71442,
-        "ts": 1773718425,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 43.15,
-        "price": 0.998,
-        "usdc": 43.0637,
-        "ts": 1773718427,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 24.09,
-        "price": 0.998,
-        "usdc": 24.04182,
-        "ts": 1773718427,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.78,
-        "price": 0.998,
-        "usdc": 1.77644,
-        "ts": 1773718451,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2014.1200000000001
-  },
-  {
-    "key": "0x1f9abc54f85bdeee54b6e64de2443532c416985c942e7695f5205f31704674c0-1",
-    "title": "Will the highest temperature in Lucknow be 33°C on March 17?",
-    "lots": [
-      {
-        "shares": 6,
-        "price": 0.99,
-        "usdc": 5.94,
-        "ts": 1773732617,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 28,
-        "price": 0.99,
-        "usdc": 27.72,
-        "ts": 1773732619,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 43.33,
-        "price": 0.99,
-        "usdc": 42.8967,
-        "ts": 1773732619,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 108,
-        "price": 0.99,
-        "usdc": 106.92,
-        "ts": 1773732627,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 33.07,
-        "price": 0.99,
-        "usdc": 32.7393,
-        "ts": 1773732627,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.99,
-        "usdc": 4.95,
-        "ts": 1773732849,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 27.5,
-        "price": 0.99,
-        "usdc": 27.225,
-        "ts": 1773732889,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8,
-        "price": 0.99,
-        "usdc": 7.92,
-        "ts": 1773732917,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8,
-        "price": 0.99,
-        "usdc": 7.92,
-        "ts": 1773732917,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 30,
-        "price": 0.99,
-        "usdc": 29.7,
-        "ts": 1773732959,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 296.9
-  },
-  {
-    "key": "0xe4bd43df9dd1ccbca93e6fb798667d8dacac7eae45b0cc08cf3307468165340e-1",
-    "title": "Will the highest temperature in Singapore be 31°C on March 18?",
-    "lots": [
-      {
-        "shares": 1044.66,
-        "price": 0.9749188252637222,
-        "usdc": 1018.4587,
-        "ts": 1773810059,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1044.66
-  },
-  {
-    "key": "0x94ea5d238b6d07d0104ba2fbe35a8f61a98b65b3b0736a33f1d168af53a6934c-1",
-    "title": "Will the highest temperature in Lucknow be 33°C or below on March 18?",
-    "lots": [
-      {
-        "shares": 1234,
-        "price": 0.9896724635332252,
-        "usdc": 1221.25582,
-        "ts": 1773819015,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1234
-  },
-  {
-    "key": "0x6799547e7be76a8d33a381150d7b4b9691b244af49f4d53493168e8abda1e7ef-1",
-    "title": "Will the highest temperature in Warsaw be 11°C on March 19?",
-    "lots": [
-      {
-        "shares": 513.31,
-        "price": 0.9961038943328593,
-        "usdc": 511.31009,
-        "ts": 1773919881,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 22,
-        "price": 0.998,
-        "usdc": 21.956,
-        "ts": 1773919889,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 178.57,
-        "price": 0.998,
-        "usdc": 178.21286,
-        "ts": 1773919897,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 510.2,
-        "price": 0.998,
-        "usdc": 509.1796,
-        "ts": 1773919927,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1224.08
   },
   {
     "key": "0xc8d68ebffd9ca0366eb03291a651a3fc5c91ee05f227192b1bbb631cacf1640f-0",
@@ -1892,285 +321,10 @@
         "shares": 1232.87,
         "price": 0.8647686292958706,
         "usdc": 1066.1473,
-        "ts": 1773919881,
-        "fee": 0,
-        "maker": false
+        "ts": 1773919881
       }
     ],
     "totalShares": 1232.87
-  },
-  {
-    "key": "0xa06bc5ee7aba5f2c9f18d847540ea9f73af64af96cc479a999f4929055347bc3-1",
-    "title": "Will the highest temperature in Warsaw be 12°C on March 19?",
-    "lots": [
-      {
-        "shares": 1234,
-        "price": 0.9155603727714748,
-        "usdc": 1129.8015,
-        "ts": 1773919881,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1234
-  },
-  {
-    "key": "0x478a779e4f3b5777d80967e42e016d60cc816061624b3dacfbac8c6eb365335c-1",
-    "title": "Will the highest temperature in Warsaw be 10°C on March 20?",
-    "lots": [
-      {
-        "shares": 573.5,
-        "price": 0.9463208369659982,
-        "usdc": 542.715,
-        "ts": 1774018885,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 22,
-        "price": 0.99,
-        "usdc": 21.78,
-        "ts": 1774018889,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 22,
-        "price": 0.99,
-        "usdc": 21.78,
-        "ts": 1774018889,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.99,
-        "usdc": 4.95,
-        "ts": 1774018903,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 29.5,
-        "price": 0.99,
-        "usdc": 29.205,
-        "ts": 1774018909,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.12,
-        "price": 0.99,
-        "usdc": 2.0988,
-        "ts": 1774018931,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 654.12
-  },
-  {
-    "key": "0x8b9732e48061a89841c0d1100d2e42f50c7c2175ea3860af654dbadaf5e7e266-1",
-    "title": "Will the highest temperature in Wellington be 16°C on March 21?",
-    "lots": [
-      {
-        "shares": 1234,
-        "price": 0.9220992706645057,
-        "usdc": 1137.8705,
-        "ts": 1774056653,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1234
-  },
-  {
-    "key": "0x996413184295d60e92a085a39539babe2752c64297df4e83b3ad3cd222a56dc0-1",
-    "title": "Will the highest temperature in Madrid be 11°C on March 21?",
-    "lots": [
-      {
-        "shares": 609.16,
-        "price": 0.9845557817322215,
-        "usdc": 599.752,
-        "ts": 1774105457,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 609.16
-  },
-  {
-    "key": "0x23ae0d1c85c89ee51778123a779fcedcfe346433c67459df249c0e5c5afa90b3-1",
-    "title": "Will the highest temperature in Wellington be 19°C on March 22?",
-    "lots": [
-      {
-        "shares": 1234,
-        "price": 0.9797811993517018,
-        "usdc": 1209.05,
-        "ts": 1774139425,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1234
-  },
-  {
-    "key": "0x1eeae370f65537e14869822ccbe5481e80961e4274592fca5313abd36e26b77a-1",
-    "title": "Will the highest temperature in Warsaw be 13°C on March 22?",
-    "lots": [
-      {
-        "shares": 743.7,
-        "price": 0.9750907624041952,
-        "usdc": 725.175,
-        "ts": 1774177289,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 55,
-        "price": 0.99,
-        "usdc": 54.45,
-        "ts": 1774177293,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 110,
-        "price": 0.99,
-        "usdc": 108.9,
-        "ts": 1774177301,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12,
-        "price": 0.99,
-        "usdc": 11.88,
-        "ts": 1774177319,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10,
-        "price": 0.99,
-        "usdc": 9.9,
-        "ts": 1774177323,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1774177327,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 28,
-        "price": 0.99,
-        "usdc": 27.72,
-        "ts": 1774177339,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6,
-        "price": 0.99,
-        "usdc": 5.94,
-        "ts": 1774177341,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1064.7
-  },
-  {
-    "key": "0x8a5c534c0d6e4a405c483566547a24717d86cba16cd8d3a5bc05f31c958924af-1",
-    "title": "Will the highest temperature in Buenos Aires be 25°C on March 22?",
-    "lots": [
-      {
-        "shares": 428.88,
-        "price": 0.984217963066592,
-        "usdc": 422.1114,
-        "ts": 1774199033,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 61,
-        "price": 0.99,
-        "usdc": 60.39,
-        "ts": 1774199037,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 30,
-        "price": 0.99,
-        "usdc": 29.7,
-        "ts": 1774199037,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.99,
-        "usdc": 4.95,
-        "ts": 1774199039,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.99,
-        "usdc": 4.95,
-        "ts": 1774199045,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 17.3,
-        "price": 0.99,
-        "usdc": 17.127,
-        "ts": 1774199059,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 17.3,
-        "price": 0.99,
-        "usdc": 17.127,
-        "ts": 1774199061,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 194.58,
-        "price": 0.99,
-        "usdc": 192.6342,
-        "ts": 1774199093,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.96,
-        "price": 0.99,
-        "usdc": 1.9404,
-        "ts": 1774199149,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.6,
-        "price": 0.99,
-        "usdc": 10.494,
-        "ts": 1774199227,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 771.62
   },
   {
     "key": "0xc8e93f79a95df3b33f059ab07e9616f419753b5bc2a2b40808e9457b97320c32-0",
@@ -2180,114 +334,10 @@
         "shares": 0.008921000000015056,
         "price": 0.49939290688953175,
         "usdc": 93.21668,
-        "ts": 1774245833,
-        "fee": 0,
-        "maker": false
+        "ts": 1774245833
       }
     ],
     "totalShares": 0.008921000000015056
-  },
-  {
-    "key": "0x5d273c65a70cf0748ba657487d3e6e56e5344d049120001ccb227ba3c39879b3-1",
-    "title": "Will the highest temperature in Warsaw be 14°C on March 23?",
-    "lots": [
-      {
-        "shares": 156.24,
-        "price": 0.998,
-        "usdc": 155.92752,
-        "ts": 1774270913,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 32,
-        "price": 0.998,
-        "usdc": 31.936,
-        "ts": 1774270915,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.13,
-        "price": 0.998,
-        "usdc": 2.12574,
-        "ts": 1774270917,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 30.3,
-        "price": 0.998,
-        "usdc": 30.2394,
-        "ts": 1774270919,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 39.66,
-        "price": 0.998,
-        "usdc": 39.58068,
-        "ts": 1774270919,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6.39,
-        "price": 0.998,
-        "usdc": 6.37722,
-        "ts": 1774270931,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8,
-        "price": 0.998,
-        "usdc": 7.984,
-        "ts": 1774270935,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 41.1,
-        "price": 0.998,
-        "usdc": 41.0178,
-        "ts": 1774270935,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8.5,
-        "price": 0.998,
-        "usdc": 8.483,
-        "ts": 1774270937,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8.45,
-        "price": 0.998,
-        "usdc": 8.4331,
-        "ts": 1774270945,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 332.77000000000004
-  },
-  {
-    "key": "0x96021a0d9c0801a2e81bdc007842442f15f61a2b773995382cbdae71add7f741-1",
-    "title": "Will the highest temperature in Madrid be 16°C on March 23?",
-    "lots": [
-      {
-        "shares": 1234,
-        "price": 0.966977982171799,
-        "usdc": 1193.25083,
-        "ts": 1774280059,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1234
   },
   {
     "key": "0x4f8927497d5c0cb1b3a3143bb3d7976df1cf62e6ec678a96f1d2ae81e51ff65b-0",
@@ -2297,176 +347,10 @@
         "shares": 0.009480999999990303,
         "price": 0.5,
         "usdc": 3.75,
-        "ts": 1774280063,
-        "fee": 0,
-        "maker": false
+        "ts": 1774280063
       }
     ],
     "totalShares": 0.009480999999990303
-  },
-  {
-    "key": "0x56437b73ee86875e7e18f80d2fbcf5074c8dd1dd667acc7eb26c3a398e52ddc9-1",
-    "title": "Will the highest temperature in Paris be 16°C on March 24?",
-    "lots": [
-      {
-        "shares": 316.87,
-        "price": 0.9971570675671411,
-        "usdc": 315.96916,
-        "ts": 1774351703,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 316.87
-  },
-  {
-    "key": "0xcba4888ae1eb6cb35df0312b5b031ae7a9ebf8bcec27172763d99b1aa7684764-1",
-    "title": "Will the highest temperature in Paris be 17°C on March 24?",
-    "lots": [
-      {
-        "shares": 141,
-        "price": 0.998,
-        "usdc": 140.718,
-        "ts": 1774357237,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 550,
-        "price": 0.998,
-        "usdc": 548.9,
-        "ts": 1774357237,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 543,
-        "price": 0.998,
-        "usdc": 541.914,
-        "ts": 1774357237,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1234
-  },
-  {
-    "key": "0xed5b932574310431a4f315e1fcdbbea364dd779f7f542d1419c1ab26e6d2d114-1",
-    "title": "Will the highest temperature in Paris be 18°C on March 24?",
-    "lots": [
-      {
-        "shares": 47.44,
-        "price": 0.99,
-        "usdc": 46.9656,
-        "ts": 1774360947,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 132,
-        "price": 0.99,
-        "usdc": 130.68,
-        "ts": 1774360949,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1774360951,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 400,
-        "price": 0.99,
-        "usdc": 396,
-        "ts": 1774360973,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1774360989,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1774361019,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8.47,
-        "price": 0.99,
-        "usdc": 8.3853,
-        "ts": 1774361031,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.99,
-        "usdc": 4.95,
-        "ts": 1774361043,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14,
-        "price": 0.99,
-        "usdc": 13.86,
-        "ts": 1774361051,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 906.9100000000001
-  },
-  {
-    "key": "0x43692806a31d83bd44baa47ca3de22ac39ddf4535b12bbd826e007442c8905cc-1",
-    "title": "Will the highest temperature in Buenos Aires be 25°C on March 24?",
-    "lots": [
-      {
-        "shares": 646.67,
-        "price": 0.967237230735924,
-        "usdc": 625.4833,
-        "ts": 1774375313,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.19,
-        "price": 0.99,
-        "usdc": 2.1681,
-        "ts": 1774375327,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.24,
-        "price": 0.99,
-        "usdc": 2.2176,
-        "ts": 1774375347,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 117.21,
-        "price": 0.99,
-        "usdc": 116.0379,
-        "ts": 1774375367,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 768.3100000000001
   },
   {
     "key": "0x9e96e67cee927cbd0b113b5ad7beecb07d2e749db844cf13db2413da0eb8b6f3-0",
@@ -2476,184 +360,58 @@
         "shares": 114.5,
         "price": 0.2968122270742358,
         "usdc": 33.985,
-        "ts": 1774383045,
-        "fee": 0,
-        "maker": false
+        "ts": 1774383045
       },
       {
         "shares": 40.5,
         "price": 0.29703703703703704,
         "usdc": 12.03,
-        "ts": 1774383357,
-        "fee": 0,
-        "maker": false
+        "ts": 1774383357
       },
       {
         "shares": 3.82857,
         "price": 0.3,
         "usdc": 1.148571,
-        "ts": 1774383359,
-        "fee": 0,
-        "maker": false
+        "ts": 1774383359
       },
       {
         "shares": 2.17,
         "price": 0.3,
         "usdc": 0.651,
-        "ts": 1774383363,
-        "fee": 0,
-        "maker": false
+        "ts": 1774383363
       },
       {
         "shares": 65.75,
         "price": 0.29,
         "usdc": 19.0675,
-        "ts": 1774383649,
-        "fee": 0,
-        "maker": false
+        "ts": 1774383649
       },
       {
         "shares": 30,
         "price": 0.29,
         "usdc": 8.7,
-        "ts": 1774383773,
-        "fee": 0,
-        "maker": false
+        "ts": 1774383773
       },
       {
         "shares": 15.2,
         "price": 0.29,
         "usdc": 4.408,
-        "ts": 1774383775,
-        "fee": 0,
-        "maker": false
+        "ts": 1774383775
       },
       {
         "shares": 14.63,
         "price": 0.29,
         "usdc": 4.2427,
-        "ts": 1774383793,
-        "fee": 0,
-        "maker": false
+        "ts": 1774383793
       },
       {
         "shares": 374.62,
         "price": 0.3,
         "usdc": 112.386,
-        "ts": 1774383953,
-        "fee": 0,
-        "maker": false
+        "ts": 1774383953
       }
     ],
     "totalShares": 661.19857
-  },
-  {
-    "key": "0x9aa19f80e55856169e25082cf67b48f95bff269671aaef6a3187ba0f69076d59-1",
-    "title": "Will the highest temperature in Madrid be 21°C on March 25?",
-    "lots": [
-      {
-        "shares": 1234,
-        "price": 0.959660453808752,
-        "usdc": 1184.221,
-        "ts": 1774452859,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1234
-  },
-  {
-    "key": "0x00237b1206b78414bce855bed4fa9f21d0af9f79e7979457e5077eb92d77d269-1",
-    "title": "Will the highest temperature in Wellington be 17°C on March 26?",
-    "lots": [
-      {
-        "shares": 1157.84,
-        "price": 0.9850228528985007,
-        "usdc": 1140.49886,
-        "ts": 1774459993,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 0.19,
-        "price": 0.998,
-        "usdc": 0.18962,
-        "ts": 1774459997,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1158.03
-  },
-  {
-    "key": "0x1a20fc290a0e44424ca29207e8e0dfded2936238e381c4bb7c94e0e97b17ee03-1",
-    "title": "Will the highest temperature in Buenos Aires be 26°C on March 25?",
-    "lots": [
-      {
-        "shares": 450.68,
-        "price": 0.9573346942398154,
-        "usdc": 431.4516,
-        "ts": 1774461715,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 23.09,
-        "price": 0.99,
-        "usdc": 22.8591,
-        "ts": 1774461719,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.7,
-        "price": 0.99,
-        "usdc": 4.653,
-        "ts": 1774461729,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 420,
-        "price": 0.99,
-        "usdc": 415.8,
-        "ts": 1774461771,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1774461823,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 998.47
-  },
-  {
-    "key": "0xa46d4b09a9e2a2bd71a2ee09c9d8a315f93a1edb0b58fbaf0fbc023d443d65fc-1",
-    "title": "Will the highest temperature in Wellington be 18°C on March 26?",
-    "lots": [
-      {
-        "shares": 736.96,
-        "price": 0.9786353397742076,
-        "usdc": 721.2151,
-        "ts": 1774474391,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 26,
-        "price": 0.99,
-        "usdc": 25.74,
-        "ts": 1774474393,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 762.96
   },
   {
     "key": "0x1a78f1823e1495be05042b2c504492cd2eb12c59d02e598ec866afe7c8e54d89-0",
@@ -2663,9 +421,7 @@
         "shares": 0.009910999999988235,
         "price": 0.67155445,
         "usdc": 537.24356,
-        "ts": 1774507661,
-        "fee": 0,
-        "maker": false
+        "ts": 1774507661
       }
     ],
     "totalShares": 0.009910999999988235
@@ -2678,487 +434,10 @@
         "shares": 0.009911000000009551,
         "price": 0.95,
         "usdc": 11.3145,
-        "ts": 1774507667,
-        "fee": 0,
-        "maker": false
+        "ts": 1774507667
       }
     ],
     "totalShares": 0.009911000000009551
-  },
-  {
-    "key": "0x0e798cc165f50ab3bebc535d9a3ed31c1c9126a55461f273dcb6936204a53bc1-1",
-    "title": "Will the highest temperature in Paris be 7°C on March 26?",
-    "lots": [
-      {
-        "shares": 1196.06,
-        "price": 0.9961312141531361,
-        "usdc": 1191.4327,
-        "ts": 1774519223,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 37.94,
-        "price": 0.998,
-        "usdc": 37.86412,
-        "ts": 1774519235,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1234
-  },
-  {
-    "key": "0x908297d0cfc07e7971f5cef131b32707e80f0d840aea774b7deaa57051c79b62-1",
-    "title": "Will the highest temperature in Paris be 8°C on March 26?",
-    "lots": [
-      {
-        "shares": 451.1,
-        "price": 0.9575438040345822,
-        "usdc": 431.94801,
-        "ts": 1774531819,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15,
-        "price": 0.998,
-        "usdc": 14.97,
-        "ts": 1774531823,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8,
-        "price": 0.998,
-        "usdc": 7.984,
-        "ts": 1774531823,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 13,
-        "price": 0.998,
-        "usdc": 12.974,
-        "ts": 1774531823,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14,
-        "price": 0.998,
-        "usdc": 13.972,
-        "ts": 1774531823,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14,
-        "price": 0.998,
-        "usdc": 13.972,
-        "ts": 1774531823,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14,
-        "price": 0.998,
-        "usdc": 13.972,
-        "ts": 1774531823,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14,
-        "price": 0.998,
-        "usdc": 13.972,
-        "ts": 1774531823,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14,
-        "price": 0.998,
-        "usdc": 13.972,
-        "ts": 1774531825,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15,
-        "price": 0.998,
-        "usdc": 14.97,
-        "ts": 1774531825,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11,
-        "price": 0.998,
-        "usdc": 10.978,
-        "ts": 1774531825,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11,
-        "price": 0.998,
-        "usdc": 10.978,
-        "ts": 1774531825,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 13,
-        "price": 0.998,
-        "usdc": 12.974,
-        "ts": 1774531825,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11,
-        "price": 0.998,
-        "usdc": 10.978,
-        "ts": 1774531825,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12,
-        "price": 0.998,
-        "usdc": 11.976,
-        "ts": 1774531825,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11,
-        "price": 0.998,
-        "usdc": 10.978,
-        "ts": 1774531825,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10,
-        "price": 0.998,
-        "usdc": 9.98,
-        "ts": 1774531825,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15,
-        "price": 0.998,
-        "usdc": 14.97,
-        "ts": 1774531825,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14,
-        "price": 0.998,
-        "usdc": 13.972,
-        "ts": 1774531825,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 20,
-        "price": 0.998,
-        "usdc": 19.96,
-        "ts": 1774531827,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.998,
-        "usdc": 4.99,
-        "ts": 1774531831,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 7,
-        "price": 0.998,
-        "usdc": 6.986,
-        "ts": 1774531835,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.57,
-        "price": 0.998,
-        "usdc": 10.54886,
-        "ts": 1774531837,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.1,
-        "price": 0.998,
-        "usdc": 4.0918,
-        "ts": 1774531837,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11,
-        "price": 0.998,
-        "usdc": 10.978,
-        "ts": 1774531845,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 737.7700000000001
-  },
-  {
-    "key": "0x8b4f022de3634b369e31612e3c7549b8784e30a587021bcf7f8cad9ab1ef4224-1",
-    "title": "Will the highest temperature in Madrid be 15°C or below on March 26?",
-    "lots": [
-      {
-        "shares": 90.97,
-        "price": 0.9907964164010113,
-        "usdc": 90.13275,
-        "ts": 1774535657,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12,
-        "price": 0.998,
-        "usdc": 11.976,
-        "ts": 1774535661,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14,
-        "price": 0.998,
-        "usdc": 13.972,
-        "ts": 1774535661,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 13,
-        "price": 0.998,
-        "usdc": 12.974,
-        "ts": 1774535661,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15,
-        "price": 0.998,
-        "usdc": 14.97,
-        "ts": 1774535661,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12,
-        "price": 0.998,
-        "usdc": 11.976,
-        "ts": 1774535661,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10,
-        "price": 0.998,
-        "usdc": 9.98,
-        "ts": 1774535661,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14,
-        "price": 0.998,
-        "usdc": 13.972,
-        "ts": 1774535661,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11,
-        "price": 0.998,
-        "usdc": 10.978,
-        "ts": 1774535661,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10,
-        "price": 0.998,
-        "usdc": 9.98,
-        "ts": 1774535661,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11,
-        "price": 0.998,
-        "usdc": 10.978,
-        "ts": 1774535663,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12,
-        "price": 0.998,
-        "usdc": 11.976,
-        "ts": 1774535663,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12,
-        "price": 0.998,
-        "usdc": 11.976,
-        "ts": 1774535663,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10,
-        "price": 0.998,
-        "usdc": 9.98,
-        "ts": 1774535663,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 13,
-        "price": 0.998,
-        "usdc": 12.974,
-        "ts": 1774535663,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11,
-        "price": 0.998,
-        "usdc": 10.978,
-        "ts": 1774535663,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 13,
-        "price": 0.998,
-        "usdc": 12.974,
-        "ts": 1774535663,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11,
-        "price": 0.998,
-        "usdc": 10.978,
-        "ts": 1774535663,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12,
-        "price": 0.998,
-        "usdc": 11.976,
-        "ts": 1774535663,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12,
-        "price": 0.998,
-        "usdc": 11.976,
-        "ts": 1774535663,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 318.97
-  },
-  {
-    "key": "0xe13c1780fdb961963148ebb39a8fd07016899527af50b01ddcdc748d9a065d08-1",
-    "title": "Will the highest temperature in Paris be 10°C on March 26?",
-    "lots": [
-      {
-        "shares": 880.04,
-        "price": 0.9155205445207036,
-        "usdc": 805.6947,
-        "ts": 1774537167,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 102,
-        "price": 0.99,
-        "usdc": 100.98,
-        "ts": 1774537231,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8,
-        "price": 0.99,
-        "usdc": 7.92,
-        "ts": 1774537239,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1774537287,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 143.96,
-        "price": 0.99,
-        "usdc": 142.5204,
-        "ts": 1774537343,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1234
-  },
-  {
-    "key": "0xc3bb19418b6e7e64b0fbe49d99dd5ec62914c5001cc6af1188e8a24fb9357ad2-1",
-    "title": "Will the highest temperature in Wellington be 20°C on March 27?",
-    "lots": [
-      {
-        "shares": 40.55,
-        "price": 0.99,
-        "usdc": 40.1445,
-        "ts": 1774567993,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8,
-        "price": 0.99,
-        "usdc": 7.92,
-        "ts": 1774567997,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.15,
-        "price": 0.99,
-        "usdc": 4.1085,
-        "ts": 1774567997,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 52.699999999999996
   },
   {
     "key": "0xde09dedf441e289a2bf6ddf9beeb45c1596f06f856b92fc805d4e951aa7f5211-1",
@@ -3168,261 +447,10 @@
         "shares": 0.010624000000007072,
         "price": 0.991,
         "usdc": 27.00475,
-        "ts": 1774586317,
-        "fee": 0,
-        "maker": false
+        "ts": 1774586317
       }
     ],
     "totalShares": 0.010624000000007072
-  },
-  {
-    "key": "0xa105613cbdb2f298435d25ca4cf656ee262f5b1cb2bbf0086a08385fe595bc29-1",
-    "title": "Will the highest temperature in Wellington be 18°C on March 28?",
-    "lots": [
-      {
-        "shares": 1267.33,
-        "price": 0.9976580764283967,
-        "usdc": 1264.36201,
-        "ts": 1774609395,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1267.33
-  },
-  {
-    "key": "0x62281057176638049fddc744f77368b8d3a32830066b1b9aa358a3777bb677ee-1",
-    "title": "Will the highest temperature in Madrid be 16°C on March 27?",
-    "lots": [
-      {
-        "shares": 1234,
-        "price": 0.995816021069692,
-        "usdc": 1228.83697,
-        "ts": 1774616661,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1234
-  },
-  {
-    "key": "0x909516217c7a3eaf9595ed7b20215a8796987e0e382e2ddef21b91bea474d1a9-1",
-    "title": "Will the highest temperature in Paris be 10°C on March 27?",
-    "lots": [
-      {
-        "shares": 68.48,
-        "price": 0.998,
-        "usdc": 68.34304,
-        "ts": 1774619993,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 500,
-        "price": 0.998,
-        "usdc": 499,
-        "ts": 1774620003,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 568.48
-  },
-  {
-    "key": "0xc872431dca4eb3fe096784957641ef3333a8376a85dc4f15e4c687b2e15f65c8-1",
-    "title": "Will the highest temperature in Lucknow be 32°C or below on March 28?",
-    "lots": [
-      {
-        "shares": 32.49,
-        "price": 0.99,
-        "usdc": 32.1651,
-        "ts": 1774692065,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 123.38,
-        "price": 0.99,
-        "usdc": 122.1462,
-        "ts": 1774692065,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 32.49,
-        "price": 0.99,
-        "usdc": 32.1651,
-        "ts": 1774692067,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9.58,
-        "price": 0.99,
-        "usdc": 9.4842,
-        "ts": 1774692069,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.82,
-        "price": 0.99,
-        "usdc": 5.7618,
-        "ts": 1774692071,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1774692075,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 196.24,
-        "price": 0.99,
-        "usdc": 194.2776,
-        "ts": 1774692075,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 500
-  },
-  {
-    "key": "0x5331833f0274e9b02788fd0bf3b47330ab9f5b6fff11e6f52a1dca3ea44d0136-1",
-    "title": "Will the highest temperature in Paris be 10°C on March 28?",
-    "lots": [
-      {
-        "shares": 10,
-        "price": 0.99,
-        "usdc": 9.9,
-        "ts": 1774700913,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.29,
-        "price": 0.99,
-        "usdc": 1.2771,
-        "ts": 1774700919,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4,
-        "price": 0.99,
-        "usdc": 3.96,
-        "ts": 1774700935,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.99,
-        "usdc": 4.95,
-        "ts": 1774700949,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 33,
-        "price": 0.99,
-        "usdc": 32.67,
-        "ts": 1774701035,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 92.575,
-        "price": 0.99,
-        "usdc": 91.64925,
-        "ts": 1774701125,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 145.865
-  },
-  {
-    "key": "0x482c733f5728a1d5fdc3cc7f7bfac66a1916a01f2959cbb0afd0988235c3f535-1",
-    "title": "Will the highest temperature in Warsaw be 13°C on March 28?",
-    "lots": [
-      {
-        "shares": 542.1,
-        "price": 0.9899446596568898,
-        "usdc": 536.649,
-        "ts": 1774701127,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 542.1
-  },
-  {
-    "key": "0x1bc1e6cd10f8f8e00ef6a14d357a5bc421cbd53f0811afbc5121ee10c2e20c26-1",
-    "title": "Will the highest temperature in Warsaw be 14°C on March 28?",
-    "lots": [
-      {
-        "shares": 515.7,
-        "price": 0.9696914872988172,
-        "usdc": 500.0699,
-        "ts": 1774702929,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1774702933,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 27.06,
-        "price": 0.99,
-        "usdc": 26.7894,
-        "ts": 1774702933,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.99,
-        "usdc": 4.95,
-        "ts": 1774702935,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 28,
-        "price": 0.99,
-        "usdc": 27.72,
-        "ts": 1774702939,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.99,
-        "usdc": 4.95,
-        "ts": 1774702947,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15,
-        "price": 0.99,
-        "usdc": 14.85,
-        "ts": 1774702977,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 695.76
   },
   {
     "key": "0x3ec362d909fb5a3b2df7d86414e7ded3f438638c68264e1e719f66e72fad4a53-0",
@@ -3432,421 +460,10 @@
         "shares": 0.0035550000000377224,
         "price": 0.4,
         "usdc": 3.364,
-        "ts": 1774706693,
-        "fee": 0,
-        "maker": false
+        "ts": 1774706693
       }
     ],
     "totalShares": 0.0035550000000377224
-  },
-  {
-    "key": "0x264f37a0c3ca869967adfeddca3aa39afeb2c9606ec385cd54d2112b7fe24c5a-1",
-    "title": "Will the highest temperature in Buenos Aires be 25°C on March 28?",
-    "lots": [
-      {
-        "shares": 880.04,
-        "price": 0.9627510113176674,
-        "usdc": 847.2594,
-        "ts": 1774717431,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 880.04
-  },
-  {
-    "key": "0x010ab3f660f55d4f1ad5fb8b7fd74e61794260f7ee8f2491863cbf4aa0d04def-1",
-    "title": "Will the highest temperature in Tokyo be 20°C on March 29?",
-    "lots": [
-      {
-        "shares": 1865.26,
-        "price": 0.9129202899327707,
-        "usdc": 1702.8337,
-        "ts": 1774760554,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 200,
-        "price": 0.99,
-        "usdc": 198,
-        "ts": 1774760558,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6.93,
-        "price": 0.99,
-        "usdc": 6.8607,
-        "ts": 1774760558,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 174.81,
-        "price": 0.99,
-        "usdc": 173.0619,
-        "ts": 1774760558,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 136.63,
-        "price": 0.9743240869501574,
-        "usdc": 133.1219,
-        "ts": 1774760570,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 24,
-        "price": 0.99,
-        "usdc": 23.76,
-        "ts": 1774760582,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 0.7,
-        "price": 0.99,
-        "usdc": 0.693,
-        "ts": 1774760588,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9.48,
-        "price": 0.98,
-        "usdc": 9.2904,
-        "ts": 1774760632,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9.66,
-        "price": 0.98,
-        "usdc": 9.4668,
-        "ts": 1774760660,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6,
-        "price": 0.98,
-        "usdc": 5.88,
-        "ts": 1774760676,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 16,
-        "price": 0.98,
-        "usdc": 15.68,
-        "ts": 1774760698,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6,
-        "price": 0.98,
-        "usdc": 5.88,
-        "ts": 1774760700,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.98,
-        "usdc": 98,
-        "ts": 1774760736,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2555.47
-  },
-  {
-    "key": "0x61abcb964c0373f28dafa7a28a6a4c423da6ed7afe21db69dfa9fb204b77569b-1",
-    "title": "Will the highest temperature in Warsaw be 15°C on March 29?",
-    "lots": [
-      {
-        "shares": 500.39,
-        "price": 0.998,
-        "usdc": 499.38922,
-        "ts": 1774783904,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 500.39
-  },
-  {
-    "key": "0x20a88dafe2030dec95e878923c753c61b01afae2b11d0e6f828976e204f81256-1",
-    "title": "Will the highest temperature in Paris be 10°C on March 29?",
-    "lots": [
-      {
-        "shares": 1234,
-        "price": 0.9826581847649919,
-        "usdc": 1212.6002,
-        "ts": 1774785502,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1234
-  },
-  {
-    "key": "0x4e85c5ca7d3669130d422170be09cc0fdd6e7fc7fce0cff7397f2dc05074b479-1",
-    "title": "Will the highest temperature in Warsaw be 16°C on March 29?",
-    "lots": [
-      {
-        "shares": 1234,
-        "price": 0.9690042949756889,
-        "usdc": 1195.7513,
-        "ts": 1774787500,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1234
-  },
-  {
-    "key": "0x1bb4ccc9217fb0449a8eb3bc2373dcc39ab095e24b4b5036cc1e9985edf3dd65-1",
-    "title": "Will the highest temperature in Madrid be 12°C on March 29?",
-    "lots": [
-      {
-        "shares": 206.47,
-        "price": 0.9924652491887441,
-        "usdc": 204.9143,
-        "ts": 1774787654,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 206.47
-  },
-  {
-    "key": "0xbdfaee61022089a7a9db9ceaca02e9932dd22d826bffd78965c12d02359be2e4-1",
-    "title": "Will the highest temperature in Paris be 11°C on March 29?",
-    "lots": [
-      {
-        "shares": 673.31,
-        "price": 0.9715576777413079,
-        "usdc": 654.1595,
-        "ts": 1774790890,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 673.31
-  },
-  {
-    "key": "0x14e822ec520b3071f7030864b7b9544aa1d519965dc0f15c8d8328c7c7d76596-1",
-    "title": "Will the highest temperature in Tokyo be 19°C on March 30?",
-    "lots": [
-      {
-        "shares": 1401.59,
-        "price": 0.9708417582888006,
-        "usdc": 1360.7221,
-        "ts": 1774846970,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 19.37,
-        "price": 0.99,
-        "usdc": 19.1763,
-        "ts": 1774847066,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10,
-        "price": 0.99,
-        "usdc": 9.9,
-        "ts": 1774847112,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1430.9599999999998
-  },
-  {
-    "key": "0xf25c669b08ea65e694d460540256fbd5c88b5615427237420a585850cf3a88c8-1",
-    "title": "Will the highest temperature in Istanbul be 10°C on March 30?",
-    "lots": [
-      {
-        "shares": 647.17,
-        "price": 0.9767629834510252,
-        "usdc": 632.1317,
-        "ts": 1774868090,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 647.17
-  },
-  {
-    "key": "0x266cf026cbf8db6c17dc2b176b26151bb266e26fa04c075228269012774ccf95-1",
-    "title": "Will the highest temperature in Warsaw be 9°C on March 30?",
-    "lots": [
-      {
-        "shares": 1234,
-        "price": 0.9894153484602918,
-        "usdc": 1220.93854,
-        "ts": 1774873898,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 616.33,
-        "price": 0.9962174484448266,
-        "usdc": 613.9987,
-        "ts": 1774873908,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 62.66,
-        "price": 0.998,
-        "usdc": 62.53468,
-        "ts": 1774873942,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1912.99
-  },
-  {
-    "key": "0x9d0bc52fa08740676c1174e9f6784c20ec15e06eae6f8714b9ed4119708d7a90-1",
-    "title": "Will the highest temperature in Warsaw be 10°C on March 30?",
-    "lots": [
-      {
-        "shares": 2659.86,
-        "price": 0.969388840014136,
-        "usdc": 2578.4386,
-        "ts": 1774877491,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12,
-        "price": 0.99,
-        "usdc": 11.88,
-        "ts": 1774877493,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 24.15,
-        "price": 0.99,
-        "usdc": 23.9085,
-        "ts": 1774877493,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2696.01
-  },
-  {
-    "key": "0xbd38366826478923a4f17ee2fa8fd02f83215157d2b42cc8bd290be6f599af27-1",
-    "title": "Will the highest temperature in Madrid be 18°C on March 30?",
-    "lots": [
-      {
-        "shares": 470.21,
-        "price": 0.9818245039450458,
-        "usdc": 461.6637,
-        "ts": 1774877659,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 97,
-        "price": 0.99,
-        "usdc": 96.03,
-        "ts": 1774877661,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1774877661,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 667.21
-  },
-  {
-    "key": "0xcaf70553ff7a4dbce55bba14ec4923843a711c9edb8d6c560d27f401851fc125-1",
-    "title": "Will the highest temperature in Madrid be 17°C on March 30?",
-    "lots": [
-      {
-        "shares": 745.13,
-        "price": 0.9923635204595171,
-        "usdc": 739.43983,
-        "ts": 1774877659,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 97,
-        "price": 0.998,
-        "usdc": 96.806,
-        "ts": 1774877661,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 30,
-        "price": 0.998,
-        "usdc": 29.94,
-        "ts": 1774877663,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 872.13
-  },
-  {
-    "key": "0x4c8bf60efe0f0dd3be8558d8df1d97dc149d592d5399fff5c43d0d832eb3129f-1",
-    "title": "Will the highest temperature in Mexico City be 18°C on March 30?",
-    "lots": [
-      {
-        "shares": 565.48,
-        "price": 0.99,
-        "usdc": 559.8252,
-        "ts": 1774889331,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 565.48
-  },
-  {
-    "key": "0xa6ee8b8da192256c8fba5da6a2a2fae2b4bece9608cbe08a1533549e9bd7160e-1",
-    "title": "Will the highest temperature in Buenos Aires be 28°C on March 30?",
-    "lots": [
-      {
-        "shares": 11.83,
-        "price": 0.99,
-        "usdc": 11.7117,
-        "ts": 1774893711,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 523,
-        "price": 0.9823518164435946,
-        "usdc": 513.77,
-        "ts": 1774893711,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 534.83
   },
   {
     "key": "0x1b4294b95dc2be9f9a9b560620b44b1b6a13c076508cf6622882fc7fe2e682a8-0",
@@ -3856,112 +473,10 @@
         "shares": 0.02958300000000591,
         "price": 0.54,
         "usdc": 7.3116,
-        "ts": 1774897439,
-        "fee": 0,
-        "maker": false
+        "ts": 1774897439
       }
     ],
     "totalShares": 0.02958300000000591
-  },
-  {
-    "key": "0x5844afc5970e3f3dab58e0f0853164afb0ec55082f5335bb7efdd083e7a0bd02-1",
-    "title": "Will the highest temperature in Buenos Aires be 29°C on March 30?",
-    "lots": [
-      {
-        "shares": 30,
-        "price": 0.99,
-        "usdc": 29.7,
-        "ts": 1774897431,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1000,
-        "price": 0.99,
-        "usdc": 990,
-        "ts": 1774897433,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1774897435,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 17,
-        "price": 0.99,
-        "usdc": 16.83,
-        "ts": 1774897435,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 75,
-        "price": 0.99,
-        "usdc": 74.25,
-        "ts": 1774897443,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12,
-        "price": 0.99,
-        "usdc": 11.88,
-        "ts": 1774897481,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1234
-  },
-  {
-    "key": "0x3b13c65e852117fc45f08d5869a2923d9ac36f06853cb48b8f5c6d4a448abe97-1",
-    "title": "Will the highest temperature in Istanbul be 13°C on March 31?",
-    "lots": [
-      {
-        "shares": 1475.23,
-        "price": 0.999,
-        "usdc": 1473.75477,
-        "ts": 1774947305,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1475.23
-  },
-  {
-    "key": "0x82972ec6df3521736c2ae5acfdde46e12d6b71ccba16131d80c3e7d6594208d2-1",
-    "title": "Will the highest temperature in Wellington be 15°C on April 1?",
-    "lots": [
-      {
-        "shares": 624.64,
-        "price": 0.9958588787141394,
-        "usdc": 622.05329,
-        "ts": 1774996393,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 624.64
-  },
-  {
-    "key": "0x474aca830389c8829bfff1c82fadab2c5fd7381f5900e4ac441375c63e981951-1",
-    "title": "Will the highest temperature in Wellington be 16°C on April 1?",
-    "lots": [
-      {
-        "shares": 1233.64468,
-        "price": 0.99424113452188,
-        "usdc": 1226.89356,
-        "ts": 1775001793,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1233.64468
   },
   {
     "key": "0x48c6cfac1fdf5e9e4631f336458b24d315d4b81b4e49309f806927afac603d3b-1",
@@ -3971,507 +486,10 @@
         "shares": 0.007010000000008176,
         "price": 0.981,
         "usdc": 116.56242,
-        "ts": 1775014643,
-        "fee": 0,
-        "maker": false
+        "ts": 1775014643
       }
     ],
     "totalShares": 0.007010000000008176
-  },
-  {
-    "key": "0xc2feac0f1bc000799f34a92ca8ba9554f89435e40f292bb91f3d844a6ef40570-1",
-    "title": "Will the highest temperature in Warsaw be 12°C on April 2?",
-    "lots": [
-      {
-        "shares": 491.75804000000005,
-        "price": 0.9962603029378876,
-        "usdc": 490.01063,
-        "ts": 1775127709,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.04,
-        "price": 0.998,
-        "usdc": 5.02992,
-        "ts": 1775127747,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 496.79804000000007
-  },
-  {
-    "key": "0xecacbd07be542e859dda7fb6b8686595eab59a225f5f7f6e021ecbfd9ef19a54-1",
-    "title": "Will the highest temperature in Paris be 12°C on April 2?",
-    "lots": [
-      {
-        "shares": 573.40301,
-        "price": 0.9868590749067587,
-        "usdc": 566.24,
-        "ts": 1775131229,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 573.40301
-  },
-  {
-    "key": "0x7cd6e1c1086baf78d99594522481b612cf44005a24db6456217c13bdb0693a57-1",
-    "title": "Will the highest temperature in Warsaw be 13°C on April 2?",
-    "lots": [
-      {
-        "shares": 427.86677000000003,
-        "price": 0.979769507354658,
-        "usdc": 419.63528,
-        "ts": 1775134895,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 103,
-        "price": 0.998,
-        "usdc": 102.794,
-        "ts": 1775134897,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 29.71,
-        "price": 0.998,
-        "usdc": 29.65058,
-        "ts": 1775134897,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.07,
-        "price": 0.998,
-        "usdc": 10.04986,
-        "ts": 1775134897,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 96.77,
-        "price": 0.998,
-        "usdc": 96.57646,
-        "ts": 1775134899,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 3,
-        "price": 0.998,
-        "usdc": 2.994,
-        "ts": 1775134901,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 96.77,
-        "price": 0.998,
-        "usdc": 96.57646,
-        "ts": 1775134901,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 7,
-        "price": 0.998,
-        "usdc": 6.986,
-        "ts": 1775134905,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.62,
-        "price": 0.998,
-        "usdc": 10.59876,
-        "ts": 1775134907,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 70,
-        "price": 0.998,
-        "usdc": 69.86,
-        "ts": 1775134913,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11.15,
-        "price": 0.998,
-        "usdc": 11.1277,
-        "ts": 1775134913,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6.6,
-        "price": 0.998,
-        "usdc": 6.5868,
-        "ts": 1775134913,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 872.5567700000001
-  },
-  {
-    "key": "0xd7f772464c8f6df6b8eb943c73360ebcec418285fc3aff35802933b11c0dc649-1",
-    "title": "Will the highest temperature in Mexico City be 22°C on April 2?",
-    "lots": [
-      {
-        "shares": 3120.72621,
-        "price": 0.9914556959187203,
-        "usdc": 3095.38417,
-        "ts": 1775155879,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 166.55888,
-        "price": 0.9878649945997839,
-        "usdc": 164.63758,
-        "ts": 1775155921,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 310.25924000000003,
-        "price": 0.9851354955071017,
-        "usdc": 305.87472,
-        "ts": 1775156291,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 3597.5443299999997
-  },
-  {
-    "key": "0x8a6345dd3cffb6e7d0a44794f8bfdd0cfc846b9157b2d93d0c73393af9daa8fe-1",
-    "title": "Will the highest temperature in Buenos Aires be 29°C on April 2?",
-    "lots": [
-      {
-        "shares": 122.58388,
-        "price": 0.8115361616161616,
-        "usdc": 100.4276,
-        "ts": 1775156655,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11.3,
-        "price": 0.87,
-        "usdc": 9.831,
-        "ts": 1775156659,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.38,
-        "price": 0.87,
-        "usdc": 1.2006,
-        "ts": 1775156677,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 135.26388
-  },
-  {
-    "key": "0x54d3f8826feadc616d059764bc54af716533baf9c98dc7fcf744e1cb64bc46ef-1",
-    "title": "Will the highest temperature in Tokyo be 15°C on April 3?",
-    "lots": [
-      {
-        "shares": 5556.2205,
-        "price": 0.99,
-        "usdc": 5503.41,
-        "ts": 1775176359,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 5556.2205
-  },
-  {
-    "key": "0x3b6912b61b6cd85241006e91cc5f88a6704cbe688085d9f6f2e2535a1d3527df-1",
-    "title": "Will the highest temperature in Paris be 12°C on April 3?",
-    "lots": [
-      {
-        "shares": 7,
-        "price": 0.99,
-        "usdc": 6.93,
-        "ts": 1775221101,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.49,
-        "price": 0.99,
-        "usdc": 1.4751,
-        "ts": 1775221101,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 41,
-        "price": 0.99,
-        "usdc": 40.59,
-        "ts": 1775221101,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.31,
-        "price": 0.99,
-        "usdc": 1.2969,
-        "ts": 1775221101,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 30,
-        "price": 0.99,
-        "usdc": 29.7,
-        "ts": 1775221105,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.6,
-        "price": 0.99,
-        "usdc": 2.574,
-        "ts": 1775221111,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.25,
-        "price": 0.99,
-        "usdc": 1.2375,
-        "ts": 1775221111,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.29,
-        "price": 0.99,
-        "usdc": 1.2771,
-        "ts": 1775221111,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.95,
-        "price": 0.99,
-        "usdc": 4.9005,
-        "ts": 1775221125,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1775221135,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.99,
-        "usdc": 4.95,
-        "ts": 1775221139,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1775221143,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11,
-        "price": 0.99,
-        "usdc": 10.89,
-        "ts": 1775221147,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1775221153,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 500,
-        "price": 0.99,
-        "usdc": 495,
-        "ts": 1775221169,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8.91,
-        "price": 0.99,
-        "usdc": 8.8209,
-        "ts": 1775221175,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14.84,
-        "price": 0.99,
-        "usdc": 14.6916,
-        "ts": 1775221189,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10,
-        "price": 0.99,
-        "usdc": 9.9,
-        "ts": 1775221209,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9.81,
-        "price": 0.99,
-        "usdc": 9.7119,
-        "ts": 1775221317,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9.87,
-        "price": 0.99,
-        "usdc": 9.7713,
-        "ts": 1775221331,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 105,
-        "price": 0.99,
-        "usdc": 103.95,
-        "ts": 1775221371,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 68.68,
-        "price": 0.99,
-        "usdc": 67.9932,
-        "ts": 1775221423,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1134
-  },
-  {
-    "key": "0x0dbf6858d030a02a5c8ad34ac306f8fced049964b70d11315884ce04c3c8e63a-1",
-    "title": "Will the highest temperature in Warsaw be 13°C on April 3?",
-    "lots": [
-      {
-        "shares": 2546.9253400000002,
-        "price": 0.9893679893889211,
-        "usdc": 2521.18666,
-        "ts": 1775223087,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 154,
-        "price": 0.997,
-        "usdc": 153.538,
-        "ts": 1775223089,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.23,
-        "price": 0.997,
-        "usdc": 2.22331,
-        "ts": 1775223093,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 873.333332,
-        "price": 0.9970000011404581,
-        "usdc": 870.713333,
-        "ts": 1775223097,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 75.22,
-        "price": 0.997,
-        "usdc": 74.99434,
-        "ts": 1775223099,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 22.6,
-        "price": 0.997,
-        "usdc": 22.5322,
-        "ts": 1775223099,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8,
-        "price": 0.997,
-        "usdc": 7.976,
-        "ts": 1775223099,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 29.534290000000002,
-        "price": 0.9893610829103215,
-        "usdc": 29.23562,
-        "ts": 1775223135,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 3711.842962
-  },
-  {
-    "key": "0xb19c2426c2d8ba0caa27ae95d5ca40b17701b65628b24406db6d879bbfd174c3-1",
-    "title": "Will the highest temperature in Sao Paulo be 31°C on April 3?",
-    "lots": [
-      {
-        "shares": 969.93472,
-        "price": 0.9829971774691993,
-        "usdc": 954.25434,
-        "ts": 1775242567,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 7.55,
-        "price": 0.972,
-        "usdc": 7.3386,
-        "ts": 1775245025,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 977.4847199999999
   },
   {
     "key": "0x79fb75e737bbfcdff0b4e39728a7cc479b274c6bdf1f0a8bcc357add39147ac7-0",
@@ -4481,43 +499,22 @@
         "shares": 151.04293,
         "price": 0.9739394340121661,
         "usdc": 147.2986,
-        "ts": 1775242577,
-        "fee": 0,
-        "maker": false
+        "ts": 1775242577
       },
       {
         "shares": 6.35,
         "price": 0.991,
         "usdc": 6.29285,
-        "ts": 1775254273,
-        "fee": 0,
-        "maker": false
+        "ts": 1775254273
       },
       {
         "shares": 5.22,
         "price": 0.991,
         "usdc": 5.17302,
-        "ts": 1775254871,
-        "fee": 0,
-        "maker": false
+        "ts": 1775254871
       }
     ],
     "totalShares": 162.61293
-  },
-  {
-    "key": "0xce6aeb2ab4edd78ea1a7daff9bff065c89dec79d1302b494ececba4471ef985e-1",
-    "title": "Will the highest temperature in Wellington be 18°C on April 4?",
-    "lots": [
-      {
-        "shares": 132.12679,
-        "price": 0.998,
-        "usdc": 131.87572,
-        "ts": 1775250191,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 132.12679
   },
   {
     "key": "0x13c09a290b0ae9f72f6229f3d6546ba3daab9cb0e3a52f90f9f8e90f20e63f5e-0",
@@ -4527,127 +524,10 @@
         "shares": 151.88,
         "price": 0.9186885245901639,
         "usdc": 140.1,
-        "ts": 1775256833,
-        "fee": 0,
-        "maker": false
+        "ts": 1775256833
       }
     ],
     "totalShares": 151.88
-  },
-  {
-    "key": "0xcab6146084d2e7e90740b72c34efdc6a5ae27a45a742d246bc37c97df3b0ac3b-1",
-    "title": "Will the highest temperature in Mexico City be 28°C on April 3?",
-    "lots": [
-      {
-        "shares": 1.03,
-        "price": 0.055,
-        "usdc": 0.05665,
-        "ts": 1775252657,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1.03
-  },
-  {
-    "key": "0xd6b9ead4e78ff448e50aa2f57ab7f827cfaa5ed0105be484772576a34c9cc2bd-1",
-    "title": "Will the highest temperature in Wellington be 19°C on April 4?",
-    "lots": [
-      {
-        "shares": 704.3876300000001,
-        "price": 0.99,
-        "usdc": 697.6926,
-        "ts": 1775255659,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 704.3876300000001
-  },
-  {
-    "key": "0x62592fea2ca6b48142cf2f6b22daa6da27f5024e8d407da527bdbdba36a4782b-1",
-    "title": "Will the highest temperature in Jakarta be 32°C on April 4?",
-    "lots": [
-      {
-        "shares": 106.88411,
-        "price": 0.6713186712064048,
-        "usdc": 72.9522,
-        "ts": 1775275343,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.42,
-        "price": 0.71,
-        "usdc": 1.0082,
-        "ts": 1775275419,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 13,
-        "price": 0.71,
-        "usdc": 9.23,
-        "ts": 1775275421,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 3.41,
-        "price": 0.71,
-        "usdc": 2.4211,
-        "ts": 1775275427,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 698.40841,
-        "price": 0.9805006508460999,
-        "usdc": 685.4582,
-        "ts": 1775275497,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 823.12252
-  },
-  {
-    "key": "0x4625b0ecfc750d75d322c46bbeb97d91f33f424371cc64710f628f9e1ae5d51d-1",
-    "title": "Will the highest temperature in Paris be 14°C on April 4?",
-    "lots": [
-      {
-        "shares": 1233.72905,
-        "price": 0.9956085332252836,
-        "usdc": 1228.58093,
-        "ts": 1775309381,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1233.72905
-  },
-  {
-    "key": "0x4e9383aaa971711d91b4d6c8a2cfb106d69b5ebf4e427d8a629b32e36d4e9091-1",
-    "title": "Will the highest temperature in Paris be 16°C on April 4?",
-    "lots": [
-      {
-        "shares": 498.94097,
-        "price": 0.9944281477919371,
-        "usdc": 496.2992,
-        "ts": 1775311167,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 20.61,
-        "price": 0.998,
-        "usdc": 20.56878,
-        "ts": 1775311171,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 519.55097
   },
   {
     "key": "0xe65f8c8448cd76ae5f55014eaeac38b7a07c286febb91452161c298d84780ea3-0",
@@ -4657,33 +537,25 @@
         "shares": 699.96601,
         "price": 0.9767690287964839,
         "usdc": 684.5002,
-        "ts": 1775311167,
-        "fee": 0,
-        "maker": false
+        "ts": 1775311167
       },
       {
         "shares": 50,
         "price": 0.99,
         "usdc": 49.5,
-        "ts": 1775311171,
-        "fee": 0,
-        "maker": false
+        "ts": 1775311171
       },
       {
         "shares": 1.12,
         "price": 0.99,
         "usdc": 1.1088,
-        "ts": 1775311179,
-        "fee": 0,
-        "maker": false
+        "ts": 1775311179
       },
       {
         "shares": 482.1,
         "price": 0.99,
         "usdc": 477.279,
-        "ts": 1775311219,
-        "fee": 0,
-        "maker": false
+        "ts": 1775311219
       }
     ],
     "totalShares": 1233.18601
@@ -4696,41 +568,31 @@
         "shares": 190.2555,
         "price": 0.4138265306122449,
         "usdc": 81.11,
-        "ts": 1775318669,
-        "fee": 0,
-        "maker": false
+        "ts": 1775318669
       },
       {
         "shares": 2.81,
         "price": 0.43,
         "usdc": 1.2083,
-        "ts": 1775318671,
-        "fee": 0,
-        "maker": false
+        "ts": 1775318671
       },
       {
         "shares": 20,
         "price": 0.43,
         "usdc": 8.6,
-        "ts": 1775318677,
-        "fee": 0,
-        "maker": false
+        "ts": 1775318677
       },
       {
         "shares": 9.76,
         "price": 0.43,
         "usdc": 4.1968,
-        "ts": 1775318679,
-        "fee": 0,
-        "maker": false
+        "ts": 1775318679
       },
       {
         "shares": 23.43,
         "price": 0.43,
         "usdc": 10.0749,
-        "ts": 1775318697,
-        "fee": 0,
-        "maker": false
+        "ts": 1775318697
       }
     ],
     "totalShares": 246.2555
@@ -4743,42 +605,10 @@
         "shares": 0.0028799999999993275,
         "price": 0.28,
         "usdc": 2.0776,
-        "ts": 1775319775,
-        "fee": 0,
-        "maker": false
+        "ts": 1775319775
       }
     ],
     "totalShares": 0.0028799999999993275
-  },
-  {
-    "key": "0x78fd62852961097d9e0d69ed9d4595362bc64e80384db6f00adcfc2df85edbd2-1",
-    "title": "Will the highest temperature in Buenos Aires be 19°C on April 4?",
-    "lots": [
-      {
-        "shares": 744.2143199999999,
-        "price": 0.9649726365489859,
-        "usdc": 719.4064,
-        "ts": 1775325849,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 744.2143199999999
-  },
-  {
-    "key": "0xb19f433fb270e86ffe271014298efa0bab9c958ebfb92bf2030b6af7b65c3727-1",
-    "title": "Will the highest temperature in Mexico City be 24°C on April 4?",
-    "lots": [
-      {
-        "shares": 644.54931,
-        "price": 0.9813782531194296,
-        "usdc": 633.13618,
-        "ts": 1775328289,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 644.54931
   },
   {
     "key": "0x5dee4530652cc17d1097d92b1fda5f90e0e251779d408634ec742444ff9c1539-0",
@@ -4788,72 +618,10 @@
         "shares": 39.150999999999996,
         "price": 0.49750996015936255,
         "usdc": 19.98,
-        "ts": 1775329317,
-        "fee": 0,
-        "maker": false
+        "ts": 1775329317
       }
     ],
     "totalShares": 39.150999999999996
-  },
-  {
-    "key": "0x348046631f3b91d8233bc696c3d13f3881090b4608f07b64f89b845c8aaa1aa4-1",
-    "title": "Will the highest temperature in Amsterdam be 12°C on April 5?",
-    "lots": [
-      {
-        "shares": 589.61836,
-        "price": 0.9890957555005594,
-        "usdc": 583.50715,
-        "ts": 1775341321,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 589.61836
-  },
-  {
-    "key": "0x21c1aa05a0226290955056b3771199e1adfb38b5e615da55a12cd33ce0b50622-1",
-    "title": "Will the highest temperature in Amsterdam be 10°C on April 5?",
-    "lots": [
-      {
-        "shares": 565.93764,
-        "price": 0.9977962897526502,
-        "usdc": 564.7527,
-        "ts": 1775341341,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 565.93764
-  },
-  {
-    "key": "0x4b3268e93a342763f786d215e9afe2da394f86ae543bcc1a5d1a61bb2b95646b-1",
-    "title": "Will the highest temperature in Amsterdam be 11°C on April 5?",
-    "lots": [
-      {
-        "shares": 463.58254999999997,
-        "price": 0.9979530228846278,
-        "usdc": 462.68096,
-        "ts": 1775341381,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 463.58254999999997
-  },
-  {
-    "key": "0x94dca0f684cbe67c808f566146a239beb5d85b1bb07e017d29d9702e0e615aab-1",
-    "title": "Will the highest temperature in Amsterdam be 13°C on April 5?",
-    "lots": [
-      {
-        "shares": 600.80514,
-        "price": 0.9815463615804177,
-        "usdc": 590.26272,
-        "ts": 1775341603,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 600.80514
   },
   {
     "key": "0x059865196e1370d2e529044608216d54ce4c48f8ee618519871e53ae33d603c6-1",
@@ -4863,9 +631,7 @@
         "shares": 0.008850000000165892,
         "price": 0.9934184857273699,
         "usdc": 1301.5769,
-        "ts": 1775342059,
-        "fee": 0,
-        "maker": false
+        "ts": 1775342059
       }
     ],
     "totalShares": 0.008850000000165892
@@ -4878,66 +644,16 @@
         "shares": 253.59897,
         "price": 0.5076126923076923,
         "usdc": 131.9793,
-        "ts": 1775347569,
-        "fee": 0,
-        "maker": false
+        "ts": 1775347569
       },
       {
         "shares": 166.6,
         "price": 0.6,
         "usdc": 102,
-        "ts": 1775347895,
-        "fee": 0,
-        "maker": false
+        "ts": 1775347895
       }
     ],
     "totalShares": 420.19897000000003
-  },
-  {
-    "key": "0xf0a0672d6dbdb46dd73346b312cf5b12c943cd8b85da7bd67bc69e46bc4dd8ed-1",
-    "title": "Will the highest temperature in Madrid be 23°C on April 5?",
-    "lots": [
-      {
-        "shares": 604.86852,
-        "price": 0.9959837848559481,
-        "usdc": 602.56023,
-        "ts": 1775392453,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.44,
-        "price": 0.998,
-        "usdc": 1.43712,
-        "ts": 1775392459,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 606.30852
-  },
-  {
-    "key": "0xd44a653ed00a3bf34a309957664fcdf716105c749b1f589010620b8005ebff2b-1",
-    "title": "Will the highest temperature in Warsaw be 19°C on April 5?",
-    "lots": [
-      {
-        "shares": 598.47618,
-        "price": 0.9871814781418028,
-        "usdc": 591.1835,
-        "ts": 1775394109,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 28.21,
-        "price": 0.99,
-        "usdc": 27.9279,
-        "ts": 1775394355,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 626.68618
   },
   {
     "key": "0x1abbd6306fd2618bfa1b454c5334440819a5afd37a82d01feafddf4a5455672e-1",
@@ -4947,35 +663,10 @@
         "shares": 0.00911999999999935,
         "price": 0.7563768844221106,
         "usdc": 18.06228,
-        "ts": 1775398661,
-        "fee": 0,
-        "maker": false
+        "ts": 1775398661
       }
     ],
     "totalShares": 0.00911999999999935
-  },
-  {
-    "key": "0xf2b60b7a72b502e866306fa3d27f629d309fdc51e00ff951beb508624e2281a5-1",
-    "title": "Will the highest temperature in Buenos Aires be 18°C on April 5?",
-    "lots": [
-      {
-        "shares": 9.4,
-        "price": 0.998,
-        "usdc": 9.3812,
-        "ts": 1775404943,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 111.67,
-        "price": 0.998,
-        "usdc": 111.44666,
-        "ts": 1775404965,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 121.07000000000001
   },
   {
     "key": "0xf776238b6cfbc683512c9d929c1890b9a4945841a2ff5d0814a89b204d948263-0",
@@ -4985,72 +676,10 @@
         "shares": 31.81,
         "price": 0.39,
         "usdc": 12.4059,
-        "ts": 1775405703,
-        "fee": 0,
-        "maker": false
+        "ts": 1775405703
       }
     ],
     "totalShares": 31.81
-  },
-  {
-    "key": "0x455552112d507a360dae46fed234d4902660883699166d79a2c5494f270caf6d-1",
-    "title": "Will the highest temperature in Mexico City be 23°C on April 5?",
-    "lots": [
-      {
-        "shares": 412.36337,
-        "price": 0.9807815679813936,
-        "usdc": 404.8274,
-        "ts": 1775418605,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 412.36337
-  },
-  {
-    "key": "0xb85affedcfe763d940c70670098f7603d57adf1f3f362ff7b7f5ce08e8700042-1",
-    "title": "Will the highest temperature in Wellington be 18°C on April 6?",
-    "lots": [
-      {
-        "shares": 705.3005099999999,
-        "price": 0.9966120041960818,
-        "usdc": 703.03004,
-        "ts": 1775428451,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 705.3005099999999
-  },
-  {
-    "key": "0xeafc6df14219079518571f8e7626598eafd6e7c6d2867a506a150dfd598b1fc6-1",
-    "title": "Will the highest temperature in Wellington be 20°C on April 6?",
-    "lots": [
-      {
-        "shares": 358.47765,
-        "price": 0.9887168785547006,
-        "usdc": 354.63297,
-        "ts": 1775431993,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 358.47765
-  },
-  {
-    "key": "0xe19ae1e35bcb4277bc9a1f1aa9fe3c2f722d56b079e75f2ee137e61c516841e6-1",
-    "title": "Will the highest temperature in Wellington be 21°C on April 6?",
-    "lots": [
-      {
-        "shares": 241.04942,
-        "price": 0.99,
-        "usdc": 238.7583,
-        "ts": 1775439193,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 241.04942
   },
   {
     "key": "0x50a801e3ad973e1d981954204bafe2edd3cd8179440ce49d1fa26532b3640276-0",
@@ -5060,35 +689,10 @@
         "shares": 0.007569999999979871,
         "price": 0.039,
         "usdc": 6.64131,
-        "ts": 1775440385,
-        "fee": 0,
-        "maker": false
+        "ts": 1775440385
       }
     ],
     "totalShares": 0.007569999999979871
-  },
-  {
-    "key": "0x17cc19697ec44e485281520f2dcdfc45448f0badb62ec32fb051504beb3927df-1",
-    "title": "Will the highest temperature in Jakarta be 31°C on April 6?",
-    "lots": [
-      {
-        "shares": 648.47591,
-        "price": 0.9810784328829593,
-        "usdc": 636.8082,
-        "ts": 1775444151,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 99.91,
-        "price": 0.99,
-        "usdc": 98.9109,
-        "ts": 1775444165,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 748.38591
   },
   {
     "key": "0x0d5d296e18362e96fc00a77d1b6e43f81f78debbdbe662f4fa9ad89659ede591-0",
@@ -5098,113 +702,10 @@
         "shares": 0.0026600000000200907,
         "price": 0.40320714384222867,
         "usdc": 58.4731,
-        "ts": 1775449717,
-        "fee": 0,
-        "maker": false
+        "ts": 1775449717
       }
     ],
     "totalShares": 0.0026600000000200907
-  },
-  {
-    "key": "0xc8ccc05dcb042dd4b6830275d67bdc53c00d5f8a772a6019097b7879dffb2be0-1",
-    "title": "Will the highest temperature in Tokyo be 21°C on April 6?",
-    "lots": [
-      {
-        "shares": 706.06685,
-        "price": 0.9817986161225962,
-        "usdc": 693.8469,
-        "ts": 1775449967,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 24,
-        "price": 0.99,
-        "usdc": 23.76,
-        "ts": 1775449989,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6.95,
-        "price": 0.99,
-        "usdc": 6.8805,
-        "ts": 1775450011,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 737.0168500000001
-  },
-  {
-    "key": "0x489864cd02d02885a61b0de9cc5e8231e3a8aa6177a4da9ab7023fd4c9fa73b2-1",
-    "title": "Will the highest temperature in Jakarta be 32°C on April 6?",
-    "lots": [
-      {
-        "shares": 640.20919,
-        "price": 0.9787542323955749,
-        "usdc": 627.2738,
-        "ts": 1775451415,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 20.173189999999998,
-        "price": 0.71,
-        "usdc": 14.5337,
-        "ts": 1775451613,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 160.84452,
-        "price": 0.9844088960675902,
-        "usdc": 158.4603,
-        "ts": 1775451805,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 821.2269
-  },
-  {
-    "key": "0x4919f631d39fd2cf5dcf96a3aec9ec94706380ac92d0f91a33d3e7c5ecb4b9e0-1",
-    "title": "Will the highest temperature in Jakarta be 33°C on April 6?",
-    "lots": [
-      {
-        "shares": 556.57489,
-        "price": 0.9807897901671124,
-        "usdc": 546.4078,
-        "ts": 1775453461,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 22,
-        "price": 0.99,
-        "usdc": 21.78,
-        "ts": 1775453463,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 16.98151,
-        "price": 0.99,
-        "usdc": 16.8201,
-        "ts": 1775453607,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9.985,
-        "price": 0.97,
-        "usdc": 9.7,
-        "ts": 1775453645,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 605.5414
   },
   {
     "key": "0x33485e5d2953c5a0a723b062c5f997a6bfffb883c11dca4a99705f4e0865c337-1",
@@ -5214,118 +715,10 @@
         "shares": 0.009639999999997428,
         "price": 0.8943551027833364,
         "usdc": 49.1627,
-        "ts": 1775485259,
-        "fee": 0,
-        "maker": false
+        "ts": 1775485259
       }
     ],
     "totalShares": 0.009639999999997428
-  },
-  {
-    "key": "0x7107fb5f3c62ccf980621ba9b1dc1f04410bc7f600fa824ba931e122c86e45da-1",
-    "title": "Will the highest temperature in Paris be 17°C on April 6?",
-    "lots": [
-      {
-        "shares": 1225.55511,
-        "price": 0.863129659643436,
-        "usdc": 1065.102,
-        "ts": 1775485697,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1225.55511
-  },
-  {
-    "key": "0x8f3b35ced673c90cb62b14dae4e2ff9603411f589399fbf7cb658bf414b0b701-1",
-    "title": "Will the highest temperature in Mexico City be 23°C on April 6?",
-    "lots": [
-      {
-        "shares": 756.30049,
-        "price": 0.9483154854535384,
-        "usdc": 719.0697,
-        "ts": 1775505039,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 756.30049
-  },
-  {
-    "key": "0x51cce234eb10958bf9e4cdb5debf687ffe573b906af846acc35cedec3f334ffa-1",
-    "title": "Will the highest temperature in Mexico City be 24°C on April 6?",
-    "lots": [
-      {
-        "shares": 569.89454,
-        "price": 0.9584833998739231,
-        "usdc": 547.3707,
-        "ts": 1775508353,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 569.89454
-  },
-  {
-    "key": "0x11925a8a33f9d00440ae4a466cdd0cfdf2c20e7d2a62c455a78c48b4210c9dba-1",
-    "title": "Will the highest temperature in Mexico City be 25°C on April 6?",
-    "lots": [
-      {
-        "shares": 19.21,
-        "price": 0.21,
-        "usdc": 4.2,
-        "ts": 1775515579,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 130,
-        "price": 0.86,
-        "usdc": 111.8,
-        "ts": 1775515583,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 149.21
-  },
-  {
-    "key": "0xeda334edd50a05c6f1063134835e65316170848f7c782f6e6defe35168deaf7c-1",
-    "title": "Will the highest temperature in Wellington be 19°C on April 7?",
-    "lots": [
-      {
-        "shares": 1078.2801299999999,
-        "price": 0.9711090624536969,
-        "usdc": 1048.64241,
-        "ts": 1775521991,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 20,
-        "price": 0.998,
-        "usdc": 19.96,
-        "ts": 1775521993,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1098.2801299999999
-  },
-  {
-    "key": "0xd5437502ffbecb95195eac82c75e98bcc46a8bb5f8f3413d0dabb9e3ed831978-1",
-    "title": "Will the highest temperature in Tokyo be 19°C on April 7?",
-    "lots": [
-      {
-        "shares": 0.00683000000000078,
-        "price": 0.06964,
-        "usdc": 3.482,
-        "ts": 1775546265,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 0.00683000000000078
   },
   {
     "key": "0xd5437502ffbecb95195eac82c75e98bcc46a8bb5f8f3413d0dabb9e3ed831978-0",
@@ -5335,127 +728,22 @@
         "shares": 60,
         "price": 0.95,
         "usdc": 57,
-        "ts": 1775548619,
-        "fee": 0,
-        "maker": false
+        "ts": 1775548619
       },
       {
         "shares": 22.497,
         "price": 0.95,
         "usdc": 21.37215,
-        "ts": 1775548619,
-        "fee": 0,
-        "maker": false
+        "ts": 1775548619
       },
       {
         "shares": 697.2379,
         "price": 0.9495822603719599,
         "usdc": 663.758,
-        "ts": 1775548619,
-        "fee": 0,
-        "maker": false
+        "ts": 1775548619
       }
     ],
     "totalShares": 779.7348999999999
-  },
-  {
-    "key": "0x3001a27a8a4b406e30284ebdceac0c651decb015a949d9f0161ba8f8bc8c85de-1",
-    "title": "Will the highest temperature in Paris be 21°C on April 7?",
-    "lots": [
-      {
-        "shares": 589.58104,
-        "price": 0.998,
-        "usdc": 588.46072,
-        "ts": 1775566737,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 589.58104
-  },
-  {
-    "key": "0x6840fa3eb12a65cfc07a31af4c6f533a79fa5ee1349a9059e09c879bf44968b3-1",
-    "title": "Will the highest temperature in Madrid be 19°C on April 7?",
-    "lots": [
-      {
-        "shares": 53.83462,
-        "price": 0.998,
-        "usdc": 53.73232,
-        "ts": 1775568853,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.44,
-        "price": 0.998,
-        "usdc": 5.42912,
-        "ts": 1775568857,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 59.27462
-  },
-  {
-    "key": "0x04a1893322681eb02108dddb0dbaf7b596b1fd1a12cfba2458e368c6dc374ff9-1",
-    "title": "Will the highest temperature in Madrid be 20°C on April 7?",
-    "lots": [
-      {
-        "shares": 3.0597,
-        "price": 0.998,
-        "usdc": 3.05388,
-        "ts": 1775570657,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 30.32,
-        "price": 0.998,
-        "usdc": 30.25936,
-        "ts": 1775570657,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1200.62,
-        "price": 0.998,
-        "usdc": 1198.21876,
-        "ts": 1775570673,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1233.9996999999998
-  },
-  {
-    "key": "0x378becd24e9e074822e12b6bfbb369ebe2206da7783ace06361c9d4790c51499-1",
-    "title": "Will the highest temperature in Amsterdam be 17°C on April 7?",
-    "lots": [
-      {
-        "shares": 554.75564,
-        "price": 0.896907806251457,
-        "usdc": 500.1427,
-        "ts": 1775577249,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 554.75564
-  },
-  {
-    "key": "0xf2104d0b39fc9b163eb2898e6a4b4e8bdc179c5c2344d633bf96c1b5cb089fd3-1",
-    "title": "Will the highest temperature in Panama City be 30°C on April 7?",
-    "lots": [
-      {
-        "shares": 378.6736,
-        "price": 0.9927982365829836,
-        "usdc": 376.0819,
-        "ts": 1775577489,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 378.6736
   },
   {
     "key": "0xa83efa3e7150b320f3004d971fa43dec8f3c61730995e815d981926b4f8cd814-1",
@@ -5465,197 +753,10 @@
         "shares": 0.0018000000000029104,
         "price": 0.71,
         "usdc": 79.7259,
-        "ts": 1775580747,
-        "fee": 0,
-        "maker": false
+        "ts": 1775580747
       }
     ],
     "totalShares": 0.0018000000000029104
-  },
-  {
-    "key": "0x051806e2798a88d048b04839206cd9465c95ca678d4c6f7e5fa162e3bfc85632-1",
-    "title": "Will the highest temperature in Mexico City be 24°C on April 7?",
-    "lots": [
-      {
-        "shares": 60.38575,
-        "price": 0.4887042117153461,
-        "usdc": 30.285,
-        "ts": 1775598131,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.53,
-        "price": 0.6,
-        "usdc": 2.718,
-        "ts": 1775598133,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10,
-        "price": 0.6,
-        "usdc": 6,
-        "ts": 1775598137,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10,
-        "price": 0.6,
-        "usdc": 6,
-        "ts": 1775598137,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 84.91575
-  },
-  {
-    "key": "0xfdbca59ec72219e400d6f264aaedcd60f46edb50cec5c959db573327e9986c75-1",
-    "title": "Will the highest temperature in Wellington be 17°C on April 8?",
-    "lots": [
-      {
-        "shares": 1598.09505,
-        "price": 0.9886809756097561,
-        "usdc": 1580.90088,
-        "ts": 1775601199,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1598.09505
-  },
-  {
-    "key": "0x2fe500507c6c6fd135527dce94e1d29483136a35f469b4da43db08377286de48-1",
-    "title": "Will the highest temperature in Tokyo be 14°C on April 8?",
-    "lots": [
-      {
-        "shares": 944.87129,
-        "price": 0.9979107908187561,
-        "usdc": 942.99576,
-        "ts": 1775611999,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 944.87129
-  },
-  {
-    "key": "0x8e228b111cb806a4aa7e4672fd8e4f1a73056fb6583d7e1b927c06bdea36351b-1",
-    "title": "Will the highest temperature in Tokyo be 15°C on April 8?",
-    "lots": [
-      {
-        "shares": 404.9535,
-        "price": 0.9977037037037036,
-        "usdc": 404.07,
-        "ts": 1775615647,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 404.9535
-  },
-  {
-    "key": "0x555fc14337e6348acaec86c4a083e10a4af1839c9b9afd5c56ec5d2cfb0c5746-1",
-    "title": "Will the highest temperature in Jakarta be 30°C on April 8?",
-    "lots": [
-      {
-        "shares": 1005.64939,
-        "price": 0.9934270860255671,
-        "usdc": 999.36778,
-        "ts": 1775615703,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1005.64939
-  },
-  {
-    "key": "0xf12b421554ea98a08a35ca1d01f7859e597bc0d3e59e72c459356556b7f783bf-1",
-    "title": "Will the highest temperature in Warsaw be 8°C on April 8?",
-    "lots": [
-      {
-        "shares": 30,
-        "price": 0.99,
-        "usdc": 29.7,
-        "ts": 1775653299,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.64,
-        "price": 0.99,
-        "usdc": 5.5836,
-        "ts": 1775653301,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.64,
-        "price": 0.99,
-        "usdc": 5.5836,
-        "ts": 1775653301,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.64,
-        "price": 0.99,
-        "usdc": 5.5836,
-        "ts": 1775653301,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 35.19,
-        "price": 0.99,
-        "usdc": 34.8381,
-        "ts": 1775653307,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 30.28,
-        "price": 0.99,
-        "usdc": 29.9772,
-        "ts": 1775653311,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.33,
-        "price": 0.99,
-        "usdc": 5.2767,
-        "ts": 1775653349,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.3,
-        "price": 0.99,
-        "usdc": 5.247,
-        "ts": 1775653379,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 123.02
-  },
-  {
-    "key": "0xb2409d10b0bc8bd6d03af2b9072ab502a2fe972edbc727c256a9e6047fac12f5-1",
-    "title": "Will the highest temperature in Wellington be 17°C on April 9?",
-    "lots": [
-      {
-        "shares": 1629.73477,
-        "price": 0.9988313627801673,
-        "usdc": 1627.92532,
-        "ts": 1775658785,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1629.73477
   },
   {
     "key": "0x1ac635f57b440a09bd92895b3848f310e03fa038842d2b7a6c018cbb4d97a2f9-0",
@@ -5665,128 +766,10 @@
         "shares": 0.0003200000000020964,
         "price": 0.5408768267223382,
         "usdc": 20.7264,
-        "ts": 1775663903,
-        "fee": 0,
-        "maker": false
+        "ts": 1775663903
       }
     ],
     "totalShares": 0.0003200000000020964
-  },
-  {
-    "key": "0xaf184faf7018a0a5ea71b906bc1d98de8265f1b730b51f11f900b354173bb78b-1",
-    "title": "Will the highest temperature in Mexico City be 23°C on April 8?",
-    "lots": [
-      {
-        "shares": 628.07664,
-        "price": 0.9970272378496267,
-        "usdc": 626.3026,
-        "ts": 1775671077,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 628.07664
-  },
-  {
-    "key": "0x5c1d7dbe1ef073fcdf57be50fd50efd03bdabb946b4015f6f8c1f9fcea9076a2-1",
-    "title": "Will the highest temperature in Buenos Aires be 20°C on April 8?",
-    "lots": [
-      {
-        "shares": 450.80188,
-        "price": 0.9885549594289008,
-        "usdc": 445.8976,
-        "ts": 1775671333,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 24.96,
-        "price": 0.99,
-        "usdc": 24.7104,
-        "ts": 1775671335,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 350,
-        "price": 0.99,
-        "usdc": 346.5,
-        "ts": 1775671337,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 396,
-        "price": 0.99,
-        "usdc": 392.04,
-        "ts": 1775671337,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.41,
-        "price": 0.99,
-        "usdc": 10.3059,
-        "ts": 1775671339,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.57,
-        "price": 0.99,
-        "usdc": 1.5543,
-        "ts": 1775671341,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1233.74188
-  },
-  {
-    "key": "0xe4fa5f4dbbf6db1aca5f359c886029a2f9a10fa05caaf5fca88161907bc3f155-1",
-    "title": "Will the highest temperature in Mexico City be 24°C on April 8?",
-    "lots": [
-      {
-        "shares": 689.61292,
-        "price": 0.9826983092102404,
-        "usdc": 678.2682,
-        "ts": 1775674207,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1775674241,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.89,
-        "price": 0.99,
-        "usdc": 2.8611,
-        "ts": 1775674241,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 792.50292
-  },
-  {
-    "key": "0xf927494cb10a5af6e1e2914b342bd52d18429e727e63bcc3012da2b47d8f3baa-1",
-    "title": "Will the highest temperature in Mexico City be 25°C on April 8?",
-    "lots": [
-      {
-        "shares": 883.28104,
-        "price": 0.8937168918918919,
-        "usdc": 793.6206,
-        "ts": 1775674207,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 883.28104
   },
   {
     "key": "0xc871a4c5b762308beb88878afa928c91b3f0a13da18d15e9506381c31c584253-0",
@@ -5796,50 +779,10 @@
         "shares": 884.20266,
         "price": 0.9144743243243243,
         "usdc": 812.0532,
-        "ts": 1775674207,
-        "fee": 0,
-        "maker": false
+        "ts": 1775674207
       }
     ],
     "totalShares": 884.20266
-  },
-  {
-    "key": "0x129b9fbc8047ac4d5ecffb5b43b3449c3e3ed30bf4a1bd8a5caf5a4094b86f2d-1",
-    "title": "Will the highest temperature in Wellington be 19°C on April 9?",
-    "lots": [
-      {
-        "shares": 558.9316200000001,
-        "price": 0.9896860269661314,
-        "usdc": 553.45222,
-        "ts": 1775692871,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 558.9316200000001
-  },
-  {
-    "key": "0xadd1459dd5fe8dc75d1d598f6b19817d4b0c19120ddfc663d316072ce6c6678d-1",
-    "title": "Will the highest temperature in Jakarta be 29°C on April 9?",
-    "lots": [
-      {
-        "shares": 141.48922,
-        "price": 0.99,
-        "usdc": 140.1444,
-        "ts": 1775701895,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 802.1136700000001,
-        "price": 0.9975983470662295,
-        "usdc": 800.28337,
-        "ts": 1775701997,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 943.6028900000001
   },
   {
     "key": "0x41d49016f888ef8030b8557339963f4b64a3fd45b8a01fe0c2eee7f119e34092-0",
@@ -5849,9 +792,7 @@
         "shares": 0.00633999999998025,
         "price": 0.44180363470110867,
         "usdc": 77.3068,
-        "ts": 1775709457,
-        "fee": 0,
-        "maker": false
+        "ts": 1775709457
       }
     ],
     "totalShares": 0.00633999999998025
@@ -5864,35 +805,10 @@
         "shares": 0.00536599999999865,
         "price": 0.66,
         "usdc": 8.9232,
-        "ts": 1775757869,
-        "fee": 0,
-        "maker": false
+        "ts": 1775757869
       }
     ],
     "totalShares": 0.00536599999999865
-  },
-  {
-    "key": "0xc7d66a13442000f2b54dd64ffb86ff2c698c06096d40bc7ade6d3a28c60e7fc9-1",
-    "title": "Will the highest temperature in Jakarta be 31°C on April 10?",
-    "lots": [
-      {
-        "shares": 150.13490000000002,
-        "price": 0.99,
-        "usdc": 148.7079,
-        "ts": 1775791829,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.7,
-        "price": 0.99,
-        "usdc": 5.643,
-        "ts": 1775791835,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 155.8349
   },
   {
     "key": "0x7f19386f52c5ceb6eeb55967f25cb6109673bfe16c8b579900f87721a6899af6-0",
@@ -5902,43 +818,10 @@
         "shares": 0.012069999999994252,
         "price": 0.23179043831589868,
         "usdc": 26.8112,
-        "ts": 1775847843,
-        "fee": 0,
-        "maker": false
+        "ts": 1775847843
       }
     ],
     "totalShares": 0.012069999999994252
-  },
-  {
-    "key": "0xefbfbcb286d351ff8b85e7d4be524c0a7daae20c54bfe292c079363c794a2271-1",
-    "title": "Will the highest temperature in Buenos Aires be 23°C on April 10?",
-    "lots": [
-      {
-        "shares": 907.21475,
-        "price": 0.8372015831019176,
-        "usdc": 765.7548,
-        "ts": 1775847843,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 7,
-        "price": 0.99,
-        "usdc": 6.93,
-        "ts": 1775847845,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 312.34,
-        "price": 0.99,
-        "usdc": 309.2166,
-        "ts": 1775847847,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1226.55475
   },
   {
     "key": "0x741a61ef1c732ca847a40f46bc2f6d47df58f2844b55937d80717563a7d0eed5-0",
@@ -5948,9 +831,7 @@
         "shares": 0.00616500000003839,
         "price": 0.02,
         "usdc": 2.0068,
-        "ts": 1775867941,
-        "fee": 0,
-        "maker": false
+        "ts": 1775867941
       }
     ],
     "totalShares": 0.00616500000003839
@@ -5963,9 +844,7 @@
         "shares": 0.006550000000004275,
         "price": 0.004,
         "usdc": 0.04,
-        "ts": 1775863007,
-        "fee": 0,
-        "maker": false
+        "ts": 1775863007
       }
     ],
     "totalShares": 0.006550000000004275
@@ -5978,42 +857,10 @@
         "shares": 0.007499999999993179,
         "price": 0.031,
         "usdc": 1.31471,
-        "ts": 1775861855,
-        "fee": 0,
-        "maker": false
+        "ts": 1775861855
       }
     ],
     "totalShares": 0.007499999999993179
-  },
-  {
-    "key": "0xa575ce77ba4acb8c04b6d461b3f3340baac13a4bf83992f17cc7ce2dae29ae44-1",
-    "title": "Will the highest temperature in Wellington be 17°C on April 11?",
-    "lots": [
-      {
-        "shares": 3551.9165,
-        "price": 0.9969963884080001,
-        "usdc": 3541.77982,
-        "ts": 1775869381,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 3551.9165
-  },
-  {
-    "key": "0xe6b998c6541e450f685761606ee8e8654829f4431afd3eb451d666b3d678ab01-1",
-    "title": "Will the highest temperature in Jakarta be 32°C on April 11?",
-    "lots": [
-      {
-        "shares": 119.97149,
-        "price": 0.9636375738414178,
-        "usdc": 115.8196,
-        "ts": 1775881887,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 119.97149
   },
   {
     "key": "0xccf8ac778629a474f3676faa5aa6c0f1505cf50583d04a9439928a6c09d45933-0",
@@ -6023,114 +870,34 @@
         "shares": 14.28286,
         "price": 0.99,
         "usdc": 14.1471,
-        "ts": 1775883607,
-        "fee": 0,
-        "maker": false
+        "ts": 1775883607
       },
       {
         "shares": 13.16,
         "price": 0.99,
         "usdc": 13.0284,
-        "ts": 1775883613,
-        "fee": 0,
-        "maker": false
+        "ts": 1775883613
       },
       {
         "shares": 1000,
         "price": 0.99,
         "usdc": 990,
-        "ts": 1775883621,
-        "fee": 0,
-        "maker": false
+        "ts": 1775883621
       },
       {
         "shares": 16.08,
         "price": 0.99,
         "usdc": 15.9192,
-        "ts": 1775883655,
-        "fee": 0,
-        "maker": false
+        "ts": 1775883655
       },
       {
         "shares": 100,
         "price": 0.99,
         "usdc": 99,
-        "ts": 1775883669,
-        "fee": 0,
-        "maker": false
+        "ts": 1775883669
       }
     ],
     "totalShares": 1143.52286
-  },
-  {
-    "key": "0x735fdeb4da0dbb426011b8ffa0ca2f721215ba7ea7b46969cd4ac94e8a6fc5e0-1",
-    "title": "Will the highest temperature in Jakarta be 33°C on April 11?",
-    "lots": [
-      {
-        "shares": 447.42586,
-        "price": 0.9810588366640616,
-        "usdc": 439.3672,
-        "ts": 1775883607,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 309,
-        "price": 0.99,
-        "usdc": 305.91,
-        "ts": 1775883607,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 309,
-        "price": 0.99,
-        "usdc": 305.91,
-        "ts": 1775883607,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 168.15,
-        "price": 0.99,
-        "usdc": 166.4685,
-        "ts": 1775883611,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1233.5758600000001
-  },
-  {
-    "key": "0x3f49f0c5745897556e4fe20d76380b97e07df61be8351e9a7732586dcdf8dcd6-1",
-    "title": "Will the highest temperature in Tokyo be 24°C on April 11?",
-    "lots": [
-      {
-        "shares": 682.96659,
-        "price": 0.8663850573040899,
-        "usdc": 595.69171,
-        "ts": 1775883761,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 20.389799999999997,
-        "price": 0.99,
-        "usdc": 20.196,
-        "ts": 1775883811,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 31.54,
-        "price": 0.99,
-        "usdc": 31.2246,
-        "ts": 1775883813,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 734.89639
   },
   {
     "key": "0x099a7139dda221034ff1482ee5a76b7f769fb0c10faf8b8a839c4319a754d382-0",
@@ -6140,9 +907,7 @@
         "shares": 0.006629999999997693,
         "price": 0.048,
         "usdc": 2.29248,
-        "ts": 1775919677,
-        "fee": 0,
-        "maker": false
+        "ts": 1775919677
       }
     ],
     "totalShares": 0.006629999999997693
@@ -6155,143 +920,10 @@
         "shares": 0.003339999999987242,
         "price": 0.03,
         "usdc": 1.0581,
-        "ts": 1775919737,
-        "fee": 0,
-        "maker": false
+        "ts": 1775919737
       }
     ],
     "totalShares": 0.003339999999987242
-  },
-  {
-    "key": "0x860987f123b1522847639b06a9ee2e08fa90edc16e4475daede190845a9546e1-1",
-    "title": "Will the highest temperature in Wellington be 19°C on April 12?",
-    "lots": [
-      {
-        "shares": 329.33833999999996,
-        "price": 0.9847286022027367,
-        "usdc": 324.5567,
-        "ts": 1775957455,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 200,
-        "price": 0.99,
-        "usdc": 198,
-        "ts": 1775957457,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6.25,
-        "price": 0.99,
-        "usdc": 6.1875,
-        "ts": 1775957457,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 142,
-        "price": 0.99,
-        "usdc": 140.58,
-        "ts": 1775957459,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 3.7,
-        "price": 0.99,
-        "usdc": 3.663,
-        "ts": 1775957463,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 47.46,
-        "price": 0.99,
-        "usdc": 46.9854,
-        "ts": 1775957483,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 442.57,
-        "price": 0.99,
-        "usdc": 438.1443,
-        "ts": 1775957585,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1171.31834
-  },
-  {
-    "key": "0x2c97f063c83bc09020b7a9dc60d254304262ba631c77833a46b53719bd0af749-1",
-    "title": "Will the highest temperature in Tokyo be 18°C on April 12?",
-    "lots": [
-      {
-        "shares": 452.46898,
-        "price": 0.997303007535412,
-        "usdc": 451.30953,
-        "ts": 1775959341,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.01,
-        "price": 0.998,
-        "usdc": 1.00798,
-        "ts": 1775959345,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 453.47898
-  },
-  {
-    "key": "0x19f31a17a3cddd19cffafde040c318290dccbcdd105e63f8d431b495d8b06b29-1",
-    "title": "Will the highest temperature in Tokyo be 19°C on April 12?",
-    "lots": [
-      {
-        "shares": 2340.02997,
-        "price": 0.9949582931018277,
-        "usdc": 2328.81928,
-        "ts": 1775962951,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2340.02997
-  },
-  {
-    "key": "0xb8224b48b81297d31fa09a2e7d7b3ad69f5e494a8ab166deb20b0527f234b19c-1",
-    "title": "Will the highest temperature in Jakarta be 32°C on April 12?",
-    "lots": [
-      {
-        "shares": 2785.9582100000002,
-        "price": 0.9842777468931012,
-        "usdc": 2744.314,
-        "ts": 1775966239,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2785.9582100000002
-  },
-  {
-    "key": "0x74a307ad8c1a58750ed04a37f8bef2f62627636b08f96b55560deae50892c729-1",
-    "title": "Will the highest temperature in Jakarta be 33°C on April 12?",
-    "lots": [
-      {
-        "shares": 933.82681,
-        "price": 0.9770416087282062,
-        "usdc": 913.4362,
-        "ts": 1775970007,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 933.82681
   },
   {
     "key": "0x3e88948c03b7e3f01c9e48b4b1465e4db89abe88e329f1187576f70f217cd5d3-0",
@@ -6301,51 +933,10 @@
         "shares": 186.25851999999998,
         "price": 0.8696938340089609,
         "usdc": 163.0502,
-        "ts": 1775975609,
-        "fee": 0,
-        "maker": false
+        "ts": 1775975609
       }
     ],
     "totalShares": 186.25851999999998
-  },
-  {
-    "key": "0xa6fb96881aa0a0588681e9280f728f80078530c18285b47a1ec6dfce91c4ac1b-1",
-    "title": "Will the highest temperature in Wellington be 18°C on April 13?",
-    "lots": [
-      {
-        "shares": 99.99998,
-        "price": 0.99,
-        "usdc": 99.0495,
-        "ts": 1776015105,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6.75,
-        "price": 0.99,
-        "usdc": 6.6825,
-        "ts": 1776015111,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 200,
-        "price": 0.99,
-        "usdc": 198,
-        "ts": 1776015141,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1776015231,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 406.74998
   },
   {
     "key": "0x94933a5469f7f19dbda718589a09e49abe41ec55c5f86015da492d854d09ee64-0",
@@ -6355,9 +946,7 @@
         "shares": 0.009742000000001028,
         "price": 0.21000002148037494,
         "usdc": 1.759746,
-        "ts": 1776016919,
-        "fee": 0,
-        "maker": false
+        "ts": 1776016919
       }
     ],
     "totalShares": 0.009742000000001028
@@ -6370,153 +959,22 @@
         "shares": 229.39234,
         "price": 0.5510380976732293,
         "usdc": 129.3066,
-        "ts": 1776016931,
-        "fee": 0,
-        "maker": false
+        "ts": 1776016931
       },
       {
         "shares": 65.34,
         "price": 0.7,
         "usdc": 45.738,
-        "ts": 1776016957,
-        "fee": 0,
-        "maker": false
+        "ts": 1776016957
       },
       {
         "shares": 262.12524,
         "price": 0.9828652182199352,
         "usdc": 257.85469,
-        "ts": 1776027731,
-        "fee": 0,
-        "maker": false
+        "ts": 1776027731
       }
     ],
     "totalShares": 556.8575800000001
-  },
-  {
-    "key": "0x49e3c3e43e1b49df6376ffdc96c85ee7f8e42412d5dc70836ff9ccc51cf76515-1",
-    "title": "Will the highest temperature in Buenos Aires be 24°C on April 12?",
-    "lots": [
-      {
-        "shares": 206.91666,
-        "price": 0.9948450983234285,
-        "usdc": 205.90309,
-        "ts": 1776016931,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 24.525,
-        "price": 0.998,
-        "usdc": 24.47595,
-        "ts": 1776016935,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 231.44166
-  },
-  {
-    "key": "0x005d0712ff9edb0302fef683fa2fd2ffcf078f9efbf9d88938f9879879a0170d-1",
-    "title": "Will the highest temperature in Buenos Aires be 25°C on April 12?",
-    "lots": [
-      {
-        "shares": 50,
-        "price": 0.99,
-        "usdc": 49.5,
-        "ts": 1776016935,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1776016935,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 13.31,
-        "price": 0.99,
-        "usdc": 13.1769,
-        "ts": 1776016935,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1776016935,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 164.69,
-        "price": 0.99,
-        "usdc": 163.0431,
-        "ts": 1776016935,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 77.12,
-        "price": 0.99,
-        "usdc": 76.3488,
-        "ts": 1776016959,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14.91,
-        "price": 0.99,
-        "usdc": 14.7609,
-        "ts": 1776016963,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 204,
-        "price": 0.99,
-        "usdc": 201.96,
-        "ts": 1776016967,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.96,
-        "price": 0.99,
-        "usdc": 1.9404,
-        "ts": 1776016997,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 41.56,
-        "price": 0.99,
-        "usdc": 41.1444,
-        "ts": 1776017001,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 767.55
-  },
-  {
-    "key": "0x1c45b677558d209f53f7f1b427b6cd8b79960a4f1b3c6205d49b9c44d4dcd09f-1",
-    "title": "Will the highest temperature in Buenos Aires be 27°C on April 12?",
-    "lots": [
-      {
-        "shares": 1000.0394799999999,
-        "price": 0.9955697315349249,
-        "usdc": 1305.71957,
-        "ts": 1776027801,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1000.0394799999999
   },
   {
     "key": "0xda473794ab0f8659e2099b91c025371da0e555cb4635b31444ff89bf7310e8df-0",
@@ -6526,90 +984,34 @@
         "shares": 4395.13028,
         "price": 0.9659306823421455,
         "usdc": 4252.6354,
-        "ts": 1776049357,
-        "fee": 0,
-        "maker": false
+        "ts": 1776049357
       },
       {
         "shares": 99.37,
         "price": 0.99,
         "usdc": 98.3763,
-        "ts": 1776049361,
-        "fee": 0,
-        "maker": false
+        "ts": 1776049361
       },
       {
         "shares": 600.4080399999999,
         "price": 0.97,
         "usdc": 583.2707,
-        "ts": 1776049409,
-        "fee": 0,
-        "maker": false
+        "ts": 1776049409
       },
       {
         "shares": 12,
         "price": 0.97,
         "usdc": 11.64,
-        "ts": 1776049471,
-        "fee": 0,
-        "maker": false
+        "ts": 1776049471
       },
       {
         "shares": 22.69,
         "price": 0.97,
         "usdc": 22.0093,
-        "ts": 1776049489,
-        "fee": 0,
-        "maker": false
+        "ts": 1776049489
       }
     ],
     "totalShares": 5129.59832
-  },
-  {
-    "key": "0x21e46ebb65b3892942a4441f2e9a5376fde0db2ab9655ea776d9fa1469c673da-1",
-    "title": "Will the highest temperature in Tokyo be 22°C on April 13?",
-    "lots": [
-      {
-        "shares": 802.1705400000001,
-        "price": 0.9800871763577718,
-        "usdc": 786.9806,
-        "ts": 1776049379,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 162.69,
-        "price": 0.99,
-        "usdc": 161.0631,
-        "ts": 1776049383,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 964.8605400000001
-  },
-  {
-    "key": "0x3179cacb56c0c420051c17c3f322eed001b6286039c51d17232fe8b5dbe4343d-1",
-    "title": "Will the highest temperature in Jakarta be 32°C on April 13?",
-    "lots": [
-      {
-        "shares": 83.62817,
-        "price": 0.99,
-        "usdc": 82.8333,
-        "ts": 1776054577,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 71.392,
-        "price": 0.99,
-        "usdc": 70.67808,
-        "ts": 1776054905,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 155.02017
   },
   {
     "key": "0x21015ea3e0bf021523328bf6ebee10eafa9ca51080b061edead4939f864dd56e-0",
@@ -6619,123 +1021,10 @@
         "shares": 897.1913400000001,
         "price": 0.979987306394682,
         "usdc": 880.1168,
-        "ts": 1776102811,
-        "fee": 0,
-        "maker": false
+        "ts": 1776102811
       }
     ],
     "totalShares": 897.1913400000001
-  },
-  {
-    "key": "0x3e0c28aa6e66d1141fc49329197f162e650c0145c508b6a8fce49e390fc5aff9-1",
-    "title": "Will the highest temperature in Mexico City be 24°C on April 13?",
-    "lots": [
-      {
-        "shares": 74.9625,
-        "price": 0.99,
-        "usdc": 74.25,
-        "ts": 1776113349,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 21,
-        "price": 0.99,
-        "usdc": 20.79,
-        "ts": 1776113351,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 198,
-        "price": 0.99,
-        "usdc": 196.02,
-        "ts": 1776113351,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.99,
-        "usdc": 4.95,
-        "ts": 1776113351,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8,
-        "price": 0.99,
-        "usdc": 7.92,
-        "ts": 1776113351,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 146,
-        "price": 0.99,
-        "usdc": 144.54,
-        "ts": 1776113351,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8,
-        "price": 0.99,
-        "usdc": 7.92,
-        "ts": 1776113351,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 101,
-        "price": 0.99,
-        "usdc": 99.99,
-        "ts": 1776113353,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 0.5,
-        "price": 0.99,
-        "usdc": 0.495,
-        "ts": 1776113353,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.96,
-        "price": 0.99,
-        "usdc": 4.9104,
-        "ts": 1776113367,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 162,
-        "price": 0.99,
-        "usdc": 160.38,
-        "ts": 1776113383,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 19.94,
-        "price": 0.99,
-        "usdc": 19.7406,
-        "ts": 1776113403,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4,
-        "price": 0.99,
-        "usdc": 3.96,
-        "ts": 1776113439,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 753.3625000000001
   },
   {
     "key": "0x1c07448b8d07fb483a2770cc4040d58e01f4f38a2926e2ceeee090ba60362127-0",
@@ -6745,113 +1034,34 @@
         "shares": 347.04566,
         "price": 0.7291526676330974,
         "usdc": 256.5232,
-        "ts": 1776113349,
-        "fee": 0,
-        "maker": false
+        "ts": 1776113349
       },
       {
         "shares": 3.99,
         "price": 0.991,
         "usdc": 3.95409,
-        "ts": 1776113351,
-        "fee": 0,
-        "maker": false
+        "ts": 1776113351
       },
       {
         "shares": 21,
         "price": 0.991,
         "usdc": 20.811,
-        "ts": 1776113351,
-        "fee": 0,
-        "maker": false
+        "ts": 1776113351
       },
       {
         "shares": 21,
         "price": 0.991,
         "usdc": 20.811,
-        "ts": 1776113353,
-        "fee": 0,
-        "maker": false
+        "ts": 1776113353
       },
       {
         "shares": 19.01,
         "price": 0.991,
         "usdc": 18.83891,
-        "ts": 1776113355,
-        "fee": 0,
-        "maker": false
+        "ts": 1776113355
       }
     ],
     "totalShares": 412.04566
-  },
-  {
-    "key": "0x16f1363d13ab9aed53f2c879a1022e2326ba20073d37a61a2fc98535dfe2b54a-1",
-    "title": "Will the highest temperature in Wellington be 17°C on April 14?",
-    "lots": [
-      {
-        "shares": 656.79018,
-        "price": 0.9617103867487273,
-        "usdc": 632.85352,
-        "ts": 1776117077,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 656.79018
-  },
-  {
-    "key": "0xd9f5f4638f5705d2ebeefaf43b1289244172584060c4e5188a92ce69f17d0590-1",
-    "title": "Will the highest temperature in Wellington be 18°C on April 14?",
-    "lots": [
-      {
-        "shares": 4631.9785999999995,
-        "price": 0.9708911275284399,
-        "usdc": 4503.7018,
-        "ts": 1776126661,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 634.3843499999999,
-        "price": 0.9721170525918114,
-        "usdc": 617.5568,
-        "ts": 1776126779,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 50.96,
-        "price": 0.99,
-        "usdc": 50.4504,
-        "ts": 1776126791,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 26.43,
-        "price": 0.99,
-        "usdc": 26.1657,
-        "ts": 1776126793,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 5343.75295
-  },
-  {
-    "key": "0x5e43ab631e20f0728c0d0b7046ef3d02a7e18bbb9c09d7744e2b20ce68176d29-1",
-    "title": "Will the highest temperature in Tokyo be 20°C on April 14?",
-    "lots": [
-      {
-        "shares": 414.93136,
-        "price": 0.9875410053228643,
-        "usdc": 410.01715,
-        "ts": 1776141153,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 414.93136
   },
   {
     "key": "0xa3f706b6a724bed2947c96a95200aa6da21f027a01ab97598435b3f1d3535574-0",
@@ -6861,560 +1071,10 @@
         "shares": 0.000020000000006348273,
         "price": 0.7326401978477375,
         "usdc": 109.6103,
-        "ts": 1776180499,
-        "fee": 0,
-        "maker": false
+        "ts": 1776180499
       }
     ],
     "totalShares": 0.000020000000006348273
-  },
-  {
-    "key": "0x165793c3a995535aab710600efa88834e744b431e27df8af7bcc062820000294-1",
-    "title": "Will the highest temperature in Wellington be 12°C on April 16?",
-    "lots": [
-      {
-        "shares": 8.69,
-        "price": 0.991,
-        "usdc": 8.61179,
-        "ts": 1776208940,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.1,
-        "price": 0.991,
-        "usdc": 1.0901,
-        "ts": 1776208954,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.1,
-        "price": 0.991,
-        "usdc": 1.0901,
-        "ts": 1776211942,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.991,
-        "usdc": 4.955,
-        "ts": 1776211954,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.18,
-        "price": 0.991,
-        "usdc": 10.08838,
-        "ts": 1776212344,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.1,
-        "price": 0.991,
-        "usdc": 1.0901,
-        "ts": 1776212352,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9.02,
-        "price": 0.991,
-        "usdc": 8.93882,
-        "ts": 1776212360,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.1,
-        "price": 0.991,
-        "usdc": 1.0901,
-        "ts": 1776212366,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.991,
-        "usdc": 4.955,
-        "ts": 1776212376,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.49,
-        "price": 0.991,
-        "usdc": 1.47659,
-        "ts": 1776212382,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.991,
-        "usdc": 4.955,
-        "ts": 1776212390,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.1,
-        "price": 0.991,
-        "usdc": 1.0901,
-        "ts": 1776212398,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.991,
-        "usdc": 4.955,
-        "ts": 1776212408,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.04,
-        "price": 0.991,
-        "usdc": 2.02164,
-        "ts": 1776212488,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.1,
-        "price": 0.991,
-        "usdc": 1.0901,
-        "ts": 1776212498,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 3.91,
-        "price": 0.991,
-        "usdc": 3.87481,
-        "ts": 1776212506,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.1,
-        "price": 0.991,
-        "usdc": 1.0901,
-        "ts": 1776212512,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.85,
-        "price": 0.991,
-        "usdc": 1.83335,
-        "ts": 1776212526,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 3.18,
-        "price": 0.991,
-        "usdc": 3.15138,
-        "ts": 1776212534,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.18,
-        "price": 0.991,
-        "usdc": 10.08838,
-        "ts": 1776212898,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.1,
-        "price": 0.991,
-        "usdc": 1.0901,
-        "ts": 1776212970,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6,
-        "price": 0.991,
-        "usdc": 5.946,
-        "ts": 1776212978,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.13,
-        "price": 0.991,
-        "usdc": 2.11083,
-        "ts": 1776212986,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.991,
-        "usdc": 4.955,
-        "ts": 1776212994,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.1,
-        "price": 0.991,
-        "usdc": 1.0901,
-        "ts": 1776213006,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.991,
-        "usdc": 4.955,
-        "ts": 1776213020,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.64,
-        "price": 0.991,
-        "usdc": 1.62524,
-        "ts": 1776213028,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.991,
-        "usdc": 4.955,
-        "ts": 1776213040,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.91,
-        "price": 0.991,
-        "usdc": 10.81181,
-        "ts": 1776213302,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.1,
-        "price": 0.991,
-        "usdc": 1.0901,
-        "ts": 1776213412,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.92,
-        "price": 0.991,
-        "usdc": 2.89372,
-        "ts": 1776214844,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.1,
-        "price": 0.991,
-        "usdc": 1.0901,
-        "ts": 1776214852,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.72,
-        "price": 0.991,
-        "usdc": 2.69552,
-        "ts": 1776214902,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 0.12,
-        "price": 0.991,
-        "usdc": 0.11892,
-        "ts": 1776215026,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.1,
-        "price": 0.991,
-        "usdc": 1.0901,
-        "ts": 1776215070,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 7,
-        "price": 0.991,
-        "usdc": 6.937,
-        "ts": 1776216060,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 132.17999999999998
-  },
-  {
-    "key": "0x58c4b8dd37906faaa63adfd243e14dc766eef4824cd0162dac09de57e088663b-1",
-    "title": "Will the highest temperature in Wellington be 17°C on April 15?",
-    "lots": [
-      {
-        "shares": 3159.2917700000003,
-        "price": 0.974657920526033,
-        "usdc": 3083.1354,
-        "ts": 1776220226,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.27,
-        "price": 0.99,
-        "usdc": 5.2173,
-        "ts": 1776220228,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 29.16,
-        "price": 0.99,
-        "usdc": 28.8684,
-        "ts": 1776220228,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 300,
-        "price": 0.99,
-        "usdc": 297,
-        "ts": 1776220230,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 77.27,
-        "price": 0.99,
-        "usdc": 76.4973,
-        "ts": 1776220236,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 160.537,
-        "price": 0.99,
-        "usdc": 158.93163,
-        "ts": 1776220382,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 3731.52877
-  },
-  {
-    "key": "0xb735558762fccc0d867ff2efe1213f9a65b26a32ca3ff48eced2323fcc768076-1",
-    "title": "Will the highest temperature in Tokyo be 20°C on April 15?",
-    "lots": [
-      {
-        "shares": 1044.09497,
-        "price": 0.9511768977213013,
-        "usdc": 995.5493,
-        "ts": 1776223950,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 59.5,
-        "price": 0.98,
-        "usdc": 58.31,
-        "ts": 1776223950,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10,
-        "price": 0.98,
-        "usdc": 9.8,
-        "ts": 1776223952,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 78.97,
-        "price": 0.98,
-        "usdc": 77.3906,
-        "ts": 1776223952,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 300,
-        "price": 0.98,
-        "usdc": 294,
-        "ts": 1776223954,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2,
-        "price": 0.98,
-        "usdc": 1.96,
-        "ts": 1776223984,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 554.5326,
-        "price": 0.99,
-        "usdc": 549.2619,
-        "ts": 1776224006,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 43,
-        "price": 0.99,
-        "usdc": 42.57,
-        "ts": 1776224012,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 129.89502000000002,
-        "price": 0.99,
-        "usdc": 128.6604,
-        "ts": 1776224060,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 62.72862,
-        "price": 0.99,
-        "usdc": 62.1324,
-        "ts": 1776224278,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2284.7212099999997
-  },
-  {
-    "key": "0x62d920b41b954a176f47a54ec36f7e0a3a25ed5d81d4efe04ef16771f89a6e59-1",
-    "title": "Will the highest temperature in Tokyo be 21°C on April 15?",
-    "lots": [
-      {
-        "shares": 1488.9615099999999,
-        "price": 0.6070780221227284,
-        "usdc": 922.0301,
-        "ts": 1776232996,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 37,
-        "price": 0.8,
-        "usdc": 29.6,
-        "ts": 1776232998,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 42,
-        "price": 0.8,
-        "usdc": 33.6,
-        "ts": 1776232998,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 38.04,
-        "price": 0.8,
-        "usdc": 30.432,
-        "ts": 1776233000,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 37.13,
-        "price": 0.8,
-        "usdc": 29.704,
-        "ts": 1776233000,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 38.04,
-        "price": 0.8,
-        "usdc": 30.432,
-        "ts": 1776233000,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 50,
-        "price": 0.8,
-        "usdc": 40,
-        "ts": 1776233000,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15,
-        "price": 0.8,
-        "usdc": 12,
-        "ts": 1776233000,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 29.9,
-        "price": 0.8,
-        "usdc": 23.92,
-        "ts": 1776233000,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 30,
-        "price": 0.8,
-        "usdc": 24,
-        "ts": 1776233000,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14.9,
-        "price": 0.8,
-        "usdc": 11.92,
-        "ts": 1776233000,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 208.33,
-        "price": 0.8,
-        "usdc": 166.664,
-        "ts": 1776233000,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 21.86,
-        "price": 0.8,
-        "usdc": 17.488,
-        "ts": 1776233002,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2051.16151
   },
   {
     "key": "0xe43280d8f22bc244a4703778083dd61d9612bf09fa16914ac3915e64f91c6054-0",
@@ -7424,9 +1084,7 @@
         "shares": 66.72449,
         "price": 0.5615611257695691,
         "usdc": 38.3097,
-        "ts": 1776272156,
-        "fee": 0,
-        "maker": false
+        "ts": 1776272156
       }
     ],
     "totalShares": 66.72449
@@ -7439,9 +1097,7 @@
         "shares": 0.00015999999999394277,
         "price": 0.85,
         "usdc": 7.65,
-        "ts": 1776275762,
-        "fee": 0,
-        "maker": false
+        "ts": 1776275762
       }
     ],
     "totalShares": 0.00015999999999394277
@@ -7454,35 +1110,10 @@
         "shares": 0.009090000000014697,
         "price": 0.5363751298926221,
         "usdc": 185.8218,
-        "ts": 1776276434,
-        "fee": 0,
-        "maker": false
+        "ts": 1776276434
       }
     ],
     "totalShares": 0.009090000000014697
-  },
-  {
-    "key": "0x20573cd009f5f1671dd14cbd1059de7780761628f5d32530195dbdeb6aca0bd0-1",
-    "title": "Will the highest temperature in Singapore be 32°C on April 16?",
-    "lots": [
-      {
-        "shares": 1225.10411,
-        "price": 0.8558200972447326,
-        "usdc": 1056.082,
-        "ts": 1776315668,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 915.25113,
-        "price": 0.995,
-        "usdc": 910.9026,
-        "ts": 1776316112,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2140.35524
   },
   {
     "key": "0x127d1524cc3f67dfcde97b11eaa5f5a5de454eb6c2e3a6031989c1bbecf0b6ef-0",
@@ -7492,57 +1123,10 @@
         "shares": 0.016130999999997897,
         "price": 0.7,
         "usdc": 40.754,
-        "ts": 1776369852,
-        "fee": 0,
-        "maker": false
+        "ts": 1776369852
       }
     ],
     "totalShares": 0.016130999999997897
-  },
-  {
-    "key": "0x999db80b57aac2d012e79789b03f364456114fd0945cf9e7a3527185705008ce-1",
-    "title": "Will the highest temperature in Mexico City be 27°C on April 16?",
-    "lots": [
-      {
-        "shares": 886.393,
-        "price": 0.9638060810810811,
-        "usdc": 855.8598,
-        "ts": 1776375926,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 886.393
-  },
-  {
-    "key": "0xc81c5ced52f611a97d5a3bcecc46a0eae2eccb0da8950ec7d04b346be3d62189-1",
-    "title": "Will the highest temperature in Tokyo be 16°C on April 17?",
-    "lots": [
-      {
-        "shares": 568.3157,
-        "price": 0.99,
-        "usdc": 562.914,
-        "ts": 1776400432,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 568.3157
-  },
-  {
-    "key": "0x2459679fcf2c09b9f8f707b5e41ce3f8711c76b8b27d4da886c5ed39cfcd3d2c-1",
-    "title": "Will the highest temperature in Tokyo be 18°C on April 17?",
-    "lots": [
-      {
-        "shares": 66.90827999999999,
-        "price": 0.81,
-        "usdc": 54.7155,
-        "ts": 1776411258,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 66.90827999999999
   },
   {
     "key": "0x3e82c2199322d7d31b9f5950612d037a08782b0d96e59a60e129536f95369a95-1",
@@ -7552,9 +1136,7 @@
         "shares": 0.0067599999999963245,
         "price": 0.6270440251572327,
         "usdc": 24.925,
-        "ts": 1776452524,
-        "fee": 0,
-        "maker": false
+        "ts": 1776452524
       }
     ],
     "totalShares": 0.0067599999999963245
@@ -7567,59 +1149,10 @@
         "shares": 0.005390000000019213,
         "price": 0.991,
         "usdc": 0.13874,
-        "ts": 1776455036,
-        "fee": 0,
-        "maker": false
+        "ts": 1776455036
       }
     ],
     "totalShares": 0.005390000000019213
-  },
-  {
-    "key": "0x5f36f3cb87e5be5440ea681b79b4c78fa823326d3d159b7d4cd0d9f04adaad0d-1",
-    "title": "Will the highest temperature in Mexico City be 28°C on April 17?",
-    "lots": [
-      {
-        "shares": 760.1187600000001,
-        "price": 0.8079128066815203,
-        "usdc": 620.065,
-        "ts": 1776458426,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.1,
-        "price": 0.99,
-        "usdc": 1.089,
-        "ts": 1776458434,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 41.42,
-        "price": 0.99,
-        "usdc": 41.0058,
-        "ts": 1776458434,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11,
-        "price": 0.99,
-        "usdc": 10.89,
-        "ts": 1776458438,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6.49,
-        "price": 0.99,
-        "usdc": 6.4251,
-        "ts": 1776458460,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 820.12876
   },
   {
     "key": "0x378478f7162914c49687745f3a1897c638362398cec0a06a4a03c4d80cd455d0-0",
@@ -7629,42 +1162,10 @@
         "shares": 0.0019540000000048963,
         "price": 0.1100000053400005,
         "usdc": 1.235955,
-        "ts": 1776467610,
-        "fee": 0,
-        "maker": false
+        "ts": 1776467610
       }
     ],
     "totalShares": 0.0019540000000048963
-  },
-  {
-    "key": "0xb441384f15c50c8c9fad26d63623884ef77a828c9e64cc3a90508dd11c36af84-1",
-    "title": "Will the highest temperature in Buenos Aires be 27°C on April 18?",
-    "lots": [
-      {
-        "shares": 1230.12073,
-        "price": 0.9371267423014586,
-        "usdc": 1156.4144,
-        "ts": 1776535440,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1230.12073
-  },
-  {
-    "key": "0x6ed7e5f940af212a2c678be9870e4dd56328ff4cfaed66a8166805aa7297d6b4-1",
-    "title": "Will the highest temperature in Buenos Aires be 26°C on April 18?",
-    "lots": [
-      {
-        "shares": 1233.09225,
-        "price": 0.9852875202593193,
-        "usdc": 1215.8448,
-        "ts": 1776535440,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1233.09225
   },
   {
     "key": "0x60ab425708c0c525700c3d260a0a7c67054b03c71b3bdaa838164056e1e6f822-0",
@@ -7674,9 +1175,7 @@
         "shares": 0.009370000000018308,
         "price": 0.9258868452873417,
         "usdc": 145.4846,
-        "ts": 1776539024,
-        "fee": 0,
-        "maker": false
+        "ts": 1776539024
       }
     ],
     "totalShares": 0.009370000000018308
@@ -7689,50 +1188,10 @@
         "shares": 0.0013500000000004064,
         "price": 0.857,
         "usdc": 9.427,
-        "ts": 1776538952,
-        "fee": 0,
-        "maker": false
+        "ts": 1776538952
       }
     ],
     "totalShares": 0.0013500000000004064
-  },
-  {
-    "key": "0x3d1fe84b079666f9973a685ae4a9fcc150c025e139e806de2d0c619054fdcfc9-1",
-    "title": "Will the highest temperature in Jakarta be 32°C on April 19?",
-    "lots": [
-      {
-        "shares": 1379.03074,
-        "price": 0.9892841560549946,
-        "usdc": 1364.9846,
-        "ts": 1776571068,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1379.03074
-  },
-  {
-    "key": "0x88e411d6056dc532328cc6a1bf635b508f056ec79a95d9673d1cf7d7198033c6-1",
-    "title": "Will the highest temperature in Tokyo be 22°C on April 19?",
-    "lots": [
-      {
-        "shares": 1208.3398399999999,
-        "price": 0.9803202070225625,
-        "usdc": 1185.7267,
-        "ts": 1776571348,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100.47,
-        "price": 0.99,
-        "usdc": 99.4653,
-        "ts": 1776571352,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1308.80984
   },
   {
     "key": "0x8d83d1923a1604f6c406948ef81ef2f78dcaab20b092647a01179879ab6f986d-0",
@@ -7742,9 +1201,7 @@
         "shares": 0.014788999999999941,
         "price": 0.73,
         "usdc": 4.8034,
-        "ts": 1776574854,
-        "fee": 0,
-        "maker": false
+        "ts": 1776574854
       }
     ],
     "totalShares": 0.014788999999999941
@@ -7757,9 +1214,7 @@
         "shares": 0.006879999999998887,
         "price": 0.92,
         "usdc": 14.5176,
-        "ts": 1776575216,
-        "fee": 0,
-        "maker": false
+        "ts": 1776575216
       }
     ],
     "totalShares": 0.006879999999998887
@@ -7772,9 +1227,7 @@
         "shares": 0.017353999999997427,
         "price": 0.63,
         "usdc": 12.7701,
-        "ts": 1776621292,
-        "fee": 0,
-        "maker": false
+        "ts": 1776621292
       }
     ],
     "totalShares": 0.017353999999997427
@@ -7787,9 +1240,7 @@
         "shares": 0.004300000000000637,
         "price": 0.49694026507757116,
         "usdc": 241.83598,
-        "ts": 1776626810,
-        "fee": 0,
-        "maker": false
+        "ts": 1776626810
       }
     ],
     "totalShares": 0.004300000000000637
@@ -7802,35 +1253,10 @@
         "shares": 0.006780000000020436,
         "price": 0.991,
         "usdc": 23.784,
-        "ts": 1776634854,
-        "fee": 0,
-        "maker": false
+        "ts": 1776634854
       }
     ],
     "totalShares": 0.006780000000020436
-  },
-  {
-    "key": "0x0e5bec9a1ee2959c468911f30562b4c6146b08c1210a270b2826b17e460783b9-1",
-    "title": "Will the highest temperature in Mexico City be 26°C on April 19?",
-    "lots": [
-      {
-        "shares": 751.35933,
-        "price": 0.9606641517453908,
-        "usdc": 723.2264,
-        "ts": 1776638484,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9.87,
-        "price": 0.97,
-        "usdc": 9.5739,
-        "ts": 1776638486,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 761.22933
   },
   {
     "key": "0x75768fb6603e423ab19d9b8a0cbd052b2397f6adb59a9b74778323c496b9894b-0",
@@ -7840,27 +1266,10 @@
         "shares": 234.455,
         "price": 0.9536170212765958,
         "usdc": 224.1,
-        "ts": 1776638492,
-        "fee": 0,
-        "maker": false
+        "ts": 1776638492
       }
     ],
     "totalShares": 234.455
-  },
-  {
-    "key": "0x6941ccd6b21b2368ac57d7742b1a226e53fd6dcd2666d844f29f5527c2946ebc-1",
-    "title": "Will the highest temperature in Tokyo be 21°C on April 20?",
-    "lots": [
-      {
-        "shares": 909.8317400000001,
-        "price": 0.997180843113983,
-        "usdc": 907.39468,
-        "ts": 1776654146,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 909.8317400000001
   },
   {
     "key": "0x72aa4ac5b489afebe3d076a259079a42e89ba7a36cd7b4eddf257b00031ed6bd-1",
@@ -7870,42 +1279,10 @@
         "shares": 0.007500000000000284,
         "price": 0.01,
         "usdc": 0.15,
-        "ts": 1776667710,
-        "fee": 0,
-        "maker": false
+        "ts": 1776667710
       }
     ],
     "totalShares": 0.007500000000000284
-  },
-  {
-    "key": "0x06890be6a81b9a4e68b74d9064dfc803c09f14eea0c092c31adb995813b2d55c-1",
-    "title": "Will the highest temperature in Jakarta be 33°C on April 20?",
-    "lots": [
-      {
-        "shares": 390.31007,
-        "price": 0.8686690931303928,
-        "usdc": 341.2914,
-        "ts": 1776668620,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 390.31007
-  },
-  {
-    "key": "0x34c20297ccb33d607b76d9f19b37d303969f8b7fb40db9afdadad43bdaf5c699-1",
-    "title": "Will the highest temperature in Tokyo be 23°C on April 20?",
-    "lots": [
-      {
-        "shares": 533.7223499999999,
-        "price": 0.95,
-        "usdc": 508.307,
-        "ts": 1776672160,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 533.7223499999999
   },
   {
     "key": "0x7e27632e048b65fb6279dd8dc2f1736d9a44da0a08ef0f29c9390f88e3b4a065-0",
@@ -7915,58 +1292,10 @@
         "shares": 0.0024699999999953093,
         "price": 0.3464556416881998,
         "usdc": 16.0894,
-        "ts": 1776718874,
-        "fee": 0,
-        "maker": false
+        "ts": 1776718874
       }
     ],
     "totalShares": 0.0024699999999953093
-  },
-  {
-    "key": "0xcc59c2d6d839dbab8af275c78d4a3b683d02d7c39b564170ec8bfd4ea2c4d580-1",
-    "title": "Will the highest temperature in Wellington be 11°C on April 21?",
-    "lots": [
-      {
-        "shares": 310.8445,
-        "price": 0.99,
-        "usdc": 307.89,
-        "ts": 1776745832,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 3572.42226,
-        "price": 0.8300449620320618,
-        "usdc": 2990.6852,
-        "ts": 1776745832,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9.99,
-        "price": 0.99,
-        "usdc": 9.8901,
-        "ts": 1776745836,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 3893.2567599999998
-  },
-  {
-    "key": "0x933eca582264086dca8036969ca577646f14e3f65a6ce515d80498b73f878ded-1",
-    "title": "Will the lowest temperature in Tokyo be 20°C or higher on April 22?",
-    "lots": [
-      {
-        "shares": 103.13743,
-        "price": 0.984,
-        "usdc": 101.56848,
-        "ts": 1776757668,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 103.13743
   },
   {
     "key": "0xce227105a4814d879999380e18b9aa740881e22d6416c66e273854b7ef1fc605-0",
@@ -7976,27 +1305,10 @@
         "shares": 0.0011940000000052464,
         "price": 0.7693944207286806,
         "usdc": 77.5011,
-        "ts": 1776794330,
-        "fee": 0,
-        "maker": false
+        "ts": 1776794330
       }
     ],
     "totalShares": 0.0011940000000052464
-  },
-  {
-    "key": "0x02b5b68fdd5e4c9b46f692c1478acc977ea31c245033c6503c98ebb19e712478-1",
-    "title": "Will the highest temperature in Buenos Aires be 20°C on April 21?",
-    "lots": [
-      {
-        "shares": 1233.39269,
-        "price": 0.9901570502431118,
-        "usdc": 1221.8538,
-        "ts": 1776794640,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1233.39269
   },
   {
     "key": "0x50757bbef09ec4676ac2e8c0c018598837b063e9b72e3fd834226fdefed278f0-0",
@@ -8006,104 +1318,10 @@
         "shares": 0.0016530000000045675,
         "price": 0.398738,
         "usdc": 59.8107,
-        "ts": 1776794640,
-        "fee": 0,
-        "maker": false
+        "ts": 1776794640
       }
     ],
     "totalShares": 0.0016530000000045675
-  },
-  {
-    "key": "0x40f69f7e520e84cbf322567685dc10f11b7725f9c54bf0cb421d3f918383e713-1",
-    "title": "Will the highest temperature in Buenos Aires be 22°C on April 21?",
-    "lots": [
-      {
-        "shares": 1061.61966,
-        "price": 0.9753446228820336,
-        "usdc": 1036.72306,
-        "ts": 1776798236,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1061.61966
-  },
-  {
-    "key": "0x50757bbef09ec4676ac2e8c0c018598837b063e9b72e3fd834226fdefed278f0-1",
-    "title": "Will the highest temperature in Buenos Aires be 21°C on April 21?",
-    "lots": [
-      {
-        "shares": 826.8133899999999,
-        "price": 0.8650549595761806,
-        "usdc": 720.0977,
-        "ts": 1776798236,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 826.8133899999999
-  },
-  {
-    "key": "0xbbd89daeb97ed1bdbcd48aa316d43a3157ec25b24b890b6afa639d01d58b3d44-1",
-    "title": "Will the highest temperature in Mexico City be 25°C on April 21?",
-    "lots": [
-      {
-        "shares": 50.12493,
-        "price": 0.99,
-        "usdc": 49.6485,
-        "ts": 1776800928,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8.76,
-        "price": 0.99,
-        "usdc": 8.6724,
-        "ts": 1776800956,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 58.88493
-  },
-  {
-    "key": "0x05af6cb11d3ce53ba999bb7c64ca44d004f0d1062813f6df098482bb595e4c0f-1",
-    "title": "Will the highest temperature in Mexico City be 26°C on April 21?",
-    "lots": [
-      {
-        "shares": 195.05577,
-        "price": 0.9821507964964401,
-        "usdc": 191.7453,
-        "ts": 1776804066,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15,
-        "price": 0.99,
-        "usdc": 14.85,
-        "ts": 1776804068,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.25,
-        "price": 0.99,
-        "usdc": 5.1975,
-        "ts": 1776804068,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.77,
-        "price": 0.99,
-        "usdc": 2.7423,
-        "ts": 1776804076,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 218.07577
   },
   {
     "key": "0xf38e07ea49af41525ccb103537b23099794ac8165a0309875209fc68d2df9fa6-0",
@@ -8113,130 +1331,58 @@
         "shares": 162.66863,
         "price": 0.99,
         "usdc": 161.1225,
-        "ts": 1776804696,
-        "fee": 0,
-        "maker": false
+        "ts": 1776804696
       },
       {
         "shares": 75.77,
         "price": 0.97,
         "usdc": 73.4969,
-        "ts": 1776804712,
-        "fee": 0,
-        "maker": false
+        "ts": 1776804712
       },
       {
         "shares": 37.25,
         "price": 0.99,
         "usdc": 36.8775,
-        "ts": 1776804712,
-        "fee": 0,
-        "maker": false
+        "ts": 1776804712
       },
       {
         "shares": 1000,
         "price": 0.99,
         "usdc": 990,
-        "ts": 1776804786,
-        "fee": 0,
-        "maker": false
+        "ts": 1776804786
       },
       {
         "shares": 827,
         "price": 0.99,
         "usdc": 818.73,
-        "ts": 1776804854,
-        "fee": 0,
-        "maker": false
+        "ts": 1776804854
       },
       {
         "shares": 173,
         "price": 0.99,
         "usdc": 171.27,
-        "ts": 1776804856,
-        "fee": 0,
-        "maker": false
+        "ts": 1776804856
       },
       {
         "shares": 3,
         "price": 0.981,
         "usdc": 2.943,
-        "ts": 1776804888,
-        "fee": 0,
-        "maker": false
+        "ts": 1776804888
       },
       {
         "shares": 3,
         "price": 0.981,
         "usdc": 2.943,
-        "ts": 1776804888,
-        "fee": 0,
-        "maker": false
+        "ts": 1776804888
       },
       {
         "shares": 50,
         "price": 0.981,
         "usdc": 49.05,
-        "ts": 1776804892,
-        "fee": 0,
-        "maker": false
+        "ts": 1776804892
       }
     ],
     "totalShares": 2331.68863
-  },
-  {
-    "key": "0x8ebb5e5492a6efa3ed07637493fee84709e6a7f36c95a4114febec1b359897e0-1",
-    "title": "Will the highest temperature in Tokyo be 20°C on April 22?",
-    "lots": [
-      {
-        "shares": 114.28499000000001,
-        "price": 0.9903762462830156,
-        "usdc": 113.23962,
-        "ts": 1776818156,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 114.28499000000001
-  },
-  {
-    "key": "0x46e41431ef6dbfba82babe52fb9d2a9a3e62fd4fb7301b83f9e4889f21f0ac65-1",
-    "title": "Will the highest temperature in Tokyo be 21°C on April 22?",
-    "lots": [
-      {
-        "shares": 2854.03636,
-        "price": 0.931186986930364,
-        "usdc": 2666.8171,
-        "ts": 1776819738,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.27,
-        "price": 0.99,
-        "usdc": 5.2173,
-        "ts": 1776819742,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 31.83,
-        "price": 0.99,
-        "usdc": 31.5117,
-        "ts": 1776819742,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 42.93,
-        "price": 0.99,
-        "usdc": 42.5007,
-        "ts": 1776819748,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2934.06636
   },
   {
     "key": "0xda17dd0c211bb828cf4552a6cb4e730eb20c0ce4c188ff0fd343ab993d005b04-1",
@@ -8246,43 +1392,10 @@
         "shares": 0.002094999999995739,
         "price": 0.67,
         "usdc": 14.1705,
-        "ts": 1776834598,
-        "fee": 0,
-        "maker": false
+        "ts": 1776834598
       }
     ],
     "totalShares": 0.002094999999995739
-  },
-  {
-    "key": "0xd42d78c24da111356aa04bd20aa6601dc3079c8178c88e48fd8174432ae9c505-1",
-    "title": "Will the highest temperature in Jakarta be 33°C on April 22?",
-    "lots": [
-      {
-        "shares": 368.15288,
-        "price": 0.8491912656692276,
-        "usdc": 315.0075,
-        "ts": 1776835778,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.27,
-        "price": 0.85,
-        "usdc": 4.4795,
-        "ts": 1776835782,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 65.02,
-        "price": 0.85,
-        "usdc": 55.267,
-        "ts": 1776835782,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 438.44287999999995
   },
   {
     "key": "0x8530db3d1ce9137220cc9f7df4ebc6ba3f05e846027515115036fb4df6c384f1-0",
@@ -8292,107 +1405,40 @@
         "shares": 6.67,
         "price": 0.551,
         "usdc": 3.67517,
-        "ts": 1776840480,
-        "fee": 0,
-        "maker": false
+        "ts": 1776840480
       },
       {
         "shares": 18.89,
         "price": 0.94,
         "usdc": 17.7566,
-        "ts": 1776840938,
-        "fee": 0,
-        "maker": false
+        "ts": 1776840938
       },
       {
         "shares": 12.95,
         "price": 0.94,
         "usdc": 12.173,
-        "ts": 1776841022,
-        "fee": 0,
-        "maker": false
+        "ts": 1776841022
       },
       {
         "shares": 9.58,
         "price": 0.94,
         "usdc": 9.0052,
-        "ts": 1776841030,
-        "fee": 0,
-        "maker": false
+        "ts": 1776841030
       },
       {
         "shares": 15.41,
         "price": 0.94,
         "usdc": 14.4854,
-        "ts": 1776841124,
-        "fee": 0,
-        "maker": false
+        "ts": 1776841124
       },
       {
         "shares": 198.97621999999998,
         "price": 0.9594960377169225,
         "usdc": 191.30432,
-        "ts": 1776841262,
-        "fee": 0,
-        "maker": false
+        "ts": 1776841262
       }
     ],
     "totalShares": 262.47622
-  },
-  {
-    "key": "0xb99455ef7eba8935b78981514ba98e046bb91f2bd8fa6607d6933ca028d5e3e4-1",
-    "title": "Will the highest temperature in Jakarta be 36°C on April 22?",
-    "lots": [
-      {
-        "shares": 37,
-        "price": 0.94,
-        "usdc": 34.78,
-        "ts": 1776840952,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 182.745097,
-        "price": 0.9490000051820816,
-        "usdc": 173.425098,
-        "ts": 1776841254,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11.140783,
-        "price": 0.9490000837463579,
-        "usdc": 10.572604,
-        "ts": 1776841268,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 117.65438,
-        "price": 0.9735796621678975,
-        "usdc": 114.69742,
-        "ts": 1776841458,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 36.265293,
-        "price": 0.9490000260028232,
-        "usdc": 34.415764,
-        "ts": 1776841534,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 36.1,
-        "price": 0.949,
-        "usdc": 34.2589,
-        "ts": 1776841534,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 420.905553
   },
   {
     "key": "0x4971a1bd5a42dffe04b4d1f31456e62e8b583c9cfdce1fc3a96635132ebb542e-1",
@@ -8402,9 +1448,7 @@
         "shares": 2133.72381,
         "price": 0.9880449648711944,
         "usdc": 2109.476,
-        "ts": 1776884268,
-        "fee": 0,
-        "maker": false
+        "ts": 1776884268
       }
     ],
     "totalShares": 2133.72381

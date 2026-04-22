@@ -1,6 +1,6 @@
 {
   "wallet": "0xea25d55fdfbf9bda6a629ba0f2f52adbf0e3885f",
-  "fetchedAt": "2026-04-22T22:02:48.344Z",
+  "fetchedAt": "2026-04-22T22:10:35.832Z",
   "activityEventCount": 3500,
   "activityTruncated": true,
   "activityHitApiCap": true,
@@ -8,19 +8,27 @@
   "tradesTruncated": false,
   "tradesHitApiCap": false,
   "positionCount": 7,
-  "closedTradeCount": 882,
-  "openLotCount": 603,
-  "realizedPnlUsdc": -506.8655955910209,
-  "winRateStrict": 0.6984126984126984,
-  "wins": 616,
-  "losses": 122,
-  "weatherClosedCount": 610,
-  "weatherRealizedPnl": -589.4151996364083,
-  "weatherWinRate": 0.601639344262295,
+  "closedTradeCount": 1300,
+  "openLotCount": 185,
+  "realizedPnlUsdc": 1984.8442527563639,
+  "winRateStrict": 0.7176923076923077,
+  "wins": 933,
+  "losses": 20,
+  "weatherClosedCount": 919,
+  "weatherRealizedPnl": 1726.4453793119728,
+  "weatherWinRate": 0.7301414581066377,
   "valueSnapshot": [
     {
       "user": "0xea25d55fdfbf9bda6a629ba0f2f52adbf0e3885f",
       "value": 3893.4838
     }
-  ]
+  ],
+  "closedSellCount": 882,
+  "closedRedeemCount": 418,
+  "weatherSellCount": 610,
+  "weatherRedeemCount": 309,
+  "weatherRedeemWon": 306,
+  "weatherRedeemLost": 3,
+  "weatherRedeemWR": 0.9902912621359223,
+  "weatherWins": 671
 }

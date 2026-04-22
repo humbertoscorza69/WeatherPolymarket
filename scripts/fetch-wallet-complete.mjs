@@ -227,7 +227,12 @@ function matchFifo(events, wallet) {
     } else if (type === "REDEEM") {
       let remaining = book.lots.reduce((s, l) => s + l.shares, 0);
       if (remaining < 1e-9) continue;
-      const redemptionPrice = num(ev.price, 1.0);
+      // REDEEM events have price=0 in the API (meaningless).  Compute the
+      // actual per-share payout from usdcSize / size. Winning redemption
+      // pays $1/share; losing redemption pays $0/share.
+      const size = num(ev.size, 0);
+      const usdc = num(ev.usdcSize, 0);
+      const redemptionPrice = size > 0 ? usdc / size : 0;
       const lotsUsed = [...book.lots];
       const costBasis = lotsUsed.reduce((s, l) => s + l.shares * l.price, 0);
       const entryAvg = costBasis / remaining;
@@ -241,6 +246,7 @@ function matchFifo(events, wallet) {
         entryUsdc: costBasis, exitUsdc: remaining * redemptionPrice,
         pnlUsdc, pnlPerShare: redemptionPrice - entryAvg,
         fifoLots: lotsUsed,
+        redemptionWon: redemptionPrice > 0.5,
       });
       book.lots = [];
     }

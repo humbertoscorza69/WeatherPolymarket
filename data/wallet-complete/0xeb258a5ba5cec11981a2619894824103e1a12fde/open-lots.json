@@ -7,65 +7,10 @@
         "shares": 0.009666000000002839,
         "price": 0.996999999964689,
         "usdc": 56.469747,
-        "ts": 1774402473,
-        "fee": 0,
-        "maker": false
+        "ts": 1774402473
       }
     ],
     "totalShares": 0.009666000000002839
-  },
-  {
-    "key": "0x8a42c1bfe23433c5fbbe638baf4c6d1958daf763c1b58a00ba1e2844bc540e0f-1",
-    "title": "Will the highest temperature in Seoul be 15°C or higher on March 25?",
-    "lots": [
-      {
-        "shares": 1617.03,
-        "price": 0.995,
-        "usdc": 1608.94485,
-        "ts": 1774414823,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 398.458,
-        "price": 0.9988740896154676,
-        "usdc": 398.009372,
-        "ts": 1774414851,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2015.488
-  },
-  {
-    "key": "0x37462bcd44265d2dccfea54e6e910e07809025c690e3ac8f7c1fe9f5a3990295-1",
-    "title": "Will the highest temperature in Seoul be 7°C on March 26?",
-    "lots": [
-      {
-        "shares": 176.1,
-        "price": 0.9951635434412266,
-        "usdc": 175.2483,
-        "ts": 1774489093,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 176.1
-  },
-  {
-    "key": "0xd1f94318d03279db6e33311e0bf2a40fd49c2ce6d5b1bab72e9ea0a2d8e3d531-1",
-    "title": "Will the highest temperature in Seoul be 8°C on March 26?",
-    "lots": [
-      {
-        "shares": 1868.391333,
-        "price": 0.9849328192104175,
-        "usdc": 1840.239943,
-        "ts": 1774489209,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1868.391333
   },
   {
     "key": "0x15fb78b6a8a067cc91e5255f592d7a59ffe4c33ae69ef40f9ff00c450c7648a5-0",
@@ -75,89 +20,28 @@
         "shares": 372.09,
         "price": 0.982,
         "usdc": 365.39238,
-        "ts": 1774510493,
-        "fee": 0,
-        "maker": false
+        "ts": 1774510493
       },
       {
         "shares": 10.63,
         "price": 0.982,
         "usdc": 10.43866,
-        "ts": 1774510497,
-        "fee": 0,
-        "maker": false
+        "ts": 1774510497
       },
       {
         "shares": 170,
         "price": 0.9882941176470589,
         "usdc": 168.01,
-        "ts": 1774510563,
-        "fee": 0,
-        "maker": false
+        "ts": 1774510563
       },
       {
         "shares": 1140,
         "price": 0.995,
         "usdc": 1134.3,
-        "ts": 1774510665,
-        "fee": 0,
-        "maker": false
+        "ts": 1774510665
       }
     ],
     "totalShares": 1692.72
-  },
-  {
-    "key": "0xbd8afd1cab1560704bcfd01bc5c6cdb69ef852d6a0b7e039598ae562e7925da4-1",
-    "title": "Will the highest temperature in Seoul be 10°C on March 26?",
-    "lots": [
-      {
-        "shares": 202.58,
-        "price": 0.9896773126666009,
-        "usdc": 200.48883,
-        "ts": 1774510589,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 166.359,
-        "price": 0.997,
-        "usdc": 165.859923,
-        "ts": 1774510709,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 368.939
-  },
-  {
-    "key": "0xd23ccd0e5eca769c4a1dce3876a5c53e658bb3ea6f414eabb462555bb41fb072-1",
-    "title": "Will the highest temperature in Seoul be 14°C on March 27?",
-    "lots": [
-      {
-        "shares": 1091.5,
-        "price": 0.94,
-        "usdc": 1026.01,
-        "ts": 1774577679,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1091.5
-  },
-  {
-    "key": "0x405a55027df18d91120727817d26d1bc139916fb7b1e1c2c486d4599f4960b74-1",
-    "title": "Will the highest temperature in Seoul be 15°C on March 27?",
-    "lots": [
-      {
-        "shares": 752.9824980000002,
-        "price": 0.9835477570072378,
-        "usdc": 1035.64997,
-        "ts": 1774577753,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 752.9824980000002
   },
   {
     "key": "0xf2df0ee32a6dbaa71c642a02f6fa0119e8c378e095172965e9cf5ed4e14ee0cb-0",
@@ -167,167 +51,46 @@
         "shares": 4.402162,
         "price": 0.9199999909135557,
         "usdc": 4.049989,
-        "ts": 1774590353,
-        "fee": 0,
-        "maker": false
+        "ts": 1774590353
       },
       {
         "shares": 41.235344,
         "price": 0.9389999996119833,
         "usdc": 38.719988,
-        "ts": 1774590415,
-        "fee": 0,
-        "maker": false
+        "ts": 1774590415
       },
       {
         "shares": 43.416037,
         "price": 0.946654504647672,
         "usdc": 41.099987,
-        "ts": 1774590443,
-        "fee": 0,
-        "maker": false
+        "ts": 1774590443
       },
       {
         "shares": 45.669826,
         "price": 0.947671554518294,
         "usdc": 43.279995,
-        "ts": 1774590469,
-        "fee": 0,
-        "maker": false
+        "ts": 1774590469
       },
       {
         "shares": 48.027423,
         "price": 0.9479999999167142,
         "usdc": 45.529997,
-        "ts": 1774590497,
-        "fee": 0,
-        "maker": false
+        "ts": 1774590497
       },
       {
         "shares": 49.864575,
         "price": 0.96,
         "usdc": 47.869992,
-        "ts": 1774590537,
-        "fee": 0,
-        "maker": false
+        "ts": 1774590537
       },
       {
         "shares": 80.300904,
         "price": 0.9781954011377008,
         "usdc": 78.549975,
-        "ts": 1774590769,
-        "fee": 0,
-        "maker": false
+        "ts": 1774590769
       }
     ],
     "totalShares": 312.916271
-  },
-  {
-    "key": "0xbb04d06a884d8dbf6e4e277c67e7561bcf0da555413f4c636e480cf1457faf9b-1",
-    "title": "Will the highest temperature in Seoul be 16°C on March 28?",
-    "lots": [
-      {
-        "shares": 408.41,
-        "price": 0.9554379177787028,
-        "usdc": 390.2104,
-        "ts": 1774665149,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 155.51,
-        "price": 0.9531833965661373,
-        "usdc": 148.22955,
-        "ts": 1774669001,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 42.06,
-        "price": 0.96,
-        "usdc": 40.3776,
-        "ts": 1774669137,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 605.98
-  },
-  {
-    "key": "0xec9642b6cd9094b859de879b78b3e57a317a86b16bdde225a3995b862b13ee3e-1",
-    "title": "Will the highest temperature in Seoul be 10°C on March 28?",
-    "lots": [
-      {
-        "shares": 278,
-        "price": 0.9770071942446044,
-        "usdc": 271.608,
-        "ts": 1774667675,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 271.65,
-        "price": 0.992,
-        "usdc": 269.4768,
-        "ts": 1774668137,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 549.65
-  },
-  {
-    "key": "0x078eb5486abea02965e717de09c9e841e1da5243487dac8380ed8a77cdd45b6f-1",
-    "title": "Will the highest temperature in Seoul be 13°C on March 28?",
-    "lots": [
-      {
-        "shares": 70,
-        "price": 0.8,
-        "usdc": 56,
-        "ts": 1774671457,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 70
-  },
-  {
-    "key": "0xf5a5ed3e6fb1539d1e945f4eecf09687b6fd572e45cb64bc667a0576d5ff7c22-1",
-    "title": "Will the highest temperature in Seoul be 14°C on March 28?",
-    "lots": [
-      {
-        "shares": 170,
-        "price": 0.97,
-        "usdc": 164.9,
-        "ts": 1774671469,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 424.979545,
-        "price": 0.9779058777993657,
-        "usdc": 415.589995,
-        "ts": 1774672217,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 594.9795449999999
-  },
-  {
-    "key": "0x8b22d5f2ae76679bce84e59086ceb6a389cdaf533ed1293fa67f9a5996f72a3f-1",
-    "title": "Will the highest temperature in Seoul be 15°C on March 28?",
-    "lots": [
-      {
-        "shares": 410.1051,
-        "price": 0.9777981254073651,
-        "usdc": 400.999998,
-        "ts": 1774671571,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 410.1051
   },
   {
     "key": "0xcecf501010625eeb09a21ca3e4ae728fa157af60117899c08b8dcb8fa4d7e94a-0",
@@ -337,73 +100,55 @@
         "shares": 128.99,
         "price": 0.3138785952399411,
         "usdc": 40.4872,
-        "ts": 1774676915,
-        "fee": 0,
-        "maker": false
+        "ts": 1774676915
       },
       {
         "shares": 15.99,
         "price": 0.28,
         "usdc": 4.4772,
-        "ts": 1774676951,
-        "fee": 0,
-        "maker": false
+        "ts": 1774676951
       },
       {
         "shares": 123.89,
         "price": 0.29,
         "usdc": 35.9281,
-        "ts": 1774676985,
-        "fee": 0,
-        "maker": false
+        "ts": 1774676985
       },
       {
         "shares": 35.03,
         "price": 0.29,
         "usdc": 10.1587,
-        "ts": 1774676987,
-        "fee": 0,
-        "maker": false
+        "ts": 1774676987
       },
       {
         "shares": 222.97,
         "price": 0.37963672242902635,
         "usdc": 84.6476,
-        "ts": 1774677035,
-        "fee": 0,
-        "maker": false
+        "ts": 1774677035
       },
       {
         "shares": 255.71,
         "price": 0.6667404481639357,
         "usdc": 170.4922,
-        "ts": 1774677151,
-        "fee": 0,
-        "maker": false
+        "ts": 1774677151
       },
       {
         "shares": 171.5,
         "price": 0.68,
         "usdc": 116.62,
-        "ts": 1774677255,
-        "fee": 0,
-        "maker": false
+        "ts": 1774677255
       },
       {
         "shares": 47.56,
         "price": 0.7808915054667788,
         "usdc": 37.1392,
-        "ts": 1774677407,
-        "fee": 0,
-        "maker": false
+        "ts": 1774677407
       },
       {
         "shares": 56.477266,
         "price": 0.8799999985835009,
         "usdc": 49.699994,
-        "ts": 1774677811,
-        "fee": 0,
-        "maker": false
+        "ts": 1774677811
       }
     ],
     "totalShares": 1058.1172660000002
@@ -416,112 +161,10 @@
         "shares": 0.005000000000109139,
         "price": 0.9962600766653118,
         "usdc": 2561.299975,
-        "ts": 1774742972,
-        "fee": 0,
-        "maker": false
+        "ts": 1774742972
       }
     ],
     "totalShares": 0.005000000000109139
-  },
-  {
-    "key": "0x25b1588edc58a5611848dcf7976eae9af2b5f667c6991ed935d277a3a22731a6-1",
-    "title": "Will the highest temperature in Seoul be 11°C on March 29?",
-    "lots": [
-      {
-        "shares": 1684.3,
-        "price": 0.962,
-        "usdc": 1620.2966,
-        "ts": 1774744470,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 26.315788,
-        "price": 0.962000035872002,
-        "usdc": 25.315789,
-        "ts": 1774744674,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 30.526314,
-        "price": 0.9620000305310362,
-        "usdc": 29.366315,
-        "ts": 1774744816,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 468.34,
-        "price": 0.9761173506426954,
-        "usdc": 457.1548,
-        "ts": 1774744950,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2209.482102
-  },
-  {
-    "key": "0x3f9208781eaebf8732f21047a11808d4016d72c286171e6561ec17532260aac3-1",
-    "title": "Will the highest temperature in Seoul be 12°C on March 29?",
-    "lots": [
-      {
-        "shares": 325.22481799999997,
-        "price": 0.9889999999949712,
-        "usdc": 393.339955,
-        "ts": 1774747512,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 325.22481799999997
-  },
-  {
-    "key": "0x30006af12acf4f442c04df981c2994450db1f3930dec10030812091d4cb1d9a0-1",
-    "title": "Will the highest temperature in Seoul be 14°C on March 29?",
-    "lots": [
-      {
-        "shares": 10.06,
-        "price": 0.99,
-        "usdc": 9.9594,
-        "ts": 1774751196,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.06,
-        "price": 0.99,
-        "usdc": 9.9594,
-        "ts": 1774751210,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.06,
-        "price": 0.99,
-        "usdc": 9.9594,
-        "ts": 1774751224,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 30.18
-  },
-  {
-    "key": "0x8df1ecc7f816cbf66910dcc9f6ccbe8fb2d88ae8256afd8244749cc9aecaffea-1",
-    "title": "Will the highest temperature in Seoul be 15°C on March 29?",
-    "lots": [
-      {
-        "shares": 128.72,
-        "price": 0.7603697949036669,
-        "usdc": 97.8748,
-        "ts": 1774751250,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 128.72
   },
   {
     "key": "0xda2a2746b95d00bb97eb54b91aa01f8affcb5da7c7b397f3a63d0baf4dd42609-0",
@@ -531,247 +174,34 @@
         "shares": 198.1,
         "price": 0.8978243311458859,
         "usdc": 177.859,
-        "ts": 1774759800,
-        "fee": 0,
-        "maker": false
+        "ts": 1774759800
       },
       {
         "shares": 135,
         "price": 0.9617037037037037,
         "usdc": 129.83,
-        "ts": 1774760484,
-        "fee": 0,
-        "maker": false
+        "ts": 1774760484
       },
       {
         "shares": 947.73,
         "price": 0.97,
         "usdc": 919.2981,
-        "ts": 1774760782,
-        "fee": 0,
-        "maker": false
+        "ts": 1774760782
       },
       {
         "shares": 152,
         "price": 0.98,
         "usdc": 148.96,
-        "ts": 1774761672,
-        "fee": 0,
-        "maker": false
+        "ts": 1774761672
       },
       {
         "shares": 196.455185,
         "price": 0.9929999964113952,
         "usdc": 195.079998,
-        "ts": 1774762472,
-        "fee": 0,
-        "maker": false
+        "ts": 1774762472
       }
     ],
     "totalShares": 1629.285185
-  },
-  {
-    "key": "0x808a09e181d30615b28e90590b1ea9a37c1e90fa643e99d08d899ba68981083e-1",
-    "title": "Will the highest temperature in Seoul be 17°C or higher on March 29?",
-    "lots": [
-      {
-        "shares": 196.93,
-        "price": 0.8957718478647235,
-        "usdc": 176.40435,
-        "ts": 1774759814,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 73.85,
-        "price": 0.8983750846310088,
-        "usdc": 66.345,
-        "ts": 1774759842,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 240.02,
-        "price": 0.9046670277476877,
-        "usdc": 217.13818,
-        "ts": 1774760204,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 93.5,
-        "price": 0.98,
-        "usdc": 91.63,
-        "ts": 1774761200,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 316.31,
-        "price": 0.9896838544465872,
-        "usdc": 313.0469,
-        "ts": 1774762262,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 66.2,
-        "price": 0.9898489425981873,
-        "usdc": 65.528,
-        "ts": 1774762376,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 202,
-        "price": 0.9929385148514851,
-        "usdc": 200.57358,
-        "ts": 1774762448,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.993,
-        "usdc": 4.965,
-        "ts": 1774762448,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1193.81
-  },
-  {
-    "key": "0x5316e5dc74a8359ce01dd1912251bf4de66096c6bf3f61b2565e10e39176c0e7-1",
-    "title": "Will the highest temperature in Seoul be 15°C on March 30?",
-    "lots": [
-      {
-        "shares": 141.98000000000002,
-        "price": 0.9892178217821782,
-        "usdc": 499.555,
-        "ts": 1774839474,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 432.42,
-        "price": 0.9897099579112899,
-        "usdc": 427.97038,
-        "ts": 1774839494,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 574.4000000000001
-  },
-  {
-    "key": "0x108265347432bd653dd2cf30d307eebd6bbe95bcffcb6b29c4350bdc501a55ff-1",
-    "title": "Will the highest temperature in Seoul be 14°C on March 30?",
-    "lots": [
-      {
-        "shares": 504.12925600000005,
-        "price": 0.995887722645938,
-        "usdc": 999.999998,
-        "ts": 1774839354,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 504.12925600000005
-  },
-  {
-    "key": "0xa2f915e7defe8f89b3d6275f9ab38459f43019db1727bbc8cc67c215cfaaec65-1",
-    "title": "Will the highest temperature in Seoul be 16°C on March 30?",
-    "lots": [
-      {
-        "shares": 123.68,
-        "price": 0.98,
-        "usdc": 121.2064,
-        "ts": 1774841272,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 222.56,
-        "price": 0.99,
-        "usdc": 220.3344,
-        "ts": 1774841282,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 346.24
-  },
-  {
-    "key": "0x5b6a6164f634ebf1b142c9b27d4638db3209f6d11ffbbff122e6556a1002bca9-1",
-    "title": "Will the highest temperature in Seoul be 17°C on March 30?",
-    "lots": [
-      {
-        "shares": 120.340655,
-        "price": 0.8950424609206257,
-        "usdc": 107.709996,
-        "ts": 1774842066,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 270.36,
-        "price": 0.8753946589732209,
-        "usdc": 236.6717,
-        "ts": 1774842164,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 174.647525,
-        "price": 0.9209978669895265,
-        "usdc": 160.849998,
-        "ts": 1774842204,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 220.25,
-        "price": 0.8848967082860386,
-        "usdc": 194.8985,
-        "ts": 1774842346,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 90.8,
-        "price": 0.8816299559471366,
-        "usdc": 80.052,
-        "ts": 1774842364,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 21,
-        "price": 0.89,
-        "usdc": 18.69,
-        "ts": 1774842366,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 0.74,
-        "price": 0.89,
-        "usdc": 0.6586,
-        "ts": 1774842384,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 50,
-        "price": 0.98,
-        "usdc": 49,
-        "ts": 1774843100,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 948.1381799999999
   },
   {
     "key": "0xe9f298abd72b2da1151fea30ec842ead9dba9141854aecae7ee274d823993c83-0",
@@ -781,35 +211,16 @@
         "shares": 167.075923,
         "price": 0.9349042351242913,
         "usdc": 156.199988,
-        "ts": 1774849680,
-        "fee": 0,
-        "maker": false
+        "ts": 1774849680
       },
       {
         "shares": 297.98,
         "price": 0.99,
         "usdc": 295.0002,
-        "ts": 1774851782,
-        "fee": 0,
-        "maker": false
+        "ts": 1774851782
       }
     ],
     "totalShares": 465.055923
-  },
-  {
-    "key": "0xe86e3ff02526c47392cb886e12e6a36190b951131f336af4e31c10a96001c2c2-1",
-    "title": "Will the highest temperature in Seoul be 19°C on March 30?",
-    "lots": [
-      {
-        "shares": 118.12,
-        "price": 0.9892380629867931,
-        "usdc": 116.8488,
-        "ts": 1774851806,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 118.12
   },
   {
     "key": "0xb79f86f606a995e13997e51c1eac366143b05b2d07641012d376502c00f867d6-0",
@@ -819,159 +230,10 @@
         "shares": 233,
         "price": 0.58,
         "usdc": 135.14,
-        "ts": 1774950787,
-        "fee": 0,
-        "maker": false
+        "ts": 1774950787
       }
     ],
     "totalShares": 233
-  },
-  {
-    "key": "0x1a99df41287a87061cbad95dc9a3db0f2143e5b7c1c5151526c475a1c88dcc36-1",
-    "title": "Will the highest temperature in Seoul be 11°C on April 1?",
-    "lots": [
-      {
-        "shares": 118.01371,
-        "price": 0.969584174884163,
-        "usdc": 326.4396,
-        "ts": 1774999783,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 173.666665,
-        "price": 0.9700000054702496,
-        "usdc": 168.456666,
-        "ts": 1774999785,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 44.88,
-        "price": 0.955,
-        "usdc": 42.8604,
-        "ts": 1775000215,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1443.0160700000001,
-        "price": 0.9772412816856562,
-        "usdc": 1411.78139,
-        "ts": 1775000675,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1779.5764450000001
-  },
-  {
-    "key": "0x0341e449498f554bfba80839b08ac314c683f36a67305caa92de525d6a0771d6-1",
-    "title": "Will the highest temperature in Seoul be 11°C on April 2?",
-    "lots": [
-      {
-        "shares": 547.3341939999998,
-        "price": 0.9886869089099054,
-        "usdc": 993.136,
-        "ts": 1775088069,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 140.11,
-        "price": 0.982,
-        "usdc": 137.58802,
-        "ts": 1775088717,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 131.25,
-        "price": 0.982,
-        "usdc": 128.8875,
-        "ts": 1775089247,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 51.319443,
-        "price": 0.9820000189791616,
-        "usdc": 50.395694,
-        "ts": 1775089447,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 49.79,
-        "price": 0.981,
-        "usdc": 48.84399,
-        "ts": 1775090421,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 919.8036369999998
-  },
-  {
-    "key": "0x4d78cfa47f7333fffeda4a263c967fd657f14c4e11bb23a7616a0c9da27d25e1-1",
-    "title": "Will the highest temperature in Seoul be 12°C on April 1?",
-    "lots": [
-      {
-        "shares": 42.99233299999999,
-        "price": 0.9419392140528517,
-        "usdc": 64.269982,
-        "ts": 1775001469,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 312.64126,
-        "price": 0.9564892448014493,
-        "usdc": 299.689984,
-        "ts": 1775006791,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 514.32487,
-        "price": 0.9696436990627378,
-        "usdc": 499.469966,
-        "ts": 1775006907,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 869.9584629999999
-  },
-  {
-    "key": "0xfbaf4f15b38cb723887806a24cf605e68b9c38bb3e1a590bbbbd439d51f2e5ed-1",
-    "title": "Will the highest temperature in Seoul be 16°C or higher on April 1?",
-    "lots": [
-      {
-        "shares": 359.62822,
-        "price": 0.9707779779141416,
-        "usdc": 349.629999,
-        "ts": 1775013957,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 359.62822
-  },
-  {
-    "key": "0xc6325f3b38110c48547b0e190897bc4ac6823aa700f95759abbf2d606b15254a-1",
-    "title": "Will the highest temperature in Seoul be 15°C on April 1?",
-    "lots": [
-      {
-        "shares": 60.1491,
-        "price": 0.9499502487562189,
-        "usdc": 57.282,
-        "ts": 1775014933,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 60.1491
   },
   {
     "key": "0x4b39e32353b926141fff8f917fd96bcf8c0a0cdfcd967ca7305f546971425f5d-0",
@@ -981,17 +243,13 @@
         "shares": 288.58164999999997,
         "price": 0.94,
         "usdc": 272.083,
-        "ts": 1775014955,
-        "fee": 0,
-        "maker": false
+        "ts": 1775014955
       },
       {
         "shares": 196.07117,
         "price": 0.994,
         "usdc": 194.95322,
-        "ts": 1775021431,
-        "fee": 0,
-        "maker": false
+        "ts": 1775021431
       }
     ],
     "totalShares": 484.65281999999996
@@ -1004,9 +262,7 @@
         "shares": 0.0030360000001792287,
         "price": 0.99,
         "usdc": 526.659903,
-        "ts": 1775098787,
-        "fee": 0,
-        "maker": false
+        "ts": 1775098787
       }
     ],
     "totalShares": 0.0030360000001792287
@@ -1019,105 +275,40 @@
         "shares": 1396.38298,
         "price": 0.9640141539781256,
         "usdc": 1348.5594,
-        "ts": 1775108927,
-        "fee": 0,
-        "maker": false
+        "ts": 1775108927
       },
       {
         "shares": 541.3072460000001,
         "price": 0.9710143991817668,
         "usdc": 526.379998,
-        "ts": 1775109007,
-        "fee": 0,
-        "maker": false
+        "ts": 1775109007
       },
       {
         "shares": 99.85,
         "price": 0.97,
         "usdc": 97,
-        "ts": 1775109021,
-        "fee": 0,
-        "maker": false
+        "ts": 1775109021
       },
       {
         "shares": 120.879,
         "price": 0.98,
         "usdc": 118.58,
-        "ts": 1775109501,
-        "fee": 0,
-        "maker": false
+        "ts": 1775109501
       },
       {
         "shares": 677.88446,
         "price": 0.9889261492642939,
         "usdc": 670.74905,
-        "ts": 1775109979,
-        "fee": 0,
-        "maker": false
+        "ts": 1775109979
       },
       {
         "shares": 18.49075,
         "price": 0.99,
         "usdc": 18.315,
-        "ts": 1775110019,
-        "fee": 0,
-        "maker": false
+        "ts": 1775110019
       }
     ],
     "totalShares": 2854.794436
-  },
-  {
-    "key": "0xd5069e40a900e8e2008986907fb12fec1c0fa2eb2ca34cd3cb3a1d08536a4c37-1",
-    "title": "Will the highest temperature in Seoul be 15°C on April 2?",
-    "lots": [
-      {
-        "shares": 49.256009999999996,
-        "price": 0.97,
-        "usdc": 47.8501,
-        "ts": 1775109435,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 718.3852800000001,
-        "price": 0.9954360581407607,
-        "usdc": 715.269833,
-        "ts": 1775110145,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 767.64129
-  },
-  {
-    "key": "0x863b7ba804ff53b0b62053a57ac5c6614e1aea60e9c6d5c0aae0852bc77004ed-1",
-    "title": "Will the highest temperature in Seoul be 12°C on April 3?",
-    "lots": [
-      {
-        "shares": 594.0579,
-        "price": 0.9945440409276026,
-        "usdc": 590.97796,
-        "ts": 1775180451,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 594.0579
-  },
-  {
-    "key": "0xf332b660faea3718df904cebf5a5c0f9effa438f1bd0f82ed0e23fde26817224-1",
-    "title": "Will the highest temperature in Seoul be 11°C on April 3?",
-    "lots": [
-      {
-        "shares": 201.18988000000002,
-        "price": 0.998,
-        "usdc": 200.80758,
-        "ts": 1775180499,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 201.18988000000002
   },
   {
     "key": "0x9411dcc04f80c3bc2e673d35fa3bf2d0f7ef4fd9160c380dc42165af10661461-1",
@@ -1127,9 +318,7 @@
         "shares": 0.0027800000000297587,
         "price": 0.993,
         "usdc": 297.9,
-        "ts": 1775183465,
-        "fee": 0,
-        "maker": false
+        "ts": 1775183465
       }
     ],
     "totalShares": 0.0027800000000297587
@@ -1142,82 +331,10 @@
         "shares": 0.0036830000000520613,
         "price": 0.9870965796489819,
         "usdc": 179.189945,
-        "ts": 1775185487,
-        "fee": 0,
-        "maker": false
+        "ts": 1775185487
       }
     ],
     "totalShares": 0.0036830000000520613
-  },
-  {
-    "key": "0xb233d4dd3228f6949e5b7299c5687d85b5566f9492dabba00f385412ebf4db2a-1",
-    "title": "Will the highest temperature in Seoul be 15°C on April 3?",
-    "lots": [
-      {
-        "shares": 466.10398999999995,
-        "price": 0.9684679976008911,
-        "usdc": 452.1196,
-        "ts": 1775187851,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 504.12939,
-        "price": 0.9674971779384097,
-        "usdc": 488.5377,
-        "ts": 1775188293,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 90.89346,
-        "price": 0.97,
-        "usdc": 88.2991,
-        "ts": 1775188357,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 159.815,
-        "price": 0.976875,
-        "usdc": 156.3,
-        "ts": 1775188369,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 327.80701,
-        "price": 0.9882317073170732,
-        "usdc": 324.14,
-        "ts": 1775188583,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12,
-        "price": 0.99,
-        "usdc": 11.88,
-        "ts": 1775188667,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1560.74885
-  },
-  {
-    "key": "0xf0679a5f5f944c9849ee1347f81b0794b8a2b46fe0a25bfff5e63b9b9a56f270-1",
-    "title": "Will the highest temperature in Seoul be 16°C on April 3?",
-    "lots": [
-      {
-        "shares": 1279.1159499999999,
-        "price": 0.9727674375029277,
-        "usdc": 1245.9789,
-        "ts": 1775189929,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1279.1159499999999
   },
   {
     "key": "0x2d7ffef1fea187a7a82d1584e25f1a0992fe58409010801a21f3d98d9ffe5984-0",
@@ -1227,65 +344,10 @@
         "shares": 286.35168999999996,
         "price": 0.999,
         "usdc": 286.079634,
-        "ts": 1775195971,
-        "fee": 0,
-        "maker": false
+        "ts": 1775195971
       }
     ],
     "totalShares": 286.35168999999996
-  },
-  {
-    "key": "0x6aeec0c12626680973cdae4f933a30b1283eda56767c262320096460e23cffce-1",
-    "title": "LoL: Gen.G vs KT Rolster - Game 1 Winner",
-    "lots": [
-      {
-        "shares": 3.67661,
-        "price": 0.7,
-        "usdc": 2.597,
-        "ts": 1775204959,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 96.29,
-        "price": 0.7,
-        "usdc": 67.403,
-        "ts": 1775204961,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 99.96661
-  },
-  {
-    "key": "0xa3247deb2fdf2f0330be2e02c203e71996de372bbc28c9cb57d2c239fcb57665-1",
-    "title": "LoL: Gen.G vs KT Rolster - Game 2 Winner",
-    "lots": [
-      {
-        "shares": 97.96,
-        "price": 0.32,
-        "usdc": 32,
-        "ts": 1775206595,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 97.96
-  },
-  {
-    "key": "0xe798928e26db9c2b009f8ac84852f1333cbc928ff50839385e7c16f3f4af4385-1",
-    "title": "LoL: Gen.G vs KT Rolster (BO3) - LCK Rounds 1-2",
-    "lots": [
-      {
-        "shares": 97.72,
-        "price": 0.24,
-        "usdc": 24,
-        "ts": 1775209787,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 97.72
   },
   {
     "key": "0x497d5c385675f9cc3b03a6900037513f4635d2bdd114d05b14b2438fd07263c8-0",
@@ -1295,9 +357,7 @@
         "shares": 0.009989999999996613,
         "price": 0.12,
         "usdc": 0.93,
-        "ts": 1775260233,
-        "fee": 0,
-        "maker": false
+        "ts": 1775260233
       }
     ],
     "totalShares": 0.009989999999996613
@@ -1310,139 +370,64 @@
         "shares": 172.35747,
         "price": 0.17,
         "usdc": 30.5694,
-        "ts": 1775260033,
-        "fee": 0,
-        "maker": false
+        "ts": 1775260033
       },
       {
         "shares": 5,
         "price": 0.17,
         "usdc": 0.85,
-        "ts": 1775260163,
-        "fee": 0,
-        "maker": false
+        "ts": 1775260163
       },
       {
         "shares": 0.15,
         "price": 0.17,
         "usdc": 0.0255,
-        "ts": 1775260163,
-        "fee": 0,
-        "maker": false
+        "ts": 1775260163
       },
       {
         "shares": 0.01,
         "price": 0.17,
         "usdc": 0.0017,
-        "ts": 1775260163,
-        "fee": 0,
-        "maker": false
+        "ts": 1775260163
       },
       {
         "shares": 5,
         "price": 0.17,
         "usdc": 0.85,
-        "ts": 1775260163,
-        "fee": 0,
-        "maker": false
+        "ts": 1775260163
       },
       {
         "shares": 12.91,
         "price": 0.17,
         "usdc": 2.1947,
-        "ts": 1775260233,
-        "fee": 0,
-        "maker": false
+        "ts": 1775260233
       },
       {
         "shares": 0.11,
         "price": 0.17,
         "usdc": 0.0187,
-        "ts": 1775262025,
-        "fee": 0,
-        "maker": false
+        "ts": 1775262025
       },
       {
         "shares": 2.75,
         "price": 0.19,
         "usdc": 0.5225,
-        "ts": 1775265115,
-        "fee": 0,
-        "maker": false
+        "ts": 1775265115
       },
       {
         "shares": 0.5,
         "price": 0.19,
         "usdc": 0.095,
-        "ts": 1775265289,
-        "fee": 0,
-        "maker": false
+        "ts": 1775265289
       },
       {
         "shares": 1.75,
         "price": 0.19,
         "usdc": 0.3325,
-        "ts": 1775265377,
-        "fee": 0,
-        "maker": false
+        "ts": 1775265377
       }
     ],
     "totalShares": 200.53747
-  },
-  {
-    "key": "0xcb2a64d3d5d9314107a44ffd4d51548ce73dcbf79f9ee7b9490fd742c0fb4e76-1",
-    "title": "Will the highest temperature in Seoul be 14°C on April 4?",
-    "lots": [
-      {
-        "shares": 352.60083999999983,
-        "price": 0.977,
-        "usdc": 651.47337,
-        "ts": 1775263485,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 636.39244,
-        "price": 0.9887691087553985,
-        "usdc": 629.59873,
-        "ts": 1775264523,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 375.21751,
-        "price": 0.969,
-        "usdc": 364.1502,
-        "ts": 1775264537,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 367.92951999999997,
-        "price": 0.975,
-        "usdc": 359.18025,
-        "ts": 1775264671,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 138.8325,
-        "price": 0.98,
-        "usdc": 136.05585,
-        "ts": 1775265443,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 158.16,
-        "price": 0.98,
-        "usdc": 154.9968,
-        "ts": 1775265959,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2029.1328099999998
   },
   {
     "key": "0x6c3712de41368f3d6ef77e3830c4520d43a0c4793eff21f7d34a79c45bb57e5e-0",
@@ -1452,42 +437,10 @@
         "shares": 200,
         "price": 0.687,
         "usdc": 137.4,
-        "ts": 1775264929,
-        "fee": 0,
-        "maker": false
+        "ts": 1775264929
       }
     ],
     "totalShares": 200
-  },
-  {
-    "key": "0x497d5c385675f9cc3b03a6900037513f4635d2bdd114d05b14b2438fd07263c8-1",
-    "title": "Will the highest temperature in Seoul be 15°C on April 4?",
-    "lots": [
-      {
-        "shares": 129.413062,
-        "price": 0.9889999999382164,
-        "usdc": 128.059945,
-        "ts": 1775267751,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 129.413062
-  },
-  {
-    "key": "0x2e3926753ba1e402a28832269eac8773674fbfab357fb165f2e16323d05af6ea-1",
-    "title": "Will the highest temperature in Seoul be 16°C on April 4?",
-    "lots": [
-      {
-        "shares": 1063.85191,
-        "price": 0.9469737878276522,
-        "usdc": 1010.118,
-        "ts": 1775273153,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1063.85191
   },
   {
     "key": "0xad27028bbeb50f4a4211a5dde8272378df43420a2df6be88a67d3a0ca5093045-1",
@@ -1497,9 +450,7 @@
         "shares": 0.006759999999985666,
         "price": 0.992,
         "usdc": 231.25504,
-        "ts": 1775345133,
-        "fee": 0,
-        "maker": false
+        "ts": 1775345133
       }
     ],
     "totalShares": 0.006759999999985666
@@ -1512,9 +463,7 @@
         "shares": 0.0004400000004807225,
         "price": 0.9893323685994382,
         "usdc": 3681.399928,
-        "ts": 1775346397,
-        "fee": 0,
-        "maker": false
+        "ts": 1775346397
       }
     ],
     "totalShares": 0.0004400000004807225
@@ -1527,97 +476,73 @@
         "shares": 23.89203,
         "price": 0.26,
         "usdc": 6.4506,
-        "ts": 1775365305,
-        "fee": 0,
-        "maker": false
+        "ts": 1775365305
       },
       {
         "shares": 61.36862,
         "price": 0.2710362694300518,
         "usdc": 17.2623,
-        "ts": 1775365337,
-        "fee": 0,
-        "maker": false
+        "ts": 1775365337
       },
       {
         "shares": 29.808629999999997,
         "price": 0.25,
         "usdc": 7.7425,
-        "ts": 1775365349,
-        "fee": 0,
-        "maker": false
+        "ts": 1775365349
       },
       {
         "shares": 111.29311000000001,
         "price": 0.9754295970564479,
         "usdc": 108.69212,
-        "ts": 1775373945,
-        "fee": 0,
-        "maker": false
+        "ts": 1775373945
       },
       {
         "shares": 12,
         "price": 0.98,
         "usdc": 11.76,
-        "ts": 1775373967,
-        "fee": 0,
-        "maker": false
+        "ts": 1775373967
       },
       {
         "shares": 5,
         "price": 0.98,
         "usdc": 4.9,
-        "ts": 1775374017,
-        "fee": 0,
-        "maker": false
+        "ts": 1775374017
       },
       {
         "shares": 39.986,
         "price": 0.993,
         "usdc": 39.72,
-        "ts": 1775374931,
-        "fee": 0,
-        "maker": false
+        "ts": 1775374931
       },
       {
         "shares": 603.523952,
         "price": 0.9809999999966893,
         "usdc": 592.619983,
-        "ts": 1775375107,
-        "fee": 0,
-        "maker": false
+        "ts": 1775375107
       },
       {
         "shares": 183.17978000000002,
         "price": 0.9934269810085135,
         "usdc": 182.03556,
-        "ts": 1775375277,
-        "fee": 0,
-        "maker": false
+        "ts": 1775375277
       },
       {
         "shares": 118.89403,
         "price": 0.9889912533257117,
         "usdc": 117.649905,
-        "ts": 1775375639,
-        "fee": 0,
-        "maker": false
+        "ts": 1775375639
       },
       {
         "shares": 261.70662000000004,
         "price": 0.9936293212116581,
         "usdc": 260.12222,
-        "ts": 1775375991,
-        "fee": 0,
-        "maker": false
+        "ts": 1775375991
       },
       {
         "shares": 673.0296999999999,
         "price": 0.995831573005333,
         "usdc": 670.36394,
-        "ts": 1775376051,
-        "fee": 0,
-        "maker": false
+        "ts": 1775376051
       }
     ],
     "totalShares": 2123.682472
@@ -1630,153 +555,10 @@
         "shares": 0.0035260000000505443,
         "price": 0.9941052657808865,
         "usdc": 929.379734,
-        "ts": 1775370341,
-        "fee": 0,
-        "maker": false
+        "ts": 1775370341
       }
     ],
     "totalShares": 0.0035260000000505443
-  },
-  {
-    "key": "0xe7cf9e580201ed67a865906b16701cee5fd943a3b994cf5985cb9ba97003ccad-1",
-    "title": "Will the highest temperature in Seoul be 13°C on April 5?",
-    "lots": [
-      {
-        "shares": 170.06624,
-        "price": 0.9748926474042753,
-        "usdc": 166.00472,
-        "ts": 1775373959,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 197.02093000000002,
-        "price": 0.9747476048055964,
-        "usdc": 192.28846,
-        "ts": 1775373975,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 171.07580000000002,
-        "price": 0.9948332748948107,
-        "usdc": 170.23587,
-        "ts": 1775374963,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 215.36386,
-        "price": 0.9845824247204565,
-        "usdc": 212.20705,
-        "ts": 1775375081,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 19.770110000000003,
-        "price": 0.99,
-        "usdc": 19.5822,
-        "ts": 1775375951,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 773.2969400000001
-  },
-  {
-    "key": "0x1bb68a362ffcd0c12685e70b3a779219aef251c22297bebf280b7cf459939bd4-1",
-    "title": "Will the highest temperature in Seoul be 9°C on April 6?",
-    "lots": [
-      {
-        "shares": 226.62663,
-        "price": 0.99,
-        "usdc": 224.4726,
-        "ts": 1775429765,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 64.45548,
-        "price": 0.98,
-        "usdc": 63.2296,
-        "ts": 1775436503,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 480.31419999999997,
-        "price": 0.9914340922334138,
-        "usdc": 476.40391,
-        "ts": 1775438367,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 771.39631
-  },
-  {
-    "key": "0x2301fb7ad1da693bcfff09bfd37c0a55b558e3afd850777af47f100e13f929bc-1",
-    "title": "Will the highest temperature in Seoul be 10°C on April 6?",
-    "lots": [
-      {
-        "shares": 370.61966000000007,
-        "price": 0.9836732597215555,
-        "usdc": 1639.19312,
-        "ts": 1775432609,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 184.85864,
-        "price": 0.975,
-        "usdc": 180.46275,
-        "ts": 1775432749,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 349.8425,
-        "price": 0.991,
-        "usdc": 346.85,
-        "ts": 1775433335,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 57.30264,
-        "price": 0.98,
-        "usdc": 56.2128,
-        "ts": 1775434105,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 63.722429999999996,
-        "price": 0.9788118827402414,
-        "usdc": 62.43841,
-        "ts": 1775434379,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 168.18265,
-        "price": 0.973,
-        "usdc": 163.86293,
-        "ts": 1775434955,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 99.9,
-        "price": 0.98,
-        "usdc": 98,
-        "ts": 1775437225,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1294.4285200000002
   },
   {
     "key": "0xcc2dac660f3b8bb0891f8fdd7d9c5b3e9de7cbb38ae02d2fd1d12fc2c4f5c011-0",
@@ -1786,27 +568,10 @@
         "shares": 0.0014800000000150249,
         "price": 0.28,
         "usdc": 137.4996,
-        "ts": 1775454969,
-        "fee": 0,
-        "maker": false
+        "ts": 1775454969
       }
     ],
     "totalShares": 0.0014800000000150249
-  },
-  {
-    "key": "0xcc2dac660f3b8bb0891f8fdd7d9c5b3e9de7cbb38ae02d2fd1d12fc2c4f5c011-1",
-    "title": "Will the highest temperature in Seoul be 11°C on April 6?",
-    "lots": [
-      {
-        "shares": 936.0425250000001,
-        "price": 0.884256910242086,
-        "usdc": 832.519989,
-        "ts": 1775456729,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 936.0425250000001
   },
   {
     "key": "0xabeaee31c50bad8b33629e73709a834479662900f37ad91cf21a12bdfc50d6b6-0",
@@ -1816,120 +581,28 @@
         "shares": 200.53458,
         "price": 0.9596468597591321,
         "usdc": 192.83144,
-        "ts": 1775460241,
-        "fee": 0,
-        "maker": false
+        "ts": 1775460241
       },
       {
         "shares": 74.58525,
         "price": 0.961260404121504,
         "usdc": 71.83499,
-        "ts": 1775460401,
-        "fee": 0,
-        "maker": false
+        "ts": 1775460401
       },
       {
         "shares": 109.34653999999999,
         "price": 0.9737948671111517,
         "usdc": 106.6208,
-        "ts": 1775460481,
-        "fee": 0,
-        "maker": false
+        "ts": 1775460481
       },
       {
         "shares": 931.701748,
         "price": 0.9887854584825164,
         "usdc": 921.769998,
-        "ts": 1775460561,
-        "fee": 0,
-        "maker": false
+        "ts": 1775460561
       }
     ],
     "totalShares": 1316.168118
-  },
-  {
-    "key": "0xeb6cd12642f7ee845ce50401a769ccdd40f0e96dddf81931b5631faa9397968f-1",
-    "title": "Will the highest temperature in Seoul be 10°C on April 7?",
-    "lots": [
-      {
-        "shares": 89.06004999999993,
-        "price": 0.994179195706459,
-        "usdc": 266.74822,
-        "ts": 1775526583,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1308.08638,
-        "price": 0.9639265366858712,
-        "usdc": 1263.17753,
-        "ts": 1775532335,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1397.1464299999998
-  },
-  {
-    "key": "0x49f89c7b7de1e7e85d63af7ec9da68371b906e8ee5a500021864d430521ace51-1",
-    "title": "Will the highest temperature in Seoul be 9°C on April 7?",
-    "lots": [
-      {
-        "shares": 115.9652,
-        "price": 0.994,
-        "usdc": 115.304,
-        "ts": 1775522917,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 115.9652
-  },
-  {
-    "key": "0xe02abcb685dd61c94b8298eb34de0787f160b78823652972c5ba866b3478dfff-1",
-    "title": "Will the highest temperature in Seoul be 11°C on April 7?",
-    "lots": [
-      {
-        "shares": 0.004290000000025884,
-        "price": 0.846182869732856,
-        "usdc": 307.249,
-        "ts": 1775527929,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 0.004290000000025884
-  },
-  {
-    "key": "0x91b64ecea0ad23326cd875234f184e85eaffe613c2c3ac166a13dc3816ce78d9-1",
-    "title": "Will the highest temperature in Seoul be 14°C on April 7?",
-    "lots": [
-      {
-        "shares": 432.46034000000003,
-        "price": 0.97,
-        "usdc": 420.1167,
-        "ts": 1775541589,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.52779,
-        "price": 0.971,
-        "usdc": 1.48563,
-        "ts": 1775542667,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 128.19,
-        "price": 0.99,
-        "usdc": 126.9081,
-        "ts": 1775542671,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 562.17813
   },
   {
     "key": "0xe02abcb685dd61c94b8298eb34de0787f160b78823652972c5ba866b3478dfff-0",
@@ -1939,59 +612,28 @@
         "shares": 44.95176,
         "price": 0.9785555555555555,
         "usdc": 44.035,
-        "ts": 1775546783,
-        "fee": 0,
-        "maker": false
+        "ts": 1775546783
       },
       {
         "shares": 151.49611000000002,
         "price": 0.9797032640949555,
         "usdc": 148.572,
-        "ts": 1775546795,
-        "fee": 0,
-        "maker": false
+        "ts": 1775546795
       },
       {
         "shares": 111.66264,
         "price": 0.979,
         "usdc": 109.43262,
-        "ts": 1775546851,
-        "fee": 0,
-        "maker": false
+        "ts": 1775546851
       },
       {
         "shares": 640.74562,
         "price": 0.9898799195095699,
         "usdc": 634.58232,
-        "ts": 1775547341,
-        "fee": 0,
-        "maker": false
+        "ts": 1775547341
       }
     ],
     "totalShares": 948.8561300000001
-  },
-  {
-    "key": "0x6e450ea381863c78b1b2812287fd2a2c26bc3938febefa95b59a7f50505dcf60-1",
-    "title": "Will the highest temperature in Seoul be 12°C on April 7?",
-    "lots": [
-      {
-        "shares": 857.8081000000001,
-        "price": 0.9794592227695677,
-        "usdc": 841.05184,
-        "ts": 1775546805,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 322.58503,
-        "price": 0.9899381249856699,
-        "usdc": 319.499956,
-        "ts": 1775547361,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1180.3931300000002
   },
   {
     "key": "0xc30cfaaafa3c9f56675f7b85c58284a73a7451b60a50518d059a25e5fc65ff34-1",
@@ -2001,9 +643,7 @@
         "shares": 0.0062800000000606815,
         "price": 0.99,
         "usdc": 9.9,
-        "ts": 1775616937,
-        "fee": 0,
-        "maker": false
+        "ts": 1775616937
       }
     ],
     "totalShares": 0.0062800000000606815
@@ -2016,75 +656,10 @@
         "shares": 0.0017500000001291482,
         "price": 0.9883229406486629,
         "usdc": 1143.219929,
-        "ts": 1775624137,
-        "fee": 0,
-        "maker": false
+        "ts": 1775624137
       }
     ],
     "totalShares": 0.0017500000001291482
-  },
-  {
-    "key": "0xb8a41f4f0abfdcb2bdc5bf6572d23c173d801f06bb88ad84ad9bbc0f8951811f-1",
-    "title": "Will the highest temperature in Seoul be 14°C on April 8?",
-    "lots": [
-      {
-        "shares": 1268.5857099999998,
-        "price": 0.9488254811926028,
-        "usdc": 1206.7542,
-        "ts": 1775630569,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 156.5676,
-        "price": 0.95,
-        "usdc": 149.112,
-        "ts": 1775630805,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 717.14595,
-        "price": 0.9684228991479645,
-        "usdc": 695.5988,
-        "ts": 1775631111,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 508.9775,
-        "price": 0.9599019607843138,
-        "usdc": 489.55,
-        "ts": 1775631197,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 55.22704,
-        "price": 0.97,
-        "usdc": 53.6507,
-        "ts": 1775631545,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15.33,
-        "price": 0.97,
-        "usdc": 14.8701,
-        "ts": 1775631585,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 200,
-        "price": 0.97,
-        "usdc": 194,
-        "ts": 1775631613,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2921.8338
   },
   {
     "key": "0x52fbea45aef80d00faf1ef9ababdec3d3f39cb78989c846d1055ac2a7152eb40-0",
@@ -2094,162 +669,70 @@
         "shares": 261.72211000000004,
         "price": 0.9376940656661842,
         "usdc": 246.1822,
-        "ts": 1775630583,
-        "fee": 0,
-        "maker": false
+        "ts": 1775630583
       },
       {
         "shares": 150.58114,
         "price": 0.9445211920529801,
         "usdc": 142.6227,
-        "ts": 1775630597,
-        "fee": 0,
-        "maker": false
+        "ts": 1775630597
       },
       {
         "shares": 43.092000000000006,
         "price": 0.95,
         "usdc": 41.04,
-        "ts": 1775630815,
-        "fee": 0,
-        "maker": false
+        "ts": 1775630815
       },
       {
         "shares": 20.568450000000002,
         "price": 0.95,
         "usdc": 19.589,
-        "ts": 1775630835,
-        "fee": 0,
-        "maker": false
+        "ts": 1775630835
       },
       {
         "shares": 23.9,
         "price": 0.95,
         "usdc": 22.705,
-        "ts": 1775630839,
-        "fee": 0,
-        "maker": false
+        "ts": 1775630839
       },
       {
         "shares": 3.23,
         "price": 0.95,
         "usdc": 3.0685,
-        "ts": 1775630851,
-        "fee": 0,
-        "maker": false
+        "ts": 1775630851
       },
       {
         "shares": 517.2194999999999,
         "price": 0.95,
         "usdc": 492.589991,
-        "ts": 1775631133,
-        "fee": 0,
-        "maker": false
+        "ts": 1775631133
       },
       {
         "shares": 308.19048,
         "price": 0.9501857845675815,
         "usdc": 293.5694,
-        "ts": 1775631185,
-        "fee": 0,
-        "maker": false
+        "ts": 1775631185
       },
       {
         "shares": 29.94,
         "price": 0.96,
         "usdc": 28.8,
-        "ts": 1775631209,
-        "fee": 0,
-        "maker": false
+        "ts": 1775631209
       },
       {
         "shares": 57.034319999999994,
         "price": 0.97,
         "usdc": 55.4064,
-        "ts": 1775631529,
-        "fee": 0,
-        "maker": false
+        "ts": 1775631529
       },
       {
         "shares": 10.84,
         "price": 0.97,
         "usdc": 10.5148,
-        "ts": 1775631541,
-        "fee": 0,
-        "maker": false
+        "ts": 1775631541
       }
     ],
     "totalShares": 1426.3179999999998
-  },
-  {
-    "key": "0xd3e5b3a1b5eef703c00b3e1be5b5df145c4895cfb9c848136892956d4788d48a-1",
-    "title": "Will the highest temperature in Seoul be 14°C on April 10?",
-    "lots": [
-      {
-        "shares": 244.60564,
-        "price": 0.9645471351616063,
-        "usdc": 236.35263,
-        "ts": 1775797643,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.97,
-        "usdc": 4.85,
-        "ts": 1775797769,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 911.567,
-        "price": 0.989627582123591,
-        "usdc": 902.57994,
-        "ts": 1775798933,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 134.65264,
-        "price": 0.99,
-        "usdc": 133.3728,
-        "ts": 1775799229,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1295.82528
-  },
-  {
-    "key": "0xd6d191375b0c500c79f400a9794ccc58729c01e28d569d113cc6653db80c3b65-1",
-    "title": "Will the highest temperature in Seoul be 13°C on April 10?",
-    "lots": [
-      {
-        "shares": 103.18813,
-        "price": 0.9089571676635153,
-        "usdc": 94.2225,
-        "ts": 1775797693,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 23.05,
-        "price": 0.93,
-        "usdc": 21.4365,
-        "ts": 1775797695,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 56.17,
-        "price": 0.93,
-        "usdc": 52.2381,
-        "ts": 1775797699,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 182.40813
   },
   {
     "key": "0x1dfa95115380f6e9f7fb8185b6153501e3a4354d2e6821278a37a4feb6d10ec3-0",
@@ -2259,113 +742,10 @@
         "shares": 327.75571,
         "price": 0.8868824707238638,
         "usdc": 292.3342,
-        "ts": 1775797821,
-        "fee": 0,
-        "maker": false
+        "ts": 1775797821
       }
     ],
     "totalShares": 327.75571
-  },
-  {
-    "key": "0x48177b4a78b1d2d6d836981587b853454fa7a44d583a9752626ec0e97456e213-1",
-    "title": "Will the highest temperature in Seoul be 17°C or higher on April 11?",
-    "lots": [
-      {
-        "shares": 336.45664,
-        "price": 0.84,
-        "usdc": 284.9028,
-        "ts": 1775868685,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 99.25,
-        "price": 0.85,
-        "usdc": 85,
-        "ts": 1775868699,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 473.87925,
-        "price": 0.89,
-        "usdc": 424.085,
-        "ts": 1775870781,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 573.9740400000001,
-        "price": 0.93,
-        "usdc": 535.6707,
-        "ts": 1775872327,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 218.2433,
-        "price": 0.94,
-        "usdc": 205.766,
-        "ts": 1775874005,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 161.06842,
-        "price": 0.975,
-        "usdc": 157.23825,
-        "ts": 1775879309,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 149.76502000000002,
-        "price": 0.97,
-        "usdc": 145.4903,
-        "ts": 1775879829,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2012.6366700000003
-  },
-  {
-    "key": "0xc46d9531760d9248021d065fb7fd7aa193b9806a4e7e7de4845669ff46a4ba90-1",
-    "title": "Will the highest temperature in Seoul be 16°C on April 11?",
-    "lots": [
-      {
-        "shares": 119.7,
-        "price": 0.95,
-        "usdc": 114,
-        "ts": 1775879335,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 119.7
-  },
-  {
-    "key": "0xaaf6c4d77568f16719a14d8aea4642a68a3f0f6ceddf5daddfc99ddf795b95bb-1",
-    "title": "Will the highest temperature in Seoul be 15°C on April 11?",
-    "lots": [
-      {
-        "shares": 382.04757,
-        "price": 0.98,
-        "usdc": 374.7814,
-        "ts": 1775885441,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 148.36729,
-        "price": 0.9780893422204269,
-        "usdc": 145.27561,
-        "ts": 1775885711,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 530.41486
   },
   {
     "key": "0x6a7ec581dcd6f5e0b62ecac0daf17379647f5059267237236a8feac7d0a1acb0-0",
@@ -2375,9 +755,7 @@
         "shares": 0.009266000000025088,
         "price": 0.038,
         "usdc": 38,
-        "ts": 1775889027,
-        "fee": 0,
-        "maker": false
+        "ts": 1775889027
       }
     ],
     "totalShares": 0.009266000000025088
@@ -2390,176 +768,28 @@
         "shares": 1088.1001820000001,
         "price": 0.950090574423281,
         "usdc": 1036.379978,
-        "ts": 1775889699,
-        "fee": 0,
-        "maker": false
+        "ts": 1775889699
       },
       {
         "shares": 438.70739000000003,
         "price": 0.9789320764168773,
         "usdc": 429.9176,
-        "ts": 1775890715,
-        "fee": 0,
-        "maker": false
+        "ts": 1775890715
       },
       {
         "shares": 10,
         "price": 0.98,
         "usdc": 9.8,
-        "ts": 1775890715,
-        "fee": 0,
-        "maker": false
+        "ts": 1775890715
       },
       {
         "shares": 89.9325,
         "price": 0.985,
         "usdc": 88.65,
-        "ts": 1775890875,
-        "fee": 0,
-        "maker": false
+        "ts": 1775890875
       }
     ],
     "totalShares": 1626.740072
-  },
-  {
-    "key": "0xff6f22f51c15c0a20542ebe7edf0e989aaf4f3c5b016b2b5b386ffa445b6c886-1",
-    "title": "Will the highest temperature in Seoul be 13°C on April 11?",
-    "lots": [
-      {
-        "shares": 57.8949,
-        "price": 0.95,
-        "usdc": 55.138,
-        "ts": 1775889721,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 144.79408,
-        "price": 0.984,
-        "usdc": 142.59144,
-        "ts": 1775890813,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 202.68898000000002
-  },
-  {
-    "key": "0x99e03886a5c3aa479e418ad9508134e92566f7119129cb0ff21f28d30318b680-1",
-    "title": "Will the highest temperature in Seoul be 14°C or below on April 12?",
-    "lots": [
-      {
-        "shares": 504.12984,
-        "price": 0.9781973131489261,
-        "usdc": 493.67662,
-        "ts": 1775955433,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 388.64894000000004,
-        "price": 0.9763015342705148,
-        "usdc": 379.88869,
-        "ts": 1775955515,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 21,
-        "price": 0.98,
-        "usdc": 20.58,
-        "ts": 1775955519,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 913.7787800000001
-  },
-  {
-    "key": "0x52974ff60cc31313effaecbb967579f1ce0c53501af96ad08bf4edb36b9babcf-1",
-    "title": "Will the highest temperature in Seoul be 15°C on April 12?",
-    "lots": [
-      {
-        "shares": 518.6449700000001,
-        "price": 0.9065388040224149,
-        "usdc": 472.37924,
-        "ts": 1775955609,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 21.426090000000002,
-        "price": 0.885,
-        "usdc": 19.07175,
-        "ts": 1775955619,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 540.0710600000001
-  },
-  {
-    "key": "0x40f0750d3bd1c163dd82cf52b84340992a6fce5c73fc0d849dcb252dbd482dc6-1",
-    "title": "Will the highest temperature in Seoul be 18°C on April 12?",
-    "lots": [
-      {
-        "shares": 0.008879999999976462,
-        "price": 0.92,
-        "usdc": 945.4748,
-        "ts": 1775970679,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 62.918530000000004,
-        "price": 0.99,
-        "usdc": 62.3205,
-        "ts": 1775975147,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 3.63,
-        "price": 0.99,
-        "usdc": 3.5937,
-        "ts": 1775975155,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.84,
-        "price": 0.99,
-        "usdc": 2.8116,
-        "ts": 1775975159,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.7,
-        "price": 0.99,
-        "usdc": 10.593,
-        "ts": 1775975163,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1775975167,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 76.87,
-        "price": 0.99,
-        "usdc": 76.1013,
-        "ts": 1775975167,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 256.96741
   },
   {
     "key": "0x0efbc1865eb14395334e500b14da4b3e9335be3267d926a5d91047c1e4453df3-0",
@@ -2569,35 +799,10 @@
         "shares": 0.0033999999999991815,
         "price": 0.4,
         "usdc": 46.088,
-        "ts": 1775970405,
-        "fee": 0,
-        "maker": false
+        "ts": 1775970405
       }
     ],
     "totalShares": 0.0033999999999991815
-  },
-  {
-    "key": "0x0efbc1865eb14395334e500b14da4b3e9335be3267d926a5d91047c1e4453df3-1",
-    "title": "Will the highest temperature in Seoul be 16°C on April 12?",
-    "lots": [
-      {
-        "shares": 96.69,
-        "price": 0.338,
-        "usdc": 33.8,
-        "ts": 1775971149,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 32.5,
-        "price": 0.339,
-        "usdc": 11.0175,
-        "ts": 1775971155,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 129.19
   },
   {
     "key": "0xd6cadd12fc0becd918998c62abfc270fb1701645915cf588fcc2f92a7d1560fb-0",
@@ -2607,343 +812,130 @@
         "shares": 493.4061,
         "price": 0.8,
         "usdc": 398.712,
-        "ts": 1775976155,
-        "fee": 0,
-        "maker": false
+        "ts": 1775976155
       },
       {
         "shares": 112.96811,
         "price": 0.9555034446210917,
         "usdc": 108.1821,
-        "ts": 1775976501,
-        "fee": 0,
-        "maker": false
+        "ts": 1775976501
       },
       {
         "shares": 6,
         "price": 0.96,
         "usdc": 5.76,
-        "ts": 1775976505,
-        "fee": 0,
-        "maker": false
+        "ts": 1775976505
       },
       {
         "shares": 2.37,
         "price": 0.96,
         "usdc": 2.2752,
-        "ts": 1775976525,
-        "fee": 0,
-        "maker": false
+        "ts": 1775976525
       },
       {
         "shares": 5,
         "price": 0.96,
         "usdc": 4.8,
-        "ts": 1775976525,
-        "fee": 0,
-        "maker": false
+        "ts": 1775976525
       },
       {
         "shares": 2.1,
         "price": 0.96,
         "usdc": 2.016,
-        "ts": 1775976525,
-        "fee": 0,
-        "maker": false
+        "ts": 1775976525
       },
       {
         "shares": 2.9,
         "price": 0.96,
         "usdc": 2.784,
-        "ts": 1775976525,
-        "fee": 0,
-        "maker": false
+        "ts": 1775976525
       },
       {
         "shares": 97.9,
         "price": 0.96,
         "usdc": 93.984,
-        "ts": 1775976527,
-        "fee": 0,
-        "maker": false
+        "ts": 1775976527
       },
       {
         "shares": 39.28803,
         "price": 0.9330441400304414,
         "usdc": 36.7806,
-        "ts": 1775976649,
-        "fee": 0,
-        "maker": false
+        "ts": 1775976649
       },
       {
         "shares": 144.855,
         "price": 0.98,
         "usdc": 142.1,
-        "ts": 1775976659,
-        "fee": 0,
-        "maker": false
+        "ts": 1775976659
       },
       {
         "shares": 23,
         "price": 0.98,
         "usdc": 22.54,
-        "ts": 1775976667,
-        "fee": 0,
-        "maker": false
+        "ts": 1775976667
       },
       {
         "shares": 341.39664999999997,
         "price": 0.9898495184003279,
         "usdc": 338.1029,
-        "ts": 1775977409,
-        "fee": 0,
-        "maker": false
+        "ts": 1775977409
       },
       {
         "shares": 1248.7777999999998,
         "price": 0.991,
         "usdc": 1238.09594,
-        "ts": 1775978529,
-        "fee": 0,
-        "maker": false
+        "ts": 1775978529
       },
       {
         "shares": 0.21,
         "price": 0.99,
         "usdc": 0.2079,
-        "ts": 1775978649,
-        "fee": 0,
-        "maker": false
+        "ts": 1775978649
       },
       {
         "shares": 5,
         "price": 0.99,
         "usdc": 4.95,
-        "ts": 1775978701,
-        "fee": 0,
-        "maker": false
+        "ts": 1775978701
       },
       {
         "shares": 4.09,
         "price": 0.99,
         "usdc": 4.0491,
-        "ts": 1775978701,
-        "fee": 0,
-        "maker": false
+        "ts": 1775978701
       },
       {
         "shares": 5,
         "price": 0.99,
         "usdc": 4.95,
-        "ts": 1775978701,
-        "fee": 0,
-        "maker": false
+        "ts": 1775978701
       },
       {
         "shares": 5,
         "price": 0.99,
         "usdc": 4.95,
-        "ts": 1775978701,
-        "fee": 0,
-        "maker": false
+        "ts": 1775978701
       },
       {
         "shares": 5,
         "price": 0.99,
         "usdc": 4.95,
-        "ts": 1775978701,
-        "fee": 0,
-        "maker": false
+        "ts": 1775978701
       },
       {
         "shares": 5,
         "price": 0.99,
         "usdc": 4.95,
-        "ts": 1775978701,
-        "fee": 0,
-        "maker": false
+        "ts": 1775978701
       },
       {
         "shares": 128.23,
         "price": 0.99,
         "usdc": 126.9477,
-        "ts": 1775978703,
-        "fee": 0,
-        "maker": false
+        "ts": 1775978703
       }
     ],
     "totalShares": 2677.4916900000003
-  },
-  {
-    "key": "0x3f97de786877e1c2747fe18521fb454dafbf6079e886bf25bbca226eb20245ee-1",
-    "title": "Will the highest temperature in Seoul be 20°C on April 12?",
-    "lots": [
-      {
-        "shares": 373.4205,
-        "price": 0.9530052898744322,
-        "usdc": 356.70988,
-        "ts": 1775976487,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1111.4874,
-        "price": 0.98,
-        "usdc": 1090.348,
-        "ts": 1775976685,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 7,
-        "price": 0.98,
-        "usdc": 6.86,
-        "ts": 1775976687,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 39.860099999999996,
-        "price": 0.98,
-        "usdc": 39.102,
-        "ts": 1775977205,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1531.768
-  },
-  {
-    "key": "0x94e389e4f915427035ae38bb43b4cd651fd5ff1a69ddcf54f84c57e47170a62e-1",
-    "title": "Will the highest temperature in Seoul be 19°C on April 13?",
-    "lots": [
-      {
-        "shares": 803.8159499999999,
-        "price": 0.910973111554229,
-        "usdc": 735.5288,
-        "ts": 1776040229,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 64.5556,
-        "price": 0.9,
-        "usdc": 58.392,
-        "ts": 1776040393,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 71,
-        "price": 0.9,
-        "usdc": 63.9,
-        "ts": 1776040479,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 129,
-        "price": 0.9,
-        "usdc": 116.1,
-        "ts": 1776040595,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 619.33272,
-        "price": 0.92,
-        "usdc": 572.0744,
-        "ts": 1776040789,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 89.29140000000001,
-        "price": 0.92,
-        "usdc": 82.478,
-        "ts": 1776041781,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1776.9956699999998
-  },
-  {
-    "key": "0x6ff673cfa0546cab1af85ac9b5e61ac06efed10d3c77de513de80bf51caa138f-1",
-    "title": "Will the highest temperature in Seoul be 18°C on April 13?",
-    "lots": [
-      {
-        "shares": 1938.12779,
-        "price": 0.9551891087681726,
-        "usdc": 1855.43574,
-        "ts": 1776040253,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 314.277678,
-        "price": 0.9639999998983625,
-        "usdc": 303.50999,
-        "ts": 1776042819,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2252.405468
-  },
-  {
-    "key": "0x6e8b58219f15f4686495be4b0be1f3f04c58a93517136183e4811e20c7cd4416-1",
-    "title": "Will the highest temperature in Seoul be 17°C on April 13?",
-    "lots": [
-      {
-        "shares": 421.41126,
-        "price": 0.9758842908608267,
-        "usdc": 411.7451,
-        "ts": 1776040271,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 464.40326999999996,
-        "price": 0.9812090611823423,
-        "usdc": 456.10522,
-        "ts": 1776041651,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 885.81453
-  },
-  {
-    "key": "0x9499d6065399c116e3801f1929500de6210b34520f0bbfa949ff5f84c6ef1a2d-1",
-    "title": "Will the highest temperature in Seoul be 21°C on April 13?",
-    "lots": [
-      {
-        "shares": 478.64885,
-        "price": 0.93,
-        "usdc": 446.7069,
-        "ts": 1776060717,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 29,
-        "price": 0.93,
-        "usdc": 26.97,
-        "ts": 1776060721,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 17.1,
-        "price": 0.93,
-        "usdc": 15.903,
-        "ts": 1776060731,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 524.74885
   },
   {
     "key": "0x8a44c8671caed6241e6f9edc34a2ea9bbe5aa9b9d0e35d023ba4468e2db8ceb1-0",
@@ -2953,442 +945,208 @@
         "shares": 49.91,
         "price": 0.95,
         "usdc": 47.4145,
-        "ts": 1776060929,
-        "fee": 0,
-        "maker": false
+        "ts": 1776060929
       },
       {
         "shares": 5,
         "price": 0.95,
         "usdc": 4.75,
-        "ts": 1776060947,
-        "fee": 0,
-        "maker": false
+        "ts": 1776060947
       },
       {
         "shares": 5,
         "price": 0.95,
         "usdc": 4.75,
-        "ts": 1776060947,
-        "fee": 0,
-        "maker": false
+        "ts": 1776060947
       },
       {
         "shares": 5,
         "price": 0.95,
         "usdc": 4.75,
-        "ts": 1776060947,
-        "fee": 0,
-        "maker": false
+        "ts": 1776060947
       },
       {
         "shares": 5,
         "price": 0.95,
         "usdc": 4.75,
-        "ts": 1776060947,
-        "fee": 0,
-        "maker": false
+        "ts": 1776060947
       },
       {
         "shares": 5,
         "price": 0.95,
         "usdc": 4.75,
-        "ts": 1776060947,
-        "fee": 0,
-        "maker": false
+        "ts": 1776060947
       },
       {
         "shares": 5,
         "price": 0.95,
         "usdc": 4.75,
-        "ts": 1776060947,
-        "fee": 0,
-        "maker": false
+        "ts": 1776060947
       },
       {
         "shares": 5,
         "price": 0.95,
         "usdc": 4.75,
-        "ts": 1776060947,
-        "fee": 0,
-        "maker": false
+        "ts": 1776060947
       },
       {
         "shares": 72.2,
         "price": 0.95,
         "usdc": 68.59,
-        "ts": 1776060985,
-        "fee": 0,
-        "maker": false
+        "ts": 1776060985
       },
       {
         "shares": 44.4,
         "price": 0.95,
         "usdc": 42.18,
-        "ts": 1776061003,
-        "fee": 0,
-        "maker": false
+        "ts": 1776061003
       },
       {
         "shares": 58.2,
         "price": 0.95,
         "usdc": 55.29,
-        "ts": 1776061035,
-        "fee": 0,
-        "maker": false
+        "ts": 1776061035
       },
       {
         "shares": 40.29,
         "price": 0.95,
         "usdc": 38.2755,
-        "ts": 1776061049,
-        "fee": 0,
-        "maker": false
+        "ts": 1776061049
       },
       {
         "shares": 51.7503,
         "price": 0.95,
         "usdc": 49.286,
-        "ts": 1776061447,
-        "fee": 0,
-        "maker": false
+        "ts": 1776061447
       },
       {
         "shares": 20,
         "price": 0.95,
         "usdc": 19,
-        "ts": 1776061449,
-        "fee": 0,
-        "maker": false
+        "ts": 1776061449
       },
       {
         "shares": 6,
         "price": 0.95,
         "usdc": 5.7,
-        "ts": 1776061497,
-        "fee": 0,
-        "maker": false
+        "ts": 1776061497
       },
       {
         "shares": 44.29,
         "price": 0.95,
         "usdc": 42.0755,
-        "ts": 1776061503,
-        "fee": 0,
-        "maker": false
+        "ts": 1776061503
       },
       {
         "shares": 9.86,
         "price": 0.95,
         "usdc": 9.367,
-        "ts": 1776061539,
-        "fee": 0,
-        "maker": false
+        "ts": 1776061539
       },
       {
         "shares": 50,
         "price": 0.95,
         "usdc": 47.5,
-        "ts": 1776061895,
-        "fee": 0,
-        "maker": false
+        "ts": 1776061895
       },
       {
         "shares": 200,
         "price": 0.95,
         "usdc": 190,
-        "ts": 1776061901,
-        "fee": 0,
-        "maker": false
+        "ts": 1776061901
       },
       {
         "shares": 82.22,
         "price": 0.95,
         "usdc": 78.109,
-        "ts": 1776061905,
-        "fee": 0,
-        "maker": false
+        "ts": 1776061905
       },
       {
         "shares": 1.42,
         "price": 0.95,
         "usdc": 1.349,
-        "ts": 1776061911,
-        "fee": 0,
-        "maker": false
+        "ts": 1776061911
       },
       {
         "shares": 71.78,
         "price": 0.95,
         "usdc": 68.191,
-        "ts": 1776061917,
-        "fee": 0,
-        "maker": false
+        "ts": 1776061917
       },
       {
         "shares": 13.55,
         "price": 0.95,
         "usdc": 12.8725,
-        "ts": 1776061937,
-        "fee": 0,
-        "maker": false
+        "ts": 1776061937
       },
       {
         "shares": 6.3241499999999995,
         "price": 0.95,
         "usdc": 6.023,
-        "ts": 1776062817,
-        "fee": 0,
-        "maker": false
+        "ts": 1776062817
       },
       {
         "shares": 67.31,
         "price": 0.95,
         "usdc": 63.9445,
-        "ts": 1776062903,
-        "fee": 0,
-        "maker": false
+        "ts": 1776062903
       },
       {
         "shares": 158.56,
         "price": 0.95,
         "usdc": 150.632,
-        "ts": 1776062931,
-        "fee": 0,
-        "maker": false
+        "ts": 1776062931
       },
       {
         "shares": 267.79,
         "price": 0.95,
         "usdc": 254.4005,
-        "ts": 1776063401,
-        "fee": 0,
-        "maker": false
+        "ts": 1776063401
       },
       {
         "shares": 2.18,
         "price": 0.9,
         "usdc": 1.962,
-        "ts": 1776064157,
-        "fee": 0,
-        "maker": false
+        "ts": 1776064157
       },
       {
         "shares": 5,
         "price": 0.9,
         "usdc": 4.5,
-        "ts": 1776064157,
-        "fee": 0,
-        "maker": false
+        "ts": 1776064157
       },
       {
         "shares": 2.82,
         "price": 0.9,
         "usdc": 2.538,
-        "ts": 1776064159,
-        "fee": 0,
-        "maker": false
+        "ts": 1776064159
       },
       {
         "shares": 5,
         "price": 0.9,
         "usdc": 4.5,
-        "ts": 1776064159,
-        "fee": 0,
-        "maker": false
+        "ts": 1776064159
       },
       {
         "shares": 2.59,
         "price": 0.9,
         "usdc": 2.331,
-        "ts": 1776064159,
-        "fee": 0,
-        "maker": false
+        "ts": 1776064159
       },
       {
         "shares": 331.39,
         "price": 0.9,
         "usdc": 298.251,
-        "ts": 1776064201,
-        "fee": 0,
-        "maker": false
+        "ts": 1776064201
       },
       {
         "shares": 51.02,
         "price": 0.9,
         "usdc": 45.918,
-        "ts": 1776064213,
-        "fee": 0,
-        "maker": false
+        "ts": 1776064213
       }
     ],
     "totalShares": 1750.8544499999998
-  },
-  {
-    "key": "0x5972d51a4be9f39f3038bf9b77ecc6d2ab56406263839544f33a77aaa06ebca8-1",
-    "title": "Will the highest temperature in Seoul be 18°C on April 14?",
-    "lots": [
-      {
-        "shares": 1024.350254,
-        "price": 0.9810740506371721,
-        "usdc": 1457.35607,
-        "ts": 1776126765,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 140.41,
-        "price": 0.985,
-        "usdc": 138.30385,
-        "ts": 1776127671,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 38.666665,
-        "price": 0.9850000252155183,
-        "usdc": 38.086666,
-        "ts": 1776128049,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1203.426919
-  },
-  {
-    "key": "0xde007c1e0efe49e3b7ff9ec301c7e78a8efd9ecb7f9594711af0b5edd6def1f2-1",
-    "title": "Will the highest temperature in Seoul be 19°C on April 14?",
-    "lots": [
-      {
-        "shares": 36.5,
-        "price": 0.96,
-        "usdc": 35.04,
-        "ts": 1776121067,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 73.05475,
-        "price": 0.96,
-        "usdc": 70.13256,
-        "ts": 1776121593,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 25,
-        "price": 0.96,
-        "usdc": 24,
-        "ts": 1776121945,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 266.85911,
-        "price": 0.97,
-        "usdc": 259.2422,
-        "ts": 1776122077,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 603.7456500000001,
-        "price": 0.98,
-        "usdc": 592.263,
-        "ts": 1776122115,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 279,
-        "price": 0.965,
-        "usdc": 269.235,
-        "ts": 1776124267,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14.42857,
-        "price": 0.9650000658415907,
-        "usdc": 13.923571,
-        "ts": 1776124579,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.595713,
-        "price": 0.9650003679143264,
-        "usdc": 2.504864,
-        "ts": 1776125221,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6.57,
-        "price": 0.965,
-        "usdc": 6.34005,
-        "ts": 1776125221,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 200,
-        "price": 0.98,
-        "usdc": 196,
-        "ts": 1776127625,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 844.4919500000001,
-        "price": 0.9891578791644476,
-        "usdc": 835.78895,
-        "ts": 1776127831,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 3.8,
-        "price": 0.986,
-        "usdc": 3.7468,
-        "ts": 1776128177,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 48.581109999999995,
-        "price": 0.984,
-        "usdc": 47.84208,
-        "ts": 1776128657,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 300,
-        "price": 0.975,
-        "usdc": 292.5,
-        "ts": 1776128697,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.31484,
-        "price": 0.99,
-        "usdc": 10.2168,
-        "ts": 1776128735,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 300,
-        "price": 0.975,
-        "usdc": 292.5,
-        "ts": 1776128835,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 3014.941693
   },
   {
     "key": "0x367dcfd0eb2df66d2494c8cf1c29dc91156168f016be1e99ed396b2a4bfbf386-1",
@@ -3398,9 +1156,7 @@
         "shares": 0.0003699999999717818,
         "price": 0.95,
         "usdc": 7.448,
-        "ts": 1776129467,
-        "fee": 0,
-        "maker": false
+        "ts": 1776129467
       }
     ],
     "totalShares": 0.0003699999999717818
@@ -3413,9 +1169,7 @@
         "shares": 0.0015919999997606737,
         "price": 0.04,
         "usdc": 5.916,
-        "ts": 1776143861,
-        "fee": 0,
-        "maker": false
+        "ts": 1776143861
       }
     ],
     "totalShares": 0.0015919999997606737
@@ -3428,288 +1182,40 @@
         "shares": 77.57,
         "price": 0.98,
         "usdc": 76.0186,
-        "ts": 1776146111,
-        "fee": 0,
-        "maker": false
+        "ts": 1776146111
       },
       {
         "shares": 49.71,
         "price": 0.98,
         "usdc": 48.7158,
-        "ts": 1776146115,
-        "fee": 0,
-        "maker": false
+        "ts": 1776146115
       },
       {
         "shares": 45,
         "price": 0.98,
         "usdc": 44.1,
-        "ts": 1776146173,
-        "fee": 0,
-        "maker": false
+        "ts": 1776146173
       },
       {
         "shares": 427.72,
         "price": 0.98,
         "usdc": 419.1656,
-        "ts": 1776146241,
-        "fee": 0,
-        "maker": false
+        "ts": 1776146241
       },
       {
         "shares": 5,
         "price": 0.975,
         "usdc": 4.875,
-        "ts": 1776146243,
-        "fee": 0,
-        "maker": false
+        "ts": 1776146243
       },
       {
         "shares": 21.232,
         "price": 0.975,
         "usdc": 20.7012,
-        "ts": 1776146519,
-        "fee": 0,
-        "maker": false
+        "ts": 1776146519
       }
     ],
     "totalShares": 626.232
-  },
-  {
-    "key": "0x61a23157e64bae2d6a1f9959ee12bde4cb8f9c02898bf30708895c2080ba062b-1",
-    "title": "Will the highest temperature in Seoul be 24°C or higher on April 14?",
-    "lots": [
-      {
-        "shares": 51.716,
-        "price": 0.97,
-        "usdc": 50.16452,
-        "ts": 1776149235,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 51.716
-  },
-  {
-    "key": "0x111101602cbbbbfe5bed6e2b7b58ee6faa3ab4e74e81899e61e1ac1a600e4c23-1",
-    "title": "Will the highest temperature in Seoul be 17°C on April 15?",
-    "lots": [
-      {
-        "shares": 1028.4917099999998,
-        "price": 0.982,
-        "usdc": 1124.23288,
-        "ts": 1776210786,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 22.545,
-        "price": 0.98,
-        "usdc": 22.0941,
-        "ts": 1776210818,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 50,
-        "price": 0.98,
-        "usdc": 49,
-        "ts": 1776211068,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 118.5,
-        "price": 0.98,
-        "usdc": 116.13,
-        "ts": 1776211470,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 787.7,
-        "price": 0.98,
-        "usdc": 771.946,
-        "ts": 1776211594,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 21.25,
-        "price": 0.98,
-        "usdc": 20.825,
-        "ts": 1776211596,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 210.157141,
-        "price": 0.9650000044490518,
-        "usdc": 202.801642,
-        "ts": 1776211720,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 300,
-        "price": 0.971,
-        "usdc": 291.3,
-        "ts": 1776211720,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 117.714284,
-        "price": 0.9650000079854371,
-        "usdc": 113.594285,
-        "ts": 1776211756,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8.771427,
-        "price": 0.9650001077361756,
-        "usdc": 8.464428,
-        "ts": 1776212338,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 19.42857,
-        "price": 0.9650000488970624,
-        "usdc": 18.748571,
-        "ts": 1776212368,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9,
-        "price": 0.965,
-        "usdc": 8.685,
-        "ts": 1776213010,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 125.661427,
-        "price": 0.9650000075202074,
-        "usdc": 121.263278,
-        "ts": 1776213540,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 34.91,
-        "price": 0.965,
-        "usdc": 33.68815,
-        "ts": 1776213540,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2854.129559
-  },
-  {
-    "key": "0x804f7c84bb8c2fa3d761359fb4423d996a522f6b5783b38510949b5ae1238c4c-1",
-    "title": "Will the highest temperature in Seoul be 16°C on April 15?",
-    "lots": [
-      {
-        "shares": 24.807367,
-        "price": 0.9810000392222198,
-        "usdc": 24.336028,
-        "ts": 1776209618,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 7.5,
-        "price": 0.981,
-        "usdc": 7.3575,
-        "ts": 1776209678,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 55,
-        "price": 0.981,
-        "usdc": 53.955,
-        "ts": 1776209696,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.981,
-        "usdc": 98.1,
-        "ts": 1776209720,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 105.263156,
-        "price": 0.9810000091580001,
-        "usdc": 103.263157,
-        "ts": 1776209728,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 186.43607,
-        "price": 0.991,
-        "usdc": 184.84132,
-        "ts": 1776211082,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 375.14496,
-        "price": 0.9954669935772726,
-        "usdc": 373.52908,
-        "ts": 1776211302,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 400,
-        "price": 0.991,
-        "usdc": 396.4,
-        "ts": 1776211578,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 328.8,
-        "price": 0.975,
-        "usdc": 320.58,
-        "ts": 1776211726,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 144.24,
-        "price": 0.975,
-        "usdc": 140.634,
-        "ts": 1776211732,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1727.1915529999999
-  },
-  {
-    "key": "0xf85210f7bcb0ae03e684ef8112e79e3f4cf9b6759e2f5372f3df257bffab001c-1",
-    "title": "Will the highest temperature in Seoul be 18°C on April 15?",
-    "lots": [
-      {
-        "shares": 253.13598,
-        "price": 0.9288277436624154,
-        "usdc": 235.9594,
-        "ts": 1776213782,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 253.13598
   },
   {
     "key": "0xc4fb37dafebd7f921ca73361d11c1c7451285b103a3919bd77d42b6dbd8737e2-0",
@@ -3719,49 +1225,37 @@
         "shares": 0.001960000000011064,
         "price": 0.5552324754727712,
         "usdc": 39.0495,
-        "ts": 1776221048,
-        "fee": 0,
-        "maker": false
+        "ts": 1776221048
       },
       {
         "shares": 346.2903,
         "price": 0.9746370663051942,
         "usdc": 337.93591,
-        "ts": 1776227132,
-        "fee": 0,
-        "maker": false
+        "ts": 1776227132
       },
       {
         "shares": 3.99,
         "price": 0.976,
         "usdc": 3.89424,
-        "ts": 1776227134,
-        "fee": 0,
-        "maker": false
+        "ts": 1776227134
       },
       {
         "shares": 9,
         "price": 0.976,
         "usdc": 8.784,
-        "ts": 1776227134,
-        "fee": 0,
-        "maker": false
+        "ts": 1776227134
       },
       {
         "shares": 8.01,
         "price": 0.976,
         "usdc": 7.81776,
-        "ts": 1776227138,
-        "fee": 0,
-        "maker": false
+        "ts": 1776227138
       },
       {
         "shares": 2278.25686,
         "price": 0.9795390754146953,
         "usdc": 2233.92702,
-        "ts": 1776227192,
-        "fee": 0,
-        "maker": false
+        "ts": 1776227192
       }
     ],
     "totalShares": 2645.54912
@@ -3774,255 +1268,10 @@
         "shares": 0.0006629999999745451,
         "price": 0.06,
         "usdc": 22.6548,
-        "ts": 1776226168,
-        "fee": 0,
-        "maker": false
+        "ts": 1776226168
       }
     ],
     "totalShares": 0.0006629999999745451
-  },
-  {
-    "key": "0x3c9be2165e2e8b6bd4a632bbe897ac60c3150d8f2922000f0159298236537c29-1",
-    "title": "Will the highest temperature in Seoul be 20°C on April 16?",
-    "lots": [
-      {
-        "shares": 79.72613400000012,
-        "price": 0.974,
-        "usdc": 362.2306,
-        "ts": 1776300542,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 13.927296,
-        "price": 0.9630000683549772,
-        "usdc": 13.411987,
-        "ts": 1776300562,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 80,
-        "price": 0.963,
-        "usdc": 77.04,
-        "ts": 1776302292,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1339.14326,
-        "price": 0.9699254376808136,
-        "usdc": 1300.8252,
-        "ts": 1776302452,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 113.486205,
-        "price": 0.9710000083270033,
-        "usdc": 110.195106,
-        "ts": 1776303464,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 86.51,
-        "price": 0.971,
-        "usdc": 84.00121,
-        "ts": 1776303464,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 217.14001,
-        "price": 0.977,
-        "usdc": 212.39003,
-        "ts": 1776303752,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 94.27,
-        "price": 0.973,
-        "usdc": 91.72471,
-        "ts": 1776303872,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 141.29,
-        "price": 0.973,
-        "usdc": 137.47517,
-        "ts": 1776303998,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2165.492905
-  },
-  {
-    "key": "0x52c3fb2703d356b9a930adba50d40fd0763b3e48479faaf8b4a5d7824a145207-1",
-    "title": "Will the highest temperature in Seoul be 18°C on April 16?",
-    "lots": [
-      {
-        "shares": 133.57637,
-        "price": 0.983,
-        "usdc": 131.41727,
-        "ts": 1776299554,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 25.48598,
-        "price": 0.989,
-        "usdc": 25.2195,
-        "ts": 1776299992,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 164.357776,
-        "price": 0.9820000058895906,
-        "usdc": 161.399337,
-        "ts": 1776300530,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 299.865,
-        "price": 0.991,
-        "usdc": 297.3,
-        "ts": 1776300768,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 152.55734,
-        "price": 0.9917878390774473,
-        "usdc": 151.36666,
-        "ts": 1776300946,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 775.8424660000001
-  },
-  {
-    "key": "0xbcd97cedb8925a977ed330d372a8687684f79688789af9100c16c8d16b791711-1",
-    "title": "Will the highest temperature in Seoul be 19°C on April 16?",
-    "lots": [
-      {
-        "shares": 52.444443,
-        "price": 0.9820000185720344,
-        "usdc": 51.500444,
-        "ts": 1776299764,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 315.043332,
-        "price": 0.9820000030979865,
-        "usdc": 309.372553,
-        "ts": 1776300524,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 315.9212,
-        "price": 0.9905842060303097,
-        "usdc": 313.09395,
-        "ts": 1776302708,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 398.78051,
-        "price": 0.99,
-        "usdc": 394.9902,
-        "ts": 1776302860,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1082.189485
-  },
-  {
-    "key": "0x188d9a57244185480809cd40b054f5f7b8fa2ce5041c2c256ca496d8dc657609-1",
-    "title": "Will the highest temperature in Seoul be 21°C on April 16?",
-    "lots": [
-      {
-        "shares": 219.305,
-        "price": 0.9368181818181818,
-        "usdc": 206.1,
-        "ts": 1776304556,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 613.8146,
-        "price": 0.9480458659600542,
-        "usdc": 583.439997,
-        "ts": 1776304596,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 833.1196
-  },
-  {
-    "key": "0x331c3d5b7807b6794b7af5a19d85f84940e8963c834699aa90dedea666e1d639-1",
-    "title": "Will the highest temperature in Seoul be 23°C on April 16?",
-    "lots": [
-      {
-        "shares": 1022.88551,
-        "price": 0.919873417721519,
-        "usdc": 944.71,
-        "ts": 1776311658,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 204.23376,
-        "price": 0.9495726495726495,
-        "usdc": 194.425,
-        "ts": 1776311722,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 25.2,
-        "price": 0.95,
-        "usdc": 23.94,
-        "ts": 1776311732,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.25,
-        "price": 0.95,
-        "usdc": 4.9875,
-        "ts": 1776311736,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 45.71,
-        "price": 0.95,
-        "usdc": 43.4245,
-        "ts": 1776311736,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 238.18551,
-        "price": 0.9570674228805532,
-        "usdc": 228.449984,
-        "ts": 1776311756,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1541.46478
   },
   {
     "key": "0xd762ed263691d8bb5893977755eba0b04e902bf532e682e91e83f156924c4e7a-0",
@@ -4032,67 +1281,10 @@
         "shares": 64.6745,
         "price": 0.8998461538461539,
         "usdc": 58.49,
-        "ts": 1776311688,
-        "fee": 0,
-        "maker": false
+        "ts": 1776311688
       }
     ],
     "totalShares": 64.6745
-  },
-  {
-    "key": "0x911f11749baba306d3584a7197b981f543f50506af61956e02ee15214cc5a3c8-1",
-    "title": "Will the highest temperature in Seoul be 14°C on April 17?",
-    "lots": [
-      {
-        "shares": 598.51089,
-        "price": 0.98,
-        "usdc": 587.1278,
-        "ts": 1776365430,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 28.4,
-        "price": 0.98,
-        "usdc": 27.832,
-        "ts": 1776367698,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12,
-        "price": 0.98,
-        "usdc": 11.76,
-        "ts": 1776368942,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 94,
-        "price": 0.98,
-        "usdc": 92.12,
-        "ts": 1776368956,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 250.32,
-        "price": 0.985,
-        "usdc": 246.5652,
-        "ts": 1776382400,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 400,
-        "price": 0.99,
-        "usdc": 396,
-        "ts": 1776382400,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1383.23089
   },
   {
     "key": "0xa6ad5f563d0a8b4b63088b2eb9e815bff87e073ca2fb69b9c978acde22aecc74-1",
@@ -4102,218 +1294,10 @@
         "shares": 0.00050999999989477,
         "price": 0.95,
         "usdc": 2.6695,
-        "ts": 1776385984,
-        "fee": 0,
-        "maker": false
+        "ts": 1776385984
       }
     ],
     "totalShares": 0.00050999999989477
-  },
-  {
-    "key": "0x06587611533b2de810403e1727e0650e21af1cba4f4c19f8447adad560134c9f-1",
-    "title": "Will the highest temperature in Seoul be 15°C on April 17?",
-    "lots": [
-      {
-        "shares": 134.44138000000004,
-        "price": 0.9733371595768625,
-        "usdc": 864.9074,
-        "ts": 1776391858,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 134.44138000000004
-  },
-  {
-    "key": "0xda9b4023aed736eff54eb3f1bb47b1ee78c6911e47d4a8e6f3e6d5fd8f9248fe-1",
-    "title": "Will the highest temperature in Seoul be 18°C or higher on April 17?",
-    "lots": [
-      {
-        "shares": 0.0056700000000482476,
-        "price": 0.66,
-        "usdc": 13.8996,
-        "ts": 1776394256,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 322.42739,
-        "price": 0.9090697128743439,
-        "usdc": 294.44768,
-        "ts": 1776410438,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 46.42962,
-        "price": 0.9097855917667238,
-        "usdc": 42.4324,
-        "ts": 1776410474,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 0.79812,
-        "price": 0.953,
-        "usdc": 0.7624,
-        "ts": 1776411028,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 665.169,
-        "price": 0.9912540798845911,
-        "usdc": 659.63994,
-        "ts": 1776412436,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 300,
-        "price": 0.985,
-        "usdc": 295.5,
-        "ts": 1776412692,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 258.43713,
-        "price": 0.9874030549110595,
-        "usdc": 255.34243,
-        "ts": 1776413186,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 34.4,
-        "price": 0.978,
-        "usdc": 33.6432,
-        "ts": 1776413254,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 88.77,
-        "price": 0.978,
-        "usdc": 86.81706,
-        "ts": 1776413260,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 23.3,
-        "price": 0.978,
-        "usdc": 22.7874,
-        "ts": 1776413276,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.56,
-        "price": 0.978,
-        "usdc": 2.50368,
-        "ts": 1776413278,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.56,
-        "price": 0.978,
-        "usdc": 2.50368,
-        "ts": 1776413284,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 20.66,
-        "price": 0.978,
-        "usdc": 20.20548,
-        "ts": 1776413286,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 3.85,
-        "price": 0.978,
-        "usdc": 3.7653,
-        "ts": 1776413296,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.29,
-        "price": 0.978,
-        "usdc": 1.26162,
-        "ts": 1776413322,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11.56,
-        "price": 0.978,
-        "usdc": 11.30568,
-        "ts": 1776413326,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11.4,
-        "price": 0.978,
-        "usdc": 11.1492,
-        "ts": 1776413336,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 33.41,
-        "price": 0.978,
-        "usdc": 32.67498,
-        "ts": 1776413354,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11.53,
-        "price": 0.978,
-        "usdc": 11.27634,
-        "ts": 1776413390,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 54.71,
-        "price": 0.978,
-        "usdc": 53.50638,
-        "ts": 1776413392,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 201.12875,
-        "price": 0.981,
-        "usdc": 197.49492,
-        "ts": 1776413646,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11.954735,
-        "price": 0.9810000807211536,
-        "usdc": 11.727596,
-        "ts": 1776413998,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 286.72,
-        "price": 0.981,
-        "usdc": 281.27232,
-        "ts": 1776434448,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2393.070415
   },
   {
     "key": "0x6eb13e20aee8bf984108f1424160e97a012fb306a9f896940cfa2d87196aed0b-0",
@@ -4323,121 +1307,91 @@
         "shares": 0.008014000000059696,
         "price": 0.96,
         "usdc": 142.6944,
-        "ts": 1776404650,
-        "fee": 0,
-        "maker": false
+        "ts": 1776404650
       },
       {
         "shares": 100,
         "price": 0.85,
         "usdc": 85,
-        "ts": 1776409960,
-        "fee": 0,
-        "maker": false
+        "ts": 1776409960
       },
       {
         "shares": 30,
         "price": 0.85,
         "usdc": 25.5,
-        "ts": 1776409960,
-        "fee": 0,
-        "maker": false
+        "ts": 1776409960
       },
       {
         "shares": 1.71,
         "price": 0.85,
         "usdc": 1.4535,
-        "ts": 1776409964,
-        "fee": 0,
-        "maker": false
+        "ts": 1776409964
       },
       {
         "shares": 20,
         "price": 0.85,
         "usdc": 17,
-        "ts": 1776409964,
-        "fee": 0,
-        "maker": false
+        "ts": 1776409964
       },
       {
         "shares": 30,
         "price": 0.85,
         "usdc": 25.5,
-        "ts": 1776409964,
-        "fee": 0,
-        "maker": false
+        "ts": 1776409964
       },
       {
         "shares": 161.29366,
         "price": 0.8894692644429373,
         "usdc": 144.26302,
-        "ts": 1776410030,
-        "fee": 0,
-        "maker": false
+        "ts": 1776410030
       },
       {
         "shares": 157.27079,
         "price": 0.8775002527805864,
         "usdc": 138.85564,
-        "ts": 1776410272,
-        "fee": 0,
-        "maker": false
+        "ts": 1776410272
       },
       {
         "shares": 774.63777,
         "price": 0.9883308777045247,
         "usdc": 766.04538,
-        "ts": 1776412206,
-        "fee": 0,
-        "maker": false
+        "ts": 1776412206
       },
       {
         "shares": 355.03087,
         "price": 0.9899137411671969,
         "usdc": 351.62726,
-        "ts": 1776412418,
-        "fee": 0,
-        "maker": false
+        "ts": 1776412418
       },
       {
         "shares": 500,
         "price": 0.982,
         "usdc": 491,
-        "ts": 1776412786,
-        "fee": 0,
-        "maker": false
+        "ts": 1776412786
       },
       {
         "shares": 75,
         "price": 0.98,
         "usdc": 73.5,
-        "ts": 1776413750,
-        "fee": 0,
-        "maker": false
+        "ts": 1776413750
       },
       {
         "shares": 26.6,
         "price": 0.98,
         "usdc": 26.068,
-        "ts": 1776413810,
-        "fee": 0,
-        "maker": false
+        "ts": 1776413810
       },
       {
         "shares": 294.77,
         "price": 0.98,
         "usdc": 288.8746,
-        "ts": 1776414022,
-        "fee": 0,
-        "maker": false
+        "ts": 1776414022
       },
       {
         "shares": 103.63,
         "price": 0.98,
         "usdc": 101.5574,
-        "ts": 1776414040,
-        "fee": 0,
-        "maker": false
+        "ts": 1776414040
       }
     ],
     "totalShares": 2629.951104
@@ -4450,9 +1404,7 @@
         "shares": 0.009500000000006281,
         "price": 0.129,
         "usdc": 14.19,
-        "ts": 1776407618,
-        "fee": 0,
-        "maker": false
+        "ts": 1776407618
       }
     ],
     "totalShares": 0.009500000000006281
@@ -4465,226 +1417,10 @@
         "shares": 0.0035509999998737385,
         "price": 0.9620000054678733,
         "usdc": 167.843684,
-        "ts": 1776477344,
-        "fee": 0,
-        "maker": false
+        "ts": 1776477344
       }
     ],
     "totalShares": 0.0035509999998737385
-  },
-  {
-    "key": "0xadb7cf58d7063de477101db7519ba70d7d606fa2088cbe77da1dad99032fa03e-1",
-    "title": "Will the highest temperature in Seoul be 19°C on April 18?",
-    "lots": [
-      {
-        "shares": 20.833332,
-        "price": 0.9520000449280028,
-        "usdc": 19.833333,
-        "ts": 1776468142,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 74.791665,
-        "price": 0.952000012300836,
-        "usdc": 71.201666,
-        "ts": 1776469136,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 50,
-        "price": 0.952,
-        "usdc": 47.6,
-        "ts": 1776469168,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8.958332,
-        "price": 0.9520001044837365,
-        "usdc": 8.528333,
-        "ts": 1776469740,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 123.958856,
-        "price": 0.9650000077445051,
-        "usdc": 119.620297,
-        "ts": 1776471792,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 57.142856,
-        "price": 0.9650000168000004,
-        "usdc": 55.142857,
-        "ts": 1776472622,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 118.89,
-        "price": 0.965,
-        "usdc": 114.72885,
-        "ts": 1776472770,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 32.922707,
-        "price": 0.952000028430226,
-        "usdc": 31.342418,
-        "ts": 1776472988,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 20.833332,
-        "price": 0.9520000449280028,
-        "usdc": 19.833333,
-        "ts": 1776473122,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 20.833332,
-        "price": 0.9520000449280028,
-        "usdc": 19.833333,
-        "ts": 1776473266,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 92.94969,
-        "price": 0.972,
-        "usdc": 90.47376,
-        "ts": 1776477596,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 40,
-        "price": 0.972,
-        "usdc": 38.88,
-        "ts": 1776477598,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 259.92,
-        "price": 0.972,
-        "usdc": 252.64224,
-        "ts": 1776477728,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 208.03,
-        "price": 0.968,
-        "usdc": 201.37304,
-        "ts": 1776477734,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 91.97,
-        "price": 0.968,
-        "usdc": 89.02696,
-        "ts": 1776477736,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1127.0466900000001,
-        "price": 0.9715853468151603,
-        "usdc": 1096.579996,
-        "ts": 1776480006,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1413.08186,
-        "price": 0.9769826678259148,
-        "usdc": 1382.14715,
-        "ts": 1776480170,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 3762.162652
-  },
-  {
-    "key": "0xf7a1d27b48a18a6fe838f5bd8dc94cc92e3236d147567dae4ad3cd61350e45ca-1",
-    "title": "Will the highest temperature in Seoul be 17°C on April 18?",
-    "lots": [
-      {
-        "shares": 222.222221,
-        "price": 0.9910000044505001,
-        "usdc": 220.222222,
-        "ts": 1776472592,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 200,
-        "price": 0.991,
-        "usdc": 198.2,
-        "ts": 1776472988,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 77.77,
-        "price": 0.991,
-        "usdc": 77.07007,
-        "ts": 1776472988,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 254.85,
-        "price": 0.985,
-        "usdc": 251.02725,
-        "ts": 1776473064,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 45.15,
-        "price": 0.985,
-        "usdc": 44.47275,
-        "ts": 1776473070,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 38,
-        "price": 0.98,
-        "usdc": 37.24,
-        "ts": 1776475092,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 99.9485,
-        "price": 0.9897,
-        "usdc": 98.97,
-        "ts": 1776475840,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 29.985,
-        "price": 0.99,
-        "usdc": 29.7,
-        "ts": 1776475848,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 967.925721
   },
   {
     "key": "0xf3936bd8a002df37806ea3b7b773d9547c5289575fad758d921ac960bd3190e1-0",
@@ -4694,256 +1430,40 @@
         "shares": 384.42576699999995,
         "price": 0.845166159199652,
         "usdc": 388.6074,
-        "ts": 1776473706,
-        "fee": 0,
-        "maker": false
+        "ts": 1776473706
       },
       {
         "shares": 580.03459,
         "price": 0.8455078265332306,
         "usdc": 494.2416,
-        "ts": 1776477256,
-        "fee": 0,
-        "maker": false
+        "ts": 1776477256
       },
       {
         "shares": 70.98851,
         "price": 0.7409621802002224,
         "usdc": 53.29,
-        "ts": 1776485142,
-        "fee": 0,
-        "maker": false
+        "ts": 1776485142
       },
       {
         "shares": 182.76658,
         "price": 0.5044640093911744,
         "usdc": 94.5416,
-        "ts": 1776486494,
-        "fee": 0,
-        "maker": false
+        "ts": 1776486494
       },
       {
         "shares": 115.00478,
         "price": 0.5005977108944468,
         "usdc": 59.0455,
-        "ts": 1776486580,
-        "fee": 0,
-        "maker": false
+        "ts": 1776486580
       },
       {
         "shares": 116.73378,
         "price": 0.49136333277675737,
         "usdc": 58.8555,
-        "ts": 1776487004,
-        "fee": 0,
-        "maker": false
+        "ts": 1776487004
       }
     ],
     "totalShares": 1449.9540069999998
-  },
-  {
-    "key": "0x07f61befca7739efc4614f18016392531b3a00a5624203b891cfb09db03f00df-1",
-    "title": "Will the highest temperature in Seoul be 17°C on April 19?",
-    "lots": [
-      {
-        "shares": 14.985,
-        "price": 0.98,
-        "usdc": 14.7,
-        "ts": 1776555864,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 14.985
-  },
-  {
-    "key": "0x338dc79cf8150b1785671653080cb44e23c4e75f0bcf04441725a0b00ddb2a7c-1",
-    "title": "Will the highest temperature in Seoul be 14°C or below on April 19?",
-    "lots": [
-      {
-        "shares": 401.7066,
-        "price": 0.9819230482254334,
-        "usdc": 394.8018,
-        "ts": 1776555928,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 85.75,
-        "price": 0.98,
-        "usdc": 84.035,
-        "ts": 1776555976,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 487.4566
-  },
-  {
-    "key": "0xc03bfa029226f1244eee41fb1f3620244f03c41bdd3e076e08affbce80e1ad54-1",
-    "title": "Will the highest temperature in Seoul be 20°C on April 19?",
-    "lots": [
-      {
-        "shares": 284.53,
-        "price": 0.98,
-        "usdc": 278.8394,
-        "ts": 1776556822,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15.47,
-        "price": 0.98,
-        "usdc": 15.1606,
-        "ts": 1776557422,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 85.56,
-        "price": 0.97,
-        "usdc": 82.9932,
-        "ts": 1776558064,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 300,
-        "price": 0.975,
-        "usdc": 292.5,
-        "ts": 1776558064,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 24.736841,
-        "price": 0.9810000395765975,
-        "usdc": 24.266842,
-        "ts": 1776560938,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 105,
-        "price": 0.981,
-        "usdc": 103.005,
-        "ts": 1776560942,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 300,
-        "price": 0.965,
-        "usdc": 289.5,
-        "ts": 1776561584,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 214.44,
-        "price": 0.97,
-        "usdc": 208.0068,
-        "ts": 1776561584,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 300,
-        "price": 0.975,
-        "usdc": 292.5,
-        "ts": 1776561584,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 170.26,
-        "price": 0.981,
-        "usdc": 167.02506,
-        "ts": 1776561584,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 212.350971,
-        "price": 0.9675298459966961,
-        "usdc": 205.79,
-        "ts": 1776564000,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2012.347812
-  },
-  {
-    "key": "0x888b2e0257af4cd31d385323f99cdfd4d49d5219a4722899add297ecca1aa7dd-1",
-    "title": "Will the highest temperature in Seoul be 21°C on April 19?",
-    "lots": [
-      {
-        "shares": 2772.48336,
-        "price": 0.91,
-        "usdc": 2717.1872,
-        "ts": 1776558454,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.44,
-        "price": 0.95,
-        "usdc": 5.168,
-        "ts": 1776559274,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 57,
-        "price": 0.95,
-        "usdc": 54.15,
-        "ts": 1776559308,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 514.08,
-        "price": 0.91,
-        "usdc": 467.8128,
-        "ts": 1776560204,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 200,
-        "price": 0.94,
-        "usdc": 188,
-        "ts": 1776560204,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 237.56,
-        "price": 0.95,
-        "usdc": 225.682,
-        "ts": 1776560204,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1476.24655,
-        "price": 0.9121441500984651,
-        "usdc": 1352.49086,
-        "ts": 1776560250,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 128.1682,
-        "price": 0.9204531395710289,
-        "usdc": 118.44391,
-        "ts": 1776560260,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 5390.97811
   },
   {
     "key": "0x3c80c9656d049e2b3c5df0405165885b1bea5d2dacee7822a7310c6bdee71929-0",
@@ -4953,191 +1473,16 @@
         "shares": 216.52174,
         "price": 0.92,
         "usdc": 199.999996,
-        "ts": 1776569086,
-        "fee": 0,
-        "maker": false
+        "ts": 1776569086
       },
       {
         "shares": 91.52995,
         "price": 0.9533031152395003,
         "usdc": 87.459984,
-        "ts": 1776569184,
-        "fee": 0,
-        "maker": false
+        "ts": 1776569184
       }
     ],
     "totalShares": 308.05169
-  },
-  {
-    "key": "0xa01d36860991b9d43b5957a501adcdc61c85a4bd3c7e8847e7c83837f412a187-1",
-    "title": "Will the highest temperature in Seoul be 23°C on April 19?",
-    "lots": [
-      {
-        "shares": 217.83210300000002,
-        "price": 0.9141994620457125,
-        "usdc": 199.999995,
-        "ts": 1776569114,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 217.83210300000002
-  },
-  {
-    "key": "0x9629bc9e91b2b915d8a39727665144b0b3097b04b11c4e45b4ac7616f1f14c4f-1",
-    "title": "Will the highest temperature in Seoul be 13°C on April 20?",
-    "lots": [
-      {
-        "shares": 200,
-        "price": 0.99,
-        "usdc": 198,
-        "ts": 1776642930,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 400,
-        "price": 0.99,
-        "usdc": 396,
-        "ts": 1776642932,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 200,
-        "price": 0.99,
-        "usdc": 198,
-        "ts": 1776642982,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 800
-  },
-  {
-    "key": "0x13bc88aed0e14fb79ecc8a06f3392255e991c759dc835bbad3022c4e85291fa4-1",
-    "title": "Will the highest temperature in Seoul be 14°C on April 20?",
-    "lots": [
-      {
-        "shares": 172.84279,
-        "price": 0.9899132597004568,
-        "usdc": 171.1857,
-        "ts": 1776646488,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6.11,
-        "price": 0.99,
-        "usdc": 6.0489,
-        "ts": 1776646494,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.26,
-        "price": 0.99,
-        "usdc": 5.2074,
-        "ts": 1776646524,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.95,
-        "price": 0.99,
-        "usdc": 5.8905,
-        "ts": 1776646532,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1809.75,
-        "price": 0.99,
-        "usdc": 1791.6525,
-        "ts": 1776646548,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1999.91279
-  },
-  {
-    "key": "0xf761fa2cc019c45244788b1d32764e398765b1ced2b5d21229bb928d49c5cad3-1",
-    "title": "Will the highest temperature in Seoul be 17°C or higher on April 20?",
-    "lots": [
-      {
-        "shares": 490.37467000000004,
-        "price": 0.9883695430644438,
-        "usdc": 484.9534,
-        "ts": 1776659098,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 45.11,
-        "price": 0.99,
-        "usdc": 44.6589,
-        "ts": 1776660128,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 454.89,
-        "price": 0.99,
-        "usdc": 450.3411,
-        "ts": 1776661914,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 990.37467
-  },
-  {
-    "key": "0x846b978b4ff94025a39aac5f912be4a9be12dea707cf464692a634fcedb7908b-1",
-    "title": "Will the highest temperature in Seoul be 16°C on April 20?",
-    "lots": [
-      {
-        "shares": 196.24132,
-        "price": 0.9899476418457778,
-        "usdc": 194.36632,
-        "ts": 1776663406,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 500,
-        "price": 0.99,
-        "usdc": 495,
-        "ts": 1776669304,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 471.41926,
-        "price": 0.9864015135455971,
-        "usdc": 465.32505,
-        "ts": 1776669352,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.24,
-        "price": 0.99,
-        "usdc": 5.1876,
-        "ts": 1776669446,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 817.742856,
-        "price": 0.9930000012130953,
-        "usdc": 812.018657,
-        "ts": 1776677348,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1990.6434359999998
   },
   {
     "key": "0x9c5b488a6477deb371dea14f5efb890e39ca9b685f6d66f44ad31b825017662e-0",
@@ -5147,289 +1492,58 @@
         "shares": 314.44187,
         "price": 0.9899467895740623,
         "usdc": 311.43726,
-        "ts": 1776665332,
-        "fee": 0,
-        "maker": false
+        "ts": 1776665332
       },
       {
         "shares": 78.96973,
         "price": 0.9898058473610936,
         "usdc": 78.20456,
-        "ts": 1776665342,
-        "fee": 0,
-        "maker": false
+        "ts": 1776665342
       },
       {
         "shares": 456.092,
         "price": 0.99,
         "usdc": 451.53108,
-        "ts": 1776668202,
-        "fee": 0,
-        "maker": false
+        "ts": 1776668202
       },
       {
         "shares": 2.36,
         "price": 0.99,
         "usdc": 2.3364,
-        "ts": 1776668384,
-        "fee": 0,
-        "maker": false
+        "ts": 1776668384
       },
       {
         "shares": 300,
         "price": 0.99,
         "usdc": 297,
-        "ts": 1776669294,
-        "fee": 0,
-        "maker": false
+        "ts": 1776669294
       },
       {
         "shares": 41.54,
         "price": 0.99,
         "usdc": 41.1246,
-        "ts": 1776669294,
-        "fee": 0,
-        "maker": false
+        "ts": 1776669294
       },
       {
         "shares": 138.53763,
         "price": 0.991,
         "usdc": 137.3526,
-        "ts": 1776669392,
-        "fee": 0,
-        "maker": false
+        "ts": 1776669392
       },
       {
         "shares": 1115.46851,
         "price": 0.9935205362824087,
         "usdc": 1108.60002,
-        "ts": 1776669844,
-        "fee": 0,
-        "maker": false
+        "ts": 1776669844
       },
       {
         "shares": 31.44,
         "price": 0.993,
         "usdc": 31.21992,
-        "ts": 1776671502,
-        "fee": 0,
-        "maker": false
+        "ts": 1776671502
       }
     ],
     "totalShares": 2478.84974
-  },
-  {
-    "key": "0xe3dee1e6b2cd66b4cb3101f85a32007a773a5f9e54921cad92abe6d3ccab14c2-1",
-    "title": "Will the highest temperature in Seoul be 12°C on April 21?",
-    "lots": [
-      {
-        "shares": 47.74241699999982,
-        "price": 0.9698056890012642,
-        "usdc": 920.53956,
-        "ts": 1776730324,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 999.25,
-        "price": 0.985,
-        "usdc": 985,
-        "ts": 1776730486,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 17.088,
-        "price": 0.975,
-        "usdc": 16.6608,
-        "ts": 1776731206,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 999.55,
-        "price": 0.991,
-        "usdc": 991,
-        "ts": 1776731690,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 69.23,
-        "price": 0.99,
-        "usdc": 68.5377,
-        "ts": 1776731944,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 157.5,
-        "price": 0.99,
-        "usdc": 155.925,
-        "ts": 1776731944,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 73.27,
-        "price": 0.99,
-        "usdc": 72.5373,
-        "ts": 1776731944,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 104.45,
-        "price": 0.975,
-        "usdc": 101.83875,
-        "ts": 1776731944,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 69.23,
-        "price": 0.975,
-        "usdc": 67.49925,
-        "ts": 1776731944,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 40,
-        "price": 0.975,
-        "usdc": 39,
-        "ts": 1776731944,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 69.23,
-        "price": 0.975,
-        "usdc": 67.49925,
-        "ts": 1776731944,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 21.816665,
-        "price": 0.9700000435446939,
-        "usdc": 21.162166,
-        "ts": 1776731946,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 278.18,
-        "price": 0.97,
-        "usdc": 269.8346,
-        "ts": 1776731950,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 840.22578,
-        "price": 0.9804,
-        "usdc": 824.56542,
-        "ts": 1776732072,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 17.97,
-        "price": 0.975,
-        "usdc": 17.52075,
-        "ts": 1776732240,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1803.58,
-        "price": 0.975,
-        "usdc": 1758.4905,
-        "ts": 1776732316,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 123.806665,
-        "price": 0.9700000076732541,
-        "usdc": 120.092466,
-        "ts": 1776732840,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 5732.119526999999
-  },
-  {
-    "key": "0xe216b76886f3da9f66886fdb2c7ea5bc99f0d02b5e2891c54fc3f28e3701f659-1",
-    "title": "Will the highest temperature in Seoul be 18°C or higher on April 21?",
-    "lots": [
-      {
-        "shares": 283.98476999999997,
-        "price": 0.932252675908054,
-        "usdc": 265.6454,
-        "ts": 1776736520,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 7.67,
-        "price": 0.94,
-        "usdc": 7.2098,
-        "ts": 1776737714,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 42.466665,
-        "price": 0.9400000211930934,
-        "usdc": 39.918666,
-        "ts": 1776737758,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 36.94457,
-        "price": 0.9754330900243309,
-        "usdc": 36.08127,
-        "ts": 1776740396,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 371.06600499999996
-  },
-  {
-    "key": "0xf57d8e6f12d9e95f045eda34bab5957a6101dd05eabcda5a589096d2ff39c926-1",
-    "title": "Will the highest temperature in Seoul be 13°C on April 21?",
-    "lots": [
-      {
-        "shares": 24.53535,
-        "price": 0.9312315190901705,
-        "usdc": 22.92692,
-        "ts": 1776738364,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15,
-        "price": 0.942,
-        "usdc": 14.13,
-        "ts": 1776738374,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 115.66,
-        "price": 0.942,
-        "usdc": 108.95172,
-        "ts": 1776738390,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 155.19535
   },
   {
     "key": "0x81cddb9f7c7c17e33223a3f3ac277b7cd61c10c047a2ee509f4b5dc64a032644-0",
@@ -5439,322 +1553,130 @@
         "shares": 32.2144,
         "price": 0.975,
         "usdc": 31.40904,
-        "ts": 1776752316,
-        "fee": 0,
-        "maker": false
+        "ts": 1776752316
       },
       {
         "shares": 32.224,
         "price": 0.975,
         "usdc": 31.4184,
-        "ts": 1776752410,
-        "fee": 0,
-        "maker": false
+        "ts": 1776752410
       },
       {
         "shares": 24.6976,
         "price": 0.975,
         "usdc": 24.08016,
-        "ts": 1776752468,
-        "fee": 0,
-        "maker": false
+        "ts": 1776752468
       },
       {
         "shares": 11.296,
         "price": 0.975,
         "usdc": 11.0136,
-        "ts": 1776752496,
-        "fee": 0,
-        "maker": false
+        "ts": 1776752496
       },
       {
         "shares": 399.55,
         "price": 0.975,
         "usdc": 389.56125,
-        "ts": 1776752534,
-        "fee": 0,
-        "maker": false
+        "ts": 1776752534
       },
       {
         "shares": 66.666665,
         "price": 0.9850000146250004,
         "usdc": 65.666666,
-        "ts": 1776752764,
-        "fee": 0,
-        "maker": false
+        "ts": 1776752764
       },
       {
         "shares": 10.63,
         "price": 0.991,
         "usdc": 10.53433,
-        "ts": 1776754286,
-        "fee": 0,
-        "maker": false
+        "ts": 1776754286
       },
       {
         "shares": 131.48,
         "price": 0.991,
         "usdc": 130.29668,
-        "ts": 1776754476,
-        "fee": 0,
-        "maker": false
+        "ts": 1776754476
       },
       {
         "shares": 47.5,
         "price": 0.991,
         "usdc": 47.0725,
-        "ts": 1776754480,
-        "fee": 0,
-        "maker": false
+        "ts": 1776754480
       },
       {
         "shares": 70.02,
         "price": 0.991,
         "usdc": 69.38982,
-        "ts": 1776754584,
-        "fee": 0,
-        "maker": false
+        "ts": 1776754584
       },
       {
         "shares": 20,
         "price": 0.991,
         "usdc": 19.82,
-        "ts": 1776754664,
-        "fee": 0,
-        "maker": false
+        "ts": 1776754664
       },
       {
         "shares": 13.92,
         "price": 0.991,
         "usdc": 13.79472,
-        "ts": 1776754714,
-        "fee": 0,
-        "maker": false
+        "ts": 1776754714
       },
       {
         "shares": 9.58,
         "price": 0.991,
         "usdc": 9.49378,
-        "ts": 1776754812,
-        "fee": 0,
-        "maker": false
+        "ts": 1776754812
       },
       {
         "shares": 87.85,
         "price": 0.991,
         "usdc": 87.05935,
-        "ts": 1776754814,
-        "fee": 0,
-        "maker": false
+        "ts": 1776754814
       },
       {
         "shares": 280.035554,
         "price": 0.9910000035209815,
         "usdc": 277.515235,
-        "ts": 1776756870,
-        "fee": 0,
-        "maker": false
+        "ts": 1776756870
       },
       {
         "shares": 328.98,
         "price": 0.991,
         "usdc": 326.01918,
-        "ts": 1776761696,
-        "fee": 0,
-        "maker": false
+        "ts": 1776761696
       },
       {
         "shares": 65.432221,
         "price": 0.9910000151148775,
         "usdc": 64.843332,
-        "ts": 1776767262,
-        "fee": 0,
-        "maker": false
+        "ts": 1776767262
       },
       {
         "shares": 212.922221,
         "price": 0.9910000046448886,
         "usdc": 211.005922,
-        "ts": 1776775564,
-        "fee": 0,
-        "maker": false
+        "ts": 1776775564
       },
       {
         "shares": 8.88,
         "price": 0.991,
         "usdc": 8.80008,
-        "ts": 1776775586,
-        "fee": 0,
-        "maker": false
+        "ts": 1776775586
       },
       {
         "shares": 30.643332,
         "price": 0.9850000319808564,
         "usdc": 30.183683,
-        "ts": 1776775706,
-        "fee": 0,
-        "maker": false
+        "ts": 1776775706
       },
       {
         "shares": 612.75,
         "price": 0.991,
         "usdc": 607.23525,
-        "ts": 1776775706,
-        "fee": 0,
-        "maker": false
+        "ts": 1776775706
       }
     ],
     "totalShares": 2497.2719930000003
-  },
-  {
-    "key": "0xfd86e937fb031a0e614bcfd98f3a94afca59d1b790bd17ff2b6a7f9ad3c9c567-1",
-    "title": "Will the highest temperature in Seoul be 13°C on April 22?",
-    "lots": [
-      {
-        "shares": 353.38,
-        "price": 0.981,
-        "usdc": 346.66578,
-        "ts": 1776819582,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.25,
-        "price": 0.981,
-        "usdc": 5.15025,
-        "ts": 1776819614,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 358.63
-  },
-  {
-    "key": "0x84650e76d1746fe5f3de87cfdc37f6811cd909a3747e6e465b7020f01e3449ee-1",
-    "title": "Will the highest temperature in Seoul be 14°C on April 22?",
-    "lots": [
-      {
-        "shares": 234.00601,
-        "price": 0.9417107673952874,
-        "usdc": 221.0101,
-        "ts": 1776822138,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 19.86925,
-        "price": 0.86925,
-        "usdc": 17.385,
-        "ts": 1776824018,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 124.366,
-        "price": 0.89856,
-        "usdc": 112.32,
-        "ts": 1776824076,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 154.48631,
-        "price": 0.9337161290322581,
-        "usdc": 144.726,
-        "ts": 1776824462,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 226.44321,
-        "price": 0.8634385964912281,
-        "usdc": 196.864,
-        "ts": 1776826660,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 40.66,
-        "price": 0.864,
-        "usdc": 35.13024,
-        "ts": 1776826662,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 180.08177,
-        "price": 0.8546600882028665,
-        "usdc": 155.03534,
-        "ts": 1776826738,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14,
-        "price": 0.86,
-        "usdc": 12.04,
-        "ts": 1776826748,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 41.95,
-        "price": 0.858,
-        "usdc": 35.9931,
-        "ts": 1776826820,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 41.410039999999995,
-        "price": 0.88,
-        "usdc": 36.6608,
-        "ts": 1776826832,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 500,
-        "price": 0.975,
-        "usdc": 487.5,
-        "ts": 1776828172,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 443.22638,
-        "price": 0.982254181506695,
-        "usdc": 435.7476,
-        "ts": 1776828268,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 99.9,
-        "price": 0.98,
-        "usdc": 98,
-        "ts": 1776828296,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1462.0006,
-        "price": 0.989343482957109,
-        "usdc": 1447.19186,
-        "ts": 1776828334,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 336.27703,
-        "price": 0.9920942005291162,
-        "usdc": 333.75041,
-        "ts": 1776828356,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 3918.6766000000007
   },
   {
     "key": "0x20c5423e007f0f1a2e6b054908620ee7709d0215c9f9ad83d210ee7fe9a54954-0",
@@ -5764,130 +1686,10 @@
         "shares": 0.002769000000013788,
         "price": 0.3300000804000707,
         "usdc": 0.492537,
-        "ts": 1776830210,
-        "fee": 0,
-        "maker": false
+        "ts": 1776830210
       }
     ],
     "totalShares": 0.002769000000013788
-  },
-  {
-    "key": "0x71a85610ffb98f0e94d4b20e8c0fca4f9ea8ddf6b5ae410d8366078357f5f575-1",
-    "title": "Will the highest temperature in Seoul be 15°C on April 22?",
-    "lots": [
-      {
-        "shares": 150.23144000000002,
-        "price": 0.7855182404846569,
-        "usdc": 119.2888,
-        "ts": 1776829322,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 319.09631,
-        "price": 0.8708665192888502,
-        "usdc": 279.6962,
-        "ts": 1776829364,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9.95,
-        "price": 0.9,
-        "usdc": 9,
-        "ts": 1776829694,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 74.424,
-        "price": 0.9,
-        "usdc": 66.9816,
-        "ts": 1776829760,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 318.25366,
-        "price": 0.9663508893001662,
-        "usdc": 308.063,
-        "ts": 1776830132,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 871.95541
-  },
-  {
-    "key": "0x9a0b2e84b50ebc300670d5f845e230a6adff9c38b376c2456709eb816966a371-1",
-    "title": "Will the highest temperature in Seoul be 16°C on April 22?",
-    "lots": [
-      {
-        "shares": 15,
-        "price": 0.52,
-        "usdc": 7.8,
-        "ts": 1776830396,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 72.60031000000001,
-        "price": 0.6642199349945829,
-        "usdc": 49.046,
-        "ts": 1776830446,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6.18,
-        "price": 0.975,
-        "usdc": 6.0255,
-        "ts": 1776831504,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.27,
-        "price": 0.975,
-        "usdc": 5.13825,
-        "ts": 1776831506,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11.12,
-        "price": 0.975,
-        "usdc": 10.842,
-        "ts": 1776831506,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11.09,
-        "price": 0.975,
-        "usdc": 10.81275,
-        "ts": 1776831524,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 80,
-        "price": 0.975,
-        "usdc": 78,
-        "ts": 1776831614,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 381.252,
-        "price": 0.975,
-        "usdc": 371.7207,
-        "ts": 1776831640,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 582.5123100000001
   },
   {
     "key": "0xfe3e349ee638ae04b620d18c878185acb40ebe10f4c0f977114a2cdde6d48126-0",
@@ -5897,537 +1699,363 @@
         "shares": 362.70308,
         "price": 0.21503867344776437,
         "usdc": 81.1814,
-        "ts": 1776830490,
-        "fee": 0,
-        "maker": false
+        "ts": 1776830490
       },
       {
         "shares": 116.96648,
         "price": 0.23,
         "usdc": 27.9795,
-        "ts": 1776831006,
-        "fee": 0,
-        "maker": false
+        "ts": 1776831006
       },
       {
         "shares": 103.72189,
         "price": 0.5461952322623198,
         "usdc": 57.9677,
-        "ts": 1776832308,
-        "fee": 0,
-        "maker": false
+        "ts": 1776832308
       },
       {
         "shares": 109.12815,
         "price": 0.7,
         "usdc": 77.553,
-        "ts": 1776832736,
-        "fee": 0,
-        "maker": false
+        "ts": 1776832736
       },
       {
         "shares": 1.37,
         "price": 0.7,
         "usdc": 0.959,
-        "ts": 1776832740,
-        "fee": 0,
-        "maker": false
+        "ts": 1776832740
       },
       {
         "shares": 13,
         "price": 0.91,
         "usdc": 11.83,
-        "ts": 1776835578,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835578
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5.23,
         "price": 0.91,
         "usdc": 4.7593,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835634
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835652,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835652
       },
       {
         "shares": 5,
         "price": 0.91,
         "usdc": 4.55,
-        "ts": 1776835652,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835652
       },
       {
         "shares": 2,
         "price": 0.91,
         "usdc": 1.82,
-        "ts": 1776835654,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835654
       },
       {
         "shares": 134.31,
         "price": 0.91,
         "usdc": 122.2221,
-        "ts": 1776835706,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835706
       },
       {
         "shares": 2.13,
         "price": 0.91,
         "usdc": 1.9383,
-        "ts": 1776835716,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835716
       },
       {
         "shares": 19.5,
         "price": 0.91,
         "usdc": 17.745,
-        "ts": 1776835716,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835716
       },
       {
         "shares": 120.65,
         "price": 0.91,
         "usdc": 109.7915,
-        "ts": 1776835716,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835716
       },
       {
         "shares": 88.88,
         "price": 0.91,
         "usdc": 80.8808,
-        "ts": 1776835718,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835718
       },
       {
         "shares": 3.96,
         "price": 0.91,
         "usdc": 3.6036,
-        "ts": 1776835720,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835720
       },
       {
         "shares": 3.44,
         "price": 0.91,
         "usdc": 3.1304,
-        "ts": 1776835724,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835724
       },
       {
         "shares": 17.12,
         "price": 0.91,
         "usdc": 15.5792,
-        "ts": 1776835732,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835732
       },
       {
         "shares": 16.9,
         "price": 0.91,
         "usdc": 15.379,
-        "ts": 1776835732,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835732
       },
       {
         "shares": 2.11,
         "price": 0.91,
         "usdc": 1.9201,
-        "ts": 1776835750,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835750
       },
       {
         "shares": 3.12,
         "price": 0.91,
         "usdc": 2.8392,
-        "ts": 1776835754,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835754
       },
       {
         "shares": 11.92,
         "price": 0.91,
         "usdc": 10.8472,
-        "ts": 1776835758,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835758
       },
       {
         "shares": 192.16,
         "price": 0.91,
         "usdc": 174.8656,
-        "ts": 1776835888,
-        "fee": 0,
-        "maker": false
+        "ts": 1776835888
       },
       {
         "shares": 5,
         "price": 0.97,
         "usdc": 4.85,
-        "ts": 1776836744,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836744
       },
       {
         "shares": 5,
         "price": 0.97,
         "usdc": 4.85,
-        "ts": 1776836744,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836744
       },
       {
         "shares": 5,
         "price": 0.97,
         "usdc": 4.85,
-        "ts": 1776836744,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836744
       },
       {
         "shares": 0.3,
         "price": 0.97,
         "usdc": 0.291,
-        "ts": 1776836744,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836744
       },
       {
         "shares": 5,
         "price": 0.97,
         "usdc": 4.85,
-        "ts": 1776836744,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836744
       },
       {
         "shares": 5,
         "price": 0.97,
         "usdc": 4.85,
-        "ts": 1776836744,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836744
       },
       {
         "shares": 5,
         "price": 0.97,
         "usdc": 4.85,
-        "ts": 1776836744,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836744
       },
       {
         "shares": 5,
         "price": 0.97,
         "usdc": 4.85,
-        "ts": 1776836750,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836750
       },
       {
         "shares": 5,
         "price": 0.97,
         "usdc": 4.85,
-        "ts": 1776836750,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836750
       },
       {
         "shares": 5,
         "price": 0.97,
         "usdc": 4.85,
-        "ts": 1776836750,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836750
       },
       {
         "shares": 5,
         "price": 0.97,
         "usdc": 4.85,
-        "ts": 1776836750,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836750
       },
       {
         "shares": 5,
         "price": 0.97,
         "usdc": 4.85,
-        "ts": 1776836750,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836750
       },
       {
         "shares": 5,
         "price": 0.97,
         "usdc": 4.85,
-        "ts": 1776836750,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836750
       },
       {
         "shares": 5,
         "price": 0.97,
         "usdc": 4.85,
-        "ts": 1776836750,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836750
       },
       {
         "shares": 5,
         "price": 0.97,
         "usdc": 4.85,
-        "ts": 1776836750,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836750
       },
       {
         "shares": 5,
         "price": 0.97,
         "usdc": 4.85,
-        "ts": 1776836750,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836750
       },
       {
         "shares": 157.69,
         "price": 0.97,
         "usdc": 152.9593,
-        "ts": 1776836866,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836866
       },
       {
         "shares": 7.92,
         "price": 0.97,
         "usdc": 7.6824,
-        "ts": 1776836872,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836872
       },
       {
         "shares": 1.73,
         "price": 0.97,
         "usdc": 1.6781,
-        "ts": 1776836888,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836888
       },
       {
         "shares": 27.4,
         "price": 0.97,
         "usdc": 26.578,
-        "ts": 1776836902,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836902
       },
       {
         "shares": 15,
         "price": 0.97,
         "usdc": 14.55,
-        "ts": 1776836986,
-        "fee": 0,
-        "maker": false
+        "ts": 1776836986
       }
     ],
     "totalShares": 1705.3596
-  },
-  {
-    "key": "0x20c5423e007f0f1a2e6b054908620ee7709d0215c9f9ad83d210ee7fe9a54954-1",
-    "title": "Will the highest temperature in Seoul be 17°C on April 22?",
-    "lots": [
-      {
-        "shares": 329.88109,
-        "price": 0.9685886803874092,
-        "usdc": 320.0217,
-        "ts": 1776832028,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 24.55,
-        "price": 0.96,
-        "usdc": 23.568,
-        "ts": 1776832142,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 354.43109
-  },
-  {
-    "key": "0x45976b6cb92cc837b93dac9c89d7f77968c38c8792b80022f436afed1829d68f-1",
-    "title": "Will the highest temperature in Seoul be 19°C or higher on April 22?",
-    "lots": [
-      {
-        "shares": 600,
-        "price": 0.91,
-        "usdc": 546,
-        "ts": 1776837144,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 500,
-        "price": 0.965,
-        "usdc": 482.5,
-        "ts": 1776837144,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 500,
-        "price": 0.975,
-        "usdc": 487.5,
-        "ts": 1776837144,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1600
   }
 ]

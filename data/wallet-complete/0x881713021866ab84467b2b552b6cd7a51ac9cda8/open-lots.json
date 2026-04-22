@@ -1,28 +1,5 @@
 [
   {
-    "key": "0x7ed87d93b2f1b8aad8584d273100f0af9c5da3f1e157adefca7825cdb7247417-1",
-    "title": "Will the highest temperature in New York City be between 78-79°F on April 17?",
-    "lots": [
-      {
-        "shares": 1022.4377499999998,
-        "price": 0.998,
-        "usdc": 1519.54482,
-        "ts": 1776469418,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 500,
-        "price": 0.997,
-        "usdc": 498.5,
-        "ts": 1776471298,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1522.4377499999998
-  },
-  {
     "key": "0xe0c1a994d9db13fbeb26e6b67778b8319bc83645050db74f08cdf0b424a7fd33-0",
     "title": "Will the highest temperature in New York City be 77°F or below on April 17?",
     "lots": [
@@ -30,131 +7,22 @@
         "shares": 617.2282799999999,
         "price": 0.998,
         "usdc": 616.05542,
-        "ts": 1776469446,
-        "fee": 0,
-        "maker": false
+        "ts": 1776469446
       },
       {
         "shares": 200,
         "price": 0.995,
         "usdc": 199,
-        "ts": 1776469516,
-        "fee": 0,
-        "maker": false
+        "ts": 1776469516
       },
       {
         "shares": 282.88,
         "price": 0.998,
         "usdc": 282.31424,
-        "ts": 1776471182,
-        "fee": 0,
-        "maker": false
+        "ts": 1776471182
       }
     ],
     "totalShares": 1100.10828
-  },
-  {
-    "key": "0x4d7189fef369b3f65a22ea7375273920e0d0a0d480ba62056fc7197f2c4c2ea6-1",
-    "title": "Will the highest temperature in Munich be 22°C or higher on April 17?",
-    "lots": [
-      {
-        "shares": 100,
-        "price": 0.997,
-        "usdc": 99.7,
-        "ts": 1776449988,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.997,
-        "usdc": 99.7,
-        "ts": 1776450046,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.997,
-        "usdc": 99.7,
-        "ts": 1776450048,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.997,
-        "usdc": 99.7,
-        "ts": 1776450054,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 68.66,
-        "price": 0.997,
-        "usdc": 68.45402,
-        "ts": 1776450216,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 31.34,
-        "price": 0.997,
-        "usdc": 31.24598,
-        "ts": 1776450216,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.997,
-        "usdc": 99.7,
-        "ts": 1776450326,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.997,
-        "usdc": 99.7,
-        "ts": 1776450906,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 57.23,
-        "price": 0.997,
-        "usdc": 57.05831,
-        "ts": 1776450960,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.997,
-        "usdc": 99.7,
-        "ts": 1776451078,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6.03,
-        "price": 0.997,
-        "usdc": 6.01191,
-        "ts": 1776451306,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6.74,
-        "price": 0.997,
-        "usdc": 6.71978,
-        "ts": 1776451826,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 870
   },
   {
     "key": "0x24892e5a0cea7cac1e20b9ca30e645613f36d3dc9dae83675ed168eca4cc23a9-0",
@@ -164,35 +32,10 @@
         "shares": 0.004779999999948714,
         "price": 0.998,
         "usdc": 7.57482,
-        "ts": 1776463004,
-        "fee": 0,
-        "maker": false
+        "ts": 1776463004
       }
     ],
     "totalShares": 0.004779999999948714
-  },
-  {
-    "key": "0xcc620902f4e42174539f7721fe7ddbe7d5ee02dfb5720fdf14652406a67e4003-1",
-    "title": "Will the highest temperature in San Francisco be between 62-63°F on April 17?",
-    "lots": [
-      {
-        "shares": 320.5013400000001,
-        "price": 0.998,
-        "usdc": 385.89666,
-        "ts": 1776450484,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 118.22818,
-        "price": 0.998,
-        "usdc": 118.00352,
-        "ts": 1776450694,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 438.7295200000001
   },
   {
     "key": "0xff8e5b667a56d2a0f44cf0e3c61934ff3772654c92c6c159ce65b003496e38e0-0",
@@ -202,51 +45,10 @@
         "shares": 0.0033600000000149066,
         "price": 0.997,
         "usdc": 127.33684,
-        "ts": 1776457318,
-        "fee": 0,
-        "maker": false
+        "ts": 1776457318
       }
     ],
     "totalShares": 0.0033600000000149066
-  },
-  {
-    "key": "0x4f6a7788fd53fe1d1a4c67e4d4ce9282a5cad2766e4154391045429460e1f147-1",
-    "title": "Will the highest temperature in Austin be between 84-85°F on April 17?",
-    "lots": [
-      {
-        "shares": 5.9943,
-        "price": 0.981,
-        "usdc": 5.886,
-        "ts": 1776451088,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.28,
-        "price": 0.989,
-        "usdc": 5.22192,
-        "ts": 1776451094,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6.31,
-        "price": 0.989,
-        "usdc": 6.24059,
-        "ts": 1776451758,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.25,
-        "price": 0.989,
-        "usdc": 5.19225,
-        "ts": 1776451774,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 22.8343
   },
   {
     "key": "0x44ee1908f2d3b6d0135efdd68a51f322db692a3aca0d29a2aeda758a485be7c7-1",
@@ -256,142 +58,10 @@
         "shares": 0.00999999999999801,
         "price": 0.995,
         "usdc": 15.49215,
-        "ts": 1776451198,
-        "fee": 0,
-        "maker": false
+        "ts": 1776451198
       }
     ],
     "totalShares": 0.00999999999999801
-  },
-  {
-    "key": "0x7216c325c275ef4592038408749b9ae0f1d29dc8368c7d102e6bcda1dd2bd695-1",
-    "title": "Will the highest temperature in Sao Paulo be 32°C on April 17?",
-    "lots": [
-      {
-        "shares": 2.0393000000000097,
-        "price": 0.998,
-        "usdc": 7.00596,
-        "ts": 1776454752,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2.0393000000000097
-  },
-  {
-    "key": "0xb5f4ac315505c0377e1728c5981606e235251672a75bf62b5e52c94f4b2238da-1",
-    "title": "Will the highest temperature in New York City be between 80-81°F on April 17?",
-    "lots": [
-      {
-        "shares": 647.34684,
-        "price": 0.9959524,
-        "usdc": 697.16668,
-        "ts": 1776458794,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 52.52,
-        "price": 0.996,
-        "usdc": 52.30992,
-        "ts": 1776470652,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 699.86684
-  },
-  {
-    "key": "0xc382373cd7e948d0bb795d263694ad3a9a49d04969c5bd413df2e8065f277de8-1",
-    "title": "Will the highest temperature in New York City be between 82-83°F on April 17?",
-    "lots": [
-      {
-        "shares": 300,
-        "price": 0.991,
-        "usdc": 297.3,
-        "ts": 1776454952,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 300
-  },
-  {
-    "key": "0x979c20a32158f7e746f9c0c2b2b48bb43df10001feabf2b0c001ac3226b81757-1",
-    "title": "Will the highest temperature in Sao Paulo be 31°C on April 17?",
-    "lots": [
-      {
-        "shares": 1.3160999999999967,
-        "price": 0.998,
-        "usdc": 1.31736,
-        "ts": 1776460046,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1.3160999999999967
-  },
-  {
-    "key": "0x6c4c467484f11cc757f5cad3ab168de4c0d8a32ea70c259e8c26760adf962f4f-1",
-    "title": "Will the highest temperature in Dallas be between 78-79°F on April 17?",
-    "lots": [
-      {
-        "shares": 99.95,
-        "price": 0.99,
-        "usdc": 99,
-        "ts": 1776451720,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 99.95
-  },
-  {
-    "key": "0x2aeb233ccfae2d5697927577d1c61a44d56d1d555a13da85e439b0f1ae249901-1",
-    "title": "Will the highest temperature in Los Angeles be between 66-67°F on April 17?",
-    "lots": [
-      {
-        "shares": 49.08755,
-        "price": 0.999,
-        "usdc": 49.04091,
-        "ts": 1776451934,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.03,
-        "price": 0.999,
-        "usdc": 2.02797,
-        "ts": 1776452220,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.04,
-        "price": 0.999,
-        "usdc": 1.03896,
-        "ts": 1776453632,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 7.21,
-        "price": 0.999,
-        "usdc": 7.20279,
-        "ts": 1776455810,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 63.98,
-        "price": 0.999,
-        "usdc": 63.91602,
-        "ts": 1776456332,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 123.34755
   },
   {
     "key": "0x88617d500f26db94ab3099583cf5475e5ad91783e6a8db7963e0cb114a03a2db-1",
@@ -401,9 +71,7 @@
         "shares": 0.003988000000003211,
         "price": 0.93,
         "usdc": 27.9,
-        "ts": 1776452342,
-        "fee": 0,
-        "maker": false
+        "ts": 1776452342
       }
     ],
     "totalShares": 0.003988000000003211
@@ -416,99 +84,52 @@
         "shares": 22.584750000000014,
         "price": 0.997,
         "usdc": 234.295,
-        "ts": 1776453122,
-        "fee": 0,
-        "maker": false
+        "ts": 1776453122
       },
       {
         "shares": 265,
         "price": 0.997,
         "usdc": 264.205,
-        "ts": 1776453126,
-        "fee": 0,
-        "maker": false
+        "ts": 1776453126
       },
       {
         "shares": 300,
         "price": 0.995,
         "usdc": 298.5,
-        "ts": 1776453568,
-        "fee": 0,
-        "maker": false
+        "ts": 1776453568
       },
       {
         "shares": 4.85,
         "price": 0.995,
         "usdc": 4.82575,
-        "ts": 1776457592,
-        "fee": 0,
-        "maker": false
+        "ts": 1776457592
       },
       {
         "shares": 123.85,
         "price": 0.995,
         "usdc": 123.23075,
-        "ts": 1776458174,
-        "fee": 0,
-        "maker": false
+        "ts": 1776458174
       },
       {
         "shares": 14.45,
         "price": 0.996,
         "usdc": 14.3922,
-        "ts": 1776459792,
-        "fee": 0,
-        "maker": false
+        "ts": 1776459792
       },
       {
         "shares": 10.04,
         "price": 0.996,
         "usdc": 9.99984,
-        "ts": 1776460554,
-        "fee": 0,
-        "maker": false
+        "ts": 1776460554
       },
       {
         "shares": 111.33,
         "price": 0.998,
         "usdc": 111.10734,
-        "ts": 1776461802,
-        "fee": 0,
-        "maker": false
+        "ts": 1776461802
       }
     ],
     "totalShares": 852.1047500000001
-  },
-  {
-    "key": "0xc91ae75e7940548a56c0d3f57b15835613e8a8269d020414a8f208c9d9d6fd39-1",
-    "title": "Will the highest temperature in London be 19°C on April 17?",
-    "lots": [
-      {
-        "shares": 372.44,
-        "price": 0.998,
-        "usdc": 371.69512,
-        "ts": 1776455034,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.94,
-        "price": 0.998,
-        "usdc": 10.91812,
-        "ts": 1776455162,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8.57,
-        "price": 0.998,
-        "usdc": 8.55286,
-        "ts": 1776456450,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 391.95
   },
   {
     "key": "0xe5fd4f5c7e9a4e20d5d4dc77d495203518e478b0afb657e76308e1fbe1640f02-1",
@@ -518,9 +139,7 @@
         "shares": 0.00599599999998901,
         "price": 0.97,
         "usdc": 40.9146,
-        "ts": 1776456048,
-        "fee": 0,
-        "maker": false
+        "ts": 1776456048
       }
     ],
     "totalShares": 0.00599599999998901
@@ -533,51 +152,10 @@
         "shares": 1.04,
         "price": 0.997,
         "usdc": 1.03688,
-        "ts": 1776461782,
-        "fee": 0,
-        "maker": false
+        "ts": 1776461782
       }
     ],
     "totalShares": 1.04
-  },
-  {
-    "key": "0xd05caaf91ff42ceebee98ba25ad2949f6b9e5a77d07c20435be3bcb29ae0703e-1",
-    "title": "Will the highest temperature in Toronto be 18°C on April 17?",
-    "lots": [
-      {
-        "shares": 41.13589,
-        "price": 0.998,
-        "usdc": 41.05772,
-        "ts": 1776461832,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.2,
-        "price": 0.998,
-        "usdc": 5.1896,
-        "ts": 1776461836,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 20,
-        "price": 0.998,
-        "usdc": 19.96,
-        "ts": 1776461838,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 783.66,
-        "price": 0.998,
-        "usdc": 782.09268,
-        "ts": 1776462288,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 849.9958899999999
   },
   {
     "key": "0x12f6766d614ddf1197206dcaf919840896e642a51da771c49113697f14f9a931-0",
@@ -587,9 +165,7 @@
         "shares": 0.00963000000001557,
         "price": 0.998,
         "usdc": 256.25646,
-        "ts": 1776461950,
-        "fee": 0,
-        "maker": false
+        "ts": 1776461950
       }
     ],
     "totalShares": 0.00963000000001557
@@ -602,9 +178,7 @@
         "shares": 0.0050499999999829015,
         "price": 0.992,
         "usdc": 595.2,
-        "ts": 1776462774,
-        "fee": 0,
-        "maker": false
+        "ts": 1776462774
       }
     ],
     "totalShares": 0.0050499999999829015
@@ -617,27 +191,10 @@
         "shares": 11.9988,
         "price": 0.998,
         "usdc": 11.976,
-        "ts": 1776462150,
-        "fee": 0,
-        "maker": false
+        "ts": 1776462150
       }
     ],
     "totalShares": 11.9988
-  },
-  {
-    "key": "0x3e82c2199322d7d31b9f5950612d037a08782b0d96e59a60e129536f95369a95-1",
-    "title": "Will the highest temperature in Panama City be 34°C on April 17?",
-    "lots": [
-      {
-        "shares": 15.98816,
-        "price": 0.9976873045653534,
-        "usdc": 15.95302,
-        "ts": 1776462152,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 15.98816
   },
   {
     "key": "0x58b9f9c674cef233d9a6b72be280a957a382f3115159c654244184798d287493-0",
@@ -647,122 +204,22 @@
         "shares": 267.01179,
         "price": 0.9889047013025902,
         "usdc": 264.19578,
-        "ts": 1776462232,
-        "fee": 0,
-        "maker": false
+        "ts": 1776462232
       },
       {
         "shares": 42,
         "price": 0.98,
         "usdc": 41.16,
-        "ts": 1776462318,
-        "fee": 0,
-        "maker": false
+        "ts": 1776462318
       },
       {
         "shares": 40.81754,
         "price": 0.989,
         "usdc": 40.39076,
-        "ts": 1776462344,
-        "fee": 0,
-        "maker": false
+        "ts": 1776462344
       }
     ],
     "totalShares": 349.82933
-  },
-  {
-    "key": "0xa484dda736de5634aa2c57cc7447cca05e4d9d243b9ccd31605642d6d7094039-1",
-    "title": "Will the highest temperature in Houston be between 84-85°F on April 17?",
-    "lots": [
-      {
-        "shares": 67.966,
-        "price": 0.99,
-        "usdc": 67.32,
-        "ts": 1776462244,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 199.29,
-        "price": 0.989,
-        "usdc": 197.09781,
-        "ts": 1776462534,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.5,
-        "price": 0.99,
-        "usdc": 5.445,
-        "ts": 1776462578,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.88,
-        "price": 0.99,
-        "usdc": 5.8212,
-        "ts": 1776463046,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 85.71,
-        "price": 0.99,
-        "usdc": 84.8529,
-        "ts": 1776463164,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 85.62,
-        "price": 0.99,
-        "usdc": 84.7638,
-        "ts": 1776463356,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 449.96599999999995
-  },
-  {
-    "key": "0x34e9eddbd4139a320087d30e9eb7fa010d60e06e66993095067c57ee4895b311-1",
-    "title": "Will the highest temperature in Houston be between 92-93°F on April 17?",
-    "lots": [
-      {
-        "shares": 0.04246700000000203,
-        "price": 0.992,
-        "usdc": 19.86976,
-        "ts": 1776468018,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 17.17829,
-        "price": 0.998,
-        "usdc": 17.14564,
-        "ts": 1776468080,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.21,
-        "price": 0.998,
-        "usdc": 10.18958,
-        "ts": 1776475848,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 89.81,
-        "price": 0.998,
-        "usdc": 89.63038,
-        "ts": 1776475936,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 117.240757
   },
   {
     "key": "0x418f3dc6bf1073668581a9b16526364544f4073356359a97405fc388733e823a-0",
@@ -772,146 +229,34 @@
         "shares": 178.32136000000003,
         "price": 0.998,
         "usdc": 285.90704,
-        "ts": 1776468376,
-        "fee": 0,
-        "maker": false
+        "ts": 1776468376
       },
       {
         "shares": 3.28,
         "price": 0.998,
         "usdc": 3.27344,
-        "ts": 1776468704,
-        "fee": 0,
-        "maker": false
+        "ts": 1776468704
       },
       {
         "shares": 99.85,
         "price": 0.998,
         "usdc": 99.6503,
-        "ts": 1776469008,
-        "fee": 0,
-        "maker": false
+        "ts": 1776469008
       },
       {
         "shares": 5,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776470084,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470084
       },
       {
         "shares": 4.95,
         "price": 0.998,
         "usdc": 4.9401,
-        "ts": 1776470270,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470270
       }
     ],
     "totalShares": 291.40136
-  },
-  {
-    "key": "0x4a6ad916590f4d9ca596fb17e9106dc1d0683386217099c248825dc676d2a11a-1",
-    "title": "Will the highest temperature in Atlanta be between 90-91°F on April 17?",
-    "lots": [
-      {
-        "shares": 465.26347,
-        "price": 0.998,
-        "usdc": 464.37938,
-        "ts": 1776468382,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11.108889999999999,
-        "price": 0.998,
-        "usdc": 11.08778,
-        "ts": 1776469956,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 223.58,
-        "price": 0.996,
-        "usdc": 222.68568,
-        "ts": 1776470084,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 138.56615000000002,
-        "price": 0.998,
-        "usdc": 138.30284,
-        "ts": 1776470178,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11.42,
-        "price": 0.998,
-        "usdc": 11.39716,
-        "ts": 1776470268,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 23.98,
-        "price": 0.998,
-        "usdc": 23.93204,
-        "ts": 1776470296,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11.99,
-        "price": 0.998,
-        "usdc": 11.96602,
-        "ts": 1776470296,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 26.49,
-        "price": 0.998,
-        "usdc": 26.43702,
-        "ts": 1776470298,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 7.77,
-        "price": 0.998,
-        "usdc": 7.75446,
-        "ts": 1776470396,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.998,
-        "usdc": 99.8,
-        "ts": 1776470456,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1020.16851
-  },
-  {
-    "key": "0xec5e0a94e2fb6f80227dc3c86f5bd0af54448a3421037ace82c302ee29d822c3-1",
-    "title": "Will the highest temperature in Chicago be between 84-85°F on April 17?",
-    "lots": [
-      {
-        "shares": 67.9932,
-        "price": 0.998,
-        "usdc": 67.864,
-        "ts": 1776468434,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 67.9932
   },
   {
     "key": "0x200675e4775c637e85a1554eeda69d58b0ccc86240fc41b25451fe77f9990c3f-0",
@@ -921,161 +266,121 @@
         "shares": 23.27336,
         "price": 0.96,
         "usdc": 22.3872,
-        "ts": 1776468510,
-        "fee": 0,
-        "maker": false
+        "ts": 1776468510
       },
       {
         "shares": 38.49423,
         "price": 0.997,
         "usdc": 38.3845,
-        "ts": 1776470252,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470252
       },
       {
         "shares": 1.13,
         "price": 0.997,
         "usdc": 1.12661,
-        "ts": 1776470310,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470310
       },
       {
         "shares": 20.94,
         "price": 0.997,
         "usdc": 20.87718,
-        "ts": 1776470320,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470320
       },
       {
         "shares": 3.31,
         "price": 0.997,
         "usdc": 3.30007,
-        "ts": 1776470338,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470338
       },
       {
         "shares": 26.07,
         "price": 0.997,
         "usdc": 25.99179,
-        "ts": 1776470374,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470374
       },
       {
         "shares": 5.09,
         "price": 0.997,
         "usdc": 5.07473,
-        "ts": 1776470436,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470436
       },
       {
         "shares": 46.57,
         "price": 0.997,
         "usdc": 46.43029,
-        "ts": 1776470650,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470650
       },
       {
         "shares": 53.97,
         "price": 0.997,
         "usdc": 53.80809,
-        "ts": 1776470656,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470656
       },
       {
         "shares": 98.44,
         "price": 0.997,
         "usdc": 98.14468,
-        "ts": 1776470710,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470710
       },
       {
         "shares": 3,
         "price": 0.997,
         "usdc": 2.991,
-        "ts": 1776470758,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470758
       },
       {
         "shares": 2.98,
         "price": 0.997,
         "usdc": 2.97106,
-        "ts": 1776470856,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470856
       },
       {
         "shares": 12.31,
         "price": 0.997,
         "usdc": 12.27307,
-        "ts": 1776470920,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470920
       },
       {
         "shares": 8.8,
         "price": 0.997,
         "usdc": 8.7736,
-        "ts": 1776471072,
-        "fee": 0,
-        "maker": false
+        "ts": 1776471072
       },
       {
         "shares": 68.07,
         "price": 0.997,
         "usdc": 67.86579,
-        "ts": 1776471336,
-        "fee": 0,
-        "maker": false
+        "ts": 1776471336
       },
       {
         "shares": 9.17,
         "price": 0.997,
         "usdc": 9.14249,
-        "ts": 1776472914,
-        "fee": 0,
-        "maker": false
+        "ts": 1776472914
       },
       {
         "shares": 378.33,
         "price": 0.997,
         "usdc": 377.19501,
-        "ts": 1776473344,
-        "fee": 0,
-        "maker": false
+        "ts": 1776473344
       },
       {
         "shares": 699.93,
         "price": 0.998,
         "usdc": 698.6,
-        "ts": 1776474012,
-        "fee": 0,
-        "maker": false
+        "ts": 1776474012
       },
       {
         "shares": 0.2,
         "price": 0.997,
         "usdc": 0.1994,
-        "ts": 1776474092,
-        "fee": 0,
-        "maker": false
+        "ts": 1776474092
       },
       {
         "shares": 0.91,
         "price": 0.997,
         "usdc": 0.90727,
-        "ts": 1776474408,
-        "fee": 0,
-        "maker": false
+        "ts": 1776474408
       }
     ],
     "totalShares": 1500.9875900000002
@@ -1088,9 +393,7 @@
         "shares": 1310.61653,
         "price": 0.999,
         "usdc": 1309.689,
-        "ts": 1776473788,
-        "fee": 0,
-        "maker": false
+        "ts": 1776473788
       }
     ],
     "totalShares": 1310.61653
@@ -1103,398 +406,100 @@
         "shares": 5.47,
         "price": 0.992,
         "usdc": 5.42624,
-        "ts": 1776468588,
-        "fee": 0,
-        "maker": false
+        "ts": 1776468588
       },
       {
         "shares": 3.18,
         "price": 0.992,
         "usdc": 3.15456,
-        "ts": 1776468818,
-        "fee": 0,
-        "maker": false
+        "ts": 1776468818
       },
       {
         "shares": 5.2,
         "price": 0.992,
         "usdc": 5.1584,
-        "ts": 1776468864,
-        "fee": 0,
-        "maker": false
+        "ts": 1776468864
       },
       {
         "shares": 5,
         "price": 0.995,
         "usdc": 4.975,
-        "ts": 1776469246,
-        "fee": 0,
-        "maker": false
+        "ts": 1776469246
       },
       {
         "shares": 7.65,
         "price": 0.995,
         "usdc": 7.61175,
-        "ts": 1776469420,
-        "fee": 0,
-        "maker": false
+        "ts": 1776469420
       },
       {
         "shares": 41.9916,
         "price": 0.996,
         "usdc": 41.832,
-        "ts": 1776470216,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470216
       },
       {
         "shares": 6,
         "price": 0.998,
         "usdc": 5.988,
-        "ts": 1776470362,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470362
       },
       {
         "shares": 9.62,
         "price": 0.998,
         "usdc": 9.60076,
-        "ts": 1776470390,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470390
       },
       {
         "shares": 143.91,
         "price": 0.998,
         "usdc": 143.62218,
-        "ts": 1776470548,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470548
       },
       {
         "shares": 5,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776470676,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470676
       },
       {
         "shares": 5,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776470696,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470696
       },
       {
         "shares": 361.97,
         "price": 0.998,
         "usdc": 361.24606,
-        "ts": 1776470818,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470818
       },
       {
         "shares": 4.94,
         "price": 0.998,
         "usdc": 4.93012,
-        "ts": 1776474280,
-        "fee": 0,
-        "maker": false
+        "ts": 1776474280
       },
       {
         "shares": 2.84,
         "price": 0.998,
         "usdc": 2.83432,
-        "ts": 1776474424,
-        "fee": 0,
-        "maker": false
+        "ts": 1776474424
       },
       {
         "shares": 927.66362,
         "price": 0.999,
         "usdc": 926.78229,
-        "ts": 1776474942,
-        "fee": 0,
-        "maker": false
+        "ts": 1776474942
       },
       {
         "shares": 5.47,
         "price": 0.998,
         "usdc": 5.45906,
-        "ts": 1776475856,
-        "fee": 0,
-        "maker": false
+        "ts": 1776475856
       }
     ],
     "totalShares": 1540.9052200000003
-  },
-  {
-    "key": "0x99ff827e178a124ba4dac273a6ffc3792622eaa51d90f2dd6dc85c5b47b8c094-1",
-    "title": "Will the highest temperature in Mexico City be 31°C on April 17?",
-    "lots": [
-      {
-        "shares": 31.88522,
-        "price": 0.997,
-        "usdc": 31.79433,
-        "ts": 1776468602,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14.917769999999999,
-        "price": 0.997,
-        "usdc": 14.87524,
-        "ts": 1776468636,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 46.80299
-  },
-  {
-    "key": "0x6da8eae7a4730fc79574fb5b663ba3f36bf65978946de1686bdb913cbb26a1ee-1",
-    "title": "Will the highest temperature in Mexico City be 32°C on April 17?",
-    "lots": [
-      {
-        "shares": 7.71923,
-        "price": 0.998,
-        "usdc": 7.70456,
-        "ts": 1776468604,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.01,
-        "price": 0.995,
-        "usdc": 1.00495,
-        "ts": 1776469924,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 8.72923
-  },
-  {
-    "key": "0x12f1b1ebc1c48d05f4ded0fdc3a9130d31c1bf91be1509cba3ad2b9982dcd1f9-1",
-    "title": "Will the highest temperature in Los Angeles be between 72-73°F on April 17?",
-    "lots": [
-      {
-        "shares": 48.941680000000005,
-        "price": 0.0141675,
-        "usdc": 2.8335,
-        "ts": 1776468764,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 19.02197,
-        "price": 0.021966,
-        "usdc": 0.43932,
-        "ts": 1776468764,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 67.96365
-  },
-  {
-    "key": "0x27fd4a4ebe399535854c709879c5fe6ccbf5b48af1d6881b376662be3b7456b7-1",
-    "title": "Will the highest temperature in San Francisco be between 70-71°F on April 17?",
-    "lots": [
-      {
-        "shares": 29.97,
-        "price": 0.98,
-        "usdc": 29.4,
-        "ts": 1776468786,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 29.97,
-        "price": 0.98,
-        "usdc": 29.4,
-        "ts": 1776468836,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 18.53,
-        "price": 0.983,
-        "usdc": 18.21499,
-        "ts": 1776469296,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.9958,
-        "price": 0.986,
-        "usdc": 5.916,
-        "ts": 1776469382,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8.4,
-        "price": 0.983,
-        "usdc": 8.2572,
-        "ts": 1776469514,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6,
-        "price": 0.983,
-        "usdc": 5.898,
-        "ts": 1776469514,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 0.59,
-        "price": 0.983,
-        "usdc": 0.57997,
-        "ts": 1776469584,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14.93,
-        "price": 0.983,
-        "usdc": 14.67619,
-        "ts": 1776469994,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 466.565554,
-        "price": 0.9910000021133151,
-        "usdc": 462.366465,
-        "ts": 1776470394,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 27.71,
-        "price": 0.998,
-        "usdc": 27.65458,
-        "ts": 1776474050,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 27.06,
-        "price": 0.998,
-        "usdc": 27.00588,
-        "ts": 1776474196,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.91,
-        "price": 0.998,
-        "usdc": 5.89818,
-        "ts": 1776478360,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 641.631354
-  },
-  {
-    "key": "0x700f0ec0de153c52f3ce23985653e106eecfc417cfa5bdf338af3e654eb938fb-1",
-    "title": "Will the highest temperature in San Francisco be between 74-75°F on April 17?",
-    "lots": [
-      {
-        "shares": 2.02,
-        "price": 0.998,
-        "usdc": 2.01596,
-        "ts": 1776472490,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2.02
-  },
-  {
-    "key": "0x1c47b1bdd80395a7bc0e635ce5801ca9582db7ba71bb3ff056953b9691866967-1",
-    "title": "Will the highest temperature in Chicago be between 82-83°F on April 17?",
-    "lots": [
-      {
-        "shares": 0.005713000000000079,
-        "price": 0.995,
-        "usdc": 83.33125,
-        "ts": 1776469322,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 499.925,
-        "price": 0.997,
-        "usdc": 498.5,
-        "ts": 1776469578,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 3.05,
-        "price": 0.991,
-        "usdc": 3.02255,
-        "ts": 1776469644,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12.66,
-        "price": 0.991,
-        "usdc": 12.54606,
-        "ts": 1776469814,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 238.65614,
-        "price": 0.998,
-        "usdc": 238.20264,
-        "ts": 1776470228,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11.04,
-        "price": 0.998,
-        "usdc": 11.01792,
-        "ts": 1776470776,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.04,
-        "price": 0.998,
-        "usdc": 5.02992,
-        "ts": 1776470802,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 33,
-        "price": 0.998,
-        "usdc": 32.934,
-        "ts": 1776471916,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 125.61,
-        "price": 0.998,
-        "usdc": 125.35878,
-        "ts": 1776471960,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 928.986853
   },
   {
     "key": "0x8f27d54094f4106804f251ed9fb464e35432fc417a1774e22b80ee548bbd722f-0",
@@ -1504,185 +509,94 @@
         "shares": 44.44777,
         "price": 0.99,
         "usdc": 44.0253,
-        "ts": 1776469110,
-        "fee": 0,
-        "maker": false
+        "ts": 1776469110
       },
       {
         "shares": 155.53,
         "price": 0.991,
         "usdc": 154.13023,
-        "ts": 1776469120,
-        "fee": 0,
-        "maker": false
+        "ts": 1776469120
       },
       {
         "shares": 193.351,
         "price": 0.997,
         "usdc": 192.79986,
-        "ts": 1776470362,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470362
       },
       {
         "shares": 166.72,
         "price": 0.997,
         "usdc": 166.21984,
-        "ts": 1776470370,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470370
       },
       {
         "shares": 5.46,
         "price": 0.995,
         "usdc": 5.4327,
-        "ts": 1776470946,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470946
       },
       {
         "shares": 1.14,
         "price": 0.995,
         "usdc": 1.1343,
-        "ts": 1776471104,
-        "fee": 0,
-        "maker": false
+        "ts": 1776471104
       },
       {
         "shares": 20,
         "price": 0.995,
         "usdc": 19.9,
-        "ts": 1776471282,
-        "fee": 0,
-        "maker": false
+        "ts": 1776471282
       },
       {
         "shares": 42.54,
         "price": 0.995,
         "usdc": 42.3273,
-        "ts": 1776471520,
-        "fee": 0,
-        "maker": false
+        "ts": 1776471520
       },
       {
         "shares": 9,
         "price": 0.997,
         "usdc": 8.973,
-        "ts": 1776471924,
-        "fee": 0,
-        "maker": false
+        "ts": 1776471924
       },
       {
         "shares": 12.67,
         "price": 0.997,
         "usdc": 12.63199,
-        "ts": 1776472024,
-        "fee": 0,
-        "maker": false
+        "ts": 1776472024
       },
       {
         "shares": 2.23,
         "price": 0.997,
         "usdc": 2.22331,
-        "ts": 1776472086,
-        "fee": 0,
-        "maker": false
+        "ts": 1776472086
       },
       {
         "shares": 56.47,
         "price": 0.997,
         "usdc": 56.30059,
-        "ts": 1776473086,
-        "fee": 0,
-        "maker": false
+        "ts": 1776473086
       },
       {
         "shares": 149.985,
         "price": 0.998,
         "usdc": 149.7,
-        "ts": 1776473918,
-        "fee": 0,
-        "maker": false
+        "ts": 1776473918
       },
       {
         "shares": 149.985,
         "price": 0.998,
         "usdc": 149.7,
-        "ts": 1776473924,
-        "fee": 0,
-        "maker": false
+        "ts": 1776473924
       },
       {
         "shares": 5.15,
         "price": 0.998,
         "usdc": 5.1397,
-        "ts": 1776479936,
-        "fee": 0,
-        "maker": false
+        "ts": 1776479936
       }
     ],
     "totalShares": 1014.67877
-  },
-  {
-    "key": "0x99f7bf1b34dc49c04cd17ce4e7221a8d31588b84d8d9a82a79979a8b1843a8a5-1",
-    "title": "Will the highest temperature in Toronto be 17°C on April 17?",
-    "lots": [
-      {
-        "shares": 34.90899,
-        "price": 0.998,
-        "usdc": 99.8,
-        "ts": 1776469552,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.07,
-        "price": 0.998,
-        "usdc": 5.05986,
-        "ts": 1776471266,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 39.97899
-  },
-  {
-    "key": "0xa57bbe173eed156a8d980ef361a08ad6edc6d8c0b220e8deb1c9202552598788-1",
-    "title": "Will the highest temperature in Mexico City be 30°C on April 17?",
-    "lots": [
-      {
-        "shares": 220.13849,
-        "price": 0.999,
-        "usdc": 220.14963,
-        "ts": 1776473792,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 220.13849
-  },
-  {
-    "key": "0x942a3f3a17d285f501c49111f294cabef6ef2c9db0852cff33a59b19c7bc9da9-1",
-    "title": "Will the highest temperature in Dallas be between 86-87°F on April 17?",
-    "lots": [
-      {
-        "shares": 65.41,
-        "price": 0.998,
-        "usdc": 65.27918,
-        "ts": 1776470086,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 488.96556,
-        "price": 0.999,
-        "usdc": 488.50101,
-        "ts": 1776474018,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 554.37556
   },
   {
     "key": "0x5ac92fde4b2d8b0931e7f00ae79ccfd51cde4ae510b7f17058b37a5f6c53af95-1",
@@ -1692,9 +606,7 @@
         "shares": 0.003330999999995754,
         "price": 0.995,
         "usdc": 9.7709,
-        "ts": 1776474144,
-        "fee": 0,
-        "maker": false
+        "ts": 1776474144
       }
     ],
     "totalShares": 0.003330999999995754
@@ -1707,199 +619,28 @@
         "shares": 166.72,
         "price": 0.998,
         "usdc": 166.38656,
-        "ts": 1776470458,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470458
       },
       {
         "shares": 140.29,
         "price": 0.998,
         "usdc": 140.00942,
-        "ts": 1776470466,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470466
       },
       {
         "shares": 92.99,
         "price": 0.998,
         "usdc": 92.80402,
-        "ts": 1776470836,
-        "fee": 0,
-        "maker": false
+        "ts": 1776470836
       },
       {
         "shares": 599.97,
         "price": 0.999,
         "usdc": 599.4,
-        "ts": 1776475058,
-        "fee": 0,
-        "maker": false
+        "ts": 1776475058
       }
     ],
     "totalShares": 999.97
-  },
-  {
-    "key": "0x8d226c649acde01db7e9ea3112969e5c3cee026ce23eef894dc129ea6902cada-1",
-    "title": "Will the highest temperature in San Francisco be 76°F or higher on April 17?",
-    "lots": [
-      {
-        "shares": 1.01,
-        "price": 0.998,
-        "usdc": 1.00798,
-        "ts": 1776471034,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1.01
-  },
-  {
-    "key": "0x3032e352be074d25128da6f12fb274b56437f46bfc7096a95bd899d1470c14ae-1",
-    "title": "Will the highest temperature in San Francisco be between 72-73°F on April 17?",
-    "lots": [
-      {
-        "shares": 50.09,
-        "price": 0.998,
-        "usdc": 49.98982,
-        "ts": 1776470686,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 39.99,
-        "price": 0.998,
-        "usdc": 39.91002,
-        "ts": 1776472190,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 494.26529,
-        "price": 0.999,
-        "usdc": 493.79571,
-        "ts": 1776475010,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.08,
-        "price": 0.998,
-        "usdc": 2.07584,
-        "ts": 1776476322,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 586.42529
-  },
-  {
-    "key": "0xd62571efe3a70866744eb1206a49184958ed09c01f063ea13dabe0a4df2d0c31-1",
-    "title": "Will the highest temperature in Los Angeles be between 74-75°F on April 17?",
-    "lots": [
-      {
-        "shares": 0.025001000000001383,
-        "price": 0.998,
-        "usdc": 5.62872,
-        "ts": 1776473044,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8.2,
-        "price": 0.998,
-        "usdc": 8.1836,
-        "ts": 1776475636,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.08,
-        "price": 0.998,
-        "usdc": 2.07584,
-        "ts": 1776476958,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 10.305001
-  },
-  {
-    "key": "0xbe16e59c605bb9f8905e83a2e9a6cbf2fc8ff9c449bcb11ed8823fe54306a4e7-1",
-    "title": "Will the highest temperature in Los Angeles be 82°F or higher on April 17?",
-    "lots": [
-      {
-        "shares": 3.02,
-        "price": 0.998,
-        "usdc": 3.01396,
-        "ts": 1776473196,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 3.02
-  },
-  {
-    "key": "0x1a4ceeb9ef22ff272302219bdbcfd66a9cba21b13ca9e46000e82adcd3f85111-1",
-    "title": "Will the highest temperature in Seattle be between 58-59°F on April 17?",
-    "lots": [
-      {
-        "shares": 111.09889,
-        "price": 0.998,
-        "usdc": 110.88778,
-        "ts": 1776473924,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 7.64,
-        "price": 0.998,
-        "usdc": 7.62472,
-        "ts": 1776474060,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 12.01,
-        "price": 0.998,
-        "usdc": 11.98598,
-        "ts": 1776474074,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 105.65,
-        "price": 0.998,
-        "usdc": 105.4387,
-        "ts": 1776474402,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 25.98,
-        "price": 0.998,
-        "usdc": 25.92804,
-        "ts": 1776475020,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.97,
-        "price": 0.998,
-        "usdc": 5.95806,
-        "ts": 1776475566,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.08,
-        "price": 0.998,
-        "usdc": 2.07584,
-        "ts": 1776476228,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 270.42889
   },
   {
     "key": "0x4e19e0d8693b68966e689d5a67764cf912e58f99dc61226918c769a3b7e85258-0",
@@ -1909,43 +650,22 @@
         "shares": 29.9805,
         "price": 0.987,
         "usdc": 29.61,
-        "ts": 1776474826,
-        "fee": 0,
-        "maker": false
+        "ts": 1776474826
       },
       {
         "shares": 70.52060999999999,
         "price": 0.986,
         "usdc": 69.58202,
-        "ts": 1776474890,
-        "fee": 0,
-        "maker": false
+        "ts": 1776474890
       },
       {
         "shares": 2.29,
         "price": 0.974,
         "usdc": 2.23046,
-        "ts": 1776475022,
-        "fee": 0,
-        "maker": false
+        "ts": 1776475022
       }
     ],
     "totalShares": 102.79110999999999
-  },
-  {
-    "key": "0xa06bd8b5e06e9fc763ef3bbcc59dececc4eb2f6564750e9d22289674056d7854-1",
-    "title": "Will the highest temperature in Seattle be between 60-61°F on April 17?",
-    "lots": [
-      {
-        "shares": 15.25924,
-        "price": 0.999,
-        "usdc": 15.24474,
-        "ts": 1776474842,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 15.25924
   },
   {
     "key": "0xb4c52754884f075f3bba37f452d2eb0e9c9f918007ea67bff8f9df9a4ad80531-0",
@@ -1955,51 +675,10 @@
         "shares": 0.4466730000000254,
         "price": 0.998,
         "usdc": 26.17754,
-        "ts": 1776512108,
-        "fee": 0,
-        "maker": false
+        "ts": 1776512108
       }
     ],
     "totalShares": 0.4466730000000254
-  },
-  {
-    "key": "0x378478f7162914c49687745f3a1897c638362398cec0a06a4a03c4d80cd455d0-1",
-    "title": "Will the highest temperature in Wellington be 19°C on April 18?",
-    "lots": [
-      {
-        "shares": 7.53925,
-        "price": 0.998,
-        "usdc": 7.52492,
-        "ts": 1776490962,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 500,
-        "price": 0.998,
-        "usdc": 499,
-        "ts": 1776495272,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 105.1,
-        "price": 0.998,
-        "usdc": 104.8898,
-        "ts": 1776497862,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.08,
-        "price": 0.998,
-        "usdc": 2.07584,
-        "ts": 1776499652,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 614.71925
   },
   {
     "key": "0xedabce5d13fd7c912e43839cbfb06b072b2b6072a6753d1ab49d7a01a8f31137-0",
@@ -2009,193 +688,145 @@
         "shares": 173.88405799999998,
         "price": 0.998,
         "usdc": 548.9,
-        "ts": 1776504218,
-        "fee": 0,
-        "maker": false
+        "ts": 1776504218
       },
       {
         "shares": 10.18,
         "price": 0.998,
         "usdc": 10.15964,
-        "ts": 1776504232,
-        "fee": 0,
-        "maker": false
+        "ts": 1776504232
       },
       {
         "shares": 88.11,
         "price": 0.998,
         "usdc": 87.93378,
-        "ts": 1776504234,
-        "fee": 0,
-        "maker": false
+        "ts": 1776504234
       },
       {
         "shares": 110.3,
         "price": 0.998,
         "usdc": 110.0794,
-        "ts": 1776504460,
-        "fee": 0,
-        "maker": false
+        "ts": 1776504460
       },
       {
         "shares": 10,
         "price": 0.998,
         "usdc": 9.98,
-        "ts": 1776504602,
-        "fee": 0,
-        "maker": false
+        "ts": 1776504602
       },
       {
         "shares": 424.42,
         "price": 0.998,
         "usdc": 423.57116,
-        "ts": 1776504676,
-        "fee": 0,
-        "maker": false
+        "ts": 1776504676
       },
       {
         "shares": 125.58,
         "price": 0.998,
         "usdc": 125.32884,
-        "ts": 1776504676,
-        "fee": 0,
-        "maker": false
+        "ts": 1776504676
       },
       {
         "shares": 1.66,
         "price": 0.998,
         "usdc": 1.65668,
-        "ts": 1776504958,
-        "fee": 0,
-        "maker": false
+        "ts": 1776504958
       },
       {
         "shares": 23.1,
         "price": 0.998,
         "usdc": 23.0538,
-        "ts": 1776505230,
-        "fee": 0,
-        "maker": false
+        "ts": 1776505230
       },
       {
         "shares": 19.3,
         "price": 0.998,
         "usdc": 19.2614,
-        "ts": 1776505954,
-        "fee": 0,
-        "maker": false
+        "ts": 1776505954
       },
       {
         "shares": 50.3,
         "price": 0.998,
         "usdc": 50.1994,
-        "ts": 1776506044,
-        "fee": 0,
-        "maker": false
+        "ts": 1776506044
       },
       {
         "shares": 1.09,
         "price": 0.998,
         "usdc": 1.08782,
-        "ts": 1776507048,
-        "fee": 0,
-        "maker": false
+        "ts": 1776507048
       },
       {
         "shares": 42.04,
         "price": 0.998,
         "usdc": 41.95592,
-        "ts": 1776507250,
-        "fee": 0,
-        "maker": false
+        "ts": 1776507250
       },
       {
         "shares": 5,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776507466,
-        "fee": 0,
-        "maker": false
+        "ts": 1776507466
       },
       {
         "shares": 371.91,
         "price": 0.998,
         "usdc": 371.16618,
-        "ts": 1776507466,
-        "fee": 0,
-        "maker": false
+        "ts": 1776507466
       },
       {
         "shares": 928.09,
         "price": 0.998,
         "usdc": 926.23382,
-        "ts": 1776507466,
-        "fee": 0,
-        "maker": false
+        "ts": 1776507466
       },
       {
         "shares": 5,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776507466,
-        "fee": 0,
-        "maker": false
+        "ts": 1776507466
       },
       {
         "shares": 0.14,
         "price": 0.998,
         "usdc": 0.13972,
-        "ts": 1776508110,
-        "fee": 0,
-        "maker": false
+        "ts": 1776508110
       },
       {
         "shares": 4.62,
         "price": 0.998,
         "usdc": 4.61076,
-        "ts": 1776508780,
-        "fee": 0,
-        "maker": false
+        "ts": 1776508780
       },
       {
         "shares": 53.81,
         "price": 0.998,
         "usdc": 53.70238,
-        "ts": 1776509146,
-        "fee": 0,
-        "maker": false
+        "ts": 1776509146
       },
       {
         "shares": 500,
         "price": 0.998,
         "usdc": 499,
-        "ts": 1776509198,
-        "fee": 0,
-        "maker": false
+        "ts": 1776509198
       },
       {
         "shares": 2.16,
         "price": 0.998,
         "usdc": 2.15568,
-        "ts": 1776510632,
-        "fee": 0,
-        "maker": false
+        "ts": 1776510632
       },
       {
         "shares": 29.65,
         "price": 0.998,
         "usdc": 29.5907,
-        "ts": 1776512644,
-        "fee": 0,
-        "maker": false
+        "ts": 1776512644
       },
       {
         "shares": 20,
         "price": 0.998,
         "usdc": 19.96,
-        "ts": 1776514470,
-        "fee": 0,
-        "maker": false
+        "ts": 1776514470
       }
     ],
     "totalShares": 3000.3440579999997
@@ -2208,75 +839,34 @@
         "shares": 30.803510000000017,
         "price": 0.998,
         "usdc": 463.072,
-        "ts": 1776505044,
-        "fee": 0,
-        "maker": false
+        "ts": 1776505044
       },
       {
         "shares": 14.89,
         "price": 0.998,
         "usdc": 14.86022,
-        "ts": 1776505238,
-        "fee": 0,
-        "maker": false
+        "ts": 1776505238
       },
       {
         "shares": 1.21,
         "price": 0.998,
         "usdc": 1.20758,
-        "ts": 1776506842,
-        "fee": 0,
-        "maker": false
+        "ts": 1776506842
       },
       {
         "shares": 1.03,
         "price": 0.998,
         "usdc": 1.02794,
-        "ts": 1776507208,
-        "fee": 0,
-        "maker": false
+        "ts": 1776507208
       },
       {
         "shares": 7.06,
         "price": 0.998,
         "usdc": 7.04588,
-        "ts": 1776512162,
-        "fee": 0,
-        "maker": false
+        "ts": 1776512162
       }
     ],
     "totalShares": 54.99351000000002
-  },
-  {
-    "key": "0x7e1a0f7b0a06e373f38454589472654b977525bc248ec63ac3afcd95a940d77b-1",
-    "title": "Will the highest temperature in Kuala Lumpur be 33°C on April 18?",
-    "lots": [
-      {
-        "shares": 219.29782,
-        "price": 0.9979772022615356,
-        "usdc": 218.87636,
-        "ts": 1776503260,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14.85,
-        "price": 0.998,
-        "usdc": 14.8203,
-        "ts": 1776503314,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.998,
-        "usdc": 4.99,
-        "ts": 1776504424,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 239.14782
   },
   {
     "key": "0xa08019879e69ab0102eedfb2462cea7feec99ef35ab88786abba18f4e452e8eb-0",
@@ -2286,9 +876,7 @@
         "shares": 0.00041499999994698555,
         "price": 0.998,
         "usdc": 173.94142,
-        "ts": 1776511532,
-        "fee": 0,
-        "maker": false
+        "ts": 1776511532
       }
     ],
     "totalShares": 0.00041499999994698555
@@ -2301,9 +889,7 @@
         "shares": 0.007708999999998412,
         "price": 0.997,
         "usdc": 29.94988,
-        "ts": 1776503710,
-        "fee": 0,
-        "maker": false
+        "ts": 1776503710
       }
     ],
     "totalShares": 0.007708999999998412
@@ -2316,114 +902,58 @@
         "shares": 118.39306899999987,
         "price": 0.999,
         "usdc": 849.15,
-        "ts": 1776503650,
-        "fee": 0,
-        "maker": false
+        "ts": 1776503650
       },
       {
         "shares": 59.7,
         "price": 0.998,
         "usdc": 59.5806,
-        "ts": 1776503962,
-        "fee": 0,
-        "maker": false
+        "ts": 1776503962
       },
       {
         "shares": 11.45,
         "price": 0.998,
         "usdc": 11.4271,
-        "ts": 1776504654,
-        "fee": 0,
-        "maker": false
+        "ts": 1776504654
       },
       {
         "shares": 79.25,
         "price": 0.998,
         "usdc": 79.0915,
-        "ts": 1776504904,
-        "fee": 0,
-        "maker": false
+        "ts": 1776504904
       },
       {
         "shares": 1.95,
         "price": 0.998,
         "usdc": 1.9461,
-        "ts": 1776505142,
-        "fee": 0,
-        "maker": false
+        "ts": 1776505142
       },
       {
         "shares": 560,
         "price": 0.998,
         "usdc": 558.88,
-        "ts": 1776506028,
-        "fee": 0,
-        "maker": false
+        "ts": 1776506028
       },
       {
         "shares": 1.85,
         "price": 0.998,
         "usdc": 1.8463,
-        "ts": 1776506056,
-        "fee": 0,
-        "maker": false
+        "ts": 1776506056
       },
       {
         "shares": 9.98,
         "price": 0.998,
         "usdc": 9.96004,
-        "ts": 1776507474,
-        "fee": 0,
-        "maker": false
+        "ts": 1776507474
       },
       {
         "shares": 7.51,
         "price": 0.998,
         "usdc": 7.49498,
-        "ts": 1776510124,
-        "fee": 0,
-        "maker": false
+        "ts": 1776510124
       }
     ],
     "totalShares": 850.0830689999999
-  },
-  {
-    "key": "0xf7e152ed8842d837062c1edda777fe3d4198bd3fde080084afee72ad01e2de58-1",
-    "title": "Will the highest temperature in Singapore be 35°C or higher on April 18?",
-    "lots": [
-      {
-        "shares": 449.9775,
-        "price": 0.999,
-        "usdc": 449.55,
-        "ts": 1776503670,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 449.9775
-  },
-  {
-    "key": "0xf4d47de3e86db3213164894e63b56d01aa45e3a661ce52fdd3a9004331965788-1",
-    "title": "Will the highest temperature in Wuhan be 32°C on April 18?",
-    "lots": [
-      {
-        "shares": 7.91921,
-        "price": 0.998,
-        "usdc": 7.90416,
-        "ts": 1776503686,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 7.42,
-        "price": 0.998,
-        "usdc": 7.40516,
-        "ts": 1776509108,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 15.33921
   },
   {
     "key": "0x60b408f3d29ed20bc8eb95ef7110005de98fe43d1f989fb692d4f542b1b03d2a-1",
@@ -2433,9 +963,7 @@
         "shares": 0.010000000000001563,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776517294,
-        "fee": 0,
-        "maker": false
+        "ts": 1776517294
       }
     ],
     "totalShares": 0.010000000000001563
@@ -2448,9 +976,7 @@
         "shares": 0.014318999999996862,
         "price": 0.997,
         "usdc": 4.94512,
-        "ts": 1776505972,
-        "fee": 0,
-        "maker": false
+        "ts": 1776505972
       }
     ],
     "totalShares": 0.014318999999996862
@@ -2463,9 +989,7 @@
         "shares": 0.015986999999995533,
         "price": 0.998,
         "usdc": 499,
-        "ts": 1776513392,
-        "fee": 0,
-        "maker": false
+        "ts": 1776513392
       }
     ],
     "totalShares": 0.015986999999995533
@@ -2478,9 +1002,7 @@
         "shares": 0.04181200000005525,
         "price": 0.998,
         "usdc": 63.63747,
-        "ts": 1776520280,
-        "fee": 0,
-        "maker": false
+        "ts": 1776520280
       }
     ],
     "totalShares": 0.04181200000005525
@@ -2493,43 +1015,10 @@
         "shares": 0.11420500000000189,
         "price": 0.997,
         "usdc": 319.29922,
-        "ts": 1776505580,
-        "fee": 0,
-        "maker": false
+        "ts": 1776505580
       }
     ],
     "totalShares": 0.11420500000000189
-  },
-  {
-    "key": "0xe83ab108ca464d176d3a32a9062aef52a4a16afca7e99032e5e4ee16c287a42a-1",
-    "title": "Will the highest temperature in Tokyo be 22°C on April 18?",
-    "lots": [
-      {
-        "shares": 11.54,
-        "price": 0.997,
-        "usdc": 11.50538,
-        "ts": 1776506460,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 27.87,
-        "price": 0.997,
-        "usdc": 27.78639,
-        "ts": 1776512968,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.64,
-        "price": 0.997,
-        "usdc": 2.63208,
-        "ts": 1776513574,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 42.05
   },
   {
     "key": "0x6144aece5d8c6a9f4f7b79d97528387942bc5b904cb352e0f6baa6089d190a4f-1",
@@ -2539,9 +1028,7 @@
         "shares": 0.00788399999999001,
         "price": 0.998,
         "usdc": 351.57045,
-        "ts": 1776507364,
-        "fee": 0,
-        "maker": false
+        "ts": 1776507364
       }
     ],
     "totalShares": 0.00788399999999001
@@ -2554,35 +1041,10 @@
         "shares": 4.27,
         "price": 0.998,
         "usdc": 4.26146,
-        "ts": 1776516828,
-        "fee": 0,
-        "maker": false
+        "ts": 1776516828
       }
     ],
     "totalShares": 4.27
-  },
-  {
-    "key": "0x404af990288199dd24c46070bab9605e7cb59a6e5a7aba182e2c201855e71dc3-1",
-    "title": "Will the highest temperature in Lucknow be 42°C on April 18?",
-    "lots": [
-      {
-        "shares": 0.014785999999951449,
-        "price": 0.998,
-        "usdc": 328.23222,
-        "ts": 1776519646,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.92,
-        "price": 0.998,
-        "usdc": 4.91016,
-        "ts": 1776520708,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 4.934785999999951
   },
   {
     "key": "0xfbb56488920cb3630cbe940f55b95e50dd48b92c6a67c263e730d3dff02feca8-0",
@@ -2592,43 +1054,10 @@
         "shares": 0.011982999999984756,
         "price": 0.998,
         "usdc": 129.70008,
-        "ts": 1776540496,
-        "fee": 0,
-        "maker": false
+        "ts": 1776540496
       }
     ],
     "totalShares": 0.011982999999984756
-  },
-  {
-    "key": "0x0955f7c8a5cacd71b8f4dbbec23e8f84155ee5ee31f7fd76d390b3e914ad7e24-1",
-    "title": "Will the highest temperature in Milan be 26°C on April 18?",
-    "lots": [
-      {
-        "shares": 0.007390000000000674,
-        "price": 0.998,
-        "usdc": 1.00798,
-        "ts": 1776544178,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.12,
-        "price": 0.998,
-        "usdc": 1.11776,
-        "ts": 1776544314,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 3.24,
-        "price": 0.998,
-        "usdc": 3.23352,
-        "ts": 1776550542,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 4.367390000000001
   },
   {
     "key": "0x978738084c551f8339f1fc9786bd77499e22a327e0ce5311cdc481e80de2e1de-1",
@@ -2638,9 +1067,7 @@
         "shares": 0.013755000000017503,
         "price": 0.998,
         "usdc": 4.96006,
-        "ts": 1776544676,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544676
       }
     ],
     "totalShares": 0.013755000000017503
@@ -2653,131 +1080,82 @@
         "shares": 0.0011099999999970578,
         "price": 0.994,
         "usdc": 23.32918,
-        "ts": 1776540582,
-        "fee": 0,
-        "maker": false
+        "ts": 1776540582
       },
       {
         "shares": 24.80752,
         "price": 0.998,
         "usdc": 24.76038,
-        "ts": 1776540714,
-        "fee": 0,
-        "maker": false
+        "ts": 1776540714
       },
       {
         "shares": 8.02,
         "price": 0.998,
         "usdc": 8.00396,
-        "ts": 1776540734,
-        "fee": 0,
-        "maker": false
+        "ts": 1776540734
       },
       {
         "shares": 4.99,
         "price": 0.998,
         "usdc": 4.98002,
-        "ts": 1776541056,
-        "fee": 0,
-        "maker": false
+        "ts": 1776541056
       },
       {
         "shares": 4.86,
         "price": 0.998,
         "usdc": 4.85028,
-        "ts": 1776541074,
-        "fee": 0,
-        "maker": false
+        "ts": 1776541074
       },
       {
         "shares": 2.11,
         "price": 0.998,
         "usdc": 2.10578,
-        "ts": 1776541312,
-        "fee": 0,
-        "maker": false
+        "ts": 1776541312
       },
       {
         "shares": 45.61,
         "price": 0.998,
         "usdc": 45.51878,
-        "ts": 1776542092,
-        "fee": 0,
-        "maker": false
+        "ts": 1776542092
       },
       {
         "shares": 38.84,
         "price": 0.998,
         "usdc": 38.76232,
-        "ts": 1776542148,
-        "fee": 0,
-        "maker": false
+        "ts": 1776542148
       },
       {
         "shares": 190.31,
         "price": 0.998,
         "usdc": 189.92938,
-        "ts": 1776543036,
-        "fee": 0,
-        "maker": false
+        "ts": 1776543036
       },
       {
         "shares": 42.21,
         "price": 0.998,
         "usdc": 42.12558,
-        "ts": 1776543638,
-        "fee": 0,
-        "maker": false
+        "ts": 1776543638
       },
       {
         "shares": 60,
         "price": 0.998,
         "usdc": 59.88,
-        "ts": 1776544086,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544086
       },
       {
         "shares": 2.2,
         "price": 0.998,
         "usdc": 2.1956,
-        "ts": 1776545094,
-        "fee": 0,
-        "maker": false
+        "ts": 1776545094
       },
       {
         "shares": 55.97,
         "price": 0.998,
         "usdc": 55.85806,
-        "ts": 1776549302,
-        "fee": 0,
-        "maker": false
+        "ts": 1776549302
       }
     ],
     "totalShares": 479.92863
-  },
-  {
-    "key": "0x9313773f32962c76d7f1262ebc27935823ad7592a73e60a8ffd6278b132fd21a-1",
-    "title": "Will the highest temperature in Sao Paulo be 31°C on April 18?",
-    "lots": [
-      {
-        "shares": 0.009999999999999787,
-        "price": 0.998,
-        "usdc": 10.76842,
-        "ts": 1776548348,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.08,
-        "price": 0.998,
-        "usdc": 2.07584,
-        "ts": 1776548366,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2.09
   },
   {
     "key": "0x60ab425708c0c525700c3d260a0a7c67054b03c71b3bdaa838164056e1e6f822-0",
@@ -2787,345 +1165,259 @@
         "shares": 128.98685,
         "price": 0.9979612403100775,
         "usdc": 128.737,
-        "ts": 1776543970,
-        "fee": 0,
-        "maker": false
+        "ts": 1776543970
       },
       {
         "shares": 34.9965,
         "price": 0.998,
         "usdc": 34.93,
-        "ts": 1776543994,
-        "fee": 0,
-        "maker": false
+        "ts": 1776543994
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544018,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544018
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544040,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544040
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544062,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544062
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544084,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544084
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544106,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544106
       },
       {
         "shares": 14.9985,
         "price": 0.998,
         "usdc": 14.97,
-        "ts": 1776544128,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544128
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544148,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544148
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544170,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544170
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544192,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544192
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544214,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544214
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544236,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544236
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544256,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544256
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544278,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544278
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544300,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544300
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544322,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544322
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544346,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544346
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544362,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544362
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544388,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544388
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544412,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544412
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544428,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544428
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544446,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544446
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544470,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544470
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544488,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544488
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544512,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544512
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544536,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544536
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544560,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544560
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544582,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544582
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544604,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544604
       },
       {
         "shares": 10,
         "price": 0.998,
         "usdc": 9.98,
-        "ts": 1776544608,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544608
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544628,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544628
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544650,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544650
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544672,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544672
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544696,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544696
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544720,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544720
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544758,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544758
       },
       {
         "shares": 4.99925,
         "price": 0.997,
         "usdc": 4.985,
-        "ts": 1776544782,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544782
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544804,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544804
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544826,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544826
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544850,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544850
       },
       {
         "shares": 4.9995,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776544874,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544874
       },
       {
         "shares": 71,
         "price": 0.995,
         "usdc": 70.645,
-        "ts": 1776544880,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544880
       }
     ],
     "totalShares": 449.96260000000046
@@ -3138,122 +1430,40 @@
         "shares": 204.86927,
         "price": 0.997,
         "usdc": 204.2853,
-        "ts": 1776544048,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544048
       },
       {
         "shares": 1.02,
         "price": 0.997,
         "usdc": 1.01694,
-        "ts": 1776544056,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544056
       },
       {
         "shares": 14,
         "price": 0.996,
         "usdc": 13.944,
-        "ts": 1776544354,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544354
       },
       {
         "shares": 48.2,
         "price": 0.996,
         "usdc": 48.0072,
-        "ts": 1776544440,
-        "fee": 0,
-        "maker": false
+        "ts": 1776544440
       },
       {
         "shares": 56.38,
         "price": 0.996,
         "usdc": 56.15448,
-        "ts": 1776545356,
-        "fee": 0,
-        "maker": false
+        "ts": 1776545356
       },
       {
         "shares": 125.5,
         "price": 0.997,
         "usdc": 125.1235,
-        "ts": 1776547512,
-        "fee": 0,
-        "maker": false
+        "ts": 1776547512
       }
     ],
     "totalShares": 449.96927
-  },
-  {
-    "key": "0xd0c9965348491ca8329945ba976346a2733b0f855717989f851b42b6ac8fa850-1",
-    "title": "Will the highest temperature in Buenos Aires be 29°C on April 18?",
-    "lots": [
-      {
-        "shares": 1.56,
-        "price": 0.998,
-        "usdc": 1.55688,
-        "ts": 1776544666,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1.56
-  },
-  {
-    "key": "0x1cb5647a3f0206a4a062dfcf907b17f9223f90fb0612b28a51b7c940822b9723-1",
-    "title": "Will the highest temperature in Miami be between 86-87°F on April 18?",
-    "lots": [
-      {
-        "shares": 209.71903,
-        "price": 0.998,
-        "usdc": 209.32052,
-        "ts": 1776550506,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 19.6,
-        "price": 0.998,
-        "usdc": 19.5608,
-        "ts": 1776550562,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5,
-        "price": 0.998,
-        "usdc": 4.99,
-        "ts": 1776550748,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.87,
-        "price": 0.998,
-        "usdc": 5.85826,
-        "ts": 1776550872,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.75,
-        "price": 0.998,
-        "usdc": 4.7405,
-        "ts": 1776552014,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8.93,
-        "price": 0.998,
-        "usdc": 8.91214,
-        "ts": 1776553714,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 253.86903
   },
   {
     "key": "0x9f0af19f8bd23822c1533b7804d10781a979b73334ac337ea98626d5605dcd17-0",
@@ -3263,27 +1473,10 @@
         "shares": 6.145060000000011,
         "price": 0.997,
         "usdc": 6.17143,
-        "ts": 1776550548,
-        "fee": 0,
-        "maker": false
+        "ts": 1776550548
       }
     ],
     "totalShares": 6.145060000000011
-  },
-  {
-    "key": "0x3a06b0aa689cad88ffe1d335ad27e22d57845d32114c72435b1458bd35d55761-1",
-    "title": "Will the highest temperature in Atlanta be between 88-89°F on April 18?",
-    "lots": [
-      {
-        "shares": 3.32,
-        "price": 0.996,
-        "usdc": 3.30672,
-        "ts": 1776550750,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 3.32
   },
   {
     "key": "0x832e30ccef172abec34328dffc540e6a8353c5aa76044a0a3e8ff3baf7616732-1",
@@ -3293,9 +1486,7 @@
         "shares": 0.007068999999995995,
         "price": 0.998,
         "usdc": 41.92598,
-        "ts": 1776551978,
-        "fee": 0,
-        "maker": false
+        "ts": 1776551978
       }
     ],
     "totalShares": 0.007068999999995995
@@ -3308,83 +1499,10 @@
         "shares": 162.566675,
         "price": 0.17999999579999995,
         "usdc": 29.999999,
-        "ts": 1776551502,
-        "fee": 0,
-        "maker": false
+        "ts": 1776551502
       }
     ],
     "totalShares": 162.566675
-  },
-  {
-    "key": "0x55a193f65e2d3cb8ef080edf92a298cdbfb0488042a2403270aa1d049283dc8d-1",
-    "title": "Will Cruzeiro EC win on 2026-04-18?",
-    "lots": [
-      {
-        "shares": 176.922,
-        "price": 0.43,
-        "usdc": 77.4,
-        "ts": 1776551540,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.7327,
-        "price": 0.19,
-        "usdc": 2.09,
-        "ts": 1776560006,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.234563,
-        "price": 0.19000002430009647,
-        "usdc": 0.234567,
-        "ts": 1776560012,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 207.76,
-        "price": 0.19,
-        "usdc": 39.4744,
-        "ts": 1776560012,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10.7294,
-        "price": 0.18,
-        "usdc": 1.98,
-        "ts": 1776560090,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 189,
-        "price": 0.18,
-        "usdc": 34.02,
-        "ts": 1776560162,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 485.45,
-        "price": 0.03,
-        "usdc": 15,
-        "ts": 1776560550,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1000,
-        "price": 0.02,
-        "usdc": 20,
-        "ts": 1776560698,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 2081.8286630000002
   },
   {
     "key": "0xdded17afb14b79471974c857dc01fdc180b798f380f01214fef68b9bd589991a-0",
@@ -3394,27 +1512,10 @@
         "shares": 149.94,
         "price": 0.998,
         "usdc": 449.1,
-        "ts": 1776552382,
-        "fee": 0,
-        "maker": false
+        "ts": 1776552382
       }
     ],
     "totalShares": 149.94
-  },
-  {
-    "key": "0x9fa008ae528d74fa0d1c1bf6f627e9ea600cae179ca1f0c1abc7906517527806-1",
-    "title": "Will the highest temperature in Austin be between 74-75°F on April 18?",
-    "lots": [
-      {
-        "shares": 1.7,
-        "price": 0.998,
-        "usdc": 1.6966,
-        "ts": 1776551986,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1.7
   },
   {
     "key": "0x4939cd4fa26abdaeb1dae761e3662a725b19132ac26e8ca98e54a36c2eca0175-0",
@@ -3424,75 +1525,46 @@
         "shares": 381.89179,
         "price": 0.9979987955908151,
         "usdc": 381.16568,
-        "ts": 1776594382,
-        "fee": 0,
-        "maker": false
+        "ts": 1776594382
       },
       {
         "shares": 80,
         "price": 0.998,
         "usdc": 79.84,
-        "ts": 1776594586,
-        "fee": 0,
-        "maker": false
+        "ts": 1776594586
       },
       {
         "shares": 153.97,
         "price": 0.998,
         "usdc": 153.66206,
-        "ts": 1776594604,
-        "fee": 0,
-        "maker": false
+        "ts": 1776594604
       },
       {
         "shares": 40.53,
         "price": 0.998,
         "usdc": 40.44894,
-        "ts": 1776594686,
-        "fee": 0,
-        "maker": false
+        "ts": 1776594686
       },
       {
         "shares": 143.57,
         "price": 0.998,
         "usdc": 143.28286,
-        "ts": 1776596440,
-        "fee": 0,
-        "maker": false
+        "ts": 1776596440
       },
       {
         "shares": 133.55,
         "price": 0.998,
         "usdc": 133.2829,
-        "ts": 1776600788,
-        "fee": 0,
-        "maker": false
+        "ts": 1776600788
       },
       {
         "shares": 52.54,
         "price": 0.998,
         "usdc": 52.43492,
-        "ts": 1776601950,
-        "fee": 0,
-        "maker": false
+        "ts": 1776601950
       }
     ],
     "totalShares": 986.05179
-  },
-  {
-    "key": "0x9b2f87642fe07c6758a6d5c06e0d2692fb765ba541aaf59a0075f2dc5c605f94-1",
-    "title": "Will the highest temperature in Kuala Lumpur be 31°C on April 19?",
-    "lots": [
-      {
-        "shares": 53.98461,
-        "price": 0.998,
-        "usdc": 53.88202,
-        "ts": 1776594390,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 53.98461
   },
   {
     "key": "0xde6e8993f2dab68ae99cef67c1d688bb6f24860a47678513615f5cba138cd52b-0",
@@ -3502,41 +1574,31 @@
         "shares": 0.254064999999958,
         "price": 0.998,
         "usdc": 798.4,
-        "ts": 1776594496,
-        "fee": 0,
-        "maker": false
+        "ts": 1776594496
       },
       {
         "shares": 13.01,
         "price": 0.998,
         "usdc": 12.98398,
-        "ts": 1776594894,
-        "fee": 0,
-        "maker": false
+        "ts": 1776594894
       },
       {
         "shares": 5.07,
         "price": 0.998,
         "usdc": 5.05986,
-        "ts": 1776595838,
-        "fee": 0,
-        "maker": false
+        "ts": 1776595838
       },
       {
         "shares": 14.16,
         "price": 0.998,
         "usdc": 14.13168,
-        "ts": 1776604648,
-        "fee": 0,
-        "maker": false
+        "ts": 1776604648
       },
       {
         "shares": 18.38,
         "price": 0.998,
         "usdc": 18.34324,
-        "ts": 1776609694,
-        "fee": 0,
-        "maker": false
+        "ts": 1776609694
       }
     ],
     "totalShares": 50.87406499999996
@@ -3549,9 +1611,7 @@
         "shares": 0.009000000000092712,
         "price": 0.998,
         "usdc": 759.1786,
-        "ts": 1776605194,
-        "fee": 0,
-        "maker": false
+        "ts": 1776605194
       }
     ],
     "totalShares": 0.009000000000092712
@@ -3564,9 +1624,7 @@
         "shares": 0.04870699999990613,
         "price": 0.998,
         "usdc": 5.22952,
-        "ts": 1776610316,
-        "fee": 0,
-        "maker": false
+        "ts": 1776610316
       }
     ],
     "totalShares": 0.04870699999990613
@@ -3579,17 +1637,13 @@
         "shares": 599.94,
         "price": 0.998,
         "usdc": 598.8,
-        "ts": 1776594582,
-        "fee": 0,
-        "maker": false
+        "ts": 1776594582
       },
       {
         "shares": 2.47,
         "price": 0.994,
         "usdc": 2.45518,
-        "ts": 1776594646,
-        "fee": 0,
-        "maker": false
+        "ts": 1776594646
       }
     ],
     "totalShares": 602.4100000000001
@@ -3602,17 +1656,13 @@
         "shares": 1.3322930000000994,
         "price": 0.998,
         "usdc": 5.988,
-        "ts": 1776615782,
-        "fee": 0,
-        "maker": false
+        "ts": 1776615782
       },
       {
         "shares": 1.07,
         "price": 0.998,
         "usdc": 1.06786,
-        "ts": 1776622378,
-        "fee": 0,
-        "maker": false
+        "ts": 1776622378
       }
     ],
     "totalShares": 2.4022930000000997
@@ -3625,9 +1675,7 @@
         "shares": 26.20738,
         "price": 0.998,
         "usdc": 26.15758,
-        "ts": 1776594764,
-        "fee": 0,
-        "maker": false
+        "ts": 1776594764
       }
     ],
     "totalShares": 26.20738
@@ -3640,90 +1688,10 @@
         "shares": 0.01658800000007865,
         "price": 0.998,
         "usdc": 14.48098,
-        "ts": 1776595550,
-        "fee": 0,
-        "maker": false
+        "ts": 1776595550
       }
     ],
     "totalShares": 0.01658800000007865
-  },
-  {
-    "key": "0xd9eae24af1bc2c5cee4a6039ff423563e47c6a7699c67c5a1308dc38afa6a3a2-1",
-    "title": "Will the highest temperature in Lucknow be 43°C on April 19?",
-    "lots": [
-      {
-        "shares": 146.24371,
-        "price": 0.9977720497743744,
-        "usdc": 145.93414,
-        "ts": 1776595482,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 26.25,
-        "price": 0.998,
-        "usdc": 26.1975,
-        "ts": 1776596996,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 11.78,
-        "price": 0.998,
-        "usdc": 11.75644,
-        "ts": 1776599776,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 30.05,
-        "price": 0.998,
-        "usdc": 29.9899,
-        "ts": 1776603750,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 30.05,
-        "price": 0.998,
-        "usdc": 29.9899,
-        "ts": 1776603750,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.06,
-        "price": 0.998,
-        "usdc": 2.05588,
-        "ts": 1776603944,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.61,
-        "price": 0.998,
-        "usdc": 5.59878,
-        "ts": 1776614560,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 252.04371000000003
-  },
-  {
-    "key": "0x15ddaa15e49184bdbcdd602d4534825b2006ce1f145d3965bde5ddde37aaa59e-1",
-    "title": "Will the highest temperature in Kuala Lumpur be 32°C on April 19?",
-    "lots": [
-      {
-        "shares": 123.38766000000001,
-        "price": 0.998,
-        "usdc": 123.1532,
-        "ts": 1776596168,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 123.38766000000001
   },
   {
     "key": "0x69b352c117f4aab87cd96a2a6db7a6d82eb5a87b63ce7ac46e13392fdbf63e75-0",
@@ -3733,66 +1701,10 @@
         "shares": 0.026189000000112372,
         "price": 0.998,
         "usdc": 19.94004,
-        "ts": 1776606380,
-        "fee": 0,
-        "maker": false
+        "ts": 1776606380
       }
     ],
     "totalShares": 0.026189000000112372
-  },
-  {
-    "key": "0x1aee399765582e4a5233dcf57511f83f1ac58660e2ea2cd7dcc9a7812e3663b7-1",
-    "title": "Will the highest temperature in Wuhan be 31°C on April 19?",
-    "lots": [
-      {
-        "shares": 0.07643399999992262,
-        "price": 0.998,
-        "usdc": 22.36518,
-        "ts": 1776610754,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.99,
-        "price": 0.998,
-        "usdc": 4.98002,
-        "ts": 1776614032,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 5.066433999999923
-  },
-  {
-    "key": "0xff3f3884262228548f6974e1df597c0883e1d02189cabba03e928bc1fa77269f-1",
-    "title": "Will Coritiba FBC win on 2026-04-19?",
-    "lots": [
-      {
-        "shares": 97.951647,
-        "price": 0.6052938375324906,
-        "usdc": 59.999998,
-        "ts": 1776600358,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.904,
-        "price": 0.36,
-        "usdc": 1.8,
-        "ts": 1776626126,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 95,
-        "price": 0.36,
-        "usdc": 34.2,
-        "ts": 1776626134,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 197.85564699999998
   },
   {
     "key": "0x58067ce6b7f2a8ebc113da6f37b367308de8aed2390c5e7d242ee10c19a97b00-0",
@@ -3802,139 +1714,94 @@
         "shares": 39.16,
         "price": 0.3,
         "usdc": 12,
-        "ts": 1776600370,
-        "fee": 0,
-        "maker": false
+        "ts": 1776600370
       },
       {
         "shares": 102.228,
         "price": 0.12,
         "usdc": 12.6,
-        "ts": 1776626032,
-        "fee": 0,
-        "maker": false
+        "ts": 1776626032
       },
       {
         "shares": 1.409083,
         "price": 0.12000002838725611,
         "usdc": 0.16909,
-        "ts": 1776626596,
-        "fee": 0,
-        "maker": false
+        "ts": 1776626596
       },
       {
         "shares": 5.681816,
         "price": 0.12000001408000541,
         "usdc": 0.681818,
-        "ts": 1776626652,
-        "fee": 0,
-        "maker": false
+        "ts": 1776626652
       },
       {
         "shares": 4.75,
         "price": 0.12,
         "usdc": 0.57,
-        "ts": 1776626654,
-        "fee": 0,
-        "maker": false
+        "ts": 1776626654
       },
       {
         "shares": 5.681816,
         "price": 0.12000001408000541,
         "usdc": 0.681818,
-        "ts": 1776626792,
-        "fee": 0,
-        "maker": false
+        "ts": 1776626792
       },
       {
         "shares": 5,
         "price": 0.12,
         "usdc": 0.6,
-        "ts": 1776628078,
-        "fee": 0,
-        "maker": false
+        "ts": 1776628078
       },
       {
         "shares": 2.272725,
         "price": 0.12,
         "usdc": 0.272727,
-        "ts": 1776628598,
-        "fee": 0,
-        "maker": false
+        "ts": 1776628598
       },
       {
         "shares": 1.136358,
         "price": 0.12000003520017459,
         "usdc": 0.136363,
-        "ts": 1776628598,
-        "fee": 0,
-        "maker": false
+        "ts": 1776628598
       },
       {
         "shares": 4.761358,
         "price": 0.1200000084009646,
         "usdc": 0.571363,
-        "ts": 1776628600,
-        "fee": 0,
-        "maker": false
+        "ts": 1776628600
       },
       {
         "shares": 14.67045,
         "price": 0.12,
         "usdc": 1.760454,
-        "ts": 1776628602,
-        "fee": 0,
-        "maker": false
+        "ts": 1776628602
       },
       {
         "shares": 21.465908,
         "price": 0.1200000018634199,
         "usdc": 2.575909,
-        "ts": 1776628602,
-        "fee": 0,
-        "maker": false
+        "ts": 1776628602
       },
       {
         "shares": 11.363633,
         "price": 0.12000000352000104,
         "usdc": 1.363636,
-        "ts": 1776628602,
-        "fee": 0,
-        "maker": false
+        "ts": 1776628602
       },
       {
         "shares": 11.62,
         "price": 0.12,
         "usdc": 1.3944,
-        "ts": 1776628606,
-        "fee": 0,
-        "maker": false
+        "ts": 1776628606
       },
       {
         "shares": 10.125,
         "price": 0.12,
         "usdc": 1.215,
-        "ts": 1776628606,
-        "fee": 0,
-        "maker": false
+        "ts": 1776628606
       }
     ],
     "totalShares": 241.326147
-  },
-  {
-    "key": "0x0fe62a87124bb67e595241400f2fe61005942979ff96a2ba63953fb08d524639-1",
-    "title": "Will the highest temperature in Wuhan be 34°C on April 19?",
-    "lots": [
-      {
-        "shares": 1.49,
-        "price": 0.998,
-        "usdc": 1.48702,
-        "ts": 1776601910,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1.49
   },
   {
     "key": "0x38a3698abc58ccea04e96f26c68610c9ef9d5b8318d34f533325aa5575654ec8-0",
@@ -3944,232 +1811,22 @@
         "shares": 135.59644,
         "price": 0.998,
         "usdc": 135.33878,
-        "ts": 1776611316,
-        "fee": 0,
-        "maker": false
+        "ts": 1776611316
       },
       {
         "shares": 1.01,
         "price": 0.998,
         "usdc": 1.00798,
-        "ts": 1776611320,
-        "fee": 0,
-        "maker": false
+        "ts": 1776611320
       },
       {
         "shares": 563.38,
         "price": 0.998,
         "usdc": 562.25324,
-        "ts": 1776612658,
-        "fee": 0,
-        "maker": false
+        "ts": 1776612658
       }
     ],
     "totalShares": 699.98644
-  },
-  {
-    "key": "0x5ce9234b72a882ebb4139f781da65020639a7defff30dece10004923549f7954-1",
-    "title": "Will the highest temperature in Tel Aviv be 25°C on April 19?",
-    "lots": [
-      {
-        "shares": 58.124190000000006,
-        "price": 0.998,
-        "usdc": 58.01374,
-        "ts": 1776611350,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.06,
-        "price": 0.998,
-        "usdc": 1.05788,
-        "ts": 1776614762,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.06,
-        "price": 0.998,
-        "usdc": 2.05588,
-        "ts": 1776615534,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 3.14,
-        "price": 0.998,
-        "usdc": 3.13372,
-        "ts": 1776621056,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.13,
-        "price": 0.998,
-        "usdc": 1.12774,
-        "ts": 1776626714,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 65.51419
-  },
-  {
-    "key": "0xda8e56d92a8b11e61a329c69719b1fce17b49fecb6bb288882d9318e35707b3a-1",
-    "title": "Will the highest temperature in Istanbul be 16°C on April 19?",
-    "lots": [
-      {
-        "shares": 489.73103,
-        "price": 0.998,
-        "usdc": 488.80044,
-        "ts": 1776611496,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6.63,
-        "price": 0.998,
-        "usdc": 6.61674,
-        "ts": 1776611500,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 303.58,
-        "price": 0.998,
-        "usdc": 302.97284,
-        "ts": 1776616224,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 799.94103
-  },
-  {
-    "key": "0x37b715fd7fe7af939218bfa6caa182da58de1aa98754d3904b7947cea3df222d-1",
-    "title": "Will the highest temperature in Istanbul be 17°C on April 19?",
-    "lots": [
-      {
-        "shares": 35.0865,
-        "price": 0.998,
-        "usdc": 35.01982,
-        "ts": 1776611532,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.08,
-        "price": 0.998,
-        "usdc": 1.07784,
-        "ts": 1776612240,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.11,
-        "price": 0.998,
-        "usdc": 2.10578,
-        "ts": 1776612248,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 3.15,
-        "price": 0.998,
-        "usdc": 3.1437,
-        "ts": 1776612648,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15.59,
-        "price": 0.998,
-        "usdc": 15.55882,
-        "ts": 1776613264,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 22.65,
-        "price": 0.998,
-        "usdc": 22.6047,
-        "ts": 1776614282,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.02,
-        "price": 0.998,
-        "usdc": 1.01796,
-        "ts": 1776627908,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.9,
-        "price": 0.998,
-        "usdc": 1.8962,
-        "ts": 1776632340,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.07,
-        "price": 0.998,
-        "usdc": 2.06586,
-        "ts": 1776633346,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 84.65649999999998
-  },
-  {
-    "key": "0x5d076fab3c96cd6fd03d926600c71d752dc9236217b80238708072f80de91f18-1",
-    "title": "Will the highest temperature in Tel Aviv be 26°C or higher on April 19?",
-    "lots": [
-      {
-        "shares": 97.00030000000001,
-        "price": 0.998,
-        "usdc": 96.81598,
-        "ts": 1776611564,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 0.99,
-        "price": 0.998,
-        "usdc": 0.98802,
-        "ts": 1776612612,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6,
-        "price": 0.998,
-        "usdc": 5.988,
-        "ts": 1776613004,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.06,
-        "price": 0.998,
-        "usdc": 1.05788,
-        "ts": 1776613008,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.08,
-        "price": 0.998,
-        "usdc": 2.07584,
-        "ts": 1776616628,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 107.1303
   },
   {
     "key": "0x8571597013046477495fe6fb5c9d9bfb97791ce9310d8dae5f79cdb0676faf33-0",
@@ -4179,187 +1836,64 @@
         "shares": 336.05278,
         "price": 0.996,
         "usdc": 334.77552,
-        "ts": 1776611656,
-        "fee": 0,
-        "maker": false
+        "ts": 1776611656
       },
       {
         "shares": 5.24,
         "price": 0.996,
         "usdc": 5.21904,
-        "ts": 1776611954,
-        "fee": 0,
-        "maker": false
+        "ts": 1776611954
       },
       {
         "shares": 10,
         "price": 0.996,
         "usdc": 9.96,
-        "ts": 1776613386,
-        "fee": 0,
-        "maker": false
+        "ts": 1776613386
       },
       {
         "shares": 7.65,
         "price": 0.996,
         "usdc": 7.6194,
-        "ts": 1776613564,
-        "fee": 0,
-        "maker": false
+        "ts": 1776613564
       },
       {
         "shares": 1.06,
         "price": 0.996,
         "usdc": 1.05576,
-        "ts": 1776616052,
-        "fee": 0,
-        "maker": false
+        "ts": 1776616052
       },
       {
         "shares": 168.01,
         "price": 0.996,
         "usdc": 167.33796,
-        "ts": 1776616720,
-        "fee": 0,
-        "maker": false
+        "ts": 1776616720
       },
       {
         "shares": 9.86,
         "price": 0.996,
         "usdc": 9.82056,
-        "ts": 1776616724,
-        "fee": 0,
-        "maker": false
+        "ts": 1776616724
       },
       {
         "shares": 7.77,
         "price": 0.996,
         "usdc": 7.73892,
-        "ts": 1776616956,
-        "fee": 0,
-        "maker": false
+        "ts": 1776616956
       },
       {
         "shares": 10.71,
         "price": 0.996,
         "usdc": 10.66716,
-        "ts": 1776617928,
-        "fee": 0,
-        "maker": false
+        "ts": 1776617928
       },
       {
         "shares": 43.23,
         "price": 0.996,
         "usdc": 43.05708,
-        "ts": 1776621642,
-        "fee": 0,
-        "maker": false
+        "ts": 1776621642
       }
     ],
     "totalShares": 599.5827800000001
-  },
-  {
-    "key": "0x84dfb4b7faa8b157d2eb9744c33d1b955bafc907ee171c5f01d07ba7f6fd28f7-1",
-    "title": "Will the highest temperature in Warsaw be 20°C on April 19?",
-    "lots": [
-      {
-        "shares": 326.64734,
-        "price": 0.998,
-        "usdc": 326.02664,
-        "ts": 1776611674,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9.43,
-        "price": 0.998,
-        "usdc": 9.41114,
-        "ts": 1776611684,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 61.49,
-        "price": 0.996,
-        "usdc": 61.24404,
-        "ts": 1776612762,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 26.49,
-        "price": 0.998,
-        "usdc": 26.43702,
-        "ts": 1776613216,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 14.63,
-        "price": 0.998,
-        "usdc": 14.60074,
-        "ts": 1776613226,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.01,
-        "price": 0.998,
-        "usdc": 1.00798,
-        "ts": 1776613250,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 242.13,
-        "price": 0.998,
-        "usdc": 241.64574,
-        "ts": 1776616730,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 0.82,
-        "price": 0.998,
-        "usdc": 0.81836,
-        "ts": 1776616734,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 23.28,
-        "price": 0.998,
-        "usdc": 23.23344,
-        "ts": 1776616734,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.06,
-        "price": 0.998,
-        "usdc": 2.05588,
-        "ts": 1776619760,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.04,
-        "price": 0.998,
-        "usdc": 1.03792,
-        "ts": 1776619812,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.23,
-        "price": 0.998,
-        "usdc": 4.22154,
-        "ts": 1776621048,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 713.25734
   },
   {
     "key": "0x607f3e6ccf51ed81821b6f9c858ccbac80f6e4776643db8dff274651fc49a602-0",
@@ -4369,73 +1903,10 @@
         "shares": 0.020000000000024443,
         "price": 0.997,
         "usdc": 25.06458,
-        "ts": 1776633594,
-        "fee": 0,
-        "maker": false
+        "ts": 1776633594
       }
     ],
     "totalShares": 0.020000000000024443
-  },
-  {
-    "key": "0xf6fdf0d7eba19c4cef4d456302974df1df354ca91a41e2166da01528e3eec4ca-1",
-    "title": "Will the highest temperature in Wellington be 15°C on April 20?",
-    "lots": [
-      {
-        "shares": 392.94071,
-        "price": 0.998,
-        "usdc": 392.19404,
-        "ts": 1776658400,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 507.02,
-        "price": 0.997,
-        "usdc": 505.49894,
-        "ts": 1776659140,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 899.9607100000001
-  },
-  {
-    "key": "0x88236bb6641beaa50aeb45fd1f4bc63d01a6a18f67a4b93bdd17837f3e674084-1",
-    "title": "Will the highest temperature in Wellington be 16°C on April 20?",
-    "lots": [
-      {
-        "shares": 70.43031399999988,
-        "price": 0.998,
-        "usdc": 256.31634,
-        "ts": 1776666376,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 125.33,
-        "price": 0.998,
-        "usdc": 125.07934,
-        "ts": 1776666396,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 195.76031399999988
-  },
-  {
-    "key": "0xf761fa2cc019c45244788b1d32764e398765b1ced2b5d21229bb928d49c5cad3-1",
-    "title": "Will the highest temperature in Seoul be 17°C or higher on April 20?",
-    "lots": [
-      {
-        "shares": 499.70000000000005,
-        "price": 0.994,
-        "usdc": 497,
-        "ts": 1776677462,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 499.70000000000005
   },
   {
     "key": "0x17d8267638ead972a6c659c1f31a0a9655a89e03301de7c6979934e984c33b3b-0",
@@ -4445,9 +1916,7 @@
         "shares": 0.019040999999967667,
         "price": 0.997,
         "usdc": 14.39668,
-        "ts": 1776665050,
-        "fee": 0,
-        "maker": false
+        "ts": 1776665050
       }
     ],
     "totalShares": 0.019040999999967667
@@ -4460,9 +1929,7 @@
         "shares": 0.02941199999997368,
         "price": 0.998,
         "usdc": 184.16094,
-        "ts": 1776683522,
-        "fee": 0,
-        "maker": false
+        "ts": 1776683522
       }
     ],
     "totalShares": 0.02941199999997368
@@ -4475,91 +1942,58 @@
         "shares": 144.43555999999998,
         "price": 0.998,
         "usdc": 144.1611,
-        "ts": 1776682810,
-        "fee": 0,
-        "maker": false
+        "ts": 1776682810
       },
       {
         "shares": 270.68,
         "price": 0.998,
         "usdc": 270.13864,
-        "ts": 1776684578,
-        "fee": 0,
-        "maker": false
+        "ts": 1776684578
       },
       {
         "shares": 4.87,
         "price": 0.998,
         "usdc": 4.86026,
-        "ts": 1776684620,
-        "fee": 0,
-        "maker": false
+        "ts": 1776684620
       },
       {
         "shares": 5,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776684620,
-        "fee": 0,
-        "maker": false
+        "ts": 1776684620
       },
       {
         "shares": 5,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776684620,
-        "fee": 0,
-        "maker": false
+        "ts": 1776684620
       },
       {
         "shares": 5,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776684620,
-        "fee": 0,
-        "maker": false
+        "ts": 1776684620
       },
       {
         "shares": 5,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776684620,
-        "fee": 0,
-        "maker": false
+        "ts": 1776684620
       },
       {
         "shares": 5,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776684620,
-        "fee": 0,
-        "maker": false
+        "ts": 1776684620
       },
       {
         "shares": 5,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776684620,
-        "fee": 0,
-        "maker": false
+        "ts": 1776684620
       }
     ],
     "totalShares": 449.98555999999996
-  },
-  {
-    "key": "0x4d993479cb932c46d30b2f182720a5493b5d92a4a0cf8de815560192f31922b6-1",
-    "title": "Will the highest temperature in Wuhan be 24°C or higher on April 20?",
-    "lots": [
-      {
-        "shares": 466.91330999999997,
-        "price": 0.998,
-        "usdc": 466.02608,
-        "ts": 1776682852,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 466.91330999999997
   },
   {
     "key": "0x0a06d3ef3de34d9deffd96e9690697a9074441bd84f456b4a94824220c587af9-0",
@@ -4569,9 +2003,7 @@
         "shares": 0.019134999999991464,
         "price": 0.998,
         "usdc": 818.36,
-        "ts": 1776682852,
-        "fee": 0,
-        "maker": false
+        "ts": 1776682852
       }
     ],
     "totalShares": 0.019134999999991464
@@ -4584,17 +2016,13 @@
         "shares": 0.009359999999990265,
         "price": 0.998,
         "usdc": 19.95002,
-        "ts": 1776687854,
-        "fee": 0,
-        "maker": false
+        "ts": 1776687854
       },
       {
         "shares": 619.39,
         "price": 0.998,
         "usdc": 618.15122,
-        "ts": 1776688554,
-        "fee": 0,
-        "maker": false
+        "ts": 1776688554
       }
     ],
     "totalShares": 619.39936
@@ -4607,138 +2035,16 @@
         "shares": 175.94787,
         "price": 0.998,
         "usdc": 499.45908,
-        "ts": 1776694736,
-        "fee": 0,
-        "maker": false
+        "ts": 1776694736
       },
       {
         "shares": 14,
         "price": 0.997,
         "usdc": 13.958,
-        "ts": 1776703588,
-        "fee": 0,
-        "maker": false
+        "ts": 1776703588
       }
     ],
     "totalShares": 189.94787
-  },
-  {
-    "key": "0x0b0c6146f28cf730d780cdd0f88985efdb471afac6d33509514060fbaa1cb573-1",
-    "title": "Will the highest temperature in Lucknow be 43°C on April 20?",
-    "lots": [
-      {
-        "shares": 443.01351,
-        "price": 0.9979012323387352,
-        "usdc": 442.13012,
-        "ts": 1776682914,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 26.7,
-        "price": 0.997,
-        "usdc": 26.6199,
-        "ts": 1776682998,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.11,
-        "price": 0.997,
-        "usdc": 2.10367,
-        "ts": 1776683006,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.11,
-        "price": 0.997,
-        "usdc": 2.10367,
-        "ts": 1776683006,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.3,
-        "price": 0.997,
-        "usdc": 5.2841,
-        "ts": 1776683024,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 8.88912,
-        "price": 0.998,
-        "usdc": 8.87222,
-        "ts": 1776683046,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 58.71,
-        "price": 0.998,
-        "usdc": 58.59258,
-        "ts": 1776683054,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 303.12,
-        "price": 0.998,
-        "usdc": 302.51376,
-        "ts": 1776686140,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 6.29,
-        "price": 0.996,
-        "usdc": 6.26484,
-        "ts": 1776688550,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 173.93,
-        "price": 0.998,
-        "usdc": 173.58214,
-        "ts": 1776704206,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 37.27,
-        "price": 0.998,
-        "usdc": 37.19546,
-        "ts": 1776704792,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.3,
-        "price": 0.998,
-        "usdc": 5.2894,
-        "ts": 1776707114,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1072.74263
-  },
-  {
-    "key": "0xc6370205249b08f59308e80d9455ea0603ceaa1ddc7eed9023291c61e8a4fc69-1",
-    "title": "Will the highest temperature in Lucknow be 44°C on April 20?",
-    "lots": [
-      {
-        "shares": 12.92871,
-        "price": 0.998,
-        "usdc": 12.90414,
-        "ts": 1776682926,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 12.92871
   },
   {
     "key": "0x821eaef061e8f54dbd0cc2709fbd4e1058f320584894a46084ca094c1d48c508-0",
@@ -4748,25 +2054,19 @@
         "shares": 0.009999999999990905,
         "price": 0.996,
         "usdc": 51.32388,
-        "ts": 1776684886,
-        "fee": 0,
-        "maker": false
+        "ts": 1776684886
       },
       {
         "shares": 349.965,
         "price": 0.998,
         "usdc": 349.3,
-        "ts": 1776688494,
-        "fee": 0,
-        "maker": false
+        "ts": 1776688494
       },
       {
         "shares": 198.47,
         "price": 0.997,
         "usdc": 197.87459,
-        "ts": 1776688612,
-        "fee": 0,
-        "maker": false
+        "ts": 1776688612
       }
     ],
     "totalShares": 548.4449999999999
@@ -4779,9 +2079,7 @@
         "shares": 849.915,
         "price": 0.998,
         "usdc": 848.3,
-        "ts": 1776683054,
-        "fee": 0,
-        "maker": false
+        "ts": 1776683054
       }
     ],
     "totalShares": 849.915
@@ -4794,9 +2092,7 @@
         "shares": 849.575,
         "price": 0.99,
         "usdc": 841.5,
-        "ts": 1776695108,
-        "fee": 0,
-        "maker": false
+        "ts": 1776695108
       }
     ],
     "totalShares": 849.575
@@ -4809,9 +2105,7 @@
         "shares": 0.3008580000000558,
         "price": 0.998,
         "usdc": 6.36724,
-        "ts": 1776694890,
-        "fee": 0,
-        "maker": false
+        "ts": 1776694890
       }
     ],
     "totalShares": 0.3008580000000558
@@ -4824,9 +2118,7 @@
         "shares": 0.005187000000002051,
         "price": 0.998,
         "usdc": 22.48494,
-        "ts": 1776684048,
-        "fee": 0,
-        "maker": false
+        "ts": 1776684048
       }
     ],
     "totalShares": 0.005187000000002051
@@ -4839,9 +2131,7 @@
         "shares": 0.030802000000047514,
         "price": 0.998,
         "usdc": 21.64662,
-        "ts": 1776695376,
-        "fee": 0,
-        "maker": false
+        "ts": 1776695376
       }
     ],
     "totalShares": 0.030802000000047514
@@ -4854,35 +2144,10 @@
         "shares": 0.009999999999990905,
         "price": 0.998,
         "usdc": 596.73414,
-        "ts": 1776685564,
-        "fee": 0,
-        "maker": false
+        "ts": 1776685564
       }
     ],
     "totalShares": 0.009999999999990905
-  },
-  {
-    "key": "0x846b978b4ff94025a39aac5f912be4a9be12dea707cf464692a634fcedb7908b-1",
-    "title": "Will the highest temperature in Seoul be 16°C on April 20?",
-    "lots": [
-      {
-        "shares": 0.06170899999991164,
-        "price": 0.998,
-        "usdc": 25.02984,
-        "ts": 1776687454,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.11,
-        "price": 0.998,
-        "usdc": 4.10178,
-        "ts": 1776692762,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 4.171708999999912
   },
   {
     "key": "0x5705631ef395af41f5c9af55f41545c359ccc6ea6d4efd559e452b8aaaa8a348-1",
@@ -4892,73 +2157,10 @@
         "shares": 0.004096000000000544,
         "price": 0.998,
         "usdc": 8.15366,
-        "ts": 1776688486,
-        "fee": 0,
-        "maker": false
+        "ts": 1776688486
       }
     ],
     "totalShares": 0.004096000000000544
-  },
-  {
-    "key": "0x3ff1c664f870ea5dc4b789d3d1991205c5bae9254987e1ee39becedec3c8d92d-1",
-    "title": "Will the highest temperature in Shenzhen be 31°C on April 20?",
-    "lots": [
-      {
-        "shares": 3.18,
-        "price": 0.998,
-        "usdc": 3.17364,
-        "ts": 1776692956,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 3.18
-  },
-  {
-    "key": "0xb7f367c4cfe3dcd2ca5114503f934d0dd02b29e1bd7a67aa962b3317d6e8a365-1",
-    "title": "Will the highest temperature in Lucknow be 43°C on April 21?",
-    "lots": [
-      {
-        "shares": 565.89919,
-        "price": 0.997497393854798,
-        "usdc": 564.5536,
-        "ts": 1776765672,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15.1,
-        "price": 0.998,
-        "usdc": 15.0698,
-        "ts": 1776765724,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 180.82,
-        "price": 0.998,
-        "usdc": 180.45836,
-        "ts": 1776767686,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 761.8191899999999
-  },
-  {
-    "key": "0x31a47d7abe6d5c51bda1512cd69fbd85a0ebea68a5187bfe94d1a92782361689-1",
-    "title": "Will the highest temperature in Lucknow be 44°C on April 21?",
-    "lots": [
-      {
-        "shares": 112.75437000000001,
-        "price": 0.999,
-        "usdc": 112.64724,
-        "ts": 1776765694,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 112.75437000000001
   },
   {
     "key": "0x81cddb9f7c7c17e33223a3f3ac277b7cd61c10c047a2ee509f4b5dc64a032644-0",
@@ -4968,25 +2170,19 @@
         "shares": 1.37,
         "price": 0.998,
         "usdc": 1.36726,
-        "ts": 1776765852,
-        "fee": 0,
-        "maker": false
+        "ts": 1776765852
       },
       {
         "shares": 500,
         "price": 0.998,
         "usdc": 499,
-        "ts": 1776766754,
-        "fee": 0,
-        "maker": false
+        "ts": 1776766754
       },
       {
         "shares": 298.63,
         "price": 0.998,
         "usdc": 298.03274,
-        "ts": 1776766760,
-        "fee": 0,
-        "maker": false
+        "ts": 1776766760
       }
     ],
     "totalShares": 800
@@ -4999,177 +2195,22 @@
         "shares": 833.80662,
         "price": 0.998,
         "usdc": 832.22222,
-        "ts": 1776766026,
-        "fee": 0,
-        "maker": false
+        "ts": 1776766026
       },
       {
         "shares": 23.94,
         "price": 0.996,
         "usdc": 23.84424,
-        "ts": 1776766044,
-        "fee": 0,
-        "maker": false
+        "ts": 1776766044
       },
       {
         "shares": 30.64,
         "price": 0.996,
         "usdc": 30.51744,
-        "ts": 1776778434,
-        "fee": 0,
-        "maker": false
+        "ts": 1776778434
       }
     ],
     "totalShares": 888.38662
-  },
-  {
-    "key": "0x2db2133447308a0aff3330dc2488cea419e76b65a83fe2f42412319a3404a33f-1",
-    "title": "Will the highest temperature in Jakarta be 35°C on April 21?",
-    "lots": [
-      {
-        "shares": 1.17971,
-        "price": 0.995,
-        "usdc": 1.1741,
-        "ts": 1776766044,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1.17971
-  },
-  {
-    "key": "0x93a9357570a6729df644c42f03653f6eddbe8ba756bf852c67588c3ce617915b-1",
-    "title": "Will the highest temperature in Tokyo be 25°C on April 21?",
-    "lots": [
-      {
-        "shares": 27.99,
-        "price": 0.999,
-        "usdc": 27.96201,
-        "ts": 1776766542,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9.97,
-        "price": 0.999,
-        "usdc": 9.96003,
-        "ts": 1776769494,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.16,
-        "price": 0.999,
-        "usdc": 4.15584,
-        "ts": 1776769502,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 100,
-        "price": 0.999,
-        "usdc": 99.9,
-        "ts": 1776770530,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 5.35,
-        "price": 0.999,
-        "usdc": 5.34465,
-        "ts": 1776773212,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 7.13,
-        "price": 0.999,
-        "usdc": 7.12287,
-        "ts": 1776773722,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 19.96,
-        "price": 0.999,
-        "usdc": 19.94004,
-        "ts": 1776774578,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 42.58,
-        "price": 0.999,
-        "usdc": 42.53742,
-        "ts": 1776777388,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 73.22,
-        "price": 0.999,
-        "usdc": 73.14678,
-        "ts": 1776778162,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 10,
-        "price": 0.999,
-        "usdc": 9.99,
-        "ts": 1776778506,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 20,
-        "price": 0.999,
-        "usdc": 19.98,
-        "ts": 1776780976,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15,
-        "price": 0.999,
-        "usdc": 14.985,
-        "ts": 1776789582,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 188.42,
-        "price": 0.999,
-        "usdc": 188.23158,
-        "ts": 1776794316,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.11,
-        "price": 0.999,
-        "usdc": 4.10589,
-        "ts": 1776800348,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 527.89
-  },
-  {
-    "key": "0xedf14fd0bfc09f96c94f6ba88b9e982f173c1e378e8b0ae1afdd54c2025e57fa-1",
-    "title": "Will the highest temperature in Lucknow be 47°C on April 21?",
-    "lots": [
-      {
-        "shares": 18.61,
-        "price": 0.998,
-        "usdc": 18.57278,
-        "ts": 1776767596,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 18.61
   },
   {
     "key": "0x1a235c22981ae566d86c4ceb47ce87c0efdc8a3c7e94b885f4cdc7b131a4af64-0",
@@ -5179,17 +2220,13 @@
         "shares": 564.46,
         "price": 0.998,
         "usdc": 563.33108,
-        "ts": 1776767840,
-        "fee": 0,
-        "maker": false
+        "ts": 1776767840
       },
       {
         "shares": 4.57,
         "price": 0.998,
         "usdc": 4.56086,
-        "ts": 1776768688,
-        "fee": 0,
-        "maker": false
+        "ts": 1776768688
       }
     ],
     "totalShares": 569.0300000000001
@@ -5202,9 +2239,7 @@
         "shares": 700,
         "price": 0.998,
         "usdc": 698.6,
-        "ts": 1776772076,
-        "fee": 0,
-        "maker": false
+        "ts": 1776772076
       }
     ],
     "totalShares": 700
@@ -5217,217 +2252,46 @@
         "shares": 102.30741000000002,
         "price": 0.998,
         "usdc": 337.59346,
-        "ts": 1776816078,
-        "fee": 0,
-        "maker": false
+        "ts": 1776816078
       },
       {
         "shares": 19.26,
         "price": 0.997,
         "usdc": 19.20222,
-        "ts": 1776816350,
-        "fee": 0,
-        "maker": false
+        "ts": 1776816350
       },
       {
         "shares": 61.18,
         "price": 0.997,
         "usdc": 60.99646,
-        "ts": 1776816988,
-        "fee": 0,
-        "maker": false
+        "ts": 1776816988
       },
       {
         "shares": 3.85,
         "price": 0.997,
         "usdc": 3.83845,
-        "ts": 1776817200,
-        "fee": 0,
-        "maker": false
+        "ts": 1776817200
       },
       {
         "shares": 101.04,
         "price": 0.998,
         "usdc": 100.83792,
-        "ts": 1776821222,
-        "fee": 0,
-        "maker": false
+        "ts": 1776821222
       },
       {
         "shares": 42.35,
         "price": 0.998,
         "usdc": 42.2653,
-        "ts": 1776822204,
-        "fee": 0,
-        "maker": false
+        "ts": 1776822204
       },
       {
         "shares": 2.25,
         "price": 0.998,
         "usdc": 2.2455,
-        "ts": 1776824106,
-        "fee": 0,
-        "maker": false
+        "ts": 1776824106
       }
     ],
     "totalShares": 332.23741000000007
-  },
-  {
-    "key": "0xef15a462a16a349656b1b6c24ae44daf0762e253d59c2700fe6ab5e432a71b0f-1",
-    "title": "Will the highest temperature in Toronto be 12°C on April 21?",
-    "lots": [
-      {
-        "shares": 98.094029,
-        "price": 0.987,
-        "usdc": 157.29819,
-        "ts": 1776806580,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 53.63,
-        "price": 0.987,
-        "usdc": 52.93281,
-        "ts": 1776806580,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 90.63,
-        "price": 0.987,
-        "usdc": 89.45181,
-        "ts": 1776806586,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4,
-        "price": 0.998,
-        "usdc": 3.992,
-        "ts": 1776816336,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 0.01,
-        "price": 0.998,
-        "usdc": 0.00998,
-        "ts": 1776817904,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 3.55,
-        "price": 0.998,
-        "usdc": 3.5429,
-        "ts": 1776819644,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.92,
-        "price": 0.998,
-        "usdc": 4.91016,
-        "ts": 1776819820,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 254.834029
-  },
-  {
-    "key": "0x1686d5a45dc15f90a1a2596052dcdba72f1aa262ad7096b784dbc30c9d788392-1",
-    "title": "Will the highest temperature in Toronto be 13°C on April 21?",
-    "lots": [
-      {
-        "shares": 128.73713,
-        "price": 0.998,
-        "usdc": 128.4925,
-        "ts": 1776806086,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 9.79,
-        "price": 0.998,
-        "usdc": 9.77042,
-        "ts": 1776806588,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 15,
-        "price": 0.998,
-        "usdc": 14.97,
-        "ts": 1776806596,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 646.46,
-        "price": 0.998,
-        "usdc": 645.16708,
-        "ts": 1776807174,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 324.58,
-        "price": 0.998,
-        "usdc": 323.93084,
-        "ts": 1776824306,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1124.56713
-  },
-  {
-    "key": "0xaacea38db896508fa91bedccd4571c8ffe1f1bb1899b283919f1a8300773a2e9-1",
-    "title": "Will the highest temperature in New York City be between 54-55°F on April 21?",
-    "lots": [
-      {
-        "shares": 38.88417,
-        "price": 0.997,
-        "usdc": 38.77333,
-        "ts": 1776806202,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.06,
-        "price": 0.997,
-        "usdc": 2.05382,
-        "ts": 1776808758,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 4.35,
-        "price": 0.997,
-        "usdc": 4.33695,
-        "ts": 1776809484,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 3.31,
-        "price": 0.997,
-        "usdc": 3.30007,
-        "ts": 1776809726,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 3.06,
-        "price": 0.997,
-        "usdc": 3.05082,
-        "ts": 1776809742,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 51.664170000000006
   },
   {
     "key": "0xdc4930f1e5103843b8623e1f6e87aa7398c01916871bb30db560bb7b7707de64-1",
@@ -5437,9 +2301,7 @@
         "shares": 0.019190000000000706,
         "price": 0.998,
         "usdc": 1.02794,
-        "ts": 1776815252,
-        "fee": 0,
-        "maker": false
+        "ts": 1776815252
       }
     ],
     "totalShares": 0.019190000000000706
@@ -5452,9 +2314,7 @@
         "shares": 0.00320500000000834,
         "price": 0.998,
         "usdc": 166.4664,
-        "ts": 1776823458,
-        "fee": 0,
-        "maker": false
+        "ts": 1776823458
       }
     ],
     "totalShares": 0.00320500000000834
@@ -5467,35 +2327,16 @@
         "shares": 5.16923,
         "price": 0.997,
         "usdc": 5.15449,
-        "ts": 1776806264,
-        "fee": 0,
-        "maker": false
+        "ts": 1776806264
       },
       {
         "shares": 4.26,
         "price": 0.996,
         "usdc": 4.24296,
-        "ts": 1776807932,
-        "fee": 0,
-        "maker": false
+        "ts": 1776807932
       }
     ],
     "totalShares": 9.42923
-  },
-  {
-    "key": "0xaef5908968fc107c4a834cc362a491b0dc0d71d5d15cfd1afdc75451631e5788-1",
-    "title": "Will the highest temperature in New York City be between 60-61°F on April 21?",
-    "lots": [
-      {
-        "shares": 1.73,
-        "price": 0.998,
-        "usdc": 1.72654,
-        "ts": 1776809730,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1.73
   },
   {
     "key": "0x562230c9e0135e9250cef88b8359318b773c1e1a36429d12eb667cfc4747abd9-0",
@@ -5505,162 +2346,70 @@
         "shares": 129.92776,
         "price": 0.9888846153846154,
         "usdc": 128.555,
-        "ts": 1776809760,
-        "fee": 0,
-        "maker": false
+        "ts": 1776809760
       },
       {
         "shares": 5,
         "price": 0.986,
         "usdc": 4.93,
-        "ts": 1776809788,
-        "fee": 0,
-        "maker": false
+        "ts": 1776809788
       },
       {
         "shares": 4.08,
         "price": 0.986,
         "usdc": 4.02288,
-        "ts": 1776809788,
-        "fee": 0,
-        "maker": false
+        "ts": 1776809788
       },
       {
         "shares": 10.25,
         "price": 0.988,
         "usdc": 10.127,
-        "ts": 1776809844,
-        "fee": 0,
-        "maker": false
+        "ts": 1776809844
       },
       {
         "shares": 49.90266,
         "price": 0.9970552995391705,
         "usdc": 49.76303,
-        "ts": 1776811116,
-        "fee": 0,
-        "maker": false
+        "ts": 1776811116
       },
       {
         "shares": 36.05,
         "price": 0.996,
         "usdc": 35.9058,
-        "ts": 1776811198,
-        "fee": 0,
-        "maker": false
+        "ts": 1776811198
       },
       {
         "shares": 1.01,
         "price": 0.998,
         "usdc": 1.00798,
-        "ts": 1776811368,
-        "fee": 0,
-        "maker": false
+        "ts": 1776811368
       },
       {
         "shares": 21.16,
         "price": 0.998,
         "usdc": 21.11768,
-        "ts": 1776811702,
-        "fee": 0,
-        "maker": false
+        "ts": 1776811702
       },
       {
         "shares": 2.73,
         "price": 0.998,
         "usdc": 2.72454,
-        "ts": 1776811734,
-        "fee": 0,
-        "maker": false
+        "ts": 1776811734
       },
       {
         "shares": 6,
         "price": 0.998,
         "usdc": 5.988,
-        "ts": 1776812566,
-        "fee": 0,
-        "maker": false
+        "ts": 1776812566
       },
       {
         "shares": 460,
         "price": 0.998,
         "usdc": 459.08,
-        "ts": 1776812764,
-        "fee": 0,
-        "maker": false
+        "ts": 1776812764
       }
     ],
     "totalShares": 726.11042
-  },
-  {
-    "key": "0x5f446ef19167168aeaac99457283b30f1cc6e10b28f93a597bf2cbac09acf4a3-1",
-    "title": "Will the highest temperature in Atlanta be between 80-81°F on April 21?",
-    "lots": [
-      {
-        "shares": 37.01149,
-        "price": 0.99,
-        "usdc": 36.6597,
-        "ts": 1776809770,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 37.01149
-  },
-  {
-    "key": "0x454440f16210679a6c6c68da59d623788a2aac588a0a315dbfa773402d2859ec-1",
-    "title": "Will the highest temperature in Atlanta be between 82-83°F on April 21?",
-    "lots": [
-      {
-        "shares": 494.41056,
-        "price": 0.998,
-        "usdc": 493.47108,
-        "ts": 1776809786,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 112,
-        "price": 0.998,
-        "usdc": 111.776,
-        "ts": 1776809790,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 0.92,
-        "price": 0.998,
-        "usdc": 0.91816,
-        "ts": 1776809806,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 112,
-        "price": 0.998,
-        "usdc": 111.776,
-        "ts": 1776809838,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 2.08,
-        "price": 0.998,
-        "usdc": 2.07584,
-        "ts": 1776810258,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 1.59,
-        "price": 0.998,
-        "usdc": 1.58682,
-        "ts": 1776810742,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 723.0005600000001
   },
   {
     "key": "0x2f4656eba34e8208b42bc112c20c2a1c442f341f60a69616ca2b9d471119ea86-0",
@@ -5670,9 +2419,7 @@
         "shares": 21.69011,
         "price": 0.085,
         "usdc": 1.93205,
-        "ts": 1776815232,
-        "fee": 0,
-        "maker": false
+        "ts": 1776815232
       }
     ],
     "totalShares": 21.69011
@@ -5685,17 +2432,13 @@
         "shares": 2.068242,
         "price": 0.0330000067690338,
         "usdc": 0.068252,
-        "ts": 1776815304,
-        "fee": 0,
-        "maker": false
+        "ts": 1776815304
       },
       {
         "shares": 22.93,
         "price": 0.033,
         "usdc": 0.75669,
-        "ts": 1776838332,
-        "fee": 0,
-        "maker": false
+        "ts": 1776838332
       }
     ],
     "totalShares": 24.998242
@@ -5708,9 +2451,7 @@
         "shares": 14.3475,
         "price": 0.13,
         "usdc": 1.95,
-        "ts": 1776815314,
-        "fee": 0,
-        "maker": false
+        "ts": 1776815314
       }
     ],
     "totalShares": 14.3475
@@ -5723,49 +2464,37 @@
         "shares": 10.83,
         "price": 0.014,
         "usdc": 0.15162,
-        "ts": 1776815328,
-        "fee": 0,
-        "maker": false
+        "ts": 1776815328
       },
       {
         "shares": 5,
         "price": 0.014,
         "usdc": 0.07,
-        "ts": 1776816272,
-        "fee": 0,
-        "maker": false
+        "ts": 1776816272
       },
       {
         "shares": 5,
         "price": 0.014,
         "usdc": 0.07,
-        "ts": 1776816272,
-        "fee": 0,
-        "maker": false
+        "ts": 1776816272
       },
       {
         "shares": 5,
         "price": 0.014,
         "usdc": 0.07,
-        "ts": 1776816272,
-        "fee": 0,
-        "maker": false
+        "ts": 1776816272
       },
       {
         "shares": 5,
         "price": 0.014,
         "usdc": 0.07,
-        "ts": 1776817544,
-        "fee": 0,
-        "maker": false
+        "ts": 1776817544
       },
       {
         "shares": 9.17,
         "price": 0.014,
         "usdc": 0.12838,
-        "ts": 1776818068,
-        "fee": 0,
-        "maker": false
+        "ts": 1776818068
       }
     ],
     "totalShares": 40
@@ -5778,41 +2507,31 @@
         "shares": 10,
         "price": 0.005,
         "usdc": 0.05,
-        "ts": 1776815628,
-        "fee": 0,
-        "maker": false
+        "ts": 1776815628
       },
       {
         "shares": 3.9,
         "price": 0.005,
         "usdc": 0.0195,
-        "ts": 1776815692,
-        "fee": 0,
-        "maker": false
+        "ts": 1776815692
       },
       {
         "shares": 1.18,
         "price": 0.005,
         "usdc": 0.0059,
-        "ts": 1776815756,
-        "fee": 0,
-        "maker": false
+        "ts": 1776815756
       },
       {
         "shares": 3.94,
         "price": 0.005,
         "usdc": 0.0197,
-        "ts": 1776816416,
-        "fee": 0,
-        "maker": false
+        "ts": 1776816416
       },
       {
         "shares": 10.98,
         "price": 0.005,
         "usdc": 0.0549,
-        "ts": 1776827584,
-        "fee": 0,
-        "maker": false
+        "ts": 1776827584
       }
     ],
     "totalShares": 30
@@ -5825,9 +2544,7 @@
         "shares": 99.89973,
         "price": 0.9799444,
         "usdc": 97.99444,
-        "ts": 1776815686,
-        "fee": 0,
-        "maker": false
+        "ts": 1776815686
       }
     ],
     "totalShares": 99.89973
@@ -5840,43 +2557,10 @@
         "shares": 249.94992,
         "price": 0.99599304,
         "usdc": 248.99826,
-        "ts": 1776815788,
-        "fee": 0,
-        "maker": false
+        "ts": 1776815788
       }
     ],
     "totalShares": 249.94992
-  },
-  {
-    "key": "0x52b51463920c9fd235d27ba2508d115110c9d9c9860842679ed78536bb70d455-1",
-    "title": "Will the highest temperature in San Francisco be between 64-65°F on April 21?",
-    "lots": [
-      {
-        "shares": 84.07319,
-        "price": 0.996,
-        "usdc": 83.75364,
-        "ts": 1776815794,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 17.5,
-        "price": 0.995,
-        "usdc": 17.4125,
-        "ts": 1776816268,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 27.18,
-        "price": 0.996,
-        "usdc": 27.07128,
-        "ts": 1776820978,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 128.75319
   },
   {
     "key": "0x3935c25c0b36d0ac9c99153e5d1d7092eefc4726797886f58ba7047f7bd6cfe3-0",
@@ -5886,81 +2570,61 @@
         "shares": 1.35525,
         "price": 0.004,
         "usdc": 0.005421,
-        "ts": 1776815794,
-        "fee": 0,
-        "maker": false
+        "ts": 1776815794
       },
       {
         "shares": 5.01,
         "price": 0.004,
         "usdc": 0.02004,
-        "ts": 1776822822,
-        "fee": 0,
-        "maker": false
+        "ts": 1776822822
       },
       {
         "shares": 5.01,
         "price": 0.004,
         "usdc": 0.02004,
-        "ts": 1776823610,
-        "fee": 0,
-        "maker": false
+        "ts": 1776823610
       },
       {
         "shares": 5,
         "price": 0.004,
         "usdc": 0.02,
-        "ts": 1776825410,
-        "fee": 0,
-        "maker": false
+        "ts": 1776825410
       },
       {
         "shares": 5,
         "price": 0.004,
         "usdc": 0.02,
-        "ts": 1776825410,
-        "fee": 0,
-        "maker": false
+        "ts": 1776825410
       },
       {
         "shares": 5,
         "price": 0.004,
         "usdc": 0.02,
-        "ts": 1776825410,
-        "fee": 0,
-        "maker": false
+        "ts": 1776825410
       },
       {
         "shares": 3.91,
         "price": 0.004,
         "usdc": 0.01564,
-        "ts": 1776825410,
-        "fee": 0,
-        "maker": false
+        "ts": 1776825410
       },
       {
         "shares": 6.66,
         "price": 0.004,
         "usdc": 0.02664,
-        "ts": 1776826220,
-        "fee": 0,
-        "maker": false
+        "ts": 1776826220
       },
       {
         "shares": 6.66,
         "price": 0.004,
         "usdc": 0.02664,
-        "ts": 1776826222,
-        "fee": 0,
-        "maker": false
+        "ts": 1776826222
       },
       {
         "shares": 1.39,
         "price": 0.004,
         "usdc": 0.00556,
-        "ts": 1776826578,
-        "fee": 0,
-        "maker": false
+        "ts": 1776826578
       }
     ],
     "totalShares": 44.99525
@@ -5973,9 +2637,7 @@
         "shares": 0.0033799999999946095,
         "price": 0.998,
         "usdc": 14.8702,
-        "ts": 1776815806,
-        "fee": 0,
-        "maker": false
+        "ts": 1776815806
       }
     ],
     "totalShares": 0.0033799999999946095
@@ -5988,51 +2650,22 @@
         "shares": 648.83195,
         "price": 0.9969779791348836,
         "usdc": 646.96892,
-        "ts": 1776815846,
-        "fee": 0,
-        "maker": false
+        "ts": 1776815846
       },
       {
         "shares": 200,
         "price": 0.996,
         "usdc": 199.2,
-        "ts": 1776815858,
-        "fee": 0,
-        "maker": false
+        "ts": 1776815858
       },
       {
         "shares": 51.07,
         "price": 0.998,
         "usdc": 50.96786,
-        "ts": 1776819162,
-        "fee": 0,
-        "maker": false
+        "ts": 1776819162
       }
     ],
     "totalShares": 899.90195
-  },
-  {
-    "key": "0x5a8eb14739d310509ff2edea4f35a08d7341120a7f73fb89df064125218c3a3c-1",
-    "title": "Will the highest temperature in Dallas be 64°F or higher on April 21?",
-    "lots": [
-      {
-        "shares": 24.96875,
-        "price": 0.975,
-        "usdc": 24.375,
-        "ts": 1776815974,
-        "fee": 0,
-        "maker": false
-      },
-      {
-        "shares": 24.2568,
-        "price": 0.975,
-        "usdc": 23.65038,
-        "ts": 1776817582,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 49.22555
   },
   {
     "key": "0x7535ca066d1e6b7559e6637ea49335c62c3aab762e5c99235626bdfe069aaaf8-0",
@@ -6042,9 +2675,7 @@
         "shares": 0.19,
         "price": 0.971,
         "usdc": 0.18449,
-        "ts": 1776816108,
-        "fee": 0,
-        "maker": false
+        "ts": 1776816108
       }
     ],
     "totalShares": 0.19
@@ -6057,17 +2688,13 @@
         "shares": 10.28,
         "price": 0.028,
         "usdc": 0.28784,
-        "ts": 1776816470,
-        "fee": 0,
-        "maker": false
+        "ts": 1776816470
       },
       {
         "shares": 9.72,
         "price": 0.028,
         "usdc": 0.27216,
-        "ts": 1776820248,
-        "fee": 0,
-        "maker": false
+        "ts": 1776820248
       }
     ],
     "totalShares": 20
@@ -6080,25 +2707,19 @@
         "shares": 21.85,
         "price": 0.059,
         "usdc": 1.28915,
-        "ts": 1776818476,
-        "fee": 0,
-        "maker": false
+        "ts": 1776818476
       },
       {
         "shares": 39,
         "price": 0.059,
         "usdc": 2.301,
-        "ts": 1776818476,
-        "fee": 0,
-        "maker": false
+        "ts": 1776818476
       },
       {
         "shares": 0.15,
         "price": 0.059,
         "usdc": 0.00885,
-        "ts": 1776818488,
-        "fee": 0,
-        "maker": false
+        "ts": 1776818488
       }
     ],
     "totalShares": 61
@@ -6111,9 +2732,7 @@
         "shares": 0.009900999999992166,
         "price": 0.998,
         "usdc": 212.95324,
-        "ts": 1776827796,
-        "fee": 0,
-        "maker": false
+        "ts": 1776827796
       }
     ],
     "totalShares": 0.009900999999992166
@@ -6126,9 +2745,7 @@
         "shares": 20,
         "price": 0.065,
         "usdc": 1.3,
-        "ts": 1776821210,
-        "fee": 0,
-        "maker": false
+        "ts": 1776821210
       }
     ],
     "totalShares": 20
@@ -6141,59 +2758,34 @@
         "shares": 264.84352,
         "price": 0.998,
         "usdc": 264.34026,
-        "ts": 1776849846,
-        "fee": 0,
-        "maker": false
+        "ts": 1776849846
       },
       {
         "shares": 101.93981000000001,
         "price": 0.998,
         "usdc": 101.7461,
-        "ts": 1776850472,
-        "fee": 0,
-        "maker": false
+        "ts": 1776850472
       },
       {
         "shares": 4.14,
         "price": 0.998,
         "usdc": 4.13172,
-        "ts": 1776850558,
-        "fee": 0,
-        "maker": false
+        "ts": 1776850558
       },
       {
         "shares": 72.74,
         "price": 0.998,
         "usdc": 72.59452,
-        "ts": 1776851634,
-        "fee": 0,
-        "maker": false
+        "ts": 1776851634
       },
       {
         "shares": 1.08,
         "price": 0.998,
         "usdc": 1.07784,
-        "ts": 1776851768,
-        "fee": 0,
-        "maker": false
+        "ts": 1776851768
       }
     ],
     "totalShares": 444.74333
-  },
-  {
-    "key": "0x6a056feb1fe86fba2bc14fbc4c986630e128637bb1c6287943cf1e5beb831aa3-1",
-    "title": "Will the highest temperature in Kuala Lumpur be 33°C on April 22?",
-    "lots": [
-      {
-        "shares": 233.74663,
-        "price": 0.998,
-        "usdc": 233.30246,
-        "ts": 1776849852,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 233.74663
   },
   {
     "key": "0x066d108cb6812c65d825bb77f197b3c50ca7a2b7ecbc41d24f9be58ec3efed24-0",
@@ -6203,9 +2795,7 @@
         "shares": 0.2521880000000447,
         "price": 0.998,
         "usdc": 9.98,
-        "ts": 1776851118,
-        "fee": 0,
-        "maker": false
+        "ts": 1776851118
       }
     ],
     "totalShares": 0.2521880000000447
@@ -6218,9 +2808,7 @@
         "shares": 0.09580599999996764,
         "price": 0.998,
         "usdc": 32.40506,
-        "ts": 1776857238,
-        "fee": 0,
-        "maker": false
+        "ts": 1776857238
       }
     ],
     "totalShares": 0.09580599999996764
@@ -6233,33 +2821,25 @@
         "shares": 223.09900000000002,
         "price": 0.992,
         "usdc": 277.4872,
-        "ts": 1776852338,
-        "fee": 0,
-        "maker": false
+        "ts": 1776852338
       },
       {
         "shares": 6,
         "price": 0.992,
         "usdc": 5.952,
-        "ts": 1776852346,
-        "fee": 0,
-        "maker": false
+        "ts": 1776852346
       },
       {
         "shares": 45.78,
         "price": 0.998,
         "usdc": 45.68844,
-        "ts": 1776858254,
-        "fee": 0,
-        "maker": false
+        "ts": 1776858254
       },
       {
         "shares": 25.85,
         "price": 0.998,
         "usdc": 25.7983,
-        "ts": 1776858360,
-        "fee": 0,
-        "maker": false
+        "ts": 1776858360
       }
     ],
     "totalShares": 300.72900000000004
@@ -6272,17 +2852,13 @@
         "shares": 1,
         "price": 0.998,
         "usdc": 0.998,
-        "ts": 1776852168,
-        "fee": 0,
-        "maker": false
+        "ts": 1776852168
       },
       {
         "shares": 1.71,
         "price": 0.998,
         "usdc": 1.70658,
-        "ts": 1776853146,
-        "fee": 0,
-        "maker": false
+        "ts": 1776853146
       }
     ],
     "totalShares": 2.71
@@ -6295,9 +2871,7 @@
         "shares": 12.6258,
         "price": 0.13,
         "usdc": 1.716,
-        "ts": 1776852480,
-        "fee": 0,
-        "maker": false
+        "ts": 1776852480
       }
     ],
     "totalShares": 12.6258
@@ -6310,9 +2884,7 @@
         "shares": 0.01744999999993979,
         "price": 0.998,
         "usdc": 898.2,
-        "ts": 1776854878,
-        "fee": 0,
-        "maker": false
+        "ts": 1776854878
       }
     ],
     "totalShares": 0.01744999999993979
@@ -6325,9 +2897,7 @@
         "shares": 543.71,
         "price": 0.998,
         "usdc": 757.8812,
-        "ts": 1776860966,
-        "fee": 0,
-        "maker": false
+        "ts": 1776860966
       }
     ],
     "totalShares": 543.71
@@ -6340,9 +2910,7 @@
         "shares": 117.372,
         "price": 0.27,
         "usdc": 32.4,
-        "ts": 1776858596,
-        "fee": 0,
-        "maker": false
+        "ts": 1776858596
       }
     ],
     "totalShares": 117.372
@@ -6355,9 +2923,7 @@
         "shares": 98.77,
         "price": 0.59,
         "usdc": 59,
-        "ts": 1776858628,
-        "fee": 0,
-        "maker": false
+        "ts": 1776858628
       }
     ],
     "totalShares": 98.77
@@ -6370,25 +2936,19 @@
         "shares": 0.0005299999999834881,
         "price": 0.997,
         "usdc": 58.01543,
-        "ts": 1776867596,
-        "fee": 0,
-        "maker": false
+        "ts": 1776867596
       },
       {
         "shares": 443.02,
         "price": 0.998,
         "usdc": 442.13396,
-        "ts": 1776869788,
-        "fee": 0,
-        "maker": false
+        "ts": 1776869788
       },
       {
         "shares": 113.76,
         "price": 0.998,
         "usdc": 113.53248,
-        "ts": 1776872004,
-        "fee": 0,
-        "maker": false
+        "ts": 1776872004
       }
     ],
     "totalShares": 556.78053
@@ -6401,9 +2961,7 @@
         "shares": 4.878581999999973,
         "price": 0.998,
         "usdc": 49.4509,
-        "ts": 1776880804,
-        "fee": 0,
-        "maker": false
+        "ts": 1776880804
       }
     ],
     "totalShares": 4.878581999999973
@@ -6416,17 +2974,13 @@
         "shares": 0.010000000000015774,
         "price": 0.997,
         "usdc": 31.47529,
-        "ts": 1776861928,
-        "fee": 0,
-        "maker": false
+        "ts": 1776861928
       },
       {
         "shares": 6.31,
         "price": 0.997,
         "usdc": 6.29107,
-        "ts": 1776862036,
-        "fee": 0,
-        "maker": false
+        "ts": 1776862036
       }
     ],
     "totalShares": 6.320000000000015
@@ -6439,9 +2993,7 @@
         "shares": 0.010000000000001563,
         "price": 0.998,
         "usdc": 6.30736,
-        "ts": 1776862036,
-        "fee": 0,
-        "maker": false
+        "ts": 1776862036
       }
     ],
     "totalShares": 0.010000000000001563
@@ -6454,49 +3006,37 @@
         "shares": 150,
         "price": 0.998,
         "usdc": 249.5,
-        "ts": 1776892556,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892556
       },
       {
         "shares": 83.33,
         "price": 0.998,
         "usdc": 83.16334,
-        "ts": 1776892556,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892556
       },
       {
         "shares": 50,
         "price": 0.998,
         "usdc": 49.9,
-        "ts": 1776892556,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892556
       },
       {
         "shares": 12.89,
         "price": 0.998,
         "usdc": 12.86422,
-        "ts": 1776892556,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892556
       },
       {
         "shares": 112.11,
         "price": 0.998,
         "usdc": 111.88578,
-        "ts": 1776892556,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892556
       },
       {
         "shares": 62.5,
         "price": 0.998,
         "usdc": 62.375,
-        "ts": 1776892556,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892556
       }
     ],
     "totalShares": 470.83
@@ -6509,33 +3049,25 @@
         "shares": 28.003,
         "price": 0.995,
         "usdc": 27.86995,
-        "ts": 1776864382,
-        "fee": 0,
-        "maker": false
+        "ts": 1776864382
       },
       {
         "shares": 5.89,
         "price": 0.995,
         "usdc": 5.86055,
-        "ts": 1776864784,
-        "fee": 0,
-        "maker": false
+        "ts": 1776864784
       },
       {
         "shares": 2.18,
         "price": 0.995,
         "usdc": 2.1691,
-        "ts": 1776866870,
-        "fee": 0,
-        "maker": false
+        "ts": 1776866870
       },
       {
         "shares": 67.62,
         "price": 0.997,
         "usdc": 67.41714,
-        "ts": 1776869894,
-        "fee": 0,
-        "maker": false
+        "ts": 1776869894
       }
     ],
     "totalShares": 103.69300000000001
@@ -6548,161 +3080,121 @@
         "shares": 0.55,
         "price": 0.992,
         "usdc": 0.5456,
-        "ts": 1776864388,
-        "fee": 0,
-        "maker": false
+        "ts": 1776864388
       },
       {
         "shares": 20.93268,
         "price": 0.993,
         "usdc": 20.79342,
-        "ts": 1776864396,
-        "fee": 0,
-        "maker": false
+        "ts": 1776864396
       },
       {
         "shares": 1.06,
         "price": 0.991,
         "usdc": 1.05046,
-        "ts": 1776866568,
-        "fee": 0,
-        "maker": false
+        "ts": 1776866568
       },
       {
         "shares": 12.72,
         "price": 0.991,
         "usdc": 12.60552,
-        "ts": 1776866764,
-        "fee": 0,
-        "maker": false
+        "ts": 1776866764
       },
       {
         "shares": 20.93372,
         "price": 0.994,
         "usdc": 20.81436,
-        "ts": 1776868192,
-        "fee": 0,
-        "maker": false
+        "ts": 1776868192
       },
       {
         "shares": 2.88,
         "price": 0.996,
         "usdc": 2.86848,
-        "ts": 1776869328,
-        "fee": 0,
-        "maker": false
+        "ts": 1776869328
       },
       {
         "shares": 230.54693,
         "price": 0.9979980483150453,
         "usdc": 230.10841,
-        "ts": 1776869584,
-        "fee": 0,
-        "maker": false
+        "ts": 1776869584
       },
       {
         "shares": 29.32,
         "price": 0.998,
         "usdc": 29.26136,
-        "ts": 1776869594,
-        "fee": 0,
-        "maker": false
+        "ts": 1776869594
       },
       {
         "shares": 35.34,
         "price": 0.998,
         "usdc": 35.26932,
-        "ts": 1776869830,
-        "fee": 0,
-        "maker": false
+        "ts": 1776869830
       },
       {
         "shares": 143.65,
         "price": 0.998,
         "usdc": 143.3627,
-        "ts": 1776869878,
-        "fee": 0,
-        "maker": false
+        "ts": 1776869878
       },
       {
         "shares": 10.09,
         "price": 0.998,
         "usdc": 10.06982,
-        "ts": 1776870190,
-        "fee": 0,
-        "maker": false
+        "ts": 1776870190
       },
       {
         "shares": 14.6,
         "price": 0.998,
         "usdc": 14.5708,
-        "ts": 1776871166,
-        "fee": 0,
-        "maker": false
+        "ts": 1776871166
       },
       {
         "shares": 28.16,
         "price": 0.998,
         "usdc": 28.10368,
-        "ts": 1776872304,
-        "fee": 0,
-        "maker": false
+        "ts": 1776872304
       },
       {
         "shares": 23.58,
         "price": 0.998,
         "usdc": 23.53284,
-        "ts": 1776873470,
-        "fee": 0,
-        "maker": false
+        "ts": 1776873470
       },
       {
         "shares": 9.25,
         "price": 0.998,
         "usdc": 9.2315,
-        "ts": 1776874496,
-        "fee": 0,
-        "maker": false
+        "ts": 1776874496
       },
       {
         "shares": 26.53,
         "price": 0.998,
         "usdc": 26.47694,
-        "ts": 1776879204,
-        "fee": 0,
-        "maker": false
+        "ts": 1776879204
       },
       {
         "shares": 10,
         "price": 0.998,
         "usdc": 9.98,
-        "ts": 1776881856,
-        "fee": 0,
-        "maker": false
+        "ts": 1776881856
       },
       {
         "shares": 1.87,
         "price": 0.998,
         "usdc": 1.86626,
-        "ts": 1776883538,
-        "fee": 0,
-        "maker": false
+        "ts": 1776883538
       },
       {
         "shares": 55.82,
         "price": 0.998,
         "usdc": 55.70836,
-        "ts": 1776889882,
-        "fee": 0,
-        "maker": false
+        "ts": 1776889882
       },
       {
         "shares": 904.16479,
         "price": 0.999,
         "usdc": 903.30579,
-        "ts": 1776892180,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892180
       }
     ],
     "totalShares": 1581.99812
@@ -6715,27 +3207,10 @@
         "shares": 22.059839999999976,
         "price": 0.998,
         "usdc": 22.04582,
-        "ts": 1776864512,
-        "fee": 0,
-        "maker": false
+        "ts": 1776864512
       }
     ],
     "totalShares": 22.059839999999976
-  },
-  {
-    "key": "0x865156e97d9796268188cc365bb60599d865e4f79233106cc0271e91577df66c-1",
-    "title": "Will the highest temperature in Beijing be 27°C on April 22?",
-    "lots": [
-      {
-        "shares": 1499.925,
-        "price": 0.999,
-        "usdc": 1498.5,
-        "ts": 1776864864,
-        "fee": 0,
-        "maker": false
-      }
-    ],
-    "totalShares": 1499.925
   },
   {
     "key": "0x82e22c18fa1e37ecc3d29826431ebbbf569b877645457595aca081d83798bcec-1",
@@ -6745,9 +3220,7 @@
         "shares": 0.009999999999997788,
         "price": 0.998,
         "usdc": 31.91604,
-        "ts": 1776887060,
-        "fee": 0,
-        "maker": false
+        "ts": 1776887060
       }
     ],
     "totalShares": 0.009999999999997788
@@ -6760,9 +3233,7 @@
         "shares": 1,
         "price": 0.997,
         "usdc": 0.997,
-        "ts": 1776867502,
-        "fee": 0,
-        "maker": false
+        "ts": 1776867502
       }
     ],
     "totalShares": 1
@@ -6775,65 +3246,49 @@
         "shares": 107.07570000000001,
         "price": 0.994998729946524,
         "usdc": 297.70362,
-        "ts": 1776872028,
-        "fee": 0,
-        "maker": false
+        "ts": 1776872028
       },
       {
         "shares": 29.24,
         "price": 0.998,
         "usdc": 29.18152,
-        "ts": 1776877024,
-        "fee": 0,
-        "maker": false
+        "ts": 1776877024
       },
       {
         "shares": 57.15,
         "price": 0.998,
         "usdc": 57.0357,
-        "ts": 1776877292,
-        "fee": 0,
-        "maker": false
+        "ts": 1776877292
       },
       {
         "shares": 6,
         "price": 0.998,
         "usdc": 5.988,
-        "ts": 1776877874,
-        "fee": 0,
-        "maker": false
+        "ts": 1776877874
       },
       {
         "shares": 22.54,
         "price": 0.998,
         "usdc": 22.49492,
-        "ts": 1776877888,
-        "fee": 0,
-        "maker": false
+        "ts": 1776877888
       },
       {
         "shares": 9.97,
         "price": 0.998,
         "usdc": 9.95006,
-        "ts": 1776878136,
-        "fee": 0,
-        "maker": false
+        "ts": 1776878136
       },
       {
         "shares": 1.51,
         "price": 0.998,
         "usdc": 1.50698,
-        "ts": 1776880076,
-        "fee": 0,
-        "maker": false
+        "ts": 1776880076
       },
       {
         "shares": 74.39,
         "price": 0.998,
         "usdc": 74.24122,
-        "ts": 1776882610,
-        "fee": 0,
-        "maker": false
+        "ts": 1776882610
       }
     ],
     "totalShares": 307.8757
@@ -6846,9 +3301,7 @@
         "shares": 253.43513,
         "price": 0.994,
         "usdc": 298.2,
-        "ts": 1776874386,
-        "fee": 0,
-        "maker": false
+        "ts": 1776874386
       }
     ],
     "totalShares": 253.43513
@@ -6861,17 +3314,13 @@
         "shares": 0.014716000000000395,
         "price": 0.998,
         "usdc": 5.86824,
-        "ts": 1776876022,
-        "fee": 0,
-        "maker": false
+        "ts": 1776876022
       },
       {
         "shares": 0.1,
         "price": 0.998,
         "usdc": 0.0998,
-        "ts": 1776876052,
-        "fee": 0,
-        "maker": false
+        "ts": 1776876052
       }
     ],
     "totalShares": 0.1147160000000004
@@ -6884,49 +3333,37 @@
         "shares": 93.74063,
         "price": 0.998,
         "usdc": 93.5625,
-        "ts": 1776869792,
-        "fee": 0,
-        "maker": false
+        "ts": 1776869792
       },
       {
         "shares": 3.4,
         "price": 0.998,
         "usdc": 3.3932,
-        "ts": 1776871750,
-        "fee": 0,
-        "maker": false
+        "ts": 1776871750
       },
       {
         "shares": 114.46,
         "price": 0.998,
         "usdc": 114.23108,
-        "ts": 1776873088,
-        "fee": 0,
-        "maker": false
+        "ts": 1776873088
       },
       {
         "shares": 5.09,
         "price": 0.998,
         "usdc": 5.07982,
-        "ts": 1776875626,
-        "fee": 0,
-        "maker": false
+        "ts": 1776875626
       },
       {
         "shares": 232.55,
         "price": 0.998,
         "usdc": 232.0849,
-        "ts": 1776878854,
-        "fee": 0,
-        "maker": false
+        "ts": 1776878854
       },
       {
         "shares": 100,
         "price": 0.998,
         "usdc": 99.8,
-        "ts": 1776879774,
-        "fee": 0,
-        "maker": false
+        "ts": 1776879774
       }
     ],
     "totalShares": 549.24063
@@ -6939,41 +3376,31 @@
         "shares": 2.1399999999999983,
         "price": 0.998,
         "usdc": 5.22952,
-        "ts": 1776882606,
-        "fee": 0,
-        "maker": false
+        "ts": 1776882606
       },
       {
         "shares": 492.78,
         "price": 0.998,
         "usdc": 491.79444,
-        "ts": 1776883972,
-        "fee": 0,
-        "maker": false
+        "ts": 1776883972
       },
       {
         "shares": 0.04,
         "price": 0.998,
         "usdc": 0.03992,
-        "ts": 1776884368,
-        "fee": 0,
-        "maker": false
+        "ts": 1776884368
       },
       {
         "shares": 1.04,
         "price": 0.998,
         "usdc": 1.03792,
-        "ts": 1776884392,
-        "fee": 0,
-        "maker": false
+        "ts": 1776884392
       },
       {
         "shares": 4,
         "price": 0.998,
         "usdc": 3.992,
-        "ts": 1776884414,
-        "fee": 0,
-        "maker": false
+        "ts": 1776884414
       }
     ],
     "totalShares": 500
@@ -6986,25 +3413,19 @@
         "shares": 5.59,
         "price": 0.99,
         "usdc": 5.5341,
-        "ts": 1776870970,
-        "fee": 0,
-        "maker": false
+        "ts": 1776870970
       },
       {
         "shares": 144.41,
         "price": 0.99,
         "usdc": 142.9659,
-        "ts": 1776871238,
-        "fee": 0,
-        "maker": false
+        "ts": 1776871238
       },
       {
         "shares": 420.40898,
         "price": 0.999,
         "usdc": 420.00957,
-        "ts": 1776892114,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892114
       }
     ],
     "totalShares": 570.4089799999999
@@ -7017,25 +3438,19 @@
         "shares": 150,
         "price": 0.99,
         "usdc": 148.5,
-        "ts": 1776871214,
-        "fee": 0,
-        "maker": false
+        "ts": 1776871214
       },
       {
         "shares": 9.618559999999999,
         "price": 0.997,
         "usdc": 9.59114,
-        "ts": 1776881192,
-        "fee": 0,
-        "maker": false
+        "ts": 1776881192
       },
       {
         "shares": 1538.29309,
         "price": 0.999,
         "usdc": 1536.83163,
-        "ts": 1776892102,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892102
       }
     ],
     "totalShares": 1697.91165
@@ -7048,9 +3463,7 @@
         "shares": 106.14160300000006,
         "price": 0.998,
         "usdc": 232.12482,
-        "ts": 1776883650,
-        "fee": 0,
-        "maker": false
+        "ts": 1776883650
       }
     ],
     "totalShares": 106.14160300000006
@@ -7063,17 +3476,13 @@
         "shares": 499.93056,
         "price": 0.999,
         "usdc": 499.5,
-        "ts": 1776884696,
-        "fee": 0,
-        "maker": false
+        "ts": 1776884696
       },
       {
         "shares": 624.0388,
         "price": 0.999,
         "usdc": 623.44593,
-        "ts": 1776892012,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892012
       }
     ],
     "totalShares": 1123.96936
@@ -7086,9 +3495,7 @@
         "shares": 0.003809999999994318,
         "price": 0.998,
         "usdc": 36.0777,
-        "ts": 1776879772,
-        "fee": 0,
-        "maker": false
+        "ts": 1776879772
       }
     ],
     "totalShares": 0.003809999999994318
@@ -7101,49 +3508,37 @@
         "shares": 480.30197000000004,
         "price": 0.998,
         "usdc": 479.3893,
-        "ts": 1776873506,
-        "fee": 0,
-        "maker": false
+        "ts": 1776873506
       },
       {
         "shares": 538.51,
         "price": 0.997,
         "usdc": 536.89447,
-        "ts": 1776873576,
-        "fee": 0,
-        "maker": false
+        "ts": 1776873576
       },
       {
         "shares": 5.35,
         "price": 0.997,
         "usdc": 5.33395,
-        "ts": 1776873962,
-        "fee": 0,
-        "maker": false
+        "ts": 1776873962
       },
       {
         "shares": 19.468059999999998,
         "price": 0.998,
         "usdc": 19.43106,
-        "ts": 1776874006,
-        "fee": 0,
-        "maker": false
+        "ts": 1776874006
       },
       {
         "shares": 1.22,
         "price": 0.996,
         "usdc": 1.21512,
-        "ts": 1776874050,
-        "fee": 0,
-        "maker": false
+        "ts": 1776874050
       },
       {
         "shares": 255.1,
         "price": 0.998,
         "usdc": 254.5898,
-        "ts": 1776875808,
-        "fee": 0,
-        "maker": false
+        "ts": 1776875808
       }
     ],
     "totalShares": 1299.9500299999997
@@ -7156,33 +3551,25 @@
         "shares": 71.28,
         "price": 0.999,
         "usdc": 71.20872,
-        "ts": 1776875078,
-        "fee": 0,
-        "maker": false
+        "ts": 1776875078
       },
       {
         "shares": 101.6,
         "price": 0.999,
         "usdc": 101.4984,
-        "ts": 1776875312,
-        "fee": 0,
-        "maker": false
+        "ts": 1776875312
       },
       {
         "shares": 2.14,
         "price": 0.999,
         "usdc": 2.13786,
-        "ts": 1776879812,
-        "fee": 0,
-        "maker": false
+        "ts": 1776879812
       },
       {
         "shares": 247.87,
         "price": 0.999,
         "usdc": 247.62213,
-        "ts": 1776882348,
-        "fee": 0,
-        "maker": false
+        "ts": 1776882348
       }
     ],
     "totalShares": 422.89
@@ -7195,9 +3582,7 @@
         "shares": 0.032251000000023566,
         "price": 0.997,
         "usdc": 74.16683,
-        "ts": 1776883024,
-        "fee": 0,
-        "maker": false
+        "ts": 1776883024
       }
     ],
     "totalShares": 0.032251000000023566
@@ -7210,81 +3595,61 @@
         "shares": 0.005169999999999675,
         "price": 0.995,
         "usdc": 19.23335,
-        "ts": 1776877140,
-        "fee": 0,
-        "maker": false
+        "ts": 1776877140
       },
       {
         "shares": 429.62704,
         "price": 0.998,
         "usdc": 428.81066,
-        "ts": 1776879236,
-        "fee": 0,
-        "maker": false
+        "ts": 1776879236
       },
       {
         "shares": 1.06,
         "price": 0.995,
         "usdc": 1.0547,
-        "ts": 1776881444,
-        "fee": 0,
-        "maker": false
+        "ts": 1776881444
       },
       {
         "shares": 30.08,
         "price": 0.995,
         "usdc": 29.9296,
-        "ts": 1776881450,
-        "fee": 0,
-        "maker": false
+        "ts": 1776881450
       },
       {
         "shares": 15.67,
         "price": 0.995,
         "usdc": 15.59165,
-        "ts": 1776881714,
-        "fee": 0,
-        "maker": false
+        "ts": 1776881714
       },
       {
         "shares": 13.97,
         "price": 0.997,
         "usdc": 13.92809,
-        "ts": 1776881856,
-        "fee": 0,
-        "maker": false
+        "ts": 1776881856
       },
       {
         "shares": 146.99,
         "price": 0.997,
         "usdc": 146.54903,
-        "ts": 1776881988,
-        "fee": 0,
-        "maker": false
+        "ts": 1776881988
       },
       {
         "shares": 70.89,
         "price": 0.997,
         "usdc": 70.67733,
-        "ts": 1776881994,
-        "fee": 0,
-        "maker": false
+        "ts": 1776881994
       },
       {
         "shares": 102.93,
         "price": 0.997,
         "usdc": 102.62121,
-        "ts": 1776882630,
-        "fee": 0,
-        "maker": false
+        "ts": 1776882630
       },
       {
         "shares": 19.41,
         "price": 0.997,
         "usdc": 19.35177,
-        "ts": 1776882668,
-        "fee": 0,
-        "maker": false
+        "ts": 1776882668
       }
     ],
     "totalShares": 830.6322100000001
@@ -7297,41 +3662,31 @@
         "shares": 134.89651,
         "price": 0.998,
         "usdc": 134.64018,
-        "ts": 1776877140,
-        "fee": 0,
-        "maker": false
+        "ts": 1776877140
       },
       {
         "shares": 315.08,
         "price": 0.998,
         "usdc": 314.44984,
-        "ts": 1776877644,
-        "fee": 0,
-        "maker": false
+        "ts": 1776877644
       },
       {
         "shares": 149.985,
         "price": 0.998,
         "usdc": 149.7,
-        "ts": 1776881404,
-        "fee": 0,
-        "maker": false
+        "ts": 1776881404
       },
       {
         "shares": 2.96,
         "price": 0.998,
         "usdc": 2.95408,
-        "ts": 1776883278,
-        "fee": 0,
-        "maker": false
+        "ts": 1776883278
       },
       {
         "shares": 9.75,
         "price": 0.998,
         "usdc": 9.7305,
-        "ts": 1776886012,
-        "fee": 0,
-        "maker": false
+        "ts": 1776886012
       }
     ],
     "totalShares": 612.67151
@@ -7344,41 +3699,31 @@
         "shares": 1169.1076500000001,
         "price": 0.995,
         "usdc": 1163.553,
-        "ts": 1776877178,
-        "fee": 0,
-        "maker": false
+        "ts": 1776877178
       },
       {
         "shares": 5.62,
         "price": 0.995,
         "usdc": 5.5919,
-        "ts": 1776878180,
-        "fee": 0,
-        "maker": false
+        "ts": 1776878180
       },
       {
         "shares": 3.29,
         "price": 0.995,
         "usdc": 3.27355,
-        "ts": 1776880102,
-        "fee": 0,
-        "maker": false
+        "ts": 1776880102
       },
       {
         "shares": 8.2,
         "price": 0.995,
         "usdc": 8.159,
-        "ts": 1776881644,
-        "fee": 0,
-        "maker": false
+        "ts": 1776881644
       },
       {
         "shares": 413.49,
         "price": 0.995,
         "usdc": 411.42255,
-        "ts": 1776884472,
-        "fee": 0,
-        "maker": false
+        "ts": 1776884472
       }
     ],
     "totalShares": 1599.70765
@@ -7391,129 +3736,97 @@
         "shares": 0.0030810000000016657,
         "price": 0.5,
         "usdc": 3.2,
-        "ts": 1776880830,
-        "fee": 0,
-        "maker": false
+        "ts": 1776880830
       },
       {
         "shares": 20.936860000000003,
         "price": 0.997,
         "usdc": 20.87718,
-        "ts": 1776884478,
-        "fee": 0,
-        "maker": false
+        "ts": 1776884478
       },
       {
         "shares": 10.64,
         "price": 0.996,
         "usdc": 10.59744,
-        "ts": 1776884656,
-        "fee": 0,
-        "maker": false
+        "ts": 1776884656
       },
       {
         "shares": 7.19,
         "price": 0.996,
         "usdc": 7.16124,
-        "ts": 1776884778,
-        "fee": 0,
-        "maker": false
+        "ts": 1776884778
       },
       {
         "shares": 40,
         "price": 0.997,
         "usdc": 39.88,
-        "ts": 1776886240,
-        "fee": 0,
-        "maker": false
+        "ts": 1776886240
       },
       {
         "shares": 1.06,
         "price": 0.997,
         "usdc": 1.05682,
-        "ts": 1776886256,
-        "fee": 0,
-        "maker": false
+        "ts": 1776886256
       },
       {
         "shares": 16.48,
         "price": 0.997,
         "usdc": 16.43056,
-        "ts": 1776886288,
-        "fee": 0,
-        "maker": false
+        "ts": 1776886288
       },
       {
         "shares": 46.27,
         "price": 0.997,
         "usdc": 46.13119,
-        "ts": 1776886308,
-        "fee": 0,
-        "maker": false
+        "ts": 1776886308
       },
       {
         "shares": 276.43,
         "price": 0.997,
         "usdc": 275.60071,
-        "ts": 1776886906,
-        "fee": 0,
-        "maker": false
+        "ts": 1776886906
       },
       {
         "shares": 8.6,
         "price": 0.997,
         "usdc": 8.5742,
-        "ts": 1776887206,
-        "fee": 0,
-        "maker": false
+        "ts": 1776887206
       },
       {
         "shares": 61.16,
         "price": 0.998,
         "usdc": 61.03768,
-        "ts": 1776888110,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888110
       },
       {
         "shares": 29.92,
         "price": 0.998,
         "usdc": 29.86016,
-        "ts": 1776888774,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888774
       },
       {
         "shares": 26.33,
         "price": 0.998,
         "usdc": 26.27734,
-        "ts": 1776889050,
-        "fee": 0,
-        "maker": false
+        "ts": 1776889050
       },
       {
         "shares": 11.93,
         "price": 0.998,
         "usdc": 11.90614,
-        "ts": 1776890022,
-        "fee": 0,
-        "maker": false
+        "ts": 1776890022
       },
       {
         "shares": 52.55,
         "price": 0.998,
         "usdc": 52.4449,
-        "ts": 1776893186,
-        "fee": 0,
-        "maker": false
+        "ts": 1776893186
       },
       {
         "shares": 98.97,
         "price": 0.998,
         "usdc": 98.77206,
-        "ts": 1776893248,
-        "fee": 0,
-        "maker": false
+        "ts": 1776893248
       }
     ],
     "totalShares": 708.469941
@@ -7526,41 +3839,31 @@
         "shares": 0.007009999999973093,
         "price": 0.998,
         "usdc": 3.17364,
-        "ts": 1776881554,
-        "fee": 0,
-        "maker": false
+        "ts": 1776881554
       },
       {
         "shares": 1.14,
         "price": 0.998,
         "usdc": 1.13772,
-        "ts": 1776882204,
-        "fee": 0,
-        "maker": false
+        "ts": 1776882204
       },
       {
         "shares": 2.08,
         "price": 0.998,
         "usdc": 2.07584,
-        "ts": 1776882794,
-        "fee": 0,
-        "maker": false
+        "ts": 1776882794
       },
       {
         "shares": 500,
         "price": 0.998,
         "usdc": 499,
-        "ts": 1776886080,
-        "fee": 0,
-        "maker": false
+        "ts": 1776886080
       },
       {
         "shares": 118.85,
         "price": 0.998,
         "usdc": 118.6123,
-        "ts": 1776886080,
-        "fee": 0,
-        "maker": false
+        "ts": 1776886080
       }
     ],
     "totalShares": 622.07701
@@ -7573,9 +3876,7 @@
         "shares": 78.07839000000001,
         "price": 0.998,
         "usdc": 415.35762,
-        "ts": 1776877388,
-        "fee": 0,
-        "maker": false
+        "ts": 1776877388
       }
     ],
     "totalShares": 78.07839000000001
@@ -7588,9 +3889,7 @@
         "shares": 90.03326199999998,
         "price": 0.992,
         "usdc": 111.48096,
-        "ts": 1776880372,
-        "fee": 0,
-        "maker": false
+        "ts": 1776880372
       }
     ],
     "totalShares": 90.03326199999998
@@ -7603,65 +3902,49 @@
         "shares": 5.05,
         "price": 0.997,
         "usdc": 5.03485,
-        "ts": 1776878228,
-        "fee": 0,
-        "maker": false
+        "ts": 1776878228
       },
       {
         "shares": 5,
         "price": 0.997,
         "usdc": 4.985,
-        "ts": 1776878886,
-        "fee": 0,
-        "maker": false
+        "ts": 1776878886
       },
       {
         "shares": 36.83,
         "price": 0.997,
         "usdc": 36.71951,
-        "ts": 1776879196,
-        "fee": 0,
-        "maker": false
+        "ts": 1776879196
       },
       {
         "shares": 100,
         "price": 0.997,
         "usdc": 99.7,
-        "ts": 1776879480,
-        "fee": 0,
-        "maker": false
+        "ts": 1776879480
       },
       {
         "shares": 100,
         "price": 0.997,
         "usdc": 99.7,
-        "ts": 1776879694,
-        "fee": 0,
-        "maker": false
+        "ts": 1776879694
       },
       {
         "shares": 53.12,
         "price": 0.997,
         "usdc": 52.96064,
-        "ts": 1776879924,
-        "fee": 0,
-        "maker": false
+        "ts": 1776879924
       },
       {
         "shares": 43.9956,
         "price": 0.998,
         "usdc": 43.912,
-        "ts": 1776884728,
-        "fee": 0,
-        "maker": false
+        "ts": 1776884728
       },
       {
         "shares": 100,
         "price": 0.998,
         "usdc": 99.8,
-        "ts": 1776885816,
-        "fee": 0,
-        "maker": false
+        "ts": 1776885816
       }
     ],
     "totalShares": 443.9956
@@ -7674,9 +3957,7 @@
         "shares": 0.012103999999993675,
         "price": 0.989,
         "usdc": 346.15,
-        "ts": 1776879578,
-        "fee": 0,
-        "maker": false
+        "ts": 1776879578
       }
     ],
     "totalShares": 0.012103999999993675
@@ -7689,41 +3970,31 @@
         "shares": 9.95492399999993,
         "price": 0.998,
         "usdc": 12.70454,
-        "ts": 1776883028,
-        "fee": 0,
-        "maker": false
+        "ts": 1776883028
       },
       {
         "shares": 24.80752,
         "price": 0.998,
         "usdc": 24.76038,
-        "ts": 1776884594,
-        "fee": 0,
-        "maker": false
+        "ts": 1776884594
       },
       {
         "shares": 151.91,
         "price": 0.998,
         "usdc": 151.60618,
-        "ts": 1776884764,
-        "fee": 0,
-        "maker": false
+        "ts": 1776884764
       },
       {
         "shares": 4.91,
         "price": 0.998,
         "usdc": 4.90018,
-        "ts": 1776884886,
-        "fee": 0,
-        "maker": false
+        "ts": 1776884886
       },
       {
         "shares": 2.12,
         "price": 0.998,
         "usdc": 2.11576,
-        "ts": 1776885278,
-        "fee": 0,
-        "maker": false
+        "ts": 1776885278
       }
     ],
     "totalShares": 193.70244399999993
@@ -7736,9 +4007,7 @@
         "shares": 0.01296400000000375,
         "price": 0.997,
         "usdc": 6.16146,
-        "ts": 1776883216,
-        "fee": 0,
-        "maker": false
+        "ts": 1776883216
       }
     ],
     "totalShares": 0.01296400000000375
@@ -7751,25 +4020,19 @@
         "shares": 0.010000000000015774,
         "price": 0.998,
         "usdc": 12.09576,
-        "ts": 1776884306,
-        "fee": 0,
-        "maker": false
+        "ts": 1776884306
       },
       {
         "shares": 1.09,
         "price": 0.998,
         "usdc": 1.08782,
-        "ts": 1776884386,
-        "fee": 0,
-        "maker": false
+        "ts": 1776884386
       },
       {
         "shares": 2.21,
         "price": 0.998,
         "usdc": 2.20558,
-        "ts": 1776885260,
-        "fee": 0,
-        "maker": false
+        "ts": 1776885260
       }
     ],
     "totalShares": 3.3100000000000156
@@ -7782,9 +4045,7 @@
         "shares": 0.009999999999999787,
         "price": 0.997,
         "usdc": 5.24422,
-        "ts": 1776880812,
-        "fee": 0,
-        "maker": false
+        "ts": 1776880812
       }
     ],
     "totalShares": 0.009999999999999787
@@ -7797,9 +4058,7 @@
         "shares": 0.009999999999999787,
         "price": 0.998,
         "usdc": 5.24948,
-        "ts": 1776880812,
-        "fee": 0,
-        "maker": false
+        "ts": 1776880812
       }
     ],
     "totalShares": 0.009999999999999787
@@ -7812,9 +4071,7 @@
         "shares": 0.029981000000002922,
         "price": 0.998,
         "usdc": 10.1796,
-        "ts": 1776881922,
-        "fee": 0,
-        "maker": false
+        "ts": 1776881922
       }
     ],
     "totalShares": 0.029981000000002922
@@ -7827,9 +4084,7 @@
         "shares": 0.010095999999990113,
         "price": 0.998,
         "usdc": 54.02174,
-        "ts": 1776883954,
-        "fee": 0,
-        "maker": false
+        "ts": 1776883954
       }
     ],
     "totalShares": 0.010095999999990113
@@ -7842,17 +4097,13 @@
         "shares": 0.019140999999990527,
         "price": 0.996,
         "usdc": 9.95004,
-        "ts": 1776884318,
-        "fee": 0,
-        "maker": false
+        "ts": 1776884318
       },
       {
         "shares": 1.58,
         "price": 0.997,
         "usdc": 1.57526,
-        "ts": 1776886464,
-        "fee": 0,
-        "maker": false
+        "ts": 1776886464
       }
     ],
     "totalShares": 1.5991409999999906
@@ -7865,57 +4116,43 @@
         "shares": 0.008549999999999613,
         "price": 0.7,
         "usdc": 57.001,
-        "ts": 1776880894,
-        "fee": 0,
-        "maker": false
+        "ts": 1776880894
       },
       {
         "shares": 281.426665,
         "price": 0.997000003535557,
         "usdc": 280.582386,
-        "ts": 1776886382,
-        "fee": 0,
-        "maker": false
+        "ts": 1776886382
       },
       {
         "shares": 8.73,
         "price": 0.997,
         "usdc": 8.70381,
-        "ts": 1776886486,
-        "fee": 0,
-        "maker": false
+        "ts": 1776886486
       },
       {
         "shares": 29.84,
         "price": 0.997,
         "usdc": 29.75048,
-        "ts": 1776886572,
-        "fee": 0,
-        "maker": false
+        "ts": 1776886572
       },
       {
         "shares": 4.86,
         "price": 0.998,
         "usdc": 4.85028,
-        "ts": 1776888586,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888586
       },
       {
         "shares": 5.27,
         "price": 0.998,
         "usdc": 5.25946,
-        "ts": 1776889892,
-        "fee": 0,
-        "maker": false
+        "ts": 1776889892
       },
       {
         "shares": 7.44,
         "price": 0.998,
         "usdc": 7.42512,
-        "ts": 1776890704,
-        "fee": 0,
-        "maker": false
+        "ts": 1776890704
       }
     ],
     "totalShares": 337.575215
@@ -7928,9 +4165,7 @@
         "shares": 3.54,
         "price": 0.999,
         "usdc": 3.53646,
-        "ts": 1776885078,
-        "fee": 0,
-        "maker": false
+        "ts": 1776885078
       }
     ],
     "totalShares": 3.54
@@ -7943,33 +4178,25 @@
         "shares": 0.96,
         "price": 0.998,
         "usdc": 0.95808,
-        "ts": 1776887706,
-        "fee": 0,
-        "maker": false
+        "ts": 1776887706
       },
       {
         "shares": 105.25,
         "price": 0.998,
         "usdc": 105.0395,
-        "ts": 1776888126,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888126
       },
       {
         "shares": 233.24833999999998,
         "price": 0.999,
         "usdc": 233.02674,
-        "ts": 1776891864,
-        "fee": 0,
-        "maker": false
+        "ts": 1776891864
       },
       {
         "shares": 7.16,
         "price": 0.998,
         "usdc": 7.14568,
-        "ts": 1776892666,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892666
       }
     ],
     "totalShares": 346.61834
@@ -7982,89 +4209,67 @@
         "shares": 48,
         "price": 0.995,
         "usdc": 47.76,
-        "ts": 1776887848,
-        "fee": 0,
-        "maker": false
+        "ts": 1776887848
       },
       {
         "shares": 121.55784999999999,
         "price": 0.998,
         "usdc": 121.32686,
-        "ts": 1776887854,
-        "fee": 0,
-        "maker": false
+        "ts": 1776887854
       },
       {
         "shares": 29.95,
         "price": 0.995,
         "usdc": 29.80025,
-        "ts": 1776887856,
-        "fee": 0,
-        "maker": false
+        "ts": 1776887856
       },
       {
         "shares": 0.12,
         "price": 0.995,
         "usdc": 0.1194,
-        "ts": 1776888060,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888060
       },
       {
         "shares": 105.24,
         "price": 0.995,
         "usdc": 104.7138,
-        "ts": 1776888126,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888126
       },
       {
         "shares": 20.1,
         "price": 0.998,
         "usdc": 20.0598,
-        "ts": 1776888314,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888314
       },
       {
         "shares": 1.04,
         "price": 0.998,
         "usdc": 1.03792,
-        "ts": 1776888768,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888768
       },
       {
         "shares": 70.94,
         "price": 0.998,
         "usdc": 70.79812,
-        "ts": 1776891208,
-        "fee": 0,
-        "maker": false
+        "ts": 1776891208
       },
       {
         "shares": 644.40778,
         "price": 0.999,
         "usdc": 643.79556,
-        "ts": 1776891858,
-        "fee": 0,
-        "maker": false
+        "ts": 1776891858
       },
       {
         "shares": 1.07,
         "price": 0.998,
         "usdc": 1.06786,
-        "ts": 1776892070,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892070
       },
       {
         "shares": 1.5,
         "price": 0.998,
         "usdc": 1.497,
-        "ts": 1776892422,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892422
       }
     ],
     "totalShares": 1043.92563
@@ -8077,41 +4282,31 @@
         "shares": 331.84782999999993,
         "price": 0.9794332628323213,
         "usdc": 430.6666,
-        "ts": 1776888122,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888122
       },
       {
         "shares": 105.21,
         "price": 0.99,
         "usdc": 104.1579,
-        "ts": 1776888126,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888126
       },
       {
         "shares": 4.88,
         "price": 0.998,
         "usdc": 4.87024,
-        "ts": 1776892302,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892302
       },
       {
         "shares": 7.8,
         "price": 0.998,
         "usdc": 7.7844,
-        "ts": 1776892536,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892536
       },
       {
         "shares": 5.68,
         "price": 0.998,
         "usdc": 5.66864,
-        "ts": 1776892768,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892768
       }
     ],
     "totalShares": 455.4178299999999
@@ -8124,129 +4319,97 @@
         "shares": 202.08744000000002,
         "price": 0.9725593988285999,
         "usdc": 264.0207,
-        "ts": 1776888124,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888124
       },
       {
         "shares": 5,
         "price": 0.98,
         "usdc": 4.9,
-        "ts": 1776888192,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888192
       },
       {
         "shares": 15.03,
         "price": 0.98,
         "usdc": 14.7294,
-        "ts": 1776888402,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888402
       },
       {
         "shares": 10.5,
         "price": 0.98,
         "usdc": 10.29,
-        "ts": 1776888436,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888436
       },
       {
         "shares": 1.31,
         "price": 0.98,
         "usdc": 1.2838,
-        "ts": 1776888642,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888642
       },
       {
         "shares": 1,
         "price": 0.998,
         "usdc": 0.998,
-        "ts": 1776891888,
-        "fee": 0,
-        "maker": false
+        "ts": 1776891888
       },
       {
         "shares": 22.19,
         "price": 0.998,
         "usdc": 22.14562,
-        "ts": 1776891960,
-        "fee": 0,
-        "maker": false
+        "ts": 1776891960
       },
       {
         "shares": 1.63,
         "price": 0.998,
         "usdc": 1.62674,
-        "ts": 1776892174,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892174
       },
       {
         "shares": 22.54,
         "price": 0.998,
         "usdc": 22.49492,
-        "ts": 1776892324,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892324
       },
       {
         "shares": 3.32,
         "price": 0.998,
         "usdc": 3.31336,
-        "ts": 1776892436,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892436
       },
       {
         "shares": 3.38,
         "price": 0.998,
         "usdc": 3.37324,
-        "ts": 1776892538,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892538
       },
       {
         "shares": 3.11,
         "price": 0.998,
         "usdc": 3.10378,
-        "ts": 1776892640,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892640
       },
       {
         "shares": 89.78,
         "price": 0.998,
         "usdc": 89.60044,
-        "ts": 1776892690,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892690
       },
       {
         "shares": 50,
         "price": 0.998,
         "usdc": 49.9,
-        "ts": 1776893444,
-        "fee": 0,
-        "maker": false
+        "ts": 1776893444
       },
       {
         "shares": 5,
         "price": 0.998,
         "usdc": 4.99,
-        "ts": 1776893580,
-        "fee": 0,
-        "maker": false
+        "ts": 1776893580
       },
       {
         "shares": 10.93,
         "price": 0.998,
         "usdc": 10.90814,
-        "ts": 1776893648,
-        "fee": 0,
-        "maker": false
+        "ts": 1776893648
       }
     ],
     "totalShares": 446.8074400000001
@@ -8259,9 +4422,7 @@
         "shares": 105.25,
         "price": 0.998,
         "usdc": 105.0395,
-        "ts": 1776888126,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888126
       }
     ],
     "totalShares": 105.25
@@ -8274,9 +4435,7 @@
         "shares": 200,
         "price": 0.987,
         "usdc": 197.4,
-        "ts": 1776888986,
-        "fee": 0,
-        "maker": false
+        "ts": 1776888986
       }
     ],
     "totalShares": 200
@@ -8289,17 +4448,13 @@
         "shares": 31.726419999999997,
         "price": 0.96,
         "usdc": 30.5184,
-        "ts": 1776892786,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892786
       },
       {
         "shares": 50,
         "price": 0.94,
         "usdc": 47,
-        "ts": 1776893356,
-        "fee": 0,
-        "maker": false
+        "ts": 1776893356
       }
     ],
     "totalShares": 81.72641999999999
@@ -8312,9 +4467,7 @@
         "shares": 26.73,
         "price": 0.8,
         "usdc": 21.6,
-        "ts": 1776892944,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892944
       }
     ],
     "totalShares": 26.73
@@ -8327,9 +4480,7 @@
         "shares": 74.01069,
         "price": 0.89,
         "usdc": 66.2338,
-        "ts": 1776892950,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892950
       }
     ],
     "totalShares": 74.01069
@@ -8342,9 +4493,7 @@
         "shares": 136.19964000000002,
         "price": 0.983806984080405,
         "usdc": 134.10273,
-        "ts": 1776892962,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892962
       }
     ],
     "totalShares": 136.19964000000002
@@ -8357,9 +4506,7 @@
         "shares": 638.16427,
         "price": 0.997,
         "usdc": 636.34522,
-        "ts": 1776892970,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892970
       }
     ],
     "totalShares": 638.16427
@@ -8372,9 +4519,7 @@
         "shares": 99.985,
         "price": 0.997,
         "usdc": 99.7,
-        "ts": 1776892980,
-        "fee": 0,
-        "maker": false
+        "ts": 1776892980
       }
     ],
     "totalShares": 99.985
@@ -8387,9 +4532,7 @@
         "shares": 9.62,
         "price": 0.24,
         "usdc": 2.4,
-        "ts": 1776893218,
-        "fee": 0,
-        "maker": false
+        "ts": 1776893218
       }
     ],
     "totalShares": 9.62
@@ -8402,17 +4545,13 @@
         "shares": 10,
         "price": 0.41,
         "usdc": 4.1,
-        "ts": 1776893438,
-        "fee": 0,
-        "maker": false
+        "ts": 1776893438
       },
       {
         "shares": 10,
         "price": 0.41,
         "usdc": 4.1,
-        "ts": 1776893450,
-        "fee": 0,
-        "maker": false
+        "ts": 1776893450
       }
     ],
     "totalShares": 20
