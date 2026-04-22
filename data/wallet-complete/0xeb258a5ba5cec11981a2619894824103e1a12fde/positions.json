@@ -1,0 +1,30 @@
+[
+  {
+    "proxyWallet": "0xeb258a5ba5cec11981a2619894824103e1a12fde",
+    "asset": "29070552102026671421311794903518195519270884783345949615744844213178719164005",
+    "conditionId": "0x2e3926753ba1e402a28832269eac8773674fbfab357fb165f2e16323d05af6ea",
+    "size": 200.5374,
+    "avgPrice": 0.1704,
+    "initialValue": 34.1874,
+    "currentValue": 0,
+    "cashPnl": -34.1874,
+    "percentPnl": -99.9999,
+    "totalBought": 208,
+    "realizedPnl": 0,
+    "percentRealizedPnl": -100,
+    "curPrice": 0,
+    "redeemable": true,
+    "mergeable": false,
+    "title": "Will the highest temperature in Seoul be 16°C on April 4?",
+    "slug": "highest-temperature-in-seoul-on-april-4-2026-16c",
+    "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/highest-temperature-in-seoul-on-december-6-WzqtMeHg43n4.jpg",
+    "eventId": "322563",
+    "eventSlug": "highest-temperature-in-seoul-on-april-4-2026",
+    "outcome": "Yes",
+    "outcomeIndex": 0,
+    "oppositeOutcome": "No",
+    "oppositeAsset": "94699665893260627546093118099896712474118602845005170467565350491531958226674",
+    "endDate": "2026-04-04",
+    "negativeRisk": true
+  }
+]

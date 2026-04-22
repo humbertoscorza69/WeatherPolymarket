@@ -1,0 +1,26 @@
+{
+  "wallet": "0xa9074534c918f9bb59ea8be72319f85f4ba0ba96",
+  "fetchedAt": "2026-04-22T22:01:54.383Z",
+  "activityEventCount": 3500,
+  "activityTruncated": true,
+  "activityHitApiCap": true,
+  "tradeEventCount": 1110,
+  "tradesTruncated": false,
+  "tradesHitApiCap": false,
+  "positionCount": 62,
+  "closedTradeCount": 5,
+  "openLotCount": 730,
+  "realizedPnlUsdc": -86.90739999999997,
+  "winRateStrict": 0,
+  "wins": 0,
+  "losses": 5,
+  "weatherClosedCount": 5,
+  "weatherRealizedPnl": -86.90739999999997,
+  "weatherWinRate": 0,
+  "valueSnapshot": [
+    {
+      "user": "0xa9074534c918f9bb59ea8be72319f85f4ba0ba96",
+      "value": 11241.6356
+    }
+  ]
+}

@@ -1,0 +1,782 @@
+[
+  {
+    "wallet": "0x900e2ba4b715e8e5088899948355d74c796ff6bf",
+    "fetchedAt": "2026-04-22T22:00:14.640Z",
+    "activityEventCount": 1549,
+    "activityTruncated": false,
+    "activityHitApiCap": false,
+    "tradeEventCount": 512,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 1,
+    "closedTradeCount": 259,
+    "openLotCount": 278,
+    "realizedPnlUsdc": 3971.956742674616,
+    "winRateStrict": 0.9575289575289575,
+    "wins": 248,
+    "losses": 11,
+    "weatherClosedCount": 259,
+    "weatherRealizedPnl": 3971.956742674616,
+    "weatherWinRate": 0.9536679536679536,
+    "valueSnapshot": [
+      {
+        "user": "0x900e2ba4b715e8e5088899948355d74c796ff6bf",
+        "value": 2130.5232
+      }
+    ]
+  },
+  {
+    "wallet": "0xd391d4c98709f61f72472cbd8e8126fc1e3c093f",
+    "fetchedAt": "2026-04-22T22:00:23.430Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 1200,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 0,
+    "closedTradeCount": 1462,
+    "openLotCount": 292,
+    "realizedPnlUsdc": 3755.3246037677864,
+    "winRateStrict": 0.9466484268125855,
+    "wins": 1384,
+    "losses": 50,
+    "weatherClosedCount": 1462,
+    "weatherRealizedPnl": 3755.3246037677864,
+    "weatherWinRate": 0.9247606019151847,
+    "valueSnapshot": [
+      {
+        "user": "0xd391d4c98709f61f72472cbd8e8126fc1e3c093f",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "wallet": "0x937bcac3a8a30c07d827ad0550c3fe3a6756bfab",
+    "fetchedAt": "2026-04-22T22:00:13.506Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 2838,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 1,
+    "closedTradeCount": 751,
+    "openLotCount": 1016,
+    "realizedPnlUsdc": 2425.5573360316334,
+    "winRateStrict": 0.844207723035952,
+    "wins": 634,
+    "losses": 9,
+    "weatherClosedCount": 751,
+    "weatherRealizedPnl": 2425.5573360316334,
+    "weatherWinRate": 0.796271637816245,
+    "valueSnapshot": [
+      {
+        "user": "0x937bcac3a8a30c07d827ad0550c3fe3a6756bfab",
+        "value": 7873.0874
+      }
+    ]
+  },
+  {
+    "wallet": "0xa1782a357ec27ad78ef58394953184fa52522112",
+    "fetchedAt": "2026-04-22T22:01:45.770Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 2311,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 2,
+    "closedTradeCount": 243,
+    "openLotCount": 531,
+    "realizedPnlUsdc": 4314.170973790116,
+    "winRateStrict": 0.8518518518518519,
+    "wins": 207,
+    "losses": 33,
+    "weatherClosedCount": 37,
+    "weatherRealizedPnl": 1598.4301394304287,
+    "weatherWinRate": 0.918918918918919,
+    "valueSnapshot": [
+      {
+        "user": "0xa1782a357ec27ad78ef58394953184fa52522112",
+        "value": 21.1114
+      }
+    ]
+  },
+  {
+    "wallet": "0xeb258a5ba5cec11981a2619894824103e1a12fde",
+    "fetchedAt": "2026-04-22T22:00:24.321Z",
+    "activityEventCount": 1204,
+    "activityTruncated": false,
+    "activityHitApiCap": false,
+    "tradeEventCount": 480,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 1,
+    "closedTradeCount": 176,
+    "openLotCount": 145,
+    "realizedPnlUsdc": 1161.215926259118,
+    "winRateStrict": 0.6761363636363636,
+    "wins": 119,
+    "losses": 56,
+    "weatherClosedCount": 175,
+    "weatherRealizedPnl": 1220.215926259118,
+    "weatherWinRate": 0.6742857142857143,
+    "valueSnapshot": [
+      {
+        "user": "0xeb258a5ba5cec11981a2619894824103e1a12fde",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "wallet": "0x38cc1d1f95d12039324809d8bb6ca6da6cbef88e",
+    "fetchedAt": "2026-04-22T22:00:58.599Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 2749,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 4,
+    "closedTradeCount": 667,
+    "openLotCount": 676,
+    "realizedPnlUsdc": 877.5349781715947,
+    "winRateStrict": 0.9205397301349325,
+    "wins": 614,
+    "losses": 53,
+    "weatherClosedCount": 667,
+    "weatherRealizedPnl": 877.5349781715947,
+    "weatherWinRate": 0.7886056971514243,
+    "valueSnapshot": [
+      {
+        "user": "0x38cc1d1f95d12039324809d8bb6ca6da6cbef88e",
+        "value": 1097.9478
+      }
+    ]
+  },
+  {
+    "wallet": "0x087832036d877284a544d4b4d45bc0ce27a97b50",
+    "fetchedAt": "2026-04-22T22:00:40.710Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 3500,
+    "tradesTruncated": true,
+    "tradesHitApiCap": true,
+    "positionCount": 108,
+    "closedTradeCount": 2311,
+    "openLotCount": 491,
+    "realizedPnlUsdc": 326.87209369460476,
+    "winRateStrict": 0.9926438771094764,
+    "wins": 2294,
+    "losses": 16,
+    "weatherClosedCount": 2311,
+    "weatherRealizedPnl": 326.87209369460476,
+    "weatherWinRate": 0.911726525313717,
+    "valueSnapshot": [
+      {
+        "user": "0x087832036d877284a544d4b4d45bc0ce27a97b50",
+        "value": 6197.0697
+      }
+    ]
+  },
+  {
+    "wallet": "0x8967942026fc0e64ff83c2366e056c632e53d7da",
+    "fetchedAt": "2026-04-22T22:01:35.533Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 2159,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 2,
+    "closedTradeCount": 12,
+    "openLotCount": 863,
+    "realizedPnlUsdc": 295.6345115999992,
+    "winRateStrict": 0.3333333333333333,
+    "wins": 4,
+    "losses": 2,
+    "weatherClosedCount": 12,
+    "weatherRealizedPnl": 295.6345115999992,
+    "weatherWinRate": 0.25,
+    "valueSnapshot": [
+      {
+        "user": "0x8967942026fc0e64ff83c2366e056c632e53d7da",
+        "value": 3220.4759
+      }
+    ]
+  },
+  {
+    "wallet": "0x881713021866ab84467b2b552b6cd7a51ac9cda8",
+    "fetchedAt": "2026-04-22T22:01:26.578Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 3281,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 61,
+    "closedTradeCount": 1498,
+    "openLotCount": 238,
+    "realizedPnlUsdc": 271.4456472357513,
+    "winRateStrict": 0.9526034712950601,
+    "wins": 1427,
+    "losses": 52,
+    "weatherClosedCount": 1498,
+    "weatherRealizedPnl": 271.4456472357513,
+    "weatherWinRate": 0.767022696929239,
+    "valueSnapshot": [
+      {
+        "user": "0x881713021866ab84467b2b552b6cd7a51ac9cda8",
+        "value": 19715.763
+      }
+    ]
+  },
+  {
+    "wallet": "0x7bd9019211677f5db6e221d6a6da030ebcd0bd75",
+    "fetchedAt": "2026-04-22T22:01:16.769Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 3020,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 10,
+    "closedTradeCount": 922,
+    "openLotCount": 165,
+    "realizedPnlUsdc": 3322.851798823473,
+    "winRateStrict": 0.762472885032538,
+    "wins": 703,
+    "losses": 189,
+    "weatherClosedCount": 200,
+    "weatherRealizedPnl": 259.3125552453937,
+    "weatherWinRate": 0.77,
+    "valueSnapshot": [
+      {
+        "user": "0x7bd9019211677f5db6e221d6a6da030ebcd0bd75",
+        "value": 11030.8251
+      }
+    ]
+  },
+  {
+    "wallet": "0xdcd28b399f1643df577ed313d1ff6ba4ef2187c9",
+    "fetchedAt": "2026-04-22T22:02:39.814Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 1579,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 62,
+    "closedTradeCount": 818,
+    "openLotCount": 291,
+    "realizedPnlUsdc": 233.0745377193144,
+    "winRateStrict": 0.9902200488997555,
+    "wins": 810,
+    "losses": 7,
+    "weatherClosedCount": 818,
+    "weatherRealizedPnl": 233.0745377193144,
+    "weatherWinRate": 0.941320293398533,
+    "valueSnapshot": [
+      {
+        "user": "0xdcd28b399f1643df577ed313d1ff6ba4ef2187c9",
+        "value": 90.1742
+      }
+    ]
+  },
+  {
+    "wallet": "0x261cd61ce457d51085d1eabe618207dcdb8a8b76",
+    "fetchedAt": "2026-04-22T22:00:49.299Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 724,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 69,
+    "closedTradeCount": 2098,
+    "openLotCount": 300,
+    "realizedPnlUsdc": 161.134426018459,
+    "winRateStrict": 0.9899904671115348,
+    "wins": 2077,
+    "losses": 21,
+    "weatherClosedCount": 2098,
+    "weatherRealizedPnl": 161.134426018459,
+    "weatherWinRate": 0.9289799809342231,
+    "valueSnapshot": [
+      {
+        "user": "0x261cd61ce457d51085d1eabe618207dcdb8a8b76",
+        "value": 6300.0149
+      }
+    ]
+  },
+  {
+    "wallet": "0x9177fe8603e6be18b9857d8fb08b9cb0e4bf0491",
+    "fetchedAt": "2026-04-22T22:01:36.879Z",
+    "activityEventCount": 1702,
+    "activityTruncated": false,
+    "activityHitApiCap": false,
+    "tradeEventCount": 865,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 3,
+    "closedTradeCount": 61,
+    "openLotCount": 315,
+    "realizedPnlUsdc": 102.667351173153,
+    "winRateStrict": 0.45901639344262296,
+    "wins": 28,
+    "losses": 30,
+    "weatherClosedCount": 58,
+    "weatherRealizedPnl": 51.38387117315303,
+    "weatherWinRate": 0.3620689655172414,
+    "valueSnapshot": [
+      {
+        "user": "0x9177fe8603e6be18b9857d8fb08b9cb0e4bf0491",
+        "value": 9836.9779
+      }
+    ]
+  },
+  {
+    "wallet": "0x63a1cf54908c86c480fec05eed11675a17d4d974",
+    "fetchedAt": "2026-04-22T22:01:07.249Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 1241,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 11,
+    "closedTradeCount": 29,
+    "openLotCount": 437,
+    "realizedPnlUsdc": 8.131601449999984,
+    "winRateStrict": 0.5862068965517241,
+    "wins": 17,
+    "losses": 12,
+    "weatherClosedCount": 29,
+    "weatherRealizedPnl": 8.131601449999984,
+    "weatherWinRate": 0.5862068965517241,
+    "valueSnapshot": [
+      {
+        "user": "0x63a1cf54908c86c480fec05eed11675a17d4d974",
+        "value": 1301.8309
+      }
+    ]
+  },
+  {
+    "wallet": "0xd28021317c1be36239e8d930dee7d6c3a40082b3",
+    "fetchedAt": "2026-04-22T22:02:21.639Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 2726,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 9,
+    "closedTradeCount": 45,
+    "openLotCount": 543,
+    "realizedPnlUsdc": 15.724660348999965,
+    "winRateStrict": 0.8,
+    "wins": 36,
+    "losses": 9,
+    "weatherClosedCount": 2,
+    "weatherRealizedPnl": 6.009740285000018,
+    "weatherWinRate": 1,
+    "valueSnapshot": [
+      {
+        "user": "0xd28021317c1be36239e8d930dee7d6c3a40082b3",
+        "value": 7206.5919
+      }
+    ]
+  },
+  {
+    "wallet": "0xf6f1282b3e2ae0e1560d16be3ea9ccd079897da3",
+    "fetchedAt": "2026-04-22T22:03:05.222Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 160,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 167,
+    "closedTradeCount": 45,
+    "openLotCount": 1182,
+    "realizedPnlUsdc": -1352.4881921739125,
+    "winRateStrict": 0.6,
+    "wins": 27,
+    "losses": 17,
+    "weatherClosedCount": 6,
+    "weatherRealizedPnl": 3.486879999999986,
+    "weatherWinRate": 0.8333333333333334,
+    "valueSnapshot": [
+      {
+        "user": "0xf6f1282b3e2ae0e1560d16be3ea9ccd079897da3",
+        "value": 19769.0972
+      }
+    ]
+  },
+  {
+    "wallet": "0x8796b01a723066063eba805833778c276162eb9f",
+    "fetchedAt": "2026-04-22T22:04:26.331Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 1545,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 3,
+    "closedTradeCount": 6,
+    "openLotCount": 462,
+    "realizedPnlUsdc": 0.07180000000055431,
+    "winRateStrict": 0.6666666666666666,
+    "wins": 4,
+    "losses": 1,
+    "weatherClosedCount": 5,
+    "weatherRealizedPnl": 0.12000000000055436,
+    "weatherWinRate": 0.4,
+    "valueSnapshot": [
+      {
+        "user": "0x8796b01a723066063eba805833778c276162eb9f",
+        "value": 11348.9718
+      }
+    ]
+  },
+  {
+    "wallet": "0xfc25f141ed27bb1787338d2c4e7f51e3a15e1f7f",
+    "fetchedAt": "2026-04-22T22:03:29.475Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 3500,
+    "tradesTruncated": true,
+    "tradesHitApiCap": true,
+    "positionCount": 15,
+    "closedTradeCount": 121,
+    "openLotCount": 110,
+    "realizedPnlUsdc": 1487.6353251480116,
+    "winRateStrict": 0.06611570247933884,
+    "wins": 8,
+    "losses": 59,
+    "weatherClosedCount": 0,
+    "weatherRealizedPnl": 0,
+    "weatherWinRate": 0,
+    "valueSnapshot": [
+      {
+        "user": "0xfc25f141ed27bb1787338d2c4e7f51e3a15e1f7f",
+        "value": 334101.146
+      }
+    ]
+  },
+  {
+    "wallet": "0x6049761986af66cd8e78997c940766bd69c7f14f",
+    "fetchedAt": "2026-04-22T22:04:01.187Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 3500,
+    "tradesTruncated": true,
+    "tradesHitApiCap": true,
+    "positionCount": 18,
+    "closedTradeCount": 1,
+    "openLotCount": 434,
+    "realizedPnlUsdc": -88.29360000000008,
+    "winRateStrict": 0,
+    "wins": 0,
+    "losses": 1,
+    "weatherClosedCount": 0,
+    "weatherRealizedPnl": 0,
+    "weatherWinRate": 0,
+    "valueSnapshot": [
+      {
+        "user": "0x6049761986af66cd8e78997c940766bd69c7f14f",
+        "value": 63335.0247
+      }
+    ]
+  },
+  {
+    "wallet": "0x2785e7022dc20757108204b13c08cea8613b70ae",
+    "fetchedAt": "2026-04-22T22:04:09.130Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 213,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 4,
+    "closedTradeCount": 331,
+    "openLotCount": 26,
+    "realizedPnlUsdc": 9461.886300004004,
+    "winRateStrict": 0.9607250755287009,
+    "wins": 318,
+    "losses": 8,
+    "weatherClosedCount": 0,
+    "weatherRealizedPnl": 0,
+    "weatherWinRate": 0,
+    "valueSnapshot": [
+      {
+        "user": "0x2785e7022dc20757108204b13c08cea8613b70ae",
+        "value": 289422.7114
+      }
+    ]
+  },
+  {
+    "wallet": "0x2d99e29c4f066ba32098c65e4c7454b277d94ca3",
+    "fetchedAt": "2026-04-22T22:04:17.423Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 2053,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 2,
+    "closedTradeCount": 361,
+    "openLotCount": 139,
+    "realizedPnlUsdc": 25389.492051953894,
+    "winRateStrict": 0.6786703601108033,
+    "wins": 245,
+    "losses": 97,
+    "weatherClosedCount": 0,
+    "weatherRealizedPnl": 0,
+    "weatherWinRate": 0,
+    "valueSnapshot": [
+      {
+        "user": "0x2d99e29c4f066ba32098c65e4c7454b277d94ca3",
+        "value": 538291.3489
+      }
+    ]
+  },
+  {
+    "wallet": "0x104171232971a6db8cf938f76fdbebbb81c5f452",
+    "fetchedAt": "2026-04-22T22:03:45.175Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 3500,
+    "tradesTruncated": true,
+    "tradesHitApiCap": true,
+    "positionCount": 500,
+    "closedTradeCount": 33,
+    "openLotCount": 69,
+    "realizedPnlUsdc": -1202.4204001544717,
+    "winRateStrict": 0.21212121212121213,
+    "wins": 7,
+    "losses": 26,
+    "weatherClosedCount": 12,
+    "weatherRealizedPnl": -16.486339744471813,
+    "weatherWinRate": 0.4166666666666667,
+    "valueSnapshot": [
+      {
+        "user": "0x104171232971a6db8cf938f76fdbebbb81c5f452",
+        "value": 39869.9218
+      }
+    ]
+  },
+  {
+    "wallet": "0xbc8405b2c4149332c835ebb7e29e68e53eaba0d2",
+    "fetchedAt": "2026-04-22T22:02:10.191Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 3500,
+    "tradesTruncated": true,
+    "tradesHitApiCap": true,
+    "positionCount": 138,
+    "closedTradeCount": 38,
+    "openLotCount": 673,
+    "realizedPnlUsdc": -25.54720852003678,
+    "winRateStrict": 0.2894736842105263,
+    "wins": 11,
+    "losses": 26,
+    "weatherClosedCount": 38,
+    "weatherRealizedPnl": -25.54720852003678,
+    "weatherWinRate": 0.2894736842105263,
+    "valueSnapshot": [
+      {
+        "user": "0xbc8405b2c4149332c835ebb7e29e68e53eaba0d2",
+        "value": 14319.4574
+      }
+    ]
+  },
+  {
+    "wallet": "0xa9074534c918f9bb59ea8be72319f85f4ba0ba96",
+    "fetchedAt": "2026-04-22T22:01:54.383Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 1110,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 62,
+    "closedTradeCount": 5,
+    "openLotCount": 730,
+    "realizedPnlUsdc": -86.90739999999997,
+    "winRateStrict": 0,
+    "wins": 0,
+    "losses": 5,
+    "weatherClosedCount": 5,
+    "weatherRealizedPnl": -86.90739999999997,
+    "weatherWinRate": 0,
+    "valueSnapshot": [
+      {
+        "user": "0xa9074534c918f9bb59ea8be72319f85f4ba0ba96",
+        "value": 11241.6356
+      }
+    ]
+  },
+  {
+    "wallet": "0xd83cf89fa4ce75d1557c75657c9c9cb703ea798c",
+    "fetchedAt": "2026-04-22T22:02:31.039Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 3011,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 14,
+    "closedTradeCount": 264,
+    "openLotCount": 702,
+    "realizedPnlUsdc": -397.0038231027466,
+    "winRateStrict": 0.4128787878787879,
+    "wins": 109,
+    "losses": 153,
+    "weatherClosedCount": 259,
+    "weatherRealizedPnl": -472.62273560820125,
+    "weatherWinRate": 0.38223938223938225,
+    "valueSnapshot": [
+      {
+        "user": "0xd83cf89fa4ce75d1557c75657c9c9cb703ea798c",
+        "value": 14027.3235
+      }
+    ]
+  },
+  {
+    "wallet": "0xd83cf89fa4ce75d1557c75657c9c9cb703ea798c",
+    "fetchedAt": "2026-04-22T22:04:34.940Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 3011,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 14,
+    "closedTradeCount": 264,
+    "openLotCount": 702,
+    "realizedPnlUsdc": -397.0038231027466,
+    "winRateStrict": 0.4128787878787879,
+    "wins": 109,
+    "losses": 153,
+    "weatherClosedCount": 259,
+    "weatherRealizedPnl": -472.62273560820125,
+    "weatherWinRate": 0.38223938223938225,
+    "valueSnapshot": [
+      {
+        "user": "0xd83cf89fa4ce75d1557c75657c9c9cb703ea798c",
+        "value": 14027.3235
+      }
+    ]
+  },
+  {
+    "wallet": "0xea25d55fdfbf9bda6a629ba0f2f52adbf0e3885f",
+    "fetchedAt": "2026-04-22T22:02:48.344Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 1209,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 7,
+    "closedTradeCount": 882,
+    "openLotCount": 603,
+    "realizedPnlUsdc": -506.8655955910209,
+    "winRateStrict": 0.6984126984126984,
+    "wins": 616,
+    "losses": 122,
+    "weatherClosedCount": 610,
+    "weatherRealizedPnl": -589.4151996364083,
+    "weatherWinRate": 0.601639344262295,
+    "valueSnapshot": [
+      {
+        "user": "0xea25d55fdfbf9bda6a629ba0f2f52adbf0e3885f",
+        "value": 3893.4838
+      }
+    ]
+  },
+  {
+    "wallet": "0xf9151529abce6aa8357b99707ec06607cf238720",
+    "fetchedAt": "2026-04-22T22:03:13.671Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 1479,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 12,
+    "closedTradeCount": 29,
+    "openLotCount": 495,
+    "realizedPnlUsdc": -1727.253542391795,
+    "winRateStrict": 0.4827586206896552,
+    "wins": 14,
+    "losses": 15,
+    "weatherClosedCount": 15,
+    "weatherRealizedPnl": -842.021975182,
+    "weatherWinRate": 0.06666666666666667,
+    "valueSnapshot": [
+      {
+        "user": "0xf9151529abce6aa8357b99707ec06607cf238720",
+        "value": 49154.2141
+      }
+    ]
+  },
+  {
+    "wallet": "0xece5634ace7b052a5757d88ea394e9ce8bf843cf",
+    "fetchedAt": "2026-04-22T22:02:57.146Z",
+    "activityEventCount": 3500,
+    "activityTruncated": true,
+    "activityHitApiCap": true,
+    "tradeEventCount": 1553,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 9,
+    "closedTradeCount": 229,
+    "openLotCount": 730,
+    "realizedPnlUsdc": -1375.3972904053633,
+    "winRateStrict": 0.8209606986899564,
+    "wins": 188,
+    "losses": 41,
+    "weatherClosedCount": 172,
+    "weatherRealizedPnl": -1345.0000205220226,
+    "weatherWinRate": 0.7732558139534884,
+    "valueSnapshot": [
+      {
+        "user": "0xece5634ace7b052a5757d88ea394e9ce8bf843cf",
+        "value": 6856.7551
+      }
+    ]
+  },
+  {
+    "wallet": "0xbe0a1b8db5e4b6e3cc80a307b3e794541cc7eed1",
+    "fetchedAt": "2026-04-22T22:02:12.234Z",
+    "activityEventCount": 3354,
+    "activityTruncated": false,
+    "activityHitApiCap": false,
+    "tradeEventCount": 2009,
+    "tradesTruncated": false,
+    "tradesHitApiCap": false,
+    "positionCount": 40,
+    "closedTradeCount": 132,
+    "openLotCount": 1491,
+    "realizedPnlUsdc": -3435.687136986712,
+    "winRateStrict": 0.7803030303030303,
+    "wins": 103,
+    "losses": 29,
+    "weatherClosedCount": 131,
+    "weatherRealizedPnl": -3418.2006574866928,
+    "weatherWinRate": 0.7862595419847328,
+    "valueSnapshot": [
+      {
+        "user": "0xbe0a1b8db5e4b6e3cc80a307b3e794541cc7eed1",
+        "value": 6515.5434
+      }
+    ]
+  }
+]

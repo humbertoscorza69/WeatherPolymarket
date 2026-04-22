@@ -1,0 +1,30 @@
+[
+  {
+    "proxyWallet": "0x900e2ba4b715e8e5088899948355d74c796ff6bf",
+    "asset": "85713098705607966091355993552085788027787598762404505754363260549827673152499",
+    "conditionId": "0x4971a1bd5a42dffe04b4d1f31456e62e8b583c9cfdce1fc3a96635132ebb542e",
+    "size": 2133.7238,
+    "avgPrice": 0.988,
+    "initialValue": 2108.213,
+    "currentValue": 2130.5232,
+    "cashPnl": 22.3101,
+    "percentPnl": 1.0582,
+    "totalBought": 2135,
+    "realizedPnl": 0,
+    "percentRealizedPnl": 0.9978,
+    "curPrice": 0.9985,
+    "redeemable": false,
+    "mergeable": false,
+    "title": "Will the highest temperature in Sao Paulo be 27°C on April 22?",
+    "slug": "highest-temperature-in-sao-paulo-on-april-22-2026-27c",
+    "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/sao paulo-7deca91e54.jpg",
+    "eventId": "397974",
+    "eventSlug": "highest-temperature-in-sao-paulo-on-april-22-2026",
+    "outcome": "No",
+    "outcomeIndex": 1,
+    "oppositeOutcome": "Yes",
+    "oppositeAsset": "11476033907885464909679908228441343585274648268654460049206022217448721754832",
+    "endDate": "2026-04-22",
+    "negativeRisk": true
+  }
+]
