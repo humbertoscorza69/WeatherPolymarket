@@ -17,7 +17,8 @@
     "fetch-wallet-trades": "node scripts/fetch-wallet-trades.mjs",
     "fetch-more-wallets": "node scripts/fetch-more-wallets.mjs",
     "analyze-wallets": "node scripts/analyze-wallets.mjs",
-    "validate-backtest": "node scripts/validate-backtest.mjs"
+    "validate-backtest": "node scripts/validate-backtest.mjs",
+    "fetch-wallet-complete": "node scripts/fetch-wallet-complete.mjs"
   },
   "engines": {
     "node": ">=20.6"
