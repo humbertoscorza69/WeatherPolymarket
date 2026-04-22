@@ -169,6 +169,21 @@ function bestObs(market) {
       || WEATHER_OBS.get(`${market.city}__${market.date}`);
 }
 
+// v12: cross-source agreement check. Returns true if METAR and Open-Meteo
+// agree on observed max-so-far within AGREEMENT_TOL, or if only one source
+// is available (no disagreement possible).  Returns false when both available
+// and disagreement exceeds tolerance — signal should be skipped.
+function sourcesAgree(market, entryTs, tol) {
+  if (!market) return false;
+  const metarObs = METAR_OBS.get(`${market.city}__${market.date}`);
+  const omObs = WEATHER_OBS.get(`${market.city}__${market.date}`);
+  if (!metarObs || !omObs) return true;  // only one source → can't disagree
+  const metarMax = observedMaxBefore(metarObs, entryTs);
+  const omMax = observedMaxBefore(omObs, entryTs);
+  if (metarMax == null || omMax == null) return true;
+  return Math.abs(metarMax - omMax) <= tol;
+}
+
 /**
  * v11 multi-signal entry logic.  Returns {side, reason, cushion} or null.
  *   side: "NO" or "YES" (which outcome we're buying)
@@ -624,7 +639,7 @@ function simulateTrade(cid, entryTs, marketPrice, ourBidPrice, shares, cfg) {
 }
 
 let passedCoarse = 0, scored = 0, attempted = 0, filled = 0;
-let gatedLiq = 0, gatedCB = 0, gatedBL = 0, gatedMomentum = 0, gatedCrossed = 0;
+let gatedLiq = 0, gatedCB = 0, gatedBL = 0, gatedMomentum = 0, gatedCrossed = 0, gatedDisagree = 0;
 const positions = new Map();
 const lastEntryByCid = new Map();
 const trades = [];
@@ -695,6 +710,12 @@ for (const ev of events) {
   const sig = computeEntrySignal(ev.market, ev.t, CROSSED_BUFFER, CFG.FORECAST_BUF || 2.0);
   if (!sig) { gatedCrossed++; continue; }
 
+  // v12: if both weather sources are available, require them to agree. If
+  // they disagree by more than AGREEMENT_TOL, the market is unreliable —
+  // skip. 63%% of v11 losses came from markets with >1°C source disagreement.
+  const agreementTol = Number(argv.agreementtol ?? "1.0");
+  if (!sourcesAgree(ev.market, ev.t, agreementTol)) { gatedDisagree++; continue; }
+
   // Determine token we're buying + price filter
   let entryPrice, sideOutcomeIndex;
   if (sig.side === "NO") {
@@ -724,7 +745,11 @@ for (const ev of events) {
 
   attempted++;
   const ourBidPrice = Math.max(0.01, entryPrice - CFG.BID_OFFSET);
-  const shares = CFG.TRADE_USDC / ourBidPrice;
+  // v12: asymmetric sizing — YES side is higher variance (~85%% WR vs NO's 99%%),
+  // so we size YES at YES_SIZE_MULT × base (default 0.5 = half size).
+  const sizeMult = sig.side === "YES" ? (Number(argv.yessizemult ?? "0.5")) : 1.0;
+  const usdcSize = CFG.TRADE_USDC * sizeMult;
+  const shares = usdcSize / ourBidPrice;
   const resolution = RESOLUTION[ev.conditionId];
   // Settlement value depends on which side we're holding
   let settleWinValue, settleLoseValue;
@@ -799,7 +824,7 @@ const firstTs = trades.length ? Math.min(...trades.map(t => t.entryTs)) : 0;
 const lastTs = trades.length ? Math.max(...trades.map(t => t.entryTs)) : 0;
 const spanDays = (lastTs - firstTs) / 86400;
 
-console.log(`candidates: ${passedCoarse}  gated[liq:${gatedLiq} mom:${gatedMomentum} crossed:${gatedCrossed} CB:${gatedCB} BL:${gatedBL}]  scored:${scored}  attempted:${attempted}  filled:${filled}`);
+console.log(`candidates: ${passedCoarse}  gated[liq:${gatedLiq} mom:${gatedMomentum} crossed:${gatedCrossed} disagree:${gatedDisagree} CB:${gatedCB} BL:${gatedBL}]  scored:${scored}  attempted:${attempted}  filled:${filled}`);
 console.log(`entry fill rate: ${fmt(100*filled/Math.max(1,attempted),1)}%  (limit-buy cross rate)`);
 console.log(`by exit status:`);
 for (const [k, v] of Object.entries(byStatus).sort((a,b) => b[1]-a[1])) {
