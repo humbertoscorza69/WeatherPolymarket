@@ -268,5 +268,34 @@
     "lon": 120.9822,
     "country": "Philippines",
     "tz": "Asia/Manila"
+  },
+  "Dallas": {
+    "lat": 32.78306,
+    "lon": -96.80667,
+    "country": "United States",
+    "tz": "America/Chicago"
+  },
+  "Moscow": {
+    "lat": 55.75222,
+    "lon": 37.61556,
+    "country": "Russia",
+    "tz": "Europe/Moscow"
+  },
+  "San Francisco": {
+    "lat": 37.77493,
+    "lon": -122.41942,
+    "country": "United States",
+    "tz": "America/Los_Angeles"
+  },
+  "Los Angeles": {
+    "lat": 34.05223,
+    "lon": -118.24368,
+    "country": "United States",
+    "tz": "America/Los_Angeles"
+  },
+  "Hong Kong": {
+    "lat": 22.27832,
+    "lon": 114.17469,
+    "tz": "Asia/Hong_Kong"
   }
 }
