@@ -51,6 +51,8 @@ const CFG = {
   TRADE_SIZE:       Number(argv.tradesize ?? "5"),
   MIN_SHARES:       Number(argv.minshares ?? "5"),     // Polymarket minimum
   MAX_HOLD_MIN:     Number(argv.maxhold ?? "1440"),  // v14 — hold to resolution like 937
+  RESET:            argv.reset === "true",
+  NO_CAP:           argv.nocap === "true",           // disable "insufficient bankroll" gate
 };
 
 const LOG = path.resolve("data/detect-log.jsonl");
@@ -70,10 +72,18 @@ const OM_FORECAST = "https://api.open-meteo.com/v1/forecast";
 const OM_GEO = "https://geocoding-api.open-meteo.com/v1/search";
 
 // ----- state (persisted) -----
+// --bankroll on the CLI ALWAYS wins over persisted state. Previously the spread
+// below let a saved bankroll override the CLI arg, which is why --bankroll=5000
+// appeared to be ignored. Positions/trades/realizedPnl still load from disk
+// so restarts don't lose history.
 let state = { positions: [], bankroll: CFG.BANKROLL, realizedPnl: 0, trades: [] };
-if (existsSync(POSITIONS_FILE)) {
-  try { state = { ...state, ...JSON.parse(await fs.readFile(POSITIONS_FILE, "utf8")) }; }
-  catch {}
+const bankrollArgPassed = Object.prototype.hasOwnProperty.call(argv, "bankroll");
+if (!CFG.RESET && existsSync(POSITIONS_FILE)) {
+  try {
+    const persisted = JSON.parse(await fs.readFile(POSITIONS_FILE, "utf8"));
+    state = { ...state, ...persisted };
+    if (bankrollArgPassed) state.bankroll = CFG.BANKROLL;
+  } catch {}
 }
 
 async function persist() {
@@ -288,7 +298,7 @@ async function simulateEntry(market, mkt, sig, currentPrice) {
   let shares = Math.max(CFG.MIN_SHARES, Math.floor(dollarSize / entryPrice));
   let positionSize = shares * entryPrice;
 
-  if (positionSize > state.bankroll) {
+  if (!CFG.NO_CAP && positionSize > state.bankroll) {
     console.log(`  ⏸  Insufficient bankroll for ${market.city} ${sig.side} (need $${positionSize.toFixed(2)}, have $${state.bankroll.toFixed(2)})`);
     return null;
   }
@@ -424,7 +434,7 @@ async function scanOnce() {
 
 async function main() {
   console.log(`=== Detect engine + simulator ===`);
-  console.log(`Bankroll: $${CFG.BANKROLL}  Trade size: $${CFG.TRADE_SIZE} (base; dynamic 0.2-1.0x by confidence; min 5 shares enforced)`);
+  console.log(`Bankroll: $${state.bankroll.toFixed(2)} (CLI=$${CFG.BANKROLL}${CFG.RESET ? ", --reset" : ""}${CFG.NO_CAP ? ", --nocap (no bankroll gate)" : ""})  Trade size: $${CFG.TRADE_SIZE} (base; dynamic 0.2-1.0x by confidence; min 5 shares enforced)`);
   console.log(`Scan intervals: market scan=${CFG.INTERVAL_SEC}s, position check=${CFG.POS_CHECK_SEC}s, weather cache=${CFG.WEATHER_TTL_SEC}s`);
   console.log(`TTR=[${CFG.TTR_MIN_SEC/3600}h, ${CFG.TTR_MAX_SEC/3600}h]`);
   console.log(`Data hierarchy:`);
