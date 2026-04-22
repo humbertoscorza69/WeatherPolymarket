@@ -125,35 +125,58 @@ async function geocode(city) {
 // ----- weather fetch -----
 
 async function fetchDay(lat, lon, date, tz = "UTC") {
-  // Add 1 day before and after to cover timezone boundaries for the local day.
   const d = new Date(date + "T00:00:00Z");
   const startDate = new Date(d.getTime() - 86400*1000).toISOString().slice(0,10);
   const endDate   = new Date(d.getTime() + 86400*1000).toISOString().slice(0,10);
-  // Historical endpoint first
-  let url = `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=${startDate}&end_date=${endDate}&hourly=temperature_2m&timezone=UTC`;
+  const now = Date.now();
+  const ageDays = (now - d.getTime()) / 86400_000;
+
+  // For dates older than 5 days → try archive first (reanalysis)
+  if (ageDays >= 5) {
+    try {
+      const url = `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=${startDate}&end_date=${endDate}&hourly=temperature_2m&timezone=UTC`;
+      const j = await fetchJson(url);
+      const times = j?.hourly?.time ?? [];
+      const temps = j?.hourly?.temperature_2m ?? [];
+      if (temps.length > 0 && temps.some(t => t !== null)) {
+        const samples = times.map((t, i) => ({ t: Math.floor(new Date(t + "Z").getTime()/1000), tempC: temps[i] }))
+                             .filter(s => s.tempC !== null && Number.isFinite(s.tempC));
+        return { samples, source: "archive" };
+      }
+    } catch (e) { /* fall through */ }
+  }
+
+  // For recent / future dates (< 5d old, up to +16d future), use forecast API.
+  // Open-Meteo forecast accepts start_date/end_date within ±16 days of now WITHOUT past_days.
   try {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&start_date=${startDate}&end_date=${endDate}&hourly=temperature_2m&timezone=UTC`;
     const j = await fetchJson(url);
     const times = j?.hourly?.time ?? [];
     const temps = j?.hourly?.temperature_2m ?? [];
     if (temps.length > 0 && temps.some(t => t !== null)) {
       const samples = times.map((t, i) => ({ t: Math.floor(new Date(t + "Z").getTime()/1000), tempC: temps[i] }))
                            .filter(s => s.tempC !== null && Number.isFinite(s.tempC));
-      return { samples, source: "archive" };
+      return { samples, source: "forecast" };
     }
   } catch (e) { /* fall through */ }
 
-  // Forecast API for very recent dates
-  url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&start_date=${startDate}&end_date=${endDate}&hourly=temperature_2m&timezone=UTC&past_days=16`;
+  // Last resort: forecast with past_days (recovers recent past when the
+  // start_date/end_date approach fails — older open-meteo quirk).
   try {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m&timezone=UTC&past_days=16&forecast_days=16`;
     const j = await fetchJson(url);
     const times = j?.hourly?.time ?? [];
     const temps = j?.hourly?.temperature_2m ?? [];
+    const targetStart = new Date(startDate + "T00:00:00Z").getTime() / 1000;
+    const targetEnd   = new Date(endDate   + "T23:59:59Z").getTime() / 1000;
     const samples = times.map((t, i) => ({ t: Math.floor(new Date(t + "Z").getTime()/1000), tempC: temps[i] }))
-                         .filter(s => s.tempC !== null && Number.isFinite(s.tempC));
-    return { samples, source: "forecast" };
+                         .filter(s => s.tempC !== null && Number.isFinite(s.tempC) &&
+                                      s.t >= targetStart && s.t <= targetEnd);
+    if (samples.length > 0) return { samples, source: "forecast-pastdays" };
   } catch (e) {
     return { samples: [], error: e.message };
   }
+  return { samples: [], error: "no-data-from-any-endpoint" };
 }
 
 // ----- main -----
