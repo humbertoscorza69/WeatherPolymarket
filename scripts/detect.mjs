@@ -43,10 +43,13 @@ const CFG = {
   TTR_MAX_SEC:      Number(argv.ttrmax ?? String(8*3600)),
   CROSSED_BUF:      Number(argv.crossedbuf ?? "0.5"),
   FORECAST_BUF:     Number(argv.forecastbuf ?? "2.0"),
-  INTERVAL_SEC:     Number(argv.interval ?? "300"),
+  INTERVAL_SEC:     Number(argv.interval ?? "60"),     // main scan — fast
+  POS_CHECK_SEC:    Number(argv.poscheck ?? "30"),     // open-position updates — faster
+  WEATHER_TTL_SEC:  Number(argv.weathertll ?? "600"),  // cache weather 10min (it updates hourly anyway)
   ONCE:             argv.once === "true",
   BANKROLL:         Number(argv.bankroll ?? "100"),
   TRADE_SIZE:       Number(argv.tradesize ?? "5"),
+  MIN_SHARES:       Number(argv.minshares ?? "5"),     // Polymarket minimum
   MAX_HOLD_MIN:     Number(argv.maxhold ?? "240"),
 };
 
@@ -188,10 +191,22 @@ async function fetchOpenMeteo(city, tz) {
 }
 
 // Merge METAR (past) + Open-Meteo (future) for best signal
+// Weather cache — key = city|date. Weather updates hourly, so we cache per
+// city+date for WEATHER_TTL_SEC (default 10 min) to avoid hammering APIs on
+// fast scan intervals.
+const _weatherCache = new Map();  // key -> {at, metar, openMeteo}
+
 async function getObservationsForMarket(market) {
+  const key = `${market.city}__${market.date}`;
+  const nowMs = Date.now();
+  const cached = _weatherCache.get(key);
+  if (cached && nowMs - cached.at < CFG.WEATHER_TTL_SEC * 1000) {
+    return { metar: cached.metar, openMeteo: cached.openMeteo };
+  }
   const icao = STATIONS[market.city];
   const metarObs = icao ? await fetchMetar(icao, 48) : [];
   const om = await fetchOpenMeteo(market.city, null);
+  _weatherCache.set(key, { at: nowMs, metar: metarObs, openMeteo: om.samples });
   return { metar: metarObs, openMeteo: om.samples };
 }
 
@@ -259,12 +274,6 @@ function sizeMultiplier(sig) {
 
 async function simulateEntry(market, mkt, sig, currentPrice) {
   const sideMult = sizeMultiplier(sig);
-  const positionSize = CFG.TRADE_SIZE * sideMult;
-
-  if (positionSize > state.bankroll) {
-    console.log(`  ⏸  Insufficient bankroll for ${market.city} ${sig.side} (need $${positionSize.toFixed(2)}, have $${state.bankroll.toFixed(2)})`);
-    return null;
-  }
 
   const entryPrice = sig.side === "NO" ? currentPrice : (1 - currentPrice);
   if (sig.side === "NO") {
@@ -273,7 +282,17 @@ async function simulateEntry(market, mkt, sig, currentPrice) {
     if (entryPrice < CFG.MIN_ENTRY_YES || entryPrice > CFG.MAX_ENTRY_YES) return null;
   }
 
-  const shares = positionSize / entryPrice;
+  // Polymarket minimum: 5 shares. Enforce that we buy at least MIN_SHARES,
+  // even if our size multiplier would have been smaller in dollars.
+  const dollarSize = CFG.TRADE_SIZE * sideMult;
+  let shares = Math.max(CFG.MIN_SHARES, Math.floor(dollarSize / entryPrice));
+  let positionSize = shares * entryPrice;
+
+  if (positionSize > state.bankroll) {
+    console.log(`  ⏸  Insufficient bankroll for ${market.city} ${sig.side} (need $${positionSize.toFixed(2)}, have $${state.bankroll.toFixed(2)})`);
+    return null;
+  }
+
   state.bankroll -= positionSize;
   const position = {
     openedAt: new Date().toISOString(),
@@ -363,8 +382,7 @@ async function resolvePositions() {
 async function scanOnce() {
   const tScan = new Date().toISOString();
   console.log(`\n[${tScan}] Bankroll: $${state.bankroll.toFixed(2)}  Realized: $${state.realizedPnl.toFixed(2)}  Open: ${state.positions.length}  Total trades: ${state.trades.length}`);
-
-  await resolvePositions();
+  // (resolvePositions already called by outer fast-path loop)
 
   const markets = await fetchLiveWeatherMarkets();
   console.log(`  scanning ${markets.length} open weather markets...`);
@@ -406,19 +424,37 @@ async function scanOnce() {
 
 async function main() {
   console.log(`=== Detect engine + simulator ===`);
-  console.log(`Bankroll: $${CFG.BANKROLL}  Trade size: $${CFG.TRADE_SIZE} (base; dynamic 0.2-1.0x by confidence)`);
-  console.log(`Scan interval: ${CFG.INTERVAL_SEC}s  TTR=[${CFG.TTR_MIN_SEC/3600}h, ${CFG.TTR_MAX_SEC/3600}h]`);
+  console.log(`Bankroll: $${CFG.BANKROLL}  Trade size: $${CFG.TRADE_SIZE} (base; dynamic 0.2-1.0x by confidence; min 5 shares enforced)`);
+  console.log(`Scan intervals: market scan=${CFG.INTERVAL_SEC}s, position check=${CFG.POS_CHECK_SEC}s, weather cache=${CFG.WEATHER_TTL_SEC}s`);
+  console.log(`TTR=[${CFG.TTR_MIN_SEC/3600}h, ${CFG.TTR_MAX_SEC/3600}h]`);
   console.log(`Data hierarchy:`);
   console.log(`  METAR (airport stations, ~30min lag) — PRIMARY. Matches Polymarket resolver.`);
   console.log(`  Open-Meteo forecast — used for FUTURE temps (YES signals need forecasts).`);
   console.log(`METAR stations mapped: ${Object.keys(STATIONS).length}\n`);
 
-  do {
-    try { await scanOnce(); }
-    catch (e) { console.error(`scan error: ${e.message}`); }
-    if (CFG.ONCE) break;
-    await new Promise(r => setTimeout(r, CFG.INTERVAL_SEC * 1000));
-  } while (true);
+  if (CFG.ONCE) {
+    await scanOnce();
+    await persist();
+  } else {
+    // Two-timer model: fast position tracker, slower market scanner
+    let lastScan = 0;
+    while (true) {
+      try {
+        // Always check open positions first (fast path)
+        await resolvePositions();
+        // Full market scan every INTERVAL_SEC
+        const nowMs = Date.now();
+        if (nowMs - lastScan >= CFG.INTERVAL_SEC * 1000) {
+          await scanOnce();
+          lastScan = nowMs;
+        }
+        await persist();
+      } catch (e) {
+        console.error(`loop error: ${e.message}`);
+      }
+      await new Promise(r => setTimeout(r, CFG.POS_CHECK_SEC * 1000));
+    }
+  }
 
   console.log(`\n=== FINAL SUMMARY ===`);
   console.log(`Bankroll: $${state.bankroll.toFixed(2)}`);
