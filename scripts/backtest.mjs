@@ -48,8 +48,8 @@ const CFG = {
   STOPLOSS_DELTA:     Number(argv.stoplossdelta ?? "0.005"),
   STOPLOSS_TIMEOUT:   Number(argv.stoplosstimeout ?? "15"),
   MAX_HOLD_MIN:       Number(argv.maxhold ?? "60"),
-  TTR_MIN:            Number(argv.ttrmin ?? String(60*60)),
-  TTR_MAX:            Number(argv.ttrmax ?? String(3*60*60)),
+  TTR_MIN:            Number(argv.ttrmin ?? String(60*60)),        // 1h default
+  TTR_MAX:            Number(argv.ttrmax ?? String(24*60*60)),     // 24h default (v13 — matches 0x900e's 10h median entry TTR)
   COOLDOWN_SEC:       Number(argv.cooldown ?? "900"),
   // === v7 production guards ===
   ROLLING_N:          Number(argv.rollingn ?? "50"),

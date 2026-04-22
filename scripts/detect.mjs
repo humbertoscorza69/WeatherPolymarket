@@ -39,8 +39,8 @@ const CFG = {
   MAX_ENTRY_NO:     Number(argv.maxentryno ?? "0.99"),
   MIN_ENTRY_YES:    Number(argv.minentryyes ?? "0.30"),
   MAX_ENTRY_YES:    Number(argv.maxentryyes ?? "0.70"),
-  TTR_MIN_SEC:      Number(argv.ttrmin ?? String(30*60)),
-  TTR_MAX_SEC:      Number(argv.ttrmax ?? String(8*3600)),
+  TTR_MIN_SEC:      Number(argv.ttrmin ?? String(60*60)),        // 1h (allow early entries)
+  TTR_MAX_SEC:      Number(argv.ttrmax ?? String(24*3600)),      // 24h (matches 0x900e's 10h median entry)
   CROSSED_BUF:      Number(argv.crossedbuf ?? "0.5"),
   FORECAST_BUF:     Number(argv.forecastbuf ?? "2.0"),
   INTERVAL_SEC:     Number(argv.interval ?? "60"),     // main scan — fast
