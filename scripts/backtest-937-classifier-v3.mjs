@@ -40,7 +40,9 @@ const TICK_DIR    = path.resolve("data/tick-history");
 const CACHE_DIR   = path.resolve("data/resolved-market-cache");
 const WEATHER_DIR = path.resolve("data/weather-history");
 const TRADES_DIR  = path.resolve("data/wallet-trades");
-const MODEL_FILE  = path.resolve("data/classifier/model-gbdt-v3.json");
+const MODEL_FILE  = path.resolve(argv.model ?? "data/classifier/model-gbdt-v3.json");
+const MIN_ENTRY_TS = Number(argv.minentryts ?? "0");
+const MAX_ENTRY_TS = Number(argv.maxentryts ?? "9999999999");
 const OUT_CSV     = path.resolve("data/backtest-937-classifier-v3.csv");
 
 // Exclude all winning wallets (same as training)
@@ -230,7 +232,8 @@ for (const ev of events) {
   const inBand = ev.p >= CFG.MIN_ENTRY && ev.p <= CFG.MAX_ENTRY;
   const ttr = ev.marketEndTs - ev.t;
   const inTtr = ttr >= CFG.TTR_MIN && ttr <= CFG.TTR_MAX;
-  if (!inBand || !inTtr) continue;
+  const inTimeWindow = ev.t >= MIN_ENTRY_TS && ev.t <= MAX_ENTRY_TS;
+  if (!inBand || !inTtr || !inTimeWindow) continue;
   passedCoarse++;
 
   const lastTs = lastEntryByCid.get(key) || 0;
