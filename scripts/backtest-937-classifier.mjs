@@ -91,7 +91,8 @@ function windowFeatures(ticks, entryTs, windowSec, outcomeIndex) {
 
 function featuresFor(ticks, entryTs, entryPrice, outcomeIndex, marketEndTs) {
   const other = outcomeIndex === 1 ? 0 : 1;
-  const feats = { price: entryPrice, ttrSec: marketEndTs - entryTs, pricesq: entryPrice*entryPrice };
+  // Must match train-classifier.mjs feature set (no ttrSec/pricesq to avoid TTR leak)
+  const feats = { price: entryPrice };
   for (const w of [60, 5*60, 15*60]) {
     const label = w === 60 ? "1m" : w === 300 ? "5m" : "15m";
     const own = windowFeatures(ticks, entryTs, w, outcomeIndex);

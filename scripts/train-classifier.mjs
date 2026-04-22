@@ -92,10 +92,12 @@ function extractFeatures(conditionId, entryTs, entryPrice, outcomeIndex, marketE
   if (!ticks.length) return null;
 
   const other = outcomeIndex === 1 ? 0 : 1; // YES if we're NO, vice versa
+  // Dropped ttrSec and pricesq: ttrSec leaked (POS clusters tightly at 2h while
+  // NEG spreads over 1-3h so the classifier was just re-learning the TTR filter).
+  // pricesq correlates with price — redundant. Keep only true microstructure
+  // features so the classifier's signal is honest.
   const feats = {
-    price:  entryPrice,
-    ttrSec: marketEndTs - entryTs,
-    pricesq: entryPrice * entryPrice
+    price:  entryPrice
   };
 
   for (const w of [60, 5*60, 15*60]) {
