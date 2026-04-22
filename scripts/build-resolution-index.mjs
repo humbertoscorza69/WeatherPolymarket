@@ -82,10 +82,26 @@ for (const f of wxFiles) {
 }
 console.log(`Weather max-temps: ${wxIndex.size} (city, date) pairs`);
 
+// Load Polymarket resolution outcomes (GROUND TRUTH when available)
+const CACHE_DIR = path.resolve("data/resolved-market-cache");
+const pmResolution = new Map();  // cid -> 1 if NO-paid-$1, 0 if YES-paid-$1
+for (const f of (await fs.readdir(CACHE_DIR))) {
+  if (!f.endsWith("-NO.json")) continue;
+  const cid = f.replace("-NO.json", "");
+  try {
+    const j = JSON.parse(await fs.readFile(path.join(CACHE_DIR, f), "utf8"));
+    const v = j.tokenResolutionValue;
+    if (v === 1 || v === "1") pmResolution.set(cid, 1);
+    else if (v === 0 || v === "0") pmResolution.set(cid, 0);
+    // null/None = not yet resolved, skip
+  } catch {}
+}
+console.log(`Polymarket cache resolutions: ${pmResolution.size} markets (ground truth)`);
+
 // Walk tick markets
 const tickFiles = (await fs.readdir(TICK_DIR)).filter(f => f.endsWith(".jsonl"));
 const out = {};
-const stats = { total: tickFiles.length, no_title: 0, bad_parse: 0, no_weather: 0, no_won: 0, yes_won: 0, unresolvable: 0 };
+const stats = { total: tickFiles.length, no_title: 0, bad_parse: 0, no_weather: 0, no_won: 0, yes_won: 0, unresolvable: 0, pm_source: 0, weather_source: 0, disagreements: 0 };
 for (const f of tickFiles) {
   const cid = f.replace(".jsonl", "");
   const title = TITLES[cid];
@@ -94,20 +110,39 @@ for (const f of tickFiles) {
   if (!p || !p.date) { stats.bad_parse++; continue; }
   const wxKey = `${p.city}__${p.date}`;
   const maxTempC = wxIndex.get(wxKey);
-  if (maxTempC == null) { stats.no_weather++; continue; }
-  const r = resolve(p, maxTempC);
-  if (r == null) { stats.unresolvable++; continue; }
+  // Prefer Polymarket's actual resolution over weather-derived
+  let r = null;
+  let source = null;
+  if (pmResolution.has(cid)) {
+    r = pmResolution.get(cid);
+    source = "polymarket";
+    stats.pm_source++;
+    // Sanity: also compute weather-derived and flag disagreements
+    if (maxTempC != null) {
+      const wr = resolve(p, maxTempC);
+      if (wr !== null && wr !== r) stats.disagreements++;
+    }
+  } else if (maxTempC != null) {
+    r = resolve(p, maxTempC);
+    source = "weather-derived";
+    stats.weather_source++;
+  }
+  if (r == null) {
+    if (maxTempC == null) stats.no_weather++;
+    else stats.unresolvable++;
+    continue;
+  }
   if (r === 1) stats.no_won++; else stats.yes_won++;
   out[cid] = {
     resolved: r,
-    maxTempC: Math.round(maxTempC * 10) / 10,
+    maxTempC: maxTempC != null ? Math.round(maxTempC * 10) / 10 : null,
     threshold: p.threshold,
     thr_hi: p.thr_hi,
     type: p.type,
     unit: p.unit,
     city: p.city,
     date: p.date,
-    source: "weather-derived",
+    source,
   };
 }
 await fs.writeFile(OUT, JSON.stringify(out));

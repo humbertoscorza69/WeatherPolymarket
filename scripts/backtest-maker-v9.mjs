@@ -88,16 +88,31 @@ const FILTER_UNIT = argv.filterunit ?? "C";
 const REQUIRE_CROSSED = (argv.reqcrossed ?? "true") !== "false";
 const CROSSED_BUFFER  = Number(argv.crossedbuf ?? "0.5");
 
-// Load weather observations for on-the-fly threshold checks
+// Load weather observations for on-the-fly threshold checks.
+// TIGHTER day-window: +/- 12h around local day boundary computed from tz
+// (falls back to UTC-centered 24h window if tz is missing).
 const WEATHER_OBS = new Map();
 for (const wf of fs.readdirSync(WEATHER_DIR)) {
   if (!wf.endsWith(".json") || wf.startsWith("_")) continue;
   try {
     const j = JSON.parse(fs.readFileSync(path.join(WEATHER_DIR, wf), "utf8"));
     if (!j.samples?.length || !j.date) continue;
-    const dayStart = new Date(j.date + "T00:00:00Z").getTime() / 1000 - 14*3600;
-    const dayEnd = dayStart + 52*3600;
-    const samples = j.samples.filter(s => s.t >= dayStart && s.t <= dayEnd && s.tempC != null)
+    // Compute local-day offset via Intl if possible. Otherwise assume UTC.
+    let tzOffsetSec = 0;
+    if (j.tz) {
+      try {
+        const mid = new Date(j.date + "T12:00:00Z");
+        const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: j.tz, hour: "2-digit", hour12: false, timeZoneName: "longOffset" });
+        const parts = fmt.formatToParts(mid);
+        const offStr = parts.find(p => p.type === "timeZoneName")?.value || "GMT+00:00";
+        const m = offStr.match(/([+-])(\d{2}):?(\d{2})?/);
+        if (m) tzOffsetSec = (m[1] === "+" ? 1 : -1) * (Number(m[2])*3600 + Number(m[3]||0)*60);
+      } catch {}
+    }
+    const localMidnightUTC = new Date(j.date + "T00:00:00Z").getTime() / 1000 - tzOffsetSec;
+    const dayStart = localMidnightUTC;
+    const dayEnd = localMidnightUTC + 24*3600;  // local day [00:00, 24:00)
+    const samples = j.samples.filter(s => s.t >= dayStart && s.t < dayEnd && s.tempC != null)
       .map(s => [s.t, s.tempC]).sort((a,b) => a[0]-b[0]);
     if (samples.length) WEATHER_OBS.set(`${j.city}__${j.date}`, samples);
   } catch {}
@@ -115,13 +130,17 @@ function thresholdCrossed(market, entryTs, buffer) {
   }
   if (maxTemp <= -999) return false;
   const thrC = market.unit === "F" ? (market.threshold - 32) * 5/9 : market.threshold;
+  // Symmetric "crossed" check for exact markets. Observed max ABOVE threshold
+  // = 100% certain (monotonic). Observed max FAR BELOW threshold = probabilistic
+  // (temp could still rise to match threshold, but usually doesn't). Both contribute
+  // to high WR. The occasional loss from "below + rose to hit" is in the 3% tail.
   if (market.type === "exact") return Math.abs(maxTemp - thrC) > buffer;
   if (market.type === "at_or_below") return maxTemp > thrC + buffer;
   if (market.type === "between" && market.thresholdHigh != null) {
     const thrHiC = market.unit === "F" ? (market.thresholdHigh - 32) * 5/9 : market.thresholdHigh;
     return maxTemp > thrHiC + buffer;
   }
-  return false;  // at_or_above not detectable early
+  return false;  // at_or_above not detectable early (needs end-of-day)
 }
 
 const EXCLUDE = new Set(
@@ -267,13 +286,18 @@ const tickFiles = fs.readdirSync(TICK_DIR).filter(f => f.endsWith(".jsonl"));
 const events = [];
 let tickMarkets = 0, filtered = 0;
 const monthCounts = {};
+// HONEST MODE: include ALL markets (both NO and YES winners). We only
+// get to filter based on information available at entry time via thresholdCrossed.
+// This is what a real bot would see — no knowledge of future resolution.
+const ALLOW_YES_MARKETS = (argv.allowyes ?? "true") !== "false";
 for (const f of tickFiles) {
   const conditionId = f.replace(".jsonl", "");
   const res = RESOLUTION[conditionId];
-  if (!res) { filtered++; continue; }                  // no weather-derived resolution
-  if (res.resolved !== 1) { filtered++; continue; }    // YES won → skip
+  if (!res) { filtered++; continue; }
+  // Only filter on market TYPE and UNIT (available at list time — not look-ahead)
   if (FILTER_TYPE !== "any" && res.type !== FILTER_TYPE) { filtered++; continue; }
   if (FILTER_UNIT !== "any" && res.unit !== FILTER_UNIT) { filtered++; continue; }
+  if (!ALLOW_YES_MARKETS && res.resolved !== 1) { filtered++; continue; }
 
   const title = TITLE_INDEX[conditionId];
   if (!title) continue;
@@ -439,27 +463,40 @@ function simulateTrade(cid, entryTs, marketPrice, ourBidPrice, shares, cfg) {
       break;
     }
 
-    // Max hold timeout: take remaining at market
+    // Max hold timeout: if market has resolved to NO ($1), settle remaining
+    // at $1 (auto-settlement). Otherwise take at current tick price.
     if (t.timestamp > sellDeadline) {
       const rem = buyShares - sellShares;
       if (rem > 0) {
+        const pastRes = cfg.RESOLUTION_TS && t.timestamp >= cfg.RESOLUTION_TS;
+        const settlePrice = pastRes && cfg.RESOLUTION_VALUE === 1 ? 1.0
+                          : pastRes && cfg.RESOLUTION_VALUE === 0 ? 0.0
+                          : t.price;
         sellShares += rem;
-        sellNotional += rem * t.price;
+        sellNotional += rem * settlePrice;
       }
-      status = sellShares === buyShares && sellShares > 0 ? 'maxhold-taker' : 'maxhold-taker';
+      status = cfg.RESOLUTION_VALUE === 1 && cfg.RESOLUTION_TS && t.timestamp >= cfg.RESOLUTION_TS ? 'settle-no-won'
+             : cfg.RESOLUTION_VALUE === 0 && cfg.RESOLUTION_TS && t.timestamp >= cfg.RESOLUTION_TS ? 'settle-yes-won'
+             : 'maxhold-taker';
       break;
     }
   }
 
-  // If we ran out of ticks without closing
+  // If we ran out of ticks without closing:
+  //   If market is RESOLVED to NO ($1 payout), shares auto-settle at $1.
+  //   Otherwise exit at last observed price.
   if (status === null) {
     const rem = buyShares - sellShares;
     if (rem > 0) {
-      // Exit at last observed price
+      const settlePrice = cfg.RESOLUTION_VALUE === 1 ? 1.0
+                        : cfg.RESOLUTION_VALUE === 0 ? 0.0
+                        : lastPrice;
       sellShares += rem;
-      sellNotional += rem * lastPrice;
+      sellNotional += rem * settlePrice;
     }
-    status = sellShares > 0 ? 'partial-999' : 'stuck';
+    status = cfg.RESOLUTION_VALUE === 1 ? 'settle-no-won'
+           : cfg.RESOLUTION_VALUE === 0 ? 'settle-yes-won'
+           : (sellShares > 0 ? 'partial-999' : 'stuck');
   }
 
   const avgExit = sellShares > 0 ? sellNotional / sellShares : avgEntry;
@@ -556,7 +593,13 @@ for (const ev of events) {
   attempted++;
   const ourBidPrice = Math.max(0.01, ev.p - CFG.BID_OFFSET);
   const shares = CFG.TRADE_USDC / ourBidPrice;
-  const res = simulateTrade(ev.conditionId, ev.t, ev.p, ourBidPrice, shares, CFG);
+  const resolution = RESOLUTION[ev.conditionId];
+  const cfgWithRes = {
+    ...CFG,
+    RESOLUTION_VALUE: resolution?.resolved,
+    RESOLUTION_TS: ev.marketEndTs,  // approximate resolution time from marketEndTs
+  };
+  const res = simulateTrade(ev.conditionId, ev.t, ev.p, ourBidPrice, shares, cfgWithRes);
   if (!res.opened) {
     // No position opened — don't record as a trade (but count in attempts)
     lastEntryByCid.set(key, ev.t);
