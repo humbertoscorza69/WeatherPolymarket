@@ -13,6 +13,7 @@ const argv = Object.fromEntries(process.argv.slice(2).map(a => {
 
 const CFG = {
   ASK_TARGET:   Number(argv.ask ?? "0.999"),
+  TP_DELTA:     Number(argv.tpdelta ?? "0"),          // if >0, exit at entry+TP_DELTA (whichever hits first, target or TP)
   MAX_HOLD_MIN: Number(argv.maxhold ?? "15"),
   MIN_ENTRY:    Number(argv.minentry ?? "0.85"),
   MAX_ENTRY:    Number(argv.maxentry ?? "0.998"),
@@ -215,9 +216,15 @@ for (const ev of events) {
   const pos = positions.get(key);
   if (pos) {
     const hold = (ev.t - pos.entryTs) / 60;
+    const tpPrice = CFG.TP_DELTA > 0 ? pos.entryPrice + CFG.TP_DELTA : null;
     if (ev.p >= CFG.ASK_TARGET) {
       trades.push({ ...pos, exitTs: ev.t, exitPrice: CFG.ASK_TARGET, holdMin: hold,
         pnl: pos.shares * (CFG.ASK_TARGET - pos.entryPrice), status: "target-hit" });
+      positions.delete(key);
+    } else if (tpPrice && ev.p >= tpPrice) {
+      // Micro take-profit (matches 937's resting limit sell pattern)
+      trades.push({ ...pos, exitTs: ev.t, exitPrice: tpPrice, holdMin: hold,
+        pnl: pos.shares * (tpPrice - pos.entryPrice), status: "tp-hit" });
       positions.delete(key);
     } else if (hold >= CFG.MAX_HOLD_MIN) {
       const exitP = CFG.LIQ_MODE === "realistic" ? ev.p : pos.entryPrice;
@@ -267,8 +274,16 @@ const firstTs = trades.length ? Math.min(...trades.map(t => t.entryTs)) : 0;
 const lastTs = trades.length ? Math.max(...trades.map(t => t.exitTs)) : 0;
 const spanDays = (lastTs - firstTs) / 86400;
 
+const tpHit = trades.filter(t => t.status === "tp-hit").length;
+const timeoutLiq = trades.filter(t => t.status === "timeout-liq" || t.status === "timeout-flat").length;
+const wins = trades.filter(t => t.pnl > 0.01).length;
+const losses = trades.filter(t => t.pnl < -0.01).length;
+const flat = trades.filter(t => Math.abs(t.pnl) <= 0.01).length;
 console.log(`candidates(TTR+band): ${passedCoarse}  scored: ${scored}  opened: ${opened}`);
-console.log(`total trades: ${trades.length}  target-hit: ${targetHit} (${trades.length ? (100*targetHit/trades.length).toFixed(1)+"%" : "-"})`);
+console.log(`total trades: ${trades.length}  target-hit: ${targetHit}  tp-hit: ${tpHit}  timeout: ${timeoutLiq}`);
+console.log(`WR strict (pnl>0.01):      ${fmt(100*wins/Math.max(1,trades.length),1)}%  (${wins}/${trades.length})`);
+console.log(`WR inclusive (pnl>=-0.01): ${fmt(100*(wins+flat)/Math.max(1,trades.length),1)}%  (like 937's 99.5%)`);
+console.log(`losers (pnl<-0.01): ${losses} (${fmt(100*losses/Math.max(1,trades.length),1)}%)`);
 console.log(`total PnL: $${fmt(totalPnl)}  avg/trade: $${fmt(totalPnl/Math.max(1,trades.length),3)}  ROI deployed: ${fmt(100*totalPnl/Math.max(1,totalUsdc),2)}%`);
 console.log(`span: ${fmt(spanDays,1)}d  PnL/day: $${fmt(totalPnl/Math.max(0.1,spanDays),2)}  trades/day: ${fmt(trades.length/Math.max(0.1,spanDays),1)}`);
 
