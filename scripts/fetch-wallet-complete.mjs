@@ -100,13 +100,22 @@ async function fetchJson(url, retries = 3) {
   }
 }
 
-// 1. Activity: paged via offset, up to API's 3000 limit
+// 1. Activity: paged via offset, up to API's 3000 limit.
+// The API returns HTTP 400 "max historical activity offset of 3000 exceeded"
+// when offset reaches 3000 — that's a NORMAL STOP, not a failure.
 async function fetchActivity(wallet, maxOffset = 5000, pageSize = 500) {
   const all = [];
   for (let offset = 0; offset < maxOffset; offset += pageSize) {
     const url = `${DATA_API}/activity?user=${wallet}&limit=${pageSize}&offset=${offset}`;
     let page;
-    try { page = await fetchJson(url); } catch (e) { return { events: all, error: e.message }; }
+    try { page = await fetchJson(url); }
+    catch (e) {
+      // API hard cap reached — treat as end-of-data, not error
+      if (/max historical activity offset/i.test(e.message)) {
+        return { events: all, truncated: true, reachedApiCap: true };
+      }
+      return { events: all, error: e.message };
+    }
     if (!Array.isArray(page) || !page.length) break;
     all.push(...page);
     if (page.length < pageSize) break;
@@ -116,12 +125,19 @@ async function fetchActivity(wallet, maxOffset = 5000, pageSize = 500) {
 }
 
 // 2. Individual trade fills (separate endpoint — may give different info than activity)
+// Also has offset cap — same "normal stop" handling.
 async function fetchTrades(wallet, maxOffset = 10000, pageSize = 500) {
   const all = [];
   for (let offset = 0; offset < maxOffset; offset += pageSize) {
     const url = `${DATA_API}/trades?user=${wallet}&limit=${pageSize}&offset=${offset}`;
     let page;
-    try { page = await fetchJson(url); } catch (e) { return { trades: all, error: e.message }; }
+    try { page = await fetchJson(url); }
+    catch (e) {
+      if (/max historical|offset of \d+ exceeded/i.test(e.message)) {
+        return { trades: all, truncated: true, reachedApiCap: true };
+      }
+      return { trades: all, error: e.message };
+    }
     if (!Array.isArray(page) || !page.length) break;
     all.push(...page);
     if (page.length < pageSize) break;
@@ -243,11 +259,15 @@ async function processWallet(wallet, tag) {
   process.stdout.write(`${tag} ${wallet.slice(0, 10)}... `);
 
   // 1. Activity
-  const { events: activity, error: aerr, truncated: atrunc } = await fetchActivity(wallet);
-  if (aerr) { console.log(`ERR activity: ${aerr.slice(0,60)}`); return "fail"; }
+  const { events: activity, error: aerr, truncated: atrunc, reachedApiCap: aCap } = await fetchActivity(wallet);
+  // Only fail if we got ZERO events AND there was an error (not a cap stop)
+  if (aerr && activity.length === 0) {
+    console.log(`ERR activity: ${aerr.slice(0,60)}`);
+    return "fail";
+  }
 
   // 2. Trades
-  const { trades, error: terr, truncated: ttrunc } = await fetchTrades(wallet);
+  const { trades, error: terr, truncated: ttrunc, reachedApiCap: tCap } = await fetchTrades(wallet);
 
   // 3. Positions
   const positions = await fetchPositions(wallet);
@@ -287,8 +307,10 @@ async function processWallet(wallet, tag) {
     wallet, fetchedAt: new Date().toISOString(),
     activityEventCount: activity.length,
     activityTruncated: atrunc,
+    activityHitApiCap: !!aCap,
     tradeEventCount: trades.length,
     tradesTruncated: ttrunc,
+    tradesHitApiCap: !!tCap,
     positionCount: positions.length,
     closedTradeCount: closed.length,
     openLotCount: openLots.length,
