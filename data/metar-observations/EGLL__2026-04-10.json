@@ -1,0 +1,1 @@
+{"station":"EGLL","date":"2026-04-10","observations":[{"t":1775778600,"tempC":8,"dewpointC":-1,"windKt":11,"rawOb":"METAR EGLL 092350Z COR AUTO 27011KT 9999 NCD 08/M01 Q1022 NOSIG"}],"computedMax":8,"computedMin":8,"fetchedAt":1776874604183}

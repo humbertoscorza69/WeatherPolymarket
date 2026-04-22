@@ -1,0 +1,1 @@
+{"station":"EGLL","date":"2026-04-18","observations":[{"t":1776469800,"tempC":11,"dewpointC":10,"windKt":6,"rawOb":"METAR EGLL 172350Z AUTO 31006KT 4900 RADZ BKN007 OVC011 11/10 Q1020 BECMG 9999 NSW OVC025"}],"computedMax":11,"computedMin":11,"fetchedAt":1776874606561}

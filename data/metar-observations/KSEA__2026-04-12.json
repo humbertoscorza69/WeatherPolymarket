@@ -1,0 +1,1 @@
+{"station":"KSEA","date":"2026-04-12","observations":[{"t":1775951580,"tempC":11.7,"dewpointC":8.3,"windKt":4,"rawOb":"METAR KSEA 112353Z 22004KT 10SM FEW015 BKN040 OVC100 12/08 A2973 RMK AO2 SLP072 60002 T01170083 10117 20089 58007"}],"computedMax":11.7,"computedMin":11.7,"fetchedAt":1776875186639}

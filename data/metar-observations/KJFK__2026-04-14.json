@@ -1,0 +1,1 @@
+{"station":"KJFK","date":"2026-04-14","observations":[{"t":1776124260,"tempC":20,"dewpointC":11.7,"windKt":15,"rawOb":"METAR KJFK 132351Z 24015KT 10SM FEW050 FEW150 FEW250 20/12 A2994 RMK AO2 SLP138 T02000117 10239 20144 53001"}],"computedMax":20,"computedMin":20,"fetchedAt":1776874910060}

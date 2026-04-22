@@ -1,0 +1,1 @@
+{"station":"LLBG","date":"2026-04-20","observations":[{"t":1776642600,"tempC":16,"dewpointC":13,"windKt":6,"rawOb":"METAR LLBG 192350Z 18006KT 9999 SCT023 SCT040 16/13 Q1011 NOSIG"}],"computedMax":16,"computedMin":16,"fetchedAt":1776875381589}

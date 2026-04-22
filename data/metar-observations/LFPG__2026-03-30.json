@@ -1,0 +1,1 @@
+{"station":"LFPG","date":"2026-03-30","observations":[{"t":1774828800,"tempC":9,"dewpointC":3,"windKt":17,"rawOb":"METAR LFPG 300000Z 26017KT 9999 BKN026 SCT040 09/03 Q1025 NOSIG"}],"computedMax":9,"computedMin":9,"fetchedAt":1776875020356}

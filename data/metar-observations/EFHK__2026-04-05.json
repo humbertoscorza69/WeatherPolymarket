@@ -1,0 +1,1 @@
+{"station":"EFHK","date":"2026-04-05","observations":[{"t":1775346600,"tempC":2,"dewpointC":2,"windKt":3,"rawOb":"METAR EFHK 042350Z 02003KT 9999 BKN005 BKN012 02/02 Q0999 TEMPO SCT005 BKN012"}],"computedMax":2,"computedMin":2,"fetchedAt":1776874362659}

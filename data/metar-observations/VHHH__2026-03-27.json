@@ -1,0 +1,1 @@
+{"station":"VHHH","date":"2026-03-27","observations":[{"t":1774569600,"tempC":25,"dewpointC":21,"windKt":7,"rawOb":"METAR VHHH 270000Z 10007KT 060V130 9999 FEW012 25/21 Q1012 NOSIG"}],"computedMax":25,"computedMin":25,"fetchedAt":1776874386598}

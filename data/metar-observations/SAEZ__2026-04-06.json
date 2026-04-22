@@ -1,0 +1,1 @@
+{"station":"SAEZ","date":"2026-04-06","observations":[{"t":1775433600,"tempC":16,"dewpointC":11,"windKt":6,"rawOb":"METAR SAEZ 060000Z 13006KT 9999 BKN040 16/11 Q1021 NOSIG"}],"computedMax":16,"computedMin":16,"fetchedAt":1776874142205}

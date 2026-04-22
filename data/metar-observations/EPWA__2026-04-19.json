@@ -1,0 +1,1 @@
+{"station":"EPWA","date":"2026-04-19","observations":[{"t":1776556800,"tempC":5,"dewpointC":1,"windKt":0,"rawOb":"METAR EPWA 190000Z 00000KT CAVOK 05/01 Q1017 NOSIG"}],"computedMax":5,"computedMin":5,"fetchedAt":1776875532875}

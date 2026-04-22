@@ -1,0 +1,1 @@
+{"station":"LLBG","date":"2026-04-15","observations":[{"t":1776210600,"tempC":18,"dewpointC":10,"windKt":2,"rawOb":"METAR LLBG 142350Z VRB02KT CAVOK 18/10 Q1014 NOSIG RMK FCST 1000FT-WIND 120/25KT"}],"computedMax":18,"computedMin":18,"fetchedAt":1776875380273}

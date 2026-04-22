@@ -1,0 +1,1 @@
+{"station":"EDDM","date":"2026-04-14","observations":[{"t":1776124200,"tempC":10,"dewpointC":8,"windKt":5,"rawOb":"METAR EDDM 132350Z AUTO 27005KT 8000 FEW011 BKN032 10/08 Q1012 BECMG BKN008"}],"computedMax":10,"computedMin":10,"fetchedAt":1776874835380}

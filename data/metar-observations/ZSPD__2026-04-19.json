@@ -1,0 +1,1 @@
+{"station":"ZSPD","date":"2026-04-19","observations":[{"t":1776556800,"tempC":17,"dewpointC":14,"windKt":8,"rawOb":"METAR ZSPD 190000Z 30004MPS 270V330 9999 BKN012 17/14 Q1012 BECMG TL0050 BKN015"}],"computedMax":17,"computedMin":17,"fetchedAt":1776875274293}

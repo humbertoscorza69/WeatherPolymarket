@@ -1,0 +1,1 @@
+{"station":"EDDM","date":"2026-03-28","observations":[{"t":1774655400,"tempC":-3,"dewpointC":-7,"windKt":3,"rawOb":"METAR EDDM 272350Z AUTO 28003KT CAVOK M03/M07 Q1021 NOSIG"}],"computedMax":-3,"computedMin":-3,"fetchedAt":1776874810861}

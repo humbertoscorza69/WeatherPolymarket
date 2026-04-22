@@ -1,0 +1,1 @@
+{"station":"WIII","date":"2026-04-12","observations":[{"t":1775952000,"tempC":26,"dewpointC":25,"windKt":3,"rawOb":"METAR WIII 120000Z 23003KT 4000 HZ FEW020 26/25 Q1011 NOSIG"}],"computedMax":26,"computedMin":26,"fetchedAt":1776874428604}

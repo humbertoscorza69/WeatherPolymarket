@@ -1,0 +1,1 @@
+{"station":"KJFK","date":"2026-04-12","observations":[{"t":1775951460,"tempC":15,"dewpointC":-5,"windKt":17,"rawOb":"METAR KJFK 112351Z 32017KT 10SM CLR 15/M05 A3030 RMK AO2 PK WND 34026/2302 SLP260 T01501050 10178 20150 53023"}],"computedMax":15,"computedMin":15,"fetchedAt":1776874909460}

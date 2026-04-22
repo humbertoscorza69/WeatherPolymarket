@@ -1,0 +1,1 @@
+{"station":"KDEN","date":"2026-03-24","observations":[{"t":1774309980,"tempC":17.2,"dewpointC":1.1,"windKt":6,"rawOb":"METAR KDEN 232353Z 14006KT 10SM BKN120 BKN220 17/01 A3002 RMK AO2 SLP119 T01720011 10194 20133 53003"}],"computedMax":17.2,"computedMin":17.2,"fetchedAt":1776874328290}

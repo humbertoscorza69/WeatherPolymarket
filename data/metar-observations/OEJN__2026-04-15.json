@@ -1,0 +1,1 @@
+{"station":"OEJN","date":"2026-04-15","observations":[{"t":1776211200,"tempC":30,"dewpointC":14,"windKt":8,"rawOb":"METAR OEJN 150000Z 10008KT 7000 NSC 30/14 Q1008 NOSIG"}],"computedMax":30,"computedMin":30,"fetchedAt":1776874440168}

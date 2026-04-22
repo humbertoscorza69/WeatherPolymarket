@@ -1,0 +1,1 @@
+{"station":"SBGR","date":"2026-04-12","observations":[{"t":1775952000,"tempC":19,"dewpointC":15,"windKt":6,"rawOb":"METAR SBGR 120000Z 11006KT 9999 BKN040 19/15 Q1024"}],"computedMax":19,"computedMin":19,"fetchedAt":1776875099585}

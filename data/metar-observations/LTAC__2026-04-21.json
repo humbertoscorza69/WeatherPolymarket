@@ -1,0 +1,1 @@
+{"station":"LTAC","date":"2026-04-21","observations":[{"t":1776729000,"tempC":3,"dewpointC":1,"windKt":1,"rawOb":"METAR LTAC 202350Z VRB01KT CAVOK 03/01 Q1013 NOSIG RMK RWY21C VRB01KT RWY03L 00000KT RWY21R 36002KT RWY03R 00000KT RWY21L 00000KT"}],"computedMax":3,"computedMin":3,"fetchedAt":1776873992963}

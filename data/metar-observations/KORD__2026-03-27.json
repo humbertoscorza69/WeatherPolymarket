@@ -1,0 +1,1 @@
+{"station":"KORD","date":"2026-03-27","observations":[{"t":1774569300,"tempC":5,"dewpointC":3.3,"windKt":27,"rawOb":"SPECI KORD 262355Z 02027G32KT 6SM -RA BR BKN007 BKN012 OVC045 05/03 A2990 RMK AO2 PK WND 01032/2355 P0002 T00500033 $"}],"computedMax":5,"computedMin":5,"fetchedAt":1776874265808}

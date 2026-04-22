@@ -1,0 +1,1 @@
+{"station":"OEJN","date":"2026-04-21","observations":[{"t":1776729600,"tempC":27,"dewpointC":18,"windKt":9,"rawOb":"METAR OEJN 210000Z 35009KT CAVOK 27/18 Q1006 NOSIG"}],"computedMax":27,"computedMin":27,"fetchedAt":1776874443319}

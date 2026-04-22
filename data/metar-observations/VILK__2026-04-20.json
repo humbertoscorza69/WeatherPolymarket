@@ -1,0 +1,1 @@
+{"station":"VILK","date":"2026-04-20","observations":[{"t":1776643200,"tempC":25,"dewpointC":15,"windKt":3,"rawOb":"METAR VILK 200000Z 25003KT 3000 HZ NSC 25/15 Q1003 NOSIG"}],"computedMax":25,"computedMin":25,"fetchedAt":1776874673265}

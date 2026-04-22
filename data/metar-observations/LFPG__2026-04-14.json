@@ -1,0 +1,1 @@
+{"station":"LFPG","date":"2026-04-14","observations":[{"t":1776124800,"tempC":7,"dewpointC":6,"windKt":3,"rawOb":"METAR LFPG 140000Z 29003KT 7000 R09R/0750D NSC 07/06 Q1017 NOSIG"}],"computedMax":7,"computedMin":7,"fetchedAt":1776875025709}

@@ -1,0 +1,1 @@
+{"station":"DNMM","date":"2026-04-20","observations":[{"t":1776643200,"tempC":27,"dewpointC":25,"windKt":2,"rawOb":"METAR DNMM 200000Z VRB02KT 9999 FEW011 27/25 Q1009 NOSIG"}],"computedMax":27,"computedMin":27,"fetchedAt":1776874483501}

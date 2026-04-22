@@ -1,0 +1,1 @@
+{"station":"UUEE","date":"2026-04-11","observations":[{"t":1775865600,"tempC":3,"dewpointC":1,"windKt":12,"rawOb":"METAR UUEE 110000Z 08006MPS 9999 SCT010 BKN020 03/01 Q1017 R06R/290145 R06C/290145 NOSIG"}],"computedMax":3,"computedMin":3,"fetchedAt":1776874772727}

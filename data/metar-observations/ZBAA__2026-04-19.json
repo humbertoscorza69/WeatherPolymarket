@@ -1,0 +1,1 @@
+{"station":"ZBAA","date":"2026-04-19","observations":[{"t":1776556800,"tempC":19,"dewpointC":11,"windKt":4,"rawOb":"METAR ZBAA 190000Z 13002MPS 100V170 CAVOK 19/11 Q1008 NOSIG"}],"computedMax":19,"computedMin":19,"fetchedAt":1776874081611}

@@ -1,0 +1,1 @@
+{"station":"CYYZ","date":"2026-04-16","observations":[{"t":1776297600,"tempC":16,"dewpointC":15,"windKt":4,"rawOb":"METAR CYYZ 160000Z 17004KT 4SM -DZ BR BKN003 OVC011 16/15 A2980 RMK ST5SC3 SLP096 DENSITY ALT 1000FT"}],"computedMax":16,"computedMin":16,"fetchedAt":1776875520240}

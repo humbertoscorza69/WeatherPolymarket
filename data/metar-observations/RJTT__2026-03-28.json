@@ -1,0 +1,1 @@
+{"station":"RJTT","date":"2026-03-28","observations":[{"t":1774656000,"tempC":14,"dewpointC":11,"windKt":3,"rawOb":"METAR RJTT 280000Z 06003KT 9999 FEW015 BKN020 14/11 Q1016 NOSIG"}],"computedMax":14,"computedMin":14,"fetchedAt":1776875402972}

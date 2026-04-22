@@ -1,0 +1,1 @@
+{"station":"LEMD","date":"2026-04-04","observations":[{"t":1775260800,"tempC":12,"dewpointC":3,"windKt":3,"rawOb":"METAR LEMD 040000Z 36003KT 340V120 CAVOK 12/03 Q1025 NOSIG"}],"computedMax":12,"computedMin":12,"fetchedAt":1776874680365}

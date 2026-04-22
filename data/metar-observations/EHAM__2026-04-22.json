@@ -1,0 +1,1 @@
+{"station":"EHAM","date":"2026-04-22","observations":[{"t":1776815700,"tempC":8,"dewpointC":2,"windKt":9,"rawOb":"METAR EHAM 212355Z 06009KT CAVOK 08/02 Q1026 NOSIG"}],"computedMax":8,"computedMin":8,"fetchedAt":1776873961905}

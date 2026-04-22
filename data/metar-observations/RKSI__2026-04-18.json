@@ -1,0 +1,1 @@
+{"station":"RKSI","date":"2026-04-18","observations":[{"t":1776470400,"tempC":14,"dewpointC":11,"windKt":5,"rawOb":"METAR RKSI 180000Z 02005KT CAVOK 14/11 Q1017 NOSIG"}],"computedMax":14,"computedMin":14,"fetchedAt":1776875261830}

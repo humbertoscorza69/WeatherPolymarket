@@ -1,0 +1,1 @@
+{"station":"OPKC","date":"2026-04-21","observations":[{"t":1776729600,"tempC":24,"dewpointC":22,"windKt":7,"rawOb":"METAR OPKC 210000Z 27007KT 6000 NSC 24/22 Q1007 NOSIG"}],"computedMax":24,"computedMin":24,"fetchedAt":1776874451864}

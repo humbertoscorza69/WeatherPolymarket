@@ -1,0 +1,1 @@
+{"station":"ZGGG","date":"2026-04-16","observations":[{"t":1776297600,"tempC":27,"dewpointC":23,"windKt":4,"rawOb":"METAR ZGGG 160000Z 13002MPS 9999 BKN030 27/23 Q1011 NOSIG"}],"computedMax":27,"computedMin":27,"fetchedAt":1776874352809}

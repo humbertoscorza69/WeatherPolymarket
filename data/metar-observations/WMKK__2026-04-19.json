@@ -1,0 +1,1 @@
+{"station":"WMKK","date":"2026-04-19","observations":[{"t":1776556800,"tempC":26,"dewpointC":24,"windKt":0,"rawOb":"METAR WMKK 190000Z COR 00000KT 7000 FEW010 FEW017CB 26/24 Q1009 NOSIG"}],"computedMax":26,"computedMin":26,"fetchedAt":1776874471927}

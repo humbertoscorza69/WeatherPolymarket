@@ -1,0 +1,1 @@
+{"station":"KIAH","date":"2026-04-20","observations":[{"t":1776642780,"tempC":20,"dewpointC":7.2,"windKt":11,"rawOb":"METAR KIAH 192353Z 07011G18KT 10SM FEW095 BKN250 20/07 A3020 RMK AO2 SLP228 T02000072 10222 20189 58014"}],"computedMax":20,"computedMin":20,"fetchedAt":1776874402030}

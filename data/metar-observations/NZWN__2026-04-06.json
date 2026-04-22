@@ -1,0 +1,1 @@
+{"station":"NZWN","date":"2026-04-06","observations":[{"t":1775433600,"tempC":21,"dewpointC":10,"windKt":7,"rawOb":"METAR NZWN 060000Z AUTO 06007KT 030V100 9999 NCD 21/10 Q1024"}],"computedMax":21,"computedMin":21,"fetchedAt":1776875618195}

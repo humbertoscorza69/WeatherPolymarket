@@ -1,0 +1,1 @@
+{"station":"SAEZ","date":"2026-04-12","observations":[{"t":1775952000,"tempC":19,"dewpointC":13,"windKt":10,"rawOb":"METAR SAEZ 120000Z 08010KT CAVOK 19/13 Q1015 TEMPO 7000 -RA SCT025 BKN050"}],"computedMax":19,"computedMin":19,"fetchedAt":1776874143086}

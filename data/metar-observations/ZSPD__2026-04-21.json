@@ -1,0 +1,1 @@
+{"station":"ZSPD","date":"2026-04-21","observations":[{"t":1776729600,"tempC":14,"dewpointC":9,"windKt":10,"rawOb":"METAR ZSPD 210000Z 07005MPS 010V110 CAVOK 14/09 Q1020 NOSIG"}],"computedMax":14,"computedMin":14,"fetchedAt":1776875275676}

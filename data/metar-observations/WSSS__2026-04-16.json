@@ -1,0 +1,1 @@
+{"station":"WSSS","date":"2026-04-16","observations":[{"t":1776297600,"tempC":29,"dewpointC":25,"windKt":3,"rawOb":"METAR WSSS 160000Z 18003KT 110V200 9999 FEW016 BKN300 29/25 Q1009 NOSIG"}],"computedMax":29,"computedMin":29,"fetchedAt":1776875316498}

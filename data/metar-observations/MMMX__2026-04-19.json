@@ -1,0 +1,1 @@
+{"station":"MMMX","date":"2026-04-19","observations":[{"t":1776556200,"tempC":29,"dewpointC":-2,"windKt":18,"rawOb":"METAR MMMX 182350Z 05018KT 10SM FEW080 BKN250 29/M02 A3010 NOSIG RMK SLP995 57015 959 8/038 HZY DSNT CB W SW"}],"computedMax":29,"computedMin":29,"fetchedAt":1776874712986}

@@ -1,0 +1,1 @@
+{"station":"RPLL","date":"2026-04-20","observations":[{"t":1776643200,"tempC":30,"dewpointC":23,"windKt":5,"rawOb":"METAR RPLL 200000Z 13005KT 090V200 9000 FEW025 30/23 Q1012 NOSIG RMK A2988"}],"computedMax":30,"computedMin":30,"fetchedAt":1776874689895}

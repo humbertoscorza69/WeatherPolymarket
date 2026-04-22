@@ -1,0 +1,1 @@
+{"station":"UUEE","date":"2026-04-06","observations":[{"t":1775433600,"tempC":3,"dewpointC":0,"windKt":10,"rawOb":"METAR UUEE 060000Z 27005MPS CAVOK 03/M00 Q1007 R24L/CLRD62 R24C/CLRD62 NOSIG"}],"computedMax":3,"computedMin":3,"fetchedAt":1776874772343}

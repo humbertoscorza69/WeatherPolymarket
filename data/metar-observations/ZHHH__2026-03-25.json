@@ -1,0 +1,1 @@
+{"station":"ZHHH","date":"2026-03-25","observations":[{"t":1774396800,"tempC":12,"dewpointC":12,"windKt":2,"rawOb":"METAR ZHHH 250000Z VRB01MPS 0500 R04/0200N R05L/0350N R05R/0800U FG NSC 12/12 Q1017 BECMG TL0120 1300 BR"}],"computedMax":12,"computedMin":12,"fetchedAt":1776875627160}

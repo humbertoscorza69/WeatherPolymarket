@@ -1,0 +1,1 @@
+{"station":"KSFO","date":"2026-04-22","observations":[{"t":1776815760,"tempC":15.6,"dewpointC":8.9,"windKt":17,"rawOb":"METAR KSFO 212356Z 28017G23KT 10SM FEW009 SCT037 BKN060 16/09 A2996 RMK AO2 SLP145 60000 T01560089 10172 20150 53004 $"}],"computedMax":15.6,"computedMin":15.6,"fetchedAt":1776875030347}

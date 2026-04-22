@@ -1,0 +1,1 @@
+{"station":"ZUUU","date":"2026-04-21","observations":[{"t":1776729600,"tempC":15,"dewpointC":12,"windKt":6,"rawOb":"METAR ZUUU 210000Z 01003MPS 9999 SCT020 15/12 Q1010 NOSIG"}],"computedMax":15,"computedMin":15,"fetchedAt":1776874179877}

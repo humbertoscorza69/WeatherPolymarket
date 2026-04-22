@@ -1,0 +1,1 @@
+{"station":"LIMC","date":"2026-04-14","observations":[{"t":1776124200,"tempC":12,"dewpointC":11,"windKt":2,"rawOb":"METAR LIMC 132350Z VRB02KT 9999 -RA BKN060 12/11 Q1009 NOSIG"}],"computedMax":12,"computedMin":12,"fetchedAt":1776874756716}

@@ -1,0 +1,1 @@
+{"station":"KDFW","date":"2026-04-19","observations":[{"t":1776556380,"tempC":16.7,"dewpointC":4.4,"windKt":7,"rawOb":"METAR KDFW 182353Z 04007KT 10SM FEW120 SCT150 BKN250 17/04 A3019 RMK AO2 SLP219 60001 T01670044 10167 20100 55009 $"}],"computedMax":16.7,"computedMin":16.7,"fetchedAt":1776874321727}

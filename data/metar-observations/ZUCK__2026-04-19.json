@@ -1,0 +1,1 @@
+{"station":"ZUCK","date":"2026-04-19","observations":[{"t":1776556800,"tempC":23,"dewpointC":15,"windKt":6,"rawOb":"METAR ZUCK 190000Z 02003MPS CAVOK 23/15 Q1008 NOSIG"}],"computedMax":23,"computedMin":23,"fetchedAt":1776874293685}

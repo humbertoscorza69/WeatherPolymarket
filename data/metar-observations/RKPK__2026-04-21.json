@@ -1,0 +1,1 @@
+{"station":"RKPK","date":"2026-04-21","observations":[{"t":1776729600,"tempC":15,"dewpointC":-6,"windKt":6,"rawOb":"METAR RKPK 210000Z 30006KT CAVOK 15/M06 Q1020"}],"computedMax":15,"computedMin":15,"fetchedAt":1776874168735}

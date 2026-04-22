@@ -1,0 +1,1 @@
+{"station":"ZBAA","date":"2026-04-18","observations":[{"t":1776470400,"tempC":17,"dewpointC":14,"windKt":2,"rawOb":"METAR ZBAA 180000Z VRB01MPS 2200 BR OVC033 17/14 Q1013 BECMG TL0150 3200"}],"computedMax":17,"computedMin":17,"fetchedAt":1776874080081}

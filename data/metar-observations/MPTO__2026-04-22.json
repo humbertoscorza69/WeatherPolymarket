@@ -1,0 +1,1 @@
+{"station":"MPTO","date":"2026-04-22","observations":[{"t":1776816000,"tempC":29,"dewpointC":21,"windKt":7,"rawOb":"METAR MPTO 220000Z 05007KT 9999 FEW018 29/21 Q1010 NOSIG"}],"computedMax":29,"computedMin":29,"fetchedAt":1776874925241}

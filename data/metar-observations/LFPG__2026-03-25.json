@@ -1,0 +1,1 @@
+{"station":"LFPG","date":"2026-03-25","observations":[{"t":1774396800,"tempC":12,"dewpointC":1,"windKt":17,"rawOb":"METAR LFPG 250000Z 24017KT CAVOK 12/01 Q1011 TEMPO 24015G25KT"}],"computedMax":12,"computedMin":12,"fetchedAt":1776874998913}

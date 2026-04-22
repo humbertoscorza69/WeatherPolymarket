@@ -1,0 +1,1 @@
+{"station":"ZGSZ","date":"2026-04-17","observations":[{"t":1776384000,"tempC":26,"dewpointC":23,"windKt":2,"rawOb":"METAR ZGSZ 170000Z VRB01MPS 9999 -SHRA SCT015 BKN033 26/23 Q1013 NOSIG"}],"computedMax":26,"computedMin":26,"fetchedAt":1776875288467}

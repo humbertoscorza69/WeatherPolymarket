@@ -1,0 +1,1 @@
+{"station":"FACT","date":"2026-04-15","observations":[{"t":1776211200,"tempC":17,"dewpointC":16,"windKt":6,"rawOb":"METAR FACT 150000Z COR 23006KT 200V260 9999 -DZ FEW009 BKN025 17/16 Q1014 NOSIG"}],"computedMax":17,"computedMin":17,"fetchedAt":1776874170122}

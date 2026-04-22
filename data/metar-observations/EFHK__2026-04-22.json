@@ -1,0 +1,1 @@
+{"station":"EFHK","date":"2026-04-22","observations":[{"t":1776815400,"tempC":5,"dewpointC":-1,"windKt":6,"rawOb":"METAR EFHK 212350Z 29006KT CAVOK 05/M01 Q1015 NOSIG"}],"computedMax":5,"computedMin":5,"fetchedAt":1776874367309}

@@ -1,0 +1,1 @@
+{"station":"KMIA","date":"2026-04-22","observations":[{"t":1776815580,"tempC":23.3,"dewpointC":13.3,"windKt":16,"rawOb":"METAR KMIA 212353Z 06016G23KT 10SM BKN045 23/13 A3017 RMK AO2 SLP217 T02330133 10261 20233 53005 $"}],"computedMax":23.3,"computedMin":23.3,"fetchedAt":1776874747113}

@@ -1,0 +1,1 @@
+{"station":"KATL","date":"2026-04-01","observations":[{"t":1775001120,"tempC":26.1,"dewpointC":12.8,"windKt":5,"rawOb":"METAR KATL 312352Z 22005KT 10SM FEW060 FEW110 FEW250 26/13 A3015 RMK AO2 SLP203 CB DSNT S TCU DSNT NE-E T02610128 10289 20261 56003 $"}],"computedMax":26.1,"computedMin":26.1,"fetchedAt":1776874064916}

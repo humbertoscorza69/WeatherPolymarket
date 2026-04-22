@@ -1,0 +1,1 @@
+{"station":"KAUS","date":"2026-04-05","observations":[{"t":1775346780,"tempC":18.9,"dewpointC":12.8,"windKt":18,"rawOb":"METAR KAUS 042353Z 01018G26KT 10SM BKN030 BKN250 19/13 A3011 RMK AO2 PK WND 01026/2352 SLP190 60005 T01890128 10189 20150 58006"}],"computedMax":18.9,"computedMin":18.9,"fetchedAt":1776874071706}

@@ -1,0 +1,1 @@
+{"station":"RKPK","date":"2026-04-09","observations":[{"t":1775692800,"tempC":13,"dewpointC":10,"windKt":6,"rawOb":"METAR RKPK 090000Z 16006KT 9000 -RA SCT010 BKN014 OVC020 13/10 Q1014"}],"computedMax":13,"computedMin":13,"fetchedAt":1776874167094}

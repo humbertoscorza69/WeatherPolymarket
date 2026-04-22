@@ -1,0 +1,1 @@
+{"station":"KORD","date":"2026-04-11","observations":[{"t":1775865060,"tempC":8.3,"dewpointC":4.4,"windKt":11,"rawOb":"METAR KORD 102351Z 05011KT 10SM SCT039 BKN050 08/04 A3033 RMK AO2 WSHFT 2313 SLP274 T00830044 10122 20083 53013"}],"computedMax":8.3,"computedMin":8.3,"fetchedAt":1776874268599}

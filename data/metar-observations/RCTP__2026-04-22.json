@@ -1,0 +1,1 @@
+{"station":"RCTP","date":"2026-04-22","observations":[{"t":1776816000,"tempC":27,"dewpointC":22,"windKt":4,"rawOb":"METAR RCTP 220000Z 18004KT 120V230 9999 FEW015 BKN035 BKN150 27/22 Q1010 NOSIG RMK A2983"}],"computedMax":27,"computedMin":27,"fetchedAt":1776875344672}

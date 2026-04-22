@@ -1,0 +1,1 @@
+{"station":"KLAX","date":"2026-04-04","observations":[{"t":1775260380,"tempC":20.6,"dewpointC":13.3,"windKt":12,"rawOb":"METAR KLAX 032353Z 27012KT 10SM FEW240 BKN280 21/13 A2996 RMK AO2 SLP144 T02060133 10256 20200 58014 $"}],"computedMax":20.6,"computedMin":20.6,"fetchedAt":1776874617631}
