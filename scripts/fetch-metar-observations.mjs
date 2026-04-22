@@ -128,16 +128,29 @@ async function fetchJson(url, retries = 2) {
   }
 }
 
-// aviationweather.gov METAR API:
-// https://aviationweather.gov/api/data/metar?ids=KJFK&format=json&startTime=2026-04-20T00:00:00Z&endTime=2026-04-20T23:59:59Z&hours=168
+// aviationweather.gov METAR API.
+// Correct endpoint for historical data: use date=YYYYMMDDhhmm format + hours=24 to
+// get 24h of observations ending at that timestamp. We query for end-of-day+12h
+// (i.e., 12:00 UTC the NEXT day) to capture the full local day across timezones.
 async function fetchMetarForDay(icao, date) {
-  // API accepts startTime, endTime, OR hours (count from now)
-  const url = `https://aviationweather.gov/api/data/metar?ids=${icao}&format=json&date=${date.replace(/-/g,"")}&hoursBeforeNow=48`;
+  // Parse date and build query for full day coverage:
+  // Open with date + hours=30 (covers 30 hours preceding) to span all timezones.
+  // API format: date=YYYYMMDDhhmm
+  const [y, m, d] = date.split("-");
+  // End time = midnight UTC of next day + 12 hours (to catch Pacific timezones that
+  // have the market date's local day extending ~26h past UTC midnight)
+  const dateObj = new Date(`${date}T00:00:00Z`);
+  const endObj = new Date(dateObj.getTime() + 36 * 3600 * 1000);  // +36h
+  const pad = n => String(n).padStart(2, "0");
+  const endStr = `${endObj.getUTCFullYear()}${pad(endObj.getUTCMonth()+1)}${pad(endObj.getUTCDate())}${pad(endObj.getUTCHours())}${pad(endObj.getUTCMinutes())}`;
+  // hours=60 covers -60h to 0 relative to date — so 60h ending at our endStr.
+  // That ensures full coverage of the 24h local-day window.
+  const url = `https://aviationweather.gov/api/data/metar?ids=${icao}&format=json&date=${endStr}&hours=60`;
   try {
     const data = await fetchJson(url);
     if (!Array.isArray(data)) return { observations: [], error: "non-array response" };
     const obs = data.map(m => ({
-      t: m.obsTime,  // unix seconds
+      t: m.obsTime,
       tempC: m.temp,
       dewpointC: m.dewp,
       windKt: m.wspd,
