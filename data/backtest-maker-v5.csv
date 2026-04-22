@@ -1,0 +1,9 @@
+conditionId,city,entryTs,ourBid,entryPrice,entryFill,exitPrice,exitFill,pnl,status,score,title
+0x8d44af553d26a04b58ce89dea5af18fbba250889c82de8ef9c62e190bc421c07,Paris,1775492873,0.9635,0.9598,41.52,0.9990,41.52,1.6268,filled-999,0.9768,Will the highest temperature in Paris be 19°C on April 6?
+0x8d44af553d26a04b58ce89dea5af18fbba250889c82de8ef9c62e190bc421c07,Paris,1775493827,0.9720,0.9154,41.15,0.9990,41.15,3.4404,filled-999,0.9748,Will the highest temperature in Paris be 19°C on April 6?
+0x8d44af553d26a04b58ce89dea5af18fbba250889c82de8ef9c62e190bc421c07,Paris,1775495985,0.9960,0.9941,40.16,0.9990,40.16,0.1981,filled-999,0.9697,Will the highest temperature in Paris be 19°C on April 6?
+0x212ce133e2c8b7f13357158bd5f11a3fb5b99df330ad4b9ee583a4dca6fc9d9e,Paris,1775496359,0.9955,0.9950,40.18,0.9990,40.18,0.1607,partial-999,0.9353,Will the highest temperature in Paris be 20°C on April 6?
+0x748eb438cf07dc087e7545aa7c81e992f3606d63bd2672b7b13e5842b45548f5,Paris,1775497077,0.9955,0.9938,40.18,0.9990,40.18,0.2089,filled-999,0.9361,Will the highest temperature in Paris be 18°C on April 6?
+0xfcaa1ef1c76f5dd40c79453ac3ded6e6520e3479ad0b76b981e3a338b1f154d3,Paris,1776284140,0.9950,0.9950,40.20,0.9950,40.20,-0.0000,partial-999,0.9449,Will the highest temperature in Paris be 18°C on April 15?
+0xfcaa1ef1c76f5dd40c79453ac3ded6e6520e3479ad0b76b981e3a338b1f154d3,Paris,1776285052,0.9950,0.9950,40.20,0.9950,40.20,-0.0000,partial-999,0.9559,Will the highest temperature in Paris be 18°C on April 15?
+0x2973029687e50a7e10101d7090ccb69c63d0ea16b87c65a7e97dfd9071aa492a,Shanghai,1776675358,0.9965,0.9950,40.14,0.9990,40.14,0.1590,filled-999,0.9796,Highest temperature in Shanghai on April 20?
