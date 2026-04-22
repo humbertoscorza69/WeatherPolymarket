@@ -639,7 +639,7 @@ function simulateTrade(cid, entryTs, marketPrice, ourBidPrice, shares, cfg) {
 }
 
 let passedCoarse = 0, scored = 0, attempted = 0, filled = 0;
-let gatedLiq = 0, gatedCB = 0, gatedBL = 0, gatedMomentum = 0, gatedCrossed = 0, gatedDisagree = 0;
+let gatedLiq = 0, gatedCB = 0, gatedBL = 0, gatedMomentum = 0, gatedCrossed = 0, gatedDisagree = 0, gatedDeadZone = 0;
 const positions = new Map();
 const lastEntryByCid = new Map();
 const trades = [];
@@ -718,6 +718,19 @@ for (const ev of events) {
   // to enable risk-averse mode (drops ~60% of trades for marginal WR improvement).
   const agreementTol = Number(argv.agreementtol ?? "99");
   if (!sourcesAgree(ev.market, ev.t, agreementTol)) { gatedDisagree++; continue; }
+
+  // v15: YES forecast-in-range "dead zone" filter. Empirical from v14 backtest:
+  // cushion 0.50 (forecast = strike): 90.9% WR (n=595)
+  // cushion 0.40 (forecast 0.1°C off): 0% WR (n=6) — noise pocket
+  // cushion 0.30 (0.2°C off): 100% WR (n=10)
+  // Skip cushion ∈ [0.35, 0.45) only — narrowest possible band that excludes the
+  // 0/6 trap without touching the high-volume 0.50 bucket. Default ON; disable
+  // with --yesdeadzone=false.
+  const yesDeadZone = (argv.yesdeadzone ?? "true") !== "false";
+  if (yesDeadZone && sig.side === "YES" && sig.reason === "forecast-in-range"
+      && sig.cushion >= 0.35 && sig.cushion < 0.45) {
+    gatedDeadZone++; continue;
+  }
 
   // Determine token we're buying + price filter
   let entryPrice, sideOutcomeIndex;
@@ -840,7 +853,7 @@ const firstTs = trades.length ? Math.min(...trades.map(t => t.entryTs)) : 0;
 const lastTs = trades.length ? Math.max(...trades.map(t => t.entryTs)) : 0;
 const spanDays = (lastTs - firstTs) / 86400;
 
-console.log(`candidates: ${passedCoarse}  gated[liq:${gatedLiq} mom:${gatedMomentum} crossed:${gatedCrossed} disagree:${gatedDisagree} CB:${gatedCB} BL:${gatedBL}]  scored:${scored}  attempted:${attempted}  filled:${filled}`);
+console.log(`candidates: ${passedCoarse}  gated[liq:${gatedLiq} mom:${gatedMomentum} crossed:${gatedCrossed} disagree:${gatedDisagree} deadzone:${gatedDeadZone} CB:${gatedCB} BL:${gatedBL}]  scored:${scored}  attempted:${attempted}  filled:${filled}`);
 console.log(`entry fill rate: ${fmt(100*filled/Math.max(1,attempted),1)}%  (limit-buy cross rate)`);
 console.log(`by exit status:`);
 for (const [k, v] of Object.entries(byStatus).sort((a,b) => b[1]-a[1])) {
