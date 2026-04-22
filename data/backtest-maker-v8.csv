@@ -40,6 +40,9 @@ conditionId,city,entryTs,ourBid,entryPrice,entryFill,exitPrice,exitFill,pnl,stat
 0xc5c910d97728305bb14f17fde8a8b785c5d1146cef9e63e40073d0284bee9b8d,London,1774792470,0.9900,0.9852,40.40,0.9980,40.40,0.5153,maxhold-taker,0.9759,Will the highest temperature in London be 12°C on March 29?
 0xc5c910d97728305bb14f17fde8a8b785c5d1146cef9e63e40073d0284bee9b8d,London,1774793325,0.9900,0.9861,40.40,0.9980,40.40,0.4818,maxhold-taker,0.9788,Will the highest temperature in London be 12°C on March 29?
 0xc5c910d97728305bb14f17fde8a8b785c5d1146cef9e63e40073d0284bee9b8d,London,1774795095,0.9960,0.9960,40.16,0.9950,40.16,-0.0402,partial-999,0.8994,Will the highest temperature in London be 12°C on March 29?
+0xd7920cb9f02e0c9db2f4c43216ddcf45147bb76be8e6832599b7934470c21cb7,Munich,1774796010,0.9900,0.9900,40.40,0.9990,40.40,0.3636,filled-999,0.9738,Will the highest temperature in Munich be 5°C on March 29?
+0xd7920cb9f02e0c9db2f4c43216ddcf45147bb76be8e6832599b7934470c21cb7,Munich,1774796025,0.9900,0.9900,40.40,0.9990,40.40,0.3636,filled-999,0.9738,Will the highest temperature in Munich be 5°C on March 29?
+0xd7920cb9f02e0c9db2f4c43216ddcf45147bb76be8e6832599b7934470c21cb7,Munich,1774796040,0.9900,0.9900,40.40,0.9990,40.40,0.3636,filled-999,0.9705,Will the highest temperature in Munich be 5°C on March 29?
 0xa2f915e7defe8f89b3d6275f9ab38459f43019db1727bbc8cc67c215cfaaec65,Seoul,1774841280,0.9900,0.9703,40.40,0.9990,40.40,1.1607,filled-999,0.9455,Will the highest temperature in Seoul be 16°C on March 30?
 0x0341e449498f554bfba80839b08ac314c683f36a67305caa92de525d6a0771d6,Seoul,1775094990,0.9960,0.9960,40.16,0.9990,40.16,0.1205,filled-999,0.5137,Will the highest temperature in Seoul be 11°C on April 2?
 0x0341e449498f554bfba80839b08ac314c683f36a67305caa92de525d6a0771d6,Seoul,1775095050,0.9960,0.9960,40.16,0.9990,40.16,0.1205,filled-999,0.5994,Will the highest temperature in Seoul be 11°C on April 2?
@@ -99,8 +102,27 @@ conditionId,city,entryTs,ourBid,entryPrice,entryFill,exitPrice,exitFill,pnl,stat
 0x367dcfd0eb2df66d2494c8cf1c29dc91156168f016be1e99ed396b2a4bfbf386,Seoul,1776131955,0.9963,0.9963,40.15,0.9990,40.15,0.1071,filled-999,0.6906,Will the highest temperature in Seoul be 20°C on April 14?
 0x367dcfd0eb2df66d2494c8cf1c29dc91156168f016be1e99ed396b2a4bfbf386,Seoul,1776132030,0.9980,0.9977,40.08,0.9990,40.08,0.0534,filled-999,0.8102,Will the highest temperature in Seoul be 20°C on April 14?
 0x367dcfd0eb2df66d2494c8cf1c29dc91156168f016be1e99ed396b2a4bfbf386,Seoul,1776132090,0.9977,0.9977,40.09,0.9990,40.09,0.0534,filled-999,0.8293,Will the highest temperature in Seoul be 20°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776133710,0.9900,0.9900,40.40,0.9990,40.40,0.3636,filled-999,0.9144,Will the highest temperature in Seoul be 22°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776133725,0.9900,0.9900,40.40,0.9990,40.40,0.3636,filled-999,0.9144,Will the highest temperature in Seoul be 22°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776133740,0.9900,0.9900,40.40,0.9990,40.40,0.3636,filled-999,0.9272,Will the highest temperature in Seoul be 22°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776133770,0.9900,0.9900,40.40,0.9990,40.40,0.3636,filled-999,0.9197,Will the highest temperature in Seoul be 22°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776133800,0.9900,0.9900,40.40,0.9990,40.40,0.3636,filled-999,0.8789,Will the highest temperature in Seoul be 22°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776133830,0.9900,0.9900,40.40,0.9990,40.40,0.3636,filled-999,0.9377,Will the highest temperature in Seoul be 22°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776133845,0.9980,0.9900,40.08,0.9990,40.08,0.3591,filled-999,0.9746,Will the highest temperature in Seoul be 22°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776133920,0.9980,0.9900,40.08,0.9990,40.08,0.3591,filled-999,0.9693,Will the highest temperature in Seoul be 22°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776133950,0.9980,0.9900,40.08,0.9990,40.08,0.3591,filled-999,0.9669,Will the highest temperature in Seoul be 22°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776133980,0.9980,0.9900,40.08,0.9990,40.08,0.3591,filled-999,0.9578,Will the highest temperature in Seoul be 22°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776134055,0.9970,0.9930,40.12,0.9990,40.12,0.2407,filled-999,0.8843,Will the highest temperature in Seoul be 22°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776134130,0.9970,0.9930,40.12,0.9990,40.12,0.2407,filled-999,0.9139,Will the highest temperature in Seoul be 22°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776134160,0.9970,0.9960,40.12,0.9990,40.12,0.1204,filled-999,0.9139,Will the highest temperature in Seoul be 22°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776134190,0.9970,0.9960,40.12,0.9990,40.12,0.1204,filled-999,0.9139,Will the highest temperature in Seoul be 22°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776134205,0.9980,0.9960,40.08,0.9990,40.08,0.1202,filled-999,0.9578,Will the highest temperature in Seoul be 22°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776134280,0.9980,0.9960,40.08,0.9990,40.08,0.1202,filled-999,0.9578,Will the highest temperature in Seoul be 22°C on April 14?
+0x87a3c78a173ed77f112648195e18881b546ebae682f82afdde35eb9d1b8a9c09,Seoul,1776134430,0.9980,0.9951,40.08,0.9990,40.08,0.1556,filled-999,0.9267,Will the highest temperature in Seoul be 22°C on April 14?
 0x79221ab8f58a26e23881063d9c8d6f45757f05a0f10158a79510299c83e45ede,Tokyo,1776153240,0.9980,0.9913,40.08,0.9990,40.08,0.3082,filled-999,0.8454,Will the highest temperature in Tokyo be 22°C on April 14?
 0x79221ab8f58a26e23881063d9c8d6f45757f05a0f10158a79510299c83e45ede,Tokyo,1776154485,0.9980,0.9980,40.08,0.9980,40.08,0.0000,partial-999,0.8145,Will the highest temperature in Tokyo be 22°C on April 14?
+0x0db03cfeccd12b8949412ce20d85c407bc4a805609c14e62260dcb5daa3a7ebf,Lagos,1776168660,0.9900,0.9900,40.40,0.9990,40.40,0.3636,maxhold-taker,0.7187,Will the highest temperature in Lagos be 34°C on April 14?
+0x0db03cfeccd12b8949412ce20d85c407bc4a805609c14e62260dcb5daa3a7ebf,Lagos,1776168960,0.9900,0.9900,40.40,0.9990,40.40,0.3636,maxhold-taker,0.6703,Will the highest temperature in Lagos be 34°C on April 14?
 0x25430c5da51fb7a26e4cee27e844f819cdf29f881b336020babde7682560ffc6,Paris,1776347985,0.9900,0.9900,28.85,0.9990,28.85,0.2597,filled-999,0.9805,Will the highest temperature in Paris be 18°C on April 16?
 0x25430c5da51fb7a26e4cee27e844f819cdf29f881b336020babde7682560ffc6,Paris,1776348000,0.9900,0.9900,24.86,0.9990,24.86,0.2237,filled-999,0.9826,Will the highest temperature in Paris be 18°C on April 16?
 0xc2ae655656026da71c84ecabd2d3335ac69152e455d1f2ffe39d3b50233a63ef,Amsterdam,1776359655,0.9970,0.9935,29.29,0.9980,29.29,0.1317,partial-999,0.9278,Will the highest temperature in Amsterdam be 17°C on April 16?
@@ -110,6 +132,10 @@ conditionId,city,entryTs,ourBid,entryPrice,entryFill,exitPrice,exitFill,pnl,stat
 0xb23381c803e49642b1dde50ae2ac2ee80f48bec62ba2e1d3af829e17b3e42694,Mexico City,1776455130,0.9980,0.9980,40.08,0.9990,40.08,0.0401,filled-999,0.9386,Will the highest temperature in Mexico City be 27°C on April 17?
 0xb23381c803e49642b1dde50ae2ac2ee80f48bec62ba2e1d3af829e17b3e42694,Mexico City,1776455220,0.9980,0.9980,40.08,0.9990,40.08,0.0401,filled-999,0.9175,Will the highest temperature in Mexico City be 27°C on April 17?
 0xb23381c803e49642b1dde50ae2ac2ee80f48bec62ba2e1d3af829e17b3e42694,Mexico City,1776455445,0.9980,0.9980,40.08,0.9990,40.08,0.0401,filled-999,0.9300,Will the highest temperature in Mexico City be 27°C on April 17?
+0x90c1821ee59ac1411baab77d89eaa1abf7f9a4309602b7c0e13913ae4e45d275,Beijing,1776528060,0.9960,0.9900,40.16,0.9990,40.16,0.3614,filled-999,0.7594,Will the highest temperature in Beijing be 20°C on April 19?
+0x90c1821ee59ac1411baab77d89eaa1abf7f9a4309602b7c0e13913ae4e45d275,Beijing,1776528075,0.9960,0.9900,40.16,0.9990,40.16,0.3614,filled-999,0.7359,Will the highest temperature in Beijing be 20°C on April 19?
+0x90c1821ee59ac1411baab77d89eaa1abf7f9a4309602b7c0e13913ae4e45d275,Beijing,1776528105,0.9960,0.9900,40.16,0.9990,40.16,0.3614,filled-999,0.7382,Will the highest temperature in Beijing be 20°C on April 19?
+0x5d85c0aaa5fc105ccf8b5316b764edbde2ffc4632f4a4cd0fe6717e380ea5165,Lagos,1776533235,0.9980,0.9825,40.08,0.9990,40.08,0.6617,filled-999,0.9700,Will the highest temperature in Lagos be 33°C on April 18?
 0xd0c9965348491ca8329945ba976346a2733b0f855717989f851b42b6ac8fa850,Buenos Aires,1776535350,0.9910,0.4350,40.36,0.9940,40.36,22.5647,maxhold-taker,0.9182,Will the highest temperature in Buenos Aires be 29°C on April 18?
 0x66d1a9915cf3f9c8c8b1cef2b752f5f6c0233fe78a8dd92c3dc2df473c1c8887,Shanghai,1776577560,0.9980,0.9890,40.08,0.9990,40.08,0.4021,filled-999,0.8351,Will the highest temperature in Shanghai be 24°C on April 19?
 0x66d1a9915cf3f9c8c8b1cef2b752f5f6c0233fe78a8dd92c3dc2df473c1c8887,Shanghai,1776578805,0.9970,0.9890,40.12,0.9990,40.12,0.4025,filled-999,0.7253,Will the highest temperature in Shanghai be 24°C on April 19?
@@ -136,6 +162,7 @@ conditionId,city,entryTs,ourBid,entryPrice,entryFill,exitPrice,exitFill,pnl,stat
 0x5b35c0716cad363a79fc55213651658d050e562ce069f2435ef5ec1bdda64928,Ankara,1776602310,0.9960,0.9795,40.16,0.9950,40.16,0.6231,maxhold-taker,0.6508,Will the highest temperature in Ankara be 13°C on April 19?
 0x682b3f760a0420f13ae792bd0c193f547436a87846d06aacac6b76862f87aaee,Paris,1776603645,0.9924,0.9269,40.30,0.8970,40.30,-1.2038,hardstop,0.7433,Will the highest temperature in Paris be 16°C on April 19?
 0x682b3f760a0420f13ae792bd0c193f547436a87846d06aacac6b76862f87aaee,Paris,1776603750,0.9930,0.9269,40.28,0.8970,40.28,-1.2038,hardstop,0.7695,Will the highest temperature in Paris be 16°C on April 19?
+0xb98c025b9a661bf5435f2651725952a6a775160424d2c0c911e48072cb47a8f6,Mexico City,1776632295,0.9980,0.9980,40.08,0.9990,40.08,0.0401,filled-999,0.8682,Will the highest temperature in Mexico City be 23°C on April 19?
 0x8dc097c578993a3fe978efea2901022c63b671a86b58149c22f69df04625a69d,Shenzhen,1776658230,0.9980,0.9930,10.61,0.9960,10.61,0.0318,maxhold-taker,0.9469,Will the highest temperature in Shenzhen be 29°C on April 20?
 0x1e2bad07ef90c28049c9786b3ccd92194d0598db0cd52a63231278fe552511bf,Beijing,1776665940,0.9980,0.9980,30.93,0.9990,30.93,0.0309,maxhold-taker,0.7881,Will the highest temperature in Beijing be 27°C on April 20?
 0x5cf8576d7c0c0004ab720e57f32df6a8b82195c3c2869028b3545f7d784d0ff9,Paris,1776679215,0.9942,0.9917,40.23,0.9750,40.23,-0.6706,stoploss-maker,0.6428,Will the highest temperature in Paris be 14°C on April 20?
@@ -146,3 +173,7 @@ conditionId,city,entryTs,ourBid,entryPrice,entryFill,exitPrice,exitFill,pnl,stat
 0xfd86e937fb031a0e614bcfd98f3a94afca59d1b790bd17ff2b6a7f9ad3c9c567,Seoul,1776820110,0.9970,0.9970,40.12,0.9990,40.12,0.0802,filled-999,0.5977,Will the highest temperature in Seoul be 13°C on April 22?
 0x71a85610ffb98f0e94d4b20e8c0fca4f9ea8ddf6b5ae410d8366078357f5f575,Seoul,1776830145,0.9900,0.9900,40.40,0.9990,40.40,0.3636,filled-999,0.9346,Will the highest temperature in Seoul be 15°C on April 22?
 0x71a85610ffb98f0e94d4b20e8c0fca4f9ea8ddf6b5ae410d8366078357f5f575,Seoul,1776830160,0.9900,0.9900,40.40,0.9990,40.40,0.3636,filled-999,0.9309,Will the highest temperature in Seoul be 15°C on April 22?
+0xa19d75d1f6c115a294d08bccb1156c3dea5103c829f1c58d5d2b6bf2c5f0e467,Chengdu,1776837810,0.9900,0.9900,40.40,0.9990,40.40,0.3636,maxhold-taker,0.6447,Will the highest temperature in Chengdu be 22°C on April 22?
+0xa19d75d1f6c115a294d08bccb1156c3dea5103c829f1c58d5d2b6bf2c5f0e467,Chengdu,1776837840,0.9900,0.9900,40.40,0.9990,40.40,0.3636,maxhold-taker,0.7400,Will the highest temperature in Chengdu be 22°C on April 22?
+0xa19d75d1f6c115a294d08bccb1156c3dea5103c829f1c58d5d2b6bf2c5f0e467,Chengdu,1776837990,0.9900,0.9900,40.40,0.9990,40.40,0.3636,maxhold-taker,0.5608,Will the highest temperature in Chengdu be 22°C on April 22?
+0x58ea3bd9f2bf642a91b2f1a5c597488ec506ac836f25660c739669e837a04879,Chongqing,1776841275,0.9900,0.9900,15.75,0.9990,15.75,0.1417,maxhold-taker,0.8570,Will the highest temperature in Chongqing be 21°C on April 22?
