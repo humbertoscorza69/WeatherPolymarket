@@ -1,9 +1,16 @@
 conditionId,city,entryTs,ourBid,entryPrice,entryFill,exitPrice,exitFill,pnl,status,score,title
-0x8d44af553d26a04b58ce89dea5af18fbba250889c82de8ef9c62e190bc421c07,Paris,1775492873,0.9635,0.9598,41.52,0.9990,41.52,1.6268,filled-999,0.9768,Will the highest temperature in Paris be 19°C on April 6?
-0x8d44af553d26a04b58ce89dea5af18fbba250889c82de8ef9c62e190bc421c07,Paris,1775493827,0.9720,0.9154,41.15,0.9990,41.15,3.4404,filled-999,0.9748,Will the highest temperature in Paris be 19°C on April 6?
-0x8d44af553d26a04b58ce89dea5af18fbba250889c82de8ef9c62e190bc421c07,Paris,1775495985,0.9960,0.9941,40.16,0.9990,40.16,0.1981,filled-999,0.9697,Will the highest temperature in Paris be 19°C on April 6?
-0x212ce133e2c8b7f13357158bd5f11a3fb5b99df330ad4b9ee583a4dca6fc9d9e,Paris,1775496359,0.9955,0.9950,40.18,0.9990,40.18,0.1607,partial-999,0.9353,Will the highest temperature in Paris be 20°C on April 6?
-0x748eb438cf07dc087e7545aa7c81e992f3606d63bd2672b7b13e5842b45548f5,Paris,1775497077,0.9955,0.9938,40.18,0.9990,40.18,0.2089,filled-999,0.9361,Will the highest temperature in Paris be 18°C on April 6?
-0xfcaa1ef1c76f5dd40c79453ac3ded6e6520e3479ad0b76b981e3a338b1f154d3,Paris,1776284140,0.9950,0.9950,40.20,0.9950,40.20,-0.0000,partial-999,0.9449,Will the highest temperature in Paris be 18°C on April 15?
-0xfcaa1ef1c76f5dd40c79453ac3ded6e6520e3479ad0b76b981e3a338b1f154d3,Paris,1776285052,0.9950,0.9950,40.20,0.9950,40.20,-0.0000,partial-999,0.9559,Will the highest temperature in Paris be 18°C on April 15?
-0x2973029687e50a7e10101d7090ccb69c63d0ea16b87c65a7e97dfd9071aa492a,Shanghai,1776675358,0.9965,0.9950,40.14,0.9990,40.14,0.1590,filled-999,0.9796,Highest temperature in Shanghai on April 20?
+0x682b3f760a0420f13ae792bd0c193f547436a87846d06aacac6b76862f87aaee,Paris,1776603405,0.9495,0.9256,42.13,0.9990,42.13,3.0932,filled-999,0.7864,Will the highest temperature in Paris be 16°C on April 19?
+0x682b3f760a0420f13ae792bd0c193f547436a87846d06aacac6b76862f87aaee,Paris,1776603711,0.9510,0.9256,42.06,0.9990,42.06,3.0864,filled-999,0.8337,Will the highest temperature in Paris be 16°C on April 19?
+0x682b3f760a0420f13ae792bd0c193f547436a87846d06aacac6b76862f87aaee,Paris,1776603767,0.9505,0.9256,42.08,0.9990,42.08,3.0886,filled-999,0.9075,Will the highest temperature in Paris be 16°C on April 19?
+0x682b3f760a0420f13ae792bd0c193f547436a87846d06aacac6b76862f87aaee,Paris,1776603824,0.9565,0.9258,41.82,0.9990,41.82,3.0617,filled-999,0.9401,Will the highest temperature in Paris be 16°C on April 19?
+0x682b3f760a0420f13ae792bd0c193f547436a87846d06aacac6b76862f87aaee,Paris,1776603884,0.9605,0.9259,41.64,0.9990,41.64,3.0440,filled-999,0.9483,Will the highest temperature in Paris be 16°C on April 19?
+0x8dc097c578993a3fe978efea2901022c63b671a86b58149c22f69df04625a69d,Shenzhen,1776658181,0.9940,0.9930,10.61,0.9960,10.61,0.0318,maxhold-taker,0.7456,Will the highest temperature in Shenzhen be 29°C on April 20?
+0xf77a758015271f98edc4d1a8a3142cea3bdae34c921a13bfe78e37c579c85c08,Beijing,1776664928,0.9940,0.9900,40.24,0.9990,40.24,0.3622,filled-999,0.6939,Will the highest temperature in Beijing be 22°C on April 20?
+0x2973029687e50a7e10101d7090ccb69c63d0ea16b87c65a7e97dfd9071aa492a,Shanghai,1776675358,0.9965,0.9950,40.14,0.9990,40.14,0.1590,filled-999,0.9877,Highest temperature in Shanghai on April 20?
+0xdc5369beb48ed409a27f2d90d56ea18a39ee878a042e233174ca1e09aa1d07e6,Miami,1776702410,0.9940,0.9900,40.24,0.9990,40.24,0.3615,filled-999,0.8494,Will the highest temperature in Miami be between 82-83°F on April 20?
+0xdc5369beb48ed409a27f2d90d56ea18a39ee878a042e233174ca1e09aa1d07e6,Miami,1776702473,0.9940,0.9900,40.24,0.9990,40.24,0.3615,filled-999,0.8494,Will the highest temperature in Miami be between 82-83°F on April 20?
+0xdc5369beb48ed409a27f2d90d56ea18a39ee878a042e233174ca1e09aa1d07e6,Miami,1776702525,0.9940,0.9900,40.24,0.9990,40.24,0.3615,filled-999,0.8230,Will the highest temperature in Miami be between 82-83°F on April 20?
+0xdc5369beb48ed409a27f2d90d56ea18a39ee878a042e233174ca1e09aa1d07e6,Miami,1776702585,0.9940,0.9900,40.24,0.9990,40.24,0.3615,filled-999,0.9155,Will the highest temperature in Miami be between 82-83°F on April 20?
+0xdc5369beb48ed409a27f2d90d56ea18a39ee878a042e233174ca1e09aa1d07e6,Miami,1776702658,0.9940,0.9900,40.24,0.9990,40.24,0.3615,filled-999,0.8728,Will the highest temperature in Miami be between 82-83°F on April 20?
+0xdc5369beb48ed409a27f2d90d56ea18a39ee878a042e233174ca1e09aa1d07e6,Miami,1776702716,0.9940,0.9900,40.24,0.9990,40.24,0.3615,filled-999,0.8433,Will the highest temperature in Miami be between 82-83°F on April 20?
+0xdc5369beb48ed409a27f2d90d56ea18a39ee878a042e233174ca1e09aa1d07e6,Miami,1776702776,0.9940,0.9900,40.24,0.9990,40.24,0.3615,filled-999,0.8636,Will the highest temperature in Miami be between 82-83°F on April 20?
