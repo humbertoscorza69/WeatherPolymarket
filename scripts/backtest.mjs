@@ -141,6 +141,78 @@ for (const mf of fs.readdirSync(METAR_DIR)) {
 }
 console.log(`METAR observations loaded: ${METAR_OBS.size} (city, date) pairs`);
 
+// v11: compute a "perfect forecast" max using full-day observations.
+// In live, this would be Open-Meteo FORECAST API at entryTs.
+function forecastMaxFromObs(obsArr) {
+  if (!obsArr || !obsArr.length) return null;
+  let fmax = -999;
+  for (const [, temp] of obsArr) if (temp > fmax) fmax = temp;
+  return fmax > -999 ? fmax : null;
+}
+function observedMaxBefore(obsArr, entryTs) {
+  if (!obsArr || !obsArr.length) return null;
+  let mx = -999;
+  for (const [t, temp] of obsArr) { if (t > entryTs) break; if (temp > mx) mx = temp; }
+  return mx > -999 ? mx : null;
+}
+function observedMinBefore(obsArr, entryTs) {
+  if (!obsArr || !obsArr.length) return null;
+  let mn = 999;
+  for (const [t, temp] of obsArr) { if (t > entryTs) break; if (temp < mn) mn = temp; }
+  return mn < 999 ? mn : null;
+}
+
+// Returns best obs array: METAR preferred, Open-Meteo fallback
+function bestObs(market) {
+  if (!market) return null;
+  return METAR_OBS.get(`${market.city}__${market.date}`)
+      || WEATHER_OBS.get(`${market.city}__${market.date}`);
+}
+
+/**
+ * v11 multi-signal entry logic.  Returns {side, reason, cushion} or null.
+ *   side: "NO" or "YES" (which outcome we're buying)
+ *   cushion: confidence margin (larger = safer)
+ */
+function computeEntrySignal(market, entryTs, buffer, forecastBuf) {
+  if (!market || market.threshold == null) return null;
+  const obs = bestObs(market);
+  if (!obs) return null;
+  const thrC = market.unit === "F" ? (market.threshold - 32) * 5/9 : market.threshold;
+
+  if (market.isLowest) {
+    const minSoFar = observedMinBefore(obs, entryTs);
+    if (minSoFar == null) return null;
+    if (market.type === "exact") {
+      if (minSoFar < thrC - buffer) return { side: "NO", reason: "lowest-observed-below", cushion: thrC - minSoFar };
+    } else if (market.type === "at_or_above") {
+      if (minSoFar < thrC - buffer) return { side: "NO", reason: "min-below-range", cushion: thrC - minSoFar };
+    }
+    return null;
+  }
+
+  const obsMax = observedMaxBefore(obs, entryTs);
+  const fMax = forecastMaxFromObs(obs);
+
+  if (market.type === "exact") {
+    if (obsMax != null && obsMax > thrC + buffer)
+      return { side: "NO", reason: "observed-above", cushion: obsMax - thrC };
+    if (fMax != null && fMax < thrC - forecastBuf)
+      return { side: "NO", reason: "forecast-below", cushion: thrC - fMax };
+    if (fMax != null && Math.abs(fMax - thrC) <= 0.5 && (obsMax == null || obsMax <= thrC + buffer))
+      return { side: "YES", reason: "forecast-in-range", cushion: 0.5 - Math.abs(fMax - thrC) };
+  } else if (market.type === "at_or_below") {
+    if (obsMax != null && obsMax > thrC + buffer)
+      return { side: "NO", reason: "observed-above-threshold", cushion: obsMax - thrC };
+  } else if (market.type === "between" && market.thresholdHigh != null) {
+    const thrHiC = market.unit === "F" ? (market.thresholdHigh - 32) * 5/9 : market.thresholdHigh;
+    if (obsMax != null && obsMax > thrHiC + buffer)
+      return { side: "NO", reason: "observed-above-range", cushion: obsMax - thrHiC };
+  }
+  return null;
+}
+
+// v10-style boolean check kept for backward compat (used only if --v11off)
 function thresholdCrossed(market, entryTs, buffer) {
   if (!market || market.threshold == null) return false;
   // Prefer METAR (Polymarket's source). Fall back to Open-Meteo.
@@ -199,7 +271,9 @@ function cityFromTitle(title) {
 }
 function parseWeatherTitle(title) {
   if (!title) return null;
-  const cityM = title.match(/temperature in ([A-Z][\w .\-']+?) be/i);
+  const isLowest = /lowest temperature/i.test(title);
+  let cityM = title.match(/temperature in ([A-Z][\w .\-']+?) be/i);
+  if (!cityM) cityM = title.match(/temperature in ([A-Z][\w .\-']+?) on/i);
   if (!cityM) return null;
   const city = cityM[1].trim();
   const unit = /°F/i.test(title) ? "F" : "C";
@@ -219,7 +293,7 @@ function parseWeatherTitle(title) {
     date = `${monM[3]||"2026"}-${String(mi+1).padStart(2,"0")}-${String(monM[2]).padStart(2,"0")}`;
   }
   if (!date) return null;
-  return { city, date, unit, threshold, thresholdHigh, type };
+  return { city, date, unit, threshold, thresholdHigh, type, isLowest };
 }
 const WEATHER_CACHE = new Map();
 function loadWeather(city, date) {
@@ -353,7 +427,7 @@ for (const f of tickFiles) {
   let lastBucket = -1;
   let lastPrice = null;
   for (const t of ticks) {
-    if (t.outcomeIndex !== 1) continue;
+    if (t.outcomeIndex !== 1) continue;  // always NO-side for base market price
     lastPrice = t.price;
     const bucket = Math.floor(t.timestamp / SAMPLE_BUCKET_SEC);
     if (bucket > lastBucket && lastPrice !== null) {
@@ -402,7 +476,7 @@ function simulateTrade(cid, entryTs, marketPrice, ourBidPrice, shares, cfg) {
   for (const t of ticks) {
     if (t.timestamp < entryTs) continue;
     if (t.timestamp > buyDeadline) break;
-    if (t.outcomeIndex !== 1) continue;
+    if (t.outcomeIndex !== (cfg.ENTRY_SIDE ?? 1)) continue;
     lastPrice = t.price;
     // Only SELL ticks at price <= ourBidPrice could have crossed our bid
     if (t.side !== "SELL" || t.price > ourBidPrice) continue;
@@ -441,7 +515,7 @@ function simulateTrade(cid, entryTs, marketPrice, ourBidPrice, shares, cfg) {
 
   for (const t of ticks) {
     if (t.timestamp < sellStart) continue;
-    if (t.outcomeIndex !== 1) continue;
+    if (t.outcomeIndex !== (cfg.ENTRY_SIDE ?? 1)) continue;
     lastPrice = t.price;
 
     // Primary exit: limit SELL at SELL_TARGET. Fills when NO-side BUY tick at price >= SELL_TARGET.
@@ -497,20 +571,23 @@ function simulateTrade(cid, entryTs, marketPrice, ourBidPrice, shares, cfg) {
       break;
     }
 
-    // Max hold timeout: if market has resolved to NO ($1), settle remaining
-    // at $1 (auto-settlement). Otherwise take at current tick price.
+    // Max hold timeout: if market has resolved, settle remaining at the
+    // actual payout for our side. Otherwise take at current tick price.
     if (t.timestamp > sellDeadline) {
       const rem = buyShares - sellShares;
       if (rem > 0) {
         const pastRes = cfg.RESOLUTION_TS && t.timestamp >= cfg.RESOLUTION_TS;
-        const settlePrice = pastRes && cfg.RESOLUTION_VALUE === 1 ? 1.0
-                          : pastRes && cfg.RESOLUTION_VALUE === 0 ? 0.0
+        const winVal = cfg.WIN_RESOLUTION_VALUE ?? 1;  // value of RESOLUTION_VALUE where our side wins
+        const settlePrice = pastRes && cfg.RESOLUTION_VALUE === winVal ? 1.0
+                          : pastRes && cfg.RESOLUTION_VALUE != null ? 0.0
                           : t.price;
         sellShares += rem;
         sellNotional += rem * settlePrice;
       }
-      status = cfg.RESOLUTION_VALUE === 1 && cfg.RESOLUTION_TS && t.timestamp >= cfg.RESOLUTION_TS ? 'settle-no-won'
-             : cfg.RESOLUTION_VALUE === 0 && cfg.RESOLUTION_TS && t.timestamp >= cfg.RESOLUTION_TS ? 'settle-yes-won'
+      const pastRes = cfg.RESOLUTION_TS && t.timestamp >= cfg.RESOLUTION_TS;
+      const winVal = cfg.WIN_RESOLUTION_VALUE ?? 1;
+      status = pastRes && cfg.RESOLUTION_VALUE === winVal ? 'settle-win'
+             : pastRes && cfg.RESOLUTION_VALUE != null ? 'settle-lose'
              : 'maxhold-taker';
       break;
     }
@@ -521,15 +598,16 @@ function simulateTrade(cid, entryTs, marketPrice, ourBidPrice, shares, cfg) {
   //   Otherwise exit at last observed price.
   if (status === null) {
     const rem = buyShares - sellShares;
+    const winVal = cfg.WIN_RESOLUTION_VALUE ?? 1;
     if (rem > 0) {
-      const settlePrice = cfg.RESOLUTION_VALUE === 1 ? 1.0
-                        : cfg.RESOLUTION_VALUE === 0 ? 0.0
+      const settlePrice = cfg.RESOLUTION_VALUE === winVal ? 1.0
+                        : cfg.RESOLUTION_VALUE != null ? 0.0
                         : lastPrice;
       sellShares += rem;
       sellNotional += rem * settlePrice;
     }
-    status = cfg.RESOLUTION_VALUE === 1 ? 'settle-no-won'
-           : cfg.RESOLUTION_VALUE === 0 ? 'settle-yes-won'
+    status = cfg.RESOLUTION_VALUE === winVal ? 'settle-win'
+           : cfg.RESOLUTION_VALUE != null ? 'settle-lose'
            : (sellShares > 0 ? 'partial-999' : 'stuck');
   }
 
@@ -562,7 +640,7 @@ function checkLiquidity(ticks, entryTs, cfg) {
   let vol = 0;
   for (const t of ticks) {
     if (t.timestamp < lo || t.timestamp >= entryTs) continue;
-    if (t.outcomeIndex !== 1) continue;
+    if (t.outcomeIndex !== (cfg.ENTRY_SIDE ?? 1)) continue;
     if (t.price < cfg.LIQ_MIN_PRICE) continue;
     vol += Number(t.size) || 0;
     if (vol >= cfg.LIQ_MIN_VOLUME) return true;
@@ -576,7 +654,7 @@ function checkMomentum(ticks, entryTs, currentPrice, cfg) {
   let maxRecent = currentPrice;
   for (const t of ticks) {
     if (t.timestamp < lo || t.timestamp >= entryTs) continue;
-    if (t.outcomeIndex !== 1) continue;
+    if (t.outcomeIndex !== (cfg.ENTRY_SIDE ?? 1)) continue;
     if (t.price > maxRecent) maxRecent = t.price;
   }
   // If recent peak is more than DECLINE_MAX above current = declining, reject
@@ -587,7 +665,12 @@ for (const ev of events) {
   const key = `${ev.conditionId}-NO`;
   if (positions.has(key)) continue;
 
-  const inBand = ev.p >= CFG.MIN_ENTRY && ev.p <= CFG.MAX_ENTRY;
+  // v11: outer band widened to cover BOTH NO (NO price in [0.70, 0.99]) and
+  // YES (NO price in [0.30, 0.70] = YES price 0.30-0.70) entries. Inner
+  // side-aware check enforces the specific band per side.
+  const outerMin = Math.min(CFG.MIN_ENTRY, 1 - (CFG.MAX_ENTRY_YES ?? 0.70));
+  const outerMax = Math.max(CFG.MAX_ENTRY, 1 - (CFG.MIN_ENTRY_YES ?? 0.30));
+  const inBand = ev.p >= outerMin && ev.p <= outerMax;
   const ttr = ev.marketEndTs - ev.t;
   const inTtr = ttr >= CFG.TTR_MIN && ttr <= CFG.TTR_MAX;
   const inTimeWindow = ev.t >= MIN_ENTRY_TS && ev.t <= MAX_ENTRY_TS;
@@ -607,33 +690,62 @@ for (const ev of events) {
   if (!tickCache.has(ev.conditionId)) tickCache.set(ev.conditionId, loadTicks(ev.conditionId));
   const ticks = tickCache.get(ev.conditionId);
 
-  // GUARD 3: liquidity gate — require recent active trading at high price
-  if (!checkLiquidity(ticks, ev.t, CFG)) { gatedLiq++; continue; }
+  // v11: compute entry signal BEFORE liquidity/momentum check (we need to
+  // know which side we're entering to check the right side's liquidity)
+  const sig = computeEntrySignal(ev.market, ev.t, CROSSED_BUFFER, CFG.FORECAST_BUF || 2.0);
+  if (!sig) { gatedCrossed++; continue; }
 
-  // GUARD 4 (v8): momentum check — reject if price declining
-  if (!checkMomentum(ticks, ev.t, ev.p, CFG)) { gatedMomentum++; continue; }
-
-  // GUARD 5 (v9): weather threshold-crossed — require observed temp to confirm NO will win
-  if (REQUIRE_CROSSED && !thresholdCrossed(ev.market, ev.t, CROSSED_BUFFER)) {
-    gatedCrossed++;
-    continue;
+  // Determine token we're buying + price filter
+  let entryPrice, sideOutcomeIndex;
+  if (sig.side === "NO") {
+    entryPrice = ev.p;  // ev.p is NO-side price
+    sideOutcomeIndex = 1;
+    if (entryPrice < CFG.MIN_ENTRY || entryPrice > CFG.MAX_ENTRY) continue;
+  } else {
+    entryPrice = 1 - ev.p;  // YES price = 1 - NO price
+    sideOutcomeIndex = 0;
+    if (entryPrice < (CFG.MIN_ENTRY_YES ?? 0.30) || entryPrice > (CFG.MAX_ENTRY_YES ?? 0.70)) continue;
   }
 
-  const feats = featuresFor(ticks, ev.market, ev.t, ev.p, 1);
+  // GUARD 3: liquidity gate for the SIDE we're entering (side-aware in v11)
+  const liqCfg = { ...CFG, ENTRY_SIDE: sideOutcomeIndex, LIQ_MIN_PRICE: sig.side === "NO" ? CFG.LIQ_MIN_PRICE : 0.30 };
+  if (!checkLiquidity(ticks, ev.t, liqCfg)) { gatedLiq++; continue; }
+
+  // GUARD 4 (v8): momentum check — reject if price declining
+  // For YES entries, we want price RISING (opposite of NO).
+  // Skip momentum check for YES for simplicity (our weather-confirmed signal
+  // is the primary safety; momentum matters less for directional entries).
+  if (sig.side === "NO" && !checkMomentum(ticks, ev.t, ev.p, CFG)) { gatedMomentum++; continue; }
+
+  const feats = featuresFor(ticks, ev.market, ev.t, entryPrice, sideOutcomeIndex);
   const s = scoreEntry(feats);
   scored++;
   if (s < CFG.THRESHOLD) continue;
 
   attempted++;
-  const ourBidPrice = Math.max(0.01, ev.p - CFG.BID_OFFSET);
+  const ourBidPrice = Math.max(0.01, entryPrice - CFG.BID_OFFSET);
   const shares = CFG.TRADE_USDC / ourBidPrice;
   const resolution = RESOLUTION[ev.conditionId];
+  // Settlement value depends on which side we're holding
+  let settleWinValue, settleLoseValue;
+  if (sig.side === "NO") {
+    settleWinValue = 1;  // resolved=1 means NO won, $1 per NO share
+    settleLoseValue = 0;
+  } else {
+    settleWinValue = 0;  // resolved=0 means YES won, $1 per YES share — keyed to resolved value
+    settleLoseValue = 1;
+  }
   const cfgWithRes = {
     ...CFG,
     RESOLUTION_VALUE: resolution?.resolved,
-    RESOLUTION_TS: ev.marketEndTs,  // approximate resolution time from marketEndTs
+    RESOLUTION_TS: ev.marketEndTs,
+    ENTRY_SIDE: sideOutcomeIndex,      // 0 = YES tokens, 1 = NO tokens
+    WIN_RESOLUTION_VALUE: settleWinValue,  // value of RESOLUTION_VALUE where we win
   };
-  const res = simulateTrade(ev.conditionId, ev.t, ev.p, ourBidPrice, shares, cfgWithRes);
+  const res = simulateTrade(ev.conditionId, ev.t, entryPrice, ourBidPrice, shares, cfgWithRes);
+  res.entrySide = sig.side;
+  res.signalReason = sig.reason;
+  res.cushion = sig.cushion;
   if (!res.opened) {
     // No position opened — don't record as a trade (but count in attempts)
     lastEntryByCid.set(key, ev.t);
@@ -644,7 +756,8 @@ for (const ev of events) {
     conditionId: ev.conditionId, city: ev.city, title: ev.title,
     entryTs: ev.t, ourBid: ourBidPrice, entryFill: res.entryFill,
     entryPrice: res.entryPrice, exitFill: res.exitFill, exitPrice: res.exitPrice,
-    pnl: res.pnl, status: res.status, score: s
+    pnl: res.pnl, status: res.status, score: s,
+    side: sig.side, reason: sig.reason, cushion: sig.cushion.toFixed(2)
   });
   lastEntryByCid.set(key, ev.t);
   positions.set(key, { entryTs: ev.t });
@@ -723,12 +836,41 @@ for (const mo of Object.keys(byMonth).sort()) {
 }
 console.log(`\nAll months profitable: ${allPositive ? '✓ YES' : '✗ NO'}`);
 
+// Side breakdown (v11)
+const bySide = {};
+for (const t of trades) {
+  if (!bySide[t.side]) bySide[t.side] = { n: 0, wins: 0, losses: 0, pnl: 0 };
+  bySide[t.side].n++;
+  bySide[t.side].pnl += t.pnl;
+  if (t.pnl > 0.01) bySide[t.side].wins++;
+  else if (t.pnl < -0.01) bySide[t.side].losses++;
+}
+console.log(`\n=== SIDE BREAKDOWN ===`);
+console.log("  side      n  wins loss  WR%   PnL       avg/trade");
+for (const s of Object.keys(bySide).sort()) {
+  const b = bySide[s];
+  const wr = 100 * b.wins / Math.max(1, b.n);
+  console.log(`  ${s.padEnd(4)}  ${String(b.n).padStart(4)}  ${String(b.wins).padStart(4)} ${String(b.losses).padStart(4)}  ${wr.toFixed(1).padStart(5)}  $${b.pnl.toFixed(2).padStart(7)}  $${(b.pnl/Math.max(1,b.n)).toFixed(3)}`);
+}
+
+// Signal reason breakdown
+const byReason = {};
+for (const t of trades) {
+  if (!byReason[t.reason]) byReason[t.reason] = { n: 0, pnl: 0 };
+  byReason[t.reason].n++;
+  byReason[t.reason].pnl += t.pnl;
+}
+console.log(`\n=== SIGNAL REASON BREAKDOWN ===`);
+for (const [r, b] of Object.entries(byReason).sort((a,b) => b[1].n - a[1].n)) {
+  console.log(`  ${r.padEnd(25)} n=${String(b.n).padStart(4)}  PnL=$${b.pnl.toFixed(2)}  avg=$${(b.pnl/b.n).toFixed(3)}`);
+}
+
 const rows = trades.map(t => [
-  t.conditionId, t.city || "", t.entryTs, t.ourBid.toFixed(4),
+  t.conditionId, t.city || "", t.entryTs, t.side, t.reason, t.cushion, t.ourBid.toFixed(4),
   t.entryPrice.toFixed(4), t.entryFill.toFixed(2),
   t.exitPrice.toFixed(4), t.exitFill.toFixed(2),
   t.pnl.toFixed(4), t.status, (t.score ?? "").toString().slice(0,6),
   (t.title || "").replace(/,/g, " ")
 ].join(","));
-fs.writeFileSync(OUT_CSV, ["conditionId,city,entryTs,ourBid,entryPrice,entryFill,exitPrice,exitFill,pnl,status,score,title", ...rows].join("\n") + "\n");
+fs.writeFileSync(OUT_CSV, ["conditionId,city,entryTs,side,reason,cushion,ourBid,entryPrice,entryFill,exitPrice,exitFill,pnl,status,score,title", ...rows].join("\n") + "\n");
 console.log(`\nSaved: ${OUT_CSV}`);
