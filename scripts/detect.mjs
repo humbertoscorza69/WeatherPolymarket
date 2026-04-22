@@ -50,7 +50,7 @@ const CFG = {
   BANKROLL:         Number(argv.bankroll ?? "100"),
   TRADE_SIZE:       Number(argv.tradesize ?? "5"),
   MIN_SHARES:       Number(argv.minshares ?? "5"),     // Polymarket minimum
-  MAX_HOLD_MIN:     Number(argv.maxhold ?? "240"),
+  MAX_HOLD_MIN:     Number(argv.maxhold ?? "1440"),  // v14 — hold to resolution like 937
 };
 
 const LOG = path.resolve("data/detect-log.jsonl");

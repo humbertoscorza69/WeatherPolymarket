@@ -47,7 +47,7 @@ const CFG = {
   STOPLOSS_MIN:       Number(argv.stoplossmin ?? "20"),
   STOPLOSS_DELTA:     Number(argv.stoplossdelta ?? "0.005"),
   STOPLOSS_TIMEOUT:   Number(argv.stoplosstimeout ?? "15"),
-  MAX_HOLD_MIN:       Number(argv.maxhold ?? "60"),
+  MAX_HOLD_MIN:       Number(argv.maxhold ?? "1440"),  // v14: 24h — let positions ride to resolution like 937 does
   TTR_MIN:            Number(argv.ttrmin ?? String(60*60)),        // 1h default
   TTR_MAX:            Number(argv.ttrmax ?? String(24*60*60)),     // 24h default (v13 — matches 0x900e's 10h median entry TTR)
   COOLDOWN_SEC:       Number(argv.cooldown ?? "900"),
