@@ -73,6 +73,34 @@
   .kpi.warn .label::before { background: var(--amber); }
   .kpi.accent .value { color: var(--accent); }
   .kpi.accent .label::before { background: var(--accent); }
+  .kpi-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+  .kpi .spark { flex-shrink: 0; height: 36px; width: 86px; opacity: 0.9; }
+  .kpi.compact .value { font-size: 20px; }
+
+  /* Right-rail execution log */
+  .with-rail { display: grid; grid-template-columns: 1fr 340px; gap: 12px; align-items: start; }
+  @media (max-width: 1280px) { .with-rail { grid-template-columns: 1fr; } }
+  .exec-log { position: sticky; top: 60px; background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; max-height: calc(100vh - 80px); display: flex; flex-direction: column; }
+  .exec-log .head { padding: 10px 12px; border-bottom: 1px solid var(--border); background: var(--panel-hi); display: flex; align-items: center; justify-content: space-between; }
+  .exec-log .head h3 { margin: 0; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-hi); font-weight: 600; }
+  .exec-log .body { overflow-y: auto; flex: 1; }
+  .exec-row { padding: 8px 12px; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 56px 36px 1fr auto; gap: 6px; align-items: center; font-size: 11px; font-family: ui-monospace, monospace; transition: background 0.2s; }
+  .exec-row:hover { background: var(--panel-hi); }
+  .exec-row .time { color: var(--muted); font-size: 10px; }
+  .exec-row .side { font-weight: 600; font-size: 10px; text-align: center; padding: 2px 0; border-radius: 3px; background: var(--panel-hi); }
+  .exec-row .side.NO { color: var(--accent); }
+  .exec-row .side.YES { color: var(--purple); }
+  .exec-row .city { color: var(--text-dim); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .exec-row .pnl { color: var(--muted); font-size: 11px; text-align: right; min-width: 58px; }
+  .exec-row .pnl.pos { color: var(--green); }
+  .exec-row .pnl.neg { color: var(--red); }
+  .exec-row.open { border-left: 2px solid var(--amber); }
+  .exec-row.close.pos { border-left: 2px solid var(--green); }
+  .exec-row.close.neg { border-left: 2px solid var(--red); }
+  .exec-row.close.flat { border-left: 2px solid var(--muted); }
+  .exec-tabs { display: flex; padding: 4px; gap: 4px; background: var(--panel-hi); border-bottom: 1px solid var(--border); }
+  .exec-tabs button { flex: 1; background: transparent; border: none; color: var(--muted); padding: 6px 8px; font: inherit; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; border-radius: 4px; }
+  .exec-tabs button.active { background: var(--panel); color: var(--accent); }
 
   section { margin-bottom: 20px; }
   section h2 { margin: 0 0 12px 0; font-size: 11px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.12em; font-weight: 600; }
@@ -167,23 +195,43 @@
 
   <!-- ============ DASHBOARD TAB ============ -->
   <div class="tab-panel active" id="tab-dashboard">
-    <section>
-      <div class="row2">
-        <div class="chart-card tall">
-          <div class="chart-title"><span>P&amp;L Performance · cumulative realized</span><span class="pill" id="equityPillPnl">—</span></div>
-          <canvas id="equityChart"></canvas>
-        </div>
-        <div class="chart-card tall">
-          <div class="chart-title"><span>Rolling Win Rate · 30-trade window</span><span class="pill" id="rollingWrPill">—</span></div>
-          <canvas id="rollingWrChart"></canvas>
-        </div>
-      </div>
-    </section>
+    <div class="with-rail">
+      <div>
+        <section>
+          <div class="row2">
+            <div class="chart-card tall">
+              <div class="chart-title"><span>P&amp;L Performance · cumulative realized</span><span class="pill" id="equityPillPnl">—</span></div>
+              <canvas id="equityChart"></canvas>
+            </div>
+            <div class="chart-card tall">
+              <div class="chart-title"><span>Rolling Win Rate · 30-trade window</span><span class="pill" id="rollingWrPill">—</span></div>
+              <canvas id="rollingWrChart"></canvas>
+            </div>
+          </div>
+        </section>
 
-    <section>
-      <h2>Open Positions <span id="openCount" class="pill">0</span></h2>
-      <div id="openTable"></div>
-    </section>
+        <section>
+          <h2>Open Positions <span id="openCount" class="pill">0</span></h2>
+          <div id="openTable"></div>
+        </section>
+      </div>
+
+      <!-- Right rail: live execution log -->
+      <aside class="exec-log">
+        <div class="head">
+          <h3>Trade Execution Log</h3>
+          <span class="pill" id="execCount">0</span>
+        </div>
+        <div class="exec-tabs">
+          <button class="active" data-exec-filter="all" onclick="switchExecFilter('all')">All</button>
+          <button data-exec-filter="close" onclick="switchExecFilter('close')">Closes</button>
+          <button data-exec-filter="open" onclick="switchExecFilter('open')">Opens</button>
+          <button data-exec-filter="win" onclick="switchExecFilter('win')">Wins</button>
+          <button data-exec-filter="loss" onclick="switchExecFilter('loss')">Losses</button>
+        </div>
+        <div class="body" id="execBody"></div>
+      </aside>
+    </div>
   </div>
 
   <!-- ============ CHARTS TAB ============ -->
@@ -293,21 +341,75 @@ function fmtDur(min) {
 }
 function fmtTime(iso) { if (!iso) return "—"; const d = new Date(iso); return d.toLocaleTimeString([], { hour12: false }); }
 
-function kpi(label, value, sub, cls="") {
-  return `<div class="kpi ${cls}"><div class="label">${label}</div><div class="value">${value}</div>${sub ? `<div class="sub">${sub}</div>` : ""}</div>`;
+function kpi(label, value, sub, cls="", sparkSvg="") {
+  const row = sparkSvg
+    ? `<div class="kpi-row"><div><div class="value">${value}</div>${sub ? `<div class="sub">${sub}</div>` : ""}</div>${sparkSvg}</div>`
+    : `<div class="value">${value}</div>${sub ? `<div class="sub">${sub}</div>` : ""}`;
+  return `<div class="kpi ${cls} ${sparkSvg ? "compact" : ""}"><div class="label">${label}</div>${row}</div>`;
 }
 
-function renderKpis(s) {
+// Tiny inline SVG sparkline. Returns string; pass to kpi().
+function sparkline(values, color) {
+  if (!values || values.length < 2) return "";
+  const w = 86, h = 36, pad = 2;
+  const min = Math.min(...values), max = Math.max(...values);
+  const span = max - min || 1;
+  const step = (w - pad * 2) / (values.length - 1);
+  const pts = values.map((v, i) => {
+    const x = pad + i * step;
+    const y = h - pad - ((v - min) / span) * (h - pad * 2);
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  });
+  const d = `M ${pts.join(" L ")}`;
+  const areaD = d + ` L ${w - pad},${h - pad} L ${pad},${h - pad} Z`;
+  return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
+    <path d="${areaD}" fill="${color}" fill-opacity="0.12"/>
+    <path d="${d}" stroke="${color}" stroke-width="1.4" fill="none"/>
+  </svg>`;
+}
+
+// Build rolling series for KPI sparklines from the equity curve.
+function rollingWindow(values, windowSize) {
+  // Returns rolling mean array (length = values.length)
+  const out = [];
+  let sum = 0;
+  for (let i = 0; i < values.length; i++) {
+    sum += values[i];
+    if (i >= windowSize) sum -= values[i - windowSize];
+    const n = Math.min(i + 1, windowSize);
+    out.push(sum / n);
+  }
+  return out;
+}
+
+function renderKpis(s, equityCurve, rollingWR) {
   const pnlCls = s.realizedPnl > 0 ? "pos" : (s.realizedPnl < 0 ? "neg" : "");
   const wrCls = s.winRate >= 0.8 ? "pos" : (s.winRate >= 0.5 ? "warn" : "neg");
   const pfCls = s.profitFactor >= 2 ? "pos" : (s.profitFactor >= 1 ? "warn" : "neg");
+
+  // Build sparkline data series
+  const eqSeries = (equityCurve || []).map(p => p.equity);
+  const wrSeries = (rollingWR || []).map(r => r.wr * 100);
+  const pnlSeries = (equityCurve || []).map(p => p.pnl);
+  // Approximations for metrics without time series: rolling mean of pnl as expectancy proxy
+  const expSeries = rollingWindow(pnlSeries, 20);
+  const absPnl = pnlSeries.map(p => Math.abs(p));
+  const sharpeSeries = rollingWindow(pnlSeries, 30).map((m, i) => {
+    const window = pnlSeries.slice(Math.max(0, i - 29), i + 1);
+    const mu = window.reduce((a,b) => a+b, 0) / window.length;
+    const sd = Math.sqrt(window.reduce((a,b) => a + (b-mu)**2, 0) / window.length);
+    return sd > 0 ? mu/sd : 0;
+  });
+
+  const CGREEN = "#4ade80", CRED = "#f87171", CTEAL = "#5eead4", CAMBER = "#fbbf24", CPURPLE = "#a78bfa";
+
   document.getElementById("kpis").innerHTML = [
-    kpi("Bankroll",     fmt$(s.bankroll), `${s.openPositions} open`, "accent"),
-    kpi("Realized PnL", fmt$(s.realizedPnl), `${s.totalClosed} trades closed`, pnlCls),
-    kpi("Win Rate",     fmtPct(s.winRate), `${s.wins}W / ${s.losses}L / ${s.flats}=`, wrCls),
-    kpi("Profit Factor",fmtN(s.profitFactor), `${fmt$(s.grossWin)} / ${fmt$(s.grossLoss)}`, pfCls),
-    kpi("Sharpe",       fmtN(s.sharpe, 2), `Sortino ${fmtN(s.sortino, 2)}`),
-    kpi("Expectancy",   fmt$(s.expectancy), `per trade`),
+    kpi("Bankroll",     fmt$(s.bankroll), `${s.openPositions} open`, "accent", sparkline(eqSeries.map(v => v + s.bankroll - (eqSeries[eqSeries.length-1]||0)), CTEAL)),
+    kpi("Realized PnL", fmt$(s.realizedPnl), `${s.totalClosed} trades closed`, pnlCls, sparkline(eqSeries, s.realizedPnl >= 0 ? CGREEN : CRED)),
+    kpi("Win Rate",     fmtPct(s.winRate), `${s.wins}W / ${s.losses}L / ${s.flats}=`, wrCls, sparkline(wrSeries, CAMBER)),
+    kpi("Profit Factor",fmtN(s.profitFactor), `${fmt$(s.grossWin)} / ${fmt$(s.grossLoss)}`, pfCls, ""),
+    kpi("Sharpe",       fmtN(s.sharpe, 2), `Sortino ${fmtN(s.sortino, 2)}`, "", sparkline(sharpeSeries, CPURPLE)),
+    kpi("Expectancy",   fmt$(s.expectancy), `per trade`, "", sparkline(expSeries, s.expectancy >= 0 ? CGREEN : CRED)),
     kpi("Payoff Ratio", fmtN(s.payoffRatio, 2), `avgW ${fmt$(s.avgWin)} / avgL ${fmt$(s.avgLoss)}`),
     kpi("Max Drawdown", fmt$(-Math.abs(s.maxDrawdown)), `Max runup ${fmt$(s.maxRunup)}`, s.maxDrawdown > 0 ? "neg" : ""),
     kpi("Largest Win",  fmt$(s.largestWin), `Largest loss ${fmt$(s.largestLoss)}`),
@@ -671,14 +773,60 @@ function renderThermalHeatmap(cells) {
   });
 }
 
+let __execLog = [];
+let __execFilter = "all";
+
+function switchExecFilter(f) {
+  __execFilter = f;
+  document.querySelectorAll(".exec-tabs button").forEach(b => b.classList.toggle("active", b.dataset.execFilter === f));
+  renderExecLog();
+}
+
+function renderExecLog() {
+  const body = document.getElementById("execBody");
+  if (!body) return;
+  if (!__execLog.length) { body.innerHTML = `<div class="empty">No events yet.</div>`; document.getElementById("execCount").textContent = "0"; return; }
+
+  const reversed = [...__execLog].reverse(); // newest first
+  let filtered = reversed;
+  if (__execFilter === "close") filtered = reversed.filter(e => e.type === "CLOSE");
+  else if (__execFilter === "open") filtered = reversed.filter(e => e.type === "OPEN");
+  else if (__execFilter === "win") filtered = reversed.filter(e => e.type === "CLOSE" && Number(e.pnl) > 0.01);
+  else if (__execFilter === "loss") filtered = reversed.filter(e => e.type === "CLOSE" && Number(e.pnl) < -0.01);
+
+  document.getElementById("execCount").textContent = filtered.length;
+  filtered = filtered.slice(0, 250);
+
+  body.innerHTML = filtered.map(e => {
+    const isClose = e.type === "CLOSE";
+    const pnl = Number(e.pnl) || 0;
+    const cls = isClose ? (pnl > 0.01 ? "close pos" : pnl < -0.01 ? "close neg" : "close flat") : "open";
+    const pnlCls = pnl > 0.01 ? "pos" : pnl < -0.01 ? "neg" : "";
+    const time = e.type === "CLOSE" ? e.closedAt : e.openedAt;
+    const t = time ? new Date(time).toLocaleTimeString([], { hour12: false }) : "—";
+    const side = e.side || "";
+    const display = isClose
+      ? `<span class="pnl ${pnlCls}">${fmt$(pnl)}</span>`
+      : `<span class="pnl">@${fmtN(e.entryPrice, 3)}</span>`;
+    return `<div class="exec-row ${cls}" title="${(e.title||"").replace(/"/g,"&quot;")}">
+      <span class="time">${t}</span>
+      <span class="side ${side}">${side}</span>
+      <span class="city">${e.city || ""} ${isClose ? "✓" : "→"}</span>
+      ${display}
+    </div>`;
+  }).join("");
+}
+
 async function refresh() {
   try {
     const r = await fetch("/api/stats", { cache: "no-store" });
     if (!r.ok) throw new Error(r.statusText);
     const data = await r.json();
-    renderKpis(data.summary);
+    renderKpis(data.summary, data.equityCurve || [], data.rollingWR || []);
     renderOpen(data.openPositions);
     renderClosed(data.closedTrades);
+    __execLog = data.execLog || [];
+    renderExecLog();
     renderEquity(data.equityCurve || []);
     renderRollingWr(data.rollingWR || []);
     renderPnlHist(data.closedTrades || []);

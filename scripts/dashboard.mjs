@@ -210,6 +210,7 @@ function computeStats({ state, logLines }) {
     rollingWR,
     breakdown: { bySide, byReason, byCity, byCushion },
     thermalEdge: Object.values(thermalBuckets),
+    execLog: logLines.slice(-500),  // last 500 events (OPEN + CLOSE), newest last
     openPositions: state.positions,
     closedTrades: sortedByClose,
   };
