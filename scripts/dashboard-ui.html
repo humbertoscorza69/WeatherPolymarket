@@ -259,7 +259,36 @@
 
         <section>
           <h2>Open Positions <span id="openCount" class="pill">0</span></h2>
+          <div class="filter-bar">
+            <input type="text" id="openFilterText" placeholder="Search city, title, reason…" oninput="renderOpen(__openPositions)">
+            <select id="openFilterCity" onchange="renderOpen(__openPositions)">
+              <option value="">All cities</option>
+            </select>
+            <select id="openFilterSide" onchange="renderOpen(__openPositions)">
+              <option value="">All sides</option>
+              <option value="NO">NO only</option>
+              <option value="YES">YES only</option>
+            </select>
+            <select id="openFilterReason" onchange="renderOpen(__openPositions)">
+              <option value="">All reasons</option>
+            </select>
+            <select id="openFilterVerdict" onchange="renderOpen(__openPositions)">
+              <option value="">All verdicts</option>
+              <option value="locked_win">Locked WIN</option>
+              <option value="locked_loss">Locked LOSE</option>
+              <option value="leading">Leading</option>
+              <option value="trailing">Trailing</option>
+              <option value="uncertain">Uncertain</option>
+            </select>
+            <select id="openFilterPnl" onchange="renderOpen(__openPositions)">
+              <option value="">All P&amp;L</option>
+              <option value="pos">Green (unreal &gt; 0)</option>
+              <option value="neg">Red (unreal &lt; 0)</option>
+            </select>
+            <button onclick="clearOpenFilters()" style="background:var(--panel-hi);color:var(--muted-hi);border:1px solid var(--border);padding:6px 10px;border-radius:6px;cursor:pointer;font:inherit;font-size:11px;">Clear</button>
+          </div>
           <div id="openTable"></div>
+          <div class="summary-bar" id="openFilterSummary"></div>
         </section>
       </div>
 
@@ -574,13 +603,78 @@ function renderOpenCity(byCity) {
   }));
 }
 
+function clearOpenFilters() {
+  ["openFilterText", "openFilterCity", "openFilterSide", "openFilterReason", "openFilterVerdict", "openFilterPnl"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = "";
+  });
+  renderOpen(__openPositions);
+}
+
+function populateOpenFilterDropdowns(positions) {
+  const citySel = document.getElementById("openFilterCity");
+  const reasonSel = document.getElementById("openFilterReason");
+  if (!citySel || !reasonSel) return;
+  const prevCity = citySel.value, prevReason = reasonSel.value;
+  const cities = [...new Set(positions.map(p => p.city).filter(Boolean))].sort();
+  const reasons = [...new Set(positions.map(p => p.reason).filter(Boolean))].sort();
+  citySel.innerHTML = `<option value="">All cities</option>` +
+    cities.map(c => `<option value="${c}" ${c===prevCity?"selected":""}>${c}</option>`).join("");
+  reasonSel.innerHTML = `<option value="">All reasons</option>` +
+    reasons.map(r => `<option value="${r}" ${r===prevReason?"selected":""}>${r}</option>`).join("");
+}
+
 function renderOpen(positions) {
-  __openPositions = positions || [];
+  __openPositions = positions || __openPositions || [];
   document.getElementById("openCount").textContent = __openPositions.length;
+  populateOpenFilterDropdowns(__openPositions);
   if (!__openPositions.length) {
     document.getElementById("openTable").innerHTML = `<div class="empty">No open positions.</div>`;
+    document.getElementById("openFilterSummary").innerHTML = "";
     return;
   }
+
+  // Apply filters
+  const fText = (document.getElementById("openFilterText")?.value || "").toLowerCase().trim();
+  const fCity = document.getElementById("openFilterCity")?.value || "";
+  const fSide = document.getElementById("openFilterSide")?.value || "";
+  const fReason = document.getElementById("openFilterReason")?.value || "";
+  const fVerdict = document.getElementById("openFilterVerdict")?.value || "";
+  const fPnl = document.getElementById("openFilterPnl")?.value || "";
+
+  let filtered = __openPositions.filter(p => {
+    if (fCity && p.city !== fCity) return false;
+    if (fSide && p.side !== fSide) return false;
+    if (fReason && p.reason !== fReason) return false;
+    if (fVerdict && p.verdict !== fVerdict) return false;
+    if (fPnl === "pos" && !(p.unrealizedPnl > 0.001)) return false;
+    if (fPnl === "neg" && !(p.unrealizedPnl < -0.001)) return false;
+    if (fText) {
+      const hay = `${p.city||""} ${p.title||""} ${p.reason||""} ${p.side||""} ${p.verdict||""}`.toLowerCase();
+      if (!hay.includes(fText)) return false;
+    }
+    return true;
+  });
+
+  // Summary
+  const sumExposure = filtered.reduce((s, p) => s + (p.positionSize || 0), 0);
+  const sumUnreal = filtered.reduce((s, p) => s + (p.unrealizedPnl || 0), 0);
+  const priced = filtered.filter(p => p.unrealizedPnl != null).length;
+  const lockedWin = filtered.filter(p => p.verdict === "locked_win").length;
+  const lockedLoss = filtered.filter(p => p.verdict === "locked_loss").length;
+  const cls = sumUnreal > 0 ? "pos" : sumUnreal < 0 ? "neg" : "";
+  document.getElementById("openFilterSummary").innerHTML =
+    `Showing <b>${filtered.length}</b> / ${__openPositions.length} · ` +
+    `exposure <b>${fmt$(sumExposure)}</b> · ` +
+    `unreal <b class="${cls}" style="color:${sumUnreal>0?'var(--green)':sumUnreal<0?'var(--red)':'var(--text)'}">${fmt$(sumUnreal)}</b> · ` +
+    `priced <b>${priced}/${filtered.length}</b> · ` +
+    `locked <b style="color:var(--green)">✓${lockedWin}</b> / <b style="color:var(--red)">✗${lockedLoss}</b>`;
+
+  if (!filtered.length) {
+    document.getElementById("openTable").innerHTML = `<div class="empty">No positions match the current filters.</div>`;
+    return;
+  }
+
   const verdictOrder = { locked_loss: 0, trailing: 1, uncertain: 2, unknown: 3, "no-station": 4, leading: 5, locked_win: 6 };
   const sorters = {
     "unreal-desc":  (a, b) => (b.unrealizedPnl ?? -Infinity) - (a.unrealizedPnl ?? -Infinity),
@@ -592,7 +686,7 @@ function renderOpen(positions) {
     "size-desc":    (a, b) => (b.positionSize ?? 0) - (a.positionSize ?? 0),
     "verdict-asc":  (a, b) => (verdictOrder[a.verdict] ?? 99) - (verdictOrder[b.verdict] ?? 99),
   };
-  const rows = [...__openPositions]
+  const rows = [...filtered]
     .sort(sorters[__openSort] || sorters["unreal-desc"])
     .map(p => {
       const ageMin = (Date.now() - new Date(p.openedAt).getTime()) / 60000;
