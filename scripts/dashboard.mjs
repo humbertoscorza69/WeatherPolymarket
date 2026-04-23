@@ -85,63 +85,85 @@ async function runParallel(items, worker, concurrency) {
   return results;
 }
 
-// Fetches Gamma data for one market. Validates that the returned market
-// matches the requested conditionId — Gamma sometimes ignores the filter
-// and returns featured markets (Russia-Ukraine etc). Without this check
-// we'd cache wrong tokens for every position and fetch the wrong book.
-async function fetchMarketData(conditionId) {
-  diagnostics.totalGammaCalls++;
-  const data = await fetchJson(`${GAMMA}/markets?conditionIds=${conditionId}`);
-  if (data?.__error) { diagnostics.totalGammaFailures++; return { error: data.__error }; }
-  const arr = Array.isArray(data) ? data : [data];
-  const wanted = String(conditionId).toLowerCase();
-  const mk = arr.find(m => String(m?.conditionId || "").toLowerCase() === wanted);
-  if (!mk) {
-    diagnostics.totalGammaFailures++;
-    return { error: `conditionId mismatch (got ${arr.length} markets, none matched)` };
-  }
-  const tokens = typeof mk.clobTokenIds === "string" ? JSON.parse(mk.clobTokenIds) : mk.clobTokenIds;
-  let yesPrice = null, noPrice = null;
-  if (mk.outcomePrices) {
-    try {
-      const parsed = typeof mk.outcomePrices === "string" ? JSON.parse(mk.outcomePrices) : mk.outcomePrices;
-      if (Array.isArray(parsed) && parsed.length >= 2) {
-        yesPrice = Number(parsed[0]);
-        noPrice = Number(parsed[1]);
-        if (!Number.isFinite(yesPrice)) yesPrice = null;
-        if (!Number.isFinite(noPrice)) noPrice = null;
+// Fetch ALL weather markets (open + closed) via /events, return
+// Map<conditionId, marketData>. This replaces per-conditionId /markets
+// queries which Gamma silently breaks for weather conditionIds (returns
+// unrelated featured markets). The /events endpoint works reliably.
+async function fetchWeatherMarketsByCondition() {
+  const map = new Map();
+  for (const closedFilter of [false, true]) {
+    let offset = 0;
+    while (offset < 5000) {
+      diagnostics.totalGammaCalls++;
+      const url = `${GAMMA}/events?closed=${closedFilter}&tag_slug=weather&limit=100&offset=${offset}`;
+      const page = await fetchJson(url);
+      if (page?.__error) { diagnostics.totalGammaFailures++; break; }
+      if (!Array.isArray(page) || !page.length) break;
+      for (const ev of page) {
+        const children = Array.isArray(ev.markets) ? ev.markets : [];
+        for (const m of children) {
+          if (!m.conditionId) continue;
+          let yesPrice = null, noPrice = null;
+          if (m.outcomePrices) {
+            try {
+              const parsed = typeof m.outcomePrices === "string" ? JSON.parse(m.outcomePrices) : m.outcomePrices;
+              if (Array.isArray(parsed) && parsed.length >= 2) {
+                yesPrice = Number(parsed[0]);
+                noPrice = Number(parsed[1]);
+                if (!Number.isFinite(yesPrice)) yesPrice = null;
+                if (!Number.isFinite(noPrice)) noPrice = null;
+              }
+            } catch {}
+          }
+          const tokens = typeof m.clobTokenIds === "string" ? JSON.parse(m.clobTokenIds) : m.clobTokenIds;
+          map.set(String(m.conditionId).toLowerCase(), {
+            yesPrice, noPrice,
+            closed: m.closed === true,
+            archived: m.archived === true,
+            umaResolutionStatus: m.umaResolutionStatus,
+            endDate: m.endDate,
+            tokens,
+            lastTradePrice: m.lastTradePrice != null ? Number(m.lastTradePrice) : null,
+            title: m.question || m.title,
+          });
+        }
       }
-    } catch {}
+      if (page.length < 100) break;
+      offset += 100;
+    }
   }
-  const lastTrade = mk.lastTradePrice != null ? Number(mk.lastTradePrice) : null;
-  // Multi-signal resolution detection — Gamma's behavior varies for closed
-  // markets; some return outcomePrices = [1,0] cleanly, some keep the
-  // pre-close mid (e.g. [0.4750, 0.5250]), some drop the field entirely.
-  // Trust the `closed` flag, `archived`, `umaResolutionStatus`, or a
-  // clean 0/1 split — any of which indicates settlement.
+  return map;
+}
+
+// Compatibility wrapper kept for /api/debug-market endpoint. Uses the events
+// batch internally now instead of the broken /markets?conditionIds=X path.
+async function fetchMarketData(conditionId) {
+  const map = await fetchWeatherMarketsByCondition();
+  const d = map.get(String(conditionId).toLowerCase());
+  if (!d) {
+    diagnostics.totalGammaFailures++;
+    return { error: `conditionId not found in events listing (${map.size} markets indexed)` };
+  }
+  const tokens = d.tokens;
+  const yesPrice = d.yesPrice, noPrice = d.noPrice;
   const priceResolved = (yesPrice === 1 && noPrice === 0) || (yesPrice === 0 && noPrice === 1)
     || (Number.isFinite(yesPrice) && Number.isFinite(noPrice) && Math.max(yesPrice, noPrice) >= 0.999 && Math.min(yesPrice, noPrice) <= 0.001);
-  const closedFlag = mk.closed === true || mk.archived === true;
-  const umaResolved = mk.umaResolutionStatus === "resolved" || mk.resolved === true;
+  const closedFlag = d.closed || d.archived;
+  const umaResolved = d.umaResolutionStatus === "resolved";
   const resolved = priceResolved || closedFlag || umaResolved;
   let noWon = null, yesWon = null;
-  if (resolved) {
-    if (priceResolved) {
-      noWon = noPrice >= 0.5; yesWon = yesPrice >= 0.5;
-    }
-    // If the flag says "closed" but prices are ambiguous, leave noWon/yesWon
-    // as null — the frontend falls back to the METAR verdict for the payoff.
+  if (resolved && priceResolved) {
+    noWon = noPrice >= 0.5; yesWon = yesPrice >= 0.5;
   }
   return {
     tokens,
-    endDate: mk.endDate,
-    title: mk.question || mk.title,
-    yesPrice, noPrice, lastTradePrice: lastTrade,
+    endDate: d.endDate,
+    title: d.title,
+    yesPrice, noPrice, lastTradePrice: d.lastTradePrice,
     resolved, noWon, yesWon,
     closed: closedFlag,
     priceSource: (yesPrice != null && noPrice != null) ? "gamma-outcome" : null,
-    // Keep the raw flags for debugging / /api/debug-market
-    rawFlags: { closed: mk.closed, archived: mk.archived, umaResolutionStatus: mk.umaResolutionStatus, resolved: mk.resolved },
+    rawFlags: { closed: d.closed, archived: d.archived, umaResolutionStatus: d.umaResolutionStatus },
   };
 }
 
@@ -192,32 +214,38 @@ async function refreshPricesForPositions(positions) {
     }
   }
 
-  // Step 2: Gamma fetch for resolution signals only. Validated — rejects
-  // responses where conditionId doesn't match what we asked for.
-  await runParallel(positions, async (p) => {
+  // Step 2: ONE call to /events (paginated) gives us outcomePrices, closed,
+  // umaResolutionStatus for every weather market. Replaces 173 broken
+  // per-conditionId /markets calls. Merge resolution info into cache.
+  let marketMap = new Map();
+  try { marketMap = await fetchWeatherMarketsByCondition(); } catch {}
+  for (const p of positions) {
     const cur = priceCache.get(p.conditionId) || {};
-    const data = await fetchMarketData(p.conditionId);
-    if (data.error) {
-      // Gamma misbehaving — keep pos-stored tokens, just skip resolution update.
-      priceCache.set(p.conditionId, { ...cur, gammaError: data.error });
-      return;
+    const d = marketMap.get(String(p.conditionId).toLowerCase());
+    if (!d) {
+      priceCache.set(p.conditionId, { ...cur, gammaError: "not-in-events" });
+      continue;
     }
+    const priceResolved = (d.yesPrice === 1 && d.noPrice === 0) || (d.yesPrice === 0 && d.noPrice === 1)
+      || (Number.isFinite(d.yesPrice) && Number.isFinite(d.noPrice) && Math.max(d.yesPrice, d.noPrice) >= 0.999 && Math.min(d.yesPrice, d.noPrice) <= 0.001);
+    const closedFlag = d.closed || d.archived;
+    const umaResolved = d.umaResolutionStatus === "resolved";
+    const resolved = priceResolved || closedFlag || umaResolved;
+    let noWon = null, yesWon = null;
+    if (resolved && priceResolved) { noWon = d.noPrice >= 0.5; yesWon = d.yesPrice >= 0.5; }
     priceCache.set(p.conditionId, {
       ...cur,
-      // Prefer Gamma's tokens/endDate only if they match; falls back to pos-stored
-      tokens: data.tokens || cur.tokens,
-      endDate: data.endDate || cur.endDate,
-      gammaYes: data.yesPrice,
-      gammaNo: data.noPrice,
-      lastTradePrice: data.lastTradePrice,
-      resolved: data.resolved,
-      noWon: data.noWon,
-      yesWon: data.yesWon,
-      closed: data.closed,
+      tokens: d.tokens || cur.tokens,
+      endDate: d.endDate || cur.endDate,
+      gammaYes: d.yesPrice,
+      gammaNo: d.noPrice,
+      lastTradePrice: d.lastTradePrice,
+      resolved, noWon, yesWon,
+      closed: closedFlag,
       metaTs: t0,
       gammaError: null,
     });
-  }, PRICE_CONCURRENCY);
+  }
 
   // Step 2: CLOB /book for LIVE midpoint — the actual price you'd pay/receive
   // right now, matching what polymarket.com displays. This runs every poll;

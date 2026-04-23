@@ -188,6 +188,55 @@ async function fetchLiveWeatherMarkets() {
   return markets;
 }
 
+// Fetch both open and closed weather events, return Map<conditionId, marketData>.
+// Used by resolvePositions() because Gamma's /markets?conditionIds=X is broken
+// for weather markets — it returns unrelated featured markets. The events
+// endpoint DOES work and includes all the fields we need (outcomePrices,
+// closed flag, endDate).
+async function fetchWeatherMarketsByCondition() {
+  const map = new Map();
+  for (const closedFilter of [false, true]) {
+    let offset = 0;
+    while (offset < 5000) {
+      const url = `${GAMMA}/events?closed=${closedFilter}&tag_slug=weather&limit=100&offset=${offset}`;
+      const page = await fetchJson(url);
+      if (!Array.isArray(page) || !page.length) break;
+      for (const ev of page) {
+        const children = Array.isArray(ev.markets) ? ev.markets : [];
+        for (const m of children) {
+          if (!m.conditionId) continue;
+          let yesPrice = null, noPrice = null;
+          if (m.outcomePrices) {
+            try {
+              const parsed = typeof m.outcomePrices === "string" ? JSON.parse(m.outcomePrices) : m.outcomePrices;
+              if (Array.isArray(parsed) && parsed.length >= 2) {
+                yesPrice = Number(parsed[0]);
+                noPrice = Number(parsed[1]);
+                if (!Number.isFinite(yesPrice)) yesPrice = null;
+                if (!Number.isFinite(noPrice)) noPrice = null;
+              }
+            } catch {}
+          }
+          const tokens = typeof m.clobTokenIds === "string" ? JSON.parse(m.clobTokenIds) : m.clobTokenIds;
+          map.set(String(m.conditionId).toLowerCase(), {
+            yesPrice, noPrice,
+            closed: m.closed === true,
+            archived: m.archived === true,
+            umaResolutionStatus: m.umaResolutionStatus,
+            endDate: m.endDate,
+            tokens,
+            lastTradePrice: m.lastTradePrice != null ? Number(m.lastTradePrice) : null,
+            title: m.question || m.title,
+          });
+        }
+      }
+      if (page.length < 100) break;
+      offset += 100;
+    }
+  }
+  return map;
+}
+
 async function fetchCurrentPrice(clobTokenIds) {
   if (!Array.isArray(clobTokenIds) || clobTokenIds.length < 2) return null;
   const noTokenId = clobTokenIds[1];
@@ -413,6 +462,18 @@ async function resolvePositions() {
       if (mid != null) midByCond.set(p.conditionId, mid);
     }, 6);
   }
+
+  // Fetch resolution state for ALL weather markets in one batch via /events.
+  // We used to call /markets?conditionIds=X per position, but that endpoint
+  // silently returns unrelated featured markets (Russia-Ukraine etc) for
+  // weather conditionIds. The /events endpoint works reliably and gives us
+  // outcomePrices, closed flag, umaResolutionStatus — everything needed to
+  // detect settlement. Covers both open and closed events.
+  let marketMap = new Map();
+  const anyPastEnd = openPositions.some(p => nowSec >= Math.floor(new Date(p.endDate).getTime() / 1000) + 300);
+  if (anyPastEnd) {
+    try { marketMap = await fetchWeatherMarketsByCondition(); } catch {}
+  }
   for (const pos of state.positions) {
     if (pos.closed) continue;
     checked++;
@@ -434,75 +495,53 @@ async function resolvePositions() {
       }
     }
 
-    // PATH 1: past endDate + 5min → check Gamma for actual resolution
+    // PATH 1: past endDate + 5min → check events-derived outcomePrices for
+    // actual resolution. Uses the marketMap we built above via /events.
     if (exitPrice == null && nowSec >= marketEndSec + 300) {
-      try {
-        const mkt = await fetchJson(`${GAMMA}/markets?conditionIds=${pos.conditionId}`);
-        const m = Array.isArray(mkt) ? mkt[0] : mkt;
-        if (m) {
-          let yesP = null, noP = null;
-          if (m.outcomePrices) {
-            try {
-              const parsed = typeof m.outcomePrices === "string" ? JSON.parse(m.outcomePrices) : m.outcomePrices;
-              if (Array.isArray(parsed) && parsed.length >= 2) { yesP = Number(parsed[0]); noP = Number(parsed[1]); }
-            } catch {}
-          }
-          const priceResolved = Number.isFinite(yesP) && Number.isFinite(noP)
-            && Math.max(yesP, noP) >= 0.999 && Math.min(yesP, noP) <= 0.001;
-          if (priceResolved) {
-            const yesWon = yesP >= 0.5;
-            const ourSideWon = (pos.side === "YES" && yesWon) || (pos.side === "NO" && !yesWon);
-            exitPrice = ourSideWon ? 1.0 : 0.0;
-            status = ourSideWon ? "settle-win" : "settle-lose";
-            gammaResolved++;
-          }
+      const m = marketMap.get(String(pos.conditionId).toLowerCase());
+      if (m) {
+        const yesP = m.yesPrice, noP = m.noPrice;
+        const priceResolved = Number.isFinite(yesP) && Number.isFinite(noP)
+          && Math.max(yesP, noP) >= 0.999 && Math.min(yesP, noP) <= 0.001;
+        if (priceResolved) {
+          const yesWon = yesP >= 0.5;
+          const ourSideWon = (pos.side === "YES" && yesWon) || (pos.side === "NO" && !yesWon);
+          exitPrice = ourSideWon ? 1.0 : 0.0;
+          status = ourSideWon ? "settle-win" : "settle-lose";
+          gammaResolved++;
         }
-      } catch (err) {
-        console.log(`  ⚠️  gamma check failed for ${pos.city} ${pos.date}: ${err?.message || err}`);
       }
     }
 
-    // PATH 2: past endDate + 6h with no Gamma resolution → exit at current
-    // CLOB midpoint (UMA is taking forever; honest taker exit at whatever
-    // the orderbook says RIGHT NOW, no free $1 payouts).
+    // PATH 2: past endDate + 6h without a clean resolution → honest taker
+    // exit at current CLOB midpoint. Uses pos.clobTokenIds (no Gamma needed).
     if (exitPrice == null && nowSec >= marketEndSec + 6 * 3600) {
-      try {
-        const m = await fetchJson(`${GAMMA}/markets?conditionIds=${pos.conditionId}`);
-        const mk = Array.isArray(m) ? m[0] : m;
-        const tokens = typeof mk?.clobTokenIds === "string" ? JSON.parse(mk.clobTokenIds) : mk?.clobTokenIds;
-        if (tokens?.length >= 2) {
-          const book = await fetchJson(`${CLOB}/book?token_id=${tokens[1]}`);
-          const bids = Array.isArray(book?.bids) ? book.bids : [];
-          const asks = Array.isArray(book?.asks) ? book.asks : [];
-          const bestBid = bids.length ? Number(bids[bids.length - 1]?.price) : null;
-          const bestAsk = asks.length ? Number(asks[0]?.price) : null;
-          let mid = null;
-          if (Number.isFinite(bestBid) && Number.isFinite(bestAsk)) mid = (bestBid + bestAsk) / 2;
-          else if (Number.isFinite(bestBid)) mid = bestBid;
-          else if (Number.isFinite(bestAsk)) mid = bestAsk;
+      const tokens = pos.clobTokenIds;
+      if (Array.isArray(tokens) && tokens.length >= 2) {
+        try {
+          const mid = await fetchBookMidpoint(tokens[1]);
           if (mid != null) {
             exitPrice = pos.side === "NO" ? mid : (1 - mid);
             status = "settle-taker-lag";
             lagTaker++;
           }
-        }
-      } catch {}
+        } catch {}
+      }
     }
 
-    // PATH 3: max-hold timeout (applies regardless of endDate — e.g. maxhold
-    // exceeded before endDate for long-dated markets we don't have)
+    // PATH 3: max-hold timeout → taker exit using pos.clobTokenIds.
     if (exitPrice == null && holdMin >= CFG.MAX_HOLD_MIN) {
-      try {
-        const m = await fetchJson(`${GAMMA}/markets?conditionIds=${pos.conditionId}`);
-        const mk = Array.isArray(m) ? m[0] : m;
-        const tokens = typeof mk?.clobTokenIds === "string" ? JSON.parse(mk.clobTokenIds) : mk?.clobTokenIds;
-        const currentNo = await fetchCurrentPrice(tokens);
-        if (currentNo != null) {
-          exitPrice = pos.side === "NO" ? currentNo : (1 - currentNo);
-          status = "maxhold-taker";
-          maxholdTaker++;
-        }
-      } catch {}
+      const tokens = pos.clobTokenIds;
+      if (Array.isArray(tokens) && tokens.length >= 2) {
+        try {
+          const mid = await fetchBookMidpoint(tokens[1]);
+          if (mid != null) {
+            exitPrice = pos.side === "NO" ? mid : (1 - mid);
+            status = "maxhold-taker";
+            maxholdTaker++;
+          }
+        } catch {}
+      }
     }
 
     if (exitPrice != null) {
