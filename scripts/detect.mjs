@@ -51,6 +51,7 @@ const CFG = {
   TRADE_SIZE:       Number(argv.tradesize ?? "5"),
   MIN_SHARES:       Number(argv.minshares ?? "5"),     // Polymarket minimum
   MAX_HOLD_MIN:     Number(argv.maxhold ?? "1440"),  // v14 — hold to resolution like 937
+  SELL_TARGET:      Number(argv.selltarget ?? "0.999"),  // v15 backtest profit-take target
   RESET:            argv.reset === "true",
   NO_CAP:           argv.nocap === "true",           // disable "insufficient bankroll" gate
 };
@@ -333,6 +334,7 @@ async function simulateEntry(market, mkt, sig, currentPrice) {
     sizeMult: sideMult,
     title: mkt.title,
     endDate: mkt.endDate,
+    clobTokenIds: mkt.clobTokenIds,  // stored so resolvePositions can hit CLOB /book for profit-take
     closed: false,
   };
   state.positions.push(position);
@@ -346,9 +348,39 @@ async function simulateEntry(market, mkt, sig, currentPrice) {
 // was being treated as a resolution oracle when Polymarket is the authority.
 // METAR remains the ENTRY signal source (see computeEntrySignal).
 
+// Fetch current CLOB book midpoint for the NO token.
+async function fetchBookMidpoint(noTokenId) {
+  if (!noTokenId) return null;
+  try {
+    const r = await fetchJson(`${CLOB}/book?token_id=${noTokenId}`);
+    const bids = Array.isArray(r?.bids) ? r.bids : [];
+    const asks = Array.isArray(r?.asks) ? r.asks : [];
+    const bb = bids.length ? Number(bids[bids.length - 1]?.price) : null;
+    const ba = asks.length ? Number(asks[0]?.price) : null;
+    if (Number.isFinite(bb) && Number.isFinite(ba)) return (bb + ba) / 2;
+    if (Number.isFinite(bb)) return bb;
+    if (Number.isFinite(ba)) return ba;
+  } catch {}
+  return null;
+}
+
+// Bounded-concurrency parallel runner
+async function runParallel(items, worker, concurrency = 6) {
+  let next = 0;
+  async function loop() {
+    while (next < items.length) {
+      const i = next++;
+      try { await worker(items[i], i); } catch {}
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, loop));
+}
+
 async function resolvePositions() {
   // Polymarket is the settlement authority. METAR is the ENTRY signal, not
   // the resolution oracle (Gamma is). Settlement priority:
+  //   0. Profit-take: our-side CLOB mid ≥ SELL_TARGET (0.999 default) → exit
+  //      at that price. Matches backtest v15's filled-999 path (70% of wins).
   //   1. Past endDate + 5min → Gamma outcomePrices = [1,0] or [0,1] → $1/$0
   //   2. Past endDate + 6h without Gamma resolution → exit at current CLOB
   //      midpoint (taker price). Honest: if Polymarket hasn't resolved, we
@@ -358,7 +390,20 @@ async function resolvePositions() {
   // No more settle-*-metar-lock or settle-*-metar. Those were booking phantom
   // $1 payouts before Polymarket had a chance to resolve. Removed in v22.
   const nowSec = Math.floor(Date.now() / 1000);
-  let settled = 0, checked = 0, gammaResolved = 0, lagTaker = 0, maxholdTaker = 0, stillOpen = 0;
+  let settled = 0, checked = 0, profitTake = 0, gammaResolved = 0, lagTaker = 0, maxholdTaker = 0, stillOpen = 0;
+
+  // Batch-fetch CLOB midpoints for all open positions up-front (one parallel
+  // pass, concurrency-bounded). Positions without clobTokenIds stored on them
+  // get their midpoint as null → skip PATH 0 for those.
+  const openPositions = state.positions.filter(p => !p.closed);
+  const midByCond = new Map();
+  if (openPositions.length) {
+    const toFetch = openPositions.filter(p => Array.isArray(p.clobTokenIds) && p.clobTokenIds.length >= 2);
+    await runParallel(toFetch, async (p) => {
+      const mid = await fetchBookMidpoint(p.clobTokenIds[1]);
+      if (mid != null) midByCond.set(p.conditionId, mid);
+    }, 6);
+  }
   for (const pos of state.positions) {
     if (pos.closed) continue;
     checked++;
@@ -367,8 +412,21 @@ async function resolvePositions() {
     let exitPrice = null;
     let status = null;
 
+    // PATH 0: profit-take at SELL_TARGET (0.999). If the CLOB midpoint for
+    // our side reaches the target, simulate a maker-sell fill at that price.
+    // Matches backtest v15's filled-999 path (70% of wins exit this way).
+    const noMid = midByCond.get(pos.conditionId);
+    if (noMid != null) {
+      const ourMid = pos.side === "NO" ? noMid : (1 - noMid);
+      if (ourMid >= CFG.SELL_TARGET) {
+        exitPrice = CFG.SELL_TARGET;
+        status = "filled-999";
+        profitTake++;
+      }
+    }
+
     // PATH 1: past endDate + 5min → check Gamma for actual resolution
-    if (nowSec >= marketEndSec + 300) {
+    if (exitPrice == null && nowSec >= marketEndSec + 300) {
       try {
         const mkt = await fetchJson(`${GAMMA}/markets?conditionIds=${pos.conditionId}`);
         const m = Array.isArray(mkt) ? mkt[0] : mkt;
@@ -458,7 +516,7 @@ async function resolvePositions() {
     }
   }
   if (checked > 0) {
-    console.log(`  [resolve] checked=${checked} settled=${settled} (gamma=${gammaResolved} lag-taker=${lagTaker} maxhold=${maxholdTaker}) stillOpen=${stillOpen}  realizedPnl=$${state.realizedPnl.toFixed(2)}  bankroll=$${state.bankroll.toFixed(2)}`);
+    console.log(`  [resolve] checked=${checked} settled=${settled} (profit-take=${profitTake} gamma=${gammaResolved} lag-taker=${lagTaker} maxhold=${maxholdTaker}) stillOpen=${stillOpen}  realizedPnl=$${state.realizedPnl.toFixed(2)}  bankroll=$${state.bankroll.toFixed(2)}`);
   }
   // Drop closed positions
   state.positions = state.positions.filter(p => !p.closed);
@@ -491,6 +549,12 @@ async function scanOnce() {
 
     const sig = computeEntrySignal(parsed, metar, openMeteo, nowSec, CFG.CROSSED_BUF, CFG.FORECAST_BUF);
     if (!sig) continue;
+
+    // v15 dead-zone filter: skip YES forecast-in-range when cushion ∈ [0.35, 0.45).
+    // Backtest showed 0/6 WR at cushion ~0.40 (forecast 0.1°C off strike) — the
+    // only sub-band that's net negative. Narrow band-stop to exclude it.
+    if (sig.side === "YES" && sig.reason === "forecast-in-range"
+        && sig.cushion >= 0.35 && sig.cushion < 0.45) continue;
 
     // Fetch current price
     const noPrice = await fetchCurrentPrice(mk.clobTokenIds);
