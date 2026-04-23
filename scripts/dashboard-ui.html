@@ -101,6 +101,14 @@
   .exec-tabs { display: flex; padding: 4px; gap: 4px; background: var(--panel-hi); border-bottom: 1px solid var(--border); }
   .exec-tabs button { flex: 1; background: transparent; border: none; color: var(--muted); padding: 6px 8px; font: inherit; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; border-radius: 4px; }
   .exec-tabs button.active { background: var(--panel); color: var(--accent); }
+  .spotlight { display: grid; gap: 6px; padding: 4px 0; }
+  .spotlight .row { display: flex; justify-content: space-between; gap: 12px; font-size: 11px; align-items: baseline; }
+  .spotlight .row .k { color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; font-size: 10px; }
+  .spotlight .row .v { font-family: ui-monospace, monospace; color: var(--text); font-variant-numeric: tabular-nums; }
+  .spotlight .v.pos { color: var(--green); }
+  .spotlight .v.neg { color: var(--red); }
+  .spotlight .v.big { font-size: 18px; font-weight: 600; }
+  .spotlight .empty { padding: 24px; text-align: center; color: var(--muted); font-style: italic; }
 
   section { margin-bottom: 20px; }
   section h2 { margin: 0 0 12px 0; font-size: 11px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.12em; font-weight: 600; }
@@ -208,6 +216,32 @@
             <div class="chart-card tall">
               <div class="chart-title"><span>Rolling Win Rate · 30-trade window</span><span class="pill" id="rollingWrPill">—</span></div>
               <canvas id="rollingWrChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="row2">
+            <div class="chart-card">
+              <div class="chart-title"><span>Best Open</span><span class="pill ok" id="bestPill">—</span></div>
+              <div id="bestOpen" class="spotlight"></div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-title"><span>Worst Open</span><span class="pill bad" id="worstPill">—</span></div>
+              <div id="worstOpen" class="spotlight"></div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="row2">
+            <div class="chart-card">
+              <div class="chart-title"><span>Open Positions by Side</span><span class="pill" id="openSidePill">—</span></div>
+              <canvas id="openSideChart"></canvas>
+            </div>
+            <div class="chart-card">
+              <div class="chart-title"><span>Open Positions by City · top 12</span></div>
+              <canvas id="openCityChart"></canvas>
             </div>
           </div>
         </section>
@@ -469,6 +503,65 @@ function renderKpis(s, equityCurve, rollingWR) {
 let __openSort = "unreal-desc";
 function setOpenSort(s) { __openSort = s; renderOpen(__openPositions); }
 let __openPositions = [];
+
+function renderSpotlight(elId, pillId, pos, prefix) {
+  const el = document.getElementById(elId);
+  const pill = document.getElementById(pillId);
+  if (!el) return;
+  if (!pos) {
+    el.innerHTML = `<div class="empty">Awaiting live prices…</div>`;
+    if (pill) { pill.textContent = "—"; pill.className = "pill"; }
+    return;
+  }
+  const upn = pos.unrealizedPnl;
+  const upct = pos.unrealizedPct;
+  const sideCls = pos.side === "NO" ? "side-no" : "side-yes";
+  const valCls = upn > 0 ? "pos" : upn < 0 ? "neg" : "";
+  if (pill) {
+    pill.textContent = (upn != null ? fmt$(upn) : "—") + (upct != null ? `  ${fmtSigned(upct*100, 1)}%` : "");
+    pill.className = "pill " + (upn > 0 ? "ok" : upn < 0 ? "bad" : "");
+  }
+  el.innerHTML = `
+    <div class="row"><span class="k">P&amp;L</span> <span class="v big ${valCls}">${fmt$(upn)}  <span style="font-size:11px;opacity:0.8;">(${upct != null ? fmtSigned(upct*100,1)+'%' : '—'})</span></span></div>
+    <div class="row"><span class="k">Market</span> <span class="v"><span class="${sideCls}">${pos.side}</span> · ${pos.city||""} · ${pos.date||""}</span></div>
+    <div class="row"><span class="k">Entry → Last</span> <span class="v">${fmtN(pos.entryPrice,4)} → ${pos.lastPrice != null ? fmtN(pos.lastPrice,4) : "—"}</span></div>
+    <div class="row"><span class="k">Size · Shares</span> <span class="v">${fmt$(pos.positionSize)} · ${fmtN(pos.shares,2)}</span></div>
+    <div class="row"><span class="k">Cushion · TTR</span> <span class="v">${fmtN(pos.cushion,1)}°C · ${pos.ttrSec != null ? (pos.ttrSec < 3600 ? Math.floor(pos.ttrSec/60)+"m" : (pos.ttrSec/3600).toFixed(1)+"h") : "—"}</span></div>
+    <div class="row"><span class="k">Reason</span> <span class="v"><span class="pill">${pos.reason||""}</span></span></div>`;
+}
+
+function renderOpenSide(bySide) {
+  const NO = bySide?.NO || 0, YES = bySide?.YES || 0;
+  const total = NO + YES;
+  const pill = document.getElementById("openSidePill");
+  if (pill) pill.textContent = total ? `NO ${NO} · YES ${YES}` : "—";
+  upsertChart("openSideChart", "doughnut", {
+    labels: ["NO", "YES"],
+    datasets: [{ data: [NO, YES], backgroundColor: [CHART_COLORS.accent, CHART_COLORS.purple], borderColor: "var(--bg)", borderWidth: 2 }],
+  }, {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: "bottom", labels: { color: "#c9d1d9", font: { size: 11 } } } },
+    cutout: "60%",
+  });
+}
+
+function renderOpenCity(byCity) {
+  const entries = Object.entries(byCity || {}).sort((a,b) => b[1] - a[1]).slice(0, 12);
+  if (!entries.length) {
+    if (charts.openCityChart) { charts.openCityChart.destroy(); delete charts.openCityChart; } return;
+  }
+  upsertChart("openCityChart", "bar", {
+    labels: entries.map(([k]) => k),
+    datasets: [{ label: "open #", data: entries.map(([, v]) => v), backgroundColor: CHART_COLORS.accent, borderWidth: 0 }],
+  }, baseOpts({
+    indexAxis: "y",
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { color: CHART_COLORS.muted, precision: 0 } },
+      y: { ticks: { color: CHART_COLORS.muted, font: { size: 10 } } },
+    },
+  }));
+}
 
 function renderOpen(positions) {
   __openPositions = positions || [];
@@ -1025,6 +1118,12 @@ async function refresh() {
     renderBreakdown("cityChart",   data.breakdown?.byCity   || {}, { topN: 15 });
     renderBreakdown("cushionChart", data.breakdown?.byCushion || {});
     renderThermalHeatmap(data.thermalEdge || []);
+    if (data.openBreakdown) {
+      renderSpotlight("bestOpen", "bestPill", data.openBreakdown.bestOpen, "best");
+      renderSpotlight("worstOpen", "worstPill", data.openBreakdown.worstOpen, "worst");
+      renderOpenSide(data.openBreakdown.bySide);
+      renderOpenCity(data.openBreakdown.byCity);
+    }
     if (data.quant) {
       renderQuantKpis(data.summary, data.quant);
       renderMonthly(data.quant.monthly);
