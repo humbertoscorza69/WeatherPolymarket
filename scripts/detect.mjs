@@ -47,6 +47,13 @@ const CFG = {
   MAX_ENTRY_YES:    Number(argv.maxentryyes ?? "0.99"),
   ALLOW_YES:        argv["allow-yes"] === "true",        // override to re-enable YES side
   ALLOW_NON_HIGHEST_BETWEEN: argv["allow-non-hb"] === "true",  // override to re-enable LOWEST/above/below
+  // v30-mm — book-scan market-maker parameters
+  MIN_ASK_ENTRY:    Number(argv["min-ask"] ?? "0.95"),   // only scalp asks in [MIN_ASK, MAX_ASK]
+  MAX_ASK_ENTRY:    Number(argv["max-ask"] ?? "0.999"),
+  MIN_DEPTH_SHARES: Number(argv["min-depth"] ?? "20"),   // minimum depth at the ask to fire
+  BOOK_CONCURRENCY: Number(argv["book-concurrency"] ?? "8"),
+  METAR_VETO:       argv["metar-veto"] !== "false",      // use METAR signal as safety veto (default on)
+  TRIGGER_MODE:     argv["trigger"] ?? "book",           // "book" (v30) | "metar" (v29)
   TTR_MIN_SEC:      Number(argv.ttrmin ?? String(60*60)),        // 1h (allow early entries)
   TTR_MAX_SEC:      Number(argv.ttrmax ?? String(24*3600)),      // 24h (matches 0x900e's 10h median entry)
   CROSSED_BUF:      Number(argv.crossedbuf ?? "0.5"),
@@ -354,29 +361,38 @@ function computeEntrySignal(market, metarObs, omObs, nowSec, buffer, forecastBuf
   return null;
 }
 
-// v29-empirical sizing. 937's actual entry-USDC distribution (n=682):
-//   p10 $5    p25 $10   p50 $40   p75 $200   p90 $716   max $2924
-// Replicated as a 5-bucket sampler whose probabilities and dollar
-// midpoints match the empirical histogram. Cushion strength biases
-// the bucket pick — stronger signal → bigger bucket — to mimic 937's
-// (presumably) confidence-weighted sizing without claiming we know
-// their exact rule.
+// v30-mm sizing: inverted from v29. 937's open-position distribution shows
+// that the BIGGEST median sizes sit at the SAFEST price band (0.999+ =
+// $499 med), while the 0.95-0.99 band has much smaller $72 med sizes.
+// The logic: at 0.999+ the max loss per share is $0.001, so you can
+// comfortably deploy $500. At 0.95 the max loss per share is $0.05, so
+// a $72 position caps loss at ~$3.60.
 const SIZE_BUCKETS_USDC = [
-  { p: 0.30, mid: 7,    label: "tiny" },     // <$10  in 937's data: 30%
+  { p: 0.30, mid: 7,    label: "tiny" },     // <$10   in 937's data: 30%
   { p: 0.30, mid: 30,   label: "small" },    // $10-50 in 937's data: 22%
   { p: 0.20, mid: 100,  label: "mid" },      // $50-200 in 937's data: 23%
   { p: 0.15, mid: 350,  label: "large" },    // $200-1000 in 937's data: 18%
   { p: 0.05, mid: 1000, label: "whale" },    // >$1000 in 937's data: 6%
 ];
 
-function pickSizeBucketUsdc(sig) {
-  // Cushion-weighted bucket selection. Stronger cushion (more confident NO
-  // signal) skews probability mass toward the larger buckets. Cushion 0
-  // → original prior; cushion ≥3 → ~2x weight on the largest two buckets.
-  const boost = Math.min(2.0, 1 + (Number(sig.cushion) || 0) / 3);
+function pickSizeBucketUsdc(ctx) {
+  // v30-mm: bucket bias is driven by distance from 0.999 (price proximity
+  // to certainty). ctx.ask is the top-of-book ask we're about to pay.
+  //   ask >= 0.999   → full weight on large/whale (deep-safe)
+  //   ask ~ 0.99     → shift toward mid/large
+  //   ask ~ 0.95     → keep mass on tiny/small (riskier band)
+  const ask = Number(ctx?.ask);
+  const safety = Number.isFinite(ask)
+    ? Math.max(0, Math.min(1, (ask - 0.95) / (0.999 - 0.95)))  // 0 at 0.95, 1 at 0.999
+    : 0.5;
+  // Linear bias: at safety=1, double the weight on large+whale; at safety=0,
+  // double the weight on tiny+small.
   const weights = SIZE_BUCKETS_USDC.map((b, i) => {
-    const bigBoost = i >= 3 ? boost : 1;          // boost large/whale only
-    return b.p * bigBoost;
+    const bigSide  = i >= 3;
+    const tinySide = i <= 1;
+    if (bigSide)  return b.p * (1 + safety);          // up to 2x when deep-safe
+    if (tinySide) return b.p * (1 + (1 - safety));    // up to 2x when risky
+    return b.p;
   });
   const total = weights.reduce((s, w) => s + w, 0);
   let r = Math.random() * total;
@@ -387,26 +403,36 @@ function pickSizeBucketUsdc(sig) {
   return SIZE_BUCKETS_USDC[SIZE_BUCKETS_USDC.length - 1];
 }
 
-async function simulateEntry(market, mkt, sig, currentPrice, strategyVersion = "v29-empirical") {
-  const entryPrice = sig.side === "NO" ? currentPrice : (1 - currentPrice);
-  if (sig.side === "NO") {
-    if (entryPrice < CFG.MIN_ENTRY_NO || entryPrice > CFG.MAX_ENTRY_NO) return null;
-  } else {
-    if (entryPrice < CFG.MIN_ENTRY_YES || entryPrice > CFG.MAX_ENTRY_YES) return null;
-  }
+// v30-mm entry sim. Pays the ask (taker), records book snapshot.
+//   ctx.side         : "NO" | "YES"
+//   ctx.entryPrice   : taker price actually paid (= ask on that side)
+//   ctx.book         : { ask, askDepth, bid, bidDepth, mid, fillableAtCap }
+//   ctx.market       : parsed title (city/date/threshold)
+//   ctx.mkt          : Gamma market record
+//   ctx.metarSig     : optional METAR cross-check signal (reason, cushion)
+//   ctx.strategyVersion
+async function simulateEntry(ctx) {
+  const { side, entryPrice, book, market, mkt, metarSig } = ctx;
+  const strategyVersion = ctx.strategyVersion || "v30-mm";
 
-  // v29-empirical sizing: dollar amount sampled from 937's distribution,
-  // cushion-weighted. CFG.TRADE_SIZE is interpreted as a SCALE factor that
-  // shifts the whole distribution if the user wants smaller/larger absolute
-  // sizes (default $50 → scale=1.0; $25 → 0.5x all buckets).
-  const bucket = pickSizeBucketUsdc(sig);
-  const scale = CFG.TRADE_SIZE / 50;
-  const dollarSize = bucket.mid * scale;
+  // v30-mm sizing: driven by the ask price's proximity to certainty (0.999+).
+  // Bucket midpoint scaled by TRADE_SIZE/50 so user can tune absolute size.
+  const bucket = pickSizeBucketUsdc({ ask: entryPrice });
+  const scale  = CFG.TRADE_SIZE / 50;
+  let dollarSize = bucket.mid * scale;
   let shares = Math.max(CFG.MIN_SHARES, Math.floor(dollarSize / entryPrice));
-  let positionSize = shares * entryPrice;
 
+  // Cap to available book depth at this ask — we can't buy more than is
+  // offered at the top. If we're size-constrained, shrink; if depth is
+  // below MIN_SHARES, we shouldn't have reached here (scanOnce filters).
+  if (Number.isFinite(book?.askDepth) && book.askDepth > 0) {
+    shares = Math.min(shares, Math.floor(book.askDepth));
+  }
+  if (shares < CFG.MIN_SHARES) return null;
+
+  const positionSize = shares * entryPrice;
   if (!CFG.NO_CAP && positionSize > state.bankroll) {
-    console.log(`  ⏸  Insufficient bankroll for ${market.city} ${sig.side} (need $${positionSize.toFixed(2)}, have $${state.bankroll.toFixed(2)})`);
+    console.log(`  ⏸  Insufficient bankroll for ${market.city} ${side} (need $${positionSize.toFixed(2)}, have $${state.bankroll.toFixed(2)})`);
     return null;
   }
 
@@ -417,22 +443,29 @@ async function simulateEntry(market, mkt, sig, currentPrice, strategyVersion = "
     conditionId: mkt.conditionId,
     city: market.city,
     date: market.date,
-    side: sig.side,
-    reason: sig.reason,
-    cushion: Math.round(sig.cushion * 10) / 10,
+    side,
+    reason: metarSig?.reason || "book-scalp",
+    cushion: metarSig ? Math.round(metarSig.cushion * 10) / 10 : null,
     entryPrice: Math.round(entryPrice * 10000) / 10000,
     shares: Math.round(shares * 100) / 100,
     positionSize,
-    sizeBucket: bucket.label,         // v29-empirical: bucket label for analytics
+    sizeBucket: bucket.label,
+    bookSnapshot: book ? {
+      ask: book.ask, askDepth: book.askDepth,
+      bid: book.bid, bidDepth: book.bidDepth,
+      fillableAtCap: book.fillableAtCap,
+    } : null,
     title: mkt.title,
     endDate: mkt.endDate,
-    clobTokenIds: mkt.clobTokenIds,  // stored so resolvePositions can hit CLOB /book for profit-take
-    strategyVersion,                  // tag for A/B comparison vs 0x937 baseline
+    clobTokenIds: mkt.clobTokenIds,
+    strategyVersion,
     closed: false,
   };
   state.positions.push(position);
   await fs.appendFile(LOG, JSON.stringify({ type: "OPEN", ...position }) + "\n");
-  console.log(`  🎯 ENTRY  ${sig.side.padEnd(3)} ${market.city.padEnd(15)} ${market.date}  price=${entryPrice.toFixed(4)}  size=$${positionSize.toFixed(2)} [${bucket.label}] cushion=${position.cushion}°C`);
+  const metarTag = metarSig ? ` metar=${metarSig.reason}/${position.cushion}°C` : "";
+  const depthTag = book?.askDepth != null ? ` depth=${book.askDepth.toFixed(0)}` : "";
+  console.log(`  🎯 ENTRY  ${side.padEnd(3)} ${market.city.padEnd(15)} ${market.date}  ask=${entryPrice.toFixed(4)}  size=$${positionSize.toFixed(2)} [${bucket.label}]${depthTag}${metarTag}`);
   return position;
 }
 
@@ -457,6 +490,38 @@ async function fetchBookMidpoint(noTokenId) {
   return null;
 }
 
+// v30-mm core primitive: fetch the top-of-book snapshot for ONE token.
+// Returns { ask, askDepth, bid, bidDepth, mid } or null on failure.
+// We care about:
+//   - ask (+ cumulative depth at/below 0.999) to sim a buy
+//   - bid to sanity-check spread
+// Polymarket /book returns bids ascending, asks ascending — so best ask is
+// asks[0] and best bid is the LAST bid entry.
+async function fetchTopOfBook(tokenId) {
+  if (!tokenId) return null;
+  try {
+    const r = await fetchJson(`${CLOB}/book?token_id=${tokenId}`);
+    const bids = Array.isArray(r?.bids) ? r.bids : [];
+    const asks = Array.isArray(r?.asks) ? r.asks : [];
+    const ask  = asks.length ? Number(asks[0]?.price) : null;
+    const askDepth = asks.length ? Number(asks[0]?.size) : 0;
+    const bid  = bids.length ? Number(bids[bids.length - 1]?.price) : null;
+    const bidDepth = bids.length ? Number(bids[bids.length - 1]?.size) : 0;
+    const mid = (Number.isFinite(ask) && Number.isFinite(bid)) ? (ask + bid) / 2 : (ask ?? bid);
+    // Cumulative depth at or below 0.999 (anything worth scalping) — useful
+    // for sizing: if only 3 shares are offered at 0.998, we shouldn't plan
+    // a $500 entry there.
+    let fillableAtCap = 0;
+    for (const a of asks) {
+      const p = Number(a?.price), s = Number(a?.size);
+      if (!Number.isFinite(p) || !Number.isFinite(s)) continue;
+      if (p > 0.999) break;
+      fillableAtCap += s;
+    }
+    return { ask, askDepth, bid, bidDepth, mid, fillableAtCap };
+  } catch { return null; }
+}
+
 // Bounded-concurrency parallel runner
 async function runParallel(items, worker, concurrency = 6) {
   let next = 0;
@@ -470,19 +535,16 @@ async function runParallel(items, worker, concurrency = 6) {
 }
 
 async function resolvePositions() {
-  // Polymarket is the settlement authority. METAR is the ENTRY signal, not
-  // the resolution oracle (Gamma is). Settlement priority (v28-replica):
-  //   0. Profit-take: our-side CLOB mid ≥ SELL_TARGET (0.999 default) → exit
-  //      at that price. The dominant exit for 937-style scalps that ride to
-  //      0.999 within minutes.
-  //   1. Past endDate + 5min → Gamma outcomePrices = [1,0] or [0,1] → $1/$0
-  //   2. Past endDate + 6h without Gamma resolution → exit at current CLOB
-  //      midpoint (taker price). Honest: if Polymarket hasn't resolved, we
-  //      don't pretend it has.
-  //   3. Scalp max-hold reached (default 90min, was 1440 in v22) → cut at
-  //      current taker mid. 937's median hold is 10-30min; we accept
-  //      occasional small losses to keep capital turning over instead of
-  //      sitting on resolution exposure for hours.
+  // v30-mm settlement. Polymarket is the authority. Book-scan was the
+  // ENTRY trigger; exits are unchanged from v29:
+  //   0. Profit-take: our-side CLOB mid ≥ SELL_TARGET (0.999) → exit at
+  //      that price. DOMINANT exit in 937's data — 96.6% of sells hit 0.999.
+  //   1. Past endDate + 5min → Gamma outcomePrices resolved → $1 or $0.
+  //   2. Past endDate + 6h without Gamma resolution → taker-cut at CLOB
+  //      midpoint. If Polymarket hasn't resolved, we don't pretend it has.
+  //   3. Scalp max-hold reached (60min = 937 p99 hold) → cut at taker mid.
+  //      937 never holds past an hour; sitting in a trade that didn't pop
+  //      to 0.999 is losing time value, so cut and rotate.
   //
   // No more settle-*-metar-lock or settle-*-metar. Those were booking phantom
   // $1 payouts before Polymarket had a chance to resolve. Removed in v22.
@@ -611,74 +673,120 @@ async function resolvePositions() {
   state.positions = state.positions.filter(p => !p.closed);
 }
 
+// v30-mm scan: book-scan as trigger, METAR as safety veto.
+//
+// Flow per market:
+//   1. universe filter: HIGHEST + (exact|between), TTR window, no dup
+//   2. fetch top-of-book for BOTH NO (token[1]) and YES (token[0])
+//   3. candidate side: whichever ask lies in [MIN_ASK, MAX_ASK]. Both may
+//      qualify in principle but typically only one side is near-resolved.
+//   4. depth check: askDepth >= MIN_DEPTH_SHARES
+//   5. METAR veto (if --metar-veto=true, default on): skip entries where
+//      the observed/forecast temperature CONTRADICTS the book consensus.
+//      Book says NO wins (NO ask high → NO has small chance of loss) and
+//      METAR shows temp is near/above the threshold → the book might be
+//      wrong; skip. Same for YES.
+//   6. pay the ask, size from price-proximity bucket, enter
 async function scanOnce() {
   const tScan = new Date().toISOString();
   console.log(`\n[${tScan}] Bankroll: $${state.bankroll.toFixed(2)}  Realized: $${state.realizedPnl.toFixed(2)}  Open: ${state.positions.length}  Total trades: ${state.trades.length}`);
-  // (resolvePositions already called by outer fast-path loop)
 
   const markets = await fetchLiveWeatherMarkets();
-  console.log(`  scanning ${markets.length} open weather markets...`);
-
-  let opened = 0;
   const nowSec = Math.floor(Date.now() / 1000);
 
+  // ---- 1. universe filter (cheap, no network) ----
+  const universe = [];
   for (const mk of markets) {
     const parsed = parseWeatherTitle(mk.title);
     if (!parsed || !parsed.date || parsed.threshold == null) continue;
-
-    // v29-empirical market-type gate. 937's 682-trade history is 100%
-    // HIGHEST + (exact|between) — zero LOWEST, zero at_or_above, zero
-    // at_or_below. We skip everything 937 wouldn't touch.
-    //   isLowest=true              → 0/682 in 937's data → skip
-    //   type ∈ {exact, between}    → 682/682 in 937's data → keep
-    //   type ∈ {at_or_above, at_or_below} → 0/682 → skip
-    // Override: --allow-non-hb=true (or legacy --allow-lowest=true)
     if (!CFG.ALLOW_NON_HIGHEST_BETWEEN && argv["allow-lowest"] !== "true") {
       if (parsed.isLowest) continue;
       if (parsed.type !== "exact" && parsed.type !== "between") continue;
     }
-
     const endSec = Math.floor(new Date(mk.endDate).getTime() / 1000);
     const ttr = endSec - nowSec;
     if (ttr < CFG.TTR_MIN_SEC || ttr > CFG.TTR_MAX_SEC) continue;
-
-    // Don't re-enter a market we already have a position in
     if (state.positions.some(p => p.conditionId === mk.conditionId)) continue;
+    if (!Array.isArray(mk.clobTokenIds) || mk.clobTokenIds.length < 2) continue;
+    universe.push({ mk, parsed });
+  }
+  console.log(`  universe: ${universe.length} of ${markets.length} markets (HIGHEST+between, TTR ${CFG.TTR_MIN_SEC/3600}-${CFG.TTR_MAX_SEC/3600}h, no dup)`);
 
-    // Fetch observations
-    const { metar, openMeteo } = await getObservationsForMarket(parsed);
-    if (metar.length === 0 && openMeteo.length === 0) continue;
+  // ---- 2. book scan — bounded concurrency, both sides per market ----
+  const candidates = [];
+  let bookCalls = 0, bookFails = 0, askFiltered = 0, depthFiltered = 0;
+  await runParallel(universe, async (u) => {
+    const [yesToken, noToken] = u.mk.clobTokenIds;
+    const [yesBook, noBook] = await Promise.all([
+      fetchTopOfBook(yesToken),
+      fetchTopOfBook(noToken),
+    ]);
+    bookCalls += 2;
+    if (!yesBook) bookFails++;
+    if (!noBook) bookFails++;
+    // NO-side candidate
+    if (noBook && Number.isFinite(noBook.ask)) {
+      if (noBook.ask >= CFG.MIN_ASK_ENTRY && noBook.ask <= CFG.MAX_ASK_ENTRY) {
+        if (noBook.askDepth >= CFG.MIN_DEPTH_SHARES) {
+          candidates.push({ ...u, side: "NO", book: noBook });
+        } else { depthFiltered++; }
+      } else { askFiltered++; }
+    }
+    // YES-side candidate (inverted scalp — same strategy on the other side)
+    if (yesBook && Number.isFinite(yesBook.ask) && CFG.ALLOW_YES) {
+      if (yesBook.ask >= CFG.MIN_ASK_ENTRY && yesBook.ask <= CFG.MAX_ASK_ENTRY) {
+        if (yesBook.askDepth >= CFG.MIN_DEPTH_SHARES) {
+          candidates.push({ ...u, side: "YES", book: yesBook });
+        } else { depthFiltered++; }
+      } else { askFiltered++; }
+    }
+  }, CFG.BOOK_CONCURRENCY);
+  console.log(`  book-scan: ${bookCalls} calls (${bookFails} fails), ${candidates.length} candidates (ask∈[${CFG.MIN_ASK_ENTRY},${CFG.MAX_ASK_ENTRY}] · depth≥${CFG.MIN_DEPTH_SHARES}sh) · filtered ${askFiltered} out-of-ask-range, ${depthFiltered} thin-depth`);
 
-    const sig = computeEntrySignal(parsed, metar, openMeteo, nowSec, CFG.CROSSED_BUF, CFG.FORECAST_BUF);
-    if (!sig) continue;
-
-    // v29-empirical side gate. 937 trades NO 96.9% of the time (661/682);
-    // the YES tail is bimodal (≤0.05 lottery or ≥0.90 deep-YES) and not
-    // triggerable from temperature signal. Drop YES unless --allow-yes.
-    if (sig.side === "YES" && !CFG.ALLOW_YES) continue;
-
-    // Fetch current price
-    const noPrice = await fetchCurrentPrice(mk.clobTokenIds);
-    if (noPrice == null) continue;
-    const currentPrice = sig.side === "NO" ? noPrice : (1 - noPrice);
-
-    // v29-empirical entry-price gates. NO 0.95-0.999 = 98% of 937's volume.
-    // YES gates only matter when --allow-yes is on; default they're dead.
-    if (sig.side === "NO" && (noPrice < CFG.MIN_ENTRY_NO || noPrice > CFG.MAX_ENTRY_NO)) continue;
-    if (sig.side === "YES" && (currentPrice < CFG.MIN_ENTRY_YES || currentPrice > CFG.MAX_ENTRY_YES)) continue;
-
-    const pos = await simulateEntry(parsed, mk, sig, noPrice, "v29-empirical");
+  // ---- 3. METAR veto + entry ----
+  let opened = 0, vetoed = 0;
+  for (const c of candidates) {
+    let metarSig = null;
+    if (CFG.METAR_VETO) {
+      const { metar, openMeteo } = await getObservationsForMarket(c.parsed);
+      if (metar.length || openMeteo.length) {
+        metarSig = computeEntrySignal(c.parsed, metar, openMeteo, nowSec, CFG.CROSSED_BUF, CFG.FORECAST_BUF);
+      }
+      // Veto logic:
+      //   NO ask near 1 means the book says "NO almost certainly wins".
+      //     METAR agreement = signal says NO (observed-above, forecast-in-range/below).
+      //     Veto if METAR says YES (market expects the bucket to hit).
+      //   YES ask near 1 means the book says "YES almost certainly wins".
+      //     METAR agreement = signal says YES.
+      //     Veto if METAR says NO.
+      if (metarSig) {
+        if (c.side === "NO"  && metarSig.side === "YES") { vetoed++; continue; }
+        if (c.side === "YES" && metarSig.side === "NO")  { vetoed++; continue; }
+      }
+      // If METAR has no opinion (null sig), we DON'T veto — 937 doesn't
+      // use METAR at all. METAR is a one-way safety net, not a filter.
+    }
+    const pos = await simulateEntry({
+      side: c.side,
+      entryPrice: c.book.ask,
+      book: c.book,
+      market: c.parsed,
+      mkt: c.mk,
+      metarSig,
+      strategyVersion: "v30-mm",
+    });
     if (pos) opened++;
   }
 
   await persist();
-  console.log(`  opened ${opened} new positions this scan`);
+  console.log(`  opened ${opened}${CFG.METAR_VETO ? ` (metar-vetoed ${vetoed})` : ""} new positions this scan`);
 }
 
 async function main() {
-  console.log(`=== Detect engine + simulator (v29-empirical · 0x937 mimicry) ===`);
-  console.log(`Bankroll: $${state.bankroll.toFixed(2)} (CLI=$${CFG.BANKROLL}${CFG.RESET ? ", --reset" : ""}${CFG.NO_CAP ? ", --nocap (no bankroll gate)" : ""})  Trade scale: $${CFG.TRADE_SIZE} (sampled from 937's empirical bucket distribution; min ${CFG.MIN_SHARES} shares enforced)`);
-  console.log(`Filters: NO only (--allow-yes to override) · HIGHEST + (exact|between) only (--allow-non-hb to override) · entry NO ${CFG.MIN_ENTRY_NO}-${CFG.MAX_ENTRY_NO} · max-hold ${CFG.MAX_HOLD_MIN}min · take-profit ${CFG.SELL_TARGET}`);
+  console.log(`=== Detect engine + simulator (v30-mm · 0x937 market-maker replica) ===`);
+  console.log(`Bankroll: $${state.bankroll.toFixed(2)} (CLI=$${CFG.BANKROLL}${CFG.RESET ? ", --reset" : ""}${CFG.NO_CAP ? ", --nocap (no bankroll gate)" : ""})  Trade scale: $${CFG.TRADE_SIZE} (sampled from 937's empirical bucket distribution; larger buckets favored when ask≥0.999; min ${CFG.MIN_SHARES} shares enforced)`);
+  console.log(`Trigger: ${CFG.TRIGGER_MODE === "book" ? "CLOB book-scan" : "METAR signal"} · ask∈[${CFG.MIN_ASK_ENTRY},${CFG.MAX_ASK_ENTRY}] · min-depth ${CFG.MIN_DEPTH_SHARES}sh · YES-side ${CFG.ALLOW_YES ? "ON" : "OFF"}`);
+  console.log(`Safety: HIGHEST + (exact|between) only (--allow-non-hb to override) · METAR veto ${CFG.METAR_VETO ? "ON" : "OFF"} · max-hold ${CFG.MAX_HOLD_MIN}min · take-profit ${CFG.SELL_TARGET}`);
   console.log(`Scan intervals: market scan=${CFG.INTERVAL_SEC}s, position check=${CFG.POS_CHECK_SEC}s, weather cache=${CFG.WEATHER_TTL_SEC}s`);
   console.log(`TTR=[${CFG.TTR_MIN_SEC/3600}h, ${CFG.TTR_MAX_SEC/3600}h]`);
   console.log(`Data hierarchy:`);
@@ -686,14 +794,14 @@ async function main() {
   console.log(`  Open-Meteo forecast — used for FUTURE temps (YES signals need forecasts).`);
   console.log(`METAR stations mapped: ${Object.keys(STATIONS).length}\n`);
 
-  // v29-empirical: expected workflow is `npm run archive` BEFORE first run,
+  // v30-mm: expected workflow is `npm run archive` BEFORE first run,
   // so state.positions should be empty. If a mid-run restart finds untagged
-  // positions, label them v29-empirical so analytics group cleanly.
+  // positions, label them v30-mm so analytics group cleanly.
   let tagged = 0;
   for (const p of state.positions) {
-    if (!p.strategyVersion) { p.strategyVersion = "v29-empirical"; tagged++; }
+    if (!p.strategyVersion) { p.strategyVersion = "v30-mm"; tagged++; }
   }
-  if (tagged) console.log(`[startup] tagged ${tagged} pre-existing positions as v29-empirical`);
+  if (tagged) console.log(`[startup] tagged ${tagged} pre-existing positions as v30-mm`);
 
   // Persist immediately so the startup bankroll correction lands on disk
   // before any other action (scan / resolve / first loop write). Protects
