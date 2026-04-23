@@ -82,12 +82,26 @@ if (!CFG.RESET && existsSync(POSITIONS_FILE)) {
   try {
     const persisted = JSON.parse(await fs.readFile(POSITIONS_FILE, "utf8"));
     state = { ...state, ...persisted };
-    if (bankrollArgPassed) state.bankroll = CFG.BANKROLL;
+    if (bankrollArgPassed) {
+      // --bankroll means "my total capital is X" — effective cash = X minus
+      // what's already tied up in open positions. Fixes the bug where a
+      // restart with --bankroll=10000 reset effective cash to $10k even
+      // though $750 was still deployed across 185 open positions.
+      const openExposure = (state.positions || []).reduce((s, p) => s + (Number(p.positionSize) || 0), 0);
+      state.bankroll = CFG.BANKROLL - openExposure;
+      console.log(`[startup] --bankroll=${CFG.BANKROLL} with $${openExposure.toFixed(2)} deployed in ${state.positions.length} open positions → effective cash $${state.bankroll.toFixed(2)}`);
+    }
   } catch {}
 }
 
 async function persist() {
-  await fs.writeFile(POSITIONS_FILE, JSON.stringify(state, null, 2));
+  // Atomic write: tmp + rename. fs.writeFile can produce a truncated file if
+  // the process is killed mid-write (Ctrl-C during flush). Renaming is
+  // atomic on POSIX and Windows, so we never see a half-written state on
+  // next startup. Prevents the "restart lost all positions" class of bug.
+  const tmp = POSITIONS_FILE + ".tmp";
+  await fs.writeFile(tmp, JSON.stringify(state, null, 2));
+  await fs.rename(tmp, POSITIONS_FILE);
 }
 
 // ----- small utilities -----

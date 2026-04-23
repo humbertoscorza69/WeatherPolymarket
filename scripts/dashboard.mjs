@@ -376,7 +376,15 @@ function unrealizedFor(pos, metarVerdict) {
   let didWin = null;
   let priceSource = cached.source;
 
-  if (cached.resolved) {
+  // Effective resolution: Gamma said so, OR the market's endDate has passed
+  // AND METAR already locked the outcome. The second case covers the common
+  // \"trading stopped, UMA lag\" window where Polymarket's UI still shows
+  // the pre-close mid but weather has already determined the winner.
+  const endPastMs = cached.endDate ? Date.now() - new Date(cached.endDate).getTime() : -Infinity;
+  const metarLocked = metarVerdict === "locked_win" || metarVerdict === "locked_loss";
+  const effectivelyResolved = cached.resolved || (endPastMs > 0 && metarLocked);
+
+  if (effectivelyResolved) {
     // Prefer Gamma's explicit 0/1 signal. If Gamma says "closed" but prices
     // are ambiguous (e.g. stuck at 0.475), fall back to METAR ground truth.
     if (cached.noWon !== null && cached.yesWon !== null) {
@@ -396,7 +404,7 @@ function unrealizedFor(pos, metarVerdict) {
     lastPrice = pos.side === "NO" ? cached.noPrice : cached.yesPrice ?? (1 - cached.noPrice);
   }
 
-  if (lastPrice == null) return { lastPrice: null, unrealizedPnl: null, unrealizedPct: null, ttrSec: null, endDate: cached.endDate, resolved: !!cached.resolved };
+  if (lastPrice == null) return { lastPrice: null, unrealizedPnl: null, unrealizedPct: null, ttrSec: null, endDate: cached.endDate, resolved: !!effectivelyResolved };
 
   const unrealizedPnl = num(pos.shares) * (lastPrice - num(pos.entryPrice));
   const unrealizedPct = num(pos.entryPrice) > 0 ? (lastPrice - num(pos.entryPrice)) / num(pos.entryPrice) : 0;
@@ -411,7 +419,7 @@ function unrealizedFor(pos, metarVerdict) {
     unrealizedPct,
     ttrSec,
     endDate: cached.endDate,
-    resolved: !!cached.resolved,
+    resolved: !!effectivelyResolved,
     didWin,
     priceSource,
   };
