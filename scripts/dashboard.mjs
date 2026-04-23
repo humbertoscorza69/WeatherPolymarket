@@ -85,15 +85,21 @@ async function runParallel(items, worker, concurrency) {
   return results;
 }
 
-// Fetches everything we need for one market in a single Gamma call:
-// tokens (for CLOB fallback), endDate (for TTR), outcomePrices (what
-// Polymarket's UI actually displays), and lastTradePrice as a reference.
+// Fetches Gamma data for one market. Validates that the returned market
+// matches the requested conditionId — Gamma sometimes ignores the filter
+// and returns featured markets (Russia-Ukraine etc). Without this check
+// we'd cache wrong tokens for every position and fetch the wrong book.
 async function fetchMarketData(conditionId) {
   diagnostics.totalGammaCalls++;
   const data = await fetchJson(`${GAMMA}/markets?conditionIds=${conditionId}`);
   if (data?.__error) { diagnostics.totalGammaFailures++; return { error: data.__error }; }
-  const mk = Array.isArray(data) ? data[0] : data;
-  if (!mk) { diagnostics.totalGammaFailures++; return { error: "no-market" }; }
+  const arr = Array.isArray(data) ? data : [data];
+  const wanted = String(conditionId).toLowerCase();
+  const mk = arr.find(m => String(m?.conditionId || "").toLowerCase() === wanted);
+  if (!mk) {
+    diagnostics.totalGammaFailures++;
+    return { error: `conditionId mismatch (got ${arr.length} markets, none matched)` };
+  }
   const tokens = typeof mk.clobTokenIds === "string" ? JSON.parse(mk.clobTokenIds) : mk.clobTokenIds;
   let yesPrice = null, noPrice = null;
   if (mk.outcomePrices) {
@@ -166,25 +172,41 @@ async function refreshPricesForPositions(positions) {
   diagnostics.positionsTracked = positions.length;
   if (POLLER_LOG) console.log(`[prices] polling ${positions.length} markets (CLOB /book primary, Gamma metadata+resolution)…`);
 
-  // Step 1: Gamma fetch for metadata (tokens, endDate) + resolution signals.
-  // Tokens cached 24h. outcomePrices are NOT used as the live price anymore —
-  // they turned out to be stale mids on near-resolved markets (Seoul 22°C
-  // stayed at 0.5350 on Gamma while Polymarket's UI showed 0.99). We only
-  // trust Gamma for flags (resolved, closed, umaResolutionStatus) and the
-  // final [1,0]/[0,1] split.
+  // Step 1: Seed the cache from the POSITION itself. detect.mjs stores
+  // clobTokenIds and endDate on every position at entry time (sprint 23).
+  // We trust those over re-fetching from Gamma — Gamma's conditionIds
+  // filter was silently returning featured markets (Russia-Ukraine) for
+  // the wrong lookups, which cached the wrong tokens across every
+  // position and made every Last price show 0.73.
+  for (const p of positions) {
+    const cur = priceCache.get(p.conditionId) || {};
+    if (!cur.tokens && Array.isArray(p.clobTokenIds) && p.clobTokenIds.length >= 2) {
+      priceCache.set(p.conditionId, {
+        ...cur,
+        tokens: p.clobTokenIds,
+        endDate: p.endDate,
+        source: "pos-stored",
+        metaTs: t0,
+        error: null,
+      });
+    }
+  }
+
+  // Step 2: Gamma fetch for resolution signals only. Validated — rejects
+  // responses where conditionId doesn't match what we asked for.
   await runParallel(positions, async (p) => {
     const cur = priceCache.get(p.conditionId) || {};
-    const tokensStale = !cur.tokens || (t0 - (cur.metaTs || 0) > META_TTL_MS);
     const data = await fetchMarketData(p.conditionId);
     if (data.error) {
-      priceCache.set(p.conditionId, { ...cur, error: data.error });
+      // Gamma misbehaving — keep pos-stored tokens, just skip resolution update.
+      priceCache.set(p.conditionId, { ...cur, gammaError: data.error });
       return;
     }
     priceCache.set(p.conditionId, {
       ...cur,
-      tokens: tokensStale ? data.tokens : cur.tokens,
+      // Prefer Gamma's tokens/endDate only if they match; falls back to pos-stored
+      tokens: data.tokens || cur.tokens,
       endDate: data.endDate || cur.endDate,
-      // Gamma outcomePrices kept ONLY for resolved-market detection
       gammaYes: data.yesPrice,
       gammaNo: data.noPrice,
       lastTradePrice: data.lastTradePrice,
@@ -192,8 +214,8 @@ async function refreshPricesForPositions(positions) {
       noWon: data.noWon,
       yesWon: data.yesWon,
       closed: data.closed,
-      metaTs: tokensStale ? t0 : cur.metaTs,
-      error: null,
+      metaTs: t0,
+      gammaError: null,
     });
   }, PRICE_CONCURRENCY);
 
