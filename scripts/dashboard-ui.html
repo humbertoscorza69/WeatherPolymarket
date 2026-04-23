@@ -60,6 +60,12 @@
   .chart-card .chart-title { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; font-weight: 600; }
   .chart-card canvas { max-height: 240px; }
   .chart-card.tall canvas { max-height: 320px; }
+  .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; align-items: center; }
+  .filter-bar input, .filter-bar select { background: var(--panel-hi); color: var(--text); border: 1px solid var(--border); padding: 6px 10px; border-radius: 6px; font: inherit; font-size: 12px; }
+  .filter-bar input::placeholder { color: var(--muted); }
+  .filter-bar label { color: var(--muted); font-size: 11px; }
+  .summary-bar { display: flex; gap: 16px; font-size: 11px; color: var(--muted); margin-top: 8px; padding: 8px 12px; background: var(--panel-hi); border-radius: 6px; }
+  .summary-bar b { color: var(--text); }
 </style>
 </head>
 <body>
@@ -115,7 +121,35 @@
 
   <section>
     <h2>Closed Trades <span id="closedCount" class="pill">0</span></h2>
+    <div class="filter-bar">
+      <input type="text" id="filterText" placeholder="Search city, reason, status…" oninput="applyFilters()">
+      <select id="filterSide" onchange="applyFilters()">
+        <option value="">All sides</option>
+        <option value="NO">NO only</option>
+        <option value="YES">YES only</option>
+      </select>
+      <select id="filterResult" onchange="applyFilters()">
+        <option value="">All results</option>
+        <option value="win">Wins only</option>
+        <option value="loss">Losses only</option>
+      </select>
+      <select id="filterLimit" onchange="applyFilters()">
+        <option value="50">Last 50</option>
+        <option value="200" selected>Last 200</option>
+        <option value="1000">Last 1000</option>
+        <option value="0">All</option>
+      </select>
+      <label style="margin-left: auto;">Sort:</label>
+      <select id="filterSort" onchange="applyFilters()">
+        <option value="closed-desc">Closed (newest)</option>
+        <option value="closed-asc">Closed (oldest)</option>
+        <option value="pnl-desc">PnL (highest)</option>
+        <option value="pnl-asc">PnL (lowest)</option>
+        <option value="hold-desc">Hold (longest)</option>
+      </select>
+    </div>
     <div id="closedTable"></div>
+    <div class="summary-bar" id="filterSummary"></div>
   </section>
 </main>
 
@@ -195,33 +229,69 @@ function renderOpen(positions) {
     </table>`;
 }
 
-function renderClosed(trades) {
-  document.getElementById("closedCount").textContent = trades.length;
-  if (!trades.length) {
-    document.getElementById("closedTable").innerHTML = `<div class="empty">No closed trades yet.</div>`;
+let __closedTrades = [];
+
+function applyFilters() {
+  const text = (document.getElementById("filterText").value || "").toLowerCase().trim();
+  const side = document.getElementById("filterSide").value;
+  const result = document.getElementById("filterResult").value;
+  const limit = Number(document.getElementById("filterLimit").value);
+  const sort = document.getElementById("filterSort").value;
+
+  let rows = [...__closedTrades];
+  if (side) rows = rows.filter(t => t.side === side);
+  if (result === "win") rows = rows.filter(t => Number(t.pnl) > 0.01);
+  if (result === "loss") rows = rows.filter(t => Number(t.pnl) < -0.01);
+  if (text) {
+    rows = rows.filter(t => {
+      const s = `${t.city||""} ${t.reason||""} ${t.status||""} ${t.side||""}`.toLowerCase();
+      return s.includes(text);
+    });
+  }
+
+  const holdMin = (t) => (new Date(t.closedAt) - new Date(t.openedAt)) / 60000;
+  if (sort === "closed-desc") rows.sort((a,b) => new Date(b.closedAt) - new Date(a.closedAt));
+  else if (sort === "closed-asc") rows.sort((a,b) => new Date(a.closedAt) - new Date(b.closedAt));
+  else if (sort === "pnl-desc") rows.sort((a,b) => Number(b.pnl) - Number(a.pnl));
+  else if (sort === "pnl-asc") rows.sort((a,b) => Number(a.pnl) - Number(b.pnl));
+  else if (sort === "hold-desc") rows.sort((a,b) => holdMin(b) - holdMin(a));
+
+  const total = rows.length;
+  if (limit > 0) rows = rows.slice(0, limit);
+
+  // summary of filtered
+  const wins = rows.filter(t => Number(t.pnl) > 0.01).length;
+  const losses = rows.filter(t => Number(t.pnl) < -0.01).length;
+  const sumPnl = rows.reduce((s, t) => s + (Number(t.pnl) || 0), 0);
+  const avgHold = rows.length ? rows.reduce((s, t) => s + holdMin(t), 0) / rows.length : 0;
+  document.getElementById("filterSummary").innerHTML =
+    `Showing <b>${rows.length}</b> / ${total} trades · ` +
+    `WR <b>${total ? ((wins/rows.length)*100).toFixed(1) : "0.0"}%</b> (${wins}W / ${losses}L) · ` +
+    `PnL <b>${fmt$(sumPnl)}</b> · avg hold <b>${fmtDur(avgHold)}</b>`;
+
+  if (!rows.length) {
+    document.getElementById("closedTable").innerHTML = `<div class="empty">No matching trades.</div>`;
     return;
   }
-  const rows = [...trades]
-    .reverse()
-    .slice(0, 200)
-    .map(t => {
-      const pnl = Number(t.pnl)||0;
-      const cls = pnl > 0.01 ? "pos" : (pnl < -0.01 ? "neg" : "");
-      const side = t.side === "NO" ? `<span class="side-no">NO</span>` : `<span class="side-yes">YES</span>`;
-      const hold = (new Date(t.closedAt) - new Date(t.openedAt)) / 60000;
-      return `<tr>
-        <td>${fmtTime(t.closedAt)}</td>
-        <td>${side}</td>
-        <td>${t.city||""}</td>
-        <td class="num">${fmtN(t.entryPrice,4)}</td>
-        <td class="num">${fmtN(t.exitPrice,4)}</td>
-        <td class="num">${fmtN(t.shares,2)}</td>
-        <td class="num ${cls}">${fmt$(pnl)}</td>
-        <td class="num">${fmtDur(hold)}</td>
-        <td><span class="pill">${t.status||""}</span></td>
-        <td><span class="pill">${t.reason||""}</span></td>
-      </tr>`;
-    }).join("");
+
+  const html = rows.map(t => {
+    const pnl = Number(t.pnl)||0;
+    const cls = pnl > 0.01 ? "pos" : (pnl < -0.01 ? "neg" : "");
+    const side = t.side === "NO" ? `<span class="side-no">NO</span>` : `<span class="side-yes">YES</span>`;
+    const hold = holdMin(t);
+    return `<tr>
+      <td>${fmtTime(t.closedAt)}</td>
+      <td>${side}</td>
+      <td>${t.city||""}</td>
+      <td class="num">${fmtN(t.entryPrice,4)}</td>
+      <td class="num">${fmtN(t.exitPrice,4)}</td>
+      <td class="num">${fmtN(t.shares,2)}</td>
+      <td class="num ${cls}">${fmt$(pnl)}</td>
+      <td class="num">${fmtDur(hold)}</td>
+      <td><span class="pill">${t.status||""}</span></td>
+      <td><span class="pill">${t.reason||""}</span></td>
+    </tr>`;
+  }).join("");
   document.getElementById("closedTable").innerHTML = `
     <table>
       <thead><tr>
@@ -229,8 +299,14 @@ function renderClosed(trades) {
         <th class="num">Entry</th><th class="num">Exit</th><th class="num">Shares</th>
         <th class="num">PnL</th><th class="num">Hold</th><th>Status</th><th>Reason</th>
       </tr></thead>
-      <tbody>${rows}</tbody>
+      <tbody>${html}</tbody>
     </table>`;
+}
+
+function renderClosed(trades) {
+  __closedTrades = trades || [];
+  document.getElementById("closedCount").textContent = __closedTrades.length;
+  applyFilters();
 }
 
 // ----- Charts -----

@@ -18,7 +18,8 @@
     "fetch-more-wallets": "node scripts/fetch-more-wallets.mjs",
     "analyze-wallets": "node scripts/analyze-wallets.mjs",
     "validate-backtest": "node scripts/validate-backtest.mjs",
-    "fetch-wallet-complete": "node scripts/fetch-wallet-complete.mjs"
+    "fetch-wallet-complete": "node scripts/fetch-wallet-complete.mjs",
+    "dashboard": "node scripts/dashboard.mjs"
   },
   "engines": {
     "node": ">=20.6"
