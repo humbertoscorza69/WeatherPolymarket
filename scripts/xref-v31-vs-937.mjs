@@ -41,12 +41,14 @@ const SUMMARY_FILE = path.resolve("data/wallet-trades/0x937bcac3a8a30c07d827ad05
 const WX_DIR = path.resolve("data/weather-history");
 const TICK_DIR = path.resolve("data/tick-history");
 
-const MIN_DIST     = Number(argv["min-dist"]    ?? "0.5");
+const MIN_DIST     = Number(argv["min-dist"]    ?? "0.1");
 const MAX_DIST     = Number(argv["max-dist"]    ?? "5");
 const MIN_ASK      = Number(argv["min-ask"]     ?? "0.80");
 const MAX_ASK      = Number(argv["max-ask"]     ?? "0.999");
 const SELL_TARGET  = Number(argv["sell-target"] ?? "0.999");
 const MAX_HOLD_MIN = Number(argv["max-hold"]    ?? "60");
+const MIN_TTR_H    = Number(argv["min-ttr"]     ?? "0.1");   // 6 min
+const MAX_TTR_H    = Number(argv["max-ttr"]     ?? "4");     // 4 hours
 
 function parseTitle(title) {
   if (!title) return null;
@@ -158,14 +160,14 @@ function simulateExit(ticks, entry, sellTarget, maxHoldMin) {
 
 async function main() {
   console.log(`=== v31 cross-reference against 937's actual trades ===`);
-  console.log(`Rule: distance ∈ [${MIN_DIST},${MAX_DIST}]°C · ask ∈ [${MIN_ASK},${MAX_ASK}] · exit @ ${SELL_TARGET} · max-hold ${MAX_HOLD_MIN}min\n`);
+  console.log(`Rule: distance ∈ [${MIN_DIST},${MAX_DIST}]°C · ask ∈ [${MIN_ASK},${MAX_ASK}] · TTR ∈ [${MIN_TTR_H},${MAX_TTR_H}]h · exit @ ${SELL_TARGET} · max-hold ${MAX_HOLD_MIN}min\n`);
 
   const trades = (await fs.readFile(TRADES_FILE, "utf8")).trim().split("\n").map(l => JSON.parse(l));
   const summary = JSON.parse(await fs.readFile(SUMMARY_FILE, "utf8"));
   const closed = trades.filter(t => t.pnlUsdc != null);     // only closed (to compare WR vs actual)
   console.log(`937 closed trades: ${closed.length}`);
 
-  const reasons = { pass:[], skip_noWx:[], skip_titleFail:[], skip_distTooClose:[], skip_distTooFar:[], skip_distContains:[], skip_askRange:[], skip_noTicks:[] };
+  const reasons = { pass:[], skip_noWx:[], skip_titleFail:[], skip_distTooClose:[], skip_distTooFar:[], skip_distContains:[], skip_askRange:[], skip_noTicks:[], skip_ttrTooClose:[], skip_ttrTooFar:[] };
   let totalAnnotatable = 0;
 
   for (const entry of closed) {
@@ -189,9 +191,14 @@ async function main() {
     if (relation === "contains-max") { reasons.skip_distContains.push({ entry, parsed: p, obsMax, distance }); continue; }
     if (distance < MIN_DIST)         { reasons.skip_distTooClose.push({ entry, parsed: p, obsMax, distance }); continue; }
     if (distance > MAX_DIST)         { reasons.skip_distTooFar.push({ entry, parsed: p, obsMax, distance }); continue; }
-    // v31 accepts — now simulate the exit using tick data
+    // v31 accepts on distance — now simulate the exit using tick data
     const ticks = await loadTicks(entry.conditionId);
     if (!ticks) { reasons.skip_noTicks.push({ entry, parsed: p, obsMax, distance, relation }); continue; }
+    // TTR check: use last tick timestamp as resolution proxy
+    const endTs = ticks.reduce((m, t) => t.timestamp > m ? t.timestamp : m, 0);
+    const ttrH = endTs ? (endTs - entry.openTs) / 3600 : null;
+    if (ttrH != null && ttrH < MIN_TTR_H) { reasons.skip_ttrTooClose.push({ entry, parsed: p, ttrH }); continue; }
+    if (ttrH != null && ttrH > MAX_TTR_H) { reasons.skip_ttrTooFar.push({ entry, parsed: p, ttrH }); continue; }
     const exit = simulateExit(ticks, entry, SELL_TARGET, MAX_HOLD_MIN);
     const simPnl = entry.shares * (exit.exitPrice - entry.entryAvg);
     reasons.pass.push({
@@ -204,7 +211,7 @@ async function main() {
   // ======== Report ========
   const annot = totalAnnotatable;
   console.log(`=== Filter outcome (closed trades, ${annot} annotatable) ===`);
-  const rowNames = ["pass", "skip_distTooClose", "skip_distTooFar", "skip_distContains", "skip_askRange", "skip_noWx", "skip_noTicks", "skip_titleFail"];
+  const rowNames = ["pass", "skip_distTooClose", "skip_distTooFar", "skip_distContains", "skip_askRange", "skip_ttrTooClose", "skip_ttrTooFar", "skip_noWx", "skip_noTicks", "skip_titleFail"];
   for (const r of rowNames) {
     const n = reasons[r].length;
     const pct = annot ? (100 * n / annot).toFixed(1) : "—";
