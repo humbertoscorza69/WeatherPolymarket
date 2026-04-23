@@ -7,7 +7,7 @@
     "build": "tsc -p tsconfig.json && node scripts/copy-assets.mjs",
     "test": "npm run build && node --test \"dist/**/*.test.js\"",
     "backtest": "node scripts/backtest.mjs --threshold=0 --minentry=0.70 --maxentry=0.99 --bidoffset=0 --buywait=120 --stoplossmin=999 --stoplossdelta=0.9 --hardstopsec=1 --hardstopdelta=0.9 --declinelb=3600 --declinemax=0.9 --maxhold=1440 --tradesize=40 --cooldown=0 --ttrmin=3600 --ttrmax=86400 --samplebucket=30 --filtertype=exact --filterunit=C --reqcrossed=true --crossedbuf=0.5 --rollingn=30 --rollingminwr=0.6 --allowyes=true --asymmetric=false",
-    "detect": "node scripts/detect.mjs --bankroll=10000 --tradesize=5 --nocap --interval=30 --poscheck=15",
+    "detect": "node scripts/detect.mjs --bankroll=10000 --tradesize=50 --nocap --interval=30 --poscheck=15",
     "detect:min": "node scripts/detect.mjs",
     "validate": "node scripts/validate-paper-trading.mjs",
     "compare": "node scripts/compare-to-wallet.mjs",

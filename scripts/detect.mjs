@@ -35,10 +35,12 @@ const argv = Object.fromEntries(process.argv.slice(2).map(a => {
 }));
 
 const CFG = {
-  MIN_ENTRY_NO:     Number(argv.minentryno ?? "0.70"),
+  // v28-replica: entry windows match 0x937's observed range. NO 0.30-0.99,
+  // YES 0.02-0.99. No confidence gate — 937 fires regardless of cushion.
+  MIN_ENTRY_NO:     Number(argv.minentryno ?? "0.30"),
   MAX_ENTRY_NO:     Number(argv.maxentryno ?? "0.99"),
-  MIN_ENTRY_YES:    Number(argv.minentryyes ?? "0.30"),
-  MAX_ENTRY_YES:    Number(argv.maxentryyes ?? "0.70"),
+  MIN_ENTRY_YES:    Number(argv.minentryyes ?? "0.02"),
+  MAX_ENTRY_YES:    Number(argv.maxentryyes ?? "0.99"),
   TTR_MIN_SEC:      Number(argv.ttrmin ?? String(60*60)),        // 1h (allow early entries)
   TTR_MAX_SEC:      Number(argv.ttrmax ?? String(24*3600)),      // 24h (matches 0x900e's 10h median entry)
   CROSSED_BUF:      Number(argv.crossedbuf ?? "0.5"),
@@ -50,8 +52,8 @@ const CFG = {
   BANKROLL:         Number(argv.bankroll ?? "100"),
   TRADE_SIZE:       Number(argv.tradesize ?? "5"),
   MIN_SHARES:       Number(argv.minshares ?? "5"),     // Polymarket minimum
-  MAX_HOLD_MIN:     Number(argv.maxhold ?? "1440"),  // v14 — hold to resolution like 937
-  SELL_TARGET:      Number(argv.selltarget ?? "0.999"),  // v15 backtest profit-take target
+  MAX_HOLD_MIN:     Number(argv.maxhold ?? "90"),    // v28-replica: 937's median hold is 10-30min, p90 ~90min
+  SELL_TARGET:      Number(argv.selltarget ?? "0.999"),  // profit-take when our-side mid hits this
   RESET:            argv.reset === "true",
   NO_CAP:           argv.nocap === "true",           // disable "insufficient bankroll" gate
 };
@@ -346,16 +348,24 @@ function computeEntrySignal(market, metarObs, omObs, nowSec, buffer, forecastBuf
   return null;
 }
 
-// Dynamic sizing tier (same as backtest.mjs)
+// Dynamic sizing tier — v28-replica widens to 0.2-2.0x of base.
+// 937's open positions span 5-283 shares; matching that range needs more
+// dynamic range than the prior 0.2-1.0 multiplier allowed. With base $50
+// (package.json default) on a $10k bankroll, this gives $10-$100 effective
+// per position — covers ~80% of 937's observed sizing.
 function sizeMultiplier(sig) {
   if (sig.side === "NO") {
-    if (sig.reason === "observed-above" && sig.cushion >= 1.5) return 1.0;
-    return 0.7;
+    if (sig.reason === "observed-above" && sig.cushion >= 3) return 2.0;
+    if (sig.reason === "observed-above" && sig.cushion >= 1.5) return 1.4;
+    return 1.0;
   }
-  return sig.cushion > 0.3 ? 0.4 : 0.2;
+  // YES: cheap-lottery sizing scales with cushion confidence
+  if (sig.cushion >= 0.5) return 0.8;
+  if (sig.cushion > 0.3) return 0.5;
+  return 0.3;
 }
 
-async function simulateEntry(market, mkt, sig, currentPrice, strategyVersion = "v22-narrow") {
+async function simulateEntry(market, mkt, sig, currentPrice, strategyVersion = "v28-replica") {
   const sideMult = sizeMultiplier(sig);
 
   const entryPrice = sig.side === "NO" ? currentPrice : (1 - currentPrice);
@@ -437,14 +447,18 @@ async function runParallel(items, worker, concurrency = 6) {
 
 async function resolvePositions() {
   // Polymarket is the settlement authority. METAR is the ENTRY signal, not
-  // the resolution oracle (Gamma is). Settlement priority:
+  // the resolution oracle (Gamma is). Settlement priority (v28-replica):
   //   0. Profit-take: our-side CLOB mid ≥ SELL_TARGET (0.999 default) → exit
-  //      at that price. Matches backtest v15's filled-999 path (70% of wins).
+  //      at that price. The dominant exit for 937-style scalps that ride to
+  //      0.999 within minutes.
   //   1. Past endDate + 5min → Gamma outcomePrices = [1,0] or [0,1] → $1/$0
   //   2. Past endDate + 6h without Gamma resolution → exit at current CLOB
   //      midpoint (taker price). Honest: if Polymarket hasn't resolved, we
   //      don't pretend it has.
-  //   3. Max hold reached → exit at current taker price
+  //   3. Scalp max-hold reached (default 90min, was 1440 in v22) → cut at
+  //      current taker mid. 937's median hold is 10-30min; we accept
+  //      occasional small losses to keep capital turning over instead of
+  //      sitting on resolution exposure for hours.
   //
   // No more settle-*-metar-lock or settle-*-metar. Those were booking phantom
   // $1 payouts before Polymarket had a chance to resolve. Removed in v22.
@@ -530,7 +544,9 @@ async function resolvePositions() {
       }
     }
 
-    // PATH 3: max-hold timeout → taker exit using pos.clobTokenIds.
+    // PATH 3: scalp max-hold timeout (v28: 90min default) → taker cut.
+    // 937 typically rotates capital in <30min — past 90min the trade has
+    // either failed to pop or the signal is stale. Cut at CLOB mid.
     if (exitPrice == null && holdMin >= CFG.MAX_HOLD_MIN) {
       const tokens = pos.clobTokenIds;
       if (Array.isArray(tokens) && tokens.length >= 2) {
@@ -538,7 +554,7 @@ async function resolvePositions() {
           const mid = await fetchBookMidpoint(tokens[1]);
           if (mid != null) {
             exitPrice = pos.side === "NO" ? mid : (1 - mid);
-            status = "maxhold-taker";
+            status = "scalp-maxhold";
             maxholdTaker++;
           }
         } catch {}
@@ -606,39 +622,23 @@ async function scanOnce() {
     const sig = computeEntrySignal(parsed, metar, openMeteo, nowSec, CFG.CROSSED_BUF, CFG.FORECAST_BUF);
     if (!sig) continue;
 
-    // v15 dead-zone filter: skip YES forecast-in-range when cushion ∈ [0.35, 0.45).
-    // Backtest showed 0/6 WR at cushion ~0.40 (forecast 0.1°C off strike) — the
-    // only sub-band that's net negative. Narrow band-stop to exclude it.
-    if (sig.side === "YES" && sig.reason === "forecast-in-range"
-        && sig.cushion >= 0.35 && sig.cushion < 0.45) continue;
+    // v28-replica: no dead-zone filter. 937 doesn't appear to skip any
+    // cushion sub-band. We accept the prior 0/6 WR at YES cushion 0.35-0.45
+    // as the cost of true mimicry; a single-strategy filter would diverge.
 
     // Fetch current price
     const noPrice = await fetchCurrentPrice(mk.clobTokenIds);
     if (noPrice == null) continue;
     const currentPrice = sig.side === "NO" ? noPrice : (1 - noPrice);
 
-    // v27 (937-mimicking) widened entry filters with confidence gates.
-    // Default narrow band protects us; widen only on high-conviction signals.
-    //
-    // 0x937 enters NO at 0.30-0.99 and YES at 0.02-0.99. We can't do their
-    // full strategy (no proprietary forecast) but we CAN catch their
-    // confident-signal entries that we'd otherwise skip:
-    //   NO observed-above with cushion ≥ 3°C → widen entry to 0.30-0.99
-    //   YES forecast-in-range with cushion ≥ 0.5 (forecast == threshold) →
-    //     widen entry to 0.05-0.70 (cheap-lottery YES)
-    let minNo = CFG.MIN_ENTRY_NO, maxNo = CFG.MAX_ENTRY_NO;
-    let minYes = CFG.MIN_ENTRY_YES, maxYes = CFG.MAX_ENTRY_YES;
-    let strategyVersion = "v22-narrow";
-    if (sig.side === "NO" && sig.reason === "observed-above" && sig.cushion >= 3) {
-      minNo = 0.30; strategyVersion = "v27-broad-no";
-    }
-    if (sig.side === "YES" && sig.reason === "forecast-in-range" && sig.cushion >= 0.5) {
-      minYes = 0.05; strategyVersion = "v27-broad-yes";
-    }
-    if (sig.side === "NO" && (noPrice < minNo || noPrice > maxNo)) continue;
-    if (sig.side === "YES" && (currentPrice < minYes || currentPrice > maxYes)) continue;
+    // v28-replica entry surface — unconditional 937-style price gates.
+    // No cushion-based widening, no confidence gate — every signal that
+    // lands inside the price window fires. CFG defaults already match
+    // 937's observed range: NO 0.30-0.99, YES 0.02-0.99.
+    if (sig.side === "NO" && (noPrice < CFG.MIN_ENTRY_NO || noPrice > CFG.MAX_ENTRY_NO)) continue;
+    if (sig.side === "YES" && (currentPrice < CFG.MIN_ENTRY_YES || currentPrice > CFG.MAX_ENTRY_YES)) continue;
 
-    const pos = await simulateEntry(parsed, mk, sig, noPrice, strategyVersion);
+    const pos = await simulateEntry(parsed, mk, sig, noPrice, "v28-replica");
     if (pos) opened++;
   }
 
@@ -656,14 +656,14 @@ async function main() {
   console.log(`  Open-Meteo forecast — used for FUTURE temps (YES signals need forecasts).`);
   console.log(`METAR stations mapped: ${Object.keys(STATIONS).length}\n`);
 
-  // sprint 27: label any existing untagged positions as "v22-narrow" so
-  // they're cleanly distinguished from new "v27-broad-*" entries opened
-  // by this run. Tomorrow's PnL analysis can group by strategyVersion.
+  // v28-replica: the expected workflow is `npm run archive` BEFORE first run,
+  // so state.positions should be empty. If a mid-run restart finds untagged
+  // positions, label them v28-replica so analytics group cleanly.
   let tagged = 0;
   for (const p of state.positions) {
-    if (!p.strategyVersion) { p.strategyVersion = "v22-narrow"; tagged++; }
+    if (!p.strategyVersion) { p.strategyVersion = "v28-replica"; tagged++; }
   }
-  if (tagged) console.log(`[startup] tagged ${tagged} pre-existing positions as v22-narrow`);
+  if (tagged) console.log(`[startup] tagged ${tagged} pre-existing positions as v28-replica`);
 
   // Persist immediately so the startup bankroll correction lands on disk
   // before any other action (scan / resolve / first loop write). Protects
