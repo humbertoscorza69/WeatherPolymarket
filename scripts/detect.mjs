@@ -383,10 +383,12 @@ async function resolvePositions() {
           const ourSideWon = (pos.side === "YES" && yesWon) || (pos.side === "NO" && !yesWon);
           exitPrice = ourSideWon ? 1.0 : 0.0;
           status = ourSideWon ? "settle-win" : "settle-lose";
-        } else if (flagResolved && m.closed === true) {
-          // Closed but prices ambiguous — fall back to observed weather.
-          // This covers the UMA-lag window where trading is stopped but
-          // resolution isn't propagated to outcomePrices yet.
+        } else {
+          // Past endDate + Gamma prices ambiguous (common — Polymarket takes
+          // hours to propagate closed/resolved flags via UMA). Trust METAR:
+          // we're past the trading close, the day's final max/min is in, the
+          // payoff is deterministic from the observation. No need to wait for
+          // Gamma to catch up.
           const obs = await getObservationsForMarket({ city: pos.city, date: pos.date });
           const metar = obs?.metar || [];
           if (metar.length) {
@@ -507,6 +509,19 @@ async function main() {
   console.log(`  METAR (airport stations, ~30min lag) — PRIMARY. Matches Polymarket resolver.`);
   console.log(`  Open-Meteo forecast — used for FUTURE temps (YES signals need forecasts).`);
   console.log(`METAR stations mapped: ${Object.keys(STATIONS).length}\n`);
+
+  // Persist immediately so the startup bankroll correction lands on disk
+  // before any other action (scan / resolve / first loop write). Protects
+  // against: user kills the process after the startup log but before the
+  // first persist() — leaving the stale bankroll in the file.
+  await persist();
+  console.log(`[startup] state persisted · bankroll $${state.bankroll.toFixed(2)} · ${state.positions.length} open · ${state.trades.length} closed`);
+
+  // Run resolvePositions once up-front so any overdue positions settle
+  // immediately at startup (handles the case where detect was down during
+  // resolution time)
+  await resolvePositions();
+  await persist();
 
   if (CFG.ONCE) {
     await scanOnce();

@@ -376,13 +376,20 @@ function unrealizedFor(pos, metarVerdict) {
   let didWin = null;
   let priceSource = cached.source;
 
-  // Effective resolution: Gamma said so, OR the market's endDate has passed
-  // AND METAR already locked the outcome. The second case covers the common
-  // \"trading stopped, UMA lag\" window where Polymarket's UI still shows
-  // the pre-close mid but weather has already determined the winner.
-  const endPastMs = cached.endDate ? Date.now() - new Date(cached.endDate).getTime() : -Infinity;
+  // CRITICAL: use pos.endDate (stored at entry time, per-market) as the
+  // authoritative resolution timestamp. Gamma sometimes returns the parent
+  // EVENT's endDate (e.g. an event covering weeks of daily markets), which
+  // makes cached.endDate wrong — that's why TTR was showing 99 days and
+  // why our "past end" check never fired.
+  const authEndDate = pos.endDate || cached.endDate;
+  const endPastMs = authEndDate ? Date.now() - new Date(authEndDate).getTime() : -Infinity;
   const metarLocked = metarVerdict === "locked_win" || metarVerdict === "locked_loss";
-  const effectivelyResolved = cached.resolved || (endPastMs > 0 && metarLocked);
+  // Effective resolution: Gamma confirmed it, OR METAR has locked the outcome
+  // (observation is monotone — once max > threshold, it can't go back below).
+  // Drop the old endPast requirement — a locked observation IS the resolution
+  // signal for mark-to-market purposes, regardless of whether Polymarket's
+  // clock has ticked past the arbitrary 12:00 UTC close.
+  const effectivelyResolved = cached.resolved || metarLocked;
 
   if (effectivelyResolved) {
     // Prefer Gamma's explicit 0/1 signal. If Gamma says "closed" but prices
@@ -404,13 +411,13 @@ function unrealizedFor(pos, metarVerdict) {
     lastPrice = pos.side === "NO" ? cached.noPrice : cached.yesPrice ?? (1 - cached.noPrice);
   }
 
-  if (lastPrice == null) return { lastPrice: null, unrealizedPnl: null, unrealizedPct: null, ttrSec: null, endDate: cached.endDate, resolved: !!effectivelyResolved };
+  if (lastPrice == null) return { lastPrice: null, unrealizedPnl: null, unrealizedPct: null, ttrSec: null, endDate: authEndDate, resolved: !!effectivelyResolved };
 
   const unrealizedPnl = num(pos.shares) * (lastPrice - num(pos.entryPrice));
   const unrealizedPct = num(pos.entryPrice) > 0 ? (lastPrice - num(pos.entryPrice)) / num(pos.entryPrice) : 0;
   let ttrSec = null;
-  if (cached.endDate) {
-    const end = new Date(cached.endDate).getTime();
+  if (authEndDate) {
+    const end = new Date(authEndDate).getTime();
     if (Number.isFinite(end)) ttrSec = Math.max(0, Math.floor((end - Date.now()) / 1000));
   }
   return {
@@ -418,7 +425,7 @@ function unrealizedFor(pos, metarVerdict) {
     unrealizedPnl,
     unrealizedPct,
     ttrSec,
-    endDate: cached.endDate,
+    endDate: authEndDate,
     resolved: !!effectivelyResolved,
     didWin,
     priceSource,
