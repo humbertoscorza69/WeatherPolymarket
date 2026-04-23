@@ -355,7 +355,7 @@ function sizeMultiplier(sig) {
   return sig.cushion > 0.3 ? 0.4 : 0.2;
 }
 
-async function simulateEntry(market, mkt, sig, currentPrice) {
+async function simulateEntry(market, mkt, sig, currentPrice, strategyVersion = "v22-narrow") {
   const sideMult = sizeMultiplier(sig);
 
   const entryPrice = sig.side === "NO" ? currentPrice : (1 - currentPrice);
@@ -393,6 +393,7 @@ async function simulateEntry(market, mkt, sig, currentPrice) {
     title: mkt.title,
     endDate: mkt.endDate,
     clobTokenIds: mkt.clobTokenIds,  // stored so resolvePositions can hit CLOB /book for profit-take
+    strategyVersion,                  // sprint 27: tag for A/B comparison vs 0x937 baseline
     closed: false,
   };
   state.positions.push(position);
@@ -615,10 +616,29 @@ async function scanOnce() {
     const noPrice = await fetchCurrentPrice(mk.clobTokenIds);
     if (noPrice == null) continue;
     const currentPrice = sig.side === "NO" ? noPrice : (1 - noPrice);
-    if (sig.side === "NO" && (noPrice < CFG.MIN_ENTRY_NO || noPrice > CFG.MAX_ENTRY_NO)) continue;
-    if (sig.side === "YES" && (currentPrice < CFG.MIN_ENTRY_YES || currentPrice > CFG.MAX_ENTRY_YES)) continue;
 
-    const pos = await simulateEntry(parsed, mk, sig, noPrice);
+    // v27 (937-mimicking) widened entry filters with confidence gates.
+    // Default narrow band protects us; widen only on high-conviction signals.
+    //
+    // 0x937 enters NO at 0.30-0.99 and YES at 0.02-0.99. We can't do their
+    // full strategy (no proprietary forecast) but we CAN catch their
+    // confident-signal entries that we'd otherwise skip:
+    //   NO observed-above with cushion ≥ 3°C → widen entry to 0.30-0.99
+    //   YES forecast-in-range with cushion ≥ 0.5 (forecast == threshold) →
+    //     widen entry to 0.05-0.70 (cheap-lottery YES)
+    let minNo = CFG.MIN_ENTRY_NO, maxNo = CFG.MAX_ENTRY_NO;
+    let minYes = CFG.MIN_ENTRY_YES, maxYes = CFG.MAX_ENTRY_YES;
+    let strategyVersion = "v22-narrow";
+    if (sig.side === "NO" && sig.reason === "observed-above" && sig.cushion >= 3) {
+      minNo = 0.30; strategyVersion = "v27-broad-no";
+    }
+    if (sig.side === "YES" && sig.reason === "forecast-in-range" && sig.cushion >= 0.5) {
+      minYes = 0.05; strategyVersion = "v27-broad-yes";
+    }
+    if (sig.side === "NO" && (noPrice < minNo || noPrice > maxNo)) continue;
+    if (sig.side === "YES" && (currentPrice < minYes || currentPrice > maxYes)) continue;
+
+    const pos = await simulateEntry(parsed, mk, sig, noPrice, strategyVersion);
     if (pos) opened++;
   }
 
@@ -635,6 +655,15 @@ async function main() {
   console.log(`  METAR (airport stations, ~30min lag) — PRIMARY. Matches Polymarket resolver.`);
   console.log(`  Open-Meteo forecast — used for FUTURE temps (YES signals need forecasts).`);
   console.log(`METAR stations mapped: ${Object.keys(STATIONS).length}\n`);
+
+  // sprint 27: label any existing untagged positions as "v22-narrow" so
+  // they're cleanly distinguished from new "v27-broad-*" entries opened
+  // by this run. Tomorrow's PnL analysis can group by strategyVersion.
+  let tagged = 0;
+  for (const p of state.positions) {
+    if (!p.strategyVersion) { p.strategyVersion = "v22-narrow"; tagged++; }
+  }
+  if (tagged) console.log(`[startup] tagged ${tagged} pre-existing positions as v22-narrow`);
 
   // Persist immediately so the startup bankroll correction lands on disk
   // before any other action (scan / resolve / first loop write). Protects
