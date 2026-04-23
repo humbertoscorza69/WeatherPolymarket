@@ -339,21 +339,73 @@ async function resolvePositions() {
     let exitPrice = null;
     let status = null;
 
-    if (nowSec >= marketEndSec + 900) {
-      // 15min past market end = assume resolved
+    if (nowSec >= marketEndSec + 300) {
+      // 5min past market end = check for resolution. Gamma marks markets
+      // `closed: true` when trading stops, but `resolved`/`resolvedBy` can
+      // lag by hours via UMA. We settle on the strongest available signal:
+      //   - outcomePrices collapsed to [1,0] or [0,1]
+      //   - mk.closed AND outcomePrices available (even if not fully collapsed)
+      //   - mk.resolved or mk.resolvedBy present
       try {
         const mkt = await fetchJson(`${GAMMA}/markets?conditionIds=${pos.conditionId}`);
         const m = Array.isArray(mkt) ? mkt[0] : mkt;
-        const resolved = m?.closed && (m?.resolved || m?.resolvedBy);
-        if (resolved) {
-          const outcomeValues = m?.outcomeValues ? JSON.parse(m.outcomeValues) : null;
-          // outcomeValues is ["1", "0"] or similar — index 0 = YES, index 1 = NO
-          const noWon = outcomeValues?.[1] === "1" || outcomeValues?.[1] === 1;
-          const ourSideWon = (pos.side === "NO" && noWon) || (pos.side === "YES" && !noWon);
+        if (!m) continue;
+        let yesP = null, noP = null;
+        if (m.outcomePrices) {
+          try {
+            const parsed = typeof m.outcomePrices === "string" ? JSON.parse(m.outcomePrices) : m.outcomePrices;
+            if (Array.isArray(parsed) && parsed.length >= 2) {
+              yesP = Number(parsed[0]); noP = Number(parsed[1]);
+            }
+          } catch {}
+        }
+        const priceResolved = Number.isFinite(yesP) && Number.isFinite(noP)
+          && Math.max(yesP, noP) >= 0.999 && Math.min(yesP, noP) <= 0.001;
+        const flagResolved = m.closed === true || m.archived === true
+          || m.resolved === true || m.resolvedBy != null
+          || m.umaResolutionStatus === "resolved";
+        if (priceResolved) {
+          const yesWon = yesP >= 0.5;
+          const ourSideWon = (pos.side === "YES" && yesWon) || (pos.side === "NO" && !yesWon);
           exitPrice = ourSideWon ? 1.0 : 0.0;
           status = ourSideWon ? "settle-win" : "settle-lose";
+        } else if (flagResolved && m.closed === true) {
+          // Closed but prices ambiguous — fall back to observed weather.
+          // This covers the UMA-lag window where trading is stopped but
+          // resolution isn't propagated to outcomePrices yet.
+          const obs = await getObservationsForMarket({ city: pos.city, date: pos.date });
+          const metar = obs?.metar || [];
+          if (metar.length) {
+            const temps = metar.map(o => o.tempC);
+            const observedMax = Math.max(...temps);
+            const observedMin = Math.min(...temps);
+            const parsedTitle = parseWeatherTitle(pos.title);
+            const thrC = parsedTitle ? toC(parsedTitle.threshold, parsedTitle.unit) : null;
+            const thrHiC = parsedTitle?.thresholdHigh != null ? toC(parsedTitle.thresholdHigh, parsedTitle.unit) : null;
+            if (thrC != null && parsedTitle) {
+              let yesWon = null;
+              if (parsedTitle.isLowest) {
+                yesWon = parsedTitle.type === "exact" ? Math.abs(observedMin - thrC) < 0.5 : observedMin >= thrC;
+              } else if (parsedTitle.type === "between" && thrHiC != null) {
+                yesWon = observedMax >= thrC && observedMax <= thrHiC;
+              } else if (parsedTitle.type === "at_or_below") {
+                yesWon = observedMax <= thrC;
+              } else if (parsedTitle.type === "at_or_above") {
+                yesWon = observedMax >= thrC;
+              } else { // exact
+                yesWon = Math.abs(observedMax - thrC) < 0.5;
+              }
+              if (yesWon != null) {
+                const ourSideWon = (pos.side === "YES" && yesWon) || (pos.side === "NO" && !yesWon);
+                exitPrice = ourSideWon ? 1.0 : 0.0;
+                status = ourSideWon ? "settle-win-metar" : "settle-lose-metar";
+              }
+            }
+          }
         }
-      } catch {}
+      } catch (err) {
+        console.log(`  ⚠️  settle check failed for ${pos.city} ${pos.date}: ${err?.message || err}`);
+      }
     }
     if (exitPrice == null && holdMin >= CFG.MAX_HOLD_MIN) {
       // Max hold reached — exit at current market price
