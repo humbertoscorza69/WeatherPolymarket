@@ -11,152 +11,251 @@
     --panel: #10151f;
     --panel-hi: #161d2b;
     --border: #1f2937;
-    --text: #c9d1d9;
+    --border-hi: #2a3344;
+    --text: #e5e7eb;
+    --text-dim: #c9d1d9;
     --muted: #6b7280;
-    --accent: #58a6ff;
-    --green: #3fb950;
-    --red: #f85149;
-    --amber: #f59e0b;
+    --muted-hi: #9ca3af;
+    --accent: #5eead4;
+    --accent-hi: #14b8a6;
+    --green: #4ade80;
+    --green-hi: #22c55e;
+    --red: #f87171;
+    --red-hi: #ef4444;
+    --amber: #fbbf24;
     --purple: #a78bfa;
+    --blue: #60a5fa;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 13px; }
-  header { padding: 16px 24px; border-bottom: 1px solid var(--border); background: var(--panel); display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 10; }
-  header h1 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: 0.02em; }
-  header .tag { color: var(--muted); font-size: 11px; }
-  header .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: 0.3 } }
-  header .spacer { flex: 1; }
-  header button { background: var(--panel-hi); color: var(--text); border: 1px solid var(--border); padding: 6px 12px; border-radius: 6px; cursor: pointer; font: inherit; font-size: 11px; }
-  header button:hover { background: var(--border); }
-  main { padding: 24px; max-width: 1600px; margin: 0 auto; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 13px; }
+  body { font-feature-settings: "cv02", "cv03", "cv04", "cv11"; }
+  code, .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+  .num, .value, td.num, th.num { font-variant-numeric: tabular-nums; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+
+  /* ----- App shell ----- */
+  .app { display: grid; grid-template-columns: 56px 1fr; min-height: 100vh; }
+  .sidebar { background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; padding: 14px 0; gap: 4px; position: sticky; top: 0; height: 100vh; }
+  .sidebar .brand { width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg, var(--accent-hi), var(--blue)); display: grid; place-items: center; color: #0b0e14; font-weight: 700; margin-bottom: 8px; }
+  .sidebar button { background: transparent; border: none; color: var(--muted); width: 40px; height: 40px; border-radius: 8px; cursor: pointer; display: grid; place-items: center; font-size: 16px; }
+  .sidebar button:hover { background: var(--panel-hi); color: var(--text); }
+  .sidebar button.active { background: var(--panel-hi); color: var(--accent); box-shadow: inset 2px 0 0 var(--accent); }
+  .sidebar .spacer { flex: 1; }
+  .sidebar svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+
+  .content { display: flex; flex-direction: column; min-height: 100vh; }
+
+  .topbar { display: flex; align-items: center; gap: 18px; padding: 10px 20px; background: var(--panel); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; min-height: 48px; flex-wrap: wrap; }
+  .topbar .title { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); display: flex; align-items: center; gap: 8px; }
+  .topbar .title .logo { color: var(--accent); font-size: 14px; }
+  .topbar .stat { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
+  .topbar .stat b { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .topbar .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; display: inline-block; }
+  .topbar .sep { width: 1px; height: 18px; background: var(--border); }
+  .topbar .spacer { flex: 1; }
+  .topbar .wallet { background: var(--panel-hi); border: 1px solid var(--border); padding: 4px 10px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 11px; color: var(--muted-hi); }
+  .topbar button { background: var(--panel-hi); color: var(--text); border: 1px solid var(--border); padding: 6px 12px; border-radius: 6px; cursor: pointer; font: inherit; font-size: 11px; }
+  .topbar button:hover { background: var(--border); border-color: var(--border-hi); }
+
+  main { padding: 20px; flex: 1; }
   .grid { display: grid; gap: 12px; }
-  .kpi-grid { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin-bottom: 24px; }
-  .kpi { background: var(--panel); border: 1px solid var(--border); padding: 14px 16px; border-radius: 8px; }
-  .kpi .label { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
-  .kpi .value { font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
-  .kpi .sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .kpi-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-bottom: 20px; }
+  .kpi { background: var(--panel); border: 1px solid var(--border); padding: 14px 16px; border-radius: 10px; transition: border-color 0.15s; }
+  .kpi:hover { border-color: var(--border-hi); }
+  .kpi .label { color: var(--muted-hi); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .kpi .label::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--muted); display: inline-block; }
+  .kpi .value { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+  .kpi .sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
   .kpi.pos .value { color: var(--green); }
+  .kpi.pos .label::before { background: var(--green); }
   .kpi.neg .value { color: var(--red); }
+  .kpi.neg .label::before { background: var(--red); }
   .kpi.warn .value { color: var(--amber); }
+  .kpi.warn .label::before { background: var(--amber); }
   .kpi.accent .value { color: var(--accent); }
-  section { margin-bottom: 24px; }
-  section h2 { margin: 0 0 12px 0; font-size: 12px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.1em; font-weight: 600; }
-  table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; font-variant-numeric: tabular-nums; }
-  th { background: var(--panel-hi); text-align: left; padding: 10px 12px; font-size: 10px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.08em; font-weight: 600; border-bottom: 1px solid var(--border); }
-  td { padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 12px; }
+  .kpi.accent .label::before { background: var(--accent); }
+
+  section { margin-bottom: 20px; }
+  section h2 { margin: 0 0 12px 0; font-size: 11px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.12em; font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  th { background: var(--panel-hi); text-align: left; padding: 10px 12px; font-size: 10px; text-transform: uppercase; color: var(--muted-hi); letter-spacing: 0.08em; font-weight: 600; border-bottom: 1px solid var(--border); }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 12px; color: var(--text-dim); }
   tr:last-child td { border-bottom: none; }
-  tr:hover td { background: var(--panel-hi); }
+  tr:hover td { background: var(--panel-hi); color: var(--text); }
   td.num { text-align: right; }
   td.pos { color: var(--green); }
   td.neg { color: var(--red); }
-  .side-no { color: var(--accent); }
-  .side-yes { color: var(--purple); }
+  .side-no { color: var(--accent); font-weight: 600; }
+  .side-yes { color: var(--purple); font-weight: 600; }
   .empty { padding: 24px; text-align: center; color: var(--muted); font-style: italic; }
-  .pill { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; background: var(--panel-hi); color: var(--muted); border: 1px solid var(--border); }
-  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 900px) { .row2 { grid-template-columns: 1fr; } }
-  .chart-card { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
-  .chart-card .chart-title { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; font-weight: 600; }
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; background: var(--panel-hi); color: var(--muted-hi); border: 1px solid var(--border); font-family: ui-monospace, monospace; }
+  .pill.ok { color: var(--green); border-color: color-mix(in oklch, var(--green), transparent 70%); }
+  .pill.bad { color: var(--red); border-color: color-mix(in oklch, var(--red), transparent 70%); }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 900px) { .row2 { grid-template-columns: 1fr; } .app { grid-template-columns: 1fr; } .sidebar { display: none; } }
+  .chart-card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; transition: border-color 0.15s; }
+  .chart-card:hover { border-color: var(--border-hi); }
+  .chart-card .chart-title { color: var(--muted-hi); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; font-weight: 600; display: flex; align-items: center; justify-content: space-between; }
   .chart-card canvas { max-height: 240px; }
   .chart-card.tall canvas { max-height: 320px; }
   .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; align-items: center; }
   .filter-bar input, .filter-bar select { background: var(--panel-hi); color: var(--text); border: 1px solid var(--border); padding: 6px 10px; border-radius: 6px; font: inherit; font-size: 12px; }
   .filter-bar input::placeholder { color: var(--muted); }
+  .filter-bar input:focus, .filter-bar select:focus { outline: none; border-color: var(--accent); }
   .filter-bar label { color: var(--muted); font-size: 11px; }
-  .summary-bar { display: flex; gap: 16px; font-size: 11px; color: var(--muted); margin-top: 8px; padding: 8px 12px; background: var(--panel-hi); border-radius: 6px; }
-  .summary-bar b { color: var(--text); }
+  .summary-bar { display: flex; gap: 16px; font-size: 11px; color: var(--muted); margin-top: 8px; padding: 10px 14px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; flex-wrap: wrap; }
+  .summary-bar b { color: var(--text); font-variant-numeric: tabular-nums; }
+  @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: 0.3 } }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fadeIn 0.2s ease-out; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  .tab-placeholder { padding: 40px; text-align: center; color: var(--muted); border: 1px dashed var(--border); border-radius: 10px; background: var(--panel); }
+  .tab-placeholder h3 { color: var(--text); margin: 0 0 8px 0; }
 </style>
 </head>
 <body>
-<header>
-  <div class="dot" id="statusDot"></div>
-  <h1>Weather MM · Paper Trading</h1>
-  <span class="tag" id="lastUpdate">loading…</span>
+<div class="app">
+<nav class="sidebar">
+  <div class="brand">W</div>
+  <button class="active" title="Dashboard" onclick="switchTab('dashboard')" data-tab="dashboard">
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+  </button>
+  <button title="Charts" onclick="switchTab('charts')" data-tab="charts">
+    <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-6"/></svg>
+  </button>
+  <button title="Trades" onclick="switchTab('trades')" data-tab="trades">
+    <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+  </button>
+  <button title="Quant" onclick="switchTab('quant')" data-tab="quant">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>
+  </button>
   <div class="spacer"></div>
-  <span class="tag" id="refreshCountdown">next refresh in —</span>
-  <button onclick="refresh()">Refresh now</button>
-</header>
+  <button title="Settings">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33h.01a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82v.01a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+  </button>
+</nav>
+<div class="content">
+<div class="topbar">
+  <div class="title"><span class="logo">◈</span> WEATHER MM · PAPER TRADING</div>
+  <div class="sep"></div>
+  <div class="stat">Bot Status: <span class="dot" id="statusDot"></span> <b id="botStatus">ACTIVE</b></div>
+  <div class="stat">Last Sync: <b id="lastSync">—</b></div>
+  <div class="stat">Open: <b id="openPosTop">0</b></div>
+  <div class="stat">Mode: <b>CELSIUS</b></div>
+  <div class="stat">P&amp;L: <b id="pnlTop">—</b></div>
+  <div class="spacer"></div>
+  <span class="tag mono" id="lastUpdate" style="font-size:10px;color:var(--muted)">loading…</span>
+  <span class="tag mono" id="refreshCountdown" style="font-size:10px;color:var(--muted)">next —</span>
+  <div class="wallet" id="wallet">paper://detector</div>
+  <button onclick="refresh()">Refresh</button>
+</div>
 <main>
   <div class="grid kpi-grid" id="kpis"></div>
 
-  <section>
-    <h2>Charts</h2>
-    <div class="row2">
-      <div class="chart-card tall">
-        <div class="chart-title">Equity Curve (cumulative realized PnL)</div>
-        <canvas id="equityChart"></canvas>
+  <!-- ============ DASHBOARD TAB ============ -->
+  <div class="tab-panel active" id="tab-dashboard">
+    <section>
+      <div class="row2">
+        <div class="chart-card tall">
+          <div class="chart-title"><span>P&amp;L Performance · cumulative realized</span><span class="pill" id="equityPillPnl">—</span></div>
+          <canvas id="equityChart"></canvas>
+        </div>
+        <div class="chart-card tall">
+          <div class="chart-title"><span>Rolling Win Rate · 30-trade window</span><span class="pill" id="rollingWrPill">—</span></div>
+          <canvas id="rollingWrChart"></canvas>
+        </div>
       </div>
-      <div class="chart-card tall">
-        <div class="chart-title">Rolling Win Rate (30-trade window)</div>
-        <canvas id="rollingWrChart"></canvas>
-      </div>
-    </div>
-    <div class="row2" style="margin-top: 12px;">
-      <div class="chart-card">
-        <div class="chart-title">Trade PnL Distribution</div>
-        <canvas id="pnlHistChart"></canvas>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">PnL by Side</div>
-        <canvas id="sideChart"></canvas>
-      </div>
-    </div>
-    <div class="row2" style="margin-top: 12px;">
-      <div class="chart-card">
-        <div class="chart-title">PnL by Signal Reason</div>
-        <canvas id="reasonChart"></canvas>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">PnL by City (top 15 by volume)</div>
-        <canvas id="cityChart"></canvas>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <h2>Open Positions <span id="openCount" class="pill">0</span></h2>
-    <div id="openTable"></div>
-  </section>
+    <section>
+      <h2>Open Positions <span id="openCount" class="pill">0</span></h2>
+      <div id="openTable"></div>
+    </section>
+  </div>
 
-  <section>
-    <h2>Closed Trades <span id="closedCount" class="pill">0</span></h2>
-    <div class="filter-bar">
-      <input type="text" id="filterText" placeholder="Search city, reason, status…" oninput="applyFilters()">
-      <select id="filterSide" onchange="applyFilters()">
-        <option value="">All sides</option>
-        <option value="NO">NO only</option>
-        <option value="YES">YES only</option>
-      </select>
-      <select id="filterResult" onchange="applyFilters()">
-        <option value="">All results</option>
-        <option value="win">Wins only</option>
-        <option value="loss">Losses only</option>
-      </select>
-      <select id="filterLimit" onchange="applyFilters()">
-        <option value="50">Last 50</option>
-        <option value="200" selected>Last 200</option>
-        <option value="1000">Last 1000</option>
-        <option value="0">All</option>
-      </select>
-      <label style="margin-left: auto;">Sort:</label>
-      <select id="filterSort" onchange="applyFilters()">
-        <option value="closed-desc">Closed (newest)</option>
-        <option value="closed-asc">Closed (oldest)</option>
-        <option value="pnl-desc">PnL (highest)</option>
-        <option value="pnl-asc">PnL (lowest)</option>
-        <option value="hold-desc">Hold (longest)</option>
-      </select>
+  <!-- ============ CHARTS TAB ============ -->
+  <div class="tab-panel" id="tab-charts">
+    <section>
+      <div class="row2">
+        <div class="chart-card">
+          <div class="chart-title">Trade PnL Distribution</div>
+          <canvas id="pnlHistChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">PnL by Side</div>
+          <canvas id="sideChart"></canvas>
+        </div>
+      </div>
+      <div class="row2" style="margin-top: 12px;">
+        <div class="chart-card">
+          <div class="chart-title">PnL by Signal Reason</div>
+          <canvas id="reasonChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">PnL by City · top 15 by volume</div>
+          <canvas id="cityChart"></canvas>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ TRADES TAB ============ -->
+  <div class="tab-panel" id="tab-trades">
+    <section>
+      <h2>Closed Trades <span id="closedCount" class="pill">0</span></h2>
+      <div class="filter-bar">
+        <input type="text" id="filterText" placeholder="Search city, reason, status…" oninput="applyFilters()">
+        <select id="filterSide" onchange="applyFilters()">
+          <option value="">All sides</option>
+          <option value="NO">NO only</option>
+          <option value="YES">YES only</option>
+        </select>
+        <select id="filterResult" onchange="applyFilters()">
+          <option value="">All results</option>
+          <option value="win">Wins only</option>
+          <option value="loss">Losses only</option>
+        </select>
+        <select id="filterLimit" onchange="applyFilters()">
+          <option value="50">Last 50</option>
+          <option value="200" selected>Last 200</option>
+          <option value="1000">Last 1000</option>
+          <option value="0">All</option>
+        </select>
+        <label style="margin-left: auto;">Sort:</label>
+        <select id="filterSort" onchange="applyFilters()">
+          <option value="closed-desc">Closed (newest)</option>
+          <option value="closed-asc">Closed (oldest)</option>
+          <option value="pnl-desc">PnL (highest)</option>
+          <option value="pnl-asc">PnL (lowest)</option>
+          <option value="hold-desc">Hold (longest)</option>
+        </select>
+      </div>
+      <div id="closedTable"></div>
+      <div class="summary-bar" id="filterSummary"></div>
+    </section>
+  </div>
+
+  <!-- ============ QUANT TAB ============ -->
+  <div class="tab-panel" id="tab-quant">
+    <div class="tab-placeholder">
+      <h3>Quant Deep-Dive</h3>
+      <p>Coming in sprint 8: Kelly %, Omega ratio, Calmar, VaR/CVaR, monthly return heatmap, edge decay analysis, trade attribution by cushion tier.</p>
     </div>
-    <div id="closedTable"></div>
-    <div class="summary-bar" id="filterSummary"></div>
-  </section>
+  </div>
 </main>
+</div> <!-- .content -->
+</div> <!-- .app -->
 
 <script>
 const REFRESH_MS = 10_000;
 let lastTick = Date.now();
 let tickTimer;
+
+function switchTab(name) {
+  document.querySelectorAll(".tab-panel").forEach(el => el.classList.toggle("active", el.id === `tab-${name}`));
+  document.querySelectorAll(".sidebar button[data-tab]").forEach(el => el.classList.toggle("active", el.dataset.tab === name));
+  // Charts inside hidden tabs don't resize on their own — force it on tab switch
+  setTimeout(() => Object.values(charts || {}).forEach(c => c?.resize?.()), 50);
+}
 
 function fmt$(n, digits=2) { if (n == null || !Number.isFinite(n)) return "—"; const sign = n < 0 ? "-" : ""; return `${sign}$${Math.abs(n).toFixed(digits)}`; }
 function fmtN(n, digits=2) { if (n == null || !Number.isFinite(n)) return "—"; return n.toFixed(digits); }
@@ -192,6 +291,17 @@ function renderKpis(s) {
     kpi("Hold Time",    fmtDur(s.avgHoldMin), `median ${fmtDur(s.medianHoldMin)}`),
     kpi("Fill Rate",    fmtPct(s.fillRate), `${s.totalClosed}/${s.totalAttempts} attempts`),
   ].join("");
+  // Top bar mirrors
+  document.getElementById("openPosTop").textContent = s.openPositions ?? 0;
+  const pnlEl = document.getElementById("pnlTop");
+  pnlEl.textContent = fmt$(s.realizedPnl);
+  pnlEl.style.color = s.realizedPnl > 0 ? "var(--green)" : (s.realizedPnl < 0 ? "var(--red)" : "var(--text)");
+  document.getElementById("lastSync").textContent = new Date().toLocaleTimeString([], { hour12: false });
+  // Pills inside chart headers
+  const equityPill = document.getElementById("equityPillPnl");
+  if (equityPill) { equityPill.textContent = fmt$(s.realizedPnl); equityPill.className = "pill " + (s.realizedPnl > 0 ? "ok" : s.realizedPnl < 0 ? "bad" : ""); }
+  const wrPill = document.getElementById("rollingWrPill");
+  if (wrPill) { wrPill.textContent = fmtPct(s.winRate); wrPill.className = "pill " + (s.winRate >= 0.8 ? "ok" : s.winRate >= 0.5 ? "" : "bad"); }
 }
 
 function renderOpen(positions) {
