@@ -35,12 +35,18 @@ const argv = Object.fromEntries(process.argv.slice(2).map(a => {
 }));
 
 const CFG = {
-  // v28-replica: entry windows match 0x937's observed range. NO 0.30-0.99,
-  // YES 0.02-0.99. No confidence gate — 937 fires regardless of cushion.
-  MIN_ENTRY_NO:     Number(argv.minentryno ?? "0.30"),
-  MAX_ENTRY_NO:     Number(argv.maxentryno ?? "0.99"),
-  MIN_ENTRY_YES:    Number(argv.minentryyes ?? "0.02"),
+  // v29-empirical: derived from 0x937's actual 682-trade history (see
+  // scripts/profile-937.mjs). 96.9% NO, 0% redeems, median hold 2.7min,
+  // 78% of NO entries at 0.995-0.999, 100% WR at entry 0.80-0.99 vs
+  // only 69% WR at 0.995+. We narrow to the high-edge slice we can
+  // actually reach via METAR signal; YES is dropped entirely (only
+  // 3.1% of their book and bimodal in a way temperature can't trigger).
+  MIN_ENTRY_NO:     Number(argv.minentryno ?? "0.95"),
+  MAX_ENTRY_NO:     Number(argv.maxentryno ?? "0.999"),
+  MIN_ENTRY_YES:    Number(argv.minentryyes ?? "0.02"),  // unused — YES gated off in scanOnce
   MAX_ENTRY_YES:    Number(argv.maxentryyes ?? "0.99"),
+  ALLOW_YES:        argv["allow-yes"] === "true",        // override to re-enable YES side
+  ALLOW_NON_HIGHEST_BETWEEN: argv["allow-non-hb"] === "true",  // override to re-enable LOWEST/above/below
   TTR_MIN_SEC:      Number(argv.ttrmin ?? String(60*60)),        // 1h (allow early entries)
   TTR_MAX_SEC:      Number(argv.ttrmax ?? String(24*3600)),      // 24h (matches 0x900e's 10h median entry)
   CROSSED_BUF:      Number(argv.crossedbuf ?? "0.5"),
@@ -52,7 +58,7 @@ const CFG = {
   BANKROLL:         Number(argv.bankroll ?? "100"),
   TRADE_SIZE:       Number(argv.tradesize ?? "5"),
   MIN_SHARES:       Number(argv.minshares ?? "5"),     // Polymarket minimum
-  MAX_HOLD_MIN:     Number(argv.maxhold ?? "90"),    // v28-replica: 937's median hold is 10-30min, p90 ~90min
+  MAX_HOLD_MIN:     Number(argv.maxhold ?? "60"),    // v29-empirical: 937 p99 hold is 59min; cut at 60
   SELL_TARGET:      Number(argv.selltarget ?? "0.999"),  // profit-take when our-side mid hits this
   RESET:            argv.reset === "true",
   NO_CAP:           argv.nocap === "true",           // disable "insufficient bankroll" gate
@@ -348,26 +354,40 @@ function computeEntrySignal(market, metarObs, omObs, nowSec, buffer, forecastBuf
   return null;
 }
 
-// Dynamic sizing tier — v28-replica widens to 0.2-2.0x of base.
-// 937's open positions span 5-283 shares; matching that range needs more
-// dynamic range than the prior 0.2-1.0 multiplier allowed. With base $50
-// (package.json default) on a $10k bankroll, this gives $10-$100 effective
-// per position — covers ~80% of 937's observed sizing.
-function sizeMultiplier(sig) {
-  if (sig.side === "NO") {
-    if (sig.reason === "observed-above" && sig.cushion >= 3) return 2.0;
-    if (sig.reason === "observed-above" && sig.cushion >= 1.5) return 1.4;
-    return 1.0;
+// v29-empirical sizing. 937's actual entry-USDC distribution (n=682):
+//   p10 $5    p25 $10   p50 $40   p75 $200   p90 $716   max $2924
+// Replicated as a 5-bucket sampler whose probabilities and dollar
+// midpoints match the empirical histogram. Cushion strength biases
+// the bucket pick — stronger signal → bigger bucket — to mimic 937's
+// (presumably) confidence-weighted sizing without claiming we know
+// their exact rule.
+const SIZE_BUCKETS_USDC = [
+  { p: 0.30, mid: 7,    label: "tiny" },     // <$10  in 937's data: 30%
+  { p: 0.30, mid: 30,   label: "small" },    // $10-50 in 937's data: 22%
+  { p: 0.20, mid: 100,  label: "mid" },      // $50-200 in 937's data: 23%
+  { p: 0.15, mid: 350,  label: "large" },    // $200-1000 in 937's data: 18%
+  { p: 0.05, mid: 1000, label: "whale" },    // >$1000 in 937's data: 6%
+];
+
+function pickSizeBucketUsdc(sig) {
+  // Cushion-weighted bucket selection. Stronger cushion (more confident NO
+  // signal) skews probability mass toward the larger buckets. Cushion 0
+  // → original prior; cushion ≥3 → ~2x weight on the largest two buckets.
+  const boost = Math.min(2.0, 1 + (Number(sig.cushion) || 0) / 3);
+  const weights = SIZE_BUCKETS_USDC.map((b, i) => {
+    const bigBoost = i >= 3 ? boost : 1;          // boost large/whale only
+    return b.p * bigBoost;
+  });
+  const total = weights.reduce((s, w) => s + w, 0);
+  let r = Math.random() * total;
+  for (let i = 0; i < weights.length; i++) {
+    r -= weights[i];
+    if (r <= 0) return SIZE_BUCKETS_USDC[i];
   }
-  // YES: cheap-lottery sizing scales with cushion confidence
-  if (sig.cushion >= 0.5) return 0.8;
-  if (sig.cushion > 0.3) return 0.5;
-  return 0.3;
+  return SIZE_BUCKETS_USDC[SIZE_BUCKETS_USDC.length - 1];
 }
 
-async function simulateEntry(market, mkt, sig, currentPrice, strategyVersion = "v28-replica") {
-  const sideMult = sizeMultiplier(sig);
-
+async function simulateEntry(market, mkt, sig, currentPrice, strategyVersion = "v29-empirical") {
   const entryPrice = sig.side === "NO" ? currentPrice : (1 - currentPrice);
   if (sig.side === "NO") {
     if (entryPrice < CFG.MIN_ENTRY_NO || entryPrice > CFG.MAX_ENTRY_NO) return null;
@@ -375,9 +395,13 @@ async function simulateEntry(market, mkt, sig, currentPrice, strategyVersion = "
     if (entryPrice < CFG.MIN_ENTRY_YES || entryPrice > CFG.MAX_ENTRY_YES) return null;
   }
 
-  // Polymarket minimum: 5 shares. Enforce that we buy at least MIN_SHARES,
-  // even if our size multiplier would have been smaller in dollars.
-  const dollarSize = CFG.TRADE_SIZE * sideMult;
+  // v29-empirical sizing: dollar amount sampled from 937's distribution,
+  // cushion-weighted. CFG.TRADE_SIZE is interpreted as a SCALE factor that
+  // shifts the whole distribution if the user wants smaller/larger absolute
+  // sizes (default $50 → scale=1.0; $25 → 0.5x all buckets).
+  const bucket = pickSizeBucketUsdc(sig);
+  const scale = CFG.TRADE_SIZE / 50;
+  const dollarSize = bucket.mid * scale;
   let shares = Math.max(CFG.MIN_SHARES, Math.floor(dollarSize / entryPrice));
   let positionSize = shares * entryPrice;
 
@@ -399,16 +423,16 @@ async function simulateEntry(market, mkt, sig, currentPrice, strategyVersion = "
     entryPrice: Math.round(entryPrice * 10000) / 10000,
     shares: Math.round(shares * 100) / 100,
     positionSize,
-    sizeMult: sideMult,
+    sizeBucket: bucket.label,         // v29-empirical: bucket label for analytics
     title: mkt.title,
     endDate: mkt.endDate,
     clobTokenIds: mkt.clobTokenIds,  // stored so resolvePositions can hit CLOB /book for profit-take
-    strategyVersion,                  // sprint 27: tag for A/B comparison vs 0x937 baseline
+    strategyVersion,                  // tag for A/B comparison vs 0x937 baseline
     closed: false,
   };
   state.positions.push(position);
   await fs.appendFile(LOG, JSON.stringify({ type: "OPEN", ...position }) + "\n");
-  console.log(`  🎯 ENTRY  ${sig.side.padEnd(3)} ${market.city.padEnd(15)} ${market.date}  price=${entryPrice.toFixed(4)}  size=$${positionSize.toFixed(2)} (${(sideMult*100).toFixed(0)}%) cushion=${position.cushion}°C`);
+  console.log(`  🎯 ENTRY  ${sig.side.padEnd(3)} ${market.city.padEnd(15)} ${market.date}  price=${entryPrice.toFixed(4)}  size=$${positionSize.toFixed(2)} [${bucket.label}] cushion=${position.cushion}°C`);
   return position;
 }
 
@@ -602,11 +626,17 @@ async function scanOnce() {
     const parsed = parseWeatherTitle(mk.title);
     if (!parsed || !parsed.date || parsed.threshold == null) continue;
 
-    // 0x937 (our guide wallet) does NOT trade LOWEST markets — 0 out of 242
-    // trades in the last 36h were on lowest-temp markets. Skip them unless
-    // explicitly re-enabled with --allow-lowest=true. This alone removes
-    // 30-40% of our noise vs 937's book.
-    if (parsed.isLowest && argv["allow-lowest"] !== "true") continue;
+    // v29-empirical market-type gate. 937's 682-trade history is 100%
+    // HIGHEST + (exact|between) — zero LOWEST, zero at_or_above, zero
+    // at_or_below. We skip everything 937 wouldn't touch.
+    //   isLowest=true              → 0/682 in 937's data → skip
+    //   type ∈ {exact, between}    → 682/682 in 937's data → keep
+    //   type ∈ {at_or_above, at_or_below} → 0/682 → skip
+    // Override: --allow-non-hb=true (or legacy --allow-lowest=true)
+    if (!CFG.ALLOW_NON_HIGHEST_BETWEEN && argv["allow-lowest"] !== "true") {
+      if (parsed.isLowest) continue;
+      if (parsed.type !== "exact" && parsed.type !== "between") continue;
+    }
 
     const endSec = Math.floor(new Date(mk.endDate).getTime() / 1000);
     const ttr = endSec - nowSec;
@@ -622,23 +652,22 @@ async function scanOnce() {
     const sig = computeEntrySignal(parsed, metar, openMeteo, nowSec, CFG.CROSSED_BUF, CFG.FORECAST_BUF);
     if (!sig) continue;
 
-    // v28-replica: no dead-zone filter. 937 doesn't appear to skip any
-    // cushion sub-band. We accept the prior 0/6 WR at YES cushion 0.35-0.45
-    // as the cost of true mimicry; a single-strategy filter would diverge.
+    // v29-empirical side gate. 937 trades NO 96.9% of the time (661/682);
+    // the YES tail is bimodal (≤0.05 lottery or ≥0.90 deep-YES) and not
+    // triggerable from temperature signal. Drop YES unless --allow-yes.
+    if (sig.side === "YES" && !CFG.ALLOW_YES) continue;
 
     // Fetch current price
     const noPrice = await fetchCurrentPrice(mk.clobTokenIds);
     if (noPrice == null) continue;
     const currentPrice = sig.side === "NO" ? noPrice : (1 - noPrice);
 
-    // v28-replica entry surface — unconditional 937-style price gates.
-    // No cushion-based widening, no confidence gate — every signal that
-    // lands inside the price window fires. CFG defaults already match
-    // 937's observed range: NO 0.30-0.99, YES 0.02-0.99.
+    // v29-empirical entry-price gates. NO 0.95-0.999 = 98% of 937's volume.
+    // YES gates only matter when --allow-yes is on; default they're dead.
     if (sig.side === "NO" && (noPrice < CFG.MIN_ENTRY_NO || noPrice > CFG.MAX_ENTRY_NO)) continue;
     if (sig.side === "YES" && (currentPrice < CFG.MIN_ENTRY_YES || currentPrice > CFG.MAX_ENTRY_YES)) continue;
 
-    const pos = await simulateEntry(parsed, mk, sig, noPrice, "v28-replica");
+    const pos = await simulateEntry(parsed, mk, sig, noPrice, "v29-empirical");
     if (pos) opened++;
   }
 
@@ -647,8 +676,9 @@ async function scanOnce() {
 }
 
 async function main() {
-  console.log(`=== Detect engine + simulator ===`);
-  console.log(`Bankroll: $${state.bankroll.toFixed(2)} (CLI=$${CFG.BANKROLL}${CFG.RESET ? ", --reset" : ""}${CFG.NO_CAP ? ", --nocap (no bankroll gate)" : ""})  Trade size: $${CFG.TRADE_SIZE} (base; dynamic 0.2-1.0x by confidence; min 5 shares enforced)`);
+  console.log(`=== Detect engine + simulator (v29-empirical · 0x937 mimicry) ===`);
+  console.log(`Bankroll: $${state.bankroll.toFixed(2)} (CLI=$${CFG.BANKROLL}${CFG.RESET ? ", --reset" : ""}${CFG.NO_CAP ? ", --nocap (no bankroll gate)" : ""})  Trade scale: $${CFG.TRADE_SIZE} (sampled from 937's empirical bucket distribution; min ${CFG.MIN_SHARES} shares enforced)`);
+  console.log(`Filters: NO only (--allow-yes to override) · HIGHEST + (exact|between) only (--allow-non-hb to override) · entry NO ${CFG.MIN_ENTRY_NO}-${CFG.MAX_ENTRY_NO} · max-hold ${CFG.MAX_HOLD_MIN}min · take-profit ${CFG.SELL_TARGET}`);
   console.log(`Scan intervals: market scan=${CFG.INTERVAL_SEC}s, position check=${CFG.POS_CHECK_SEC}s, weather cache=${CFG.WEATHER_TTL_SEC}s`);
   console.log(`TTR=[${CFG.TTR_MIN_SEC/3600}h, ${CFG.TTR_MAX_SEC/3600}h]`);
   console.log(`Data hierarchy:`);
@@ -656,14 +686,14 @@ async function main() {
   console.log(`  Open-Meteo forecast — used for FUTURE temps (YES signals need forecasts).`);
   console.log(`METAR stations mapped: ${Object.keys(STATIONS).length}\n`);
 
-  // v28-replica: the expected workflow is `npm run archive` BEFORE first run,
+  // v29-empirical: expected workflow is `npm run archive` BEFORE first run,
   // so state.positions should be empty. If a mid-run restart finds untagged
-  // positions, label them v28-replica so analytics group cleanly.
+  // positions, label them v29-empirical so analytics group cleanly.
   let tagged = 0;
   for (const p of state.positions) {
-    if (!p.strategyVersion) { p.strategyVersion = "v28-replica"; tagged++; }
+    if (!p.strategyVersion) { p.strategyVersion = "v29-empirical"; tagged++; }
   }
-  if (tagged) console.log(`[startup] tagged ${tagged} pre-existing positions as v28-replica`);
+  if (tagged) console.log(`[startup] tagged ${tagged} pre-existing positions as v29-empirical`);
 
   // Persist immediately so the startup bankroll correction lands on disk
   // before any other action (scan / resolve / first loop write). Protects

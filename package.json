@@ -14,6 +14,7 @@
     "ab": "node scripts/strategy-ab.mjs",
     "archive": "node scripts/archive-positions.mjs",
     "settle-archive": "node scripts/settle-archive.mjs",
+    "profile-937": "node scripts/profile-937.mjs",
     "reset-metar-taint": "node scripts/reset-metar-taint.mjs",
     "build-resolution-index": "node scripts/build-resolution-index.mjs",
     "fetch-weather-markets": "node scripts/fetch-yearly-weather-markets.mjs --days=365",
