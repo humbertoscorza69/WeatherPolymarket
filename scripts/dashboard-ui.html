@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Weather MM — Trading Dashboard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root {
+    --bg: #0b0e14;
+    --panel: #10151f;
+    --panel-hi: #161d2b;
+    --border: #1f2937;
+    --text: #c9d1d9;
+    --muted: #6b7280;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --red: #f85149;
+    --amber: #f59e0b;
+    --purple: #a78bfa;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 13px; }
+  header { padding: 16px 24px; border-bottom: 1px solid var(--border); background: var(--panel); display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 10; }
+  header h1 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: 0.02em; }
+  header .tag { color: var(--muted); font-size: 11px; }
+  header .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: 0.3 } }
+  header .spacer { flex: 1; }
+  header button { background: var(--panel-hi); color: var(--text); border: 1px solid var(--border); padding: 6px 12px; border-radius: 6px; cursor: pointer; font: inherit; font-size: 11px; }
+  header button:hover { background: var(--border); }
+  main { padding: 24px; max-width: 1600px; margin: 0 auto; }
+  .grid { display: grid; gap: 12px; }
+  .kpi-grid { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin-bottom: 24px; }
+  .kpi { background: var(--panel); border: 1px solid var(--border); padding: 14px 16px; border-radius: 8px; }
+  .kpi .label { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .kpi .value { font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .kpi .sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .kpi.pos .value { color: var(--green); }
+  .kpi.neg .value { color: var(--red); }
+  .kpi.warn .value { color: var(--amber); }
+  .kpi.accent .value { color: var(--accent); }
+  section { margin-bottom: 24px; }
+  section h2 { margin: 0 0 12px 0; font-size: 12px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.1em; font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; font-variant-numeric: tabular-nums; }
+  th { background: var(--panel-hi); text-align: left; padding: 10px 12px; font-size: 10px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.08em; font-weight: 600; border-bottom: 1px solid var(--border); }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 12px; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--panel-hi); }
+  td.num { text-align: right; }
+  td.pos { color: var(--green); }
+  td.neg { color: var(--red); }
+  .side-no { color: var(--accent); }
+  .side-yes { color: var(--purple); }
+  .empty { padding: 24px; text-align: center; color: var(--muted); font-style: italic; }
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; background: var(--panel-hi); color: var(--muted); border: 1px solid var(--border); }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .row2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="dot" id="statusDot"></div>
+  <h1>Weather MM · Paper Trading</h1>
+  <span class="tag" id="lastUpdate">loading…</span>
+  <div class="spacer"></div>
+  <span class="tag" id="refreshCountdown">next refresh in —</span>
+  <button onclick="refresh()">Refresh now</button>
+</header>
+<main>
+  <div class="grid kpi-grid" id="kpis"></div>
+
+  <section>
+    <h2>Open Positions <span id="openCount" class="pill">0</span></h2>
+    <div id="openTable"></div>
+  </section>
+
+  <section>
+    <h2>Closed Trades <span id="closedCount" class="pill">0</span></h2>
+    <div id="closedTable"></div>
+  </section>
+</main>
+
+<script>
+const REFRESH_MS = 10_000;
+let lastTick = Date.now();
+let tickTimer;
+
+function fmt$(n, digits=2) { if (n == null || !Number.isFinite(n)) return "—"; const sign = n < 0 ? "-" : ""; return `${sign}$${Math.abs(n).toFixed(digits)}`; }
+function fmtN(n, digits=2) { if (n == null || !Number.isFinite(n)) return "—"; return n.toFixed(digits); }
+function fmtPct(n, digits=1) { if (n == null || !Number.isFinite(n)) return "—"; return `${(n*100).toFixed(digits)}%`; }
+function fmtSigned(n, digits=2) { if (n == null || !Number.isFinite(n)) return "—"; return `${n>=0?"+":""}${n.toFixed(digits)}`; }
+function fmtDur(min) {
+  if (!Number.isFinite(min) || min <= 0) return "—";
+  if (min < 60) return `${min.toFixed(0)}m`;
+  if (min < 1440) return `${(min/60).toFixed(1)}h`;
+  return `${(min/1440).toFixed(1)}d`;
+}
+function fmtTime(iso) { if (!iso) return "—"; const d = new Date(iso); return d.toLocaleTimeString([], { hour12: false }); }
+
+function kpi(label, value, sub, cls="") {
+  return `<div class="kpi ${cls}"><div class="label">${label}</div><div class="value">${value}</div>${sub ? `<div class="sub">${sub}</div>` : ""}</div>`;
+}
+
+function renderKpis(s) {
+  const pnlCls = s.realizedPnl > 0 ? "pos" : (s.realizedPnl < 0 ? "neg" : "");
+  const wrCls = s.winRate >= 0.8 ? "pos" : (s.winRate >= 0.5 ? "warn" : "neg");
+  const pfCls = s.profitFactor >= 2 ? "pos" : (s.profitFactor >= 1 ? "warn" : "neg");
+  document.getElementById("kpis").innerHTML = [
+    kpi("Bankroll",     fmt$(s.bankroll), `${s.openPositions} open`, "accent"),
+    kpi("Realized PnL", fmt$(s.realizedPnl), `${s.totalClosed} trades closed`, pnlCls),
+    kpi("Win Rate",     fmtPct(s.winRate), `${s.wins}W / ${s.losses}L / ${s.flats}=`, wrCls),
+    kpi("Profit Factor",fmtN(s.profitFactor), `${fmt$(s.grossWin)} / ${fmt$(s.grossLoss)}`, pfCls),
+    kpi("Sharpe",       fmtN(s.sharpe, 2), `Sortino ${fmtN(s.sortino, 2)}`),
+    kpi("Expectancy",   fmt$(s.expectancy), `per trade`),
+    kpi("Payoff Ratio", fmtN(s.payoffRatio, 2), `avgW ${fmt$(s.avgWin)} / avgL ${fmt$(s.avgLoss)}`),
+    kpi("Max Drawdown", fmt$(-Math.abs(s.maxDrawdown)), `Max runup ${fmt$(s.maxRunup)}`, s.maxDrawdown > 0 ? "neg" : ""),
+    kpi("Largest Win",  fmt$(s.largestWin), `Largest loss ${fmt$(s.largestLoss)}`),
+    kpi("Streak",       fmtSigned(s.currentStreak, 0), `max +${s.maxWinStreak} / -${s.maxLossStreak}`, s.currentStreak > 0 ? "pos" : (s.currentStreak < 0 ? "neg" : "")),
+    kpi("Hold Time",    fmtDur(s.avgHoldMin), `median ${fmtDur(s.medianHoldMin)}`),
+    kpi("Fill Rate",    fmtPct(s.fillRate), `${s.totalClosed}/${s.totalAttempts} attempts`),
+  ].join("");
+}
+
+function renderOpen(positions) {
+  document.getElementById("openCount").textContent = positions.length;
+  if (!positions.length) {
+    document.getElementById("openTable").innerHTML = `<div class="empty">No open positions.</div>`;
+    return;
+  }
+  const rows = [...positions]
+    .sort((a,b) => new Date(b.openedAt) - new Date(a.openedAt))
+    .map(p => {
+      const ageMin = (Date.now() - new Date(p.openedAt).getTime()) / 60000;
+      const side = p.side === "NO" ? `<span class="side-no">NO</span>` : `<span class="side-yes">YES</span>`;
+      return `<tr>
+        <td>${fmtTime(p.openedAt)}</td>
+        <td>${side}</td>
+        <td>${p.city||""}</td>
+        <td>${p.date||""}</td>
+        <td class="num">${fmtN(p.entryPrice,4)}</td>
+        <td class="num">${fmtN(p.shares,2)}</td>
+        <td class="num">${fmt$(p.positionSize)}</td>
+        <td class="num">${fmtN(p.cushion,1)}°C</td>
+        <td><span class="pill">${p.reason||""}</span></td>
+        <td class="num">${fmtDur(ageMin)}</td>
+      </tr>`;
+    }).join("");
+  document.getElementById("openTable").innerHTML = `
+    <table>
+      <thead><tr>
+        <th>Open</th><th>Side</th><th>City</th><th>Date</th>
+        <th class="num">Entry</th><th class="num">Shares</th><th class="num">Size</th>
+        <th class="num">Cushion</th><th>Reason</th><th class="num">Age</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+function renderClosed(trades) {
+  document.getElementById("closedCount").textContent = trades.length;
+  if (!trades.length) {
+    document.getElementById("closedTable").innerHTML = `<div class="empty">No closed trades yet.</div>`;
+    return;
+  }
+  const rows = [...trades]
+    .reverse()
+    .slice(0, 200)
+    .map(t => {
+      const pnl = Number(t.pnl)||0;
+      const cls = pnl > 0.01 ? "pos" : (pnl < -0.01 ? "neg" : "");
+      const side = t.side === "NO" ? `<span class="side-no">NO</span>` : `<span class="side-yes">YES</span>`;
+      const hold = (new Date(t.closedAt) - new Date(t.openedAt)) / 60000;
+      return `<tr>
+        <td>${fmtTime(t.closedAt)}</td>
+        <td>${side}</td>
+        <td>${t.city||""}</td>
+        <td class="num">${fmtN(t.entryPrice,4)}</td>
+        <td class="num">${fmtN(t.exitPrice,4)}</td>
+        <td class="num">${fmtN(t.shares,2)}</td>
+        <td class="num ${cls}">${fmt$(pnl)}</td>
+        <td class="num">${fmtDur(hold)}</td>
+        <td><span class="pill">${t.status||""}</span></td>
+        <td><span class="pill">${t.reason||""}</span></td>
+      </tr>`;
+    }).join("");
+  document.getElementById("closedTable").innerHTML = `
+    <table>
+      <thead><tr>
+        <th>Closed</th><th>Side</th><th>City</th>
+        <th class="num">Entry</th><th class="num">Exit</th><th class="num">Shares</th>
+        <th class="num">PnL</th><th class="num">Hold</th><th>Status</th><th>Reason</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+async function refresh() {
+  try {
+    const r = await fetch("/api/stats", { cache: "no-store" });
+    if (!r.ok) throw new Error(r.statusText);
+    const data = await r.json();
+    renderKpis(data.summary);
+    renderOpen(data.openPositions);
+    renderClosed(data.closedTrades);
+    document.getElementById("lastUpdate").textContent = `updated ${new Date().toLocaleTimeString([], { hour12: false })}`;
+    document.getElementById("statusDot").style.background = "var(--green)";
+    lastTick = Date.now();
+  } catch (e) {
+    document.getElementById("lastUpdate").textContent = `error: ${e.message}`;
+    document.getElementById("statusDot").style.background = "var(--red)";
+  }
+}
+
+function tick() {
+  const remaining = Math.max(0, REFRESH_MS - (Date.now() - lastTick));
+  document.getElementById("refreshCountdown").textContent = `next refresh in ${Math.ceil(remaining/1000)}s`;
+  if (remaining <= 0) refresh();
+}
+
+refresh();
+setInterval(refresh, REFRESH_MS);
+tickTimer = setInterval(tick, 500);
+</script>
+</body>
+</html>
