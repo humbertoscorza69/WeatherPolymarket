@@ -85,21 +85,52 @@ async function runParallel(items, worker, concurrency) {
   return results;
 }
 
-async function fetchMarketMeta(conditionId) {
+// Fetches everything we need for one market in a single Gamma call:
+// tokens (for CLOB fallback), endDate (for TTR), outcomePrices (what
+// Polymarket's UI actually displays), and lastTradePrice as a reference.
+async function fetchMarketData(conditionId) {
   diagnostics.totalGammaCalls++;
   const data = await fetchJson(`${GAMMA}/markets?conditionIds=${conditionId}`);
   if (data?.__error) { diagnostics.totalGammaFailures++; return { error: data.__error }; }
   const mk = Array.isArray(data) ? data[0] : data;
   if (!mk) { diagnostics.totalGammaFailures++; return { error: "no-market" }; }
   const tokens = typeof mk.clobTokenIds === "string" ? JSON.parse(mk.clobTokenIds) : mk.clobTokenIds;
-  return { tokens, endDate: mk.endDate, title: mk.question || mk.title };
+  let yesPrice = null, noPrice = null;
+  if (mk.outcomePrices) {
+    try {
+      const parsed = typeof mk.outcomePrices === "string" ? JSON.parse(mk.outcomePrices) : mk.outcomePrices;
+      if (Array.isArray(parsed) && parsed.length >= 2) {
+        yesPrice = Number(parsed[0]);
+        noPrice = Number(parsed[1]);
+        if (!Number.isFinite(yesPrice)) yesPrice = null;
+        if (!Number.isFinite(noPrice)) noPrice = null;
+      }
+    } catch {}
+  }
+  const lastTrade = mk.lastTradePrice != null ? Number(mk.lastTradePrice) : null;
+  return {
+    tokens,
+    endDate: mk.endDate,
+    title: mk.question || mk.title,
+    yesPrice, noPrice, lastTradePrice: lastTrade,
+    priceSource: (yesPrice != null && noPrice != null) ? "gamma-outcome" : null,
+  };
 }
 
-async function fetchMidpoint(noTokenId) {
+// CLOB fallback — best bid + best ask from the orderbook. Used only when
+// Gamma outcomePrices is missing. Returns midpoint or null.
+async function fetchBookMidpoint(noTokenId) {
   diagnostics.totalClobCalls++;
-  const r = await fetchJson(`${CLOB}/midpoint?token_id=${noTokenId}`);
-  if (r?.__error || r?.mid == null) { diagnostics.totalClobFailures++; return null; }
-  return Number(r.mid);
+  const r = await fetchJson(`${CLOB}/book?token_id=${noTokenId}`);
+  if (r?.__error || !r) { diagnostics.totalClobFailures++; return null; }
+  const bids = Array.isArray(r.bids) ? r.bids : [];
+  const asks = Array.isArray(r.asks) ? r.asks : [];
+  const bestBid = bids.length ? Number(bids[bids.length - 1]?.price) : null;
+  const bestAsk = asks.length ? Number(asks[0]?.price) : null;
+  if (Number.isFinite(bestBid) && Number.isFinite(bestAsk)) return (bestBid + bestAsk) / 2;
+  if (Number.isFinite(bestBid)) return bestBid;
+  if (Number.isFinite(bestAsk)) return bestAsk;
+  return null;
 }
 
 async function refreshPricesForPositions(positions) {
@@ -107,43 +138,61 @@ async function refreshPricesForPositions(positions) {
   diagnostics.positionsTracked = positions.length;
   // Step 1: ensure metadata for every open position. Re-fetch only if missing
   // or older than META_TTL_MS.
-  const needMeta = positions.filter(p => {
+  // Single Gamma call per position returns metadata + live outcomePrices. This
+  // replaces the broken CLOB /midpoint path (which was returning 0.475 for
+  // every market).
+  if (POLLER_LOG) console.log(`[prices] refreshing ${positions.length} markets via Gamma outcomePrices…`);
+  await runParallel(positions, async (p) => {
+    const data = await fetchMarketData(p.conditionId);
+    if (data.error) {
+      const cur = priceCache.get(p.conditionId) || {};
+      priceCache.set(p.conditionId, { ...cur, error: data.error, ts: Date.now() });
+      return;
+    }
+    priceCache.set(p.conditionId, {
+      tokens: data.tokens,
+      endDate: data.endDate,
+      noPrice: data.noPrice,
+      yesPrice: data.yesPrice,
+      lastTradePrice: data.lastTradePrice,
+      source: data.priceSource,
+      ts: Date.now(),
+      metaTs: t0,
+      error: null,
+    });
+  }, PRICE_CONCURRENCY);
+
+  // Fallback: any position where Gamma didn't give us outcomePrices falls back
+  // to CLOB orderbook. Usually zero.
+  const needFallback = positions.filter(p => {
     const c = priceCache.get(p.conditionId);
-    return !c?.tokens || (t0 - (c.metaTs || 0)) > META_TTL_MS;
+    return c?.tokens?.length >= 2 && c.noPrice == null;
   });
-  if (needMeta.length) {
-    if (POLLER_LOG) console.log(`[prices] fetching metadata for ${needMeta.length} markets…`);
-    await runParallel(needMeta, async (p) => {
-      const meta = await fetchMarketMeta(p.conditionId);
-      const cur = priceCache.get(p.conditionId) || { noPrice: null, ts: 0 };
-      if (meta.error) {
-        priceCache.set(p.conditionId, { ...cur, error: meta.error });
-      } else {
-        priceCache.set(p.conditionId, { ...cur, tokens: meta.tokens, endDate: meta.endDate, metaTs: t0, error: null });
-      }
+  if (needFallback.length) {
+    if (POLLER_LOG) console.log(`[prices] Gamma missing ${needFallback.length} prices, falling back to CLOB /book…`);
+    await runParallel(needFallback, async (p) => {
+      const cached = priceCache.get(p.conditionId);
+      const mid = await fetchBookMidpoint(cached.tokens[1]);
+      if (mid != null) priceCache.set(p.conditionId, { ...cached, noPrice: mid, yesPrice: 1 - mid, source: "clob-book", ts: Date.now() });
     }, PRICE_CONCURRENCY);
   }
-  // Step 2: fetch midpoint for every position with tokens.
-  const needPrice = positions.filter(p => {
-    const c = priceCache.get(p.conditionId);
-    return c?.tokens && c.tokens.length >= 2;
-  });
-  if (POLLER_LOG && needPrice.length) console.log(`[prices] fetching midpoints for ${needPrice.length} positions…`);
-  await runParallel(needPrice, async (p) => {
-    const cached = priceCache.get(p.conditionId);
-    if (!cached?.tokens?.[1]) return;
-    const mid = await fetchMidpoint(cached.tokens[1]);
-    if (mid != null) {
-      priceCache.set(p.conditionId, { ...cached, noPrice: mid, ts: Date.now() });
-    }
-  }, PRICE_CONCURRENCY);
 
   const now = Date.now();
   diagnostics.lastPollAt = new Date(now).toISOString();
   diagnostics.lastPollDurationMs = now - t0;
   diagnostics.totalPolls++;
   diagnostics.positionsPriced = [...priceCache.values()].filter(c => c.noPrice != null && c.ts > now - 5 * PRICE_TTL_MS).length;
-  if (POLLER_LOG) console.log(`[prices] poll done in ${diagnostics.lastPollDurationMs}ms · ${diagnostics.positionsPriced}/${positions.length} priced · gamma fail ${diagnostics.totalGammaFailures}/${diagnostics.totalGammaCalls} · clob fail ${diagnostics.totalClobFailures}/${diagnostics.totalClobCalls}`);
+  // Distinct-price sanity check — if >50% share the same noPrice, something's
+  // wrong upstream (like the stuck 0.475 we just fixed).
+  const prices = [...priceCache.values()].map(c => c.noPrice).filter(x => x != null);
+  const counts = new Map();
+  for (const p of prices) counts.set(p, (counts.get(p) || 0) + 1);
+  let maxDupe = 0, dupeValue = null;
+  for (const [v, n] of counts) { if (n > maxDupe) { maxDupe = n; dupeValue = v; } }
+  diagnostics.distinctPrices = counts.size;
+  diagnostics.mostCommonPrice = dupeValue;
+  diagnostics.mostCommonPriceCount = maxDupe;
+  if (POLLER_LOG) console.log(`[prices] poll done in ${diagnostics.lastPollDurationMs}ms · ${diagnostics.positionsPriced}/${positions.length} priced · ${counts.size} distinct · most common ${dupeValue}×${maxDupe} · gamma fail ${diagnostics.totalGammaFailures}/${diagnostics.totalGammaCalls}`);
 }
 
 // Background poller — refreshes prices every PRICE_TTL_MS regardless of HTTP traffic
