@@ -27,6 +27,12 @@ const argv = Object.fromEntries(process.argv.slice(2).map(a => {
   const [k, v] = a.replace(/^--/, "").split("="); return [k, v ?? "true"];
 }));
 
+function median(arr) {
+  if (!arr?.length) return 0;
+  const s = [...arr].sort((a, b) => a - b);
+  return s[Math.floor(s.length / 2)];
+}
+
 const WALLET = argv.wallet ?? "0x937bcac3ef9d02d0d00da0c5e2b2a6e26f2ebfab";
 const POSITIONS_FILE = path.resolve("data/detect-positions.json");
 const DATA_API = "https://data-api.polymarket.com";
@@ -42,12 +48,36 @@ async function fetchJson(url) {
 }
 
 async function fetchWalletPositions(wallet) {
-  // Polymarket data-api returns current positions for a wallet
   const url = `${DATA_API}/positions?user=${wallet}&limit=500`;
   const data = await fetchJson(url);
   if (data?.__error) return { error: data.__error, positions: [] };
   const arr = Array.isArray(data) ? data : [];
   return { positions: arr };
+}
+
+// Recent activity (trades, redeems) — shows what they ENTERED and CLOSED
+// in the last N hours, even if they hold no positions right now.
+async function fetchWalletActivity(wallet, hoursBack = 36) {
+  const sinceMs = Date.now() - hoursBack * 3600_000;
+  const all = [];
+  let offset = 0;
+  while (offset < 2000) {
+    const url = `${DATA_API}/activity?user=${wallet}&limit=500&offset=${offset}`;
+    const data = await fetchJson(url);
+    if (data?.__error || !Array.isArray(data) || !data.length) break;
+    for (const a of data) {
+      const ts = Number(a.timestamp ?? a.timeStamp ?? 0) * 1000;
+      if (ts < sinceMs) return all;
+      all.push({
+        ...a,
+        ts,
+        conditionId: String(a.conditionId || a.condition_id || "").toLowerCase(),
+      });
+    }
+    if (data.length < 500) break;
+    offset += 500;
+  }
+  return all;
 }
 
 // Build a Map<conditionId, marketTitle> from /events so we can name
@@ -90,8 +120,9 @@ async function compare() {
   console.log(`=== Compare ${WALLET} → our bot ===`);
   console.log(`[${new Date().toISOString()}]\n`);
 
-  const [walletRes, weatherMap] = await Promise.all([
+  const [walletRes, activity, weatherMap] = await Promise.all([
     fetchWalletPositions(WALLET),
+    fetchWalletActivity(WALLET, 36),
     fetchWeatherMarketMap(),
   ]);
   if (walletRes.error) {
@@ -99,6 +130,21 @@ async function compare() {
     if (!WATCH) process.exit(1);
     return;
   }
+
+  // Filter activity to weather markets only, last 36h
+  const weatherActivity = activity
+    .filter(a => weatherMap.has(a.conditionId))
+    .map(a => ({
+      ts: a.ts,
+      conditionId: a.conditionId,
+      type: String(a.type || a.eventType || "").toUpperCase(),  // TRADE | REDEEM
+      side: String(a.side || "").toUpperCase(),                  // BUY | SELL
+      outcome: String(a.outcome || "").toUpperCase(),            // YES | NO
+      price: Number(a.price || 0),
+      size: Number(a.size || 0),
+      usdcSize: Number(a.usdcSize || 0),
+      title: weatherMap.get(a.conditionId) || "?",
+    }));
 
   // 937's positions — filter to weather + non-zero size
   const guide = walletRes.positions
@@ -147,8 +193,41 @@ async function compare() {
   }
 
   // Report
-  console.log(`937's weather positions: ${guide.length}`);
-  console.log(`Our weather positions:   ${ours.length}`);
+  console.log(`937's open weather positions now:  ${guide.length}`);
+  console.log(`937's weather activity (36h):      ${weatherActivity.length}`);
+  console.log(`Our open weather positions:        ${ours.length}`);
+
+  if (weatherActivity.length) {
+    // Bucket activity by hour to reveal 937's timing pattern
+    const hourBuckets = new Map();
+    for (const a of weatherActivity) {
+      const hourKey = new Date(a.ts).toISOString().slice(0, 13); // "2026-04-23T14"
+      hourBuckets.set(hourKey, (hourBuckets.get(hourKey) || 0) + 1);
+    }
+    const sorted = [...hourBuckets.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+    console.log(`\n=== 937's weather activity timing (last 36h, UTC) ===`);
+    for (const [hour, n] of sorted) {
+      console.log(`  ${hour}:00Z  ${"█".repeat(Math.min(n, 50))}  ${n} event${n===1?"":"s"}`);
+    }
+
+    // Show 937's recent trades grouped by side + type
+    const buys = weatherActivity.filter(a => a.type === "TRADE" && a.side === "BUY");
+    const sells = weatherActivity.filter(a => a.type === "TRADE" && a.side === "SELL");
+    const redeems = weatherActivity.filter(a => a.type === "REDEEM");
+    console.log(`\n  BUYs:    ${buys.length}   (median price ${median(buys.map(b => b.price)).toFixed(3)})`);
+    console.log(`  SELLs:   ${sells.length}   (median price ${median(sells.map(s => s.price)).toFixed(3)})`);
+    console.log(`  REDEEMs: ${redeems.length}  (collected $1 payouts)`);
+
+    if (buys.length) {
+      console.log(`\n  Last 10 BUY entries by 937 (time · side · city · threshold · price · size):`);
+      for (const b of buys.slice(0, 10)) {
+        const t = new Date(b.ts).toISOString().slice(11, 19);
+        const p = parseTitle(b.title);
+        console.log(`    ${t}  ${b.outcome.padEnd(4)} ${p.type} ${p.city.padEnd(12)} ${p.threshold}°  @${b.price.toFixed(4)}  size ${b.size.toFixed(1)}`);
+      }
+    }
+  }
+
   console.log(`\n=== Overlap (both holding same market+side) ===  ${both.length} positions`);
   if (both.length) {
     console.log(`  ${"market".padEnd(50)}  ${"937 side".padEnd(8)}  937@price    us@price    Δentry`);
