@@ -59,7 +59,7 @@ const CFG = {
   METAR_VETO:       argv["metar-veto"] === "true",       // 937 does NOT use METAR; OFF by default, opt-in only
   TRIGGER_MODE:     argv["trigger"] ?? "book",           // "book" (v30) | "metar" (v29)
   TTR_MIN_SEC:      Number(argv.ttrmin ?? String(60)),           // 1 min — 937 scalps within last minute too; 60s guards against mid-scan resolution race
-  TTR_MAX_SEC:      Number(argv.ttrmax ?? String(4*3600)),       // 4h — covers 937 p99 (99% of their entries are within 4h of resolution)
+  TTR_MAX_SEC:      Number(argv.ttrmax ?? String(20*3600)),      // 20h — 937 p90=17.9h (tz-aware end-of-day); 4h was catastrophically wrong (cut 88% of their trades)
   CROSSED_BUF:      Number(argv.crossedbuf ?? "0.5"),
   FORECAST_BUF:     Number(argv.forecastbuf ?? "2.0"),
   INTERVAL_SEC:     Number(argv.interval ?? "60"),     // main scan — fast
