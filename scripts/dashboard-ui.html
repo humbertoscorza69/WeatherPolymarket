@@ -110,6 +110,20 @@
   @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
   .tab-placeholder { padding: 40px; text-align: center; color: var(--muted); border: 1px dashed var(--border); border-radius: 10px; background: var(--panel); }
   .tab-placeholder h3 { color: var(--text); margin: 0 0 8px 0; }
+  /* Heatmap */
+  .heatmap-wrap { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; }
+  .heatmap-grid { display: grid; gap: 2px; font-size: 10px; }
+  .heatmap-grid .hm-cell { min-width: 36px; min-height: 28px; border-radius: 4px; display: grid; place-items: center; font-family: ui-monospace, monospace; color: rgba(11,14,20,0.9); font-weight: 600; cursor: default; position: relative; transition: transform 0.1s; }
+  .heatmap-grid .hm-cell:hover { transform: scale(1.06); outline: 1px solid var(--text); z-index: 5; }
+  .heatmap-grid .hm-cell.empty { background: var(--panel-hi); color: var(--muted); font-weight: 400; }
+  .heatmap-grid .hm-axis { color: var(--muted-hi); font-family: ui-monospace, monospace; font-size: 10px; display: grid; place-items: center; min-height: 28px; }
+  .heatmap-grid .hm-axis.x { border-top: 1px solid var(--border); padding-top: 6px; }
+  .heatmap-grid .hm-axis.y { border-right: 1px solid var(--border); padding-right: 8px; justify-content: end; }
+  .heatmap-legend { display: flex; flex-direction: column; gap: 4px; align-items: center; padding: 4px 0; }
+  .heatmap-legend .bar { width: 14px; height: 180px; border-radius: 4px; background: linear-gradient(to top, #ef4444, #fbbf24, #4ade80); }
+  .heatmap-legend .tick { color: var(--muted); font-family: ui-monospace, monospace; font-size: 10px; }
+  .heatmap-axes-label { color: var(--muted); font-family: ui-monospace, monospace; font-size: 10px; margin-top: 6px; }
+  .heatmap-tooltip { position: fixed; background: var(--panel-hi); border: 1px solid var(--border-hi); padding: 6px 10px; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 11px; pointer-events: none; z-index: 100; display: none; color: var(--text); }
 </style>
 </head>
 <body>
@@ -176,23 +190,33 @@
   <div class="tab-panel" id="tab-charts">
     <section>
       <div class="row2">
-        <div class="chart-card">
+        <div class="chart-card tall">
+          <div class="chart-title"><span>Thermal Edge Analysis · WR% by threshold × cushion</span><span class="pill" id="thermalPill">—</span></div>
+          <div id="thermalHeatmap" style="width:100%;overflow-x:auto;"></div>
+        </div>
+        <div class="chart-card tall">
           <div class="chart-title">Trade PnL Distribution</div>
           <canvas id="pnlHistChart"></canvas>
-        </div>
-        <div class="chart-card">
-          <div class="chart-title">PnL by Side</div>
-          <canvas id="sideChart"></canvas>
         </div>
       </div>
       <div class="row2" style="margin-top: 12px;">
         <div class="chart-card">
+          <div class="chart-title">PnL by Side · YES vs NO</div>
+          <canvas id="sideChart"></canvas>
+        </div>
+        <div class="chart-card">
           <div class="chart-title">PnL by Signal Reason</div>
           <canvas id="reasonChart"></canvas>
         </div>
+      </div>
+      <div class="row2" style="margin-top: 12px;">
         <div class="chart-card">
           <div class="chart-title">PnL by City · top 15 by volume</div>
           <canvas id="cityChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">WR by Cushion Bucket · °C signal margin</div>
+          <canvas id="cushionChart"></canvas>
         </div>
       </div>
     </section>
@@ -558,6 +582,95 @@ function renderBreakdown(canvasId, breakdown, opts = {}) {
   }));
 }
 
+// WR → color: red (<50%) → amber (~70%) → green (>90%)
+function wrToColor(wr, alpha = 1) {
+  const pct = Math.max(0, Math.min(1, wr));
+  // Interpolate through 3 stops
+  const stops = [
+    { t: 0.0, c: [239, 68, 68] },   // red
+    { t: 0.6, c: [251, 191, 36] },  // amber
+    { t: 1.0, c: [74, 222, 128] },  // green
+  ];
+  let a = stops[0], b = stops[stops.length-1];
+  for (let i = 0; i < stops.length - 1; i++) {
+    if (pct >= stops[i].t && pct <= stops[i+1].t) { a = stops[i]; b = stops[i+1]; break; }
+  }
+  const f = b.t === a.t ? 0 : (pct - a.t) / (b.t - a.t);
+  const r = Math.round(a.c[0] + (b.c[0] - a.c[0]) * f);
+  const g = Math.round(a.c[1] + (b.c[1] - a.c[1]) * f);
+  const bl = Math.round(a.c[2] + (b.c[2] - a.c[2]) * f);
+  return `rgba(${r},${g},${bl},${alpha})`;
+}
+
+function renderThermalHeatmap(cells) {
+  const host = document.getElementById("thermalHeatmap");
+  if (!host) return;
+  if (!cells || !cells.length) {
+    host.innerHTML = `<div class="empty">No threshold data yet — need closed trades with temperature in title.</div>`;
+    document.getElementById("thermalPill").textContent = "no data";
+    return;
+  }
+  // Axes: x = threshold (°C), y = cushion (°C). Only include observed buckets.
+  const xs = [...new Set(cells.map(c => c.threshold))].sort((a,b) => a - b);
+  const ys = [...new Set(cells.map(c => c.cushion))].sort((a,b) => b - a); // top = biggest cushion
+  const lookup = new Map();
+  for (const c of cells) lookup.set(`${c.cushion}|${c.threshold}`, c);
+
+  // Overall WR for pill
+  const totalN = cells.reduce((s,c) => s + c.n, 0);
+  const totalW = cells.reduce((s,c) => s + c.w, 0);
+  const pill = document.getElementById("thermalPill");
+  pill.textContent = totalN ? `${((totalW/totalN)*100).toFixed(1)}% across ${totalN} trades` : "—";
+  pill.className = "pill " + (totalW/totalN >= 0.8 ? "ok" : totalW/totalN >= 0.5 ? "" : "bad");
+
+  // Build grid HTML. Columns: [y-axis label] + xs cells
+  const cols = xs.length + 1;
+  const style = `grid-template-columns: 42px repeat(${xs.length}, minmax(36px, 1fr));`;
+  const rows = [];
+  // Top row: y-axis header + x-axis labels (at top we put nothing, labels go at bottom instead)
+  // Data rows
+  for (const y of ys) {
+    rows.push(`<div class="hm-axis y">${y}°C</div>`);
+    for (const x of xs) {
+      const cell = lookup.get(`${y}|${x}`);
+      if (!cell) {
+        rows.push(`<div class="hm-cell empty">·</div>`);
+      } else {
+        const wr = cell.n ? cell.w / cell.n : 0;
+        const color = wrToColor(wr);
+        const title = `threshold=${x}°C · cushion=${y}°C\nn=${cell.n} · WR=${(wr*100).toFixed(0)}% · PnL=$${cell.pnl.toFixed(2)}`;
+        rows.push(`<div class="hm-cell" style="background:${color}" data-tooltip="${title}">${(wr*100).toFixed(0)}</div>`);
+      }
+    }
+  }
+  // Bottom axis row
+  rows.push(`<div class="hm-axis"></div>`);
+  for (const x of xs) rows.push(`<div class="hm-axis x">${x}</div>`);
+
+  host.innerHTML = `
+    <div class="heatmap-wrap">
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <div class="heatmap-grid" style="${style}">${rows.join("")}</div>
+        <div class="heatmap-axes-label" style="text-align:center;margin-left:42px;">threshold temperature (°C)</div>
+      </div>
+      <div class="heatmap-legend">
+        <span class="tick">100%</span>
+        <div class="bar"></div>
+        <span class="tick">0%</span>
+      </div>
+      <div class="heatmap-axes-label" style="writing-mode: vertical-rl; transform: rotate(180deg); align-self:center;">cushion (°C)</div>
+    </div>
+    <div class="heatmap-tooltip" id="hmTooltip"></div>`;
+
+  // Attach hover-tooltip handlers (lightweight — delegate)
+  const tt = document.getElementById("hmTooltip");
+  host.querySelectorAll(".hm-cell[data-tooltip]").forEach(el => {
+    el.addEventListener("mouseenter", () => { tt.style.display = "block"; tt.textContent = el.dataset.tooltip; });
+    el.addEventListener("mousemove", (e) => { tt.style.left = (e.clientX + 10) + "px"; tt.style.top = (e.clientY + 10) + "px"; });
+    el.addEventListener("mouseleave", () => { tt.style.display = "none"; });
+  });
+}
+
 async function refresh() {
   try {
     const r = await fetch("/api/stats", { cache: "no-store" });
@@ -572,6 +685,8 @@ async function refresh() {
     renderBreakdown("sideChart",   data.breakdown?.bySide   || {});
     renderBreakdown("reasonChart", data.breakdown?.byReason || {});
     renderBreakdown("cityChart",   data.breakdown?.byCity   || {}, { topN: 15 });
+    renderBreakdown("cushionChart", data.breakdown?.byCushion || {});
+    renderThermalHeatmap(data.thermalEdge || []);
     document.getElementById("lastUpdate").textContent = `updated ${new Date().toLocaleTimeString([], { hour12: false })}`;
     document.getElementById("statusDot").style.background = "var(--green)";
     lastTick = Date.now();

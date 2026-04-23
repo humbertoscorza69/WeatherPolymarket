@@ -130,6 +130,13 @@ function computeStats({ state, logLines }) {
   const byReason = {};
   const byCity = {};
   const byCushion = {};
+  // Thermal-edge matrix: cushion-bucket × threshold-temp-bucket → { n, w, pnl }
+  const thermalBuckets = {};  // key "cushion|threshold"
+  const extractThreshold = (title) => {
+    if (!title) return null;
+    const m = String(title).match(/be\s+(-?\d+(?:\.\d+)?)°?C/i);
+    return m ? Number(m[1]) : null;
+  };
   for (const t of trades) {
     const s = t.side || "?"; bySide[s] = bySide[s] || { n: 0, pnl: 0, w: 0 };
     bySide[s].n++; bySide[s].pnl += num(t.pnl); if (num(t.pnl) > 0.01) bySide[s].w++;
@@ -140,6 +147,17 @@ function computeStats({ state, logLines }) {
     const cu = Math.round(num(t.cushion) * 2) / 2;
     byCushion[cu] = byCushion[cu] || { n: 0, pnl: 0, w: 0 };
     byCushion[cu].n++; byCushion[cu].pnl += num(t.pnl); if (num(t.pnl) > 0.01) byCushion[cu].w++;
+
+    const threshold = extractThreshold(t.title);
+    const cushionBucket = Math.min(6, Math.max(0, Math.floor(num(t.cushion) + 0.5))); // 0..6 integer
+    if (threshold != null) {
+      const tBucket = Math.round(threshold); // 1°C buckets
+      const key = `${cushionBucket}|${tBucket}`;
+      thermalBuckets[key] = thermalBuckets[key] || { n: 0, w: 0, pnl: 0, cushion: cushionBucket, threshold: tBucket };
+      thermalBuckets[key].n++;
+      thermalBuckets[key].pnl += num(t.pnl);
+      if (num(t.pnl) > 0.01) thermalBuckets[key].w++;
+    }
   }
 
   // unrealized
@@ -191,6 +209,7 @@ function computeStats({ state, logLines }) {
     equityCurve,
     rollingWR,
     breakdown: { bySide, byReason, byCity, byCushion },
+    thermalEdge: Object.values(thermalBuckets),
     openPositions: state.positions,
     closedTrades: sortedByClose,
   };
