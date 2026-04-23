@@ -32,47 +32,126 @@ const PRICE_BATCH = Number(argv.pricebatch ?? "20");
 
 const num = (x, d = 0) => { const n = Number(x); return Number.isFinite(n) ? n : d; };
 
-// ---- Live price cache for open positions ----
-// Maps conditionId -> { noPrice, ts, tokens }
+// ---- Live price cache + background poller for open positions ----
+// Maps conditionId -> { noPrice, ts, tokens, endDate, error }
 const priceCache = new Map();
+const META_TTL_MS = 24 * 60 * 60 * 1000; // tokens + endDate don't change — cache 24h
+const PRICE_CONCURRENCY = Number(argv.concurrency ?? "8");
+const POLLER_LOG = (argv.pricelog ?? "true") !== "false";
+
+const diagnostics = {
+  pollerStartedAt: null,
+  lastPollAt: null,
+  lastPollDurationMs: null,
+  totalPolls: 0,
+  totalGammaCalls: 0,
+  totalGammaFailures: 0,
+  totalClobCalls: 0,
+  totalClobFailures: 0,
+  lastError: null,
+  positionsTracked: 0,
+  positionsPriced: 0,
+};
+
 async function fetchJson(url) {
   try {
     const r = await fetch(url, { headers: { accept: "application/json" } });
-    if (!r.ok) return null;
+    if (!r.ok) {
+      const body = await r.text().catch(() => "");
+      return { __error: `HTTP ${r.status}`, __body: body.slice(0, 200) };
+    }
     return await r.json();
-  } catch { return null; }
+  } catch (e) { return { __error: String(e?.message || e) }; }
+}
+
+// Run async tasks with bounded concurrency
+async function runParallel(items, worker, concurrency) {
+  const results = new Array(items.length);
+  let next = 0;
+  async function loop() {
+    while (true) {
+      const i = next++;
+      if (i >= items.length) return;
+      try { results[i] = await worker(items[i], i); }
+      catch (e) { results[i] = { error: e?.message || String(e) }; }
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, loop));
+  return results;
+}
+
+async function fetchMarketMeta(conditionId) {
+  diagnostics.totalGammaCalls++;
+  const data = await fetchJson(`${GAMMA}/markets?conditionIds=${conditionId}`);
+  if (data?.__error) { diagnostics.totalGammaFailures++; return { error: data.__error }; }
+  const mk = Array.isArray(data) ? data[0] : data;
+  if (!mk) { diagnostics.totalGammaFailures++; return { error: "no-market" }; }
+  const tokens = typeof mk.clobTokenIds === "string" ? JSON.parse(mk.clobTokenIds) : mk.clobTokenIds;
+  return { tokens, endDate: mk.endDate, title: mk.question || mk.title };
+}
+
+async function fetchMidpoint(noTokenId) {
+  diagnostics.totalClobCalls++;
+  const r = await fetchJson(`${CLOB}/midpoint?token_id=${noTokenId}`);
+  if (r?.__error || r?.mid == null) { diagnostics.totalClobFailures++; return null; }
+  return Number(r.mid);
 }
 
 async function refreshPricesForPositions(positions) {
-  const now = Date.now();
-  const stale = positions.filter(p => {
+  const t0 = Date.now();
+  diagnostics.positionsTracked = positions.length;
+  // Step 1: ensure metadata for every open position. Re-fetch only if missing
+  // or older than META_TTL_MS.
+  const needMeta = positions.filter(p => {
     const c = priceCache.get(p.conditionId);
-    return !c || (now - c.ts) > PRICE_TTL_MS;
+    return !c?.tokens || (t0 - (c.metaTs || 0)) > META_TTL_MS;
   });
-  if (!stale.length) return;
-  // Step 1: ensure we have clobTokenIds for each. Fetch market metadata in batches.
-  const needTokens = stale.filter(p => !priceCache.get(p.conditionId)?.tokens);
-  for (let i = 0; i < needTokens.length; i += PRICE_BATCH) {
-    const slice = needTokens.slice(i, i + PRICE_BATCH);
-    const ids = slice.map(p => p.conditionId).join(",");
-    const data = await fetchJson(`${GAMMA}/markets?conditionIds=${ids}&limit=${slice.length}`);
-    if (!Array.isArray(data)) continue;
-    for (const mk of data) {
-      const tokens = typeof mk.clobTokenIds === "string" ? JSON.parse(mk.clobTokenIds) : mk.clobTokenIds;
-      const cur = priceCache.get(mk.conditionId) || { noPrice: null, ts: 0 };
-      priceCache.set(mk.conditionId, { ...cur, tokens, endDate: mk.endDate });
-    }
+  if (needMeta.length) {
+    if (POLLER_LOG) console.log(`[prices] fetching metadata for ${needMeta.length} markets…`);
+    await runParallel(needMeta, async (p) => {
+      const meta = await fetchMarketMeta(p.conditionId);
+      const cur = priceCache.get(p.conditionId) || { noPrice: null, ts: 0 };
+      if (meta.error) {
+        priceCache.set(p.conditionId, { ...cur, error: meta.error });
+      } else {
+        priceCache.set(p.conditionId, { ...cur, tokens: meta.tokens, endDate: meta.endDate, metaTs: t0, error: null });
+      }
+    }, PRICE_CONCURRENCY);
   }
-  // Step 2: fetch midpoint per token (sequential — CLOB has no batch endpoint)
-  for (const p of stale) {
+  // Step 2: fetch midpoint for every position with tokens.
+  const needPrice = positions.filter(p => {
+    const c = priceCache.get(p.conditionId);
+    return c?.tokens && c.tokens.length >= 2;
+  });
+  if (POLLER_LOG && needPrice.length) console.log(`[prices] fetching midpoints for ${needPrice.length} positions…`);
+  await runParallel(needPrice, async (p) => {
     const cached = priceCache.get(p.conditionId);
-    if (!cached?.tokens || cached.tokens.length < 2) continue;
-    const noTokenId = cached.tokens[1];
-    const r = await fetchJson(`${CLOB}/midpoint?token_id=${noTokenId}`);
-    if (r?.mid != null) {
-      priceCache.set(p.conditionId, { ...cached, noPrice: Number(r.mid), ts: now });
+    if (!cached?.tokens?.[1]) return;
+    const mid = await fetchMidpoint(cached.tokens[1]);
+    if (mid != null) {
+      priceCache.set(p.conditionId, { ...cached, noPrice: mid, ts: Date.now() });
     }
-  }
+  }, PRICE_CONCURRENCY);
+
+  const now = Date.now();
+  diagnostics.lastPollAt = new Date(now).toISOString();
+  diagnostics.lastPollDurationMs = now - t0;
+  diagnostics.totalPolls++;
+  diagnostics.positionsPriced = [...priceCache.values()].filter(c => c.noPrice != null && c.ts > now - 5 * PRICE_TTL_MS).length;
+  if (POLLER_LOG) console.log(`[prices] poll done in ${diagnostics.lastPollDurationMs}ms · ${diagnostics.positionsPriced}/${positions.length} priced · gamma fail ${diagnostics.totalGammaFailures}/${diagnostics.totalGammaCalls} · clob fail ${diagnostics.totalClobFailures}/${diagnostics.totalClobCalls}`);
+}
+
+// Background poller — refreshes prices every PRICE_TTL_MS regardless of HTTP traffic
+async function startBackgroundPoller() {
+  diagnostics.pollerStartedAt = new Date().toISOString();
+  const tick = async () => {
+    try {
+      const { state } = await loadData();
+      if (state.positions?.length) await refreshPricesForPositions(state.positions);
+    } catch (e) { diagnostics.lastError = String(e?.message || e); console.error(`[prices] poller error:`, e?.message || e); }
+    setTimeout(tick, PRICE_TTL_MS);
+  };
+  tick();  // fire immediately
 }
 
 function unrealizedFor(pos) {
@@ -388,18 +467,36 @@ const server = http.createServer(async (req, res) => {
     }
     if (u.pathname === "/api/stats") {
       const data = await loadData();
-      // Refresh price cache for any open positions (cached 30s)
-      try { await refreshPricesForPositions(data.state.positions || []); } catch (e) { /* tolerate price-fetch failures */ }
+      // Background poller keeps prices fresh; we just compute from the cache.
       const stats = computeStats(data);
+      stats.diagnostics = { ...diagnostics };
       res.writeHead(200, { "content-type": "application/json", "cache-control": "no-store" });
       res.end(JSON.stringify(stats));
       return;
     }
     if (u.pathname === "/api/refresh-prices") {
-      // Force-clear cache so next /api/stats fully refetches
+      // Force-clear cache + re-fetch immediately so caller sees fresh prices on next /api/stats
       priceCache.clear();
+      try {
+        const { state } = await loadData();
+        if (state.positions?.length) await refreshPricesForPositions(state.positions);
+      } catch {}
       res.writeHead(200, { "content-type": "application/json" });
-      res.end(JSON.stringify({ ok: true, cleared: true }));
+      res.end(JSON.stringify({ ok: true, cleared: true, ...diagnostics }));
+      return;
+    }
+    if (u.pathname === "/api/diagnostics") {
+      res.writeHead(200, { "content-type": "application/json" });
+      res.end(JSON.stringify({
+        ...diagnostics,
+        sampleCache: [...priceCache.entries()].slice(0, 3).map(([k, v]) => ({
+          conditionId: k.slice(0, 14) + "…",
+          hasTokens: !!v.tokens,
+          noPrice: v.noPrice,
+          ageMs: v.ts ? Date.now() - v.ts : null,
+          error: v.error,
+        })),
+      }, null, 2));
       return;
     }
     if (u.pathname === "/" || u.pathname === "/index.html") {
@@ -428,6 +525,9 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, () => {
   console.log(`Dashboard: http://localhost:${PORT}`);
   console.log(`API:       http://localhost:${PORT}/api/stats`);
+  console.log(`Diagnose:  http://localhost:${PORT}/api/diagnostics`);
   console.log(`Reads:     ${POSITIONS_FILE}`);
   console.log(`           ${LOG_FILE}`);
+  console.log(`Polling Polymarket every ${PRICE_TTL_MS/1000}s (concurrency=${PRICE_CONCURRENCY})`);
+  startBackgroundPoller();
 });

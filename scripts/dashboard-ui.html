@@ -194,10 +194,12 @@
   <div class="stat">Realized: <b id="pnlTop">—</b></div>
   <div class="stat">Unrealized: <b id="unrealTop">—</b></div>
   <div class="stat">Equity: <b id="equityTop">—</b></div>
+  <div class="stat">Prices: <b id="pricesTop">—</b></div>
   <div class="spacer"></div>
   <span class="tag mono" id="lastUpdate" style="font-size:10px;color:var(--muted)">loading…</span>
   <span class="tag mono" id="refreshCountdown" style="font-size:10px;color:var(--muted)">next —</span>
   <div class="wallet" id="wallet">paper://detector</div>
+  <button onclick="refreshPrices()" title="Force-refetch live prices from Polymarket">↻ Prices</button>
   <button onclick="refresh()">Refresh</button>
 </div>
 <main>
@@ -1100,12 +1102,38 @@ function renderExecLog() {
   }).join("");
 }
 
+async function refreshPrices() {
+  const btn = event?.target;
+  if (btn) { btn.disabled = true; btn.textContent = "Fetching…"; }
+  try {
+    const r = await fetch("/api/refresh-prices");
+    const j = await r.json();
+    await refresh();
+    if (btn) btn.textContent = `↻ Prices · ${j.positionsPriced}/${j.positionsTracked}`;
+    setTimeout(() => { if (btn) btn.textContent = "↻ Prices"; }, 4000);
+  } catch (e) {
+    if (btn) btn.textContent = "Failed";
+  } finally {
+    if (btn) btn.disabled = false;
+  }
+}
+
 async function refresh() {
   try {
     const r = await fetch("/api/stats", { cache: "no-store" });
     if (!r.ok) throw new Error(r.statusText);
     const data = await r.json();
     renderKpis(data.summary, data.equityCurve || [], data.rollingWR || []);
+    // Price-poller telemetry
+    const diag = data.diagnostics || {};
+    const pricesEl = document.getElementById("pricesTop");
+    if (pricesEl) {
+      const ageSec = diag.lastPollAt ? Math.floor((Date.now() - new Date(diag.lastPollAt).getTime())/1000) : null;
+      const txt = diag.totalPolls ? `${diag.positionsPriced || 0}/${diag.positionsTracked || 0} · ${ageSec != null ? ageSec + 's ago' : '—'}` : "starting…";
+      pricesEl.textContent = txt;
+      const failRate = diag.totalGammaCalls ? diag.totalGammaFailures / diag.totalGammaCalls : 0;
+      pricesEl.style.color = failRate > 0.5 ? "var(--red)" : ((diag.positionsPriced || 0) > 0 ? "var(--green)" : "var(--amber)");
+    }
     renderOpen(data.openPositions);
     renderClosed(data.closedTrades);
     __execLog = data.execLog || [];
