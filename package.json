@@ -10,6 +10,7 @@
     "detect": "node scripts/detect.mjs --bankroll=10000 --tradesize=5 --nocap --interval=30 --poscheck=15",
     "detect:min": "node scripts/detect.mjs",
     "validate": "node scripts/validate-paper-trading.mjs",
+    "compare": "node scripts/compare-to-wallet.mjs",
     "reset-metar-taint": "node scripts/reset-metar-taint.mjs",
     "build-resolution-index": "node scripts/build-resolution-index.mjs",
     "fetch-weather-markets": "node scripts/fetch-yearly-weather-markets.mjs --days=365",
