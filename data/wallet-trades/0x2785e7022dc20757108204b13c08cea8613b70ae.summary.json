@@ -1,41 +1,17 @@
 {
   "name": "2785",
   "wallet": "0x2785e7022dc20757108204b13c08cea8613b70ae",
-  "fetchedAt": "2026-04-21T21:41:56.062Z",
+  "fetchedAt": "2026-04-23T22:21:31.174Z",
   "activityEventCount": 3000,
   "truncated": true,
-  "closedTradeCount": 319,
-  "openPositionCount": 17,
-  "realizedPnlUsdc": 11531.518731906068,
-  "unrealizedPnlUsdc": -189.46039999999883,
-  "winRate": 0.9777777777777777,
-  "closedWins": 308,
+  "closedTradeCount": 291,
+  "openPositionCount": 19,
+  "realizedPnlUsdc": 9959.835749620179,
+  "unrealizedPnlUsdc": 1058.0753,
+  "winRate": 0.975609756097561,
+  "closedWins": 280,
   "closedLosses": 7,
   "openPositions": [
-    {
-      "wallet": "0x2785e7022dc20757108204b13c08cea8613b70ae",
-      "conditionId": "0x6d293b5476217f3a22e2ec52d43ca27914a4aa7736061e92d9c00550ec8ed4f9",
-      "outcomeIndex": 1,
-      "side": "NO",
-      "asset": "85765047056996891293836093796054202925832550944891886242234497798409718793844",
-      "title": "Will Iran strike Oman again in March?",
-      "shares": 97751.35,
-      "entryAvg": 0.9990000000000001,
-      "entryUsdc": 97653.59865000001,
-      "openTs": 1775393013
-    },
-    {
-      "wallet": "0x2785e7022dc20757108204b13c08cea8613b70ae",
-      "conditionId": "0x399b24e52f80c960e41248216e955e239eb874bb19f8b4fe73422f6d1a43c246",
-      "outcomeIndex": 0,
-      "side": "YES",
-      "asset": "26185942922580429776461031271294509360651468472717723556401411385805012405203",
-      "title": "Will Iran strike Bahrain by April 30, 2026?",
-      "shares": 32736.81,
-      "entryAvg": 0.999,
-      "entryUsdc": 32704.073190000003,
-      "openTs": 1775393381
-    },
     {
       "wallet": "0x2785e7022dc20757108204b13c08cea8613b70ae",
       "conditionId": "0x6d0e09d0f04572d9b1adad84703458b0297bc5603b69dccbde93147ee4443246",
@@ -50,15 +26,27 @@
     },
     {
       "wallet": "0x2785e7022dc20757108204b13c08cea8613b70ae",
+      "conditionId": "0x6d293b5476217f3a22e2ec52d43ca27914a4aa7736061e92d9c00550ec8ed4f9",
+      "outcomeIndex": 1,
+      "side": "NO",
+      "asset": "85765047056996891293836093796054202925832550944891886242234497798409718793844",
+      "title": "Will Iran strike Oman again in March?",
+      "shares": 80373.17000000001,
+      "entryAvg": 0.9989999999999999,
+      "entryUsdc": 80292.79683,
+      "openTs": 1775402805
+    },
+    {
+      "wallet": "0x2785e7022dc20757108204b13c08cea8613b70ae",
       "conditionId": "0xbef7266e1d7c2adad3d7c6ae59df817d653c872802415a369c761ca75601f5ea",
       "outcomeIndex": 1,
       "side": "NO",
       "asset": "12757532814796041092314726724352199457809077788040541272816308901581069321424",
       "title": "Will Trump talk to Mark Rutte in March?",
-      "shares": 25350.010000000002,
-      "entryAvg": 0.9990000000000001,
-      "entryUsdc": 25324.659990000004,
-      "openTs": 1775396881
+      "shares": 7343.24,
+      "entryAvg": 0.9989999999999999,
+      "entryUsdc": 7335.896759999999,
+      "openTs": 1775403531
     },
     {
       "wallet": "0x2785e7022dc20757108204b13c08cea8613b70ae",
@@ -215,6 +203,42 @@
       "entryAvg": 0.9990000000000004,
       "entryUsdc": 7053739.200000001,
       "openTs": 1776390564
+    },
+    {
+      "wallet": "0x2785e7022dc20757108204b13c08cea8613b70ae",
+      "conditionId": "0x8183a221622f2d5d2b46da86c80d55a61f43d35829589e03c1efae9d072638c5",
+      "outcomeIndex": 0,
+      "side": "YES",
+      "asset": "21743669032210695168079601505378236205866986767926346409604806906483294819314",
+      "title": "Iran x Israel/US conflict ends by April 7?",
+      "shares": 467138.689997,
+      "entryAvg": 0.9987332698389769,
+      "entryUsdc": 466546.95132899994,
+      "openTs": 1776816910
+    },
+    {
+      "wallet": "0x2785e7022dc20757108204b13c08cea8613b70ae",
+      "conditionId": "0xd73f60114a0e7169a55082daef1228cb27fa50c939eea22cb0589f6bac6ce5d3",
+      "outcomeIndex": 0,
+      "side": "YES",
+      "asset": "19426830997860641827867742428794225516264548638293070052741093336218482490309",
+      "title": "Iran x Israel/US conflict ends by May 15?",
+      "shares": 500652,
+      "entryAvg": 0.9990000000000001,
+      "entryUsdc": 500151.34800000006,
+      "openTs": 1776960138
+    },
+    {
+      "wallet": "0x2785e7022dc20757108204b13c08cea8613b70ae",
+      "conditionId": "0x5c2e6aef8af5931e9bfa3750364626d754531d2fada2885d45c356b175962a25",
+      "outcomeIndex": 0,
+      "side": "YES",
+      "asset": "91851388830923641218615793149765322805282194001900444983744404881757241655792",
+      "title": "Iran x Israel/US conflict ends by April 15?",
+      "shares": 369041.41000000003,
+      "entryAvg": 0.999,
+      "entryUsdc": 368672.36859,
+      "openTs": 1776960194
     }
   ]
 }

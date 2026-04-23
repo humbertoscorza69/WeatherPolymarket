@@ -1,41 +1,17 @@
 {
   "name": "2d99",
   "wallet": "0x2d99e29c4f066ba32098c65e4c7454b277d94ca3",
-  "fetchedAt": "2026-04-21T21:41:58.500Z",
+  "fetchedAt": "2026-04-23T22:21:34.302Z",
   "activityEventCount": 3000,
   "truncated": true,
-  "closedTradeCount": 300,
-  "openPositionCount": 126,
-  "realizedPnlUsdc": 19091.549034074855,
-  "unrealizedPnlUsdc": 3523.8031,
-  "winRate": 0.7178571428571429,
-  "closedWins": 201,
-  "closedLosses": 79,
+  "closedTradeCount": 303,
+  "openPositionCount": 121,
+  "realizedPnlUsdc": 20424.630745008824,
+  "unrealizedPnlUsdc": 4268.1836,
+  "winRate": 0.7753623188405797,
+  "closedWins": 214,
+  "closedLosses": 62,
   "openPositions": [
-    {
-      "wallet": "0x2d99e29c4f066ba32098c65e4c7454b277d94ca3",
-      "conditionId": "0xd4bbf7f6707c67beb736135ad32a41f6db41f8ae52d3ac4919650de9eeb94ed8",
-      "outcomeIndex": 0,
-      "side": "YES",
-      "asset": "39317885422026394259056328144566743331998444273202427934141325790266108570112",
-      "title": "Khamenei out as Supreme Leader of Iran by February 28?",
-      "shares": 19917.386665,
-      "entryAvg": 0.9296552885895385,
-      "entryUsdc": 18516.303848000003,
-      "openTs": 1772313827
-    },
-    {
-      "wallet": "0x2d99e29c4f066ba32098c65e4c7454b277d94ca3",
-      "conditionId": "0x634dd624627e8d8a1f095f4b5c05353fee8738fd9f5e4bd0926e32f811bd691a",
-      "outcomeIndex": 1,
-      "side": "NO",
-      "asset": "74438523394248179193973216569631268805110224877546066056490467886330835081326",
-      "title": "Will Iran name a successor to Khamenei by March 1?",
-      "shares": 2999.995453,
-      "entryAvg": 0.8833333235055406,
-      "entryUsdc": 2649.995954,
-      "openTs": 1772366803
-    },
     {
       "wallet": "0x2d99e29c4f066ba32098c65e4c7454b277d94ca3",
       "conditionId": "0x5d837be188a2b5e8232bafb0958d5e8e45856587e91e43ccf034320055514e0b",
@@ -43,46 +19,10 @@
       "side": "NO",
       "asset": "40983502732637612893448365286086704567832856292171250896245480651837495489670",
       "title": "Will Donald Trump be named in newly released Epstein files by February 28?",
-      "shares": 31569.921332000005,
-      "entryAvg": 0.9891968593962155,
-      "entryUsdc": 31228.867032999995,
-      "openTs": 1772371729
-    },
-    {
-      "wallet": "0x2d99e29c4f066ba32098c65e4c7454b277d94ca3",
-      "conditionId": "0x15519d29f4256ada6f7280910a456c52b7108e1b6fa2cc820b90ae0dbc2cd6c1",
-      "outcomeIndex": 0,
-      "side": "YES",
-      "asset": "29771192420476576888539134643666052674144197706912818608309926950915430919394",
-      "title": "Will the US strike Somalia next?",
-      "shares": 30.104,
-      "entryAvg": 0.96,
-      "entryUsdc": 28.899839999999998,
-      "openTs": 1772385329
-    },
-    {
-      "wallet": "0x2d99e29c4f066ba32098c65e4c7454b277d94ca3",
-      "conditionId": "0xd054d5a23d72e41369a4bdd3a7170b9a55ea1b8023cd579588692ec0a7601288",
-      "outcomeIndex": 1,
-      "side": "NO",
-      "asset": "85445582009195985679963817740002589615678992773574521561978014325856735462133",
-      "title": "Will the US strike Iran next?",
-      "shares": 13766.49,
-      "entryAvg": 0.9884424119728413,
-      "entryUsdc": 13607.38258,
-      "openTs": 1772397601
-    },
-    {
-      "wallet": "0x2d99e29c4f066ba32098c65e4c7454b277d94ca3",
-      "conditionId": "0x8c40ea75eecbd88998a0c145a1a59aa407edee40586e4c0f131acabf9de6ca1d",
-      "outcomeIndex": 1,
-      "side": "NO",
-      "asset": "13582512353280688594095819557700660171786214583412531819940468797271951583466",
-      "title": "Will Iran strike Cyprus in March?",
-      "shares": 0.02790999999932353,
-      "entryAvg": 0.41,
-      "entryUsdc": 0.011443099999722647,
-      "openTs": 1772448763
+      "shares": 19621.9875,
+      "entryAvg": 0.9933124919175491,
+      "entryUsdc": 19490.7653,
+      "openTs": 1772439087
     },
     {
       "wallet": "0x2d99e29c4f066ba32098c65e4c7454b277d94ca3",
@@ -1483,10 +1423,10 @@
       "side": "NO",
       "asset": "45752951190517118746418545365916139233368614665273368123939609626397431866529",
       "title": "Will the Iranian regime fall by April 30?",
-      "shares": 86134.35597099997,
-      "entryAvg": 0.9887034384824618,
-      "entryUsdc": 85161.33392000003,
-      "openTs": 1776647992
+      "shares": 0.005970999962158885,
+      "entryAvg": 0.98800000588,
+      "entryUsdc": 0.005899347997722459,
+      "openTs": 1776804220
     },
     {
       "wallet": "0x2d99e29c4f066ba32098c65e4c7454b277d94ca3",
@@ -1495,9 +1435,9 @@
       "side": "YES",
       "asset": "19426830997860641827867742428794225516264548638293070052741093336218482490309",
       "title": "Iran x Israel/US conflict ends by May 15?",
-      "shares": 42663.732851,
-      "entryAvg": 0.9990000000000001,
-      "entryUsdc": 42621.069118149004,
+      "shares": 0.0028509999974630773,
+      "entryAvg": 0.9989999999999999,
+      "entryUsdc": 0.002848148997465614,
       "openTs": 1776795136
     },
     {
@@ -1507,10 +1447,10 @@
       "side": "YES",
       "asset": "21743669032210695168079601505378236205866986767926346409604806906483294819314",
       "title": "Iran x Israel/US conflict ends by April 7?",
-      "shares": 222592.76774100008,
-      "entryAvg": 0.9887064855699847,
-      "entryUsdc": 220078.91310650005,
-      "openTs": 1776783690
+      "shares": 400184.2927270001,
+      "entryAvg": 0.9948651737356523,
+      "entryUsdc": 398129.41591012606,
+      "openTs": 1776786486
     },
     {
       "wallet": "0x2d99e29c4f066ba32098c65e4c7454b277d94ca3",
@@ -1519,9 +1459,9 @@
       "side": "YES",
       "asset": "91851388830923641218615793149765322805282194001900444983744404881757241655792",
       "title": "Iran x Israel/US conflict ends by April 15?",
-      "shares": 95453.546458,
-      "entryAvg": 0.985575319638796,
-      "entryUsdc": 94076.65956100001,
+      "shares": 164960.93645800007,
+      "entryAvg": 0.9908105415163795,
+      "entryUsdc": 163445.0347810001,
       "openTs": 1776782344
     }
   ]
