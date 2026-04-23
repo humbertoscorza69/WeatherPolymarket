@@ -45,13 +45,15 @@ const CFG = {
   MAX_ENTRY_NO:     Number(argv.maxentryno ?? "0.999"),
   MIN_ENTRY_YES:    Number(argv.minentryyes ?? "0.02"),  // unused — YES gated off in scanOnce
   MAX_ENTRY_YES:    Number(argv.maxentryyes ?? "0.99"),
-  // v30-replica defaults match 937's observed behavior with no added
+  // v31-distance defaults match 937's observed behavior with no added
   // safety rails. Flags below are for dialing in extra filters the user
   // may want — the out-of-the-box run is pure 937 mimicry.
   ALLOW_YES:        argv["allow-yes"] !== "false",       // 937 does ~3% YES; ON by default
   ALLOW_NON_HIGHEST_BETWEEN: argv["allow-non-hb"] === "true",  // 937 is 100% HIGHEST+between
   MIN_ASK_ENTRY:    Number(argv["min-ask"] ?? "0.80"),   // 937's NO entries: 99% at 0.80+ (full range 0.50-0.999)
   MAX_ASK_ENTRY:    Number(argv["max-ask"] ?? "0.999"),  // 937's sell target
+  MIN_DIST_C:       Number(argv["min-dist"] ?? "0.5"),   // 937's rule: bucket must be ≥0.5°C from observed max
+  MAX_DIST_C:       Number(argv["max-dist"] ?? "5"),     // and ≤5°C (beyond this the book is at 0.9999+, no spread)
   MIN_DEPTH_SHARES: Number(argv["min-depth"] ?? "1"),    // 937 takes tiny trades ($0.03 min seen); floor = Polymarket's 5-share minimum via MIN_SHARES
   BOOK_CONCURRENCY: Number(argv["book-concurrency"] ?? "8"),
   METAR_VETO:       argv["metar-veto"] === "true",       // 937 does NOT use METAR; OFF by default, opt-in only
@@ -363,7 +365,7 @@ function computeEntrySignal(market, metarObs, omObs, nowSec, buffer, forecastBuf
   return null;
 }
 
-// v30-replica sizing: inverted from v29. 937's open-position distribution shows
+// v31-distance sizing: inverted from v29. 937's open-position distribution shows
 // that the BIGGEST median sizes sit at the SAFEST price band (0.999+ =
 // $499 med), while the 0.95-0.99 band has much smaller $72 med sizes.
 // The logic: at 0.999+ the max loss per share is $0.001, so you can
@@ -378,7 +380,7 @@ const SIZE_BUCKETS_USDC = [
 ];
 
 function pickSizeBucketUsdc(ctx) {
-  // v30-replica: bucket bias is driven by distance from 0.999 (price proximity
+  // v31-distance: bucket bias is driven by distance from 0.999 (price proximity
   // to certainty). ctx.ask is the top-of-book ask we're about to pay.
   //   ask >= 0.999   → full weight on large/whale (deep-safe)
   //   ask ~ 0.99     → shift toward mid/large
@@ -405,7 +407,7 @@ function pickSizeBucketUsdc(ctx) {
   return SIZE_BUCKETS_USDC[SIZE_BUCKETS_USDC.length - 1];
 }
 
-// v30-replica entry sim. Pays the ask (taker), records book snapshot.
+// v31-distance entry sim. Pays the ask (taker), records book snapshot.
 //   ctx.side         : "NO" | "YES"
 //   ctx.entryPrice   : taker price actually paid (= ask on that side)
 //   ctx.book         : { ask, askDepth, bid, bidDepth, mid, fillableAtCap }
@@ -415,9 +417,9 @@ function pickSizeBucketUsdc(ctx) {
 //   ctx.strategyVersion
 async function simulateEntry(ctx) {
   const { side, entryPrice, book, market, mkt, metarSig } = ctx;
-  const strategyVersion = ctx.strategyVersion || "v30-replica";
+  const strategyVersion = ctx.strategyVersion || "v31-distance";
 
-  // v30-replica sizing: driven by the ask price's proximity to certainty (0.999+).
+  // v31-distance sizing: driven by the ask price's proximity to certainty (0.999+).
   // Bucket midpoint scaled by TRADE_SIZE/50 so user can tune absolute size.
   const bucket = pickSizeBucketUsdc({ ask: entryPrice });
   const scale  = CFG.TRADE_SIZE / 50;
@@ -492,7 +494,7 @@ async function fetchBookMidpoint(noTokenId) {
   return null;
 }
 
-// v30-replica core primitive: fetch the top-of-book snapshot for ONE token.
+// v31-distance core primitive: fetch the top-of-book snapshot for ONE token.
 // Returns { ask, askDepth, bid, bidDepth, mid } or null on failure.
 // We care about:
 //   - ask (+ cumulative depth at/below 0.999) to sim a buy
@@ -537,7 +539,7 @@ async function runParallel(items, worker, concurrency = 6) {
 }
 
 async function resolvePositions() {
-  // v30-replica settlement. Polymarket is the authority. Book-scan was the
+  // v31-distance settlement. Polymarket is the authority. Book-scan was the
   // ENTRY trigger; exits are unchanged from v29:
   //   0. Profit-take: our-side CLOB mid ≥ SELL_TARGET (0.999) → exit at
   //      that price. DOMINANT exit in 937's data — 96.6% of sells hit 0.999.
@@ -675,22 +677,49 @@ async function resolvePositions() {
   state.positions = state.positions.filter(p => !p.closed);
 }
 
-// v30-replica scan: pure book-scan trigger mimicking 937. METAR is
-// available as an opt-in veto (--metar-veto=true) but DEFAULT OFF —
-// 937's data shows zero use of temperature signal in entries.
+// v31-distance: the reverse-engineered 937 selectivity rule.
 //
-// Flow per market:
-//   1. universe filter: HIGHEST + (exact|between), TTR window, no dup
-//   2. fetch top-of-book for BOTH NO (token[1]) and YES (token[0])
-//   3. candidate side: whichever ask lies in [MIN_ASK, MAX_ASK]. Both may
-//      qualify in principle but typically only one side is near-resolved.
-//   4. depth check: askDepth >= MIN_DEPTH_SHARES
-//   5. METAR veto (if --metar-veto=true, default on): skip entries where
-//      the observed/forecast temperature CONTRADICTS the book consensus.
-//      Book says NO wins (NO ask high → NO has small chance of loss) and
-//      METAR shows temp is near/above the threshold → the book might be
-//      wrong; skip. Same for YES.
-//   6. pay the ask, size from price-proximity bucket, enter
+// Analysis of 1028 annotated 937 entries (scripts/reverse-selectivity-937.mjs)
+// shows 937 bets NO only where the bucket's threshold is between 0.5°C and
+// 5°C from the observed max temperature so far that day:
+//   - 0% of their entries have bucket_distance > 5°C   (no spread left at 0.9999+)
+//   - 10.6% at 0-0.5°C (borderline)
+//   - 87% in the [0.5°C, 5°C] sweet spot
+//   - only 1.1% contain the observed high (rare mistake)
+//
+// v31 flow per scan:
+//   1. universe filter (HIGHEST + exact|between, TTR, no dup)
+//   2. DISTANCE filter: compute observed max from METAR + Open-Meteo,
+//      require 0.5°C ≤ bucket_distance ≤ 5°C. This cuts the universe
+//      by 80-90% BEFORE book calls, saving the $130k over-fire bug.
+//   3. book scan (now only on filtered markets)
+//   4. ask-price gate (ask in [MIN_ASK, MAX_ASK], depth ≥ MIN_DEPTH)
+//   5. dedupe by conditionId — 937 trades 0 / 855 markets on both sides
+//   6. pay ask, size from price-proximity bucket
+function computeObservedMaxC(market, metarObs, omObs, nowSec) {
+  const primary = (metarObs?.length ? metarObs : omObs) || [];
+  if (!primary.length) return null;
+  let maxC = -Infinity;
+  for (const o of primary) {
+    if (o.t > nowSec) break;
+    if (o.tempC > maxC) maxC = o.tempC;
+  }
+  return Number.isFinite(maxC) ? maxC : null;
+}
+
+// Distance from observed max to bucket [loC, hiC]. Returns
+//   { distance: °C, relation: "above-max"|"below-max"|"contains-max" }
+// where "above-max" means the bucket is above the observed max (speculative
+// NO — bet that max won't reach), "below-max" means bucket is below observed
+// max (known NO — max already exceeded), "contains-max" = skip.
+function bucketDistanceToMax(bucketLoC, bucketHiC, obsMaxC) {
+  if (obsMaxC == null) return { distance: null, relation: "unknown" };
+  const hi = bucketHiC ?? bucketLoC;
+  if (obsMaxC < bucketLoC) return { distance: bucketLoC - obsMaxC, relation: "above-max" };
+  if (obsMaxC > hi)        return { distance: obsMaxC - hi,        relation: "below-max" };
+  return { distance: 0, relation: "contains-max" };
+}
+
 async function scanOnce() {
   const tScan = new Date().toISOString();
   console.log(`\n[${tScan}] Bankroll: $${state.bankroll.toFixed(2)}  Realized: $${state.realizedPnl.toFixed(2)}  Open: ${state.positions.length}  Total trades: ${state.trades.length}`);
@@ -716,10 +745,31 @@ async function scanOnce() {
   }
   console.log(`  universe: ${universe.length} of ${markets.length} markets (HIGHEST+between, TTR ${CFG.TTR_MIN_SEC/3600}-${CFG.TTR_MAX_SEC/3600}h, no dup)`);
 
-  // ---- 2. book scan — bounded concurrency, both sides per market ----
-  const candidates = [];
+  // ---- 2. METAR-distance pre-filter (the 937 selectivity rule) ----
+  // For each market, compute observed max temperature so far today and
+  // keep only markets whose threshold bucket is 0.5-5°C away from that.
+  // Cuts the universe by 80-90% before any expensive book calls.
+  const eligible = [];
+  let distSkipTooClose = 0, distSkipTooFar = 0, distSkipContains = 0, distSkipNoObs = 0;
+  for (const u of universe) {
+    const { metar, openMeteo } = await getObservationsForMarket(u.parsed);
+    if (!metar?.length && !openMeteo?.length) { distSkipNoObs++; continue; }
+    const obsMaxC = computeObservedMaxC(u.parsed, metar, openMeteo, nowSec);
+    if (obsMaxC == null) { distSkipNoObs++; continue; }
+    const bucketLoC = toC(u.parsed.threshold, u.parsed.unit);
+    const bucketHiC = toC(u.parsed.thresholdHigh ?? u.parsed.threshold, u.parsed.unit);
+    const { distance, relation } = bucketDistanceToMax(bucketLoC, bucketHiC, obsMaxC);
+    if (relation === "contains-max") { distSkipContains++; continue; }
+    if (distance < CFG.MIN_DIST_C) { distSkipTooClose++; continue; }
+    if (distance > CFG.MAX_DIST_C) { distSkipTooFar++;   continue; }
+    eligible.push({ ...u, obsMaxC, distance, relation });
+  }
+  console.log(`  distance-filter: ${eligible.length} eligible · skipped ${distSkipTooClose} too-close (<${CFG.MIN_DIST_C}°C) · ${distSkipTooFar} too-far (>${CFG.MAX_DIST_C}°C) · ${distSkipContains} contains-max · ${distSkipNoObs} no-obs`);
+
+  // ---- 3. book scan — only for eligible markets ----
+  const byCid = new Map();  // conditionId → candidate (dedupe)
   let bookCalls = 0, bookFails = 0, askFiltered = 0, depthFiltered = 0;
-  await runParallel(universe, async (u) => {
+  await runParallel(eligible, async (u) => {
     const [yesToken, noToken] = u.mk.clobTokenIds;
     const [yesBook, noBook] = await Promise.all([
       fetchTopOfBook(yesToken),
@@ -728,56 +778,43 @@ async function scanOnce() {
     bookCalls += 2;
     if (!yesBook) bookFails++;
     if (!noBook) bookFails++;
-    // NO-side candidate
-    if (noBook && Number.isFinite(noBook.ask)) {
-      if (noBook.ask >= CFG.MIN_ASK_ENTRY && noBook.ask <= CFG.MAX_ASK_ENTRY) {
-        if (noBook.askDepth >= CFG.MIN_DEPTH_SHARES) {
-          candidates.push({ ...u, side: "NO", book: noBook });
-        } else { depthFiltered++; }
-      } else { askFiltered++; }
-    }
-    // YES-side candidate (inverted scalp — same strategy on the other side)
-    if (yesBook && Number.isFinite(yesBook.ask) && CFG.ALLOW_YES) {
-      if (yesBook.ask >= CFG.MIN_ASK_ENTRY && yesBook.ask <= CFG.MAX_ASK_ENTRY) {
-        if (yesBook.askDepth >= CFG.MIN_DEPTH_SHARES) {
-          candidates.push({ ...u, side: "YES", book: yesBook });
-        } else { depthFiltered++; }
-      } else { askFiltered++; }
-    }
+    // Determine which side matches 937's directional bet: for NO we want
+    // bucket away from observed max (max won't land in bucket). For YES we
+    // want the opposite — but 937 rarely trades YES, so default off.
+    // Check NO side
+    let best = null;
+    if (noBook && Number.isFinite(noBook.ask) && noBook.ask >= CFG.MIN_ASK_ENTRY && noBook.ask <= CFG.MAX_ASK_ENTRY) {
+      if (noBook.askDepth >= CFG.MIN_DEPTH_SHARES) {
+        best = { side: "NO", book: noBook, ask: noBook.ask };
+      } else { depthFiltered++; }
+    } else if (noBook && Number.isFinite(noBook.ask)) { askFiltered++; }
+    if (CFG.ALLOW_YES && yesBook && Number.isFinite(yesBook.ask) && yesBook.ask >= CFG.MIN_ASK_ENTRY && yesBook.ask <= CFG.MAX_ASK_ENTRY) {
+      if (yesBook.askDepth >= CFG.MIN_DEPTH_SHARES) {
+        // If both sides qualify (should be rare — NO+YES asks both high is
+        // an arbitrage on the same cid), pick the higher ask. 937's data
+        // shows 0/855 markets with both sides, so in practice this is never
+        // hit, but dedupe defensively.
+        if (!best || yesBook.ask > best.ask) {
+          best = { side: "YES", book: yesBook, ask: yesBook.ask };
+        }
+      } else { depthFiltered++; }
+    } else if (CFG.ALLOW_YES && yesBook && Number.isFinite(yesBook.ask)) { askFiltered++; }
+    if (best) byCid.set(u.mk.conditionId, { ...u, ...best });
   }, CFG.BOOK_CONCURRENCY);
-  console.log(`  book-scan: ${bookCalls} calls (${bookFails} fails), ${candidates.length} candidates (ask∈[${CFG.MIN_ASK_ENTRY},${CFG.MAX_ASK_ENTRY}] · depth≥${CFG.MIN_DEPTH_SHARES}sh) · filtered ${askFiltered} out-of-ask-range, ${depthFiltered} thin-depth`);
+  const candidates = [...byCid.values()];
+  console.log(`  book-scan: ${bookCalls} calls (${bookFails} fails), ${candidates.length} candidates (ask∈[${CFG.MIN_ASK_ENTRY},${CFG.MAX_ASK_ENTRY}] · depth≥${CFG.MIN_DEPTH_SHARES}sh) · filtered ${askFiltered} out-of-ask-range, ${depthFiltered} thin-depth · deduped by cid`);
 
-  // ---- 3. METAR veto + entry ----
-  let opened = 0, vetoed = 0;
+  // ---- 4. enter ----
+  let opened = 0;
   for (const c of candidates) {
-    let metarSig = null;
-    if (CFG.METAR_VETO) {
-      const { metar, openMeteo } = await getObservationsForMarket(c.parsed);
-      if (metar.length || openMeteo.length) {
-        metarSig = computeEntrySignal(c.parsed, metar, openMeteo, nowSec, CFG.CROSSED_BUF, CFG.FORECAST_BUF);
-      }
-      // Veto logic:
-      //   NO ask near 1 means the book says "NO almost certainly wins".
-      //     METAR agreement = signal says NO (observed-above, forecast-in-range/below).
-      //     Veto if METAR says YES (market expects the bucket to hit).
-      //   YES ask near 1 means the book says "YES almost certainly wins".
-      //     METAR agreement = signal says YES.
-      //     Veto if METAR says NO.
-      if (metarSig) {
-        if (c.side === "NO"  && metarSig.side === "YES") { vetoed++; continue; }
-        if (c.side === "YES" && metarSig.side === "NO")  { vetoed++; continue; }
-      }
-      // If METAR has no opinion (null sig), we DON'T veto — 937 doesn't
-      // use METAR at all. METAR is a one-way safety net, not a filter.
-    }
     const pos = await simulateEntry({
       side: c.side,
       entryPrice: c.book.ask,
       book: c.book,
       market: c.parsed,
       mkt: c.mk,
-      metarSig,
-      strategyVersion: "v30-replica",
+      metarSig: { reason: `dist-${c.relation}`, cushion: c.distance },
+      strategyVersion: "v31-distance",
     });
     if (pos) opened++;
   }
@@ -787,10 +824,11 @@ async function scanOnce() {
 }
 
 async function main() {
-  console.log(`=== Detect engine + simulator (v30-replica · pure 0x937 mimicry, no safety rails) ===`);
+  console.log(`=== Detect engine + simulator (v31-distance · pure 0x937 mimicry, no safety rails) ===`);
   console.log(`Bankroll: $${state.bankroll.toFixed(2)} (CLI=$${CFG.BANKROLL}${CFG.RESET ? ", --reset" : ""}${CFG.NO_CAP ? ", --nocap (no bankroll gate)" : ""})  Trade scale: $${CFG.TRADE_SIZE} (sampled from 937's empirical bucket distribution; larger buckets favored when ask≥0.999; min ${CFG.MIN_SHARES} shares enforced)`);
-  console.log(`Trigger: ${CFG.TRIGGER_MODE === "book" ? "CLOB book-scan" : "METAR signal"} · ask∈[${CFG.MIN_ASK_ENTRY},${CFG.MAX_ASK_ENTRY}] · min-depth ${CFG.MIN_DEPTH_SHARES}sh · YES-side ${CFG.ALLOW_YES ? "ON" : "OFF"}`);
-  console.log(`Safety: HIGHEST + (exact|between) only (--allow-non-hb to override) · METAR veto ${CFG.METAR_VETO ? "ON" : "OFF"} · max-hold ${CFG.MAX_HOLD_MIN}min · take-profit ${CFG.SELL_TARGET}`);
+  console.log(`Trigger: CLOB book-scan · ask∈[${CFG.MIN_ASK_ENTRY},${CFG.MAX_ASK_ENTRY}] · min-depth ${CFG.MIN_DEPTH_SHARES}sh · YES-side ${CFG.ALLOW_YES ? "ON" : "OFF"}`);
+  console.log(`Selectivity: bucket_distance ∈ [${CFG.MIN_DIST_C},${CFG.MAX_DIST_C}]°C from observed max (the 937 rule, reverse-engineered from 1028 entries)`);
+  console.log(`Safety: HIGHEST + (exact|between) only (--allow-non-hb to override) · dedupe by conditionId · max-hold ${CFG.MAX_HOLD_MIN}min · take-profit ${CFG.SELL_TARGET}`);
   console.log(`Scan intervals: market scan=${CFG.INTERVAL_SEC}s, position check=${CFG.POS_CHECK_SEC}s, weather cache=${CFG.WEATHER_TTL_SEC}s`);
   console.log(`TTR=[${CFG.TTR_MIN_SEC/3600}h, ${CFG.TTR_MAX_SEC/3600}h]`);
   console.log(`Data hierarchy:`);
@@ -798,14 +836,14 @@ async function main() {
   console.log(`  Open-Meteo forecast — used for FUTURE temps (YES signals need forecasts).`);
   console.log(`METAR stations mapped: ${Object.keys(STATIONS).length}\n`);
 
-  // v30-replica: expected workflow is `npm run archive` BEFORE first run,
+  // v31-distance: expected workflow is `npm run archive` BEFORE first run,
   // so state.positions should be empty. If a mid-run restart finds untagged
-  // positions, label them v30-replica so analytics group cleanly.
+  // positions, label them v31-distance so analytics group cleanly.
   let tagged = 0;
   for (const p of state.positions) {
-    if (!p.strategyVersion) { p.strategyVersion = "v30-replica"; tagged++; }
+    if (!p.strategyVersion) { p.strategyVersion = "v31-distance"; tagged++; }
   }
-  if (tagged) console.log(`[startup] tagged ${tagged} pre-existing positions as v30-replica`);
+  if (tagged) console.log(`[startup] tagged ${tagged} pre-existing positions as v31-distance`);
 
   // Persist immediately so the startup bankroll correction lands on disk
   // before any other action (scan / resolve / first loop write). Protects
