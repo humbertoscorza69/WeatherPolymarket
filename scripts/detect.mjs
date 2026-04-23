@@ -584,6 +584,13 @@ async function scanOnce() {
   for (const mk of markets) {
     const parsed = parseWeatherTitle(mk.title);
     if (!parsed || !parsed.date || parsed.threshold == null) continue;
+
+    // 0x937 (our guide wallet) does NOT trade LOWEST markets — 0 out of 242
+    // trades in the last 36h were on lowest-temp markets. Skip them unless
+    // explicitly re-enabled with --allow-lowest=true. This alone removes
+    // 30-40% of our noise vs 937's book.
+    if (parsed.isLowest && argv["allow-lowest"] !== "true") continue;
+
     const endSec = Math.floor(new Date(mk.endDate).getTime() / 1000);
     const ttr = endSec - nowSec;
     if (ttr < CFG.TTR_MIN_SEC || ttr > CFG.TTR_MAX_SEC) continue;
