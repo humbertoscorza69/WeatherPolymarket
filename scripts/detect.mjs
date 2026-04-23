@@ -52,8 +52,8 @@ const CFG = {
   ALLOW_NON_HIGHEST_BETWEEN: argv["allow-non-hb"] === "true",  // 937 is 100% HIGHEST+between
   MIN_ASK_ENTRY:    Number(argv["min-ask"] ?? "0.80"),   // 937's NO entries: 99% at 0.80+ (full range 0.50-0.999)
   MAX_ASK_ENTRY:    Number(argv["max-ask"] ?? "0.999"),  // 937's sell target
-  MIN_DIST_C:       Number(argv["min-dist"] ?? "0.5"),   // 937's rule: bucket must be ≥0.5°C from observed max
-  MAX_DIST_C:       Number(argv["max-dist"] ?? "5"),     // and ≤5°C (beyond this the book is at 0.9999+, no spread)
+  MIN_DIST_C:       Number(argv["min-dist"] ?? "0.1"),   // 937's rule (tuned against fresh 797 trades): 0.1°C gives max recall (71%) at 100% non-loss; tightening to 0.5 costs $550 PnL
+  MAX_DIST_C:       Number(argv["max-dist"] ?? "5"),     // beyond 5°C the book is at 0.9999+, no spread
   MIN_DEPTH_SHARES: Number(argv["min-depth"] ?? "1"),    // 937 takes tiny trades ($0.03 min seen); floor = Polymarket's 5-share minimum via MIN_SHARES
   BOOK_CONCURRENCY: Number(argv["book-concurrency"] ?? "8"),
   METAR_VETO:       argv["metar-veto"] === "true",       // 937 does NOT use METAR; OFF by default, opt-in only
