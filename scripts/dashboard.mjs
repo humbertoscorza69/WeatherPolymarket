@@ -108,20 +108,34 @@ async function fetchMarketData(conditionId) {
     } catch {}
   }
   const lastTrade = mk.lastTradePrice != null ? Number(mk.lastTradePrice) : null;
-  // A market is resolved when outcomePrices collapses to [1,0] or [0,1] (and
-  // optionally the `closed` flag). At that point lastPrice for each side is
-  // literally the payoff — no more midpoint ambiguity.
-  const resolved = (yesPrice === 1 && noPrice === 0) || (yesPrice === 0 && noPrice === 1);
-  const noWon = resolved && noPrice === 1;
-  const yesWon = resolved && yesPrice === 1;
+  // Multi-signal resolution detection — Gamma's behavior varies for closed
+  // markets; some return outcomePrices = [1,0] cleanly, some keep the
+  // pre-close mid (e.g. [0.4750, 0.5250]), some drop the field entirely.
+  // Trust the `closed` flag, `archived`, `umaResolutionStatus`, or a
+  // clean 0/1 split — any of which indicates settlement.
+  const priceResolved = (yesPrice === 1 && noPrice === 0) || (yesPrice === 0 && noPrice === 1)
+    || (Number.isFinite(yesPrice) && Number.isFinite(noPrice) && Math.max(yesPrice, noPrice) >= 0.999 && Math.min(yesPrice, noPrice) <= 0.001);
+  const closedFlag = mk.closed === true || mk.archived === true;
+  const umaResolved = mk.umaResolutionStatus === "resolved" || mk.resolved === true;
+  const resolved = priceResolved || closedFlag || umaResolved;
+  let noWon = null, yesWon = null;
+  if (resolved) {
+    if (priceResolved) {
+      noWon = noPrice >= 0.5; yesWon = yesPrice >= 0.5;
+    }
+    // If the flag says "closed" but prices are ambiguous, leave noWon/yesWon
+    // as null — the frontend falls back to the METAR verdict for the payoff.
+  }
   return {
     tokens,
     endDate: mk.endDate,
     title: mk.question || mk.title,
     yesPrice, noPrice, lastTradePrice: lastTrade,
     resolved, noWon, yesWon,
-    closed: mk.closed === true,
+    closed: closedFlag,
     priceSource: (yesPrice != null && noPrice != null) ? "gamma-outcome" : null,
+    // Keep the raw flags for debugging / /api/debug-market
+    rawFlags: { closed: mk.closed, archived: mk.archived, umaResolutionStatus: mk.umaResolutionStatus, resolved: mk.resolved },
   };
 }
 
@@ -354,12 +368,36 @@ async function refreshWeatherForPositions(positions) {
   await runParallel(work, async (w) => { await getWeatherFor(w.city, w.date); }, 6);
 }
 
-function unrealizedFor(pos) {
+function unrealizedFor(pos, metarVerdict) {
   const cached = priceCache.get(pos.conditionId);
-  if (!cached || cached.noPrice == null) return { lastPrice: null, unrealizedPnl: null, unrealizedPct: null, ttrSec: null, endDate: cached?.endDate, resolved: false };
-  // If market is resolved, outcomePrices collapses to 0/1 — those ARE the final
-  // payoffs per share, so unrealized becomes the actual realized PnL.
-  const lastPrice = pos.side === "NO" ? cached.noPrice : cached.yesPrice ?? (1 - cached.noPrice);
+  if (!cached) return { lastPrice: null, unrealizedPnl: null, unrealizedPct: null, ttrSec: null, endDate: null, resolved: false };
+
+  let lastPrice = null;
+  let didWin = null;
+  let priceSource = cached.source;
+
+  if (cached.resolved) {
+    // Prefer Gamma's explicit 0/1 signal. If Gamma says "closed" but prices
+    // are ambiguous (e.g. stuck at 0.475), fall back to METAR ground truth.
+    if (cached.noWon !== null && cached.yesWon !== null) {
+      didWin = pos.side === "NO" ? cached.noWon : cached.yesWon;
+      lastPrice = didWin ? 1 : 0;
+      priceSource = "gamma-resolved";
+    } else if (metarVerdict === "locked_win") {
+      didWin = true; lastPrice = 1; priceSource = "metar-resolved";
+    } else if (metarVerdict === "locked_loss") {
+      didWin = false; lastPrice = 0; priceSource = "metar-resolved";
+    } else {
+      // Closed but no clean signal — use last known mid
+      lastPrice = pos.side === "NO" ? cached.noPrice : cached.yesPrice ?? (cached.noPrice != null ? 1 - cached.noPrice : null);
+    }
+  } else if (cached.noPrice != null) {
+    // Live market — use Gamma mid
+    lastPrice = pos.side === "NO" ? cached.noPrice : cached.yesPrice ?? (1 - cached.noPrice);
+  }
+
+  if (lastPrice == null) return { lastPrice: null, unrealizedPnl: null, unrealizedPct: null, ttrSec: null, endDate: cached.endDate, resolved: !!cached.resolved };
+
   const unrealizedPnl = num(pos.shares) * (lastPrice - num(pos.entryPrice));
   const unrealizedPct = num(pos.entryPrice) > 0 ? (lastPrice - num(pos.entryPrice)) / num(pos.entryPrice) : 0;
   let ttrSec = null;
@@ -374,8 +412,8 @@ function unrealizedFor(pos) {
     ttrSec,
     endDate: cached.endDate,
     resolved: !!cached.resolved,
-    didWin: cached.resolved ? ((pos.side === "NO" && cached.noWon) || (pos.side === "YES" && cached.yesWon)) : null,
-    priceSource: cached.source,
+    didWin,
+    priceSource,
   };
 }
 
@@ -577,13 +615,8 @@ function computeStats({ state, logLines }) {
   let totalExposure = 0;
   let unrealizedKnown = 0;
   const enrichedPositions = (state.positions || []).map(p => {
-    const u = unrealizedFor(p);
-    totalExposure += num(p.positionSize);
-    if (u.unrealizedPnl != null) {
-      unrealized += u.unrealizedPnl;
-      unrealizedKnown++;
-    }
-    // Attach weather ground-truth verdict
+    // Compute weather-derived verdict FIRST so unrealizedFor can use it as a
+    // fallback when Gamma reports resolved but prices are ambiguous.
     const title = parseWeatherTitle(p.title);
     let verdictInfo = { verdict: "unknown" };
     if (title?.city && title?.date) {
@@ -591,10 +624,18 @@ function computeStats({ state, logLines }) {
       if (wx?.metar) verdictInfo = computeVerdict(p, wx.metar);
       else if (wx?.noStation) verdictInfo = { verdict: "no-station" };
     }
-    // Gamma-reported resolution beats weather verdict every time — it's the
-    // authoritative final state.
+    const u = unrealizedFor(p, verdictInfo.verdict);
+    totalExposure += num(p.positionSize);
+    if (u.unrealizedPnl != null) {
+      unrealized += u.unrealizedPnl;
+      unrealizedKnown++;
+    }
+    // Gamma-reported or METAR-fallback resolution: flip the verdict to its
+    // resolved form so the UI pills render solid green/red.
     if (u.resolved) {
-      verdictInfo.verdict = u.didWin ? "resolved_win" : "resolved_loss";
+      if (u.didWin === true) verdictInfo.verdict = "resolved_win";
+      else if (u.didWin === false) verdictInfo.verdict = "resolved_loss";
+      // If didWin is null, keep whatever METAR said — still useful
     }
     return { ...p, ...u, ...verdictInfo };
   });
@@ -713,6 +754,17 @@ const server = http.createServer(async (req, res) => {
       } catch {}
       res.writeHead(200, { "content-type": "application/json" });
       res.end(JSON.stringify({ ok: true, cleared: true, ...diagnostics }));
+      return;
+    }
+    if (u.pathname === "/api/debug-market") {
+      const cid = u.query.id;
+      if (!cid) { res.writeHead(400, { "content-type": "application/json" }); res.end(JSON.stringify({ error: "missing ?id=conditionId" })); return; }
+      // Return raw Gamma response + our interpretation
+      const raw = await fetchJson(`${GAMMA}/markets?conditionIds=${cid}`);
+      const parsed = await fetchMarketData(cid);
+      const cached = priceCache.get(cid);
+      res.writeHead(200, { "content-type": "application/json" });
+      res.end(JSON.stringify({ conditionId: cid, rawGamma: raw, parsed, cached }, null, 2));
       return;
     }
     if (u.pathname === "/api/diagnostics") {
