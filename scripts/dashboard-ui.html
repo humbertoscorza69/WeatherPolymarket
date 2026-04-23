@@ -112,6 +112,11 @@
   .verdict { font-size: 10px; padding: 2px 6px; border-radius: 3px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; font-family: ui-monospace, monospace; }
   .verdict.locked_win { background: color-mix(in oklch, var(--green), transparent 75%); color: var(--green); border: 1px solid color-mix(in oklch, var(--green), transparent 60%); }
   .verdict.locked_loss { background: color-mix(in oklch, var(--red), transparent 75%); color: var(--red); border: 1px solid color-mix(in oklch, var(--red), transparent 60%); }
+  .verdict.resolved_win { background: var(--green); color: #0b0e14; border: 1px solid var(--green); font-weight: 700; }
+  .verdict.resolved_loss { background: var(--red); color: #0b0e14; border: 1px solid var(--red); font-weight: 700; }
+  .market-cell { max-width: 260px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--muted-hi); cursor: help; }
+  .market-cell:hover { color: var(--text); }
+  tr.resolved td { background: color-mix(in oklch, var(--panel-hi), var(--panel) 50%); }
   .verdict.leading { color: var(--green); }
   .verdict.trailing { color: var(--amber); }
   .verdict.uncertain { color: var(--muted-hi); }
@@ -274,6 +279,8 @@
             </select>
             <select id="openFilterVerdict" onchange="renderOpen(__openPositions)">
               <option value="">All verdicts</option>
+              <option value="resolved_win">Resolved WIN</option>
+              <option value="resolved_loss">Resolved LOSE</option>
               <option value="locked_win">Locked WIN</option>
               <option value="locked_loss">Locked LOSE</option>
               <option value="leading">Leading</option>
@@ -675,7 +682,7 @@ function renderOpen(positions) {
     return;
   }
 
-  const verdictOrder = { locked_loss: 0, trailing: 1, uncertain: 2, unknown: 3, "no-station": 4, leading: 5, locked_win: 6 };
+  const verdictOrder = { resolved_loss: 0, locked_loss: 1, trailing: 2, uncertain: 3, unknown: 4, "no-station": 5, leading: 6, locked_win: 7, resolved_win: 8 };
   const sorters = {
     "unreal-desc":  (a, b) => (b.unrealizedPnl ?? -Infinity) - (a.unrealizedPnl ?? -Infinity),
     "unreal-asc":   (a, b) => (a.unrealizedPnl ?? Infinity) - (b.unrealizedPnl ?? Infinity),
@@ -699,17 +706,31 @@ function renderOpen(positions) {
       const upnTxt = upn == null ? "—" : fmt$(upn);
       const upctTxt = upct == null ? "—" : fmtSigned(upct * 100, 1) + "%";
       const verdict = p.verdict || "unknown";
-      const verdictLabel = { locked_win: "WIN", locked_loss: "LOSE", leading: "lead", trailing: "trail", uncertain: "?", unknown: "—", "no-station": "—" }[verdict] || "—";
+      const verdictLabel = {
+        resolved_win: "WON", resolved_loss: "LOST",
+        locked_win: "WIN", locked_loss: "LOSE",
+        leading: "lead", trailing: "trail",
+        uncertain: "?", unknown: "—", "no-station": "—"
+      }[verdict] || "—";
       const obsTxt = (() => {
         if (p.observedMax == null && p.observedMin == null) return "—";
         if (p.isLowest) return `min ${p.observedMin ?? "?"}°`;
         return `max ${p.observedMax ?? "?"}°`;
       })();
       const thrTxt = p.threshold == null ? "—" : (p.thresholdHigh != null ? `${p.threshold}-${p.thresholdHigh}°${p.thresholdUnit||"C"}` : `${p.threshold}°${p.thresholdUnit||"C"}`);
-      return `<tr>
+      const rowCls = p.resolved ? "resolved" : "";
+      const titleAttr = (p.title || "").replace(/"/g, "&quot;");
+      // Condensed version of the market title — drops the "Will the" prefix
+      const shortTitle = (p.title || "")
+        .replace(/^Will the\s+/i, "")
+        .replace(/\s+on\s+[A-Za-z]+\s+\d+\??$/, "")
+        .replace(/\s+temperature\s+in\s+/i, " ")
+        .trim();
+      return `<tr class="${rowCls}" title="${titleAttr}">
         <td>${fmtTime(p.openedAt)}</td>
         <td>${side}</td>
         <td>${p.city||""}</td>
+        <td class="market-cell" title="${titleAttr}">${shortTitle}</td>
         <td>${p.date||""}</td>
         <td class="num">${fmtN(p.entryPrice,4)}</td>
         <td class="num">${lp}</td>
@@ -730,7 +751,7 @@ function renderOpen(positions) {
   document.getElementById("openTable").innerHTML = `
     <table>
       <thead><tr>
-        <th>Open</th><th>Side</th><th>City</th><th>Date</th>
+        <th>Open</th><th>Side</th><th>City</th><th>Market</th><th>Date</th>
         <th class="num">Entry</th><th class="num">Last</th>
         <th class="num">Shares</th>${headerSort("size-desc","Size")}
         ${headerSort("unreal-desc","Unreal $")}${headerSort("unrealpct-desc","Unreal %")}
@@ -1273,7 +1294,11 @@ async function refresh() {
       const v = data.openBreakdown.byVerdict || {};
       const lockedEl = document.getElementById("lockedTop");
       if (lockedEl) {
-        lockedEl.innerHTML = `<span style="color:var(--green)">✓${v.locked_win || 0}</span> / <span style="color:var(--red)">✗${v.locked_loss || 0}</span>`;
+        const wonTot = (v.resolved_win || 0) + (v.locked_win || 0);
+        const lostTot = (v.resolved_loss || 0) + (v.locked_loss || 0);
+        const resolvedTot = (v.resolved_win || 0) + (v.resolved_loss || 0);
+        const suffix = resolvedTot ? ` · ${resolvedTot} resolved` : "";
+        lockedEl.innerHTML = `<span style="color:var(--green)">✓${wonTot}</span> / <span style="color:var(--red)">✗${lostTot}</span>${suffix}`;
       }
       const projEl = document.getElementById("projectedTop");
       if (projEl) {

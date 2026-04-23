@@ -108,11 +108,19 @@ async function fetchMarketData(conditionId) {
     } catch {}
   }
   const lastTrade = mk.lastTradePrice != null ? Number(mk.lastTradePrice) : null;
+  // A market is resolved when outcomePrices collapses to [1,0] or [0,1] (and
+  // optionally the `closed` flag). At that point lastPrice for each side is
+  // literally the payoff — no more midpoint ambiguity.
+  const resolved = (yesPrice === 1 && noPrice === 0) || (yesPrice === 0 && noPrice === 1);
+  const noWon = resolved && noPrice === 1;
+  const yesWon = resolved && yesPrice === 1;
   return {
     tokens,
     endDate: mk.endDate,
     title: mk.question || mk.title,
     yesPrice, noPrice, lastTradePrice: lastTrade,
+    resolved, noWon, yesWon,
+    closed: mk.closed === true,
     priceSource: (yesPrice != null && noPrice != null) ? "gamma-outcome" : null,
   };
 }
@@ -155,6 +163,10 @@ async function refreshPricesForPositions(positions) {
       noPrice: data.noPrice,
       yesPrice: data.yesPrice,
       lastTradePrice: data.lastTradePrice,
+      resolved: data.resolved,
+      noWon: data.noWon,
+      yesWon: data.yesWon,
+      closed: data.closed,
       source: data.priceSource,
       ts: Date.now(),
       metaTs: t0,
@@ -344,9 +356,10 @@ async function refreshWeatherForPositions(positions) {
 
 function unrealizedFor(pos) {
   const cached = priceCache.get(pos.conditionId);
-  if (!cached || cached.noPrice == null) return { lastPrice: null, unrealizedPnl: null, unrealizedPct: null, ttrSec: null, endDate: cached?.endDate };
-  const noPrice = cached.noPrice;
-  const lastPrice = pos.side === "NO" ? noPrice : (1 - noPrice);
+  if (!cached || cached.noPrice == null) return { lastPrice: null, unrealizedPnl: null, unrealizedPct: null, ttrSec: null, endDate: cached?.endDate, resolved: false };
+  // If market is resolved, outcomePrices collapses to 0/1 — those ARE the final
+  // payoffs per share, so unrealized becomes the actual realized PnL.
+  const lastPrice = pos.side === "NO" ? cached.noPrice : cached.yesPrice ?? (1 - cached.noPrice);
   const unrealizedPnl = num(pos.shares) * (lastPrice - num(pos.entryPrice));
   const unrealizedPct = num(pos.entryPrice) > 0 ? (lastPrice - num(pos.entryPrice)) / num(pos.entryPrice) : 0;
   let ttrSec = null;
@@ -354,7 +367,16 @@ function unrealizedFor(pos) {
     const end = new Date(cached.endDate).getTime();
     if (Number.isFinite(end)) ttrSec = Math.max(0, Math.floor((end - Date.now()) / 1000));
   }
-  return { lastPrice, unrealizedPnl, unrealizedPct, ttrSec, endDate: cached.endDate };
+  return {
+    lastPrice,
+    unrealizedPnl,
+    unrealizedPct,
+    ttrSec,
+    endDate: cached.endDate,
+    resolved: !!cached.resolved,
+    didWin: cached.resolved ? ((pos.side === "NO" && cached.noWon) || (pos.side === "YES" && cached.yesWon)) : null,
+    priceSource: cached.source,
+  };
 }
 
 async function loadData() {
@@ -569,6 +591,11 @@ function computeStats({ state, logLines }) {
       if (wx?.metar) verdictInfo = computeVerdict(p, wx.metar);
       else if (wx?.noStation) verdictInfo = { verdict: "no-station" };
     }
+    // Gamma-reported resolution beats weather verdict every time — it's the
+    // authoritative final state.
+    if (u.resolved) {
+      verdictInfo.verdict = u.didWin ? "resolved_win" : "resolved_loss";
+    }
     return { ...p, ...u, ...verdictInfo };
   });
   // Best/worst open
@@ -588,14 +615,16 @@ function computeStats({ state, logLines }) {
   // Open-position breakdowns (for Sprint 10)
   const openBySide = { NO: 0, YES: 0 };
   const openByCity = {};
-  const openByVerdict = { locked_win: 0, locked_loss: 0, leading: 0, trailing: 0, uncertain: 0, unknown: 0, "no-station": 0 };
-  let projectedPayoff = 0;  // if every locked_win pays $1 and locked_loss pays $0, +expected from leading/trailing
+  const openByVerdict = { resolved_win: 0, resolved_loss: 0, locked_win: 0, locked_loss: 0, leading: 0, trailing: 0, uncertain: 0, unknown: 0, "no-station": 0 };
+  let projectedPayoff = 0;  // from resolved + locked positions
+  let pendingSettlement = 0; // count of resolved markets we haven't settled locally yet
   for (const p of enrichedPositions) {
     openBySide[p.side] = (openBySide[p.side] || 0) + 1;
     openByCity[p.city || "?"] = (openByCity[p.city || "?"] || 0) + 1;
     openByVerdict[p.verdict || "unknown"] = (openByVerdict[p.verdict || "unknown"] || 0) + 1;
-    if (p.verdict === "locked_win") projectedPayoff += num(p.shares) * (1 - num(p.entryPrice));
-    else if (p.verdict === "locked_loss") projectedPayoff += num(p.shares) * (0 - num(p.entryPrice));
+    if (p.resolved) pendingSettlement++;
+    if (p.verdict === "resolved_win" || p.verdict === "locked_win") projectedPayoff += num(p.shares) * (1 - num(p.entryPrice));
+    else if (p.verdict === "resolved_loss" || p.verdict === "locked_loss") projectedPayoff += num(p.shares) * (0 - num(p.entryPrice));
   }
   const trueEquity = num(state.bankroll) + totalExposure + unrealized; // bankroll cash + tied-up cost basis + mark-to-market gain/loss
   const exposurePct = (num(state.bankroll) + totalExposure) > 0
@@ -641,7 +670,7 @@ function computeStats({ state, logLines }) {
     breakdown: { bySide, byReason, byCity, byCushion },
     thermalEdge: Object.values(thermalBuckets),
     execLog: logLines.slice(-500),  // last 500 events (OPEN + CLOSE), newest last
-    openBreakdown: { bySide: openBySide, byCity: openByCity, byVerdict: openByVerdict, bestOpen, worstOpen, projectedPayoff: Math.round(projectedPayoff * 100) / 100 },
+    openBreakdown: { bySide: openBySide, byCity: openByCity, byVerdict: openByVerdict, bestOpen, worstOpen, projectedPayoff: Math.round(projectedPayoff * 100) / 100, pendingSettlement },
     quant: {
       kelly,
       omega: Number.isFinite(omega) ? omega : null,
