@@ -45,14 +45,16 @@ const CFG = {
   MAX_ENTRY_NO:     Number(argv.maxentryno ?? "0.999"),
   MIN_ENTRY_YES:    Number(argv.minentryyes ?? "0.02"),  // unused — YES gated off in scanOnce
   MAX_ENTRY_YES:    Number(argv.maxentryyes ?? "0.99"),
-  ALLOW_YES:        argv["allow-yes"] === "true",        // override to re-enable YES side
-  ALLOW_NON_HIGHEST_BETWEEN: argv["allow-non-hb"] === "true",  // override to re-enable LOWEST/above/below
-  // v30-mm — book-scan market-maker parameters
-  MIN_ASK_ENTRY:    Number(argv["min-ask"] ?? "0.95"),   // only scalp asks in [MIN_ASK, MAX_ASK]
-  MAX_ASK_ENTRY:    Number(argv["max-ask"] ?? "0.999"),
-  MIN_DEPTH_SHARES: Number(argv["min-depth"] ?? "20"),   // minimum depth at the ask to fire
+  // v30-replica defaults match 937's observed behavior with no added
+  // safety rails. Flags below are for dialing in extra filters the user
+  // may want — the out-of-the-box run is pure 937 mimicry.
+  ALLOW_YES:        argv["allow-yes"] !== "false",       // 937 does ~3% YES; ON by default
+  ALLOW_NON_HIGHEST_BETWEEN: argv["allow-non-hb"] === "true",  // 937 is 100% HIGHEST+between
+  MIN_ASK_ENTRY:    Number(argv["min-ask"] ?? "0.80"),   // 937's NO entries: 99% at 0.80+ (full range 0.50-0.999)
+  MAX_ASK_ENTRY:    Number(argv["max-ask"] ?? "0.999"),  // 937's sell target
+  MIN_DEPTH_SHARES: Number(argv["min-depth"] ?? "1"),    // 937 takes tiny trades ($0.03 min seen); floor = Polymarket's 5-share minimum via MIN_SHARES
   BOOK_CONCURRENCY: Number(argv["book-concurrency"] ?? "8"),
-  METAR_VETO:       argv["metar-veto"] !== "false",      // use METAR signal as safety veto (default on)
+  METAR_VETO:       argv["metar-veto"] === "true",       // 937 does NOT use METAR; OFF by default, opt-in only
   TRIGGER_MODE:     argv["trigger"] ?? "book",           // "book" (v30) | "metar" (v29)
   TTR_MIN_SEC:      Number(argv.ttrmin ?? String(60*60)),        // 1h (allow early entries)
   TTR_MAX_SEC:      Number(argv.ttrmax ?? String(24*3600)),      // 24h (matches 0x900e's 10h median entry)
@@ -361,7 +363,7 @@ function computeEntrySignal(market, metarObs, omObs, nowSec, buffer, forecastBuf
   return null;
 }
 
-// v30-mm sizing: inverted from v29. 937's open-position distribution shows
+// v30-replica sizing: inverted from v29. 937's open-position distribution shows
 // that the BIGGEST median sizes sit at the SAFEST price band (0.999+ =
 // $499 med), while the 0.95-0.99 band has much smaller $72 med sizes.
 // The logic: at 0.999+ the max loss per share is $0.001, so you can
@@ -376,7 +378,7 @@ const SIZE_BUCKETS_USDC = [
 ];
 
 function pickSizeBucketUsdc(ctx) {
-  // v30-mm: bucket bias is driven by distance from 0.999 (price proximity
+  // v30-replica: bucket bias is driven by distance from 0.999 (price proximity
   // to certainty). ctx.ask is the top-of-book ask we're about to pay.
   //   ask >= 0.999   → full weight on large/whale (deep-safe)
   //   ask ~ 0.99     → shift toward mid/large
@@ -403,7 +405,7 @@ function pickSizeBucketUsdc(ctx) {
   return SIZE_BUCKETS_USDC[SIZE_BUCKETS_USDC.length - 1];
 }
 
-// v30-mm entry sim. Pays the ask (taker), records book snapshot.
+// v30-replica entry sim. Pays the ask (taker), records book snapshot.
 //   ctx.side         : "NO" | "YES"
 //   ctx.entryPrice   : taker price actually paid (= ask on that side)
 //   ctx.book         : { ask, askDepth, bid, bidDepth, mid, fillableAtCap }
@@ -413,9 +415,9 @@ function pickSizeBucketUsdc(ctx) {
 //   ctx.strategyVersion
 async function simulateEntry(ctx) {
   const { side, entryPrice, book, market, mkt, metarSig } = ctx;
-  const strategyVersion = ctx.strategyVersion || "v30-mm";
+  const strategyVersion = ctx.strategyVersion || "v30-replica";
 
-  // v30-mm sizing: driven by the ask price's proximity to certainty (0.999+).
+  // v30-replica sizing: driven by the ask price's proximity to certainty (0.999+).
   // Bucket midpoint scaled by TRADE_SIZE/50 so user can tune absolute size.
   const bucket = pickSizeBucketUsdc({ ask: entryPrice });
   const scale  = CFG.TRADE_SIZE / 50;
@@ -490,7 +492,7 @@ async function fetchBookMidpoint(noTokenId) {
   return null;
 }
 
-// v30-mm core primitive: fetch the top-of-book snapshot for ONE token.
+// v30-replica core primitive: fetch the top-of-book snapshot for ONE token.
 // Returns { ask, askDepth, bid, bidDepth, mid } or null on failure.
 // We care about:
 //   - ask (+ cumulative depth at/below 0.999) to sim a buy
@@ -535,7 +537,7 @@ async function runParallel(items, worker, concurrency = 6) {
 }
 
 async function resolvePositions() {
-  // v30-mm settlement. Polymarket is the authority. Book-scan was the
+  // v30-replica settlement. Polymarket is the authority. Book-scan was the
   // ENTRY trigger; exits are unchanged from v29:
   //   0. Profit-take: our-side CLOB mid ≥ SELL_TARGET (0.999) → exit at
   //      that price. DOMINANT exit in 937's data — 96.6% of sells hit 0.999.
@@ -673,7 +675,9 @@ async function resolvePositions() {
   state.positions = state.positions.filter(p => !p.closed);
 }
 
-// v30-mm scan: book-scan as trigger, METAR as safety veto.
+// v30-replica scan: pure book-scan trigger mimicking 937. METAR is
+// available as an opt-in veto (--metar-veto=true) but DEFAULT OFF —
+// 937's data shows zero use of temperature signal in entries.
 //
 // Flow per market:
 //   1. universe filter: HIGHEST + (exact|between), TTR window, no dup
@@ -773,7 +777,7 @@ async function scanOnce() {
       market: c.parsed,
       mkt: c.mk,
       metarSig,
-      strategyVersion: "v30-mm",
+      strategyVersion: "v30-replica",
     });
     if (pos) opened++;
   }
@@ -783,7 +787,7 @@ async function scanOnce() {
 }
 
 async function main() {
-  console.log(`=== Detect engine + simulator (v30-mm · 0x937 market-maker replica) ===`);
+  console.log(`=== Detect engine + simulator (v30-replica · pure 0x937 mimicry, no safety rails) ===`);
   console.log(`Bankroll: $${state.bankroll.toFixed(2)} (CLI=$${CFG.BANKROLL}${CFG.RESET ? ", --reset" : ""}${CFG.NO_CAP ? ", --nocap (no bankroll gate)" : ""})  Trade scale: $${CFG.TRADE_SIZE} (sampled from 937's empirical bucket distribution; larger buckets favored when ask≥0.999; min ${CFG.MIN_SHARES} shares enforced)`);
   console.log(`Trigger: ${CFG.TRIGGER_MODE === "book" ? "CLOB book-scan" : "METAR signal"} · ask∈[${CFG.MIN_ASK_ENTRY},${CFG.MAX_ASK_ENTRY}] · min-depth ${CFG.MIN_DEPTH_SHARES}sh · YES-side ${CFG.ALLOW_YES ? "ON" : "OFF"}`);
   console.log(`Safety: HIGHEST + (exact|between) only (--allow-non-hb to override) · METAR veto ${CFG.METAR_VETO ? "ON" : "OFF"} · max-hold ${CFG.MAX_HOLD_MIN}min · take-profit ${CFG.SELL_TARGET}`);
@@ -794,14 +798,14 @@ async function main() {
   console.log(`  Open-Meteo forecast — used for FUTURE temps (YES signals need forecasts).`);
   console.log(`METAR stations mapped: ${Object.keys(STATIONS).length}\n`);
 
-  // v30-mm: expected workflow is `npm run archive` BEFORE first run,
+  // v30-replica: expected workflow is `npm run archive` BEFORE first run,
   // so state.positions should be empty. If a mid-run restart finds untagged
-  // positions, label them v30-mm so analytics group cleanly.
+  // positions, label them v30-replica so analytics group cleanly.
   let tagged = 0;
   for (const p of state.positions) {
-    if (!p.strategyVersion) { p.strategyVersion = "v30-mm"; tagged++; }
+    if (!p.strategyVersion) { p.strategyVersion = "v30-replica"; tagged++; }
   }
-  if (tagged) console.log(`[startup] tagged ${tagged} pre-existing positions as v30-mm`);
+  if (tagged) console.log(`[startup] tagged ${tagged} pre-existing positions as v30-replica`);
 
   // Persist immediately so the startup bankroll correction lands on disk
   // before any other action (scan / resolve / first loop write). Protects
