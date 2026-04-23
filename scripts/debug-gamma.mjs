@@ -72,6 +72,29 @@ async function main() {
   console.log("\nG · Keyword search for temperature in live markets:");
   await probe("G1", `${GAMMA}/markets?closed=false&limit=500&offset=0&end_date_min=${nowIso}&end_date_max=${in48h}`);
 
+  console.log("\nF2 · Deep-dive event structure (do events contain child markets inline?):");
+  const events = await fetchJson(`${GAMMA}/events?closed=false&tag_slug=weather&limit=5`);
+  if (Array.isArray(events) && events.length) {
+    const sample = events[0];
+    console.log(`  sample event keys: ${Object.keys(sample).join(", ")}`);
+    if (Array.isArray(sample.markets)) {
+      console.log(`  sample event has ${sample.markets.length} child markets`);
+      const child = sample.markets[0];
+      if (child) {
+        console.log(`    child keys: ${Object.keys(child).join(", ")}`);
+        console.log(`    child.question: ${child.question?.slice(0, 80)}`);
+        console.log(`    child.conditionId: ${child.conditionId}`);
+        console.log(`    child.endDate: ${child.endDate}`);
+        console.log(`    child.closed: ${child.closed}`);
+        console.log(`    child.clobTokenIds: ${typeof child.clobTokenIds === "string" ? child.clobTokenIds.slice(0, 100) : child.clobTokenIds}`);
+      }
+    } else {
+      console.log(`  NO child markets inline. Need to fetch /markets?event_id=${sample.id}`);
+      console.log(`  sample event title: ${sample.title}`);
+      console.log(`  sample event id: ${sample.id}  slug: ${sample.slug}`);
+    }
+  }
+
   console.log("\nH · Check tags list (see what tag slugs exist):");
   const tags = await fetchJson(`${GAMMA}/tags?limit=100`);
   if (Array.isArray(tags)) {

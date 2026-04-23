@@ -154,27 +154,36 @@ function parseWeatherTitle(t) {
 function toC(v, unit) { return unit === "F" ? (v - 32) * 5/9 : v; }
 
 async function fetchLiveWeatherMarkets() {
+  // Polymarket restructured weather markets into EVENTS — each event groups all
+  // thresholds for one city+date (e.g. "Seoul April 24 Highest" → child markets
+  // for 13°C, 14°C, ...). The old /markets?tag_slug=weather returns misc
+  // weather-adjacent stuff and zero temperature markets.
   const markets = [];
-  const nowIso = new Date().toISOString();
-  const in48h = new Date(Date.now() + 86400_000 * 2).toISOString();
+  const nowMs = Date.now();
+  const windowEndMs = nowMs + 86400_000 * 2; // 48h entry window
   let offset = 0;
   while (offset < 5000) {
-    const url = `${GAMMA}/markets?closed=false&tag_slug=weather&limit=500&offset=${offset}&end_date_min=${nowIso}&end_date_max=${in48h}`;
+    const url = `${GAMMA}/events?closed=false&tag_slug=weather&limit=100&offset=${offset}`;
     const page = await fetchJson(url);
     if (!Array.isArray(page) || !page.length) break;
-    for (const m of page) {
-      if (!m.conditionId) continue;
-      const q = m.question || m.title || "";
-      if (!/temperature/i.test(q)) continue;
-      markets.push({
-        conditionId: m.conditionId,
-        title: q,
-        endDate: m.endDate,
-        clobTokenIds: typeof m.clobTokenIds === "string" ? JSON.parse(m.clobTokenIds) : m.clobTokenIds,
-      });
+    for (const ev of page) {
+      const children = Array.isArray(ev.markets) ? ev.markets : [];
+      for (const m of children) {
+        if (!m.conditionId || m.closed) continue;
+        const q = m.question || m.title || "";
+        if (!/temperature/i.test(q)) continue;
+        const endMs = m.endDate ? new Date(m.endDate).getTime() : null;
+        if (!endMs || endMs < nowMs || endMs > windowEndMs) continue;
+        markets.push({
+          conditionId: m.conditionId,
+          title: q,
+          endDate: m.endDate,
+          clobTokenIds: typeof m.clobTokenIds === "string" ? JSON.parse(m.clobTokenIds) : m.clobTokenIds,
+        });
+      }
     }
-    if (page.length < 500) break;
-    offset += 500;
+    if (page.length < 100) break;
+    offset += 100;
   }
   return markets;
 }
