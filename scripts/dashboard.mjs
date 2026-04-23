@@ -412,42 +412,25 @@ function unrealizedFor(pos, metarVerdict) {
   let didWin = null;
   let priceSource = cached.source;
 
-  // CRITICAL: use pos.endDate (stored at entry time, per-market) as the
-  // authoritative resolution timestamp. Gamma sometimes returns the parent
-  // EVENT's endDate (e.g. an event covering weeks of daily markets), which
-  // makes cached.endDate wrong — that's why TTR was showing 99 days and
-  // why our "past end" check never fired.
+  // Use pos.endDate (stored at entry time) as the authoritative resolution
+  // timestamp — Gamma sometimes returns the parent event's endDate.
   const authEndDate = pos.endDate || cached.endDate;
-  const endPastMs = authEndDate ? Date.now() - new Date(authEndDate).getTime() : -Infinity;
-  const metarLocked = metarVerdict === "locked_win" || metarVerdict === "locked_loss";
-  // Effective resolution: Gamma confirmed it, OR METAR has locked the outcome
-  // (observation is monotone — once max > threshold, it can't go back below).
-  // Drop the old endPast requirement — a locked observation IS the resolution
-  // signal for mark-to-market purposes, regardless of whether Polymarket's
-  // clock has ticked past the arbitrary 12:00 UTC close.
-  const effectivelyResolved = cached.resolved || metarLocked;
 
-  if (effectivelyResolved) {
-    // Prefer Gamma's explicit 0/1 signal. If Gamma says "closed" but prices
-    // are ambiguous (e.g. stuck at 0.475), fall back to METAR ground truth.
-    if (cached.noWon !== null && cached.yesWon !== null) {
-      didWin = pos.side === "NO" ? cached.noWon : cached.yesWon;
-      lastPrice = didWin ? 1 : 0;
-      priceSource = "gamma-resolved";
-    } else if (metarVerdict === "locked_win") {
-      didWin = true; lastPrice = 1; priceSource = "metar-resolved";
-    } else if (metarVerdict === "locked_loss") {
-      didWin = false; lastPrice = 0; priceSource = "metar-resolved";
-    } else {
-      // Closed but no clean signal — use last known mid
-      lastPrice = pos.side === "NO" ? cached.noPrice : cached.yesPrice ?? (cached.noPrice != null ? 1 - cached.noPrice : null);
-    }
+  // Resolution is a Polymarket decision, not a METAR decision. Only Gamma's
+  // explicit 0/1 outcomePrices count. METAR locks become `leading`/`trailing`
+  // prediction-level verdicts but never promote to `resolved_*`.
+  const resolved = !!cached.resolved;
+
+  if (resolved && cached.noWon !== null && cached.yesWon !== null) {
+    didWin = pos.side === "NO" ? cached.noWon : cached.yesWon;
+    lastPrice = didWin ? 1 : 0;
+    priceSource = "gamma-resolved";
   } else if (cached.noPrice != null) {
-    // Live market — use Gamma mid
+    // Live or pending-resolution market — use whatever CLOB/Gamma last gave us
     lastPrice = pos.side === "NO" ? cached.noPrice : cached.yesPrice ?? (1 - cached.noPrice);
   }
 
-  if (lastPrice == null) return { lastPrice: null, unrealizedPnl: null, unrealizedPct: null, ttrSec: null, endDate: authEndDate, resolved: !!effectivelyResolved };
+  if (lastPrice == null) return { lastPrice: null, unrealizedPnl: null, unrealizedPct: null, ttrSec: null, endDate: authEndDate, resolved };
 
   const unrealizedPnl = num(pos.shares) * (lastPrice - num(pos.entryPrice));
   const unrealizedPct = num(pos.entryPrice) > 0 ? (lastPrice - num(pos.entryPrice)) / num(pos.entryPrice) : 0;
@@ -462,7 +445,7 @@ function unrealizedFor(pos, metarVerdict) {
     unrealizedPct,
     ttrSec,
     endDate: authEndDate,
-    resolved: !!effectivelyResolved,
+    resolved,
     didWin,
     priceSource,
   };
@@ -681,13 +664,12 @@ function computeStats({ state, logLines }) {
       unrealized += u.unrealizedPnl;
       unrealizedKnown++;
     }
-    // Gamma-reported or METAR-fallback resolution: flip the verdict to its
-    // resolved form so the UI pills render solid green/red.
-    if (u.resolved) {
-      if (u.didWin === true) verdictInfo.verdict = "resolved_win";
-      else if (u.didWin === false) verdictInfo.verdict = "resolved_loss";
-      // If didWin is null, keep whatever METAR said — still useful
-    }
+    // Only Gamma-reported resolution (outcomePrices collapsed to [1,0] or
+    // [0,1]) promotes the verdict to its resolved form. METAR's locked_win /
+    // locked_loss stay as prediction-level verdicts and do NOT flip to
+    // resolved — Polymarket is the authority, not the weather station.
+    if (u.resolved && u.didWin === true) verdictInfo.verdict = "resolved_win";
+    else if (u.resolved && u.didWin === false) verdictInfo.verdict = "resolved_loss";
     return { ...p, ...u, ...verdictInfo };
   });
   // Best/worst open

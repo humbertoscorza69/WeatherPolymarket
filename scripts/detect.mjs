@@ -341,57 +341,24 @@ async function simulateEntry(market, mkt, sig, currentPrice) {
   return position;
 }
 
-// Returns { won: true|false } if observation monotonically guarantees the
-// outcome (day-over not required — obs can only go up for max, down for min,
-// so once it crosses the threshold the outcome is fixed). Returns null if
-// the current observation is inconclusive (need to wait for day end / Gamma).
-function metarLockOutcome(pos, metar) {
-  if (!metar || !metar.length) return null;
-  const parsedTitle = parseWeatherTitle(pos.title);
-  if (!parsedTitle) return null;
-  const thrC = toC(parsedTitle.threshold, parsedTitle.unit);
-  const thrHiC = parsedTitle.thresholdHigh != null ? toC(parsedTitle.thresholdHigh, parsedTitle.unit) : null;
-  const temps = metar.map(o => o.tempC);
-  const observedMax = Math.max(...temps);
-  const observedMin = Math.min(...temps);
-  const BUF = 0.2;
-
-  // Lowest markets (observedMin is monotone non-increasing within the day)
-  if (parsedTitle.isLowest) {
-    if (observedMin < thrC - BUF) {
-      // min already below threshold → NO wins for exact/at_or_above; YES for at_or_below
-      if (parsedTitle.type === "at_or_below") return { yesWon: true };
-      return { yesWon: false }; // NO wins
-    }
-    return null;
-  }
-
-  // Highest markets — observedMax is monotone non-decreasing
-  if (parsedTitle.type === "between" && thrHiC != null) {
-    if (observedMax > thrHiC + BUF) return { yesWon: false }; // NO wins
-    return null;
-  }
-  if (parsedTitle.type === "at_or_below") {
-    if (observedMax > thrC + BUF) return { yesWon: false };
-    return null;
-  }
-  if (parsedTitle.type === "at_or_above") {
-    if (observedMax > thrC + BUF) return { yesWon: true };
-    return null;
-  }
-  // exact (default): YES iff final == threshold. NO wins if max > thr + buf
-  if (observedMax > thrC + BUF) return { yesWon: false };
-  return null;
-}
+// Note: previously a `metarLockOutcome` function lived here to settle
+// positions early based on METAR observations. Removed in v22 because METAR
+// was being treated as a resolution oracle when Polymarket is the authority.
+// METAR remains the ENTRY signal source (see computeEntrySignal).
 
 async function resolvePositions() {
-  // Check each open position. Settlement priority:
-  //   1. METAR monotone lock (observed max/min already guarantees outcome) —
-  //      fires immediately, doesn't wait for endDate
-  //   2. Past endDate + 5min → Gamma outcomePrices, fall back to METAR
+  // Polymarket is the settlement authority. METAR is the ENTRY signal, not
+  // the resolution oracle (Gamma is). Settlement priority:
+  //   1. Past endDate + 5min → Gamma outcomePrices = [1,0] or [0,1] → $1/$0
+  //   2. Past endDate + 6h without Gamma resolution → exit at current CLOB
+  //      midpoint (taker price). Honest: if Polymarket hasn't resolved, we
+  //      don't pretend it has.
   //   3. Max hold reached → exit at current taker price
+  //
+  // No more settle-*-metar-lock or settle-*-metar. Those were booking phantom
+  // $1 payouts before Polymarket had a chance to resolve. Removed in v22.
   const nowSec = Math.floor(Date.now() / 1000);
-  let settled = 0, checked = 0, lockedEarly = 0, stillOpen = 0;
+  let settled = 0, checked = 0, gammaResolved = 0, lagTaker = 0, maxholdTaker = 0, stillOpen = 0;
   for (const pos of state.positions) {
     if (pos.closed) continue;
     checked++;
@@ -400,24 +367,8 @@ async function resolvePositions() {
     let exitPrice = null;
     let status = null;
 
-    // PATH 1: METAR monotone lock — settle right away if observation already
-    // determines the outcome. For "observed-above" entries (cushion > 0 at
-    // entry), this is usually already lockable at open, so these settle on
-    // the first resolvePositions() tick.
-    try {
-      const obs = await getObservationsForMarket({ city: pos.city, date: pos.date });
-      const metar = obs?.metar || [];
-      const lock = metarLockOutcome(pos, metar);
-      if (lock) {
-        const ourSideWon = (pos.side === "YES" && lock.yesWon) || (pos.side === "NO" && !lock.yesWon);
-        exitPrice = ourSideWon ? 1.0 : 0.0;
-        status = ourSideWon ? "settle-win-metar-lock" : "settle-lose-metar-lock";
-        lockedEarly++;
-      }
-    } catch {}
-
-    // PATH 2: past endDate + 5min → Gamma first, METAR fallback
-    if (exitPrice == null && nowSec >= marketEndSec + 300) {
+    // PATH 1: past endDate + 5min → check Gamma for actual resolution
+    if (nowSec >= marketEndSec + 300) {
       try {
         const mkt = await fetchJson(`${GAMMA}/markets?conditionIds=${pos.conditionId}`);
         const m = Array.isArray(mkt) ? mkt[0] : mkt;
@@ -436,39 +387,44 @@ async function resolvePositions() {
             const ourSideWon = (pos.side === "YES" && yesWon) || (pos.side === "NO" && !yesWon);
             exitPrice = ourSideWon ? 1.0 : 0.0;
             status = ourSideWon ? "settle-win" : "settle-lose";
-          } else {
-            // Gamma ambiguous past endDate → METAR best-effort (full-day observation)
-            const obs = await getObservationsForMarket({ city: pos.city, date: pos.date });
-            const metar = obs?.metar || [];
-            if (metar.length) {
-              const temps = metar.map(o => o.tempC);
-              const observedMax = Math.max(...temps);
-              const observedMin = Math.min(...temps);
-              const parsedTitle = parseWeatherTitle(pos.title);
-              const thrC = parsedTitle ? toC(parsedTitle.threshold, parsedTitle.unit) : null;
-              const thrHiC = parsedTitle?.thresholdHigh != null ? toC(parsedTitle.thresholdHigh, parsedTitle.unit) : null;
-              if (thrC != null && parsedTitle) {
-                let yesWon = null;
-                if (parsedTitle.isLowest) yesWon = parsedTitle.type === "exact" ? Math.abs(observedMin - thrC) < 0.5 : observedMin >= thrC;
-                else if (parsedTitle.type === "between" && thrHiC != null) yesWon = observedMax >= thrC && observedMax <= thrHiC;
-                else if (parsedTitle.type === "at_or_below") yesWon = observedMax <= thrC;
-                else if (parsedTitle.type === "at_or_above") yesWon = observedMax >= thrC;
-                else yesWon = Math.abs(observedMax - thrC) < 0.5;
-                if (yesWon != null) {
-                  const ourSideWon = (pos.side === "YES" && yesWon) || (pos.side === "NO" && !yesWon);
-                  exitPrice = ourSideWon ? 1.0 : 0.0;
-                  status = ourSideWon ? "settle-win-metar" : "settle-lose-metar";
-                }
-              }
-            }
+            gammaResolved++;
           }
         }
       } catch (err) {
-        console.log(`  ⚠️  settle check failed for ${pos.city} ${pos.date}: ${err?.message || err}`);
+        console.log(`  ⚠️  gamma check failed for ${pos.city} ${pos.date}: ${err?.message || err}`);
       }
     }
+
+    // PATH 2: past endDate + 6h with no Gamma resolution → exit at current
+    // CLOB midpoint (UMA is taking forever; honest taker exit at whatever
+    // the orderbook says RIGHT NOW, no free $1 payouts).
+    if (exitPrice == null && nowSec >= marketEndSec + 6 * 3600) {
+      try {
+        const m = await fetchJson(`${GAMMA}/markets?conditionIds=${pos.conditionId}`);
+        const mk = Array.isArray(m) ? m[0] : m;
+        const tokens = typeof mk?.clobTokenIds === "string" ? JSON.parse(mk.clobTokenIds) : mk?.clobTokenIds;
+        if (tokens?.length >= 2) {
+          const book = await fetchJson(`${CLOB}/book?token_id=${tokens[1]}`);
+          const bids = Array.isArray(book?.bids) ? book.bids : [];
+          const asks = Array.isArray(book?.asks) ? book.asks : [];
+          const bestBid = bids.length ? Number(bids[bids.length - 1]?.price) : null;
+          const bestAsk = asks.length ? Number(asks[0]?.price) : null;
+          let mid = null;
+          if (Number.isFinite(bestBid) && Number.isFinite(bestAsk)) mid = (bestBid + bestAsk) / 2;
+          else if (Number.isFinite(bestBid)) mid = bestBid;
+          else if (Number.isFinite(bestAsk)) mid = bestAsk;
+          if (mid != null) {
+            exitPrice = pos.side === "NO" ? mid : (1 - mid);
+            status = "settle-taker-lag";
+            lagTaker++;
+          }
+        }
+      } catch {}
+    }
+
+    // PATH 3: max-hold timeout (applies regardless of endDate — e.g. maxhold
+    // exceeded before endDate for long-dated markets we don't have)
     if (exitPrice == null && holdMin >= CFG.MAX_HOLD_MIN) {
-      // Max hold reached — exit at current market price
       try {
         const m = await fetchJson(`${GAMMA}/markets?conditionIds=${pos.conditionId}`);
         const mk = Array.isArray(m) ? m[0] : m;
@@ -477,6 +433,7 @@ async function resolvePositions() {
         if (currentNo != null) {
           exitPrice = pos.side === "NO" ? currentNo : (1 - currentNo);
           status = "maxhold-taker";
+          maxholdTaker++;
         }
       } catch {}
     }
@@ -501,7 +458,7 @@ async function resolvePositions() {
     }
   }
   if (checked > 0) {
-    console.log(`  [resolve] checked=${checked} settled=${settled} (lockedEarly=${lockedEarly}) stillOpen=${stillOpen}  realizedPnl=$${state.realizedPnl.toFixed(2)}  bankroll=$${state.bankroll.toFixed(2)}`);
+    console.log(`  [resolve] checked=${checked} settled=${settled} (gamma=${gammaResolved} lag-taker=${lagTaker} maxhold=${maxholdTaker}) stillOpen=${stillOpen}  realizedPnl=$${state.realizedPnl.toFixed(2)}  bankroll=$${state.bankroll.toFixed(2)}`);
   }
   // Drop closed positions
   state.positions = state.positions.filter(p => !p.closed);
