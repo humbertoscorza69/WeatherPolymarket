@@ -1,0 +1,59 @@
+=== VALIDATION REPORT ===
+
+Events:      2006 OPENs / 1971 CLOSEs (3977 total)
+Markets:     221  (gamma-fail=0  clob-fail=0)
+Validated:   2006 / 2006   skipped=0
+
+Status breakdown:
+  settle-win-metar-lock         1905
+  settle-win-metar                43
+  open                            35
+  settle-lose-metar               15
+  settle-lose-metar-lock           8
+
+=== ENTRY PRICE ACCURACY ===
+  Matched with market ticks: 953 / 2006
+  Mean |our - market|:       0.4194 (41.94¢)
+  Median  our - market:      0.4600 (46.00¢)
+  Flagged (>2¢ off): 953
+
+=== EXIT PRICE ACCURACY (non-settle exits only) ===
+  Matched: 1079
+  Mean |our - market|: 0.5269 (52.69¢)
+  Flagged (>3¢ off): 0
+
+=== SETTLEMENT SANITY CHECK ===
+  settle-win with market <0.80:  1056
+  settle-lose with market >0.20: 23
+
+=== P&L SANITY ===
+  Sum of simulated PnL: $1017.47
+
+=== TOP 10 ENTRY DEVIATIONS ===
+  (our entry vs actual market midpoint at that timestamp)
+  00:03:38  NO   Denver           2026-04-23  our=0.9895 mkt=0.4650 Δ=+0.5245
+  00:06:45  NO   Panama City      2026-04-23  our=0.9885 mkt=0.4650 Δ=+0.5235
+  03:00:06  NO   Paris            2026-04-23  our=0.9885 mkt=0.4650 Δ=+0.5235
+  06:02:09  NO   Denver           2026-04-23  our=0.9860 mkt=0.4650 Δ=+0.5210
+  12:00:46  NO   Seattle          2026-04-24  our=0.9895 mkt=0.4700 Δ=+0.5195
+  12:01:08  NO   Seattle          2026-04-24  our=0.9895 mkt=0.4700 Δ=+0.5195
+  12:01:44  NO   Seattle          2026-04-24  our=0.9895 mkt=0.4700 Δ=+0.5195
+  12:02:20  NO   Seattle          2026-04-24  our=0.9895 mkt=0.4700 Δ=+0.5195
+  12:02:57  NO   Seattle          2026-04-24  our=0.9895 mkt=0.4700 Δ=+0.5195
+  12:03:33  NO   Seattle          2026-04-24  our=0.9895 mkt=0.4700 Δ=+0.5195
+
+=== SUSPICIOUS SETTLEMENTS ===
+  (we booked a win/loss but the market's ticks disagree)
+  11:53:33  NO   London           2026-04-23  status=settle-win-metar-lock  flag: settled-win but market at 0.470
+  11:53:33  NO   London           2026-04-23  status=settle-win-metar-lock  flag: settled-win but market at 0.470
+  11:53:33  NO   Seoul            2026-04-23  status=settle-win-metar-lock  flag: settled-win but market at 0.470
+  11:53:35  NO   Tokyo            2026-04-23  status=settle-win-metar-lock  flag: settled-win but market at 0.470
+  11:53:35  NO   Tokyo            2026-04-23  status=settle-win-metar-lock  flag: settled-win but market at 0.470
+  11:53:35  NO   London           2026-04-23  status=settle-win-metar-lock  flag: settled-win but market at 0.470
+  11:53:35  NO   London           2026-04-23  status=settle-win-metar-lock  flag: settled-win but market at 0.470
+  12:05:17  YES  London           2026-04-23  status=settle-win-metar  flag: settled-win but market at 0.530
+  12:05:17  YES  Paris            2026-04-23  status=settle-lose-metar  flag: settled-lose but market at 0.530
+  11:53:36  NO   Sao Paulo        2026-04-23  status=settle-win-metar-lock  flag: settled-win but market at 0.470
+
+Full CSV:   C:\Users\tico_\PycharmProjects\WeatherPolymarket\data\validation.csv
+This file:  C:\Users\tico_\PycharmProjects\WeatherPolymarket\data\validation-summary.txt

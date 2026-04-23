@@ -5,6 +5,3 @@ dist/
 !.env.example
 
 # detect.mjs paper-trading state (never commit — overlaps with running process)
-data/detect-positions.json
-data/detect-log.jsonl
-data/detect-bankroll.json
