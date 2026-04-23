@@ -308,10 +308,31 @@
 
   <!-- ============ QUANT TAB ============ -->
   <div class="tab-panel" id="tab-quant">
-    <div class="tab-placeholder">
-      <h3>Quant Deep-Dive</h3>
-      <p>Coming in sprint 8: Kelly %, Omega ratio, Calmar, VaR/CVaR, monthly return heatmap, edge decay analysis, trade attribution by cushion tier.</p>
-    </div>
+    <section>
+      <div class="grid kpi-grid" id="quantKpis"></div>
+    </section>
+    <section>
+      <div class="row2">
+        <div class="chart-card tall">
+          <div class="chart-title"><span>Monthly P&amp;L</span><span class="pill" id="monthlyPill">—</span></div>
+          <canvas id="monthlyChart"></canvas>
+        </div>
+        <div class="chart-card tall">
+          <div class="chart-title">Hourly Activity · UTC hour × WR%</div>
+          <div id="hourlyHeatmap" style="padding-top:6px;"></div>
+        </div>
+      </div>
+      <div class="row2" style="margin-top: 12px;">
+        <div class="chart-card">
+          <div class="chart-title">Drawdown Curve · underwater equity</div>
+          <canvas id="drawdownChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Edge Decay · expanding-window WR vs trade #</div>
+          <canvas id="edgeDecayChart"></canvas>
+        </div>
+      </div>
+    </section>
   </div>
 </main>
 </div> <!-- .content -->
@@ -773,6 +794,131 @@ function renderThermalHeatmap(cells) {
   });
 }
 
+function renderQuantKpis(s, q) {
+  const host = document.getElementById("quantKpis");
+  if (!host) return;
+  const kellyCls = q.kelly > 0.05 ? "pos" : q.kelly < 0 ? "neg" : "warn";
+  const omegaCls = q.omega >= 2 ? "pos" : q.omega >= 1 ? "warn" : "neg";
+  const calmarCls = q.calmar >= 1 ? "pos" : q.calmar > 0 ? "warn" : "neg";
+  host.innerHTML = [
+    kpi("Kelly Fraction",    fmtPct(q.kelly), `optimal bet size`, kellyCls),
+    kpi("Omega Ratio",       fmtN(q.omega, 2), `gain/loss area ratio`, omegaCls),
+    kpi("Calmar Ratio",      fmtN(q.calmar, 2), `pnl / max drawdown`, calmarCls),
+    kpi("Recovery Factor",   fmtN(q.recoveryFactor, 2), `compound resilience`),
+    kpi("VaR 95%",           fmt$(q.var95), `5%-tile single trade`, q.var95 < 0 ? "neg" : ""),
+    kpi("CVaR 95%",          fmt$(q.cvar95), `tail expectation`, q.cvar95 < 0 ? "neg" : ""),
+    kpi("Ulcer Index",       fmtN(q.ulcerIndex, 2), `drawdown discomfort`, q.ulcerIndex > 5 ? "warn" : ""),
+    kpi("Skewness",          fmtN(q.skew, 2), `> 0 = right-tail wins`, q.skew > 0 ? "pos" : "neg"),
+    kpi("Excess Kurtosis",   fmtN(q.kurtosis, 2), `> 0 = fat tails`, q.kurtosis > 1 ? "warn" : ""),
+    kpi("Trade σ",           fmt$(q.pnlStd), `std of trade pnl`),
+    kpi("Total Trades",      String(s.totalClosed), `${s.openPositions} open`, "accent"),
+    kpi("Avg Hold",          fmtDur(s.avgHoldMin), `median ${fmtDur(s.medianHoldMin)}`),
+  ].join("");
+}
+
+function renderMonthly(monthly) {
+  const entries = Object.entries(monthly || {}).sort((a, b) => a[0].localeCompare(b[0]));
+  if (!entries.length) {
+    if (charts.monthlyChart) { charts.monthlyChart.destroy(); delete charts.monthlyChart; }
+    document.getElementById("monthlyPill").textContent = "no data";
+    return;
+  }
+  const total = entries.reduce((s, [, v]) => s + v.pnl, 0);
+  const totalN = entries.reduce((s, [, v]) => s + v.n, 0);
+  const totalW = entries.reduce((s, [, v]) => s + v.w, 0);
+  const pill = document.getElementById("monthlyPill");
+  pill.textContent = `${fmt$(total)} · ${totalN} trades · ${fmtPct(totalN ? totalW/totalN : 0)} WR`;
+  pill.className = "pill " + (total > 0 ? "ok" : "bad");
+
+  const labels = entries.map(([k]) => k);
+  const pnl = entries.map(([, v]) => v.pnl);
+  const wr = entries.map(([, v]) => v.n ? (v.w/v.n)*100 : 0);
+  const colors = pnl.map(p => p >= 0 ? CHART_COLORS.green : CHART_COLORS.red);
+  upsertChart("monthlyChart", "bar", {
+    labels,
+    datasets: [
+      { label: "PnL ($)", data: pnl, backgroundColor: colors, borderWidth: 0, yAxisID: "y" },
+      { label: "WR (%)", data: wr, type: "line", borderColor: CHART_COLORS.amber, backgroundColor: "transparent", yAxisID: "y1", pointRadius: 4, borderWidth: 2 },
+    ],
+  }, baseOpts({
+    plugins: { legend: { labels: { color: "#c9d1d9", font: { size: 10 } } } },
+    scales: {
+      x: { ticks: { color: CHART_COLORS.muted } },
+      y: { position: "left", ticks: { color: CHART_COLORS.muted, callback: v => `$${v}` } },
+      y1: { position: "right", min: 0, max: 100, ticks: { color: CHART_COLORS.amber, callback: v => `${v}%` }, grid: { display: false } },
+    },
+  }));
+}
+
+function renderHourlyHeatmap(hourly) {
+  const host = document.getElementById("hourlyHeatmap");
+  if (!host) return;
+  if (!hourly || !hourly.length) { host.innerHTML = `<div class="empty">No data.</div>`; return; }
+  const cells = [];
+  for (let h = 0; h < 24; h++) {
+    const c = hourly[h] || { n: 0, w: 0, pnl: 0 };
+    const wr = c.n ? c.w/c.n : 0;
+    const color = c.n ? wrToColor(wr) : "var(--panel-hi)";
+    const tip = `UTC ${h}:00\nn=${c.n}  WR=${(wr*100).toFixed(0)}%  PnL=$${c.pnl.toFixed(2)}`;
+    cells.push(`<div class="hm-cell ${c.n ? "" : "empty"}" style="background:${color}; min-width:24px;" data-tooltip="${tip}">${c.n ? (wr*100).toFixed(0) : "·"}</div>`);
+  }
+  const axes = [];
+  for (let h = 0; h < 24; h++) axes.push(`<div class="hm-axis x" style="font-size:9px;">${h}</div>`);
+  host.innerHTML = `
+    <div class="heatmap-grid" style="grid-template-columns: repeat(24, minmax(24px,1fr));">${cells.join("")}${axes.join("")}</div>
+    <div class="heatmap-axes-label" style="text-align:center;margin-top:6px;">UTC hour of close (WR%)</div>`;
+  // tooltips
+  const tt = document.getElementById("hmTooltip") || (function() {
+    const d = document.createElement("div"); d.id = "hmTooltip"; d.className = "heatmap-tooltip"; document.body.appendChild(d); return d;
+  })();
+  host.querySelectorAll(".hm-cell[data-tooltip]").forEach(el => {
+    el.addEventListener("mouseenter", () => { tt.style.display = "block"; tt.textContent = el.dataset.tooltip; });
+    el.addEventListener("mousemove", (e) => { tt.style.left = (e.clientX + 10) + "px"; tt.style.top = (e.clientY + 10) + "px"; });
+    el.addEventListener("mouseleave", () => { tt.style.display = "none"; });
+  });
+}
+
+function renderDrawdown(equityCurve) {
+  if (!equityCurve || !equityCurve.length) {
+    if (charts.drawdownChart) { charts.drawdownChart.destroy(); delete charts.drawdownChart; } return;
+  }
+  let peak = 0;
+  const dd = equityCurve.map(p => { if (p.equity > peak) peak = p.equity; return -(peak - p.equity); });
+  upsertChart("drawdownChart", "line", {
+    labels: equityCurve.map((_, i) => i + 1),
+    datasets: [{ label: "Drawdown ($)", data: dd, borderColor: CHART_COLORS.red, backgroundColor: CHART_COLORS.red + "33", fill: true, tension: 0.2, pointRadius: 0, borderWidth: 1.5 }],
+  }, baseOpts({
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `$${c.parsed.y.toFixed(2)}` } } },
+    scales: {
+      x: { ticks: { color: CHART_COLORS.muted } },
+      y: { ticks: { color: CHART_COLORS.muted, callback: v => `$${v}` }, max: 0 },
+    },
+  }));
+}
+
+function renderEdgeDecay(equityCurve) {
+  if (!equityCurve || !equityCurve.length) {
+    if (charts.edgeDecayChart) { charts.edgeDecayChart.destroy(); delete charts.edgeDecayChart; } return;
+  }
+  // Expanding-window WR
+  const expWr = [];
+  let wins = 0;
+  for (let i = 0; i < equityCurve.length; i++) {
+    if (equityCurve[i].pnl > 0.01) wins++;
+    expWr.push((wins / (i + 1)) * 100);
+  }
+  upsertChart("edgeDecayChart", "line", {
+    labels: equityCurve.map((_, i) => i + 1),
+    datasets: [{ label: "Expanding WR%", data: expWr, borderColor: CHART_COLORS.purple, backgroundColor: CHART_COLORS.purple + "22", fill: true, tension: 0.1, pointRadius: 0, borderWidth: 1.5 }],
+  }, baseOpts({
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `${c.parsed.y.toFixed(1)}%` } } },
+    scales: {
+      x: { ticks: { color: CHART_COLORS.muted } },
+      y: { min: 0, max: 100, ticks: { color: CHART_COLORS.muted, callback: v => `${v}%` } },
+    },
+  }));
+}
+
 let __execLog = [];
 let __execFilter = "all";
 
@@ -835,6 +981,13 @@ async function refresh() {
     renderBreakdown("cityChart",   data.breakdown?.byCity   || {}, { topN: 15 });
     renderBreakdown("cushionChart", data.breakdown?.byCushion || {});
     renderThermalHeatmap(data.thermalEdge || []);
+    if (data.quant) {
+      renderQuantKpis(data.summary, data.quant);
+      renderMonthly(data.quant.monthly);
+      renderHourlyHeatmap(data.quant.hourly);
+      renderDrawdown(data.equityCurve || []);
+      renderEdgeDecay(data.equityCurve || []);
+    }
     document.getElementById("lastUpdate").textContent = `updated ${new Date().toLocaleTimeString([], { hour12: false })}`;
     document.getElementById("statusDot").style.background = "var(--green)";
     lastTick = Date.now();

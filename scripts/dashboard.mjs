@@ -105,6 +105,65 @@ function computeStats({ state, logLines }) {
     if (ru > maxRunup) maxRunup = ru;
   }
 
+  // ----- advanced quant metrics -----
+  // Kelly criterion (fractional): f* = p - (1-p)/b   where b = avgWin/avgLoss
+  const p = winRate;
+  const b = avgLoss > 0 ? avgWin / avgLoss : 0;
+  const kelly = b > 0 ? p - (1 - p) / b : 0;
+
+  // Omega ratio (threshold = 0): sum(gains) / sum(losses)
+  const omega = grossLoss > 0 ? grossWin / grossLoss : (grossWin > 0 ? Infinity : 0);
+
+  // Calmar ratio (CAGR-like): realizedPnl / max drawdown — interpreted as edge / pain
+  const calmar = maxDD > 0 ? realizedPnl / maxDD : (realizedPnl > 0 ? Infinity : 0);
+
+  // VaR / CVaR at 5% (worst 5% of trades)
+  const sortedAsc = [...pnls].sort((a, b) => a - b);
+  const varIdx = Math.max(0, Math.floor(sortedAsc.length * 0.05) - 1);
+  const var95 = sortedAsc.length ? sortedAsc[varIdx] : 0;
+  const tail = sortedAsc.slice(0, varIdx + 1);
+  const cvar95 = tail.length ? tail.reduce((a, b) => a + b, 0) / tail.length : 0;
+
+  // Recovery factor: net PnL / max drawdown
+  const recoveryFactor = maxDD > 0 ? realizedPnl / maxDD : 0;
+
+  // Ulcer index: sqrt(mean(drawdown%^2)) using equity curve
+  let ulcerSum = 0;
+  let runPeak = 0;
+  for (const pt of equityCurve) {
+    if (pt.equity > runPeak) runPeak = pt.equity;
+    const dd = runPeak > 0 ? ((runPeak - pt.equity) / runPeak) * 100 : 0;
+    ulcerSum += dd * dd;
+  }
+  const ulcer = equityCurve.length ? Math.sqrt(ulcerSum / equityCurve.length) : 0;
+
+  // Skew + kurtosis of trade PnL
+  const skew = std > 0 && pnls.length >= 3
+    ? pnls.reduce((a, x) => a + ((x - mean) / std) ** 3, 0) / pnls.length : 0;
+  const kurt = std > 0 && pnls.length >= 4
+    ? pnls.reduce((a, x) => a + ((x - mean) / std) ** 4, 0) / pnls.length - 3 : 0;
+
+  // Monthly aggregation (year-month → totals)
+  const monthly = {};
+  for (const t of trades) {
+    if (!t.closedAt) continue;
+    const ym = String(t.closedAt).slice(0, 7);
+    monthly[ym] = monthly[ym] || { n: 0, pnl: 0, w: 0 };
+    monthly[ym].n++;
+    monthly[ym].pnl += num(t.pnl);
+    if (num(t.pnl) > 0.01) monthly[ym].w++;
+  }
+
+  // Hourly heatmap (UTC hour → totals) for activity pattern
+  const hourly = Array.from({ length: 24 }, () => ({ n: 0, pnl: 0, w: 0 }));
+  for (const t of trades) {
+    if (!t.closedAt) continue;
+    const h = new Date(t.closedAt).getUTCHours();
+    hourly[h].n++;
+    hourly[h].pnl += num(t.pnl);
+    if (num(t.pnl) > 0.01) hourly[h].w++;
+  }
+
   // hold time
   const holds = trades.map(t => {
     const o = new Date(t.openedAt).getTime();
@@ -211,6 +270,17 @@ function computeStats({ state, logLines }) {
     breakdown: { bySide, byReason, byCity, byCushion },
     thermalEdge: Object.values(thermalBuckets),
     execLog: logLines.slice(-500),  // last 500 events (OPEN + CLOSE), newest last
+    quant: {
+      kelly,
+      omega: Number.isFinite(omega) ? omega : null,
+      calmar: Number.isFinite(calmar) ? calmar : null,
+      var95, cvar95,
+      recoveryFactor,
+      ulcerIndex: ulcer,
+      skew, kurtosis: kurt,
+      pnlMean: mean, pnlStd: std,
+      monthly, hourly,
+    },
     openPositions: state.positions,
     closedTrades: sortedByClose,
   };
