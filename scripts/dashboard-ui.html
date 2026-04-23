@@ -183,7 +183,9 @@
   <div class="stat">Last Sync: <b id="lastSync">—</b></div>
   <div class="stat">Open: <b id="openPosTop">0</b></div>
   <div class="stat">Mode: <b>CELSIUS</b></div>
-  <div class="stat">P&amp;L: <b id="pnlTop">—</b></div>
+  <div class="stat">Realized: <b id="pnlTop">—</b></div>
+  <div class="stat">Unrealized: <b id="unrealTop">—</b></div>
+  <div class="stat">Equity: <b id="equityTop">—</b></div>
   <div class="spacer"></div>
   <span class="tag mono" id="lastUpdate" style="font-size:10px;color:var(--muted)">loading…</span>
   <span class="tag mono" id="refreshCountdown" style="font-size:10px;color:var(--muted)">next —</span>
@@ -424,25 +426,38 @@ function renderKpis(s, equityCurve, rollingWR) {
 
   const CGREEN = "#4ade80", CRED = "#f87171", CTEAL = "#5eead4", CAMBER = "#fbbf24", CPURPLE = "#a78bfa";
 
+  const unrealCls = s.unrealizedPnl > 0 ? "pos" : s.unrealizedPnl < 0 ? "neg" : "";
+  const equityCls = (s.equity - s.bankroll) > 0 ? "pos" : "";
+  const expoCls = s.exposurePct > 0.9 ? "warn" : "accent";
   document.getElementById("kpis").innerHTML = [
-    kpi("Bankroll",     fmt$(s.bankroll), `${s.openPositions} open`, "accent", sparkline(eqSeries.map(v => v + s.bankroll - (eqSeries[eqSeries.length-1]||0)), CTEAL)),
-    kpi("Realized PnL", fmt$(s.realizedPnl), `${s.totalClosed} trades closed`, pnlCls, sparkline(eqSeries, s.realizedPnl >= 0 ? CGREEN : CRED)),
-    kpi("Win Rate",     fmtPct(s.winRate), `${s.wins}W / ${s.losses}L / ${s.flats}=`, wrCls, sparkline(wrSeries, CAMBER)),
-    kpi("Profit Factor",fmtN(s.profitFactor), `${fmt$(s.grossWin)} / ${fmt$(s.grossLoss)}`, pfCls, ""),
-    kpi("Sharpe",       fmtN(s.sharpe, 2), `Sortino ${fmtN(s.sortino, 2)}`, "", sparkline(sharpeSeries, CPURPLE)),
-    kpi("Expectancy",   fmt$(s.expectancy), `per trade`, "", sparkline(expSeries, s.expectancy >= 0 ? CGREEN : CRED)),
-    kpi("Payoff Ratio", fmtN(s.payoffRatio, 2), `avgW ${fmt$(s.avgWin)} / avgL ${fmt$(s.avgLoss)}`),
-    kpi("Max Drawdown", fmt$(-Math.abs(s.maxDrawdown)), `Max runup ${fmt$(s.maxRunup)}`, s.maxDrawdown > 0 ? "neg" : ""),
-    kpi("Largest Win",  fmt$(s.largestWin), `Largest loss ${fmt$(s.largestLoss)}`),
-    kpi("Streak",       fmtSigned(s.currentStreak, 0), `max +${s.maxWinStreak} / -${s.maxLossStreak}`, s.currentStreak > 0 ? "pos" : (s.currentStreak < 0 ? "neg" : "")),
-    kpi("Hold Time",    fmtDur(s.avgHoldMin), `median ${fmtDur(s.medianHoldMin)}`),
-    kpi("Fill Rate",    fmtPct(s.fillRate), `${s.totalClosed}/${s.totalAttempts} attempts`),
+    kpi("Bankroll",       fmt$(s.bankroll), `${s.openPositions} open`, "accent", sparkline(eqSeries.map(v => v + s.bankroll - (eqSeries[eqSeries.length-1]||0)), CTEAL)),
+    kpi("Realized PnL",   fmt$(s.realizedPnl), `${s.totalClosed} closed`, pnlCls, sparkline(eqSeries, s.realizedPnl >= 0 ? CGREEN : CRED)),
+    kpi("Unrealized PnL", fmt$(s.unrealizedPnl), `${s.unrealizedKnownCount}/${s.openPositions} priced`, unrealCls),
+    kpi("Equity",         fmt$(s.equity), `bankroll + open + unreal`, equityCls),
+    kpi("Exposure",       fmtPct(s.exposurePct), `${fmt$(s.totalExposure)} deployed`, expoCls),
+    kpi("Win Rate",       fmtPct(s.winRate), `${s.wins}W / ${s.losses}L / ${s.flats}=`, wrCls, sparkline(wrSeries, CAMBER)),
+    kpi("Profit Factor",  fmtN(s.profitFactor), `${fmt$(s.grossWin)} / ${fmt$(s.grossLoss)}`, pfCls, ""),
+    kpi("Sharpe",         fmtN(s.sharpe, 2), `Sortino ${fmtN(s.sortino, 2)}`, "", sparkline(sharpeSeries, CPURPLE)),
+    kpi("Expectancy",     fmt$(s.expectancy), `per trade`, "", sparkline(expSeries, s.expectancy >= 0 ? CGREEN : CRED)),
+    kpi("Payoff Ratio",   fmtN(s.payoffRatio, 2), `avgW ${fmt$(s.avgWin)} / avgL ${fmt$(s.avgLoss)}`),
+    kpi("Max Drawdown",   fmt$(-Math.abs(s.maxDrawdown)), `Max runup ${fmt$(s.maxRunup)}`, s.maxDrawdown > 0 ? "neg" : ""),
+    kpi("Largest Win",    fmt$(s.largestWin), `Largest loss ${fmt$(s.largestLoss)}`),
+    kpi("Streak",         fmtSigned(s.currentStreak, 0), `max +${s.maxWinStreak} / -${s.maxLossStreak}`, s.currentStreak > 0 ? "pos" : (s.currentStreak < 0 ? "neg" : "")),
+    kpi("Hold Time",      fmtDur(s.avgHoldMin), `median ${fmtDur(s.medianHoldMin)}`),
+    kpi("Fill Rate",      fmtPct(s.fillRate), `${s.totalClosed}/${s.totalAttempts} attempts`),
   ].join("");
   // Top bar mirrors
   document.getElementById("openPosTop").textContent = s.openPositions ?? 0;
   const pnlEl = document.getElementById("pnlTop");
   pnlEl.textContent = fmt$(s.realizedPnl);
   pnlEl.style.color = s.realizedPnl > 0 ? "var(--green)" : (s.realizedPnl < 0 ? "var(--red)" : "var(--text)");
+  const unrealEl = document.getElementById("unrealTop");
+  if (unrealEl) {
+    unrealEl.textContent = fmt$(s.unrealizedPnl);
+    unrealEl.style.color = s.unrealizedPnl > 0 ? "var(--green)" : (s.unrealizedPnl < 0 ? "var(--red)" : "var(--text)");
+  }
+  const equityEl = document.getElementById("equityTop");
+  if (equityEl) equityEl.textContent = fmt$(s.equity);
   document.getElementById("lastSync").textContent = new Date().toLocaleTimeString([], { hour12: false });
   // Pills inside chart headers
   const equityPill = document.getElementById("equityPillPnl");
@@ -451,36 +466,65 @@ function renderKpis(s, equityCurve, rollingWR) {
   if (wrPill) { wrPill.textContent = fmtPct(s.winRate); wrPill.className = "pill " + (s.winRate >= 0.8 ? "ok" : s.winRate >= 0.5 ? "" : "bad"); }
 }
 
+let __openSort = "unreal-desc";
+function setOpenSort(s) { __openSort = s; renderOpen(__openPositions); }
+let __openPositions = [];
+
 function renderOpen(positions) {
-  document.getElementById("openCount").textContent = positions.length;
-  if (!positions.length) {
+  __openPositions = positions || [];
+  document.getElementById("openCount").textContent = __openPositions.length;
+  if (!__openPositions.length) {
     document.getElementById("openTable").innerHTML = `<div class="empty">No open positions.</div>`;
     return;
   }
-  const rows = [...positions]
-    .sort((a,b) => new Date(b.openedAt) - new Date(a.openedAt))
+  const sorters = {
+    "unreal-desc":  (a, b) => (b.unrealizedPnl ?? -Infinity) - (a.unrealizedPnl ?? -Infinity),
+    "unreal-asc":   (a, b) => (a.unrealizedPnl ?? Infinity) - (b.unrealizedPnl ?? Infinity),
+    "unrealpct-desc": (a, b) => (b.unrealizedPct ?? -Infinity) - (a.unrealizedPct ?? -Infinity),
+    "age-desc":     (a, b) => new Date(a.openedAt) - new Date(b.openedAt),
+    "age-asc":      (a, b) => new Date(b.openedAt) - new Date(a.openedAt),
+    "ttr-asc":      (a, b) => (a.ttrSec ?? Infinity) - (b.ttrSec ?? Infinity),
+    "size-desc":    (a, b) => (b.positionSize ?? 0) - (a.positionSize ?? 0),
+  };
+  const rows = [...__openPositions]
+    .sort(sorters[__openSort] || sorters["unreal-desc"])
     .map(p => {
       const ageMin = (Date.now() - new Date(p.openedAt).getTime()) / 60000;
       const side = p.side === "NO" ? `<span class="side-no">NO</span>` : `<span class="side-yes">YES</span>`;
+      const upn = p.unrealizedPnl;
+      const upct = p.unrealizedPct;
+      const upnCls = upn == null ? "" : (upn > 0.01 ? "pos" : upn < -0.01 ? "neg" : "");
+      const ttrTxt = p.ttrSec == null ? "—" : (p.ttrSec < 60 ? `${p.ttrSec}s` : p.ttrSec < 3600 ? `${Math.floor(p.ttrSec/60)}m` : `${(p.ttrSec/3600).toFixed(1)}h`);
+      const lp = p.lastPrice == null ? "—" : fmtN(p.lastPrice, 4);
+      const upnTxt = upn == null ? "—" : fmt$(upn);
+      const upctTxt = upct == null ? "—" : fmtSigned(upct * 100, 1) + "%";
       return `<tr>
         <td>${fmtTime(p.openedAt)}</td>
         <td>${side}</td>
         <td>${p.city||""}</td>
         <td>${p.date||""}</td>
         <td class="num">${fmtN(p.entryPrice,4)}</td>
+        <td class="num">${lp}</td>
         <td class="num">${fmtN(p.shares,2)}</td>
         <td class="num">${fmt$(p.positionSize)}</td>
+        <td class="num ${upnCls}">${upnTxt}</td>
+        <td class="num ${upnCls}">${upctTxt}</td>
         <td class="num">${fmtN(p.cushion,1)}°C</td>
         <td><span class="pill">${p.reason||""}</span></td>
         <td class="num">${fmtDur(ageMin)}</td>
+        <td class="num">${ttrTxt}</td>
       </tr>`;
     }).join("");
+  const headerSort = (key, label) => `<th class="num" style="cursor:pointer" onclick="setOpenSort('${key}')">${label}${__openSort===key?" ▾":""}</th>`;
   document.getElementById("openTable").innerHTML = `
     <table>
       <thead><tr>
         <th>Open</th><th>Side</th><th>City</th><th>Date</th>
-        <th class="num">Entry</th><th class="num">Shares</th><th class="num">Size</th>
-        <th class="num">Cushion</th><th>Reason</th><th class="num">Age</th>
+        <th class="num">Entry</th><th class="num">Last</th>
+        <th class="num">Shares</th>${headerSort("size-desc","Size")}
+        ${headerSort("unreal-desc","Unreal $")}${headerSort("unrealpct-desc","Unreal %")}
+        <th class="num">Cushion</th><th>Reason</th>
+        ${headerSort("age-desc","Age")}${headerSort("ttr-asc","TTR")}
       </tr></thead>
       <tbody>${rows}</tbody>
     </table>`;

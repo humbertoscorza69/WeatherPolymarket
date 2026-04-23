@@ -25,7 +25,70 @@ const POSITIONS_FILE = path.resolve("data/detect-positions.json");
 const LOG_FILE = path.resolve("data/detect-log.jsonl");
 const UI_FILE = path.resolve("scripts/dashboard-ui.html");
 
+const GAMMA = "https://gamma-api.polymarket.com";
+const CLOB = "https://clob.polymarket.com";
+const PRICE_TTL_MS = Number(argv.pricettl ?? "30000");  // 30s cache
+const PRICE_BATCH = Number(argv.pricebatch ?? "20");
+
 const num = (x, d = 0) => { const n = Number(x); return Number.isFinite(n) ? n : d; };
+
+// ---- Live price cache for open positions ----
+// Maps conditionId -> { noPrice, ts, tokens }
+const priceCache = new Map();
+async function fetchJson(url) {
+  try {
+    const r = await fetch(url, { headers: { accept: "application/json" } });
+    if (!r.ok) return null;
+    return await r.json();
+  } catch { return null; }
+}
+
+async function refreshPricesForPositions(positions) {
+  const now = Date.now();
+  const stale = positions.filter(p => {
+    const c = priceCache.get(p.conditionId);
+    return !c || (now - c.ts) > PRICE_TTL_MS;
+  });
+  if (!stale.length) return;
+  // Step 1: ensure we have clobTokenIds for each. Fetch market metadata in batches.
+  const needTokens = stale.filter(p => !priceCache.get(p.conditionId)?.tokens);
+  for (let i = 0; i < needTokens.length; i += PRICE_BATCH) {
+    const slice = needTokens.slice(i, i + PRICE_BATCH);
+    const ids = slice.map(p => p.conditionId).join(",");
+    const data = await fetchJson(`${GAMMA}/markets?conditionIds=${ids}&limit=${slice.length}`);
+    if (!Array.isArray(data)) continue;
+    for (const mk of data) {
+      const tokens = typeof mk.clobTokenIds === "string" ? JSON.parse(mk.clobTokenIds) : mk.clobTokenIds;
+      const cur = priceCache.get(mk.conditionId) || { noPrice: null, ts: 0 };
+      priceCache.set(mk.conditionId, { ...cur, tokens, endDate: mk.endDate });
+    }
+  }
+  // Step 2: fetch midpoint per token (sequential — CLOB has no batch endpoint)
+  for (const p of stale) {
+    const cached = priceCache.get(p.conditionId);
+    if (!cached?.tokens || cached.tokens.length < 2) continue;
+    const noTokenId = cached.tokens[1];
+    const r = await fetchJson(`${CLOB}/midpoint?token_id=${noTokenId}`);
+    if (r?.mid != null) {
+      priceCache.set(p.conditionId, { ...cached, noPrice: Number(r.mid), ts: now });
+    }
+  }
+}
+
+function unrealizedFor(pos) {
+  const cached = priceCache.get(pos.conditionId);
+  if (!cached || cached.noPrice == null) return { lastPrice: null, unrealizedPnl: null, unrealizedPct: null, ttrSec: null, endDate: cached?.endDate };
+  const noPrice = cached.noPrice;
+  const lastPrice = pos.side === "NO" ? noPrice : (1 - noPrice);
+  const unrealizedPnl = num(pos.shares) * (lastPrice - num(pos.entryPrice));
+  const unrealizedPct = num(pos.entryPrice) > 0 ? (lastPrice - num(pos.entryPrice)) / num(pos.entryPrice) : 0;
+  let ttrSec = null;
+  if (cached.endDate) {
+    const end = new Date(cached.endDate).getTime();
+    if (Number.isFinite(end)) ttrSec = Math.max(0, Math.floor((end - Date.now()) / 1000));
+  }
+  return { lastPrice, unrealizedPnl, unrealizedPct, ttrSec, endDate: cached.endDate };
+}
 
 async function loadData() {
   let state = { positions: [], bankroll: 0, realizedPnl: 0, trades: [] };
@@ -219,12 +282,24 @@ function computeStats({ state, logLines }) {
     }
   }
 
-  // unrealized
+  // unrealized: enrich each open position with live price + unrealized
+  // (caller should have refreshed the cache before computeStats)
   let unrealized = 0;
-  for (const p of state.positions) {
-    // without a live price we can't compute unrealized; show 0 + count
-    unrealized += 0;
-  }
+  let totalExposure = 0;
+  let unrealizedKnown = 0;
+  const enrichedPositions = (state.positions || []).map(p => {
+    const u = unrealizedFor(p);
+    totalExposure += num(p.positionSize);
+    if (u.unrealizedPnl != null) {
+      unrealized += u.unrealizedPnl;
+      unrealizedKnown++;
+    }
+    return { ...p, ...u };
+  });
+  // Best/worst open
+  const sortedOpen = [...enrichedPositions].filter(p => p.unrealizedPnl != null).sort((a, b) => b.unrealizedPnl - a.unrealizedPnl);
+  const bestOpen = sortedOpen[0] || null;
+  const worstOpen = sortedOpen[sortedOpen.length - 1] || null;
 
   // rolling WR (last N trades)
   const rollingN = 30;
@@ -235,13 +310,29 @@ function computeStats({ state, logLines }) {
     rollingWR.push({ idx: i + 1, wr: window.length ? w / window.length : 0 });
   }
 
+  // Open-position breakdowns (for Sprint 10)
+  const openBySide = { NO: 0, YES: 0 };
+  const openByCity = {};
+  for (const p of enrichedPositions) {
+    openBySide[p.side] = (openBySide[p.side] || 0) + 1;
+    openByCity[p.city || "?"] = (openByCity[p.city || "?"] || 0) + 1;
+  }
+  const trueEquity = num(state.bankroll) + totalExposure + unrealized; // bankroll cash + tied-up cost basis + mark-to-market gain/loss
+  const exposurePct = (num(state.bankroll) + totalExposure) > 0
+    ? totalExposure / (num(state.bankroll) + totalExposure)
+    : 0;
+
   return {
     generatedAt: new Date().toISOString(),
     summary: {
       bankroll: num(state.bankroll),
       realizedPnl: Math.round(realizedPnl * 100) / 100,
       unrealizedPnl: Math.round(unrealized * 100) / 100,
+      unrealizedKnownCount: unrealizedKnown,
       totalPnl: Math.round((realizedPnl + unrealized) * 100) / 100,
+      equity: Math.round(trueEquity * 100) / 100,
+      totalExposure: Math.round(totalExposure * 100) / 100,
+      exposurePct,
       openPositions: openCount,
       totalClosed,
       totalAttempts,
@@ -270,6 +361,7 @@ function computeStats({ state, logLines }) {
     breakdown: { bySide, byReason, byCity, byCushion },
     thermalEdge: Object.values(thermalBuckets),
     execLog: logLines.slice(-500),  // last 500 events (OPEN + CLOSE), newest last
+    openBreakdown: { bySide: openBySide, byCity: openByCity, bestOpen, worstOpen },
     quant: {
       kelly,
       omega: Number.isFinite(omega) ? omega : null,
@@ -281,7 +373,7 @@ function computeStats({ state, logLines }) {
       pnlMean: mean, pnlStd: std,
       monthly, hourly,
     },
-    openPositions: state.positions,
+    openPositions: enrichedPositions,
     closedTrades: sortedByClose,
   };
 }
@@ -296,9 +388,18 @@ const server = http.createServer(async (req, res) => {
     }
     if (u.pathname === "/api/stats") {
       const data = await loadData();
+      // Refresh price cache for any open positions (cached 30s)
+      try { await refreshPricesForPositions(data.state.positions || []); } catch (e) { /* tolerate price-fetch failures */ }
       const stats = computeStats(data);
       res.writeHead(200, { "content-type": "application/json", "cache-control": "no-store" });
       res.end(JSON.stringify(stats));
+      return;
+    }
+    if (u.pathname === "/api/refresh-prices") {
+      // Force-clear cache so next /api/stats fully refetches
+      priceCache.clear();
+      res.writeHead(200, { "content-type": "application/json" });
+      res.end(JSON.stringify({ ok: true, cleared: true }));
       return;
     }
     if (u.pathname === "/" || u.pathname === "/index.html") {
