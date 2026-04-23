@@ -341,80 +341,124 @@ async function simulateEntry(market, mkt, sig, currentPrice) {
   return position;
 }
 
+// Returns { won: true|false } if observation monotonically guarantees the
+// outcome (day-over not required — obs can only go up for max, down for min,
+// so once it crosses the threshold the outcome is fixed). Returns null if
+// the current observation is inconclusive (need to wait for day end / Gamma).
+function metarLockOutcome(pos, metar) {
+  if (!metar || !metar.length) return null;
+  const parsedTitle = parseWeatherTitle(pos.title);
+  if (!parsedTitle) return null;
+  const thrC = toC(parsedTitle.threshold, parsedTitle.unit);
+  const thrHiC = parsedTitle.thresholdHigh != null ? toC(parsedTitle.thresholdHigh, parsedTitle.unit) : null;
+  const temps = metar.map(o => o.tempC);
+  const observedMax = Math.max(...temps);
+  const observedMin = Math.min(...temps);
+  const BUF = 0.2;
+
+  // Lowest markets (observedMin is monotone non-increasing within the day)
+  if (parsedTitle.isLowest) {
+    if (observedMin < thrC - BUF) {
+      // min already below threshold → NO wins for exact/at_or_above; YES for at_or_below
+      if (parsedTitle.type === "at_or_below") return { yesWon: true };
+      return { yesWon: false }; // NO wins
+    }
+    return null;
+  }
+
+  // Highest markets — observedMax is monotone non-decreasing
+  if (parsedTitle.type === "between" && thrHiC != null) {
+    if (observedMax > thrHiC + BUF) return { yesWon: false }; // NO wins
+    return null;
+  }
+  if (parsedTitle.type === "at_or_below") {
+    if (observedMax > thrC + BUF) return { yesWon: false };
+    return null;
+  }
+  if (parsedTitle.type === "at_or_above") {
+    if (observedMax > thrC + BUF) return { yesWon: true };
+    return null;
+  }
+  // exact (default): YES iff final == threshold. NO wins if max > thr + buf
+  if (observedMax > thrC + BUF) return { yesWon: false };
+  return null;
+}
+
 async function resolvePositions() {
-  // Check each open position:
-  //   - if past endDate: settle via Gamma/CLOB resolution price
-  //   - if past maxhold: exit at current market price
+  // Check each open position. Settlement priority:
+  //   1. METAR monotone lock (observed max/min already guarantees outcome) —
+  //      fires immediately, doesn't wait for endDate
+  //   2. Past endDate + 5min → Gamma outcomePrices, fall back to METAR
+  //   3. Max hold reached → exit at current taker price
   const nowSec = Math.floor(Date.now() / 1000);
+  let settled = 0, checked = 0, lockedEarly = 0, stillOpen = 0;
   for (const pos of state.positions) {
     if (pos.closed) continue;
+    checked++;
     const marketEndSec = Math.floor(new Date(pos.endDate).getTime() / 1000);
     const holdMin = (nowSec - pos.openedTs) / 60;
     let exitPrice = null;
     let status = null;
 
-    if (nowSec >= marketEndSec + 300) {
-      // 5min past market end = check for resolution. Gamma marks markets
-      // `closed: true` when trading stops, but `resolved`/`resolvedBy` can
-      // lag by hours via UMA. We settle on the strongest available signal:
-      //   - outcomePrices collapsed to [1,0] or [0,1]
-      //   - mk.closed AND outcomePrices available (even if not fully collapsed)
-      //   - mk.resolved or mk.resolvedBy present
+    // PATH 1: METAR monotone lock — settle right away if observation already
+    // determines the outcome. For "observed-above" entries (cushion > 0 at
+    // entry), this is usually already lockable at open, so these settle on
+    // the first resolvePositions() tick.
+    try {
+      const obs = await getObservationsForMarket({ city: pos.city, date: pos.date });
+      const metar = obs?.metar || [];
+      const lock = metarLockOutcome(pos, metar);
+      if (lock) {
+        const ourSideWon = (pos.side === "YES" && lock.yesWon) || (pos.side === "NO" && !lock.yesWon);
+        exitPrice = ourSideWon ? 1.0 : 0.0;
+        status = ourSideWon ? "settle-win-metar-lock" : "settle-lose-metar-lock";
+        lockedEarly++;
+      }
+    } catch {}
+
+    // PATH 2: past endDate + 5min → Gamma first, METAR fallback
+    if (exitPrice == null && nowSec >= marketEndSec + 300) {
       try {
         const mkt = await fetchJson(`${GAMMA}/markets?conditionIds=${pos.conditionId}`);
         const m = Array.isArray(mkt) ? mkt[0] : mkt;
-        if (!m) continue;
-        let yesP = null, noP = null;
-        if (m.outcomePrices) {
-          try {
-            const parsed = typeof m.outcomePrices === "string" ? JSON.parse(m.outcomePrices) : m.outcomePrices;
-            if (Array.isArray(parsed) && parsed.length >= 2) {
-              yesP = Number(parsed[0]); noP = Number(parsed[1]);
-            }
-          } catch {}
-        }
-        const priceResolved = Number.isFinite(yesP) && Number.isFinite(noP)
-          && Math.max(yesP, noP) >= 0.999 && Math.min(yesP, noP) <= 0.001;
-        const flagResolved = m.closed === true || m.archived === true
-          || m.resolved === true || m.resolvedBy != null
-          || m.umaResolutionStatus === "resolved";
-        if (priceResolved) {
-          const yesWon = yesP >= 0.5;
-          const ourSideWon = (pos.side === "YES" && yesWon) || (pos.side === "NO" && !yesWon);
-          exitPrice = ourSideWon ? 1.0 : 0.0;
-          status = ourSideWon ? "settle-win" : "settle-lose";
-        } else {
-          // Past endDate + Gamma prices ambiguous (common — Polymarket takes
-          // hours to propagate closed/resolved flags via UMA). Trust METAR:
-          // we're past the trading close, the day's final max/min is in, the
-          // payoff is deterministic from the observation. No need to wait for
-          // Gamma to catch up.
-          const obs = await getObservationsForMarket({ city: pos.city, date: pos.date });
-          const metar = obs?.metar || [];
-          if (metar.length) {
-            const temps = metar.map(o => o.tempC);
-            const observedMax = Math.max(...temps);
-            const observedMin = Math.min(...temps);
-            const parsedTitle = parseWeatherTitle(pos.title);
-            const thrC = parsedTitle ? toC(parsedTitle.threshold, parsedTitle.unit) : null;
-            const thrHiC = parsedTitle?.thresholdHigh != null ? toC(parsedTitle.thresholdHigh, parsedTitle.unit) : null;
-            if (thrC != null && parsedTitle) {
-              let yesWon = null;
-              if (parsedTitle.isLowest) {
-                yesWon = parsedTitle.type === "exact" ? Math.abs(observedMin - thrC) < 0.5 : observedMin >= thrC;
-              } else if (parsedTitle.type === "between" && thrHiC != null) {
-                yesWon = observedMax >= thrC && observedMax <= thrHiC;
-              } else if (parsedTitle.type === "at_or_below") {
-                yesWon = observedMax <= thrC;
-              } else if (parsedTitle.type === "at_or_above") {
-                yesWon = observedMax >= thrC;
-              } else { // exact
-                yesWon = Math.abs(observedMax - thrC) < 0.5;
-              }
-              if (yesWon != null) {
-                const ourSideWon = (pos.side === "YES" && yesWon) || (pos.side === "NO" && !yesWon);
-                exitPrice = ourSideWon ? 1.0 : 0.0;
-                status = ourSideWon ? "settle-win-metar" : "settle-lose-metar";
+        if (m) {
+          let yesP = null, noP = null;
+          if (m.outcomePrices) {
+            try {
+              const parsed = typeof m.outcomePrices === "string" ? JSON.parse(m.outcomePrices) : m.outcomePrices;
+              if (Array.isArray(parsed) && parsed.length >= 2) { yesP = Number(parsed[0]); noP = Number(parsed[1]); }
+            } catch {}
+          }
+          const priceResolved = Number.isFinite(yesP) && Number.isFinite(noP)
+            && Math.max(yesP, noP) >= 0.999 && Math.min(yesP, noP) <= 0.001;
+          if (priceResolved) {
+            const yesWon = yesP >= 0.5;
+            const ourSideWon = (pos.side === "YES" && yesWon) || (pos.side === "NO" && !yesWon);
+            exitPrice = ourSideWon ? 1.0 : 0.0;
+            status = ourSideWon ? "settle-win" : "settle-lose";
+          } else {
+            // Gamma ambiguous past endDate → METAR best-effort (full-day observation)
+            const obs = await getObservationsForMarket({ city: pos.city, date: pos.date });
+            const metar = obs?.metar || [];
+            if (metar.length) {
+              const temps = metar.map(o => o.tempC);
+              const observedMax = Math.max(...temps);
+              const observedMin = Math.min(...temps);
+              const parsedTitle = parseWeatherTitle(pos.title);
+              const thrC = parsedTitle ? toC(parsedTitle.threshold, parsedTitle.unit) : null;
+              const thrHiC = parsedTitle?.thresholdHigh != null ? toC(parsedTitle.thresholdHigh, parsedTitle.unit) : null;
+              if (thrC != null && parsedTitle) {
+                let yesWon = null;
+                if (parsedTitle.isLowest) yesWon = parsedTitle.type === "exact" ? Math.abs(observedMin - thrC) < 0.5 : observedMin >= thrC;
+                else if (parsedTitle.type === "between" && thrHiC != null) yesWon = observedMax >= thrC && observedMax <= thrHiC;
+                else if (parsedTitle.type === "at_or_below") yesWon = observedMax <= thrC;
+                else if (parsedTitle.type === "at_or_above") yesWon = observedMax >= thrC;
+                else yesWon = Math.abs(observedMax - thrC) < 0.5;
+                if (yesWon != null) {
+                  const ourSideWon = (pos.side === "YES" && yesWon) || (pos.side === "NO" && !yesWon);
+                  exitPrice = ourSideWon ? 1.0 : 0.0;
+                  status = ourSideWon ? "settle-win-metar" : "settle-lose-metar";
+                }
               }
             }
           }
@@ -451,7 +495,13 @@ async function resolvePositions() {
       await fs.appendFile(LOG, JSON.stringify({ type: "CLOSE", ...pos }) + "\n");
       const emoji = pnl > 0 ? "✅" : (pnl < 0 ? "❌" : "⏸");
       console.log(`  ${emoji} CLOSE ${pos.side.padEnd(3)} ${pos.city.padEnd(15)} ${pos.date}  exit=${exitPrice.toFixed(4)}  pnl=$${pnl.toFixed(2)}  ${status}`);
+      settled++;
+    } else {
+      stillOpen++;
     }
+  }
+  if (checked > 0) {
+    console.log(`  [resolve] checked=${checked} settled=${settled} (lockedEarly=${lockedEarly}) stillOpen=${stillOpen}  realizedPnl=$${state.realizedPnl.toFixed(2)}  bankroll=$${state.bankroll.toFixed(2)}`);
   }
   // Drop closed positions
   state.positions = state.positions.filter(p => !p.closed);
