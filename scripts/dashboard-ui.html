@@ -109,6 +109,13 @@
   .spotlight .v.neg { color: var(--red); }
   .spotlight .v.big { font-size: 18px; font-weight: 600; }
   .spotlight .empty { padding: 24px; text-align: center; color: var(--muted); font-style: italic; }
+  .verdict { font-size: 10px; padding: 2px 6px; border-radius: 3px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; font-family: ui-monospace, monospace; }
+  .verdict.locked_win { background: color-mix(in oklch, var(--green), transparent 75%); color: var(--green); border: 1px solid color-mix(in oklch, var(--green), transparent 60%); }
+  .verdict.locked_loss { background: color-mix(in oklch, var(--red), transparent 75%); color: var(--red); border: 1px solid color-mix(in oklch, var(--red), transparent 60%); }
+  .verdict.leading { color: var(--green); }
+  .verdict.trailing { color: var(--amber); }
+  .verdict.uncertain { color: var(--muted-hi); }
+  .verdict.unknown, .verdict.no-station { color: var(--muted); }
 
   section { margin-bottom: 20px; }
   section h2 { margin: 0 0 12px 0; font-size: 11px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.12em; font-weight: 600; }
@@ -195,6 +202,8 @@
   <div class="stat">Unrealized: <b id="unrealTop">—</b></div>
   <div class="stat">Equity: <b id="equityTop">—</b></div>
   <div class="stat">Prices: <b id="pricesTop">—</b></div>
+  <div class="stat">Locked: <b id="lockedTop">—</b></div>
+  <div class="stat">Projected: <b id="projectedTop">—</b></div>
   <div class="spacer"></div>
   <span class="tag mono" id="lastUpdate" style="font-size:10px;color:var(--muted)">loading…</span>
   <span class="tag mono" id="refreshCountdown" style="font-size:10px;color:var(--muted)">next —</span>
@@ -572,6 +581,7 @@ function renderOpen(positions) {
     document.getElementById("openTable").innerHTML = `<div class="empty">No open positions.</div>`;
     return;
   }
+  const verdictOrder = { locked_loss: 0, trailing: 1, uncertain: 2, unknown: 3, "no-station": 4, leading: 5, locked_win: 6 };
   const sorters = {
     "unreal-desc":  (a, b) => (b.unrealizedPnl ?? -Infinity) - (a.unrealizedPnl ?? -Infinity),
     "unreal-asc":   (a, b) => (a.unrealizedPnl ?? Infinity) - (b.unrealizedPnl ?? Infinity),
@@ -580,6 +590,7 @@ function renderOpen(positions) {
     "age-asc":      (a, b) => new Date(b.openedAt) - new Date(a.openedAt),
     "ttr-asc":      (a, b) => (a.ttrSec ?? Infinity) - (b.ttrSec ?? Infinity),
     "size-desc":    (a, b) => (b.positionSize ?? 0) - (a.positionSize ?? 0),
+    "verdict-asc":  (a, b) => (verdictOrder[a.verdict] ?? 99) - (verdictOrder[b.verdict] ?? 99),
   };
   const rows = [...__openPositions]
     .sort(sorters[__openSort] || sorters["unreal-desc"])
@@ -593,6 +604,14 @@ function renderOpen(positions) {
       const lp = p.lastPrice == null ? "—" : fmtN(p.lastPrice, 4);
       const upnTxt = upn == null ? "—" : fmt$(upn);
       const upctTxt = upct == null ? "—" : fmtSigned(upct * 100, 1) + "%";
+      const verdict = p.verdict || "unknown";
+      const verdictLabel = { locked_win: "WIN", locked_loss: "LOSE", leading: "lead", trailing: "trail", uncertain: "?", unknown: "—", "no-station": "—" }[verdict] || "—";
+      const obsTxt = (() => {
+        if (p.observedMax == null && p.observedMin == null) return "—";
+        if (p.isLowest) return `min ${p.observedMin ?? "?"}°`;
+        return `max ${p.observedMax ?? "?"}°`;
+      })();
+      const thrTxt = p.threshold == null ? "—" : (p.thresholdHigh != null ? `${p.threshold}-${p.thresholdHigh}°${p.thresholdUnit||"C"}` : `${p.threshold}°${p.thresholdUnit||"C"}`);
       return `<tr>
         <td>${fmtTime(p.openedAt)}</td>
         <td>${side}</td>
@@ -604,13 +623,16 @@ function renderOpen(positions) {
         <td class="num">${fmt$(p.positionSize)}</td>
         <td class="num ${upnCls}">${upnTxt}</td>
         <td class="num ${upnCls}">${upctTxt}</td>
+        <td><span class="verdict ${verdict}">${verdictLabel}</span></td>
+        <td class="num">${obsTxt}</td>
+        <td class="num">${thrTxt}</td>
         <td class="num">${fmtN(p.cushion,1)}°C</td>
         <td><span class="pill">${p.reason||""}</span></td>
         <td class="num">${fmtDur(ageMin)}</td>
         <td class="num">${ttrTxt}</td>
       </tr>`;
     }).join("");
-  const headerSort = (key, label) => `<th class="num" style="cursor:pointer" onclick="setOpenSort('${key}')">${label}${__openSort===key?" ▾":""}</th>`;
+  const headerSort = (key, label, cls="num") => `<th class="${cls}" style="cursor:pointer" onclick="setOpenSort('${key}')">${label}${__openSort===key?" ▾":""}</th>`;
   document.getElementById("openTable").innerHTML = `
     <table>
       <thead><tr>
@@ -618,6 +640,8 @@ function renderOpen(positions) {
         <th class="num">Entry</th><th class="num">Last</th>
         <th class="num">Shares</th>${headerSort("size-desc","Size")}
         ${headerSort("unreal-desc","Unreal $")}${headerSort("unrealpct-desc","Unreal %")}
+        ${headerSort("verdict-asc","Verdict", "")}
+        <th class="num">Observed</th><th class="num">Threshold</th>
         <th class="num">Cushion</th><th>Reason</th>
         ${headerSort("age-desc","Age")}${headerSort("ttr-asc","TTR")}
       </tr></thead>
@@ -1151,6 +1175,18 @@ async function refresh() {
       renderSpotlight("worstOpen", "worstPill", data.openBreakdown.worstOpen, "worst");
       renderOpenSide(data.openBreakdown.bySide);
       renderOpenCity(data.openBreakdown.byCity);
+      // Topbar: locked wins/losses + projected from verdict
+      const v = data.openBreakdown.byVerdict || {};
+      const lockedEl = document.getElementById("lockedTop");
+      if (lockedEl) {
+        lockedEl.innerHTML = `<span style="color:var(--green)">✓${v.locked_win || 0}</span> / <span style="color:var(--red)">✗${v.locked_loss || 0}</span>`;
+      }
+      const projEl = document.getElementById("projectedTop");
+      if (projEl) {
+        const pp = data.openBreakdown.projectedPayoff;
+        projEl.textContent = fmt$(pp);
+        projEl.style.color = pp > 0 ? "var(--green)" : pp < 0 ? "var(--red)" : "var(--text)";
+      }
     }
     if (data.quant) {
       renderQuantKpis(data.summary, data.quant);

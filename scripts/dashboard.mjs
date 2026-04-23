@@ -27,8 +27,13 @@ const UI_FILE = path.resolve("scripts/dashboard-ui.html");
 
 const GAMMA = "https://gamma-api.polymarket.com";
 const CLOB = "https://clob.polymarket.com";
+const METAR_API = "https://aviationweather.gov/api/data/metar";
+const STATIONS_FILE = path.resolve("data/metar-stations.json");
 const PRICE_TTL_MS = Number(argv.pricettl ?? "30000");  // 30s cache
 const PRICE_BATCH = Number(argv.pricebatch ?? "20");
+const WEATHER_TTL_MS = Number(argv.weatherttl ?? "300000");  // 5min cache
+
+const STATIONS = existsSync(STATIONS_FILE) ? JSON.parse(await fs.readFile(STATIONS_FILE, "utf8")) : {};
 
 const num = (x, d = 0) => { const n = Number(x); return Number.isFinite(n) ? n : d; };
 
@@ -147,11 +152,145 @@ async function startBackgroundPoller() {
   const tick = async () => {
     try {
       const { state } = await loadData();
-      if (state.positions?.length) await refreshPricesForPositions(state.positions);
+      if (state.positions?.length) {
+        await refreshPricesForPositions(state.positions);
+        // Weather runs less frequently (5min TTL) but we call it every poll; cache handles rate-limiting
+        await refreshWeatherForPositions(state.positions);
+      }
     } catch (e) { diagnostics.lastError = String(e?.message || e); console.error(`[prices] poller error:`, e?.message || e); }
     setTimeout(tick, PRICE_TTL_MS);
   };
   tick();  // fire immediately
+}
+
+// ---- Weather ground-truth cache (for per-position verdict) ----
+// Key: city|date → { metar: [{t, tempC}], fetchedAt }
+const weatherCache = new Map();
+
+function toC(v, unit) { return unit === "F" ? (v - 32) * 5/9 : v; }
+
+function parseWeatherTitle(t) {
+  if (!t) return null;
+  const isLowest = /lowest temperature/i.test(t);
+  let m = t.match(/temperature in ([A-Z][\w .\-']+?) be/i);
+  if (!m) m = t.match(/temperature in ([A-Z][\w .\-']+?) on/i);
+  if (!m) return null;
+  const city = m[1].trim();
+  const unit = /°F/i.test(t) ? "F" : "C";
+  const r = t.match(/be\s+(?:between\s+)?(\d+)(?:\s*-\s*(\d+))?\s*°?/i);
+  const thr = r ? Number(r[1]) : null;
+  const thrHi = r && r[2] ? Number(r[2]) : null;
+  let typ = "exact";
+  if (/or higher/i.test(t)) typ = "at_or_above";
+  else if (/or below/i.test(t)) typ = "at_or_below";
+  else if (/between/i.test(t)) typ = "between";
+  let date = null;
+  const iso = t.match(/on\s+(\d{4}-\d{2}-\d{2})/);
+  const mon = t.match(/on\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d+)(?:,\s*(\d{4}))?/i);
+  if (iso) date = iso[1];
+  else if (mon) {
+    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const mi = months.findIndex(x => x.toLowerCase() === mon[1].toLowerCase());
+    const y = mon[3] || String(new Date().getUTCFullYear());
+    date = `${y}-${String(mi+1).padStart(2,"0")}-${String(mon[2]).padStart(2,"0")}`;
+  }
+  return { city, date, unit, threshold: thr, thresholdHigh: thrHi, type: typ, isLowest };
+}
+
+async function fetchMetar(icao, hours = 36) {
+  const url = `${METAR_API}?ids=${icao}&format=json&hours=${hours}`;
+  try {
+    const r = await fetch(url, { headers: { accept: "application/json" } });
+    if (!r.ok) return [];
+    const data = await r.json();
+    if (!Array.isArray(data)) return [];
+    return data
+      .map(m => ({ t: typeof m.obsTime === "number" ? m.obsTime : Math.floor(new Date(m.obsTime).getTime()/1000), tempC: m.temp }))
+      .filter(o => Number.isFinite(o.t) && o.tempC != null)
+      .sort((a, b) => a.t - b.t);
+  } catch { return []; }
+}
+
+async function getWeatherFor(city, date) {
+  const key = `${city}__${date}`;
+  const cached = weatherCache.get(key);
+  if (cached && Date.now() - cached.fetchedAt < WEATHER_TTL_MS) return cached;
+  const icao = STATIONS[city];
+  if (!icao) {
+    const miss = { metar: [], fetchedAt: Date.now(), noStation: true };
+    weatherCache.set(key, miss);
+    return miss;
+  }
+  const metar = await fetchMetar(icao, 36);
+  // Filter to observations on this calendar date (UTC) — cheapest approximation for
+  // "the day" since Polymarket titles reference local date. A ±12h window around
+  // the date is more than enough for our diagnostic.
+  const d0 = Math.floor(new Date(date + "T00:00:00Z").getTime() / 1000) - 12 * 3600;
+  const d1 = d0 + 48 * 3600;
+  const scoped = metar.filter(o => o.t >= d0 && o.t <= d1);
+  const fresh = { metar: scoped, fetchedAt: Date.now(), icao };
+  weatherCache.set(key, fresh);
+  return fresh;
+}
+
+function computeVerdict(pos, metar) {
+  const m = parseWeatherTitle(pos.title);
+  if (!m || !metar?.length) return { observedMax: null, observedMin: null, threshold: null, verdict: "unknown" };
+  const temps = metar.map(o => o.tempC);
+  const observedMax = Math.max(...temps);
+  const observedMin = Math.min(...temps);
+  const thrC = toC(m.threshold, m.unit);
+  const thrHiC = m.thresholdHigh != null ? toC(m.thresholdHigh, m.unit) : null;
+  let verdict = "uncertain";
+  const BUF = 0.2;
+
+  if (m.isLowest) {
+    // Market asks "will the lowest temperature be X". Observed_min only gets lower
+    // (or stays) as the day continues — so if it's already < thr, NO is locked.
+    if (observedMin < thrC - BUF) verdict = pos.side === "NO" ? "locked_win" : "locked_loss";
+    else if (observedMin > thrC + BUF) verdict = pos.side === "YES" ? "leading" : "trailing";
+  } else if (m.type === "between" && thrHiC != null) {
+    // "between X-Y": YES wins if X <= final_max <= Y. observed_max only rises.
+    if (observedMax > thrHiC + BUF) verdict = pos.side === "NO" ? "locked_win" : "locked_loss";
+    else if (observedMax < thrC - BUF) verdict = "uncertain"; // depends on forecast
+    else verdict = pos.side === "YES" ? "leading" : "trailing";
+  } else if (m.type === "at_or_below") {
+    if (observedMax > thrC + BUF) verdict = pos.side === "NO" ? "locked_win" : "locked_loss";
+    else verdict = pos.side === "YES" ? "leading" : "trailing";
+  } else if (m.type === "at_or_above") {
+    if (observedMax > thrC + BUF) verdict = pos.side === "YES" ? "locked_win" : "locked_loss";
+    else verdict = pos.side === "NO" ? "leading" : "trailing";
+  } else {
+    // exact: YES wins only if final_max == threshold. observed_max monotone ⇒
+    // once it exceeds threshold, YES is dead.
+    if (observedMax > thrC + BUF) verdict = pos.side === "NO" ? "locked_win" : "locked_loss";
+    else if (observedMax < thrC - BUF - 2) verdict = pos.side === "NO" ? "leading" : "trailing";
+    else verdict = "uncertain";
+  }
+
+  return {
+    observedMax: Math.round(observedMax * 10) / 10,
+    observedMin: Math.round(observedMin * 10) / 10,
+    threshold: m.threshold,
+    thresholdHigh: m.thresholdHigh,
+    thresholdUnit: m.unit,
+    marketType: m.type,
+    isLowest: m.isLowest,
+    metarSamples: metar.length,
+    verdict,
+  };
+}
+
+async function refreshWeatherForPositions(positions) {
+  const uniq = new Map(); // city|date → {city, date}
+  for (const p of positions) {
+    const title = parseWeatherTitle(p.title);
+    if (!title?.city || !title?.date) continue;
+    const key = `${title.city}__${title.date}`;
+    if (!uniq.has(key)) uniq.set(key, { city: title.city, date: title.date });
+  }
+  const work = [...uniq.values()];
+  await runParallel(work, async (w) => { await getWeatherFor(w.city, w.date); }, 6);
 }
 
 function unrealizedFor(pos) {
@@ -373,7 +512,15 @@ function computeStats({ state, logLines }) {
       unrealized += u.unrealizedPnl;
       unrealizedKnown++;
     }
-    return { ...p, ...u };
+    // Attach weather ground-truth verdict
+    const title = parseWeatherTitle(p.title);
+    let verdictInfo = { verdict: "unknown" };
+    if (title?.city && title?.date) {
+      const wx = weatherCache.get(`${title.city}__${title.date}`);
+      if (wx?.metar) verdictInfo = computeVerdict(p, wx.metar);
+      else if (wx?.noStation) verdictInfo = { verdict: "no-station" };
+    }
+    return { ...p, ...u, ...verdictInfo };
   });
   // Best/worst open
   const sortedOpen = [...enrichedPositions].filter(p => p.unrealizedPnl != null).sort((a, b) => b.unrealizedPnl - a.unrealizedPnl);
@@ -392,9 +539,14 @@ function computeStats({ state, logLines }) {
   // Open-position breakdowns (for Sprint 10)
   const openBySide = { NO: 0, YES: 0 };
   const openByCity = {};
+  const openByVerdict = { locked_win: 0, locked_loss: 0, leading: 0, trailing: 0, uncertain: 0, unknown: 0, "no-station": 0 };
+  let projectedPayoff = 0;  // if every locked_win pays $1 and locked_loss pays $0, +expected from leading/trailing
   for (const p of enrichedPositions) {
     openBySide[p.side] = (openBySide[p.side] || 0) + 1;
     openByCity[p.city || "?"] = (openByCity[p.city || "?"] || 0) + 1;
+    openByVerdict[p.verdict || "unknown"] = (openByVerdict[p.verdict || "unknown"] || 0) + 1;
+    if (p.verdict === "locked_win") projectedPayoff += num(p.shares) * (1 - num(p.entryPrice));
+    else if (p.verdict === "locked_loss") projectedPayoff += num(p.shares) * (0 - num(p.entryPrice));
   }
   const trueEquity = num(state.bankroll) + totalExposure + unrealized; // bankroll cash + tied-up cost basis + mark-to-market gain/loss
   const exposurePct = (num(state.bankroll) + totalExposure) > 0
@@ -440,7 +592,7 @@ function computeStats({ state, logLines }) {
     breakdown: { bySide, byReason, byCity, byCushion },
     thermalEdge: Object.values(thermalBuckets),
     execLog: logLines.slice(-500),  // last 500 events (OPEN + CLOSE), newest last
-    openBreakdown: { bySide: openBySide, byCity: openByCity, bestOpen, worstOpen },
+    openBreakdown: { bySide: openBySide, byCity: openByCity, byVerdict: openByVerdict, bestOpen, worstOpen, projectedPayoff: Math.round(projectedPayoff * 100) / 100 },
     quant: {
       kelly,
       omega: Number.isFinite(omega) ? omega : null,
