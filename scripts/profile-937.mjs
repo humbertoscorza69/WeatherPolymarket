@@ -11,6 +11,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const FILE = path.resolve("data/wallet-trades/0x937bcac3a8a30c07d827ad0550c3fe3a6756bfab.jsonl");
+const SUMMARY = path.resolve("data/wallet-trades/0x937bcac3a8a30c07d827ad0550c3fe3a6756bfab.summary.json");
 
 function parseTitle(title) {
   if (!title) return null;
@@ -181,6 +182,125 @@ async function main() {
     const wr = 100 * wins / sub.length;
     const totalPnl = sub.reduce((s,t)=>s+(t.pnlUsdc||0),0);
     console.log(`  [${lo}-${hi}min)  n=${String(sub.length).padStart(4)}  WR=${wr.toFixed(1).padStart(5)}%  PnL=$${totalPnl.toFixed(2)}`);
+  }
+
+  // ============== OPEN POSITIONS (separate regime) ==============
+  // The closed-trade view shows exit behavior. Open positions show which
+  // markets 937 is currently sitting in but hasn't sold yet — which can
+  // reveal a hold-to-resolution sub-strategy invisible in closed data.
+  let openPositions = [];
+  try {
+    const summary = JSON.parse(await fs.readFile(SUMMARY, "utf8"));
+    openPositions = Array.isArray(summary.openPositions) ? summary.openPositions : [];
+  } catch (e) { console.log(`\n(no summary file: ${e.message})`); }
+
+  if (openPositions.length) {
+    console.log(`\n\n=== OPEN POSITIONS · ${openPositions.length} ===`);
+
+    // Side mix
+    const oNo = openPositions.filter(p => p.side === "NO");
+    const oYes = openPositions.filter(p => p.side === "YES");
+    console.log(`Side mix:`);
+    console.log(`  NO  ${oNo.length} (${(100*oNo.length/openPositions.length).toFixed(1)}%)`);
+    console.log(`  YES ${oYes.length} (${(100*oYes.length/openPositions.length).toFixed(1)}%)`);
+
+    // NO entry price
+    const oNoEntries = oNo.map(p => p.entryAvg).filter(Number.isFinite);
+    if (oNoEntries.length) {
+      console.log(`\nOpen NO entry price:`);
+      console.log(`  min=${Math.min(...oNoEntries).toFixed(4)} p10=${pct(oNoEntries,10).toFixed(4)} p25=${pct(oNoEntries,25).toFixed(4)} p50=${pct(oNoEntries,50).toFixed(4)} p75=${pct(oNoEntries,75).toFixed(4)} p90=${pct(oNoEntries,90).toFixed(4)} max=${Math.max(...oNoEntries).toFixed(4)}`);
+      const noEdges2 = [0.20, 0.40, 0.50, 0.60, 0.70, 0.80, 0.90, 0.95, 0.97, 0.98, 0.99, 0.995, 0.999];
+      console.log(fmtBuckets(noEdges2, bucketize(oNoEntries, noEdges2), oNoEntries.length));
+    }
+
+    // YES entry price
+    const oYesEntries = oYes.map(p => p.entryAvg).filter(Number.isFinite);
+    if (oYesEntries.length) {
+      console.log(`\nOpen YES entry price:`);
+      console.log(`  min=${Math.min(...oYesEntries).toFixed(4)} p10=${pct(oYesEntries,10).toFixed(4)} p50=${pct(oYesEntries,50).toFixed(4)} p90=${pct(oYesEntries,90).toFixed(4)} max=${Math.max(...oYesEntries).toFixed(4)}`);
+      const yesEdges2 = [0.05, 0.10, 0.20, 0.30, 0.50, 0.70, 0.90];
+      console.log(fmtBuckets(yesEdges2, bucketize(oYesEntries, yesEdges2), oYesEntries.length));
+    }
+
+    // Open position sizing
+    const oSizes = openPositions.map(p => p.entryUsdc).filter(Number.isFinite);
+    console.log(`\nOpen position size (USDC):`);
+    console.log(`  min=$${Math.min(...oSizes).toFixed(2)} p10=$${pct(oSizes,10).toFixed(2)} p50=$${pct(oSizes,50).toFixed(2)} p90=$${pct(oSizes,90).toFixed(2)} max=$${Math.max(...oSizes).toFixed(2)}`);
+
+    // Age of open positions (how long have they been held already)
+    const nowSec = Math.floor(Date.now() / 1000);
+    const ages = openPositions.map(p => (nowSec - p.openTs) / 60).filter(Number.isFinite);
+    console.log(`\nOpen position AGE (minutes since openTs):`);
+    console.log(`  min=${Math.min(...ages).toFixed(1)} p10=${pct(ages,10).toFixed(1)} p50=${pct(ages,50).toFixed(1)} p90=${pct(ages,90).toFixed(1)} max=${Math.max(...ages).toFixed(1)}`);
+    const ageEdges = [60, 240, 1440, 4320, 10080, 43200];  // 1h, 4h, 1d, 3d, 7d, 30d
+    console.log(fmtBuckets(ageEdges, bucketize(ages, ageEdges), ages.length));
+
+    // Market type (open)
+    const oTyped = openPositions.map(p => ({ ...p, parsed: parseTitle(p.title) })).filter(p => p.parsed?.type);
+    const oByType = {};
+    const oByBucket = {};
+    for (const t of oTyped) {
+      oByType[t.parsed.type] = (oByType[t.parsed.type] || 0) + 1;
+      if (t.parsed.bucket) oByBucket[t.parsed.bucket] = (oByBucket[t.parsed.bucket] || 0) + 1;
+    }
+    console.log(`\nOpen market type (parsed, n=${oTyped.length}):`);
+    for (const [k, v] of Object.entries(oByType).sort((a,b)=>b[1]-a[1])) {
+      console.log(`  ${k.padEnd(10)} ${v} (${(100*v/oTyped.length).toFixed(1)}%)`);
+    }
+    console.log(`Open bucket:`);
+    for (const [k, v] of Object.entries(oByBucket).sort((a,b)=>b[1]-a[1])) {
+      console.log(`  ${k.padEnd(10)} ${v} (${(100*v/oTyped.length).toFixed(1)}%)`);
+    }
+
+    // ============ CLUSTER ANALYSIS — distinct sub-strategies? ============
+    // Split open positions into price-band regimes to test the hypothesis
+    // that 937 runs multiple strategies (scalper, mid-NO holder, lottery YES).
+    console.log(`\n=== Open NO position REGIMES (cluster by entry price) ===`);
+    const regimes = [
+      { name: "deep-cheap (NO 0.20-0.50)", lo: 0.20, hi: 0.50 },
+      { name: "mid-NO (0.50-0.80)",        lo: 0.50, hi: 0.80 },
+      { name: "high-NO (0.80-0.95)",       lo: 0.80, hi: 0.95 },
+      { name: "scalp-edge (0.95-0.99)",    lo: 0.95, hi: 0.99 },
+      { name: "scalp-tip (0.99-0.999)",    lo: 0.99, hi: 0.999 },
+      { name: "scalp-cap (0.999+)",        lo: 0.999, hi: 1.001 },
+    ];
+    for (const r of regimes) {
+      const sub = oNo.filter(p => p.entryAvg >= r.lo && p.entryAvg < r.hi);
+      if (!sub.length) continue;
+      const totalUsdc = sub.reduce((s,p)=>s+(p.entryUsdc||0),0);
+      const medAge = pct(sub.map(p=>(nowSec-p.openTs)/60).filter(Number.isFinite), 50);
+      const medSize = pct(sub.map(p=>p.entryUsdc).filter(Number.isFinite), 50);
+      console.log(`  ${r.name.padEnd(28)} n=${String(sub.length).padStart(4)} | $${totalUsdc.toFixed(0).padStart(7)} total | $${medSize.toFixed(0).padStart(4)} med size | ${medAge.toFixed(0).padStart(5)}min med age`);
+    }
+
+    console.log(`\n=== Open YES position REGIMES ===`);
+    const yesRegimes = [
+      { name: "lottery (YES ≤0.05)",       lo: 0.0,  hi: 0.05 },
+      { name: "cheap (0.05-0.20)",         lo: 0.05, hi: 0.20 },
+      { name: "mid-YES (0.20-0.50)",       lo: 0.20, hi: 0.50 },
+      { name: "high-YES (0.50-0.90)",      lo: 0.50, hi: 0.90 },
+      { name: "deep-YES (0.90+)",          lo: 0.90, hi: 1.001 },
+    ];
+    for (const r of yesRegimes) {
+      const sub = oYes.filter(p => p.entryAvg >= r.lo && p.entryAvg < r.hi);
+      if (!sub.length) continue;
+      const totalUsdc = sub.reduce((s,p)=>s+(p.entryUsdc||0),0);
+      const medAge = pct(sub.map(p=>(nowSec-p.openTs)/60).filter(Number.isFinite), 50);
+      const medSize = pct(sub.map(p=>p.entryUsdc).filter(Number.isFinite), 50);
+      console.log(`  ${r.name.padEnd(28)} n=${String(sub.length).padStart(4)} | $${totalUsdc.toFixed(0).padStart(7)} total | $${medSize.toFixed(0).padStart(4)} med size | ${medAge.toFixed(0).padStart(5)}min med age`);
+    }
+
+    // ============ Closed trades + open positions COMBINED price hist ============
+    console.log(`\n=== COMBINED entry price (open + closed, NO side) ===`);
+    const allNoEntries = [...noEntries, ...oNoEntries];
+    const noEdges3 = [0.20, 0.40, 0.50, 0.60, 0.70, 0.80, 0.90, 0.95, 0.99, 0.999];
+    console.log(fmtBuckets(noEdges3, bucketize(allNoEntries, noEdges3), allNoEntries.length));
+    const allYesEntries = [...(yesTrades.map(t=>t.entryAvg).filter(Number.isFinite)), ...oYesEntries];
+    if (allYesEntries.length) {
+      console.log(`\n=== COMBINED entry price (open + closed, YES side) ===`);
+      const yesEdges3 = [0.05, 0.10, 0.20, 0.30, 0.50, 0.70, 0.90];
+      console.log(fmtBuckets(yesEdges3, bucketize(allYesEntries, yesEdges3), allYesEntries.length));
+    }
   }
 }
 
