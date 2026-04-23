@@ -47,34 +47,53 @@ async function fetchJson(url) {
   } catch (e) { return { __error: String(e?.message || e) }; }
 }
 
-async function fetchWalletPositions(wallet) {
-  const url = `${DATA_API}/positions?user=${wallet}&limit=500`;
+// Polymarket gotcha: /positions and /activity use the PROXY wallet
+// (the contract wallet that holds positions). /trades uses maker_address
+// (the signer). Fetch one trade with maker_address to discover the proxy,
+// then everything else keys off the proxy.
+async function resolveProxyWallet(signerAddr) {
+  const url = `${DATA_API}/trades?maker_address=${signerAddr}&limit=1`;
+  const data = await fetchJson(url);
+  if (!Array.isArray(data) || !data.length) return null;
+  return data[0]?.proxyWallet || null;
+}
+
+async function fetchWalletPositions(proxyWallet) {
+  const url = `${DATA_API}/positions?user=${proxyWallet}&limit=500`;
   const data = await fetchJson(url);
   if (data?.__error) return { error: data.__error, positions: [] };
   const arr = Array.isArray(data) ? data : [];
   return { positions: arr };
 }
 
-// Recent activity (trades, redeems) — shows what they ENTERED and CLOSED
-// in the last N hours, even if they hold no positions right now.
-async function fetchWalletActivity(wallet, hoursBack = 36) {
+// Last N hours of trades (direct from /trades endpoint using maker_address).
+// Returns normalized records: { ts, conditionId, type, side, outcome, price,
+// size, title }.
+async function fetchWalletTrades(signerAddr, hoursBack = 36) {
   const sinceMs = Date.now() - hoursBack * 3600_000;
   const all = [];
   let offset = 0;
   while (offset < 2000) {
-    const url = `${DATA_API}/activity?user=${wallet}&limit=500&offset=${offset}`;
+    const url = `${DATA_API}/trades?maker_address=${signerAddr}&limit=500&offset=${offset}`;
     const data = await fetchJson(url);
     if (data?.__error || !Array.isArray(data) || !data.length) break;
-    for (const a of data) {
-      const ts = Number(a.timestamp ?? a.timeStamp ?? 0) * 1000;
-      if (ts < sinceMs) return all;
+    let stop = false;
+    for (const t of data) {
+      const ts = Number(t.timestamp ?? t.timeStamp ?? 0) * 1000;
+      if (ts < sinceMs) { stop = true; break; }
       all.push({
-        ...a,
         ts,
-        conditionId: String(a.conditionId || a.condition_id || "").toLowerCase(),
+        conditionId: String(t.conditionId || t.condition_id || "").toLowerCase(),
+        type: "TRADE",
+        side: String(t.side || "").toUpperCase(),           // BUY | SELL
+        outcome: String(t.outcome || "").toUpperCase(),      // YES | NO
+        price: Number(t.price || 0),
+        size: Number(t.size || 0),
+        title: t.title || "",
+        asset: t.asset,
       });
     }
-    if (data.length < 500) break;
+    if (stop || data.length < 500) break;
     offset += 500;
   }
   return all;
@@ -120,9 +139,19 @@ async function compare() {
   console.log(`=== Compare ${WALLET} → our bot ===`);
   console.log(`[${new Date().toISOString()}]\n`);
 
+  // Resolve the proxy wallet (/positions uses proxy, /trades uses signer)
+  const proxyWallet = await resolveProxyWallet(WALLET);
+  if (!proxyWallet) {
+    console.log(`❌ Could not resolve proxy wallet for ${WALLET}. The wallet may have never traded, or data-api is down.`);
+    if (!WATCH) process.exit(1);
+    return;
+  }
+  console.log(`signer ${WALLET}`);
+  console.log(`proxy  ${proxyWallet}\n`);
+
   const [walletRes, activity, weatherMap] = await Promise.all([
-    fetchWalletPositions(WALLET),
-    fetchWalletActivity(WALLET, 36),
+    fetchWalletPositions(proxyWallet),
+    fetchWalletTrades(WALLET, 36),
     fetchWeatherMarketMap(),
   ]);
   if (walletRes.error) {
@@ -131,19 +160,12 @@ async function compare() {
     return;
   }
 
-  // Filter activity to weather markets only, last 36h
+  // Filter trades to weather markets only (activity from /trades already has the right shape)
   const weatherActivity = activity
     .filter(a => weatherMap.has(a.conditionId))
     .map(a => ({
-      ts: a.ts,
-      conditionId: a.conditionId,
-      type: String(a.type || a.eventType || "").toUpperCase(),  // TRADE | REDEEM
-      side: String(a.side || "").toUpperCase(),                  // BUY | SELL
-      outcome: String(a.outcome || "").toUpperCase(),            // YES | NO
-      price: Number(a.price || 0),
-      size: Number(a.size || 0),
-      usdcSize: Number(a.usdcSize || 0),
-      title: weatherMap.get(a.conditionId) || "?",
+      ...a,
+      title: weatherMap.get(a.conditionId) || a.title || "?",
     }));
 
   // 937's positions — filter to weather + non-zero size
