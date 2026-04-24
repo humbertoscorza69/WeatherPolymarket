@@ -1,0 +1,48 @@
+=== universe-backtest report · tag=v3_full ===
+rule: |dist|<=2  no∈[0.05,0.97]  fresh<=300s  total<=250  snap=15min  obsAge>=2h  ttr<=6h  stop=0.5  contains=false
+exit: profit>=0.98  no-stop  timeout=120min  bet=$100
+scanned: 686 groups (no-wx=801 skip900e=0 limit=none)
+snapshots: 9983   unique markets entered: 12
+
+=== trades ===
+n=12  wins=4  losses=8  WR=33.3%
+total PnL: $-557.24   avg: $-46.437/trade
+bet size:  $100  per trade  (total risk = $1200)
+
+=== by side ===
+  NO: n=12  WR=33.3%  pnl=$-557.24  avg=$-46.437
+
+=== by exit reason ===
+  stop-loss       n=    8  WR=0.0%  pnl=$-674.77
+  timeout         n=    2  WR=100.0%  pnl=$96.11
+  profit-take     n=    2  WR=100.0%  pnl=$21.42
+
+=== PnL distribution ===
+  min=$-99.08  p10=$-95.44  p50=$-71.43  p90=$37.78  p99=$58.33  max=$58.33
+
+=== top 10 losses ===
+  NO Tel Aviv         2026-03-29  dist=-0.4°C  above_obs  entry=0.8689  exit=0.008 (stop-loss)  pnl=$-99.08
+  NO Lagos            2026-04-18  dist=-1°C  above_obs  entry=0.9  exit=0.041 (stop-loss)  pnl=$-95.44
+  NO Amsterdam        2026-04-04  dist=-0.1°C  above_obs  entry=0.069  exit=0.005 (stop-loss)  pnl=$-92.75
+  NO Wellington       2026-03-23  dist=-1.2°C  above_obs  entry=0.95  exit=0.086 (stop-loss)  pnl=$-90.95
+  NO Milan            2026-04-19  dist=-1.6°C  above_obs  entry=0.08  exit=0.01 (stop-loss)  pnl=$-87.50
+  NO Amsterdam        2026-04-20  dist=-0.7°C  above_obs  entry=0.05  exit=0.01 (stop-loss)  pnl=$-80.00
+  NO Madrid           2026-04-01  dist=-1.1°C  above_obs  entry=0.07  exit=0.02 (stop-loss)  pnl=$-71.43
+  NO Busan            2026-04-09  dist=-0.1°C  above_obs  entry=0.892  exit=0.378 (stop-loss)  pnl=$-57.62
+  NO Madrid           2026-04-01  dist=-0.1°C  above_obs  entry=0.93  exit=0.98 (profit-take)  pnl=$5.38
+  NO Lagos            2026-04-20  dist=-1.7°C  above_obs  entry=0.8446  exit=0.98 (profit-take)  pnl=$16.04
+
+=== top 10 wins ===
+  NO Amsterdam        2026-04-03  dist=-0.4°C  above_obs  entry=0.12  exit=0.19 (timeout)  pnl=$58.33
+  NO Lagos            2026-04-20  dist=-0.7°C  above_obs  entry=0.675  exit=0.93 (timeout)  pnl=$37.78
+  NO Lagos            2026-04-20  dist=-1.7°C  above_obs  entry=0.8446  exit=0.98 (profit-take)  pnl=$16.04
+  NO Madrid           2026-04-01  dist=-0.1°C  above_obs  entry=0.93  exit=0.98 (profit-take)  pnl=$5.38
+  NO Busan            2026-04-09  dist=-0.1°C  above_obs  entry=0.892  exit=0.378 (stop-loss)  pnl=$-57.62
+  NO Madrid           2026-04-01  dist=-1.1°C  above_obs  entry=0.07  exit=0.02 (stop-loss)  pnl=$-71.43
+  NO Amsterdam        2026-04-20  dist=-0.7°C  above_obs  entry=0.05  exit=0.01 (stop-loss)  pnl=$-80.00
+  NO Milan            2026-04-19  dist=-1.6°C  above_obs  entry=0.08  exit=0.01 (stop-loss)  pnl=$-87.50
+  NO Wellington       2026-03-23  dist=-1.2°C  above_obs  entry=0.95  exit=0.086 (stop-loss)  pnl=$-90.95
+  NO Amsterdam        2026-04-04  dist=-0.1°C  above_obs  entry=0.069  exit=0.005 (stop-loss)  pnl=$-92.75
+
+elapsed: 15s
+output: /home/user/WeatherPolymarket/data/analysis/universe-backtest-v3_full.csv

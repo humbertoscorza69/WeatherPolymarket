@@ -62,6 +62,11 @@ const MAX_TOTAL_TICKS = Number(argv["max-total-ticks"] ?? "250");
 const SNAP_MIN = Number(argv["snap-min"] ?? "15") * 60; // seconds
 const BET = Number(argv["bet-usdc"] ?? "100");
 const LIMIT = argv.limit ? Number(argv.limit) : Infinity;
+// v3 temporal safety filters. Defaults off for backward compat; pass --min-obs-age=2 and --max-ttr=6 to enable.
+const MIN_OBS_AGE_H = Number(argv["min-obs-age"] ?? "0");
+const MAX_TTR_H = Number(argv["max-ttr"] ?? "99");
+const STOP_FRAC = Number(argv["stop"] ?? "0");   // fraction of entry price; 0 = disabled
+const ALLOW_CONTAINS = argv["no-contains"] === "true" ? false : true;
 const TAG = argv.tag ?? (EXCLUDE_900E ? "excl900e" : STRIP_900E_TICKS ? "strip900e" : "full");
 
 const OUT = path.resolve(`data/analysis/universe-backtest-${TAG}.csv`);
@@ -104,8 +109,10 @@ function simulateExit(ticks, side, entryTs, entryPrice) {
   const forward = ticks.filter(t => t.timestamp > entryTs && t.outcomeIndex === wantedIdx);
   if (!forward.length) return { reason: "no-ticks-after", exitPrice: null, exitTs: null };
   const timeoutTs = entryTs + TIMEOUT;
+  const stopPrice = STOP_FRAC > 0 ? entryPrice * (1 - STOP_FRAC) : null;
   for (const t of forward) {
     if (t.price >= PROFIT) return { reason: "profit-take", exitPrice: t.price, exitTs: t.timestamp };
+    if (stopPrice != null && t.price <= stopPrice) return { reason: "stop-loss", exitPrice: t.price, exitTs: t.timestamp };
     if (t.timestamp >= timeoutTs) return { reason: "timeout", exitPrice: t.price, exitTs: t.timestamp };
   }
   const last = forward[forward.length - 1];
@@ -139,7 +146,7 @@ async function main() {
 
   // Config banner
   console.log(`tag=${TAG}  excl900e=${EXCLUDE_900E}  strip900eTicks=${STRIP_900E_TICKS}`);
-  console.log(`rule: |dist|<=${MAX_DIST}  no∈[${NO_MIN},${NO_MAX}]  fresh<=${FRESH}s  total<=${MAX_TOTAL_TICKS}  snap=${SNAP_MIN/60}min`);
+  console.log(`rule: |dist|<=${MAX_DIST}  no∈[${NO_MIN},${NO_MAX}]  fresh<=${FRESH}s  total<=${MAX_TOTAL_TICKS}  snap=${SNAP_MIN/60}min  obsAge>=${MIN_OBS_AGE_H}h  ttr<=${MAX_TTR_H}h  stop=${STOP_FRAC}  contains=${ALLOW_CONTAINS}`);
   console.log(`exit: profit>=${PROFIT}  no-stop  timeout=${TIMEOUT/60}min  bet=$${BET}`);
 
   const trades = [];
@@ -191,6 +198,15 @@ async function main() {
       const obsMax = obsMaxUpTo(wx.samples, ts);
       if (obsMax == null) continue;
 
+      // Temporal safety filters — compute once per snapshot
+      // obs_max age: find the last sample where tempC == obs_max
+      let obsMaxTs = null;
+      for (const s of wx.samples) { if (s.t > ts) break; if (s.tempC === obsMax) obsMaxTs = s.t; }
+      const obsMaxAgeH = obsMaxTs ? (ts - obsMaxTs) / 3600 : null;
+      const ttrH = (eod - ts) / 3600;
+      if (obsMaxAgeH == null || obsMaxAgeH < MIN_OBS_AGE_H) continue;
+      if (ttrH > MAX_TTR_H) continue;
+
       for (const m of markets) {
         if (firedInSnapshot.has(m.conditionId)) continue;
         const ticks = tickMap.get(m.conditionId);
@@ -204,6 +220,7 @@ async function main() {
         else                    { bucketRel = "contains";  signedDist = 0; }
         const absDist = Math.abs(signedDist);
         if (absDist > MAX_DIST) continue;
+        if (bucketRel === "contains" && !ALLOW_CONTAINS) continue;
 
         // Last prices and freshness
         const yesTick = lastTickBefore(ticks, ts, 0);
@@ -217,15 +234,16 @@ async function main() {
         const priorTicks = ticks.filter(t => t.timestamp < ts).length;
         if (priorTicks > MAX_TOTAL_TICKS) continue;
 
-        // Side selection v2 — only enter where the bucket position is
-        // decisively resolved. "below_obs" (obs < bucket_lo) depends on
-        // whether the temperature rises further, which without a forecast
-        // or order-flow signal is a coin-flip. Empirical smoke test
-        // confirmed: below_obs is 42% WR both sides. Skip.
+        // Side selection v3 — only enter decisively-resolved bucket positions.
+        // "below_obs" (obs < bucket_lo): direction too uncertain without a
+        // forecast signal; smoke test showed 42% WR. Skip.
+        // "above_obs" (obs > bucket_hi): bucket dead if obs_max has aged
+        // enough and TTR is close — enforced by MIN_OBS_AGE_H / MAX_TTR_H.
+        // "contains": fragile (tested, 47% WR). Off by default in v3.
         let side;
-        if (bucketRel === "above_obs")       side = "NO";    // bucket dead → NO is the safe-ride
-        else if (bucketRel === "contains")   side = "YES";   // bucket holds obs_max → bet it sticks
-        else continue;                                        // skip below_obs
+        if (bucketRel === "above_obs")       side = "NO";
+        else if (bucketRel === "contains")   side = "YES";
+        else continue;
 
         // Entry: pay the ask for that side. Our best proxy for "ask" is the
         // most recent same-side tick price (slightly pessimistic since that's
@@ -282,7 +300,7 @@ async function main() {
 
   const lines = [];
   lines.push(`=== universe-backtest report · tag=${TAG} ===`);
-  lines.push(`rule: |dist|<=${MAX_DIST}  no∈[${NO_MIN},${NO_MAX}]  fresh<=${FRESH}s  total<=${MAX_TOTAL_TICKS}  snap=${SNAP_MIN/60}min`);
+  lines.push(`rule: |dist|<=${MAX_DIST}  no∈[${NO_MIN},${NO_MAX}]  fresh<=${FRESH}s  total<=${MAX_TOTAL_TICKS}  snap=${SNAP_MIN/60}min  obsAge>=${MIN_OBS_AGE_H}h  ttr<=${MAX_TTR_H}h  stop=${STOP_FRAC}  contains=${ALLOW_CONTAINS}`);
   lines.push(`exit: profit>=${PROFIT}  no-stop  timeout=${TIMEOUT/60}min  bet=$${BET}`);
   lines.push(`scanned: ${groupsProcessed} groups (no-wx=${groupsNoWx} skip900e=${groupsSkipped900e} limit=${LIMIT === Infinity ? "none" : LIMIT})`);
   lines.push(`snapshots: ${snapshotsChecked}   unique markets entered: ${marketsOpenedOnce.size}`);
