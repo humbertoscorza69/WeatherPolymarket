@@ -54,7 +54,7 @@ const CFG = {
   MAX_ASK_ENTRY:    Number(argv["max-ask"] ?? "0.998"),   // v32-metar: room for 1 tick of profit to SELL_TARGET=0.999; 0.999 entry + 0.999 exit = $0 PnL (that bug caused the filled-999 pnl=$0.00 lines)
   MIN_DIST_C:       Number(argv["min-dist"] ?? "1.0"),    // v32-metar: raised from 0.1 to give margin against METAR rounding (backtest: 0.1-1.0°C band had data-mismatch losses; 1°C floor eliminated all tape-ended catastrophes)
   MAX_DIST_C:       Number(argv["max-dist"] ?? "5"),     // beyond 5°C the book is at 0.9999+, no spread
-  MIN_LOCAL_HOURS:  Number(argv["min-local-hours"] ?? "4"),  // require >=4h elapsed in the market's local day before we trust obs_max. Below this, pre-dawn samples don't reflect the day's peak trajectory and "below-max" entries can silently flip as the afternoon climbs.
+  MIN_LOCAL_HOURS:  Number(argv["min-local-hours"] ?? "0"),    // tz-aware window alone is sufficient — a "below-max" NO is monotone-safe at any hour of the local day (obs_max only rises; once bucket < obs_max it stays that way). 937's actual trades include 34 entries in first 4h of local day (11.8% of his volume). Set >0 to gate out early-morning entries.
   MIN_DEPTH_SHARES: Number(argv["min-depth"] ?? "1"),    // 937 takes tiny trades ($0.03 min seen); floor = Polymarket's 5-share minimum via MIN_SHARES
   BOOK_CONCURRENCY: Number(argv["book-concurrency"] ?? "8"),
   METAR_VETO:       argv["metar-veto"] === "true",       // 937 does NOT use METAR; OFF by default, opt-in only
@@ -70,7 +70,7 @@ const CFG = {
   BANKROLL:         Number(argv.bankroll ?? "100"),
   TRADE_SIZE:       Number(argv.tradesize ?? "5"),
   MIN_SHARES:       Number(argv.minshares ?? "5"),     // Polymarket minimum
-  MAX_HOLD_MIN:     Number(argv.maxhold ?? "720"),   // v32-metar: raised from 60 to 12h. Overnight Apr-24 run lost -$3,214 on 127 scalp-maxhold cuts at taker mid; positions that don't hit 0.999 should RIDE TO RESOLUTION (PATH 1), not dump at intraday book. Scalp-maxhold disabled in practice because PATH 1 handles everything before 12h
+  MAX_HOLD_MIN:     Number(argv.maxhold ?? "2880"),  // 48h. With TTR_MAX=36h + PATH 2 grace of +6h, a position can legitimately live up to 42h before Gamma / lag-taker resolve it. 12h fired BEFORE resolution for any TTR>6h, forcing mid-price cuts on positions that would have settled correctly. PATH 3 is now emergency-only.
   SELL_TARGET:      Number(argv.selltarget ?? "0.999"),  // profit-take when our-side mid hits this
   RESET:            argv.reset === "true",
   NO_CAP:           argv.nocap === "true",           // disable "insufficient bankroll" gate
@@ -679,16 +679,14 @@ async function resolvePositions() {
       }
     }
 
-    // PATH 3 REMOVED (v32-metar): scalp-maxhold at 60min was dumping positions
-    // at whatever the intraday book-mid happened to be, which lost -$3,214 on
-    // the Apr-24 overnight run (127 cuts, many at 0.50-0.85 when the NO was
-    // supposed to ride to 0.999). The v16 backtest showed that holding through
-    // to resolution (12h timeout) produced 98% WR with zero catastrophic
-    // taker-cut losses. MAX_HOLD_MIN default is now 720min (12h), well past
-    // any market's end time, so PATH 1 (Gamma settlement) handles everything
-    // before a max-hold trigger could fire. If a position survives to 12h it
-    // means Gamma didn't resolve and PATH 2 (lag-taker after endDate+6h) will
-    // have caught it. Kept the MAX_HOLD_MIN flag for emergency manual cuts.
+    // PATH 3: emergency-only max hold. Default 48h — longer than any
+    // legitimate TTR (max 36h) + PATH-2 grace (+6h), so a position that
+    // survives this long means every other path failed. At that point a
+    // taker-mid cut is the honest exit. Prior defaults (60min then 12h)
+    // fired BEFORE PATH 1 could resolve, forcing book-mid cuts on
+    // positions that would have won at settlement. The Apr-24 overnight
+    // -$3,214 was 127 scalp-maxhold cuts — all would have settled at $1
+    // if we'd waited for Gamma.
     if (exitPrice == null && holdMin >= CFG.MAX_HOLD_MIN) {
       const tokens = pos.clobTokenIds;
       if (Array.isArray(tokens) && tokens.length >= 2) {
@@ -914,7 +912,7 @@ async function main() {
   console.log(`Bankroll: $${state.bankroll.toFixed(2)} (CLI=$${CFG.BANKROLL}${CFG.RESET ? ", --reset" : ""}${CFG.NO_CAP ? ", --nocap (no bankroll gate)" : ""})  Trade scale: $${CFG.TRADE_SIZE} (sampled from 937's empirical bucket distribution; larger buckets favored when ask≥0.999; min ${CFG.MIN_SHARES} shares enforced)`);
   console.log(`Trigger: CLOB book-scan · ask∈[${CFG.MIN_ASK_ENTRY},${CFG.MAX_ASK_ENTRY}] · min-depth ${CFG.MIN_DEPTH_SHARES}sh · YES-side ${CFG.ALLOW_YES ? "ON" : "OFF"}`);
   console.log(`Selectivity: bucket_distance ∈ [${CFG.MIN_DIST_C},${CFG.MAX_DIST_C}]°C from observed max (the 937 rule, reverse-engineered from 1028 entries) · local-day elapsed ≥ ${CFG.MIN_LOCAL_HOURS}h`);
-  console.log(`Safety: HIGHEST + (exact|between) only (--allow-non-hb to override) · dedupe by conditionId · max-hold ${CFG.MAX_HOLD_MIN}min · take-profit ${CFG.SELL_TARGET}`);
+  console.log(`Safety: HIGHEST + (exact|between) only (--allow-non-hb to override) · dedupe by conditionId · max-hold ${CFG.MAX_HOLD_MIN}min (emergency-only; PATH 1 Gamma resolution handles normal exits) · take-profit ${CFG.SELL_TARGET}`);
   console.log(`Scan intervals: market scan=${CFG.INTERVAL_SEC}s, position check=${CFG.POS_CHECK_SEC}s, weather cache=${CFG.WEATHER_TTL_SEC}s`);
   console.log(`TTR=[${CFG.TTR_MIN_SEC/3600}h, ${CFG.TTR_MAX_SEC/3600}h]`);
   console.log(`Data hierarchy:`);
