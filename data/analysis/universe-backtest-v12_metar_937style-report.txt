@@ -1,0 +1,47 @@
+=== universe-backtest report · tag=v12_metar_937style ===
+rule: |dist|<=5  no∈[0.05,0.97]  fresh<=300s  total<=250  snap=15min  obsAge>=0h  ttr<=99h  stop=0  contains=false
+exit: profit>=0.999  no-stop  timeout=30min  bet=$100
+scanned: 662 groups (no-wx=825 skip900e=0 limit=none)
+snapshots: 42507   unique markets entered: 25
+
+=== trades ===
+n=25  wins=14  losses=10  WR=56.0%
+total PnL: $-40.12   avg: $-1.605/trade
+bet size:  $100  per trade  (total risk = $2500)
+
+=== by side ===
+  NO: n=25  WR=56.0%  pnl=$-40.12  avg=$-1.605
+
+=== by exit reason ===
+  timeout         n=   20  WR=45.0%  pnl=$-60.97
+  profit-take     n=    5  WR=100.0%  pnl=$20.85
+
+=== PnL distribution ===
+  min=$-42.37  p10=$-2.92  p50=$1.15  p90=$4.10  p99=$5.16  max=$5.16
+
+=== top 10 losses ===
+  NO Lagos            2026-04-18  dist=-1°C  above_obs  entry=0.9544  exit=0.55 (timeout)  pnl=$-42.37
+  NO Toronto          2026-04-19  dist=-4°C  above_obs  entry=0.9607  exit=0.733 (timeout)  pnl=$-23.70
+  NO Hong Kong        2026-03-21  dist=-3°C  above_obs  entry=0.959  exit=0.931 (timeout)  pnl=$-2.92
+  NO Lagos            2026-04-18  dist=-5°C  above_obs  entry=0.951  exit=0.925 (timeout)  pnl=$-2.73
+  NO Buenos Aires     2026-04-15  dist=-1°C  above_obs  entry=0.9509  exit=0.927 (timeout)  pnl=$-2.52
+  NO Hong Kong        2026-04-06  dist=-1°C  above_obs  entry=0.95  exit=0.929 (timeout)  pnl=$-2.21
+  NO Buenos Aires     2026-04-21  dist=-1°C  above_obs  entry=0.9594  exit=0.939 (timeout)  pnl=$-2.13
+  NO Hong Kong        2026-03-22  dist=-2°C  above_obs  entry=0.95  exit=0.931 (timeout)  pnl=$-2.00
+  NO Buenos Aires     2026-04-06  dist=-1°C  above_obs  entry=0.95  exit=0.934 (timeout)  pnl=$-1.68
+  NO Lagos            2026-04-18  dist=-2°C  above_obs  entry=0.97  exit=0.9677 (timeout)  pnl=$-0.24
+
+=== top 10 wins ===
+  NO Hong Kong        2026-03-27  dist=-2°C  above_obs  entry=0.95  exit=0.999 (profit-take)  pnl=$5.16
+  NO Lagos            2026-04-15  dist=-1°C  above_obs  entry=0.9514  exit=0.999 (profit-take)  pnl=$5.01
+  NO Buenos Aires     2026-03-29  dist=-1°C  above_obs  entry=0.951  exit=0.99 (timeout)  pnl=$4.10
+  NO Seoul            2026-04-07  dist=-1°C  above_obs  entry=0.96  exit=0.999 (profit-take)  pnl=$4.06
+  NO Toronto          2026-04-01  dist=-4°C  above_obs  entry=0.964  exit=0.999 (profit-take)  pnl=$3.63
+  NO Lagos            2026-04-18  dist=-4°C  above_obs  entry=0.954  exit=0.9864 (timeout)  pnl=$3.39
+  NO Seoul            2026-03-28  dist=-1°C  above_obs  entry=0.955  exit=0.984 (timeout)  pnl=$3.04
+  NO Taipei           2026-04-21  dist=-1°C  above_obs  entry=0.97  exit=0.999 (profit-take)  pnl=$2.99
+  NO Toronto          2026-04-19  dist=-1°C  above_obs  entry=0.97  exit=0.998 (timeout)  pnl=$2.89
+  NO Hong Kong        2026-04-22  dist=-1°C  above_obs  entry=0.96  exit=0.986 (timeout)  pnl=$2.71
+
+elapsed: 17s
+output: /home/user/WeatherPolymarket/data/analysis/universe-backtest-v12_metar_937style.csv

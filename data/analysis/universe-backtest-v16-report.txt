@@ -1,0 +1,47 @@
+=== universe-backtest report · tag=v16 ===
+rule: |dist|<=2  no∈[0.05,0.97]  fresh<=7200s  total<=250  snap=5min  obsAge>=0h  ttr<=99h  stop=0  contains=false
+exit: profit>=0.999  no-stop  timeout=720min  bet=$100
+scanned: 662 groups (no-wx=825 skip900e=0 limit=none)
+snapshots: 127334   unique markets entered: 50
+
+=== trades ===
+n=50  wins=49  losses=0  WR=98.0%
+total PnL: $187.58   avg: $3.752/trade
+bet size:  $100  per trade  (total risk = $5000)
+
+=== by side ===
+  NO: n=50  WR=98.0%  pnl=$187.58  avg=$3.752
+
+=== by exit reason ===
+  profit-take     n=   47  WR=100.0%  pnl=$181.42
+  timeout         n=    3  WR=66.7%  pnl=$6.16
+
+=== PnL distribution ===
+  min=$0.00  p10=$2.99  p50=$3.68  p90=$5.16  p99=$5.16  max=$5.16
+
+=== top 10 losses ===
+  NO Buenos Aires     2026-04-06  dist=-1°C  above_obs  entry=0.956  exit=0.956 (timeout)  pnl=$0.00
+  NO Chicago          2026-04-19  dist=-1.11°C  above_obs  entry=0.968  exit=0.992 (timeout)  pnl=$2.48
+  NO Taipei           2026-04-21  dist=-1°C  above_obs  entry=0.97  exit=0.999 (profit-take)  pnl=$2.99
+  NO Lagos            2026-04-18  dist=-2°C  above_obs  entry=0.97  exit=0.999 (profit-take)  pnl=$2.99
+  NO Tokyo            2026-04-03  dist=-1°C  above_obs  entry=0.97  exit=0.999 (profit-take)  pnl=$2.99
+  NO Chongqing        2026-04-13  dist=-1°C  above_obs  entry=0.97  exit=0.999 (profit-take)  pnl=$2.99
+  NO Panama City      2026-04-14  dist=-1°C  above_obs  entry=0.97  exit=0.999 (profit-take)  pnl=$2.99
+  NO Lucknow          2026-04-15  dist=-1°C  above_obs  entry=0.97  exit=0.999 (profit-take)  pnl=$2.99
+  NO Toronto          2026-04-19  dist=-1°C  above_obs  entry=0.97  exit=0.999 (profit-take)  pnl=$2.99
+  NO Buenos Aires     2026-04-06  dist=-2°C  above_obs  entry=0.97  exit=0.999 (profit-take)  pnl=$2.99
+
+=== top 10 wins ===
+  NO Hong Kong        2026-04-06  dist=-1°C  above_obs  entry=0.95  exit=0.999 (profit-take)  pnl=$5.16
+  NO Hong Kong        2026-03-27  dist=-2°C  above_obs  entry=0.95  exit=0.999 (profit-take)  pnl=$5.16
+  NO Kuala Lumpur     2026-04-20  dist=-1°C  above_obs  entry=0.95  exit=0.999 (profit-take)  pnl=$5.16
+  NO Panama City      2026-04-17  dist=-1°C  above_obs  entry=0.95  exit=0.999 (profit-take)  pnl=$5.16
+  NO Lagos            2026-04-16  dist=-1°C  above_obs  entry=0.95  exit=0.999 (profit-take)  pnl=$5.16
+  NO Taipei           2026-04-18  dist=-1°C  above_obs  entry=0.95  exit=0.999 (profit-take)  pnl=$5.16
+  NO Buenos Aires     2026-03-29  dist=-1°C  above_obs  entry=0.951  exit=0.999 (profit-take)  pnl=$5.05
+  NO Lagos            2026-04-15  dist=-1°C  above_obs  entry=0.9514  exit=0.999 (profit-take)  pnl=$5.01
+  NO Madrid           2026-03-25  dist=-1°C  above_obs  entry=0.953  exit=0.999 (profit-take)  pnl=$4.83
+  NO Paris            2026-04-19  dist=-1°C  above_obs  entry=0.954  exit=0.999 (profit-take)  pnl=$4.72
+
+elapsed: 18s
+output: /home/user/WeatherPolymarket/data/analysis/universe-backtest-v16.csv

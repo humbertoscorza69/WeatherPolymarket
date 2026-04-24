@@ -1,0 +1,23 @@
+=== universe-backtest report · tag=v14 ===
+rule: |dist|<=2  no∈[0.05,0.97]  fresh<=300s  total<=250  snap=15min  obsAge>=2h  ttr<=6h  stop=0  contains=false
+exit: profit>=0.999  no-stop  timeout=720min  bet=$100
+scanned: 662 groups (no-wx=825 skip900e=0 limit=none)
+snapshots: 8820   unique markets entered: 0
+
+=== trades ===
+n=0  wins=0  losses=0  WR=—%
+total PnL: $0.00   avg: $0/trade
+bet size:  $100  per trade  (total risk = $0)
+
+=== by side ===
+
+=== by exit reason ===
+
+=== PnL distribution ===
+
+=== top 10 losses ===
+
+=== top 10 wins ===
+
+elapsed: 15s
+output: /home/user/WeatherPolymarket/data/analysis/universe-backtest-v14.csv
