@@ -241,8 +241,8 @@ def main():
 
     txt = "\n".join(lines)
     print(txt)
-    OUT.write_text(txt + "\n")
-    print(f"\n→ wrote report to {OUT}")
+    OUT.write_text(txt + "\n", encoding="utf-8")
+    print(f"\n-> wrote report to {OUT}")
 
 if __name__ == "__main__":
     main()
