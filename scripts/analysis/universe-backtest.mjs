@@ -55,6 +55,7 @@ const STRIP_900E_TICKS = argv["strip-900e-ticks"] === "true";
 const PROFIT = Number(argv.profit ?? "0.98");
 const TIMEOUT = Number(argv.timeout ?? "120") * 60;   // seconds
 const MAX_DIST = Number(argv["max-dist"] ?? "2.0");
+const MIN_DIST = Number(argv["min-dist"] ?? "0.0");
 const NO_MAX = Number(argv["no-max"] ?? "0.97");
 const NO_MIN = Number(argv["no-min"] ?? "0.05");
 const FRESH = Number(argv.freshness ?? "300");        // seconds
@@ -67,6 +68,15 @@ const MIN_OBS_AGE_H = Number(argv["min-obs-age"] ?? "0");
 const MAX_TTR_H = Number(argv["max-ttr"] ?? "99");
 const STOP_FRAC = Number(argv["stop"] ?? "0");   // fraction of entry price; 0 = disabled
 const ALLOW_CONTAINS = argv["no-contains"] === "true" ? false : true;
+// v4 forecast oracle. --forecast=oracle uses the actual final daily max
+// (LOOKAHEAD, clearly labeled) to approximate a perfect forecast. This
+// bounds the strategy from above: if the oracle version doesn't pay,
+// no real forecast will. --forecast=noisy adds N(0, sigma) noise to the
+// oracle to simulate imperfect forecasts. --forecast-noise=<sigma>
+// controls the sigma (default 2.0 °C).
+const FORECAST_MODE = argv["forecast"] ?? "none";  // "none" | "oracle" | "noisy"
+const FORECAST_NOISE_C = Number(argv["forecast-noise"] ?? "2.0");
+const FORECAST_TOL_C = Number(argv["forecast-tol"] ?? "1.0");  // min margin for NO entry
 const TAG = argv.tag ?? (EXCLUDE_900E ? "excl900e" : STRIP_900E_TICKS ? "strip900e" : "full");
 
 const OUT = path.resolve(`data/analysis/universe-backtest-${TAG}.csv`);
@@ -91,6 +101,33 @@ function obsMaxUpTo(samples, cutoff) {
   let maxC = -Infinity;
   for (const s of samples) { if (s.t > cutoff) break; if (s.tempC > maxC) maxC = s.tempC; }
   return Number.isFinite(maxC) ? maxC : null;
+}
+
+// WARNING: LOOKAHEAD. Returns the actual daily peak across ALL samples.
+// Used as a synthetic "perfect forecast" oracle to establish an upper
+// bound on strategy performance. Never ship to live.
+function finalMaxOracle(samples) {
+  let maxC = -Infinity;
+  for (const s of samples) if (s.tempC > maxC) maxC = s.tempC;
+  return Number.isFinite(maxC) ? maxC : null;
+}
+
+// Box-Muller Gaussian noise — deterministic seeding via string hash.
+function seededNoise(seedStr, sigma) {
+  // Simple string -> uint32 hash (djb2) to seed a Mulberry32 PRNG.
+  let h = 5381;
+  for (let i = 0; i < seedStr.length; i++) h = ((h << 5) + h + seedStr.charCodeAt(i)) | 0;
+  let state = (h >>> 0) || 1;
+  const rand = () => {
+    state = (state + 0x6D2B79F5) | 0;
+    let t = state;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  const u1 = Math.max(1e-10, rand());
+  const u2 = rand();
+  return sigma * Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
 }
 
 function lastTickBefore(ticks, cutoff, outcomeIdx) {
@@ -189,6 +226,16 @@ async function main() {
     if (!tickMap.size) continue;
     groupsProcessed++;
 
+    // Forecast: oracle/noisy use the day's actual final max. This is LOOKAHEAD
+    // and only valid for upper-bound analysis, never live.
+    let forecastPeakC = null;
+    if (FORECAST_MODE === "oracle" || FORECAST_MODE === "noisy") {
+      forecastPeakC = finalMaxOracle(wx.samples);
+      if (forecastPeakC != null && FORECAST_MODE === "noisy") {
+        forecastPeakC += seededNoise(`${city}|${date}`, FORECAST_NOISE_C);
+      }
+    }
+
     // Scan snapshots from first tick to end-of-day (cap horizon at eod so
     // we don't scan post-resolution noise).
     const scanStart = Math.max(groupFirstTs, eod - 30 * 3600);   // at most 30h before eod
@@ -220,6 +267,7 @@ async function main() {
         else                    { bucketRel = "contains";  signedDist = 0; }
         const absDist = Math.abs(signedDist);
         if (absDist > MAX_DIST) continue;
+        if (absDist < MIN_DIST) continue;
         if (bucketRel === "contains" && !ALLOW_CONTAINS) continue;
 
         // Last prices and freshness
@@ -234,16 +282,32 @@ async function main() {
         const priorTicks = ticks.filter(t => t.timestamp < ts).length;
         if (priorTicks > MAX_TOTAL_TICKS) continue;
 
-        // Side selection v3 — only enter decisively-resolved bucket positions.
-        // "below_obs" (obs < bucket_lo): direction too uncertain without a
-        // forecast signal; smoke test showed 42% WR. Skip.
-        // "above_obs" (obs > bucket_hi): bucket dead if obs_max has aged
-        // enough and TTR is close — enforced by MIN_OBS_AGE_H / MAX_TTR_H.
-        // "contains": fragile (tested, 47% WR). Off by default in v3.
+        // Side selection v4 with optional forecast.
+        //
+        // Without forecast: "above_obs" → NO (bucket below obs, can't win),
+        //                   "contains"  → YES (bucket holds current obs).
+        // With forecast:    NO if bucket_hi <= forecast - TOL (definitively won't catch)
+        //                   YES if forecast_peak is inside bucket
+        //                   skip otherwise.
         let side;
-        if (bucketRel === "above_obs")       side = "NO";
-        else if (bucketRel === "contains")   side = "YES";
-        else continue;
+        if (forecastPeakC != null) {
+          if (bHiC + FORECAST_TOL_C <= forecastPeakC && bucketRel !== "contains") {
+            // bucket ceiling is well below the forecast → bucket will not be the answer
+            // This fires for both "above_obs" (already surpassed) and "below_obs"
+            // (not yet reached but forecast suggests we blow past it).
+            side = "NO";
+          } else if (bLoC <= forecastPeakC && forecastPeakC <= bHiC) {
+            // forecast peak lands inside this bucket → YES
+            side = "YES";
+          } else if (bLoC >= forecastPeakC + FORECAST_TOL_C) {
+            // bucket floor is well above the forecast → bucket won't be reached
+            side = "NO";
+          } else continue;
+        } else {
+          if (bucketRel === "above_obs")       side = "NO";
+          else if (bucketRel === "contains" && ALLOW_CONTAINS) side = "YES";
+          else continue;
+        }
 
         // Entry: pay the ask for that side. Our best proxy for "ask" is the
         // most recent same-side tick price (slightly pessimistic since that's

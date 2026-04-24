@@ -1,0 +1,48 @@
+=== universe-backtest report · tag=v5_wide ===
+rule: |dist|<=10  no∈[0.05,0.97]  fresh<=300s  total<=250  snap=15min  obsAge>=0h  ttr<=99h  stop=0  contains=false
+exit: profit>=0.98  no-stop  timeout=120min  bet=$100
+scanned: 686 groups (no-wx=801 skip900e=0 limit=none)
+snapshots: 62917   unique markets entered: 450
+
+=== trades ===
+n=450  wins=259  losses=175  WR=57.6%
+total PnL: $-399.63   avg: $-0.888/trade
+bet size:  $100  per trade  (total risk = $45000)
+
+=== by side ===
+  NO: n=450  WR=57.6%  pnl=$-399.63  avg=$-0.888
+
+=== by exit reason ===
+  timeout         n=  325  WR=41.5%  pnl=$-3001.16
+  profit-take     n=  122  WR=100.0%  pnl=$1832.69
+  tape-ended      n=    3  WR=66.7%  pnl=$768.84
+
+=== PnL distribution ===
+  min=$-99.80  p10=$-32.43  p50=$1.17  p90=$10.11  p99=$108.51  max=$761.95
+
+=== top 10 losses ===
+  NO Chongqing        2026-04-19  dist=-2.1°C  above_obs  entry=0.5  exit=0.001 (timeout)  pnl=$-99.80
+  NO Istanbul         2026-04-14  dist=-3.2°C  above_obs  entry=0.66  exit=0.002 (timeout)  pnl=$-99.70
+  NO Amsterdam        2026-04-12  dist=-2.6°C  above_obs  entry=0.69  exit=0.01 (timeout)  pnl=$-98.55
+  NO Istanbul         2026-04-19  dist=-2.2°C  above_obs  entry=0.05  exit=0.001 (timeout)  pnl=$-98.00
+  NO New York City    2026-04-17  dist=-8.4°C  above_obs  entry=0.05  exit=0.001 (timeout)  pnl=$-98.00
+  NO Istanbul         2026-04-10  dist=-3°C  above_obs  entry=0.14  exit=0.0034 (timeout)  pnl=$-97.59
+  NO Chicago          2026-03-07  dist=-4.34°C  above_obs  entry=0.05  exit=0.0013 (timeout)  pnl=$-97.49
+  NO Seoul            2026-04-17  dist=-8.4°C  above_obs  entry=0.7923  exit=0.0321 (timeout)  pnl=$-95.95
+  NO Tokyo            2026-04-20  dist=-2.5°C  above_obs  entry=0.8615  exit=0.05 (timeout)  pnl=$-94.20
+  NO Tokyo            2026-04-12  dist=-3.5°C  above_obs  entry=0.77  exit=0.0727 (timeout)  pnl=$-90.55
+
+=== top 10 wins ===
+  NO Denver           2026-04-10  dist=-7.33°C  above_obs  entry=0.113  exit=0.974 (tape-ended)  pnl=$761.95
+  NO Seoul            2026-04-17  dist=-7.4°C  above_obs  entry=0.15  exit=0.98 (profit-take)  pnl=$553.33
+  NO Seoul            2026-03-24  dist=-3°C  above_obs  entry=0.26  exit=0.98 (profit-take)  pnl=$276.92
+  NO Tokyo            2026-04-12  dist=-4.5°C  above_obs  entry=0.37  exit=0.81 (timeout)  pnl=$118.92
+  NO Seoul            2026-04-13  dist=-2.1°C  above_obs  entry=0.47  exit=0.98 (profit-take)  pnl=$108.51
+  NO New York City    2026-03-12  dist=-6.74°C  above_obs  entry=0.55  exit=0.96 (timeout)  pnl=$74.55
+  NO Sao Paulo        2026-02-22  dist=-3.8°C  above_obs  entry=0.58  exit=0.99 (profit-take)  pnl=$70.69
+  NO Munich           2026-03-26  dist=-7.9°C  above_obs  entry=0.4  exit=0.6765 (timeout)  pnl=$69.12
+  NO Toronto          2026-04-07  dist=-3.7°C  above_obs  entry=0.6  exit=0.99 (profit-take)  pnl=$65.00
+  NO Paris            2026-03-11  dist=-3.3°C  above_obs  entry=0.6  exit=0.98 (profit-take)  pnl=$63.33
+
+elapsed: 17s
+output: /home/user/WeatherPolymarket/data/analysis/universe-backtest-v5_wide.csv
