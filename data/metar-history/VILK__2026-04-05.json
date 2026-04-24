@@ -1,0 +1,1 @@
+{"city":"Lucknow","icao":"VILK","station_name":"Amausi","date":"2026-04-05","tz":"UTC","source":"iem-asos","fetchedAt":"2026-04-24T12:34:52.849Z","nSamples":4,"samples":[{"t":1775347200,"tempC":20},{"t":1775349000,"tempC":19},{"t":1775367000,"tempC":29},{"t":1775368800,"tempC":29}]}

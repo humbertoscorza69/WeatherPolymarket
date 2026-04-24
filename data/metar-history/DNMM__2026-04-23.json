@@ -1,0 +1,1 @@
+{"city":"Lagos","icao":"DNMM","station_name":"Murtala Muhammed","date":"2026-04-23","tz":"UTC","source":"iem-asos","fetchedAt":"2026-04-24T12:34:45.109Z","nSamples":4,"samples":[{"t":1776974400,"tempC":29},{"t":1776978000,"tempC":29},{"t":1776981600,"tempC":29},{"t":1776985200,"tempC":29}]}
