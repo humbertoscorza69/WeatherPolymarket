@@ -93,17 +93,18 @@ function parseCsv(text) {
   return samples;
 }
 
-async function fetchStationDay(icao, date) {
-  // IEM requires year1/month1/day1 and year2/month2/day2. Ask for the whole
-  // UTC day; we'll filter later by city-local tz at feature time.
-  const [y, m, d] = date.split("-").map(Number);
-  const nd = new Date(Date.UTC(y, m - 1, d));
-  nd.setUTCDate(nd.getUTCDate() + 1);
-  const y2 = nd.getUTCFullYear(), m2 = nd.getUTCMonth() + 1, d2 = nd.getUTCDate();
+// Fetch the entire date range for one station in a single request — IEM
+// supports date spans so we drop ~800 per-day calls to ~50 per-station calls.
+async function fetchStationRange(icao, startDate, endDateInclusive) {
+  const [y1, m1, d1] = startDate.split("-").map(Number);
+  // +1 day because IEM's end is exclusive.
+  const end = new Date(Date.UTC(...endDateInclusive.split("-").map((v, i) => i === 1 ? Number(v) - 1 : Number(v))));
+  end.setUTCDate(end.getUTCDate() + 1);
+  const y2 = end.getUTCFullYear(), m2 = end.getUTCMonth() + 1, d2 = end.getUTCDate();
   const q = new URLSearchParams({
     station: icao,
     data: "tmpc",
-    year1: String(y), month1: String(m), day1: String(d),
+    year1: String(y1), month1: String(m1), day1: String(d1),
     year2: String(y2), month2: String(m2), day2: String(d2),
     tz: "Etc/UTC",
     format: "onlycomma",
@@ -112,11 +113,15 @@ async function fetchStationDay(icao, date) {
     missing: "M",
     trace: "T",
     direct: "no",
-    report_type: "3,4",      // 3=METAR, 4=SPECI
+    report_type: "3,4",
   });
   const url = `${IEM_ENDPOINT}?${q.toString()}`;
   const text = await fetchText(url);
   return parseCsv(text);
+}
+
+function utcSecToISODate(t) {
+  return new Date(t * 1000).toISOString().slice(0, 10);
 }
 
 async function main() {
@@ -124,9 +129,10 @@ async function main() {
   const mapJson = JSON.parse(await fs.readFile(CITY_MAP_PATH, "utf8"));
   const cityMap = mapJson.cities;
 
-  // Build the fetch list from data/weather-history/<City>__<Date>.json file names
+  // Build the fetch list from data/weather-history/<City>__<Date>.json file names.
   const files = existsSync(WX_DIR) ? await fs.readdir(WX_DIR) : [];
-  const pairs = [];
+  const byStation = new Map();  // icao -> { city, name, dates:Set }
+  let pairCount = 0;
   for (const f of files) {
     const m = f.match(/^(.+?)__(\d{4}-\d{2}-\d{2})\.json$/);
     if (!m) continue;
@@ -134,32 +140,56 @@ async function main() {
     if (CITIES_FILTER && !CITIES_FILTER.has(city)) continue;
     if (SINCE && date < SINCE) continue;
     if (!cityMap[city]) continue;
-    pairs.push({ city, date, icao: cityMap[city].icao, name: cityMap[city].name });
+    const icao = cityMap[city].icao;
+    if (!byStation.has(icao)) byStation.set(icao, { city, name: cityMap[city].name, dates: new Set() });
+    byStation.get(icao).dates.add(date);
+    pairCount++;
   }
-  pairs.sort((a, b) => (a.icao + a.date).localeCompare(b.icao + b.date));
-  console.log(`target set: ${pairs.length} (city, date) pairs across ${new Set(pairs.map(p=>p.icao)).size} stations`);
+  console.log(`target set: ${pairCount} (city, date) pairs across ${byStation.size} stations`);
 
   let fetched = 0, skipped = 0, failed = 0;
-  for (const p of pairs) {
+  let stationsDone = 0;
+  const stationEntries = [...byStation.entries()];
+  for (const [icao, info] of stationEntries) {
     if (fetched + failed >= LIMIT) { console.log(`hit --limit=${LIMIT}, stopping`); break; }
-    const out = path.join(OUT_DIR, `${p.icao}__${p.date}.json`);
-    if (!FORCE && existsSync(out)) { skipped++; continue; }
-    process.stdout.write(`  ${p.icao} ${p.date} (${p.city}, ${p.name}) ... `);
+    const dates = [...info.dates].sort();
+    if (!dates.length) continue;
+    // If every target file already exists, skip the station entirely.
+    const allExist = !FORCE && dates.every(d => existsSync(path.join(OUT_DIR, `${icao}__${d}.json`)));
+    if (allExist) { skipped += dates.length; stationsDone++; continue; }
+    const firstDate = dates[0], lastDate = dates[dates.length - 1];
+    process.stdout.write(`  [${stationsDone+1}/${byStation.size}] ${icao} (${info.city}, ${info.name})  ${firstDate} → ${lastDate}  (${dates.length} dates) ... `);
     try {
-      const samples = await fetchStationDay(p.icao, p.date);
-      const body = {
-        city: p.city, icao: p.icao, station_name: p.name, date: p.date,
-        tz: "UTC", source: "iem-asos", fetchedAt: new Date().toISOString(),
-        nSamples: samples.length, samples,
-      };
-      await fs.writeFile(out, JSON.stringify(body));
-      console.log(`${samples.length} samples`);
-      fetched++;
+      const samples = await fetchStationRange(icao, firstDate, lastDate);
+      // Bucket samples by UTC calendar date.
+      const perDay = new Map();
+      for (const s of samples) {
+        const d = utcSecToISODate(s.t);
+        if (!info.dates.has(d)) continue;        // only write dates we care about
+        if (!perDay.has(d)) perDay.set(d, []);
+        perDay.get(d).push(s);
+      }
+      let written = 0;
+      for (const d of dates) {
+        const out = path.join(OUT_DIR, `${icao}__${d}.json`);
+        if (!FORCE && existsSync(out)) { skipped++; continue; }
+        const daySamples = perDay.get(d) || [];
+        const body = {
+          city: info.city, icao, station_name: info.name, date: d,
+          tz: "UTC", source: "iem-asos", fetchedAt: new Date().toISOString(),
+          nSamples: daySamples.length, samples: daySamples,
+        };
+        await fs.writeFile(out, JSON.stringify(body));
+        if (daySamples.length) fetched++; else failed++;   // zero-sample days count as fail
+        written++;
+      }
+      console.log(`wrote ${written} files (${samples.length} total samples)`);
     } catch (e) {
       console.log(`FAIL: ${e.message}`);
-      failed++;
+      failed += dates.length;
     }
-    await new Promise(r => setTimeout(r, 200));  // be nice to IEM
+    stationsDone++;
+    await new Promise(r => setTimeout(r, 2000));  // 2s between stations — IEM is sensitive
   }
   console.log(`\ndone: fetched=${fetched} skipped=${skipped} failed=${failed}  out=${OUT_DIR}`);
 }
