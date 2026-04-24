@@ -73,6 +73,7 @@ const CFG = {
   SELL_TARGET:      Number(argv.selltarget ?? "0.999"),  // profit-take when our-side mid hits this
   RESET:            argv.reset === "true",
   NO_CAP:           argv.nocap === "true",           // disable "insufficient bankroll" gate
+  ALLOW_SPECULATIVE: argv["allow-speculative"] === "true",  // v32-metar: allow NO entries where bucket > obs (speculative bet temp won't climb). Off by default — backtest showed these are 42% WR coin flips.
 };
 
 const LOG = path.resolve("data/detect-log.jsonl");
@@ -779,6 +780,13 @@ async function scanOnce() {
     if (relation === "contains-max") { distSkipContains++; continue; }
     if (distance < CFG.MIN_DIST_C) { distSkipTooClose++; continue; }
     if (distance > CFG.MAX_DIST_C) { distSkipTooFar++;   continue; }
+    // v32-metar: only enter NO when the bucket is ALREADY BELOW obs_max
+    // (bucket dead — backtest "above_obs" case, 98% WR). Skip the mirror
+    // case where the bucket is ABOVE obs and we'd be betting temperature
+    // won't climb further — without a forecast or order-flow signal, that's
+    // a 42% WR coin flip (v5/v6 backtest confirmed). --allow-speculative
+    // overrides.
+    if (relation === "above-max" && !CFG.ALLOW_SPECULATIVE) { distSkipTooFar++; continue; }
     eligible.push({ ...u, obsMaxC, distance, relation });
   }
   console.log(`  distance-filter: ${eligible.length} eligible · skipped ${distSkipTooClose} too-close (<${CFG.MIN_DIST_C}°C) · ${distSkipTooFar} too-far (>${CFG.MAX_DIST_C}°C) · ${distSkipContains} contains-max · ${distSkipNoObs} no-obs`);
