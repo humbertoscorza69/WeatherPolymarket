@@ -717,9 +717,27 @@ async function resolvePositions() {
 function computeObservedMaxC(market, metarObs, omObs, nowSec) {
   const primary = (metarObs?.length ? metarObs : omObs) || [];
   if (!primary.length) return null;
+  // v32-metar CRITICAL FIX: restrict samples to the market's LOCAL DAY.
+  // Previously this took the max over ALL samples <= nowSec, which for
+  // a 48h METAR buffer meant YESTERDAY's peak leaked into TODAY's obs_max
+  // computation. That broke the core rule: "bucket is below today's peak
+  // → bucket is dead → enter NO." With yesterday's peak, we were entering
+  // tomorrow's markets based on data that says nothing about tomorrow's
+  // temperature trajectory.
+  //
+  // Uses a ±12h UTC window around market.date as a tz approximation,
+  // matching what scripts/dashboard.mjs does (line 389). Exact tz would
+  // require a per-city lookup — the ±12h buffer comfortably covers every
+  // city's local midnight-to-midnight without admitting the prior day's
+  // afternoon peak.
+  if (!market?.date) return null;
+  const dayStartUtc = Math.floor(new Date(market.date + "T00:00:00Z").getTime() / 1000);
+  const windowStart = dayStartUtc - 12 * 3600;
+  const windowEnd   = dayStartUtc + 36 * 3600;
   let maxC = -Infinity;
   for (const o of primary) {
     if (o.t > nowSec) break;
+    if (o.t < windowStart || o.t >= windowEnd) continue;
     if (o.tempC > maxC) maxC = o.tempC;
   }
   return Number.isFinite(maxC) ? maxC : null;
