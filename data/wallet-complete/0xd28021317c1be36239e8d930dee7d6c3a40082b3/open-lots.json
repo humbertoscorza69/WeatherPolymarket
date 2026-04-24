@@ -1,0 +1,1904 @@
+[
+  {
+    "key": "0xb64d2695d8354a20d3db512882d7e2b442fdf0c02c4ebad67bf862ef898ac075-0",
+    "title": "Will the highest temperature in Denver be 64°F or higher on April 13?",
+    "lots": [
+      {
+        "shares": 1,
+        "price": 0.999,
+        "usdc": 0.999,
+        "ts": 1776112499
+      },
+      {
+        "shares": 38.23,
+        "price": 0.999,
+        "usdc": 38.19177,
+        "ts": 1776113799
+      }
+    ],
+    "totalShares": 39.23
+  },
+  {
+    "key": "0xb412664463bbfe21be44b1963291205ab332afd4f7f6e0d027aec1ba7a9e6793-1",
+    "title": "Iran leadership change by April 30?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.955,
+        "usdc": 286.5,
+        "ts": 1776519466
+      },
+      {
+        "shares": 200,
+        "price": 0.941,
+        "usdc": 188.2,
+        "ts": 1776520108
+      },
+      {
+        "shares": 300,
+        "price": 0.953,
+        "usdc": 285.9,
+        "ts": 1776776366
+      },
+      {
+        "shares": 10,
+        "price": 0.952,
+        "usdc": 9.52,
+        "ts": 1776854608
+      },
+      {
+        "shares": 35,
+        "price": 0.952,
+        "usdc": 33.32,
+        "ts": 1776854666
+      },
+      {
+        "shares": 25,
+        "price": 0.952,
+        "usdc": 23.8,
+        "ts": 1776854666
+      },
+      {
+        "shares": 40,
+        "price": 0.952,
+        "usdc": 38.08,
+        "ts": 1776858064
+      },
+      {
+        "shares": 174.07,
+        "price": 0.952,
+        "usdc": 165.71464,
+        "ts": 1776858266
+      },
+      {
+        "shares": 15.93,
+        "price": 0.952,
+        "usdc": 15.16536,
+        "ts": 1776859012
+      }
+    ],
+    "totalShares": 899.9999999999999
+  },
+  {
+    "key": "0xc044c6e20f16903b5d307c786f7900917fdad7db76db0bbf7af15d28ed07c585-0",
+    "title": "Will the highest temperature in Singapore be 33°C or higher on April 14?",
+    "lots": [
+      {
+        "shares": 137.05,
+        "price": 0.99,
+        "usdc": 135.6795,
+        "ts": 1776137631
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1776137645
+      },
+      {
+        "shares": 34.51,
+        "price": 0.999,
+        "usdc": 34.47549,
+        "ts": 1776137709
+      },
+      {
+        "shares": 3.24,
+        "price": 0.999,
+        "usdc": 3.23676,
+        "ts": 1776137733
+      },
+      {
+        "shares": 0.11,
+        "price": 0.999,
+        "usdc": 0.10989,
+        "ts": 1776137737
+      }
+    ],
+    "totalShares": 179.91000000000003
+  },
+  {
+    "key": "0xe443dab97ad8b7f58558cc7a6a3932d156031e962a451e0461e9a4578d78fe84-1",
+    "title": "Will the Iranian regime fall by April 30?",
+    "lots": [
+      {
+        "shares": 410.0028299999999,
+        "price": 0.988,
+        "usdc": 780.52,
+        "ts": 1776441808
+      },
+      {
+        "shares": 380,
+        "price": 0.988,
+        "usdc": 375.44,
+        "ts": 1776544910
+      },
+      {
+        "shares": 0.06,
+        "price": 0.981,
+        "usdc": 0.05886,
+        "ts": 1776629508
+      },
+      {
+        "shares": 0.05,
+        "price": 0.981,
+        "usdc": 0.04905,
+        "ts": 1776629514
+      }
+    ],
+    "totalShares": 790.1128299999998
+  },
+  {
+    "key": "0x284ee6e0b464c11ba9aa019e7c9e1f2628775419db466dd71f9da30bff4e0a1a-0",
+    "title": "Will the highest temperature in Mexico City be 22°C or higher on April 14?",
+    "lots": [
+      {
+        "shares": 26.28,
+        "price": 0.999,
+        "usdc": 26.25372,
+        "ts": 1776184848
+      }
+    ],
+    "totalShares": 26.28
+  },
+  {
+    "key": "0x0aaabd6b404e33127ca6e17c652365501a81c8ff15f0bf910a62d48b91a3dd76-0",
+    "title": "Will the highest temperature in New York City be between 84-85°F on April 14?",
+    "lots": [
+      {
+        "shares": 0.0004829999999884649,
+        "price": 0.895,
+        "usdc": 89.5,
+        "ts": 1776204426
+      }
+    ],
+    "totalShares": 0.0004829999999884649
+  },
+  {
+    "key": "0xb53776876bf9d3b087ab861eb37a9f76d2869eb0a66b4f8218ba1d5b5ae9445f-0",
+    "title": "Will the highest temperature in Mexico City be 19°C or higher on April 15?",
+    "lots": [
+      {
+        "shares": 198.99005,
+        "price": 0.999,
+        "usdc": 198.801,
+        "ts": 1776265168
+      },
+      {
+        "shares": 198.99005,
+        "price": 0.999,
+        "usdc": 198.801,
+        "ts": 1776265174
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1776265926
+      },
+      {
+        "shares": 28.49,
+        "price": 0.999,
+        "usdc": 28.46151,
+        "ts": 1776266934
+      }
+    ],
+    "totalShares": 431.4701
+  },
+  {
+    "key": "0x377e7fe65cf198a7fc4fdae3f2136b74729279267858daaf96718b23bc2a5607-0",
+    "title": "Iran leadership change by December 31?",
+    "lots": [
+      {
+        "shares": 0.37999999999999545,
+        "price": 0.36,
+        "usdc": 90,
+        "ts": 1776811576
+      }
+    ],
+    "totalShares": 0.37999999999999545
+  },
+  {
+    "key": "0x36d868de56f00cb9df05ba64d6adcdc703434a691c409efe7c3a24722580538f-0",
+    "title": "S&P 500 (SPX) Up or Down on April 17?",
+    "lots": [
+      {
+        "shares": 10.85,
+        "price": 0.98,
+        "usdc": 10.633,
+        "ts": 1776439180
+      },
+      {
+        "shares": 195.12,
+        "price": 0.98,
+        "usdc": 191.2176,
+        "ts": 1776439370
+      },
+      {
+        "shares": 54.03,
+        "price": 0.98,
+        "usdc": 52.9494,
+        "ts": 1776439984
+      },
+      {
+        "shares": 1.09846,
+        "price": 0.9740008739508038,
+        "usdc": 1.069901,
+        "ts": 1776441074
+      },
+      {
+        "shares": 115.060868,
+        "price": 0.9770000083781742,
+        "usdc": 112.414469,
+        "ts": 1776442650
+      },
+      {
+        "shares": 158.94846,
+        "price": 0.9740000060396936,
+        "usdc": 154.815801,
+        "ts": 1776444520
+      },
+      {
+        "shares": 135.56,
+        "price": 0.992,
+        "usdc": 134.47552,
+        "ts": 1776445884
+      },
+      {
+        "shares": 89.95,
+        "price": 0.974,
+        "usdc": 87.6113,
+        "ts": 1776446318
+      },
+      {
+        "shares": 64.44,
+        "price": 0.992,
+        "usdc": 63.92448,
+        "ts": 1776446318
+      }
+    ],
+    "totalShares": 825.0577880000001
+  },
+  {
+    "key": "0xe4bb1e067cf220b0b01e4b299f17934342a1454658c39b7bcc9eeca1d9c10f64-0",
+    "title": "HYPE Up or Down - April 17, 11AM ET",
+    "lots": [
+      {
+        "shares": 1.52,
+        "price": 0.999,
+        "usdc": 1.51848,
+        "ts": 1776444826
+      }
+    ],
+    "totalShares": 1.52
+  },
+  {
+    "key": "0x2f6a547524c1d290f8a2bbff80be2b0e8ca1b3b716dd3a0e74bf8ddb3e3fd6b7-1",
+    "title": "Iran leadership change by May 31?",
+    "lots": [
+      {
+        "shares": 22.222221,
+        "price": 0.9100000400500022,
+        "usdc": 20.222222,
+        "ts": 1776776866
+      },
+      {
+        "shares": 100,
+        "price": 0.91,
+        "usdc": 91,
+        "ts": 1776781844
+      },
+      {
+        "shares": 82.77,
+        "price": 0.91,
+        "usdc": 75.3207,
+        "ts": 1776785320
+      }
+    ],
+    "totalShares": 204.992221
+  },
+  {
+    "key": "0xbe383350abb3c65b8afbd9239039fa48df3955501b17cf3f4e64833901025488-0",
+    "title": "Dogecoin Up or Down - April 18, 8AM ET",
+    "lots": [
+      {
+        "shares": 4.8,
+        "price": 0.999,
+        "usdc": 4.7952,
+        "ts": 1776519356
+      }
+    ],
+    "totalShares": 4.8
+  },
+  {
+    "key": "0x2da7aa4df25c9abff99a7a3630af721d5431360290f6a9c47831656d2258b9a7-0",
+    "title": "Solana Up or Down - April 18, 10AM ET",
+    "lots": [
+      {
+        "shares": 5.19,
+        "price": 0.999,
+        "usdc": 5.18481,
+        "ts": 1776524736
+      },
+      {
+        "shares": 1.1,
+        "price": 0.999,
+        "usdc": 1.0989,
+        "ts": 1776524736
+      },
+      {
+        "shares": 4.89,
+        "price": 0.999,
+        "usdc": 4.88511,
+        "ts": 1776524946
+      },
+      {
+        "shares": 5.16,
+        "price": 0.999,
+        "usdc": 5.15484,
+        "ts": 1776525988
+      },
+      {
+        "shares": 12.29,
+        "price": 0.999,
+        "usdc": 12.27771,
+        "ts": 1776526044
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1776526060
+      },
+      {
+        "shares": 1.02,
+        "price": 0.999,
+        "usdc": 1.01898,
+        "ts": 1776526382
+      },
+      {
+        "shares": 1.02,
+        "price": 0.999,
+        "usdc": 1.01898,
+        "ts": 1776527594
+      },
+      {
+        "shares": 3.33,
+        "price": 0.999,
+        "usdc": 3.32667,
+        "ts": 1776528274
+      }
+    ],
+    "totalShares": 39
+  },
+  {
+    "key": "0xc5fd092d62701431dbe956574bbe56102a144d7cda21ee543b0bf664a53d3b0d-0",
+    "title": "BNB Up or Down - April 18, 10AM ET",
+    "lots": [
+      {
+        "shares": 5.01,
+        "price": 0.999,
+        "usdc": 5.00499,
+        "ts": 1776525952
+      }
+    ],
+    "totalShares": 5.01
+  },
+  {
+    "key": "0x4c296cc73c02622fd1836730219983a95be4428d64407e1b9379537bfd7543b0-0",
+    "title": "Will the highest temperature in San Francisco be 68°F or higher on April 18?",
+    "lots": [
+      {
+        "shares": 958.65641,
+        "price": 0.9984647919643695,
+        "usdc": 957.25815,
+        "ts": 1776549432
+      },
+      {
+        "shares": 5.88,
+        "price": 0.999,
+        "usdc": 5.87412,
+        "ts": 1776549434
+      },
+      {
+        "shares": 1.19,
+        "price": 0.999,
+        "usdc": 1.18881,
+        "ts": 1776549436
+      },
+      {
+        "shares": 1.02,
+        "price": 0.999,
+        "usdc": 1.01898,
+        "ts": 1776549440
+      },
+      {
+        "shares": 2.21,
+        "price": 0.999,
+        "usdc": 2.20779,
+        "ts": 1776549446
+      },
+      {
+        "shares": 3,
+        "price": 0.999,
+        "usdc": 2.997,
+        "ts": 1776549520
+      },
+      {
+        "shares": 15.35,
+        "price": 0.999,
+        "usdc": 15.33465,
+        "ts": 1776549540
+      },
+      {
+        "shares": 2.2,
+        "price": 0.999,
+        "usdc": 2.1978,
+        "ts": 1776549580
+      },
+      {
+        "shares": 10.35,
+        "price": 0.999,
+        "usdc": 10.33965,
+        "ts": 1776549584
+      },
+      {
+        "shares": 106.75,
+        "price": 0.999,
+        "usdc": 106.64325,
+        "ts": 1776549618
+      },
+      {
+        "shares": 30.1,
+        "price": 0.999,
+        "usdc": 30.0699,
+        "ts": 1776549660
+      },
+      {
+        "shares": 15.32,
+        "price": 0.999,
+        "usdc": 15.30468,
+        "ts": 1776549698
+      },
+      {
+        "shares": 3.28,
+        "price": 0.999,
+        "usdc": 3.27672,
+        "ts": 1776549792
+      },
+      {
+        "shares": 50,
+        "price": 0.999,
+        "usdc": 49.95,
+        "ts": 1776549980
+      },
+      {
+        "shares": 3.13,
+        "price": 0.999,
+        "usdc": 3.12687,
+        "ts": 1776550212
+      },
+      {
+        "shares": 1,
+        "price": 0.999,
+        "usdc": 0.999,
+        "ts": 1776550440
+      },
+      {
+        "shares": 4.84,
+        "price": 0.999,
+        "usdc": 4.83516,
+        "ts": 1776550582
+      },
+      {
+        "shares": 1.1,
+        "price": 0.999,
+        "usdc": 1.0989,
+        "ts": 1776551234
+      },
+      {
+        "shares": 29.57,
+        "price": 0.999,
+        "usdc": 29.54043,
+        "ts": 1776551396
+      },
+      {
+        "shares": 318.75,
+        "price": 0.999,
+        "usdc": 318.43125,
+        "ts": 1776552974
+      },
+      {
+        "shares": 2.16,
+        "price": 0.999,
+        "usdc": 2.15784,
+        "ts": 1776553330
+      },
+      {
+        "shares": 157.27,
+        "price": 0.999,
+        "usdc": 157.11273,
+        "ts": 1776554220
+      },
+      {
+        "shares": 3.18,
+        "price": 0.999,
+        "usdc": 3.17682,
+        "ts": 1776555580
+      },
+      {
+        "shares": 8.99,
+        "price": 0.999,
+        "usdc": 8.98101,
+        "ts": 1776555696
+      }
+    ],
+    "totalShares": 1735.2964100000002
+  },
+  {
+    "key": "0xd1daa95546cbf08752ec05fa9a4c850c8644b092242174ce166819b92b4a25e2-0",
+    "title": "Bitcoin Up or Down - April 18, 5PM ET",
+    "lots": [
+      {
+        "shares": 1070.88,
+        "price": 0.999,
+        "usdc": 1069.80912,
+        "ts": 1776549828
+      },
+      {
+        "shares": 500,
+        "price": 0.999,
+        "usdc": 499.5,
+        "ts": 1776549834
+      },
+      {
+        "shares": 3.4,
+        "price": 0.999,
+        "usdc": 3.3966,
+        "ts": 1776549854
+      },
+      {
+        "shares": 296.21,
+        "price": 0.999,
+        "usdc": 295.91379,
+        "ts": 1776549882
+      },
+      {
+        "shares": 5.4,
+        "price": 0.999,
+        "usdc": 5.3946,
+        "ts": 1776549900
+      },
+      {
+        "shares": 38.78,
+        "price": 0.999,
+        "usdc": 38.74122,
+        "ts": 1776549938
+      },
+      {
+        "shares": 160.76,
+        "price": 0.999,
+        "usdc": 160.59924,
+        "ts": 1776550016
+      },
+      {
+        "shares": 24.51,
+        "price": 0.999,
+        "usdc": 24.48549,
+        "ts": 1776550026
+      },
+      {
+        "shares": 11.98,
+        "price": 0.999,
+        "usdc": 11.96802,
+        "ts": 1776550068
+      },
+      {
+        "shares": 989.2,
+        "price": 0.999,
+        "usdc": 988.2108,
+        "ts": 1776550254
+      },
+      {
+        "shares": 567.39,
+        "price": 0.999,
+        "usdc": 566.82261,
+        "ts": 1776550486
+      },
+      {
+        "shares": 7.3,
+        "price": 0.999,
+        "usdc": 7.2927,
+        "ts": 1776550566
+      },
+      {
+        "shares": 5.27,
+        "price": 0.999,
+        "usdc": 5.26473,
+        "ts": 1776551298
+      },
+      {
+        "shares": 97.7,
+        "price": 0.999,
+        "usdc": 97.6023,
+        "ts": 1776551326
+      },
+      {
+        "shares": 155.87,
+        "price": 0.999,
+        "usdc": 155.71413,
+        "ts": 1776551546
+      },
+      {
+        "shares": 8.29,
+        "price": 0.999,
+        "usdc": 8.28171,
+        "ts": 1776552038
+      },
+      {
+        "shares": 66.2,
+        "price": 0.999,
+        "usdc": 66.1338,
+        "ts": 1776552108
+      },
+      {
+        "shares": 5.88,
+        "price": 0.999,
+        "usdc": 5.87412,
+        "ts": 1776552600
+      },
+      {
+        "shares": 221.95,
+        "price": 0.999,
+        "usdc": 221.72805,
+        "ts": 1776552662
+      },
+      {
+        "shares": 15.18,
+        "price": 0.999,
+        "usdc": 15.16482,
+        "ts": 1776552938
+      },
+      {
+        "shares": 1060,
+        "price": 0.999,
+        "usdc": 1058.94,
+        "ts": 1776553042
+      },
+      {
+        "shares": 1.49,
+        "price": 0.999,
+        "usdc": 1.48851,
+        "ts": 1776553048
+      },
+      {
+        "shares": 29.86,
+        "price": 0.999,
+        "usdc": 29.83014,
+        "ts": 1776553302
+      },
+      {
+        "shares": 1.92,
+        "price": 0.999,
+        "usdc": 1.91808,
+        "ts": 1776553542
+      },
+      {
+        "shares": 1.7,
+        "price": 0.999,
+        "usdc": 1.6983,
+        "ts": 1776555816
+      },
+      {
+        "shares": 10,
+        "price": 0.999,
+        "usdc": 9.99,
+        "ts": 1776556000
+      },
+      {
+        "shares": 18.97,
+        "price": 0.999,
+        "usdc": 18.95103,
+        "ts": 1776556062
+      },
+      {
+        "shares": 15.77,
+        "price": 0.999,
+        "usdc": 15.75423,
+        "ts": 1776557478
+      },
+      {
+        "shares": 11.56,
+        "price": 0.999,
+        "usdc": 11.54844,
+        "ts": 1776557482
+      }
+    ],
+    "totalShares": 5403.420000000001
+  },
+  {
+    "key": "0x57b211b5fbc2878bef44947437a2fd7bf8cce39d4313d68bf3c36568b9ef0c42-0",
+    "title": "HYPE Up or Down - April 18, 6PM ET",
+    "lots": [
+      {
+        "shares": 2.68,
+        "price": 0.999,
+        "usdc": 2.67732,
+        "ts": 1776554952
+      }
+    ],
+    "totalShares": 2.68
+  },
+  {
+    "key": "0x84bce97732fb6be8f22d254a49083da8241cead94c65daec9b9c11efe563ad9c-0",
+    "title": "Dogecoin Up or Down - April 19, 6AM ET",
+    "lots": [
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1776597360
+      },
+      {
+        "shares": 4.92,
+        "price": 0.999,
+        "usdc": 4.91508,
+        "ts": 1776598532
+      }
+    ],
+    "totalShares": 9.92
+  },
+  {
+    "key": "0xf91c60d31ed38430cb0312789832f737fb0a637e8b688a327d14e92e6ee41eb9-0",
+    "title": "BNB Up or Down - April 19, 6AM ET",
+    "lots": [
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1776597400
+      },
+      {
+        "shares": 4.92,
+        "price": 0.999,
+        "usdc": 4.91508,
+        "ts": 1776598532
+      }
+    ],
+    "totalShares": 9.92
+  },
+  {
+    "key": "0xe74984bd27632a90e6cc752c23d80f96cbc781245b864d0f04e4afade4def146-0",
+    "title": "Will the highest temperature in Panama City be 31°C or higher on April 19?",
+    "lots": [
+      {
+        "shares": 499.975,
+        "price": 0.999,
+        "usdc": 499.5,
+        "ts": 1776610852
+      },
+      {
+        "shares": 499.975,
+        "price": 0.999,
+        "usdc": 499.5,
+        "ts": 1776610854
+      },
+      {
+        "shares": 81.08595,
+        "price": 0.999,
+        "usdc": 81.00891,
+        "ts": 1776610858
+      },
+      {
+        "shares": 111.3,
+        "price": 0.999,
+        "usdc": 111.1887,
+        "ts": 1776610864
+      },
+      {
+        "shares": 68.01,
+        "price": 0.999,
+        "usdc": 67.94199,
+        "ts": 1776611030
+      },
+      {
+        "shares": 29.89,
+        "price": 0.999,
+        "usdc": 29.86011,
+        "ts": 1776611220
+      },
+      {
+        "shares": 9.13,
+        "price": 0.999,
+        "usdc": 9.12087,
+        "ts": 1776611298
+      }
+    ],
+    "totalShares": 1299.36595
+  },
+  {
+    "key": "0x0ffe47d5e0b0bf488fdd877facbe2d308bdaf3d7c356cff8a36d537a651c368d-0",
+    "title": "Will FC Porto win on 2026-04-19?",
+    "lots": [
+      {
+        "shares": 463.58610000000004,
+        "price": 0.999,
+        "usdc": 463.1364,
+        "ts": 1776633898
+      },
+      {
+        "shares": 313.03,
+        "price": 0.999,
+        "usdc": 312.71697,
+        "ts": 1776633934
+      },
+      {
+        "shares": 661.66,
+        "price": 0.999,
+        "usdc": 660.99834,
+        "ts": 1776633942
+      },
+      {
+        "shares": 7.39,
+        "price": 0.999,
+        "usdc": 7.38261,
+        "ts": 1776633966
+      },
+      {
+        "shares": 9.8,
+        "price": 0.999,
+        "usdc": 9.7902,
+        "ts": 1776633974
+      },
+      {
+        "shares": 117.11,
+        "price": 0.999,
+        "usdc": 116.99289,
+        "ts": 1776633986
+      },
+      {
+        "shares": 35.13,
+        "price": 0.999,
+        "usdc": 35.09487,
+        "ts": 1776634054
+      },
+      {
+        "shares": 51,
+        "price": 0.999,
+        "usdc": 50.949,
+        "ts": 1776634152
+      },
+      {
+        "shares": 118.47,
+        "price": 0.999,
+        "usdc": 118.35153,
+        "ts": 1776634188
+      },
+      {
+        "shares": 1.15,
+        "price": 0.999,
+        "usdc": 1.14885,
+        "ts": 1776634196
+      },
+      {
+        "shares": 9.41,
+        "price": 0.999,
+        "usdc": 9.40059,
+        "ts": 1776634198
+      },
+      {
+        "shares": 6,
+        "price": 0.999,
+        "usdc": 5.994,
+        "ts": 1776634272
+      },
+      {
+        "shares": 16.26,
+        "price": 0.999,
+        "usdc": 16.24374,
+        "ts": 1776634290
+      },
+      {
+        "shares": 1.17,
+        "price": 0.999,
+        "usdc": 1.16883,
+        "ts": 1776634294
+      },
+      {
+        "shares": 1.19,
+        "price": 0.999,
+        "usdc": 1.18881,
+        "ts": 1776634296
+      },
+      {
+        "shares": 10.61,
+        "price": 0.999,
+        "usdc": 10.59939,
+        "ts": 1776634324
+      },
+      {
+        "shares": 7.94,
+        "price": 0.999,
+        "usdc": 7.93206,
+        "ts": 1776634342
+      },
+      {
+        "shares": 264.66,
+        "price": 0.999,
+        "usdc": 264.39534,
+        "ts": 1776634346
+      },
+      {
+        "shares": 130.55,
+        "price": 0.999,
+        "usdc": 130.41945,
+        "ts": 1776634356
+      },
+      {
+        "shares": 212.38,
+        "price": 0.999,
+        "usdc": 212.16762,
+        "ts": 1776634374
+      },
+      {
+        "shares": 163.38,
+        "price": 0.999,
+        "usdc": 163.21662,
+        "ts": 1776634442
+      },
+      {
+        "shares": 212.38,
+        "price": 0.999,
+        "usdc": 212.16762,
+        "ts": 1776634470
+      },
+      {
+        "shares": 185.73,
+        "price": 0.999,
+        "usdc": 185.54427,
+        "ts": 1776634508
+      }
+    ],
+    "totalShares": 2999.986100000001
+  },
+  {
+    "key": "0x5fdf4b32cf901649d0cd98978e6f96e14e2895877054c39daaf83d1059037bd5-0",
+    "title": "HYPE Up or Down - April 19, 9PM ET",
+    "lots": [
+      {
+        "shares": 49.96,
+        "price": 0.999,
+        "usdc": 49.91004,
+        "ts": 1776653902
+      }
+    ],
+    "totalShares": 49.96
+  },
+  {
+    "key": "0x47ce347abbb25bdeb2e93afdb36f8395c6a3277c0a6df1f4bd97cbb592ae321f-0",
+    "title": "Will the highest temperature in Milan be 21°C or higher on April 20?",
+    "lots": [
+      {
+        "shares": 111.10445,
+        "price": 0.999,
+        "usdc": 110.99889,
+        "ts": 1776687938
+      },
+      {
+        "shares": 499.975,
+        "price": 0.999,
+        "usdc": 499.5,
+        "ts": 1776687938
+      },
+      {
+        "shares": 499.975,
+        "price": 0.999,
+        "usdc": 499.5,
+        "ts": 1776687938
+      },
+      {
+        "shares": 69.35,
+        "price": 0.999,
+        "usdc": 69.28065,
+        "ts": 1776687942
+      },
+      {
+        "shares": 5.2,
+        "price": 0.999,
+        "usdc": 5.1948,
+        "ts": 1776687950
+      },
+      {
+        "shares": 425.45,
+        "price": 0.999,
+        "usdc": 425.02455,
+        "ts": 1776687956
+      }
+    ],
+    "totalShares": 1611.05445
+  },
+  {
+    "key": "0xaa7f3b39c9a569b518f723bad8bb5605a0335ec3f3a6863627e68c35d82aea0c-0",
+    "title": "BNB Up or Down - April 20, 7PM ET",
+    "lots": [
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1776732386
+      }
+    ],
+    "totalShares": 5
+  },
+  {
+    "key": "0xdc0d7729c0777b01c02b9ee9c8dce7a5ea83867289f202ccb6a86eac7aac851b-0",
+    "title": "HYPE Up or Down - April 20, 9PM ET",
+    "lots": [
+      {
+        "shares": 1.72,
+        "price": 0.999,
+        "usdc": 1.71828,
+        "ts": 1776738952
+      }
+    ],
+    "totalShares": 1.72
+  },
+  {
+    "key": "0x8c94bc8ff5c1abdb730e0f0c27745fec32310177d795fb0cd9baee0b50d87f22-0",
+    "title": "Bitcoin Up or Down - April 21, 12AM ET",
+    "lots": [
+      {
+        "shares": 1.02,
+        "price": 0.999,
+        "usdc": 1.01898,
+        "ts": 1776747794
+      },
+      {
+        "shares": 5.04,
+        "price": 0.999,
+        "usdc": 5.03496,
+        "ts": 1776747794
+      },
+      {
+        "shares": 5.4,
+        "price": 0.999,
+        "usdc": 5.3946,
+        "ts": 1776747794
+      },
+      {
+        "shares": 8.01,
+        "price": 0.999,
+        "usdc": 8.00199,
+        "ts": 1776747812
+      },
+      {
+        "shares": 50.7,
+        "price": 0.999,
+        "usdc": 50.6493,
+        "ts": 1776747876
+      },
+      {
+        "shares": 92.83,
+        "price": 0.999,
+        "usdc": 92.73717,
+        "ts": 1776747906
+      },
+      {
+        "shares": 26,
+        "price": 0.999,
+        "usdc": 25.974,
+        "ts": 1776747940
+      },
+      {
+        "shares": 300,
+        "price": 0.999,
+        "usdc": 299.7,
+        "ts": 1776747970
+      },
+      {
+        "shares": 53.62,
+        "price": 0.999,
+        "usdc": 53.56638,
+        "ts": 1776747980
+      },
+      {
+        "shares": 10.65,
+        "price": 0.999,
+        "usdc": 10.63935,
+        "ts": 1776747982
+      },
+      {
+        "shares": 32.27,
+        "price": 0.999,
+        "usdc": 32.23773,
+        "ts": 1776748072
+      },
+      {
+        "shares": 10.98,
+        "price": 0.999,
+        "usdc": 10.96902,
+        "ts": 1776748086
+      },
+      {
+        "shares": 4.77,
+        "price": 0.999,
+        "usdc": 4.76523,
+        "ts": 1776748244
+      },
+      {
+        "shares": 49.13,
+        "price": 0.999,
+        "usdc": 49.08087,
+        "ts": 1776748272
+      },
+      {
+        "shares": 7.44,
+        "price": 0.999,
+        "usdc": 7.43256,
+        "ts": 1776748328
+      },
+      {
+        "shares": 1.08,
+        "price": 0.999,
+        "usdc": 1.07892,
+        "ts": 1776748416
+      },
+      {
+        "shares": 26.36,
+        "price": 0.999,
+        "usdc": 26.33364,
+        "ts": 1776748710
+      },
+      {
+        "shares": 18.34,
+        "price": 0.999,
+        "usdc": 18.32166,
+        "ts": 1776749020
+      },
+      {
+        "shares": 4.82,
+        "price": 0.999,
+        "usdc": 4.81518,
+        "ts": 1776749184
+      },
+      {
+        "shares": 14.5,
+        "price": 0.999,
+        "usdc": 14.4855,
+        "ts": 1776749338
+      },
+      {
+        "shares": 55.41,
+        "price": 0.999,
+        "usdc": 55.35459,
+        "ts": 1776749574
+      },
+      {
+        "shares": 252,
+        "price": 0.999,
+        "usdc": 251.748,
+        "ts": 1776749586
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1776749612
+      },
+      {
+        "shares": 40.44,
+        "price": 0.999,
+        "usdc": 40.39956,
+        "ts": 1776749934
+      },
+      {
+        "shares": 4.95,
+        "price": 0.999,
+        "usdc": 4.94505,
+        "ts": 1776750004
+      },
+      {
+        "shares": 4266.06,
+        "price": 0.999,
+        "usdc": 4261.79394,
+        "ts": 1776750192
+      },
+      {
+        "shares": 3.76,
+        "price": 0.999,
+        "usdc": 3.75624,
+        "ts": 1776750530
+      },
+      {
+        "shares": 3.64,
+        "price": 0.999,
+        "usdc": 3.63636,
+        "ts": 1776750764
+      },
+      {
+        "shares": 2.16,
+        "price": 0.999,
+        "usdc": 2.15784,
+        "ts": 1776752888
+      },
+      {
+        "shares": 1642.62,
+        "price": 0.999,
+        "usdc": 1640.97738,
+        "ts": 1776753896
+      }
+    ],
+    "totalShares": 6999.000000000001
+  },
+  {
+    "key": "0xdc0ec3221e8b365197596df99652b36602dacc641d0143826c2b1a9e6d1690a3-0",
+    "title": "Ethereum Up or Down - April 21, 12AM ET",
+    "lots": [
+      {
+        "shares": 10.41,
+        "price": 0.999,
+        "usdc": 10.39959,
+        "ts": 1776748026
+      },
+      {
+        "shares": 5.16,
+        "price": 0.999,
+        "usdc": 5.15484,
+        "ts": 1776748482
+      },
+      {
+        "shares": 18.04,
+        "price": 0.999,
+        "usdc": 18.02196,
+        "ts": 1776749026
+      },
+      {
+        "shares": 19.99,
+        "price": 0.999,
+        "usdc": 19.97001,
+        "ts": 1776749274
+      }
+    ],
+    "totalShares": 53.599999999999994
+  },
+  {
+    "key": "0x7b3b8419f317638c89998ab4e1f6f5cd19845f4a0d3a1f9259d878779c9f7413-0",
+    "title": "Will the highest temperature in Denver be 56°F or higher on April 21?",
+    "lots": [
+      {
+        "shares": 9.8,
+        "price": 0.999,
+        "usdc": 9.7902,
+        "ts": 1776780188
+      }
+    ],
+    "totalShares": 9.8
+  },
+  {
+    "key": "0xe9353ecae09ed6b85327732cff5e7986eaa85783dcc4fb7627ae44a2eac479d6-0",
+    "title": "XRP Up or Down - April 21, 11AM ET",
+    "lots": [
+      {
+        "shares": 5.14,
+        "price": 0.999,
+        "usdc": 5.13486,
+        "ts": 1776787278
+      },
+      {
+        "shares": 5.65,
+        "price": 0.999,
+        "usdc": 5.64435,
+        "ts": 1776787554
+      },
+      {
+        "shares": 5.05,
+        "price": 0.999,
+        "usdc": 5.04495,
+        "ts": 1776787910
+      },
+      {
+        "shares": 8.52,
+        "price": 0.999,
+        "usdc": 8.51148,
+        "ts": 1776788332
+      }
+    ],
+    "totalShares": 24.36
+  },
+  {
+    "key": "0x8d83d1923a1604f6c406948ef81ef2f78dcaab20b092647a01179879ab6f986d-0",
+    "title": "Will the highest temperature in Panama City be 31°C or higher on April 21?",
+    "lots": [
+      {
+        "shares": 499.975,
+        "price": 0.999,
+        "usdc": 499.5,
+        "ts": 1776787600
+      },
+      {
+        "shares": 145.09275,
+        "price": 0.999,
+        "usdc": 144.9549,
+        "ts": 1776787600
+      },
+      {
+        "shares": 47.77,
+        "price": 0.999,
+        "usdc": 47.72223,
+        "ts": 1776787610
+      },
+      {
+        "shares": 5.87,
+        "price": 0.999,
+        "usdc": 5.86413,
+        "ts": 1776787642
+      },
+      {
+        "shares": 229.9,
+        "price": 0.999,
+        "usdc": 229.6701,
+        "ts": 1776787892
+      },
+      {
+        "shares": 5.14,
+        "price": 0.999,
+        "usdc": 5.13486,
+        "ts": 1776789036
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1776790284
+      },
+      {
+        "shares": 1.06,
+        "price": 0.999,
+        "usdc": 1.05894,
+        "ts": 1776791110
+      },
+      {
+        "shares": 1.05,
+        "price": 0.999,
+        "usdc": 1.04895,
+        "ts": 1776792792
+      },
+      {
+        "shares": 5.71,
+        "price": 0.999,
+        "usdc": 5.70429,
+        "ts": 1776793548
+      },
+      {
+        "shares": 11.6,
+        "price": 0.999,
+        "usdc": 11.5884,
+        "ts": 1776793690
+      },
+      {
+        "shares": 53.4,
+        "price": 0.999,
+        "usdc": 53.3466,
+        "ts": 1776793690
+      }
+    ],
+    "totalShares": 1011.5677499999999
+  },
+  {
+    "key": "0x07f1e15c130997beda283c270233eb92aba634e4b2b00da1ada83753b5095ba6-0",
+    "title": "Will the highest temperature in Buenos Aires be 23°C or higher on April 21?",
+    "lots": [
+      {
+        "shares": 1681.94,
+        "price": 0.999,
+        "usdc": 1680.25806,
+        "ts": 1776798332
+      },
+      {
+        "shares": 20,
+        "price": 0.999,
+        "usdc": 19.98,
+        "ts": 1776798362
+      },
+      {
+        "shares": 51.59,
+        "price": 0.999,
+        "usdc": 51.53841,
+        "ts": 1776798372
+      },
+      {
+        "shares": 9.99,
+        "price": 0.999,
+        "usdc": 9.98001,
+        "ts": 1776798384
+      },
+      {
+        "shares": 51.52,
+        "price": 0.999,
+        "usdc": 51.46848,
+        "ts": 1776798432
+      },
+      {
+        "shares": 35.43,
+        "price": 0.999,
+        "usdc": 35.39457,
+        "ts": 1776798438
+      },
+      {
+        "shares": 15.28,
+        "price": 0.999,
+        "usdc": 15.26472,
+        "ts": 1776798440
+      },
+      {
+        "shares": 6.95,
+        "price": 0.999,
+        "usdc": 6.94305,
+        "ts": 1776798450
+      },
+      {
+        "shares": 54.96,
+        "price": 0.999,
+        "usdc": 54.90504,
+        "ts": 1776798482
+      },
+      {
+        "shares": 51.46,
+        "price": 0.999,
+        "usdc": 51.40854,
+        "ts": 1776798492
+      },
+      {
+        "shares": 22.88,
+        "price": 0.999,
+        "usdc": 22.85712,
+        "ts": 1776798552
+      }
+    ],
+    "totalShares": 2002.0000000000002
+  },
+  {
+    "key": "0xf38e07ea49af41525ccb103537b23099794ac8165a0309875209fc68d2df9fa6-0",
+    "title": "Will the highest temperature in Mexico City be 27°C or higher on April 21?",
+    "lots": [
+      {
+        "shares": 303.85,
+        "price": 0.99,
+        "usdc": 300.8115,
+        "ts": 1776804098
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1776804158
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1776804158
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1776804158
+      },
+      {
+        "shares": 196.15,
+        "price": 0.99,
+        "usdc": 194.1885,
+        "ts": 1776804158
+      },
+      {
+        "shares": 499,
+        "price": 0.999,
+        "usdc": 498.501,
+        "ts": 1776804848
+      }
+    ],
+    "totalShares": 2499
+  },
+  {
+    "key": "0xadbc70f558c76b8893a074f283f828d0f433088e9b727fd64a4a46a776add2ff-0",
+    "title": "HYPE Up or Down - April 21, 6PM ET",
+    "lots": [
+      {
+        "shares": 1.05,
+        "price": 0.999,
+        "usdc": 1.04895,
+        "ts": 1776812830
+      }
+    ],
+    "totalShares": 1.05
+  },
+  {
+    "key": "0x06c3cf26f6b3a0befd1733621af1b577136c72e818b5b9bae847fdff7e0d64fb-0",
+    "title": "BNB Up or Down - April 22, 12AM ET",
+    "lots": [
+      {
+        "shares": 17.16,
+        "price": 0.999,
+        "usdc": 17.14284,
+        "ts": 1776835762
+      }
+    ],
+    "totalShares": 17.16
+  },
+  {
+    "key": "0x90dc42c810dfb36bfb7021883e68e54332f0facca76d73b531ad112411a503ca-0",
+    "title": "Will the highest temperature in Milan be 17°C or higher on April 22?",
+    "lots": [
+      {
+        "shares": 499.975,
+        "price": 0.999,
+        "usdc": 499.5,
+        "ts": 1776858938
+      }
+    ],
+    "totalShares": 499.975
+  },
+  {
+    "key": "0xccd40af3c0ae030419ee7ddf39c0a17d665b71d0971f1766bb8f7b2809e5bf94-0",
+    "title": "Will the highest temperature in Denver be 64°F or higher on April 22?",
+    "lots": [
+      {
+        "shares": 2002,
+        "price": 0.999,
+        "usdc": 1999.998,
+        "ts": 1776866628
+      }
+    ],
+    "totalShares": 2002
+  },
+  {
+    "key": "0x8c1936e50f646b342f57a11a3bdf4ce1d8381ac114654f935f6db571dd746f5a-0",
+    "title": "Will the highest temperature in Panama City be 31°C or higher on April 22?",
+    "lots": [
+      {
+        "shares": 307.85461,
+        "price": 0.999,
+        "usdc": 307.56213,
+        "ts": 1776877064
+      },
+      {
+        "shares": 15,
+        "price": 0.999,
+        "usdc": 14.985,
+        "ts": 1776877122
+      },
+      {
+        "shares": 21,
+        "price": 0.999,
+        "usdc": 20.979,
+        "ts": 1776877244
+      },
+      {
+        "shares": 21,
+        "price": 0.999,
+        "usdc": 20.979,
+        "ts": 1776877274
+      },
+      {
+        "shares": 3.01,
+        "price": 0.999,
+        "usdc": 3.00699,
+        "ts": 1776877298
+      },
+      {
+        "shares": 5.14,
+        "price": 0.999,
+        "usdc": 5.13486,
+        "ts": 1776877492
+      },
+      {
+        "shares": 9.96,
+        "price": 0.999,
+        "usdc": 9.95004,
+        "ts": 1776879488
+      },
+      {
+        "shares": 92.25,
+        "price": 0.999,
+        "usdc": 92.15775,
+        "ts": 1776880570
+      },
+      {
+        "shares": 24.77,
+        "price": 0.999,
+        "usdc": 24.74523,
+        "ts": 1776880656
+      }
+    ],
+    "totalShares": 499.9846099999999
+  },
+  {
+    "key": "0x32e5773a4cb30b710ef2a814909ac53fd3de8aab5b57d06ee46e569bfac86b7e-0",
+    "title": "Will the highest temperature in Mexico City be 23°C or higher on April 22?",
+    "lots": [
+      {
+        "shares": 499.975,
+        "price": 0.999,
+        "usdc": 499.5,
+        "ts": 1776878698
+      }
+    ],
+    "totalShares": 499.975
+  },
+  {
+    "key": "0x9c53a6d4ebdc4825cabe8560f51ee59173fb0ec39a24a659b6f9fa3e4c066c2c-1",
+    "title": "Will the highest temperature in Atlanta be between 80-81°F on April 22?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1776884086
+      },
+      {
+        "shares": 30.68,
+        "price": 0.999,
+        "usdc": 30.64932,
+        "ts": 1776884168
+      },
+      {
+        "shares": 10.35,
+        "price": 0.999,
+        "usdc": 10.33965,
+        "ts": 1776884234
+      },
+      {
+        "shares": 5.26,
+        "price": 0.999,
+        "usdc": 5.25474,
+        "ts": 1776884234
+      },
+      {
+        "shares": 6.32,
+        "price": 0.999,
+        "usdc": 6.31368,
+        "ts": 1776884236
+      },
+      {
+        "shares": 21.02,
+        "price": 0.999,
+        "usdc": 20.99898,
+        "ts": 1776884242
+      },
+      {
+        "shares": 6.33,
+        "price": 0.999,
+        "usdc": 6.32367,
+        "ts": 1776884336
+      },
+      {
+        "shares": 2.46,
+        "price": 0.999,
+        "usdc": 2.45754,
+        "ts": 1776884352
+      },
+      {
+        "shares": 8.87,
+        "price": 0.999,
+        "usdc": 8.86113,
+        "ts": 1776884366
+      },
+      {
+        "shares": 7.12,
+        "price": 0.999,
+        "usdc": 7.11288,
+        "ts": 1776884616
+      },
+      {
+        "shares": 27.98,
+        "price": 0.999,
+        "usdc": 27.95202,
+        "ts": 1776884664
+      },
+      {
+        "shares": 5.58,
+        "price": 0.999,
+        "usdc": 5.57442,
+        "ts": 1776885376
+      },
+      {
+        "shares": 5.98,
+        "price": 0.999,
+        "usdc": 5.97402,
+        "ts": 1776885604
+      },
+      {
+        "shares": 1.26,
+        "price": 0.999,
+        "usdc": 1.25874,
+        "ts": 1776886368
+      },
+      {
+        "shares": 2,
+        "price": 0.999,
+        "usdc": 1.998,
+        "ts": 1776886414
+      },
+      {
+        "shares": 276.72,
+        "price": 0.999,
+        "usdc": 276.44328,
+        "ts": 1776886960
+      },
+      {
+        "shares": 6,
+        "price": 0.999,
+        "usdc": 5.994,
+        "ts": 1776888746
+      },
+      {
+        "shares": 1.26,
+        "price": 0.999,
+        "usdc": 1.25874,
+        "ts": 1776889866
+      },
+      {
+        "shares": 6.5,
+        "price": 0.999,
+        "usdc": 6.4935,
+        "ts": 1776890702
+      },
+      {
+        "shares": 53.68,
+        "price": 0.999,
+        "usdc": 53.62632,
+        "ts": 1776890972
+      }
+    ],
+    "totalShares": 1485.3699999999997
+  },
+  {
+    "key": "0x27400283750799fbc1fd6fafe105d7cacfc29401b7ac16d229e3b2041337f22e-1",
+    "title": "Will the highest temperature in Dallas be between 70-71°F on April 22?",
+    "lots": [
+      {
+        "shares": 2305.94,
+        "price": 0.999,
+        "usdc": 2303.63406,
+        "ts": 1776890024
+      },
+      {
+        "shares": 190.04,
+        "price": 0.999,
+        "usdc": 189.84996,
+        "ts": 1776890268
+      },
+      {
+        "shares": 10.27,
+        "price": 0.999,
+        "usdc": 10.25973,
+        "ts": 1776890368
+      },
+      {
+        "shares": 119.95,
+        "price": 0.999,
+        "usdc": 119.83005,
+        "ts": 1776890402
+      },
+      {
+        "shares": 2,
+        "price": 0.999,
+        "usdc": 1.998,
+        "ts": 1776891644
+      },
+      {
+        "shares": 1.01,
+        "price": 0.999,
+        "usdc": 1.00899,
+        "ts": 1776892386
+      }
+    ],
+    "totalShares": 2629.21
+  },
+  {
+    "key": "0x4ba42d4e8635601369f4f22033ae187f25c58a26cd0e2e41f1500ca0fe5fd4ae-0",
+    "title": "Will the highest temperature in Dallas be 72°F or higher on April 22?",
+    "lots": [
+      {
+        "shares": 16.17,
+        "price": 0.999,
+        "usdc": 16.15383,
+        "ts": 1776890314
+      },
+      {
+        "shares": 6,
+        "price": 0.999,
+        "usdc": 5.994,
+        "ts": 1776890318
+      },
+      {
+        "shares": 6.32,
+        "price": 0.999,
+        "usdc": 6.31368,
+        "ts": 1776890322
+      },
+      {
+        "shares": 2.99,
+        "price": 0.999,
+        "usdc": 2.98701,
+        "ts": 1776890412
+      },
+      {
+        "shares": 27.42,
+        "price": 0.999,
+        "usdc": 27.39258,
+        "ts": 1776890516
+      },
+      {
+        "shares": 5.06,
+        "price": 0.999,
+        "usdc": 5.05494,
+        "ts": 1776890520
+      },
+      {
+        "shares": 7.02,
+        "price": 0.999,
+        "usdc": 7.01298,
+        "ts": 1776890916
+      },
+      {
+        "shares": 20.34,
+        "price": 0.999,
+        "usdc": 20.31966,
+        "ts": 1776890982
+      },
+      {
+        "shares": 1.01,
+        "price": 0.999,
+        "usdc": 1.00899,
+        "ts": 1776891682
+      },
+      {
+        "shares": 2.01,
+        "price": 0.999,
+        "usdc": 2.00799,
+        "ts": 1776893658
+      }
+    ],
+    "totalShares": 94.34000000000002
+  },
+  {
+    "key": "0x0c750a1eda5b86d13c267964390f78b22c946ccac5e2154733681bda8fde1737-0",
+    "title": "Will the highest temperature in Moscow be 9°C or higher on April 23?",
+    "lots": [
+      {
+        "shares": 219.97901000000002,
+        "price": 0.999,
+        "usdc": 219.77001,
+        "ts": 1776893678
+      },
+      {
+        "shares": 280.01,
+        "price": 0.999,
+        "usdc": 279.72999,
+        "ts": 1776893792
+      }
+    ],
+    "totalShares": 499.98901
+  }
+]

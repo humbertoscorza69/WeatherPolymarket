@@ -1,0 +1,8197 @@
+[
+  {
+    "key": "0xbb2f968c5a66cbf39b70f15832331fd0fda1a7f8f1daaef1aa7adb5cda0dd0c6-0",
+    "title": "Will the highest temperature in Sao Paulo be 27°C on March 7?",
+    "lots": [
+      {
+        "shares": 10.43,
+        "price": 0.51,
+        "usdc": 5.3193,
+        "ts": 1772906391
+      }
+    ],
+    "totalShares": 10.43
+  },
+  {
+    "key": "0x21c76ccdb5b754d5781efe7e97974e39d2b95a282704993f3a5b37d49015f31b-0",
+    "title": "Will the highest temperature in Miami be between 82-83°F on March 7?",
+    "lots": [
+      {
+        "shares": 38.53,
+        "price": 0.73,
+        "usdc": 28.1269,
+        "ts": 1772913263
+      },
+      {
+        "shares": 5.16,
+        "price": 0.76,
+        "usdc": 3.9216,
+        "ts": 1772913265
+      }
+    ],
+    "totalShares": 43.69
+  },
+  {
+    "key": "0x012e5ddbafe0e3bc03850fa7cc2d3bda8e211991545af5e6b82b028a7ac97cdb-0",
+    "title": "Will the highest temperature in Toronto be 10°C or higher on March 8?",
+    "lots": [
+      {
+        "shares": 0.0049999999999954525,
+        "price": 0.99,
+        "usdc": 447.18795,
+        "ts": 1772993249
+      }
+    ],
+    "totalShares": 0.0049999999999954525
+  },
+  {
+    "key": "0xc1d74c9ea77aac207b7d1ddb084eb25c15ffbb2b6ffa233dd7b8addb73643ec3-0",
+    "title": "Will the highest temperature in Seoul be 8°C on March 9?",
+    "lots": [
+      {
+        "shares": 10,
+        "price": 0.625,
+        "usdc": 6.25,
+        "ts": 1773036261
+      }
+    ],
+    "totalShares": 10
+  },
+  {
+    "key": "0x3fa6860ccb34be7ebd747c929b9a8947f95cd0b91441744a064764243fccbacf-1",
+    "title": "Will Trump say \"Crypto\" or \"Bitcoin\" during Miami address?",
+    "lots": [
+      {
+        "shares": 0.005581000000233871,
+        "price": 0.86,
+        "usdc": 86,
+        "ts": 1773091625
+      }
+    ],
+    "totalShares": 0.005581000000233871
+  },
+  {
+    "key": "0x85d635a1efcca20aa66fa24a5eb3b4bf912754cd865d73f5d928bbfb4a2c105f-0",
+    "title": "Will the highest temperature in New York City be 66°F or higher on March 9?",
+    "lots": [
+      {
+        "shares": 265.007,
+        "price": 0.99,
+        "usdc": 262.35693,
+        "ts": 1773075359
+      },
+      {
+        "shares": 4.35,
+        "price": 0.99,
+        "usdc": 4.3065,
+        "ts": 1773076515
+      }
+    ],
+    "totalShares": 269.357
+  },
+  {
+    "key": "0x4b5e2be7639a9f16ae2a83fb9a271be78d370568d662ff303705cfcf8ecdb99c-1",
+    "title": "Will Trump say \"Ayatollah\" or \"Khamenei\" during Miami address?",
+    "lots": [
+      {
+        "shares": 0.006662000000002166,
+        "price": 0.87,
+        "usdc": 18.8964,
+        "ts": 1773091105
+      }
+    ],
+    "totalShares": 0.006662000000002166
+  },
+  {
+    "key": "0x03a629ada87bbe4c08a3cf23314f79127750af55dd810d8c25ccb39c50bc8459-0",
+    "title": "Will Trump say \"Mental Institution\" this week? (March 15)",
+    "lots": [
+      {
+        "shares": 10.840000000000032,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090169
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090169
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090169
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090169
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090169
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090169
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090169
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090169
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090171
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090171
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090171
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090171
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090171
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090171
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090171
+      },
+      {
+        "shares": 1.9,
+        "price": 0.99,
+        "usdc": 1.881,
+        "ts": 1773090171
+      },
+      {
+        "shares": 4.79,
+        "price": 0.99,
+        "usdc": 4.7421,
+        "ts": 1773090171
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090171
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090171
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090171
+      },
+      {
+        "shares": 1.81,
+        "price": 0.99,
+        "usdc": 1.7919,
+        "ts": 1773090173
+      },
+      {
+        "shares": 36.69,
+        "price": 0.99,
+        "usdc": 36.3231,
+        "ts": 1773090187
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090247
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090247
+      },
+      {
+        "shares": 45.19,
+        "price": 0.99,
+        "usdc": 44.7381,
+        "ts": 1773090249
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773090273
+      }
+    ],
+    "totalShares": 2101.2200000000003
+  },
+  {
+    "key": "0x159d90f4ef1754019644b61a2f611208fb20351116cc2d015df6218accecd848-0",
+    "title": "Will Trump say \"America First\" during Miami address?",
+    "lots": [
+      {
+        "shares": 34.482757,
+        "price": 0.7100000153700007,
+        "usdc": 24.482758,
+        "ts": 1773090881
+      }
+    ],
+    "totalShares": 34.482757
+  },
+  {
+    "key": "0x6f1a4a99e578b00e483208415823ac2b0f25a368dc9c90191040ec3e88878987-0",
+    "title": "Will Trump say \"Transgender\" during Miami address?",
+    "lots": [
+      {
+        "shares": 25.641024,
+        "price": 0.6100000140400009,
+        "usdc": 15.641025,
+        "ts": 1773091801
+      },
+      {
+        "shares": 25,
+        "price": 0.6,
+        "usdc": 15,
+        "ts": 1773091861
+      }
+    ],
+    "totalShares": 50.641024
+  },
+  {
+    "key": "0x6a7efa2f8dd3de8d652745d991fbb13e03647b1f23083b3c48bf688b576b6e52-1",
+    "title": "Will Trump say \"President Xi\" during Miami address?",
+    "lots": [
+      {
+        "shares": 0.004994999999983207,
+        "price": 0.98,
+        "usdc": 15.6996,
+        "ts": 1773092953
+      }
+    ],
+    "totalShares": 0.004994999999983207
+  },
+  {
+    "key": "0xc6aa53d315f8e02b577efbf14ea82d0b3014d8fbda95c496e4b4fe18e77e354c-0",
+    "title": "Will Trump say \"Drone\" during Monday press conference?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.98,
+        "usdc": 98,
+        "ts": 1773093253
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0xcad8e037b9af90ccd147c005861a0d01d482bebc791ebc54be69f12f28811114-0",
+    "title": "Will Trump say \"Nuclear\" 3+ times during Monday press conference?",
+    "lots": [
+      {
+        "shares": 72.23,
+        "price": 0.99,
+        "usdc": 71.5077,
+        "ts": 1773097217
+      },
+      {
+        "shares": 27.77,
+        "price": 0.99,
+        "usdc": 27.4923,
+        "ts": 1773097217
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0x7aa62b1661e8565fc58cc0247f878578c8c730e476c4f589e931c0e1b984731f-1",
+    "title": "BNP Paribas Open: Daniil Medvedev vs Sebastian Baez",
+    "lots": [
+      {
+        "shares": 10,
+        "price": 0.14,
+        "usdc": 1.4,
+        "ts": 1773113195
+      }
+    ],
+    "totalShares": 10
+  },
+  {
+    "key": "0x7aa62b1661e8565fc58cc0247f878578c8c730e476c4f589e931c0e1b984731f-0",
+    "title": "BNP Paribas Open: Daniil Medvedev vs Sebastian Baez",
+    "lots": [
+      {
+        "shares": 6.25,
+        "price": 0.84,
+        "usdc": 5.25,
+        "ts": 1773113381
+      },
+      {
+        "shares": 3.75,
+        "price": 0.84,
+        "usdc": 3.15,
+        "ts": 1773113395
+      }
+    ],
+    "totalShares": 10
+  },
+  {
+    "key": "0x0bf76b2c80955b8c74a505a67fc2b5f9142fbc93e62fcc33b3c705bc519f2c65-0",
+    "title": "Will the highest temperature in Sao Paulo be 22°C on March 10?",
+    "lots": [
+      {
+        "shares": 133.61,
+        "price": 0.7138986602799192,
+        "usdc": 95.384,
+        "ts": 1773158387
+      },
+      {
+        "shares": 4.772726,
+        "price": 0.7800001508571831,
+        "usdc": 3.722727,
+        "ts": 1773158487
+      }
+    ],
+    "totalShares": 138.38272600000002
+  },
+  {
+    "key": "0xe4d76811fe81ed318913f0fe1290eecbe4136c7430a8cd6917f17bac920147e6-0",
+    "title": "Will Leavitt say \"Kristi\" or \"Noem\" during the next White House Press Briefing?",
+    "lots": [
+      {
+        "shares": 5,
+        "price": 0.28,
+        "usdc": 1.4,
+        "ts": 1773166401
+      }
+    ],
+    "totalShares": 5
+  },
+  {
+    "key": "0x5c3211bbd3144a4a83bf9728849036b5db3eaedd62dd383282f699f09d0158a7-0",
+    "title": "Will Leavitt say \"Epic Fury\" during the next White House Press Briefing?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773172659
+      },
+      {
+        "shares": 1.91,
+        "price": 0.98,
+        "usdc": 1.8718,
+        "ts": 1773172757
+      }
+    ],
+    "totalShares": 101.91
+  },
+  {
+    "key": "0xa6863edb08e6a27383df5ae47858a3e7865839f14871163c86d8e7b37363b42a-1",
+    "title": "Will Leavitt say \"Transgender\" during the next White House Press Briefing?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.03,
+        "usdc": 3,
+        "ts": 1773167081
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0xa6863edb08e6a27383df5ae47858a3e7865839f14871163c86d8e7b37363b42a-0",
+    "title": "Will Leavitt say \"Transgender\" during the next White House Press Briefing?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.980511,
+        "usdc": 98.0511,
+        "ts": 1773167085
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0xd94c6aeadc2c653c7056e88fc11e042c246cf7843e25b56b256799da0d096227-0",
+    "title": "Will Leavitt say \"Surrender\" during the next White House Press Briefing?",
+    "lots": [
+      {
+        "shares": 0.24999999999994316,
+        "price": 0.99,
+        "usdc": 92.9214,
+        "ts": 1773167373
+      },
+      {
+        "shares": 35.99,
+        "price": 0.992,
+        "usdc": 35.70208,
+        "ts": 1773172647
+      }
+    ],
+    "totalShares": 36.239999999999945
+  },
+  {
+    "key": "0x0c8c6e76e58db526c86d410dd172b6ff4389d7e3b25c1470ec856eadcfbc7d5a-0",
+    "title": "Will Leavitt say \"Russia\" or \"Ukraine\" during the next White House Press Briefing?",
+    "lots": [
+      {
+        "shares": 0.023287000000102864,
+        "price": 0.98,
+        "usdc": 19.6,
+        "ts": 1773168043
+      }
+    ],
+    "totalShares": 0.023287000000102864
+  },
+  {
+    "key": "0x538e173cb3b7760eda5614d82e31898536decbdb9f4a07b247ebc95b13fddbab-1",
+    "title": "Will Leavitt say \"Venezuela\" during the next White House Press Briefing?",
+    "lots": [
+      {
+        "shares": 0.009999999999990905,
+        "price": 0.982805989295351,
+        "usdc": 444.3659,
+        "ts": 1773168587
+      }
+    ],
+    "totalShares": 0.009999999999990905
+  },
+  {
+    "key": "0xbce31960e8d8e9af5d292d5404351a4ad3625375645f36bc9b1d0fd19cb3b5b5-0",
+    "title": "Will the highest temperature in Dallas be 82°F or higher on March 10?",
+    "lots": [
+      {
+        "shares": 1238.92,
+        "price": 0.9811933296742325,
+        "usdc": 1215.62004,
+        "ts": 1773183323
+      }
+    ],
+    "totalShares": 1238.92
+  },
+  {
+    "key": "0x6c6dd18573fa9fe4cc44e703e9d35e548baf16f6e878178b89fc83588650ff95-0",
+    "title": "Will the highest temperature in Ankara be 14°C or higher on March 11?",
+    "lots": [
+      {
+        "shares": 3000,
+        "price": 0.99,
+        "usdc": 2970,
+        "ts": 1773230055
+      }
+    ],
+    "totalShares": 3000
+  },
+  {
+    "key": "0x247c9bad18b4956310a324f00e98a7b17319459562891f9d16dfef1de4d04fe3-0",
+    "title": "Will Trump say \"Epic Fury\" during Ohio visit?",
+    "lots": [
+      {
+        "shares": 0.0028559999999799857,
+        "price": 0.3,
+        "usdc": 29.955,
+        "ts": 1773246483
+      }
+    ],
+    "totalShares": 0.0028559999999799857
+  },
+  {
+    "key": "0x18d2aafa811432d6ed840fe0da9bf1e522f650f930db979586c3df9b76a9bb12-0",
+    "title": "Will Trump say \"Most Favored Nation\" during Ohio visit?",
+    "lots": [
+      {
+        "shares": 67.74000000000001,
+        "price": 0.67,
+        "usdc": 67,
+        "ts": 1773251279
+      }
+    ],
+    "totalShares": 67.74000000000001
+  },
+  {
+    "key": "0x4e0b96ecc36274a25071486580fc8e5886884720950f8abd3f64ac8438c51f34-0",
+    "title": "Will the highest temperature in Dallas be 74°F or higher on March 11?",
+    "lots": [
+      {
+        "shares": 81.278,
+        "price": 0.99,
+        "usdc": 80.46522,
+        "ts": 1773255331
+      }
+    ],
+    "totalShares": 81.278
+  },
+  {
+    "key": "0x2f7ad75e7877077cc93ca3b0faa66de3a3bec6634bd0b226fbe570a746907b90-0",
+    "title": "Will Trump say \"Trump\" 5+ times during Ohio visit?",
+    "lots": [
+      {
+        "shares": 68.97815400000002,
+        "price": 0.35,
+        "usdc": 35,
+        "ts": 1773255335
+      }
+    ],
+    "totalShares": 68.97815400000002
+  },
+  {
+    "key": "0xe084ba114ef0237b7246ed82d47d65e463d9e334a9a224da8dd262baa0d72f9a-0",
+    "title": "Will Trump say \"Cheat\" during Kentucky visit?",
+    "lots": [
+      {
+        "shares": 6.784593,
+        "price": 0.6300000604310384,
+        "usdc": 4.274294,
+        "ts": 1773261225
+      },
+      {
+        "shares": 93.21,
+        "price": 0.63,
+        "usdc": 58.7223,
+        "ts": 1773262909
+      }
+    ],
+    "totalShares": 99.994593
+  },
+  {
+    "key": "0x7a2c1cb3f161315d8e18299dfa4c8d34282194fa4b9ecfedb90d5525ad866315-0",
+    "title": "Will Trump say \"Sleepy Joe\" during Kentucky visit?",
+    "lots": [
+      {
+        "shares": 221.13,
+        "price": 0.99,
+        "usdc": 218.9187,
+        "ts": 1773262237
+      },
+      {
+        "shares": 4.17,
+        "price": 0.99,
+        "usdc": 4.1283,
+        "ts": 1773262239
+      },
+      {
+        "shares": 2,
+        "price": 0.99,
+        "usdc": 1.98,
+        "ts": 1773262241
+      }
+    ],
+    "totalShares": 227.29999999999998
+  },
+  {
+    "key": "0x4607661468a0261311f6e17115e13e27443659c3f4911616c5f71867fe570240-0",
+    "title": "Will Trump say \"Clean coal\" or \"Beautiful coal\" during Kentucky visit?",
+    "lots": [
+      {
+        "shares": 0.0054530000000170276,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773262983
+      }
+    ],
+    "totalShares": 0.0054530000000170276
+  },
+  {
+    "key": "0x976f1bddf39a97ffc84a05f317741f836a1b2bb0f31698f24f6f3e1a3673ac20-0",
+    "title": "Will Trump say \"Million\" or \"Billion\" or \"Trillion\" 27+ times during Kentucky visit?",
+    "lots": [
+      {
+        "shares": 32.42,
+        "price": 0.37,
+        "usdc": 11.9954,
+        "ts": 1773262531
+      },
+      {
+        "shares": 17.82,
+        "price": 0.46,
+        "usdc": 8.1972,
+        "ts": 1773262637
+      }
+    ],
+    "totalShares": 50.24
+  },
+  {
+    "key": "0xcf69ccc4b28fcc7cf7b95166db11e5e4e03ef8ddc454c850f1657f82f40aa58e-0",
+    "title": "Will Trump say \"Supreme Court\" during Kentucky visit?",
+    "lots": [
+      {
+        "shares": 90,
+        "price": 0.67,
+        "usdc": 60.3,
+        "ts": 1773262737
+      },
+      {
+        "shares": 10,
+        "price": 0.67,
+        "usdc": 6.7,
+        "ts": 1773262737
+      },
+      {
+        "shares": 33,
+        "price": 0.64,
+        "usdc": 21.12,
+        "ts": 1773262771
+      },
+      {
+        "shares": 67,
+        "price": 0.64,
+        "usdc": 42.88,
+        "ts": 1773262771
+      }
+    ],
+    "totalShares": 200
+  },
+  {
+    "key": "0x3d3c296c939f8dfb143e50654ecc814894604c4519b14a8f8c9d5475159d71e1-0",
+    "title": "Will Trump say \"Epic Fury\" during Kentucky visit?",
+    "lots": [
+      {
+        "shares": 0.3,
+        "price": 0.82,
+        "usdc": 0.246,
+        "ts": 1773262781
+      },
+      {
+        "shares": 10,
+        "price": 0.84,
+        "usdc": 8.4,
+        "ts": 1773262783
+      },
+      {
+        "shares": 67.7,
+        "price": 0.7698522895125554,
+        "usdc": 52.119,
+        "ts": 1773262783
+      },
+      {
+        "shares": 32,
+        "price": 0.82,
+        "usdc": 26.24,
+        "ts": 1773262783
+      }
+    ],
+    "totalShares": 110
+  },
+  {
+    "key": "0x5baef1ef8ab02889dba1bd3d4b3d598570bf2d76981acb2edf610977069a0448-1",
+    "title": "Will Trump say \"Chicken\" or \"KFC\" during Kentucky visit?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.69,
+        "usdc": 69,
+        "ts": 1773265811
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0x5baef1ef8ab02889dba1bd3d4b3d598570bf2d76981acb2edf610977069a0448-0",
+    "title": "Will Trump say \"Chicken\" or \"KFC\" during Kentucky visit?",
+    "lots": [
+      {
+        "shares": 100.00000000000028,
+        "price": 0.99,
+        "usdc": 247.5,
+        "ts": 1773265829
+      }
+    ],
+    "totalShares": 100.00000000000028
+  },
+  {
+    "key": "0x546ee40fd8a813f43c42ef8dc8bba665cadffff0d26400b1bba45e480d9e45fa-0",
+    "title": "Will Trump say \"Win Win Win\" during Kentucky visit?",
+    "lots": [
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1773266231
+      },
+      {
+        "shares": 500,
+        "price": 0.981,
+        "usdc": 490.5,
+        "ts": 1773266231
+      }
+    ],
+    "totalShares": 505
+  },
+  {
+    "key": "0x315bd3c853733fa8463d179f7fde2b677eb3138795dd13b4f5c3cdd6e9dd63bd-0",
+    "title": "Will the highest temperature in New York City be between 56-57°F on March 12?",
+    "lots": [
+      {
+        "shares": 97.74,
+        "price": 0.2283683241252302,
+        "usdc": 22.32072,
+        "ts": 1773298343
+      },
+      {
+        "shares": 9,
+        "price": 0.323,
+        "usdc": 2.907,
+        "ts": 1773298347
+      },
+      {
+        "shares": 30,
+        "price": 0.323,
+        "usdc": 9.69,
+        "ts": 1773298355
+      },
+      {
+        "shares": 134,
+        "price": 0.323,
+        "usdc": 43.282,
+        "ts": 1773298361
+      },
+      {
+        "shares": 8.265876,
+        "price": 0.3230000062909243,
+        "usdc": 2.669878,
+        "ts": 1773298455
+      },
+      {
+        "shares": 20.85,
+        "price": 0.323,
+        "usdc": 6.73455,
+        "ts": 1773298461
+      },
+      {
+        "shares": 15,
+        "price": 0.323,
+        "usdc": 4.845,
+        "ts": 1773298479
+      },
+      {
+        "shares": 5.908417,
+        "price": 0.3230000522982721,
+        "usdc": 1.908419,
+        "ts": 1773298481
+      },
+      {
+        "shares": 152.91,
+        "price": 0.323,
+        "usdc": 49.38993,
+        "ts": 1773298613
+      }
+    ],
+    "totalShares": 473.67429300000003
+  },
+  {
+    "key": "0xaf3e3a8908674f142f25a9d8f8fb9edbc048146d045f7f8369530890a4f70448-0",
+    "title": "Will Trump say \"TrumpRX\" or \"Favored Nation\" during Women's History Month event?",
+    "lots": [
+      {
+        "shares": 500,
+        "price": 0.96847,
+        "usdc": 484.235,
+        "ts": 1773347931
+      },
+      {
+        "shares": 50,
+        "price": 0.99,
+        "usdc": 49.5,
+        "ts": 1773347933
+      },
+      {
+        "shares": 225.96,
+        "price": 0.99,
+        "usdc": 223.7004,
+        "ts": 1773347933
+      }
+    ],
+    "totalShares": 775.96
+  },
+  {
+    "key": "0xa8274a7937cbdcaf769b4baa1b59ad00f647fde413b7d379871748af13d7cdc3-0",
+    "title": "Will Trump say \"Child\" during Women's History Month event?",
+    "lots": [
+      {
+        "shares": 74.96,
+        "price": 0.98,
+        "usdc": 73.4608,
+        "ts": 1773348175
+      },
+      {
+        "shares": 100,
+        "price": 0.97,
+        "usdc": 97,
+        "ts": 1773348245
+      },
+      {
+        "shares": 20.506332,
+        "price": 0.9700000468148082,
+        "usdc": 19.891143,
+        "ts": 1773348435
+      },
+      {
+        "shares": 52.523332,
+        "price": 0.9700000182775914,
+        "usdc": 50.947633,
+        "ts": 1773348913
+      },
+      {
+        "shares": 100,
+        "price": 0.97,
+        "usdc": 97,
+        "ts": 1773348913
+      },
+      {
+        "shares": 79.49,
+        "price": 0.97,
+        "usdc": 77.1053,
+        "ts": 1773348913
+      }
+    ],
+    "totalShares": 427.47966399999996
+  },
+  {
+    "key": "0xbd474a818154754a2a2d2fc1bbbf9d28195a4117b25b72fc4e92906f70756373-0",
+    "title": "Will Trump say \"SAVE Act\" or \"Save America Act\" during Women's History Month event?",
+    "lots": [
+      {
+        "shares": 373.32,
+        "price": 0.9798210650380371,
+        "usdc": 365.7868,
+        "ts": 1773348201
+      },
+      {
+        "shares": 500,
+        "price": 0.9736092,
+        "usdc": 486.8046,
+        "ts": 1773348201
+      },
+      {
+        "shares": 67.1,
+        "price": 0.99,
+        "usdc": 66.429,
+        "ts": 1773348201
+      },
+      {
+        "shares": 61.03,
+        "price": 0.99,
+        "usdc": 60.4197,
+        "ts": 1773348201
+      },
+      {
+        "shares": 65.65,
+        "price": 0.99,
+        "usdc": 64.9935,
+        "ts": 1773348201
+      }
+    ],
+    "totalShares": 1067.1
+  },
+  {
+    "key": "0xb65c6be7041f6fc4bb6456033255945509e94d37fdd2eddfa73f3fc767be68cb-0",
+    "title": "Will Vance say \"Biden\" 4+ times during his Rocky Mount visit?",
+    "lots": [
+      {
+        "shares": 500,
+        "price": 0.9764416,
+        "usdc": 488.2208,
+        "ts": 1773425977
+      },
+      {
+        "shares": 321.53,
+        "price": 0.9766301744782757,
+        "usdc": 314.0159,
+        "ts": 1773425979
+      },
+      {
+        "shares": 25,
+        "price": 0.99,
+        "usdc": 24.75,
+        "ts": 1773425979
+      },
+      {
+        "shares": 153.47,
+        "price": 0.99,
+        "usdc": 151.9353,
+        "ts": 1773425981
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0x2fc4ee8250a171ecd283f4060e460938cc4e69acfbb728d4205bef5096d97479-0",
+    "title": "Will Vance say \"Epic Fury\" during his Rocky Mount visit?",
+    "lots": [
+      {
+        "shares": 8.34,
+        "price": 0.18,
+        "usdc": 1.5012,
+        "ts": 1773426749
+      }
+    ],
+    "totalShares": 8.34
+  },
+  {
+    "key": "0x3ce1524804ef4c5a566963322572a986c5815263bb37a7e7ea80199011c91847-0",
+    "title": "Will Vance say \"Somali\" or \"Somalian\" during his Rocky Mount visit?",
+    "lots": [
+      {
+        "shares": 500,
+        "price": 0.97704,
+        "usdc": 488.52,
+        "ts": 1773427175
+      },
+      {
+        "shares": 193.09,
+        "price": 0.9882909524056139,
+        "usdc": 190.8291,
+        "ts": 1773427177
+      },
+      {
+        "shares": 70,
+        "price": 0.99,
+        "usdc": 69.3,
+        "ts": 1773427179
+      },
+      {
+        "shares": 172.35,
+        "price": 0.99,
+        "usdc": 170.6265,
+        "ts": 1773427179
+      },
+      {
+        "shares": 64.56,
+        "price": 0.99,
+        "usdc": 63.9144,
+        "ts": 1773427189
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0xe527ce05ca8a033c3d89b3094192958c2cf9e93b055410f192391789eaa228f4-0",
+    "title": "Will the highest temperature in Chicago be between 46-47°F on March 13?",
+    "lots": [
+      {
+        "shares": 9,
+        "price": 0.68,
+        "usdc": 6.12,
+        "ts": 1773428007
+      },
+      {
+        "shares": 1.41,
+        "price": 0.68,
+        "usdc": 0.9588,
+        "ts": 1773428013
+      },
+      {
+        "shares": 1.21,
+        "price": 0.68,
+        "usdc": 0.8228,
+        "ts": 1773428013
+      },
+      {
+        "shares": 5,
+        "price": 0.68,
+        "usdc": 3.4,
+        "ts": 1773428063
+      },
+      {
+        "shares": 1,
+        "price": 0.68,
+        "usdc": 0.68,
+        "ts": 1773428151
+      },
+      {
+        "shares": 26,
+        "price": 0.68,
+        "usdc": 17.68,
+        "ts": 1773428161
+      }
+    ],
+    "totalShares": 43.620000000000005
+  },
+  {
+    "key": "0x1a9d4d0b8a7f5ae70401c3481a41b4e1faae33a0798133ec3ca96e88a5e06edf-0",
+    "title": "Will the highest temperature in Seoul be 10°C on March 14?",
+    "lots": [
+      {
+        "shares": 10,
+        "price": 0.59388,
+        "usdc": 5.9388,
+        "ts": 1773455667
+      }
+    ],
+    "totalShares": 10
+  },
+  {
+    "key": "0x9cfc6696544247d5555e77c88e11eb2cdad11ddb9f9da56c357ed78610904651-1",
+    "title": "Will \"Hamnet\" win no awards at the Oscars?",
+    "lots": [
+      {
+        "shares": 0.01473699999999667,
+        "price": 0.99,
+        "usdc": 53.1729,
+        "ts": 1773553313
+      }
+    ],
+    "totalShares": 0.01473699999999667
+  },
+  {
+    "key": "0xae8a531881f749dda12b0483d50320fc20d1542e49bf2a46c6e3e5fc13adc81e-0",
+    "title": "Will the highest temperature in Chicago be between 60-61°F on March 15?",
+    "lots": [
+      {
+        "shares": 187.32,
+        "price": 0.664817958573564,
+        "usdc": 124.5337,
+        "ts": 1773604387
+      },
+      {
+        "shares": 1.62,
+        "price": 0.73,
+        "usdc": 1.1826,
+        "ts": 1773604391
+      },
+      {
+        "shares": 5.370369,
+        "price": 0.7300001173103747,
+        "usdc": 3.92037,
+        "ts": 1773604391
+      },
+      {
+        "shares": 2,
+        "price": 0.73,
+        "usdc": 1.46,
+        "ts": 1773604391
+      },
+      {
+        "shares": 5,
+        "price": 0.73,
+        "usdc": 3.65,
+        "ts": 1773604409
+      }
+    ],
+    "totalShares": 201.310369
+  },
+  {
+    "key": "0xae8a531881f749dda12b0483d50320fc20d1542e49bf2a46c6e3e5fc13adc81e-1",
+    "title": "Will the highest temperature in Chicago be between 60-61°F on March 15?",
+    "lots": [
+      {
+        "shares": 180.56,
+        "price": 0.99,
+        "usdc": 396,
+        "ts": 1773607999
+      },
+      {
+        "shares": 2.38,
+        "price": 0.99,
+        "usdc": 2.3562,
+        "ts": 1773608047
+      },
+      {
+        "shares": 18.38,
+        "price": 0.99,
+        "usdc": 18.1962,
+        "ts": 1773608105
+      }
+    ],
+    "totalShares": 201.32
+  },
+  {
+    "key": "0x3aa3f2c6081c96848a9afa3ef3c64004569cd129ce2cb4c2859e62ea586098e3-1",
+    "title": "Will Teyana Taylor win Best Supporting Actress at the 98th Academy Awards?",
+    "lots": [
+      {
+        "shares": 0.028989999999907923,
+        "price": 0.99,
+        "usdc": 2970,
+        "ts": 1773616859
+      }
+    ],
+    "totalShares": 0.028989999999907923
+  },
+  {
+    "key": "0x9bd882d76ae1da52c6cedab827300999a9a41ae50e93825a683c3d512317db57-1",
+    "title": "Will \"Frankenstein\" win exactly 1 award at the Oscars?",
+    "lots": [
+      {
+        "shares": 0.009500000000002728,
+        "price": 0.98,
+        "usdc": 49,
+        "ts": 1773618925
+      }
+    ],
+    "totalShares": 0.009500000000002728
+  },
+  {
+    "key": "0xddcfc4f1c3ea7e3dbe0b39075d304be8ca03a320a5533fa453487baaf987e389-1",
+    "title": "Will Two People Exchanging Saliva win Best Live Action Short Film at the 98th Academy Awards?",
+    "lots": [
+      {
+        "shares": 19.543348000000833,
+        "price": 0.97,
+        "usdc": 1206.7188,
+        "ts": 1773620341
+      },
+      {
+        "shares": 50.666665,
+        "price": 0.9700000187500006,
+        "usdc": 49.146666,
+        "ts": 1773620341
+      },
+      {
+        "shares": 33.333332,
+        "price": 0.9700000288000011,
+        "usdc": 32.333333,
+        "ts": 1773620343
+      },
+      {
+        "shares": 33.333332,
+        "price": 0.9700000288000011,
+        "usdc": 32.333333,
+        "ts": 1773620349
+      },
+      {
+        "shares": 100,
+        "price": 0.97,
+        "usdc": 97,
+        "ts": 1773620353
+      }
+    ],
+    "totalShares": 236.87667700000083
+  },
+  {
+    "key": "0xddcfc4f1c3ea7e3dbe0b39075d304be8ca03a320a5533fa453487baaf987e389-0",
+    "title": "Will Two People Exchanging Saliva win Best Live Action Short Film at the 98th Academy Awards?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.2,
+        "usdc": 20,
+        "ts": 1773620263
+      },
+      {
+        "shares": 136.82,
+        "price": 0.19,
+        "usdc": 25.9958,
+        "ts": 1773620263
+      }
+    ],
+    "totalShares": 236.82
+  },
+  {
+    "key": "0xc97a1d10a34399688ccea96d9a05db74135ff67dfee288c4d00379792dcf2011-0",
+    "title": "Will F1 win Best Sound at the 98th Academy Awards?",
+    "lots": [
+      {
+        "shares": 25.26,
+        "price": 0.99,
+        "usdc": 25.0074,
+        "ts": 1773624973
+      }
+    ],
+    "totalShares": 25.26
+  },
+  {
+    "key": "0x2d3ccde3281faea49a3675f71b0127e91343aec6f9960d7b4497178a69452a16-1",
+    "title": "Will \"One Battle After Another\" win exactly 8 awards at the Oscars?",
+    "lots": [
+      {
+        "shares": 0.013258999999877119,
+        "price": 0.95,
+        "usdc": 88.4545,
+        "ts": 1773627315
+      }
+    ],
+    "totalShares": 0.013258999999877119
+  },
+  {
+    "key": "0xf0f0fe25fa3ef0d64271505fafde590da3a1e608c261f70b57c5c875934a4821-0",
+    "title": "Will \"White House\" be said at the Oscars?",
+    "lots": [
+      {
+        "shares": 10.505,
+        "price": 0.99,
+        "usdc": 10.39995,
+        "ts": 1773627369
+      },
+      {
+        "shares": 85.287,
+        "price": 0.99,
+        "usdc": 84.43413,
+        "ts": 1773627523
+      },
+      {
+        "shares": 4.2,
+        "price": 0.99,
+        "usdc": 4.158,
+        "ts": 1773628087
+      }
+    ],
+    "totalShares": 99.992
+  },
+  {
+    "key": "0xfbac2a3ef5367a2e5c694b27da8572c2479f2489439660cbfe579831bb1c9aaa-1",
+    "title": "Will \"One Battle After Another\" win exactly 7 awards at the Oscars?",
+    "lots": [
+      {
+        "shares": 0.0013619999999718857,
+        "price": 0.963,
+        "usdc": 963,
+        "ts": 1773628279
+      }
+    ],
+    "totalShares": 0.0013619999999718857
+  },
+  {
+    "key": "0x66af911f31ceabb5f9a3ef9203a73f0b23d18aa81bbba7888dec440c622c2528-0",
+    "title": "Will One Battle After Another win Best Picture at the 98th Academy Awards?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.97,
+        "usdc": 97,
+        "ts": 1773628529
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0xb2ae08766445461fda8b41f3559050b2a2d43aa00331a15e53b17479555bc284-0",
+    "title": "Will \"One Battle After Another\" win exactly 6 awards at the Oscars?",
+    "lots": [
+      {
+        "shares": 15,
+        "price": 0.99,
+        "usdc": 14.85,
+        "ts": 1773628531
+      },
+      {
+        "shares": 386.66,
+        "price": 0.9797982723840066,
+        "usdc": 378.8488,
+        "ts": 1773628531
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773628549
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773628557
+      },
+      {
+        "shares": 11.25,
+        "price": 0.99,
+        "usdc": 11.1375,
+        "ts": 1773628575
+      },
+      {
+        "shares": 1387.09,
+        "price": 0.99,
+        "usdc": 1373.2191,
+        "ts": 1773628649
+      }
+    ],
+    "totalShares": 2000
+  },
+  {
+    "key": "0x604dc4df290145ae3e259548bfdd1f7fbdc91696d698db7a396487fbe3823cf6-0",
+    "title": "Will \"Sinners\" win exactly 4 awards at the Oscars?",
+    "lots": [
+      {
+        "shares": 263.09,
+        "price": 0.9840218176289482,
+        "usdc": 258.8863,
+        "ts": 1773628531
+      },
+      {
+        "shares": 12.24,
+        "price": 0.99,
+        "usdc": 12.1176,
+        "ts": 1773628531
+      },
+      {
+        "shares": 137.48,
+        "price": 0.99,
+        "usdc": 136.1052,
+        "ts": 1773628609
+      },
+      {
+        "shares": 10.39,
+        "price": 0.99,
+        "usdc": 10.2861,
+        "ts": 1773628667
+      },
+      {
+        "shares": 3.44,
+        "price": 0.99,
+        "usdc": 3.4056,
+        "ts": 1773628671
+      }
+    ],
+    "totalShares": 426.63999999999993
+  },
+  {
+    "key": "0x64984b94f390a2278c4f72c037136a790d97e8cf3496b4cf8f9b9baf8342837d-0",
+    "title": "Will \"Marty Supreme\" win no awards at the Oscars?",
+    "lots": [
+      {
+        "shares": 93.268,
+        "price": 0.99,
+        "usdc": 92.33532,
+        "ts": 1773628753
+      },
+      {
+        "shares": 110,
+        "price": 0.99,
+        "usdc": 108.9,
+        "ts": 1773628753
+      }
+    ],
+    "totalShares": 203.268
+  },
+  {
+    "key": "0x636668d22c6bc488ded40bbe104739ff91293b38e0108a27ac2b3bda379e6eb3-0",
+    "title": "Will \"Sentimental Value\" win exactly 1 award at the Oscars?",
+    "lots": [
+      {
+        "shares": 1.61,
+        "price": 0.99,
+        "usdc": 1.5939,
+        "ts": 1773628711
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1773628799
+      }
+    ],
+    "totalShares": 21.61
+  },
+  {
+    "key": "0x2a3dacd57543976689d688053f7d346f087ddd8048157b20d84a2444c136a8ff-0",
+    "title": "Will the highest temperature in Atlanta be between 68-69°F on March 16?",
+    "lots": [
+      {
+        "shares": 15,
+        "price": 0.48333333333333334,
+        "usdc": 7.25,
+        "ts": 1773636857
+      }
+    ],
+    "totalShares": 15
+  },
+  {
+    "key": "0x2c62285b413c9687f593ccef009274bc5d700768b466add901dc5be604104700-0",
+    "title": "Will the highest temperature in Ankara be 14°C on March 16?",
+    "lots": [
+      {
+        "shares": 1179.63,
+        "price": 0.9701398743673864,
+        "usdc": 1144.4061,
+        "ts": 1773667531
+      },
+      {
+        "shares": 9.03,
+        "price": 0.99,
+        "usdc": 8.9397,
+        "ts": 1773667533
+      },
+      {
+        "shares": 85,
+        "price": 0.99,
+        "usdc": 84.15,
+        "ts": 1773667539
+      },
+      {
+        "shares": 79.98,
+        "price": 0.99,
+        "usdc": 79.1802,
+        "ts": 1773667559
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1773667565
+      },
+      {
+        "shares": 40,
+        "price": 0.99,
+        "usdc": 39.6,
+        "ts": 1773667567
+      },
+      {
+        "shares": 25,
+        "price": 0.99,
+        "usdc": 24.75,
+        "ts": 1773667585
+      },
+      {
+        "shares": 170,
+        "price": 0.99,
+        "usdc": 168.3,
+        "ts": 1773667587
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773667591
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1773667591
+      },
+      {
+        "shares": 4,
+        "price": 0.99,
+        "usdc": 3.96,
+        "ts": 1773667609
+      },
+      {
+        "shares": 92.87,
+        "price": 0.99,
+        "usdc": 91.9413,
+        "ts": 1773667627
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773667647
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1773667649
+      }
+    ],
+    "totalShares": 2395.51
+  },
+  {
+    "key": "0xbadbe17ebf5379634407688c704fb2eef88dc0fcf9831876680a873c80ebd901-0",
+    "title": "Will the highest temperature in Dallas be between 48-49°F on March 16?",
+    "lots": [
+      {
+        "shares": 38.71,
+        "price": 0.7907491604236632,
+        "usdc": 30.6099,
+        "ts": 1773694535
+      },
+      {
+        "shares": 12.58,
+        "price": 0.82,
+        "usdc": 10.3156,
+        "ts": 1773694537
+      },
+      {
+        "shares": 58.055554,
+        "price": 0.8200000124019142,
+        "usdc": 47.605555,
+        "ts": 1773694537
+      },
+      {
+        "shares": 11.11111,
+        "price": 0.8200000720000072,
+        "usdc": 9.111111,
+        "ts": 1773694537
+      },
+      {
+        "shares": 66.944443,
+        "price": 0.8200000110539422,
+        "usdc": 54.894444,
+        "ts": 1773694537
+      },
+      {
+        "shares": 14.12,
+        "price": 0.82,
+        "usdc": 11.5784,
+        "ts": 1773694537
+      },
+      {
+        "shares": 41.91,
+        "price": 0.82,
+        "usdc": 34.3662,
+        "ts": 1773694537
+      },
+      {
+        "shares": 12,
+        "price": 0.82,
+        "usdc": 9.84,
+        "ts": 1773694537
+      },
+      {
+        "shares": 41.91,
+        "price": 0.82,
+        "usdc": 34.3662,
+        "ts": 1773694541
+      },
+      {
+        "shares": 12,
+        "price": 0.82,
+        "usdc": 9.84,
+        "ts": 1773694541
+      },
+      {
+        "shares": 7,
+        "price": 0.82,
+        "usdc": 5.74,
+        "ts": 1773694551
+      },
+      {
+        "shares": 59.99,
+        "price": 0.82,
+        "usdc": 49.1918,
+        "ts": 1773694565
+      }
+    ],
+    "totalShares": 376.331107
+  },
+  {
+    "key": "0xadd1440eb24be327f4186cbe7aa4669aef28e1e0b0ec7c4d6268f33de42eac7e-0",
+    "title": "Will the highest temperature in Wellington be 21°C on March 17?",
+    "lots": [
+      {
+        "shares": 242.01,
+        "price": 0.6618718234783687,
+        "usdc": 160.1796,
+        "ts": 1773704075
+      },
+      {
+        "shares": 24.95,
+        "price": 0.71,
+        "usdc": 17.7145,
+        "ts": 1773704079
+      },
+      {
+        "shares": 12,
+        "price": 0.71,
+        "usdc": 8.52,
+        "ts": 1773704079
+      },
+      {
+        "shares": 5.5,
+        "price": 0.71,
+        "usdc": 3.905,
+        "ts": 1773704079
+      },
+      {
+        "shares": 34.482757,
+        "price": 0.7100000153700007,
+        "usdc": 24.482758,
+        "ts": 1773704087
+      },
+      {
+        "shares": 1.1,
+        "price": 0.71,
+        "usdc": 0.781,
+        "ts": 1773704093
+      },
+      {
+        "shares": 12,
+        "price": 0.71,
+        "usdc": 8.52,
+        "ts": 1773704099
+      },
+      {
+        "shares": 12,
+        "price": 0.71,
+        "usdc": 8.52,
+        "ts": 1773704105
+      },
+      {
+        "shares": 101.12,
+        "price": 0.71,
+        "usdc": 71.7952,
+        "ts": 1773704107
+      }
+    ],
+    "totalShares": 445.162757
+  },
+  {
+    "key": "0x688f570e0cbfb1365c3b86169c9b2d1b93086ce362d2e6e8bbdda850ebb63221-0",
+    "title": "Will the highest temperature in Seattle be between 54-55°F on March 16?",
+    "lots": [
+      {
+        "shares": 60.45,
+        "price": 0.7758643507030604,
+        "usdc": 46.901,
+        "ts": 1773708963
+      }
+    ],
+    "totalShares": 60.45
+  },
+  {
+    "key": "0x89607c9bd0251b77453ee838709d4f428103c6e9da5f60f8edf64eb114ff9822-0",
+    "title": "Will the highest temperature in Seoul be 11°C on March 17?",
+    "lots": [
+      {
+        "shares": 10,
+        "price": 0.63,
+        "usdc": 6.3,
+        "ts": 1773720267
+      }
+    ],
+    "totalShares": 10
+  },
+  {
+    "key": "0x1d7f856378ed8075e5089b41d08ad30fd9e750fbc4cd8f626c2e994a5aa8e0a7-0",
+    "title": "Will the highest temperature in New York City be 50°F or higher on March 17?",
+    "lots": [
+      {
+        "shares": 2783.7,
+        "price": 0.977722383877573,
+        "usdc": 2721.6858,
+        "ts": 1773720569
+      },
+      {
+        "shares": 19.99,
+        "price": 0.99,
+        "usdc": 19.7901,
+        "ts": 1773720571
+      },
+      {
+        "shares": 38.32,
+        "price": 0.99,
+        "usdc": 37.9368,
+        "ts": 1773720573
+      },
+      {
+        "shares": 66.92,
+        "price": 0.99,
+        "usdc": 66.2508,
+        "ts": 1773720573
+      },
+      {
+        "shares": 91.07,
+        "price": 0.99,
+        "usdc": 90.1593,
+        "ts": 1773720573
+      }
+    ],
+    "totalShares": 3000
+  },
+  {
+    "key": "0x89607c9bd0251b77453ee838709d4f428103c6e9da5f60f8edf64eb114ff9822-1",
+    "title": "Will the highest temperature in Seoul be 11°C on March 17?",
+    "lots": [
+      {
+        "shares": 10,
+        "price": 0.83,
+        "usdc": 8.3,
+        "ts": 1773723869
+      }
+    ],
+    "totalShares": 10
+  },
+  {
+    "key": "0x321f520f6d97f376199ccdd2f5a011ab64db221b323d2ea9e11b9092ef078546-1",
+    "title": "Will Trump say \"Crypto\" or \"Bitcoin\" during Taoiseach events?",
+    "lots": [
+      {
+        "shares": 0.007536000000015974,
+        "price": 0.971,
+        "usdc": 97.1,
+        "ts": 1773783829
+      }
+    ],
+    "totalShares": 0.007536000000015974
+  },
+  {
+    "key": "0x608473163743f29d45f5e193a4f45b28da459257078437eff399f77fe4721e97-0",
+    "title": "Will Trump say \"Ireland\" or \"Irish\" 3+ times during Taoiseach events?",
+    "lots": [
+      {
+        "shares": 38.46,
+        "price": 0.97,
+        "usdc": 37.3062,
+        "ts": 1773762553
+      },
+      {
+        "shares": 100,
+        "price": 0.98,
+        "usdc": 98,
+        "ts": 1773762567
+      },
+      {
+        "shares": 100,
+        "price": 0.98,
+        "usdc": 98,
+        "ts": 1773762567
+      },
+      {
+        "shares": 100,
+        "price": 0.998,
+        "usdc": 99.8,
+        "ts": 1773762639
+      },
+      {
+        "shares": 100,
+        "price": 0.998,
+        "usdc": 99.8,
+        "ts": 1773762641
+      },
+      {
+        "shares": 66.25,
+        "price": 0.996,
+        "usdc": 65.985,
+        "ts": 1773766065
+      }
+    ],
+    "totalShares": 504.71000000000004
+  },
+  {
+    "key": "0xd666c477d6d11b943e9f41143e81a146ad9d19b1b3254091803b7fc0f663e203-0",
+    "title": "Will Trump say \"Hormuz\" during Taoiseach events?",
+    "lots": [
+      {
+        "shares": 21.86,
+        "price": 0.03,
+        "usdc": 0.9,
+        "ts": 1773765031
+      },
+      {
+        "shares": 88.3571,
+        "price": 0.03,
+        "usdc": 2.650713,
+        "ts": 1773765595
+      },
+      {
+        "shares": 100,
+        "price": 0.03,
+        "usdc": 3,
+        "ts": 1773765595
+      },
+      {
+        "shares": 70,
+        "price": 0.03,
+        "usdc": 2.1,
+        "ts": 1773765595
+      },
+      {
+        "shares": 77.129366,
+        "price": 0.030000000259304608,
+        "usdc": 2.313881,
+        "ts": 1773765639
+      },
+      {
+        "shares": 100,
+        "price": 0.03,
+        "usdc": 3,
+        "ts": 1773765639
+      },
+      {
+        "shares": 11.64,
+        "price": 0.03,
+        "usdc": 0.3492,
+        "ts": 1773765639
+      },
+      {
+        "shares": 100,
+        "price": 0.03,
+        "usdc": 3,
+        "ts": 1773765655
+      },
+      {
+        "shares": 22.87,
+        "price": 0.03,
+        "usdc": 0.6861,
+        "ts": 1773765655
+      }
+    ],
+    "totalShares": 591.8564660000001
+  },
+  {
+    "key": "0x43678577ea0928405f14e1a5614fbc21864a7af6d94ad249165139ab1495d123-0",
+    "title": "Will Trump say \"Nuclear\" 3+ times during Taoiseach events?",
+    "lots": [
+      {
+        "shares": 47.73,
+        "price": 0.77,
+        "usdc": 36.7521,
+        "ts": 1773762897
+      }
+    ],
+    "totalShares": 47.73
+  },
+  {
+    "key": "0xd156fdefbfad7a1522b61f3b283fb023b972c1b668d70da4ee591a208f763d0b-0",
+    "title": "Will Trump say \"Iran\" 5+ times during Taoiseach events?",
+    "lots": [
+      {
+        "shares": 55.26,
+        "price": 0.76,
+        "usdc": 41.9976,
+        "ts": 1773762957
+      },
+      {
+        "shares": 100,
+        "price": 0.8,
+        "usdc": 80,
+        "ts": 1773763077
+      },
+      {
+        "shares": 48.86,
+        "price": 0.97,
+        "usdc": 47.3942,
+        "ts": 1773763083
+      }
+    ],
+    "totalShares": 204.12
+  },
+  {
+    "key": "0xefa22d5b4f361251b2dd533d1f715609edcd644f2cad46aa618d29bb36c0698b-0",
+    "title": "Will Trump say \"UK\" or \"United Kingdom\" during Taoiseach events?",
+    "lots": [
+      {
+        "shares": 5,
+        "price": 0.6,
+        "usdc": 3,
+        "ts": 1773763747
+      },
+      {
+        "shares": 500,
+        "price": 0.9809678,
+        "usdc": 490.4839,
+        "ts": 1773764171
+      },
+      {
+        "shares": 56.61,
+        "price": 0.99,
+        "usdc": 56.0439,
+        "ts": 1773764173
+      },
+      {
+        "shares": 5.84,
+        "price": 0.99,
+        "usdc": 5.7816,
+        "ts": 1773764339
+      }
+    ],
+    "totalShares": 567.45
+  },
+  {
+    "key": "0x48fbf70c1713e71a405052bc4641e26dbba435fa557672c4040763c901cbf606-0",
+    "title": "Will Trump visit China by April 30?",
+    "lots": [
+      {
+        "shares": 10,
+        "price": 0.46,
+        "usdc": 4.6,
+        "ts": 1773763971
+      },
+      {
+        "shares": 680.91,
+        "price": 0.48,
+        "usdc": 326.8368,
+        "ts": 1773764001
+      }
+    ],
+    "totalShares": 690.91
+  },
+  {
+    "key": "0xe4e80b3627a3156448c9e05a4c56f0c3777bb03fb3d4bf17814d2521f418b29e-0",
+    "title": "Will Trump say \"Soleimani\" during Taoiseach events?",
+    "lots": [
+      {
+        "shares": 7.82,
+        "price": 0.99,
+        "usdc": 7.7418,
+        "ts": 1773764103
+      },
+      {
+        "shares": 7.82,
+        "price": 0.99,
+        "usdc": 7.7418,
+        "ts": 1773764123
+      },
+      {
+        "shares": 492.18,
+        "price": 0.99,
+        "usdc": 487.2582,
+        "ts": 1773764123
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773764143
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773764173
+      }
+    ],
+    "totalShares": 707.8199999999999
+  },
+  {
+    "key": "0xfd669c70a8760ab309665ffbd5be5523c1ae9a7d019a0874ea480cf8005755ce-0",
+    "title": "Will Trump say \"Drone\" during Taoiseach events?",
+    "lots": [
+      {
+        "shares": 149.55,
+        "price": 0.9870210631895687,
+        "usdc": 147.609,
+        "ts": 1773764225
+      },
+      {
+        "shares": 500,
+        "price": 0.979109,
+        "usdc": 489.5545,
+        "ts": 1773764225
+      },
+      {
+        "shares": 50,
+        "price": 0.99,
+        "usdc": 49.5,
+        "ts": 1773764231
+      },
+      {
+        "shares": 62.5,
+        "price": 0.99,
+        "usdc": 61.875,
+        "ts": 1773764233
+      }
+    ],
+    "totalShares": 762.05
+  },
+  {
+    "key": "0xb16727d99c6fe6e25d345b90130ad9d4ba9dc452544391b2edb07da5843b29f7-0",
+    "title": "Will Trump say \"Obliterate\" or \"Obliterated\" or \"Obliterating\" during Taoiseach events?",
+    "lots": [
+      {
+        "shares": 500,
+        "price": 0.980999,
+        "usdc": 490.4995,
+        "ts": 1773764735
+      }
+    ],
+    "totalShares": 500
+  },
+  {
+    "key": "0x89f1ec68340cfedd24f7b78947ac1175d0c8221d2f4d33e39feefdcb764781e7-0",
+    "title": "Will Trump say \"Epic Fury\" during Taoiseach events?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.05,
+        "usdc": 5,
+        "ts": 1773764949
+      },
+      {
+        "shares": 8.33,
+        "price": 0.04,
+        "usdc": 0.3332,
+        "ts": 1773765105
+      },
+      {
+        "shares": 50.72,
+        "price": 0.03,
+        "usdc": 1.5216,
+        "ts": 1773765227
+      },
+      {
+        "shares": 100,
+        "price": 0.03,
+        "usdc": 3,
+        "ts": 1773765227
+      },
+      {
+        "shares": 100,
+        "price": 0.03,
+        "usdc": 3,
+        "ts": 1773765227
+      },
+      {
+        "shares": 100,
+        "price": 0.04,
+        "usdc": 4,
+        "ts": 1773765227
+      },
+      {
+        "shares": 100,
+        "price": 0.04,
+        "usdc": 4,
+        "ts": 1773765227
+      },
+      {
+        "shares": 100,
+        "price": 0.04,
+        "usdc": 4,
+        "ts": 1773765227
+      },
+      {
+        "shares": 91.67,
+        "price": 0.04,
+        "usdc": 3.6668,
+        "ts": 1773765227
+      },
+      {
+        "shares": 8.33,
+        "price": 0.03,
+        "usdc": 0.2499,
+        "ts": 1773765251
+      },
+      {
+        "shares": 40.95,
+        "price": 0.03,
+        "usdc": 1.2285,
+        "ts": 1773765499
+      }
+    ],
+    "totalShares": 800
+  },
+  {
+    "key": "0xe19415390751c2956c86d66341c4b467cc8fac1e94faae27f17c99137a2c7d7d-0",
+    "title": "Will Trump say \"250\" or \"250th\" during Taoiseach events?",
+    "lots": [
+      {
+        "shares": 130,
+        "price": 0.98,
+        "usdc": 127.4,
+        "ts": 1773769101
+      },
+      {
+        "shares": 400,
+        "price": 0.97775,
+        "usdc": 391.1,
+        "ts": 1773769101
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1773769103
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773769103
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773771635
+      }
+    ],
+    "totalShares": 735
+  },
+  {
+    "key": "0xea70a486081c70cb868c2020f493c64460becc92c3ea185370d15106ffcad6d3-0",
+    "title": "Will Trump say \"Heritage\" or \"Culture\" during Taoiseach events?",
+    "lots": [
+      {
+        "shares": 93.87,
+        "price": 0.9755,
+        "usdc": 97.55,
+        "ts": 1773769873
+      },
+      {
+        "shares": 50,
+        "price": 0.98,
+        "usdc": 49,
+        "ts": 1773769887
+      },
+      {
+        "shares": 50,
+        "price": 0.98,
+        "usdc": 49,
+        "ts": 1773769905
+      },
+      {
+        "shares": 11.03,
+        "price": 0.93,
+        "usdc": 10.2579,
+        "ts": 1773770105
+      }
+    ],
+    "totalShares": 204.9
+  },
+  {
+    "key": "0x78d5ddd02c77554df05575852e2f834f604e08ac50d1e1a1edece7fa8cdceb80-0",
+    "title": "Will Trump say \"Ballroom\" or \"Arch\" during Taoiseach events?",
+    "lots": [
+      {
+        "shares": 20,
+        "price": 0.37,
+        "usdc": 7.4,
+        "ts": 1773783949
+      },
+      {
+        "shares": 10.17,
+        "price": 0.67,
+        "usdc": 6.8139,
+        "ts": 1773783949
+      },
+      {
+        "shares": 500,
+        "price": 0.96,
+        "usdc": 480,
+        "ts": 1773783975
+      },
+      {
+        "shares": 351,
+        "price": 0.99,
+        "usdc": 347.49,
+        "ts": 1773783975
+      },
+      {
+        "shares": 292,
+        "price": 0.9835958904109589,
+        "usdc": 287.21,
+        "ts": 1773783975
+      },
+      {
+        "shares": 149,
+        "price": 0.99,
+        "usdc": 147.51,
+        "ts": 1773783975
+      },
+      {
+        "shares": 192,
+        "price": 0.99,
+        "usdc": 190.08,
+        "ts": 1773783975
+      },
+      {
+        "shares": 208,
+        "price": 0.99,
+        "usdc": 205.92,
+        "ts": 1773783975
+      },
+      {
+        "shares": 308,
+        "price": 0.99,
+        "usdc": 304.92,
+        "ts": 1773783975
+      },
+      {
+        "shares": 500,
+        "price": 0.97252,
+        "usdc": 486.26,
+        "ts": 1773783975
+      },
+      {
+        "shares": 12.952378,
+        "price": 0.370000010808826,
+        "usdc": 4.79238,
+        "ts": 1773783985
+      },
+      {
+        "shares": 100,
+        "price": 0.98,
+        "usdc": 98,
+        "ts": 1773783985
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773783985
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773783985
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773783985
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773783985
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773783985
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773783985
+      },
+      {
+        "shares": 7.692306,
+        "price": 0.8700001014000223,
+        "usdc": 6.692307,
+        "ts": 1773783993
+      },
+      {
+        "shares": 100,
+        "price": 0.98,
+        "usdc": 98,
+        "ts": 1773783993
+      },
+      {
+        "shares": 5.26,
+        "price": 0.87,
+        "usdc": 4.5762,
+        "ts": 1773783997
+      }
+    ],
+    "totalShares": 3356.074684
+  },
+  {
+    "key": "0xce8322ff9892ec83e2efc5631d0e966f5f8ab67c4548b4e53fd919cbc9c02861-0",
+    "title": "Will Trump say \"New York\" during Taoiseach events?",
+    "lots": [
+      {
+        "shares": 110,
+        "price": 0.99,
+        "usdc": 108.9,
+        "ts": 1773784729
+      },
+      {
+        "shares": 500,
+        "price": 0.843552,
+        "usdc": 421.776,
+        "ts": 1773784729
+      },
+      {
+        "shares": 17.51,
+        "price": 0.99,
+        "usdc": 17.3349,
+        "ts": 1773784729
+      },
+      {
+        "shares": 449.15,
+        "price": 0.9815239897584326,
+        "usdc": 440.8515,
+        "ts": 1773784729
+      },
+      {
+        "shares": 33.34,
+        "price": 0.99,
+        "usdc": 33.0066,
+        "ts": 1773784729
+      },
+      {
+        "shares": 500,
+        "price": 0.973848,
+        "usdc": 486.924,
+        "ts": 1773784729
+      },
+      {
+        "shares": 74.27,
+        "price": 0.97,
+        "usdc": 72.0419,
+        "ts": 1773784731
+      },
+      {
+        "shares": 92.29,
+        "price": 0.99,
+        "usdc": 91.3671,
+        "ts": 1773784733
+      },
+      {
+        "shares": 57.73,
+        "price": 0.99,
+        "usdc": 57.1527,
+        "ts": 1773784733
+      }
+    ],
+    "totalShares": 1834.2899999999997
+  },
+  {
+    "key": "0xc5979ffe5ca3e5c9ff7586bf5ce23670fac05195289a27925270feac815437d6-0",
+    "title": "Will the highest temperature in Wellington be 21°C on March 18?",
+    "lots": [
+      {
+        "shares": 3000,
+        "price": 0.9744375,
+        "usdc": 2923.3125,
+        "ts": 1773792265
+      }
+    ],
+    "totalShares": 3000
+  },
+  {
+    "key": "0x5fd951c699691cfe8beeb5ecb7034c4c7b0335f912965c0127bfb5eef3e57b5f-0",
+    "title": "Will Powell say \"Speculate\" or \"Speculation\" during March press conference?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.5,
+        "usdc": 50,
+        "ts": 1773857923
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0xfa1b56e78ae28b66439c471937df51a49dee1b8bf17f184ea0ac84769a9cadda-0",
+    "title": "Will Powell say \"Housing\" during March press conference?",
+    "lots": [
+      {
+        "shares": 0.04487800000003972,
+        "price": 0.957,
+        "usdc": 382.8,
+        "ts": 1773858673
+      }
+    ],
+    "totalShares": 0.04487800000003972
+  },
+  {
+    "key": "0x455b8bcdbbb832559f28e4be479d01d4cfb0a068d19c06bc2ba0836f3a54bc8d-0",
+    "title": "Will Powell say \"Volatile\" during March press conference?",
+    "lots": [
+      {
+        "shares": 1.04,
+        "price": 0.99,
+        "usdc": 1.0296,
+        "ts": 1773858825
+      }
+    ],
+    "totalShares": 1.04
+  },
+  {
+    "key": "0x27db30029405d16290c78a22fbbed93b2ee2d20d80223625ba1f05fa94f79af8-0",
+    "title": "Will Powell say \"War\" during March press conference?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.97,
+        "usdc": 97,
+        "ts": 1773859425
+      },
+      {
+        "shares": 100,
+        "price": 0.97,
+        "usdc": 97,
+        "ts": 1773859425
+      },
+      {
+        "shares": 100,
+        "price": 0.97,
+        "usdc": 97,
+        "ts": 1773859425
+      },
+      {
+        "shares": 10.12,
+        "price": 0.99,
+        "usdc": 10.0188,
+        "ts": 1773863787
+      }
+    ],
+    "totalShares": 310.12
+  },
+  {
+    "key": "0x106aa7d143df13768d495f71636f9b064e6c39fe3bee9ea0fdf4f6dfd7c3e0b2-0",
+    "title": "Will Powell say \"Pandemic\" during March press conference?",
+    "lots": [
+      {
+        "shares": 0.019961999999964064,
+        "price": 0.99,
+        "usdc": 361.5183,
+        "ts": 1773859645
+      },
+      {
+        "shares": 43.04,
+        "price": 0.99,
+        "usdc": 42.6096,
+        "ts": 1773863743
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773863743
+      }
+    ],
+    "totalShares": 143.05996199999996
+  },
+  {
+    "key": "0x040c6683c4d6bf84a577cfe1558d727f5fc52bb650f925f79b1d0eb65efc871b-0",
+    "title": "Will Powell say \"Successor\" during March press conference?",
+    "lots": [
+      {
+        "shares": 34.120063,
+        "price": 0.99,
+        "usdc": 148.4109,
+        "ts": 1773859993
+      }
+    ],
+    "totalShares": 34.120063
+  },
+  {
+    "key": "0xb08a663cf870c1b62462de79708e39fc0d8288a8cd2d3e54fed63e2c094344f7-0",
+    "title": "Will Powell say \"Supreme Court\" during March press conference?",
+    "lots": [
+      {
+        "shares": 87.5,
+        "price": 0.15571428571428572,
+        "usdc": 13.625,
+        "ts": 1773860813
+      },
+      {
+        "shares": 20.16,
+        "price": 0.14,
+        "usdc": 2.8224,
+        "ts": 1773860813
+      },
+      {
+        "shares": 48.34,
+        "price": 0.23,
+        "usdc": 11.1182,
+        "ts": 1773860951
+      }
+    ],
+    "totalShares": 156
+  },
+  {
+    "key": "0xaf93d398885428bdbffe2e2e1f726ba3e9554891fdc2338600f9b05d3308e3b2-0",
+    "title": "Will Powell say \"AI\" or \"Artificial Intelligence\" 3+ times during March press conference?",
+    "lots": [
+      {
+        "shares": 413.07399399999997,
+        "price": 0.7355364,
+        "usdc": 367.7682,
+        "ts": 1773861391
+      },
+      {
+        "shares": 500,
+        "price": 0.93,
+        "usdc": 465,
+        "ts": 1773861391
+      },
+      {
+        "shares": 500,
+        "price": 0.9747472,
+        "usdc": 487.3736,
+        "ts": 1773861393
+      },
+      {
+        "shares": 500,
+        "price": 0.9491882,
+        "usdc": 474.5941,
+        "ts": 1773861393
+      },
+      {
+        "shares": 432.64,
+        "price": 0.9813868343195267,
+        "usdc": 424.5872,
+        "ts": 1773861393
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1773861397
+      },
+      {
+        "shares": 6.222221,
+        "price": 0.8200001253571675,
+        "usdc": 5.102222,
+        "ts": 1773861401
+      },
+      {
+        "shares": 5.555554,
+        "price": 0.8200001296000363,
+        "usdc": 4.555555,
+        "ts": 1773861401
+      },
+      {
+        "shares": 5.08,
+        "price": 0.82,
+        "usdc": 4.1656,
+        "ts": 1773861403
+      },
+      {
+        "shares": 83.13,
+        "price": 0.82,
+        "usdc": 68.1666,
+        "ts": 1773861407
+      },
+      {
+        "shares": 100,
+        "price": 0.3,
+        "usdc": 30,
+        "ts": 1773861409
+      },
+      {
+        "shares": 100,
+        "price": 0.41,
+        "usdc": 41,
+        "ts": 1773861423
+      }
+    ],
+    "totalShares": 2745.701769
+  },
+  {
+    "key": "0xd4d69dbefb1b436f4f0bbf5ea378977a652f11816e40c1464095d8f8db615de7-0",
+    "title": "Will the highest temperature in Chicago be between 44-45°F on March 18?",
+    "lots": [
+      {
+        "shares": 214.71,
+        "price": 0.49649108099296724,
+        "usdc": 106.6016,
+        "ts": 1773867153
+      },
+      {
+        "shares": 55,
+        "price": 0.56,
+        "usdc": 30.8,
+        "ts": 1773867155
+      },
+      {
+        "shares": 55,
+        "price": 0.56,
+        "usdc": 30.8,
+        "ts": 1773867159
+      }
+    ],
+    "totalShares": 324.71000000000004
+  },
+  {
+    "key": "0x62c9f0b957133f42e9b50998de6f7a5f7b919c1dc591c950688b457875b52a6e-0",
+    "title": "Will the highest temperature in Chicago be between 46-47°F on March 18?",
+    "lots": [
+      {
+        "shares": 3000,
+        "price": 0.8559566433333333,
+        "usdc": 2567.86993,
+        "ts": 1773870719
+      }
+    ],
+    "totalShares": 3000
+  },
+  {
+    "key": "0x03331a32bc36de335315c3e2b811bab90f7a907b6734e366ece17008be2f156c-0",
+    "title": "Will the highest temperature in Sao Paulo be 26°C on March 20?",
+    "lots": [
+      {
+        "shares": 881.77,
+        "price": 0.9007664130101954,
+        "usdc": 794.2688,
+        "ts": 1774033147
+      },
+      {
+        "shares": 33.34,
+        "price": 0.99,
+        "usdc": 33.0066,
+        "ts": 1774033149
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1774033149
+      },
+      {
+        "shares": 5.79,
+        "price": 0.99,
+        "usdc": 5.7321,
+        "ts": 1774033149
+      },
+      {
+        "shares": 2.17,
+        "price": 0.99,
+        "usdc": 2.1483,
+        "ts": 1774033151
+      },
+      {
+        "shares": 84.01,
+        "price": 0.99,
+        "usdc": 83.1699,
+        "ts": 1774033151
+      },
+      {
+        "shares": 2.64,
+        "price": 0.99,
+        "usdc": 2.6136,
+        "ts": 1774033151
+      },
+      {
+        "shares": 9.4,
+        "price": 0.99,
+        "usdc": 9.306,
+        "ts": 1774033151
+      },
+      {
+        "shares": 1.55,
+        "price": 0.99,
+        "usdc": 1.5345,
+        "ts": 1774033151
+      },
+      {
+        "shares": 20.78,
+        "price": 0.99,
+        "usdc": 20.5722,
+        "ts": 1774033151
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1774033155
+      },
+      {
+        "shares": 20.59,
+        "price": 0.99,
+        "usdc": 20.3841,
+        "ts": 1774033157
+      },
+      {
+        "shares": 2.96,
+        "price": 0.99,
+        "usdc": 2.9304,
+        "ts": 1774033159
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1774033159
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1774033161
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1774033163
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1774033165
+      },
+      {
+        "shares": 80,
+        "price": 0.99,
+        "usdc": 79.2,
+        "ts": 1774033165
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1774033169
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1774033171
+      },
+      {
+        "shares": 11.25,
+        "price": 0.99,
+        "usdc": 11.1375,
+        "ts": 1774033171
+      },
+      {
+        "shares": 43.26,
+        "price": 0.99,
+        "usdc": 42.8274,
+        "ts": 1774033173
+      },
+      {
+        "shares": 91.95,
+        "price": 0.99,
+        "usdc": 91.0305,
+        "ts": 1774033175
+      },
+      {
+        "shares": 101.24,
+        "price": 0.99,
+        "usdc": 100.2276,
+        "ts": 1774033207
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1774033215
+      },
+      {
+        "shares": 34.88,
+        "price": 0.99,
+        "usdc": 34.5312,
+        "ts": 1774033227
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1774033227
+      },
+      {
+        "shares": 11.9,
+        "price": 0.99,
+        "usdc": 11.781,
+        "ts": 1774033235
+      }
+    ],
+    "totalShares": 1674.4800000000002
+  },
+  {
+    "key": "0x73455da311e13344404795b89ae8a8fa772fd175ca34ebe3202e637c220234f2-0",
+    "title": "Will the highest temperature in Seattle be between 56-57°F on March 20?",
+    "lots": [
+      {
+        "shares": 311.87,
+        "price": 0.666046750248501,
+        "usdc": 207.72,
+        "ts": 1774043761
+      },
+      {
+        "shares": 20,
+        "price": 0.85,
+        "usdc": 17,
+        "ts": 1774043765
+      },
+      {
+        "shares": 20,
+        "price": 0.85,
+        "usdc": 17,
+        "ts": 1774043765
+      },
+      {
+        "shares": 26.43,
+        "price": 0.85,
+        "usdc": 22.4655,
+        "ts": 1774043767
+      },
+      {
+        "shares": 22,
+        "price": 0.85,
+        "usdc": 18.7,
+        "ts": 1774043767
+      },
+      {
+        "shares": 5.13,
+        "price": 0.85,
+        "usdc": 4.3605,
+        "ts": 1774043771
+      },
+      {
+        "shares": 5.13,
+        "price": 0.85,
+        "usdc": 4.3605,
+        "ts": 1774043773
+      },
+      {
+        "shares": 327.333332,
+        "price": 0.8500000024439919,
+        "usdc": 278.233333,
+        "ts": 1774043799
+      }
+    ],
+    "totalShares": 737.893332
+  },
+  {
+    "key": "0xd0f3fa390fde2b242761e2e1fc6d48ca74a4179f73639afa0d76055a687f21c2-0",
+    "title": "Will the highest temperature in Ankara be 11°C on March 21?",
+    "lots": [
+      {
+        "shares": 1347.55,
+        "price": 0.9833235872509369,
+        "usdc": 1325.0777,
+        "ts": 1774095927
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1774095929
+      },
+      {
+        "shares": 168,
+        "price": 0.99,
+        "usdc": 166.32,
+        "ts": 1774095935
+      },
+      {
+        "shares": 5.69,
+        "price": 0.99,
+        "usdc": 5.6331,
+        "ts": 1774095943
+      },
+      {
+        "shares": 123,
+        "price": 0.99,
+        "usdc": 121.77,
+        "ts": 1774095945
+      },
+      {
+        "shares": 12,
+        "price": 0.99,
+        "usdc": 11.88,
+        "ts": 1774095951
+      },
+      {
+        "shares": 12,
+        "price": 0.99,
+        "usdc": 11.88,
+        "ts": 1774095959
+      },
+      {
+        "shares": 49.45,
+        "price": 0.99,
+        "usdc": 48.9555,
+        "ts": 1774095967
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1774095971
+      },
+      {
+        "shares": 10.53,
+        "price": 0.99,
+        "usdc": 10.4247,
+        "ts": 1774095975
+      },
+      {
+        "shares": 200.31,
+        "price": 0.99,
+        "usdc": 198.3069,
+        "ts": 1774095979
+      },
+      {
+        "shares": 175,
+        "price": 0.99,
+        "usdc": 173.25,
+        "ts": 1774095983
+      },
+      {
+        "shares": 282,
+        "price": 0.99,
+        "usdc": 279.18,
+        "ts": 1774095991
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1774095993
+      },
+      {
+        "shares": 136,
+        "price": 0.99,
+        "usdc": 134.64,
+        "ts": 1774095999
+      },
+      {
+        "shares": 27,
+        "price": 0.99,
+        "usdc": 26.73,
+        "ts": 1774096001
+      },
+      {
+        "shares": 194,
+        "price": 0.99,
+        "usdc": 192.06,
+        "ts": 1774096003
+      },
+      {
+        "shares": 38.19,
+        "price": 0.99,
+        "usdc": 37.8081,
+        "ts": 1774096005
+      },
+      {
+        "shares": 12,
+        "price": 0.99,
+        "usdc": 11.88,
+        "ts": 1774096015
+      },
+      {
+        "shares": 187.28,
+        "price": 0.99,
+        "usdc": 185.4072,
+        "ts": 1774096015
+      }
+    ],
+    "totalShares": 3000
+  },
+  {
+    "key": "0xa02a2a35ceebec2c9854ad595e1cc2b5611c40f8a945d6d76e1f4109338f7b1e-0",
+    "title": "Will the highest temperature in Chicago be between 76-77°F on March 21?",
+    "lots": [
+      {
+        "shares": 1276.33,
+        "price": 0.9354400037607828,
+        "usdc": 1193.93014,
+        "ts": 1774133577
+      },
+      {
+        "shares": 5.36,
+        "price": 0.99,
+        "usdc": 5.3064,
+        "ts": 1774133579
+      },
+      {
+        "shares": 15.45,
+        "price": 0.99,
+        "usdc": 15.2955,
+        "ts": 1774133579
+      },
+      {
+        "shares": 47.55,
+        "price": 0.99,
+        "usdc": 47.0745,
+        "ts": 1774133585
+      },
+      {
+        "shares": 43,
+        "price": 0.99,
+        "usdc": 42.57,
+        "ts": 1774133593
+      },
+      {
+        "shares": 40,
+        "price": 0.99,
+        "usdc": 39.6,
+        "ts": 1774133605
+      },
+      {
+        "shares": 166.67,
+        "price": 0.99,
+        "usdc": 165.0033,
+        "ts": 1774133607
+      },
+      {
+        "shares": 398.06,
+        "price": 0.99,
+        "usdc": 394.0794,
+        "ts": 1774133609
+      },
+      {
+        "shares": 15,
+        "price": 0.99,
+        "usdc": 14.85,
+        "ts": 1774133611
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1774133611
+      },
+      {
+        "shares": 15,
+        "price": 0.99,
+        "usdc": 14.85,
+        "ts": 1774133611
+      },
+      {
+        "shares": 30.79,
+        "price": 0.99,
+        "usdc": 30.4821,
+        "ts": 1774133611
+      },
+      {
+        "shares": 338,
+        "price": 0.99,
+        "usdc": 334.62,
+        "ts": 1774133611
+      },
+      {
+        "shares": 12,
+        "price": 0.99,
+        "usdc": 11.88,
+        "ts": 1774133613
+      },
+      {
+        "shares": 5.54,
+        "price": 0.99,
+        "usdc": 5.4846,
+        "ts": 1774133613
+      },
+      {
+        "shares": 5.54,
+        "price": 0.99,
+        "usdc": 5.4846,
+        "ts": 1774133613
+      },
+      {
+        "shares": 7.78,
+        "price": 0.99,
+        "usdc": 7.7022,
+        "ts": 1774133617
+      },
+      {
+        "shares": 2.05,
+        "price": 0.99,
+        "usdc": 2.0295,
+        "ts": 1774133617
+      },
+      {
+        "shares": 50,
+        "price": 0.99,
+        "usdc": 49.5,
+        "ts": 1774133633
+      },
+      {
+        "shares": 48.44,
+        "price": 0.99,
+        "usdc": 47.9556,
+        "ts": 1774133639
+      },
+      {
+        "shares": 2.29,
+        "price": 0.99,
+        "usdc": 2.2671,
+        "ts": 1774133651
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1774133653
+      },
+      {
+        "shares": 46.29,
+        "price": 0.99,
+        "usdc": 45.8271,
+        "ts": 1774133667
+      },
+      {
+        "shares": 323.86,
+        "price": 0.99,
+        "usdc": 320.6214,
+        "ts": 1774133671
+      }
+    ],
+    "totalShares": 3000.0000000000005
+  },
+  {
+    "key": "0x6b6ba8d3a9ef8907d2da611c8cde04086f54fd1f899fadca200ff07c14cd09fe-0",
+    "title": "Will the highest temperature in Ankara be 13°C on March 22?",
+    "lots": [
+      {
+        "shares": 3000,
+        "price": 0.8939828733333334,
+        "usdc": 2681.94862,
+        "ts": 1774187737
+      }
+    ],
+    "totalShares": 3000
+  },
+  {
+    "key": "0x989278accddf79ff348a2ae0ee7c8df48f3a685e390ba4b9cfe0179b04616f31-0",
+    "title": "Will the highest temperature in Seoul be 15°C on March 23?",
+    "lots": [
+      {
+        "shares": 10,
+        "price": 0.44294,
+        "usdc": 4.4294,
+        "ts": 1774238667
+      }
+    ],
+    "totalShares": 10
+  },
+  {
+    "key": "0x0dc0ad1b12966a7699521ef2ab7849a3866047cac7afe0ebf189441b07099bcf-0",
+    "title": "Will the highest temperature in Ankara be 13°C on March 23?",
+    "lots": [
+      {
+        "shares": 3000,
+        "price": 0.9554493766666666,
+        "usdc": 2866.34813,
+        "ts": 1774263359
+      }
+    ],
+    "totalShares": 3000
+  },
+  {
+    "key": "0x4eb849769894b3278cb6e911b1085fe4d95ff743ea9fd418c4b37b977b18e59b-0",
+    "title": "Will the highest temperature in Atlanta be between 80-81°F on March 23?",
+    "lots": [
+      {
+        "shares": 3000,
+        "price": 0.9843588266666666,
+        "usdc": 2953.07648,
+        "ts": 1774292079
+      }
+    ],
+    "totalShares": 3000
+  },
+  {
+    "key": "0x8552a28682ac7f674fb473a58cbb1a794fb6696532019e478166cd729131644f-0",
+    "title": "Will the highest temperature in Ankara be 11°C on March 24?",
+    "lots": [
+      {
+        "shares": 62,
+        "price": 0.9161290322580645,
+        "usdc": 56.8,
+        "ts": 1774356941
+      },
+      {
+        "shares": 12,
+        "price": 0.92,
+        "usdc": 11.04,
+        "ts": 1774356949
+      },
+      {
+        "shares": 115,
+        "price": 0.92,
+        "usdc": 105.8,
+        "ts": 1774356957
+      },
+      {
+        "shares": 2.1,
+        "price": 0.92,
+        "usdc": 1.932,
+        "ts": 1774356967
+      },
+      {
+        "shares": 9.23,
+        "price": 0.92,
+        "usdc": 8.4916,
+        "ts": 1774356987
+      },
+      {
+        "shares": 81.56,
+        "price": 0.92,
+        "usdc": 75.0352,
+        "ts": 1774357027
+      }
+    ],
+    "totalShares": 281.89
+  },
+  {
+    "key": "0x58579ca66bf841aa80b8544bf317b8e9a1ea23fcf2831722d371bf8d0669ad9a-0",
+    "title": "Will the highest temperature in New York City be between 48-49°F on March 24?",
+    "lots": [
+      {
+        "shares": 0.63,
+        "price": 0.6,
+        "usdc": 0.378,
+        "ts": 1774385679
+      }
+    ],
+    "totalShares": 0.63
+  },
+  {
+    "key": "0x52f6ea49d45d8c391fdf3349adcce893d6c08d247857f1a059d54f5befaf6133-0",
+    "title": "Will the highest temperature in Seattle be 54°F or higher on March 24?",
+    "lots": [
+      {
+        "shares": 17,
+        "price": 0.99,
+        "usdc": 16.83,
+        "ts": 1774392991
+      },
+      {
+        "shares": 60,
+        "price": 0.99,
+        "usdc": 59.4,
+        "ts": 1774392993
+      },
+      {
+        "shares": 59.18,
+        "price": 0.99,
+        "usdc": 58.5882,
+        "ts": 1774392995
+      },
+      {
+        "shares": 12.37,
+        "price": 0.99,
+        "usdc": 12.2463,
+        "ts": 1774393001
+      },
+      {
+        "shares": 647.84,
+        "price": 0.99,
+        "usdc": 641.3616,
+        "ts": 1774393081
+      },
+      {
+        "shares": 8.4,
+        "price": 0.99,
+        "usdc": 8.316,
+        "ts": 1774393087
+      }
+    ],
+    "totalShares": 804.7900000000001
+  },
+  {
+    "key": "0x780d24b76d511377846f3c48516275325d903b6c64e0fa6a8cc655f667e39e26-0",
+    "title": "Will the highest temperature in Ankara be 11°C on March 25?",
+    "lots": [
+      {
+        "shares": 2572.48,
+        "price": 0.9508980827839284,
+        "usdc": 2446.1663,
+        "ts": 1774443327
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1774443329
+      },
+      {
+        "shares": 30,
+        "price": 0.99,
+        "usdc": 29.7,
+        "ts": 1774443329
+      },
+      {
+        "shares": 7,
+        "price": 0.99,
+        "usdc": 6.93,
+        "ts": 1774443329
+      },
+      {
+        "shares": 27,
+        "price": 0.99,
+        "usdc": 26.73,
+        "ts": 1774443329
+      },
+      {
+        "shares": 70.44,
+        "price": 0.99,
+        "usdc": 69.7356,
+        "ts": 1774443331
+      },
+      {
+        "shares": 70.44,
+        "price": 0.99,
+        "usdc": 69.7356,
+        "ts": 1774443333
+      },
+      {
+        "shares": 212.64,
+        "price": 0.99,
+        "usdc": 210.5136,
+        "ts": 1774443335
+      }
+    ],
+    "totalShares": 3000
+  },
+  {
+    "key": "0x0ea509e1ac7024ae59e15d8f0fda96fc7c1071d7caacba37fc8d89d89f777288-0",
+    "title": "Will the highest temperature in Sao Paulo be 30°C on March 26?",
+    "lots": [
+      {
+        "shares": 433.44,
+        "price": 0.9774621631598376,
+        "usdc": 423.6712,
+        "ts": 1774547959
+      },
+      {
+        "shares": 12,
+        "price": 0.99,
+        "usdc": 11.88,
+        "ts": 1774547963
+      },
+      {
+        "shares": 556.9,
+        "price": 0.99,
+        "usdc": 551.331,
+        "ts": 1774547971
+      },
+      {
+        "shares": 3.04,
+        "price": 0.99,
+        "usdc": 3.0096,
+        "ts": 1774547995
+      },
+      {
+        "shares": 8.57,
+        "price": 0.99,
+        "usdc": 8.4843,
+        "ts": 1774548017
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1774548031
+      }
+    ],
+    "totalShares": 1018.9499999999999
+  },
+  {
+    "key": "0xb52f16e0c822139d6842cbf009cb1cc3637c1b02f2c7050e480973e9fada8bc8-0",
+    "title": "Will the highest temperature in Wellington be 22°C on March 27?",
+    "lots": [
+      {
+        "shares": 3000,
+        "price": 0.9891326666666667,
+        "usdc": 2967.398,
+        "ts": 1774575279
+      }
+    ],
+    "totalShares": 3000
+  },
+  {
+    "key": "0xe3772068415b24ed16fe1625b25424a4cbcda51acb301e919fdc2c7157ac6e95-0",
+    "title": "Will the highest temperature in Seoul be 11°C on March 27?",
+    "lots": [
+      {
+        "shares": 5,
+        "price": 0.238,
+        "usdc": 1.19,
+        "ts": 1774580663
+      }
+    ],
+    "totalShares": 5
+  },
+  {
+    "key": "0x296a04870fb79ed669f5524c26226f9b9b32314e00cac258ac883d6fb4968558-0",
+    "title": "Will the highest temperature in New York City be between 66-67°F on March 27?",
+    "lots": [
+      {
+        "shares": 33.006832,
+        "price": 0.561000007513596,
+        "usdc": 18.516833,
+        "ts": 1774587355
+      },
+      {
+        "shares": 21.97,
+        "price": 0.561,
+        "usdc": 12.32517,
+        "ts": 1774587367
+      }
+    ],
+    "totalShares": 54.976832
+  },
+  {
+    "key": "0x9805dc4c454aca5de1d6f6e287d04a7744099eb7baeab596ceb09c3cee6bc9a8-0",
+    "title": "Will Kanye release BULLY by March 27?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.79,
+        "usdc": 79,
+        "ts": 1774587855
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0x9805dc4c454aca5de1d6f6e287d04a7744099eb7baeab596ceb09c3cee6bc9a8-1",
+    "title": "Will Kanye release BULLY by March 27?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.18,
+        "usdc": 18,
+        "ts": 1774588099
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0xfe8490e7467e7e9e80519256fb6327b65e2c5ce7ccc1cba659315effabd1716a-0",
+    "title": "Will Trump say \"Million\" or \"Billion\" or \"Trillion\" 30+ times during the FII PRIORITY Summit?",
+    "lots": [
+      {
+        "shares": 3.703702,
+        "price": 0.7300001458000671,
+        "usdc": 2.703703,
+        "ts": 1774646677
+      },
+      {
+        "shares": 20.833332,
+        "price": 0.760000032640002,
+        "usdc": 15.833333,
+        "ts": 1774646979
+      },
+      {
+        "shares": 25,
+        "price": 0.8,
+        "usdc": 20,
+        "ts": 1774647233
+      },
+      {
+        "shares": 4.761903,
+        "price": 0.790000132300049,
+        "usdc": 3.761904,
+        "ts": 1774647239
+      },
+      {
+        "shares": 20,
+        "price": 0.79,
+        "usdc": 15.8,
+        "ts": 1774647511
+      },
+      {
+        "shares": 30,
+        "price": 0.6866666666666666,
+        "usdc": 20.6,
+        "ts": 1774650045
+      },
+      {
+        "shares": 5,
+        "price": 0.69,
+        "usdc": 3.45,
+        "ts": 1774650047
+      }
+    ],
+    "totalShares": 109.298937
+  },
+  {
+    "key": "0x22e88f63154712d5983a87863741b750259fdfbe083850ab6ca1bf8b5df7f2fb-0",
+    "title": "Will Trump say \"Epic Fury\" during the FII PRIORITY Summit?",
+    "lots": [
+      {
+        "shares": 8.3,
+        "price": 0.21,
+        "usdc": 1.743,
+        "ts": 1774647321
+      },
+      {
+        "shares": 100,
+        "price": 0.211473,
+        "usdc": 21.1473,
+        "ts": 1774647337
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1774647363
+      },
+      {
+        "shares": 368,
+        "price": 0.99,
+        "usdc": 364.32,
+        "ts": 1774647373
+      },
+      {
+        "shares": 20.28,
+        "price": 0.99,
+        "usdc": 20.0772,
+        "ts": 1774647375
+      },
+      {
+        "shares": 111.72,
+        "price": 0.99,
+        "usdc": 110.6028,
+        "ts": 1774647487
+      }
+    ],
+    "totalShares": 1108.3
+  },
+  {
+    "key": "0xf42d0e5e49941ce78052005252a5fb4a3b1168ad17213b5932e6d7a524b3e7c1-0",
+    "title": "Will Trump say \"Obliterated\" or \"Obliteration\" or \"Obliterating\" during the FII PRIORITY Summit?",
+    "lots": [
+      {
+        "shares": 500,
+        "price": 0.96488,
+        "usdc": 482.44,
+        "ts": 1774647413
+      },
+      {
+        "shares": 500,
+        "price": 0.97152,
+        "usdc": 485.76,
+        "ts": 1774647413
+      },
+      {
+        "shares": 99.09,
+        "price": 0.9875779594308205,
+        "usdc": 97.8591,
+        "ts": 1774647415
+      }
+    ],
+    "totalShares": 1099.09
+  },
+  {
+    "key": "0x25c0bb0540ba2d56378b0280dae7749f24e9e44d34f287d0b877e11756e87020-0",
+    "title": "Will Trump say \"Kuwait\" during the FII PRIORITY Summit?",
+    "lots": [
+      {
+        "shares": 30.17,
+        "price": 0.9816871063970832,
+        "usdc": 29.6175,
+        "ts": 1774647551
+      }
+    ],
+    "totalShares": 30.17
+  },
+  {
+    "key": "0x7f685309c8eee64fbe6104a4f8f6006e1316b8a10ec4aef8b0c92be1d99b9c5b-0",
+    "title": "Will Trump say \"Biden\" or \"Obama\" 7+ times during the FII PRIORITY Summit?",
+    "lots": [
+      {
+        "shares": 7,
+        "price": 0.88,
+        "usdc": 6.16,
+        "ts": 1774647615
+      },
+      {
+        "shares": 100,
+        "price": 0.94,
+        "usdc": 94,
+        "ts": 1774647667
+      },
+      {
+        "shares": 10.23,
+        "price": 0.99,
+        "usdc": 10.1277,
+        "ts": 1774649111
+      },
+      {
+        "shares": 10.23,
+        "price": 0.99,
+        "usdc": 10.1277,
+        "ts": 1774649177
+      },
+      {
+        "shares": 89.77,
+        "price": 0.99,
+        "usdc": 88.8723,
+        "ts": 1774649177
+      },
+      {
+        "shares": 71,
+        "price": 0.99,
+        "usdc": 70.29,
+        "ts": 1774649993
+      },
+      {
+        "shares": 18.77,
+        "price": 0.99,
+        "usdc": 18.5823,
+        "ts": 1774652545
+      }
+    ],
+    "totalShares": 307
+  },
+  {
+    "key": "0x2ba4de5a8288cdfd3dff834ec7b72594470af042b43f651670b2180cc0edd7d8-0",
+    "title": "Will Trump say \"Hormuz\" during the FII PRIORITY Summit?",
+    "lots": [
+      {
+        "shares": 500,
+        "price": 0.97,
+        "usdc": 485,
+        "ts": 1774647761
+      },
+      {
+        "shares": 500,
+        "price": 0.96364,
+        "usdc": 481.82,
+        "ts": 1774647763
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0xf8ebff6f8df940c1d34b52d8128ed23f3d25e7e18e90b0c904a64b359ed39def-0",
+    "title": "Will Trump say \"Sleepy Joe\" during the FII PRIORITY Summit?",
+    "lots": [
+      {
+        "shares": 80,
+        "price": 0.7,
+        "usdc": 56,
+        "ts": 1774647923
+      },
+      {
+        "shares": 20,
+        "price": 0.7,
+        "usdc": 14,
+        "ts": 1774647923
+      },
+      {
+        "shares": 100,
+        "price": 0.64,
+        "usdc": 64,
+        "ts": 1774647945
+      },
+      {
+        "shares": 50,
+        "price": 0.63,
+        "usdc": 31.5,
+        "ts": 1774647947
+      },
+      {
+        "shares": 44,
+        "price": 0.63,
+        "usdc": 27.72,
+        "ts": 1774647951
+      },
+      {
+        "shares": 6,
+        "price": 0.63,
+        "usdc": 3.78,
+        "ts": 1774647951
+      },
+      {
+        "shares": 6.25,
+        "price": 0.99,
+        "usdc": 6.1875,
+        "ts": 1774649105
+      },
+      {
+        "shares": 24,
+        "price": 0.99,
+        "usdc": 23.76,
+        "ts": 1774649107
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1774649107
+      }
+    ],
+    "totalShares": 350.25
+  },
+  {
+    "key": "0xafc9daec298f5c2b55d74bb47cfe161e427c8cf373a6a58ce2b1e147f5948100-0",
+    "title": "Will Trump say \"NATO\" during the FII PRIORITY Summit?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1774648005
+      },
+      {
+        "shares": 32.91,
+        "price": 0.99,
+        "usdc": 32.5809,
+        "ts": 1774648005
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1774648007
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1774648007
+      },
+      {
+        "shares": 167,
+        "price": 0.99,
+        "usdc": 165.33,
+        "ts": 1774648009
+      }
+    ],
+    "totalShares": 499.90999999999997
+  },
+  {
+    "key": "0x3ae1805ac65a76d86741ca6d52fa887025447d683d3d456df02485c95920b14a-0",
+    "title": "Will Trump say \"Cuba\" during the FII PRIORITY Summit?",
+    "lots": [
+      {
+        "shares": 500,
+        "price": 0.97,
+        "usdc": 485,
+        "ts": 1774649061
+      },
+      {
+        "shares": 500,
+        "price": 0.9745588,
+        "usdc": 487.2794,
+        "ts": 1774649061
+      },
+      {
+        "shares": 11.12,
+        "price": 0.99,
+        "usdc": 11.0088,
+        "ts": 1774649061
+      },
+      {
+        "shares": 201,
+        "price": 0.99,
+        "usdc": 198.99,
+        "ts": 1774649063
+      },
+      {
+        "shares": 287.88,
+        "price": 0.99,
+        "usdc": 285.0012,
+        "ts": 1774649063
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1774649067
+      },
+      {
+        "shares": 48.95,
+        "price": 0.99,
+        "usdc": 48.4605,
+        "ts": 1774649067
+      },
+      {
+        "shares": 166.32,
+        "price": 0.99,
+        "usdc": 164.6568,
+        "ts": 1774649069
+      },
+      {
+        "shares": 81.73,
+        "price": 0.99,
+        "usdc": 80.9127,
+        "ts": 1774649071
+      },
+      {
+        "shares": 103,
+        "price": 0.99,
+        "usdc": 101.97,
+        "ts": 1774649071
+      }
+    ],
+    "totalShares": 2000
+  },
+  {
+    "key": "0xf17e492545ac3d4f993476a2942ded5b2b1baea2d1cf672c70faf46751402a39-0",
+    "title": "Will Trump say \"Princess\" during the FII PRIORITY Summit?",
+    "lots": [
+      {
+        "shares": 75.09,
+        "price": 0.99,
+        "usdc": 74.3391,
+        "ts": 1774649273
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1774649327
+      }
+    ],
+    "totalShares": 175.09
+  },
+  {
+    "key": "0x1fb773792c45ef9cdf9019b2d6854154d88514969f4a5b32da5a881f2eed9f44-0",
+    "title": "Will Trump say \"Hottest\" during the FII PRIORITY Summit?",
+    "lots": [
+      {
+        "shares": 83,
+        "price": 0.89,
+        "usdc": 73.87,
+        "ts": 1774649663
+      },
+      {
+        "shares": 26.54,
+        "price": 0.91,
+        "usdc": 24.1514,
+        "ts": 1774649667
+      },
+      {
+        "shares": 14.285713,
+        "price": 0.9300000637000058,
+        "usdc": 13.285714,
+        "ts": 1774649673
+      },
+      {
+        "shares": 24,
+        "price": 0.99,
+        "usdc": 23.76,
+        "ts": 1774649695
+      },
+      {
+        "shares": 75.09,
+        "price": 0.99,
+        "usdc": 74.3391,
+        "ts": 1774649695
+      }
+    ],
+    "totalShares": 222.915713
+  },
+  {
+    "key": "0x8fcf442db4f6c078155ee3096cd6666e72e7d679b32032dd32321b862d2d2d13-0",
+    "title": "Will Trump say \"AI\" or \"Artificial Intelligence\" during the FII PRIORITY Summit?",
+    "lots": [
+      {
+        "shares": 80,
+        "price": 0.98,
+        "usdc": 78.4,
+        "ts": 1774650127
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1774650129
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1774650129
+      }
+    ],
+    "totalShares": 280
+  },
+  {
+    "key": "0xa9e35bac2a44ea252fcca3f2108b56468429f2806a435f701f705c029f1d782c-0",
+    "title": "Will Trump say \"Crypto\" or \"Bitcoin\" during the FII PRIORITY Summit?",
+    "lots": [
+      {
+        "shares": 48.983684,
+        "price": 0.20300000302141424,
+        "usdc": 9.943688,
+        "ts": 1774650753
+      },
+      {
+        "shares": 10,
+        "price": 0.198,
+        "usdc": 1.98,
+        "ts": 1774650775
+      },
+      {
+        "shares": 134,
+        "price": 0.99,
+        "usdc": 132.66,
+        "ts": 1774650797
+      },
+      {
+        "shares": 9.2,
+        "price": 0.99,
+        "usdc": 9.108,
+        "ts": 1774650797
+      },
+      {
+        "shares": 68.21,
+        "price": 0.99,
+        "usdc": 67.5279,
+        "ts": 1774650801
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1774650805
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1774650805
+      },
+      {
+        "shares": 88.59,
+        "price": 0.99,
+        "usdc": 87.7041,
+        "ts": 1774650805
+      },
+      {
+        "shares": 8.31,
+        "price": 0.993,
+        "usdc": 8.25183,
+        "ts": 1774650835
+      }
+    ],
+    "totalShares": 567.2936839999999
+  },
+  {
+    "key": "0xcd215b8330a35098a1a3f6c46b6492347edb5e74c1e0a95ac4d3d54aece6c262-0",
+    "title": "Will Trump visit China by May 31?",
+    "lots": [
+      {
+        "shares": 21,
+        "price": 0.73,
+        "usdc": 15.33,
+        "ts": 1774651267
+      }
+    ],
+    "totalShares": 21
+  },
+  {
+    "key": "0x5ce47aaf2cb635ae77c9b71b52d1ca4d0679e60044fb52737923f802f16d4494-0",
+    "title": "Will the highest temperature in Seattle be between 58-59°F on March 27?",
+    "lots": [
+      {
+        "shares": 413.05,
+        "price": 0.99,
+        "usdc": 408.9195,
+        "ts": 1774652155
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1774652157
+      },
+      {
+        "shares": 16,
+        "price": 0.99,
+        "usdc": 15.84,
+        "ts": 1774652165
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1774652171
+      },
+      {
+        "shares": 14.9,
+        "price": 0.99,
+        "usdc": 14.751,
+        "ts": 1774652175
+      },
+      {
+        "shares": 50,
+        "price": 0.99,
+        "usdc": 49.5,
+        "ts": 1774652175
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1774652185
+      },
+      {
+        "shares": 12,
+        "price": 0.99,
+        "usdc": 11.88,
+        "ts": 1774652187
+      },
+      {
+        "shares": 29,
+        "price": 0.99,
+        "usdc": 28.71,
+        "ts": 1774652191
+      },
+      {
+        "shares": 8.59,
+        "price": 0.99,
+        "usdc": 8.5041,
+        "ts": 1774652191
+      },
+      {
+        "shares": 64.55,
+        "price": 0.99,
+        "usdc": 63.9045,
+        "ts": 1774652195
+      },
+      {
+        "shares": 40,
+        "price": 0.99,
+        "usdc": 39.6,
+        "ts": 1774652195
+      },
+      {
+        "shares": 18.67,
+        "price": 0.99,
+        "usdc": 18.4833,
+        "ts": 1774652197
+      },
+      {
+        "shares": 41.87,
+        "price": 0.99,
+        "usdc": 41.4513,
+        "ts": 1774652197
+      },
+      {
+        "shares": 5.01,
+        "price": 0.99,
+        "usdc": 4.9599,
+        "ts": 1774652197
+      },
+      {
+        "shares": 20.76,
+        "price": 0.99,
+        "usdc": 20.5524,
+        "ts": 1774652197
+      },
+      {
+        "shares": 3.22,
+        "price": 0.99,
+        "usdc": 3.1878,
+        "ts": 1774652201
+      },
+      {
+        "shares": 3.22,
+        "price": 0.99,
+        "usdc": 3.1878,
+        "ts": 1774652203
+      },
+      {
+        "shares": 30,
+        "price": 0.99,
+        "usdc": 29.7,
+        "ts": 1774652211
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1774652211
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1774652211
+      },
+      {
+        "shares": 12.33,
+        "price": 0.99,
+        "usdc": 12.2067,
+        "ts": 1774652211
+      },
+      {
+        "shares": 12,
+        "price": 0.99,
+        "usdc": 11.88,
+        "ts": 1774652217
+      },
+      {
+        "shares": 36.23,
+        "price": 0.99,
+        "usdc": 35.8677,
+        "ts": 1774652219
+      },
+      {
+        "shares": 2.67,
+        "price": 0.99,
+        "usdc": 2.6433,
+        "ts": 1774652219
+      },
+      {
+        "shares": 2,
+        "price": 0.99,
+        "usdc": 1.98,
+        "ts": 1774652239
+      },
+      {
+        "shares": 1951.5,
+        "price": 0.99,
+        "usdc": 1931.985,
+        "ts": 1774652245
+      },
+      {
+        "shares": 52.43,
+        "price": 0.99,
+        "usdc": 51.9057,
+        "ts": 1774652245
+      }
+    ],
+    "totalShares": 2900
+  },
+  {
+    "key": "0xcecf501010625eeb09a21ca3e4ae728fa157af60117899c08b8dcb8fa4d7e94a-0",
+    "title": "Will the highest temperature in Seoul be 12°C on March 28?",
+    "lots": [
+      {
+        "shares": 3.703702,
+        "price": 0.7300001458000671,
+        "usdc": 2.703703,
+        "ts": 1774676063
+      },
+      {
+        "shares": 6.29,
+        "price": 0.73,
+        "usdc": 4.5917,
+        "ts": 1774676075
+      }
+    ],
+    "totalShares": 9.993701999999999
+  },
+  {
+    "key": "0x82cf1ec18e0da028d1a8d3b8541c0e8849a3245e6295c3b970e4acdbe90efadb-0",
+    "title": "Will the highest temperature in Ankara be 17°C on March 28?",
+    "lots": [
+      {
+        "shares": 92.66,
+        "price": 0.83,
+        "usdc": 76.9078,
+        "ts": 1774693635
+      }
+    ],
+    "totalShares": 92.66
+  },
+  {
+    "key": "0x3f47a1ac0427d6ca60b17aac95847056a999e1fb119fd807eb772cfeeff0c8aa-0",
+    "title": "Will the highest temperature in Sao Paulo be 30°C on March 28?",
+    "lots": [
+      {
+        "shares": 20.82,
+        "price": 0.9,
+        "usdc": 18.738,
+        "ts": 1774724370
+      },
+      {
+        "shares": 20,
+        "price": 0.9,
+        "usdc": 18,
+        "ts": 1774724374
+      },
+      {
+        "shares": 12,
+        "price": 0.9,
+        "usdc": 10.8,
+        "ts": 1774724378
+      },
+      {
+        "shares": 3.75,
+        "price": 0.9,
+        "usdc": 3.375,
+        "ts": 1774724392
+      },
+      {
+        "shares": 24.6,
+        "price": 0.9,
+        "usdc": 22.14,
+        "ts": 1774724414
+      },
+      {
+        "shares": 18.14,
+        "price": 0.9,
+        "usdc": 16.326,
+        "ts": 1774724422
+      },
+      {
+        "shares": 14.6,
+        "price": 0.9,
+        "usdc": 13.14,
+        "ts": 1774724462
+      }
+    ],
+    "totalShares": 113.91
+  },
+  {
+    "key": "0xa88828bef88ab1b4a569cc52640a4e2e898362f6868802f241e079b7a197e909-0",
+    "title": "Will the highest temperature in Miami be between 84-85°F on March 28?",
+    "lots": [
+      {
+        "shares": 23.44,
+        "price": 0.9,
+        "usdc": 21.096,
+        "ts": 1774727758
+      },
+      {
+        "shares": 100,
+        "price": 0.9,
+        "usdc": 90,
+        "ts": 1774727762
+      }
+    ],
+    "totalShares": 123.44
+  },
+  {
+    "key": "0x31689d7dbf6e321f6330fc5b08b8bd56d6337c65a4ac72307163a5de0846981c-0",
+    "title": "Will the highest temperature in Atlanta be between 70-71°F on March 28?",
+    "lots": [
+      {
+        "shares": 178.01,
+        "price": 0.7069883714398068,
+        "usdc": 125.851,
+        "ts": 1774731178
+      }
+    ],
+    "totalShares": 178.01
+  },
+  {
+    "key": "0x0d0c66bf4ce03a8f000206e724c0dbfad1b1ee96e81c3050e15d73cce5efc138-0",
+    "title": "Will the highest temperature in Chicago be between 46-47°F on March 28?",
+    "lots": [
+      {
+        "shares": 35.42,
+        "price": 0.12,
+        "usdc": 4.2504,
+        "ts": 1774731278
+      },
+      {
+        "shares": 84.7,
+        "price": 0.12,
+        "usdc": 10.164,
+        "ts": 1774731294
+      },
+      {
+        "shares": 42.35,
+        "price": 0.12,
+        "usdc": 5.082,
+        "ts": 1774731304
+      },
+      {
+        "shares": 8.33,
+        "price": 0.12,
+        "usdc": 0.9996,
+        "ts": 1774731330
+      },
+      {
+        "shares": 31,
+        "price": 0.12,
+        "usdc": 3.72,
+        "ts": 1774731334
+      },
+      {
+        "shares": 5,
+        "price": 0.12,
+        "usdc": 0.6,
+        "ts": 1774731344
+      },
+      {
+        "shares": 100,
+        "price": 0.12,
+        "usdc": 12,
+        "ts": 1774731348
+      },
+      {
+        "shares": 20.83,
+        "price": 0.12,
+        "usdc": 2.4996,
+        "ts": 1774731354
+      },
+      {
+        "shares": 59,
+        "price": 0.12,
+        "usdc": 7.08,
+        "ts": 1774731392
+      }
+    ],
+    "totalShares": 386.63
+  },
+  {
+    "key": "0xe43405b1461e35f92bf316a1dfeaba65c64b733056f41675db4a489d387a7863-0",
+    "title": "Will the highest temperature in Ankara be 10°C on March 29?",
+    "lots": [
+      {
+        "shares": 215.42,
+        "price": 0.6213137127471915,
+        "usdc": 133.8434,
+        "ts": 1774733126
+      },
+      {
+        "shares": 43.54,
+        "price": 0.68,
+        "usdc": 29.6072,
+        "ts": 1774733130
+      },
+      {
+        "shares": 43.54,
+        "price": 0.68,
+        "usdc": 29.6072,
+        "ts": 1774733130
+      },
+      {
+        "shares": 20,
+        "price": 0.68,
+        "usdc": 13.6,
+        "ts": 1774733134
+      },
+      {
+        "shares": 20,
+        "price": 0.68,
+        "usdc": 13.6,
+        "ts": 1774733134
+      },
+      {
+        "shares": 100,
+        "price": 0.68,
+        "usdc": 68,
+        "ts": 1774733136
+      },
+      {
+        "shares": 21.02,
+        "price": 0.68,
+        "usdc": 14.2936,
+        "ts": 1774733138
+      },
+      {
+        "shares": 27,
+        "price": 0.68,
+        "usdc": 18.36,
+        "ts": 1774733146
+      },
+      {
+        "shares": 4.94,
+        "price": 0.68,
+        "usdc": 3.3592,
+        "ts": 1774733202
+      },
+      {
+        "shares": 4,
+        "price": 0.68,
+        "usdc": 2.72,
+        "ts": 1774733208
+      },
+      {
+        "shares": 82.34,
+        "price": 0.68,
+        "usdc": 55.9912,
+        "ts": 1774733214
+      }
+    ],
+    "totalShares": 581.8
+  },
+  {
+    "key": "0xda2a2746b95d00bb97eb54b91aa01f8affcb5da7c7b397f3a63d0baf4dd42609-0",
+    "title": "Will the highest temperature in Seoul be 16°C on March 29?",
+    "lots": [
+      {
+        "shares": 10,
+        "price": 0.25,
+        "usdc": 2.5,
+        "ts": 1774751662
+      }
+    ],
+    "totalShares": 10
+  },
+  {
+    "key": "0x808a09e181d30615b28e90590b1ea9a37c1e90fa643e99d08d899ba68981083e-0",
+    "title": "Will the highest temperature in Seoul be 17°C or higher on March 29?",
+    "lots": [
+      {
+        "shares": 10,
+        "price": 0.94,
+        "usdc": 9.4,
+        "ts": 1774753486
+      }
+    ],
+    "totalShares": 10
+  },
+  {
+    "key": "0x649386b378b36cd82b8e12350d14349dd1d945fd807b0a313f95b8346ee9568f-0",
+    "title": "Will the highest temperature in Miami be between 78-79°F on March 29?",
+    "lots": [
+      {
+        "shares": 625.76,
+        "price": 0.7366904244438762,
+        "usdc": 460.9914,
+        "ts": 1774806840
+      },
+      {
+        "shares": 14.28,
+        "price": 0.9,
+        "usdc": 12.852,
+        "ts": 1774806844
+      },
+      {
+        "shares": 21.4,
+        "price": 0.9,
+        "usdc": 19.26,
+        "ts": 1774806960
+      },
+      {
+        "shares": 40,
+        "price": 0.9,
+        "usdc": 36,
+        "ts": 1774807028
+      },
+      {
+        "shares": 15,
+        "price": 0.9,
+        "usdc": 13.5,
+        "ts": 1774807028
+      },
+      {
+        "shares": 10,
+        "price": 0.9,
+        "usdc": 9,
+        "ts": 1774807028
+      },
+      {
+        "shares": 5,
+        "price": 0.9,
+        "usdc": 4.5,
+        "ts": 1774807028
+      },
+      {
+        "shares": 45,
+        "price": 0.9,
+        "usdc": 40.5,
+        "ts": 1774807028
+      },
+      {
+        "shares": 5,
+        "price": 0.9,
+        "usdc": 4.5,
+        "ts": 1774807030
+      },
+      {
+        "shares": 5,
+        "price": 0.9,
+        "usdc": 4.5,
+        "ts": 1774807036
+      },
+      {
+        "shares": 16.13,
+        "price": 0.9,
+        "usdc": 14.517,
+        "ts": 1774807042
+      }
+    ],
+    "totalShares": 802.5699999999999
+  },
+  {
+    "key": "0xe8376f83fa2b2d74fb0ea861810df724c6b00356e69c0980df235b4e490e44b9-0",
+    "title": "Will the highest temperature in New York City be between 52-53°F on March 29?",
+    "lots": [
+      {
+        "shares": 626.59,
+        "price": 0.5183960803715348,
+        "usdc": 324.8218,
+        "ts": 1774814058
+      },
+      {
+        "shares": 5,
+        "price": 0.75,
+        "usdc": 3.75,
+        "ts": 1774814064
+      },
+      {
+        "shares": 124.18,
+        "price": 0.75,
+        "usdc": 93.135,
+        "ts": 1774814072
+      }
+    ],
+    "totalShares": 755.77
+  },
+  {
+    "key": "0xe852009a4587e78363ddfdbc2607aaced879dae5ddb4949814b39ccdbf5d425a-0",
+    "title": "Will Leavitt say \"Travel\" during the next White House Press Briefing?",
+    "lots": [
+      {
+        "shares": 356.57,
+        "price": 0.9798157444541044,
+        "usdc": 349.3729,
+        "ts": 1774891745
+      },
+      {
+        "shares": 95.66,
+        "price": 0.99,
+        "usdc": 94.7034,
+        "ts": 1774891747
+      },
+      {
+        "shares": 64.45,
+        "price": 0.99,
+        "usdc": 63.8055,
+        "ts": 1774891753
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1774891753
+      }
+    ],
+    "totalShares": 616.6800000000001
+  },
+  {
+    "key": "0x61c960e76f17c6b4d291a4c7afd5939545c7e8dd28fc4250ca8d0edf7fccd8e5-0",
+    "title": "Will Leavitt say \"Strait of Hormuz\" during the next White House Press Briefing?",
+    "lots": [
+      {
+        "shares": 500,
+        "price": 0.8022056,
+        "usdc": 401.1028,
+        "ts": 1774892371
+      },
+      {
+        "shares": 142.65,
+        "price": 0.99,
+        "usdc": 141.2235,
+        "ts": 1774892371
+      },
+      {
+        "shares": 500,
+        "price": 0.9816246,
+        "usdc": 490.8123,
+        "ts": 1774892371
+      },
+      {
+        "shares": 500,
+        "price": 0.9432454,
+        "usdc": 471.6227,
+        "ts": 1774892371
+      },
+      {
+        "shares": 107.27,
+        "price": 0.99,
+        "usdc": 106.1973,
+        "ts": 1774892377
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1774892399
+      }
+    ],
+    "totalShares": 1769.92
+  },
+  {
+    "key": "0x2485494aa057eedb825431d0e4d03535c9b1b1fe3b3b9708c3c27d67f21af843-0",
+    "title": "Will Trump say \"China\" during executive order signing today?",
+    "lots": [
+      {
+        "shares": 20.408162,
+        "price": 0.5100000186200011,
+        "usdc": 10.408163,
+        "ts": 1774991155
+      },
+      {
+        "shares": 79.59,
+        "price": 0.51,
+        "usdc": 40.5909,
+        "ts": 1774991453
+      },
+      {
+        "shares": 103.34,
+        "price": 0.99,
+        "usdc": 102.3066,
+        "ts": 1774994105
+      },
+      {
+        "shares": 141.54,
+        "price": 0.99,
+        "usdc": 140.1246,
+        "ts": 1774994109
+      },
+      {
+        "shares": 600,
+        "price": 0.99,
+        "usdc": 594,
+        "ts": 1774994261
+      },
+      {
+        "shares": 355.12,
+        "price": 0.99,
+        "usdc": 351.5688,
+        "ts": 1774994261
+      }
+    ],
+    "totalShares": 1299.9981619999999
+  },
+  {
+    "key": "0xb26807b0750748af81f827499633fc384eec9235e8a232e65c7b3dcfb5af795b-0",
+    "title": "Will Trump say \"Ballroom\" during executive order signing today?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.51,
+        "usdc": 51,
+        "ts": 1774991771
+      },
+      {
+        "shares": 100,
+        "price": 0.41,
+        "usdc": 41,
+        "ts": 1774993161
+      },
+      {
+        "shares": 100,
+        "price": 0.46,
+        "usdc": 46,
+        "ts": 1774993193
+      },
+      {
+        "shares": 305,
+        "price": 0.9801639344262295,
+        "usdc": 298.95,
+        "ts": 1774993597
+      },
+      {
+        "shares": 600,
+        "price": 0.98,
+        "usdc": 588,
+        "ts": 1774993597
+      },
+      {
+        "shares": 600,
+        "price": 0.98,
+        "usdc": 588,
+        "ts": 1774993597
+      },
+      {
+        "shares": 600,
+        "price": 0.98,
+        "usdc": 588,
+        "ts": 1774993597
+      },
+      {
+        "shares": 2.22,
+        "price": 0.99,
+        "usdc": 2.1978,
+        "ts": 1774993603
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1774993619
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1774993637
+      }
+    ],
+    "totalShares": 2512.22
+  },
+  {
+    "key": "0x23e7246064ce84d49ff96d395cef6da8d0430af27c49e75bf856fba43970d066-0",
+    "title": "Will Trump say \"Chicago\" during executive order signing today?",
+    "lots": [
+      {
+        "shares": 103.34,
+        "price": 0.99,
+        "usdc": 102.3066,
+        "ts": 1774993269
+      },
+      {
+        "shares": 360,
+        "price": 0.99,
+        "usdc": 356.4,
+        "ts": 1774993271
+      },
+      {
+        "shares": 36.66,
+        "price": 0.99,
+        "usdc": 36.2934,
+        "ts": 1774993313
+      }
+    ],
+    "totalShares": 500
+  },
+  {
+    "key": "0xcb652f492cc8610d7bb94caa61b632f22bdd59e57d13ed897a254b1db110f194-0",
+    "title": "Will Trump say \"Elon\" or \"Musk\" during executive order signing today?",
+    "lots": [
+      {
+        "shares": 103.34,
+        "price": 0.99,
+        "usdc": 102.3066,
+        "ts": 1774993545
+      },
+      {
+        "shares": 155.99,
+        "price": 0.99,
+        "usdc": 154.4301,
+        "ts": 1774993549
+      },
+      {
+        "shares": 496.66,
+        "price": 0.99,
+        "usdc": 491.6934,
+        "ts": 1774993549
+      }
+    ],
+    "totalShares": 755.99
+  },
+  {
+    "key": "0xd29b2d24ce716adb3009cd51288eb5257be29306e93f061097ccae3ea5ee6aec-0",
+    "title": "Will Trump say \"Nuclear\" 4+ times during executive order signing today?",
+    "lots": [
+      {
+        "shares": 60,
+        "price": 0.4,
+        "usdc": 24,
+        "ts": 1774994053
+      },
+      {
+        "shares": 80,
+        "price": 0.52,
+        "usdc": 41.6,
+        "ts": 1774994071
+      },
+      {
+        "shares": 40,
+        "price": 0.56,
+        "usdc": 22.4,
+        "ts": 1774994187
+      },
+      {
+        "shares": 79.59,
+        "price": 0.98,
+        "usdc": 77.9982,
+        "ts": 1774994191
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1774994191
+      }
+    ],
+    "totalShares": 264.59000000000003
+  },
+  {
+    "key": "0x26a25954cad7459b58c012e2bbb1d7f10a3299c1c55f12c53071f878449d56df-0",
+    "title": "Will Trump say \"Oil\" during executive order signing today?",
+    "lots": [
+      {
+        "shares": 201.09,
+        "price": 0.99,
+        "usdc": 199.0791,
+        "ts": 1774994089
+      },
+      {
+        "shares": 57,
+        "price": 0.99,
+        "usdc": 56.43,
+        "ts": 1774994091
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1774994093
+      },
+      {
+        "shares": 7,
+        "price": 0.99,
+        "usdc": 6.93,
+        "ts": 1774994093
+      },
+      {
+        "shares": 3,
+        "price": 0.99,
+        "usdc": 2.97,
+        "ts": 1774994095
+      },
+      {
+        "shares": 14.92,
+        "price": 0.99,
+        "usdc": 14.7708,
+        "ts": 1774994199
+      },
+      {
+        "shares": 0.47,
+        "price": 0.99,
+        "usdc": 0.4653,
+        "ts": 1774994201
+      }
+    ],
+    "totalShares": 383.4800000000001
+  },
+  {
+    "key": "0x4ddd023d95eeeaebc9d7cfee86fb1dc5d3d52cfe604a5072c5303c17374cfac0-0",
+    "title": "Will Trump say \"Strait\" or \"Hormuz\" during executive order signing today?",
+    "lots": [
+      {
+        "shares": 187.73,
+        "price": 0.9750316944548021,
+        "usdc": 183.0427,
+        "ts": 1774994091
+      }
+    ],
+    "totalShares": 187.73
+  },
+  {
+    "key": "0x0d70d03dff960b8e249bbee924f44c9caaf9c4922885e3cc31fac0e09246028c-0",
+    "title": "Will Trump say \"Biden\" or \"Obama\" 4+ times during executive order signing today?",
+    "lots": [
+      {
+        "shares": 600,
+        "price": 0.9614933333333333,
+        "usdc": 576.896,
+        "ts": 1774994751
+      },
+      {
+        "shares": 600,
+        "price": 0.9542666666666667,
+        "usdc": 572.56,
+        "ts": 1774994751
+      },
+      {
+        "shares": 37.7,
+        "price": 0.9813262599469496,
+        "usdc": 36.996,
+        "ts": 1774994755
+      },
+      {
+        "shares": 2.93,
+        "price": 0.99,
+        "usdc": 2.9007,
+        "ts": 1774994885
+      },
+      {
+        "shares": 4.82,
+        "price": 0.99,
+        "usdc": 4.7718,
+        "ts": 1774994897
+      },
+      {
+        "shares": 238,
+        "price": 0.99,
+        "usdc": 235.62,
+        "ts": 1774995059
+      }
+    ],
+    "totalShares": 1483.45
+  },
+  {
+    "key": "0xd43693a10580a93ffb2d672ae749955cfc673214546b4be94ce309ececb1a7ae-0",
+    "title": "Will Trump say \"White House Faith Office\" during the Easter Lunch on Wednesday?",
+    "lots": [
+      {
+        "shares": 2.199391,
+        "price": 0.34000002728027895,
+        "usdc": 0.747793,
+        "ts": 1775012933
+      },
+      {
+        "shares": 97.8,
+        "price": 0.34,
+        "usdc": 33.252,
+        "ts": 1775015861
+      }
+    ],
+    "totalShares": 99.999391
+  },
+  {
+    "key": "0xf9f1430f3ad13eb2a76b1286ad6374ff5405409e49de9ec7d8518e8181d31e70-0",
+    "title": "Will Trump say \"War\" during the Easter Lunch on Wednesday?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.38,
+        "usdc": 38,
+        "ts": 1775015741
+      },
+      {
+        "shares": 100,
+        "price": 0.35,
+        "usdc": 35,
+        "ts": 1775015875
+      }
+    ],
+    "totalShares": 200
+  },
+  {
+    "key": "0x5028a2c81490f748a94a29c6fef74db709e7165e289699f37c88cd10c3510d51-0",
+    "title": "Will Trump say \"Resurrection\" or \"Resurrected\" or \"Resurrect\" during the Easter Lunch on Wednesday?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.5,
+        "usdc": 50,
+        "ts": 1775015805
+      },
+      {
+        "shares": 100,
+        "price": 0.51,
+        "usdc": 51,
+        "ts": 1775015805
+      }
+    ],
+    "totalShares": 200
+  },
+  {
+    "key": "0xd488b21473842a7c34d37308f3c9eab10cd5087ec551ea8a43c7ea68ae872fd3-0",
+    "title": "Will Trump say \"Military\" during the Easter Lunch on Wednesday?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.33,
+        "usdc": 33,
+        "ts": 1775015813
+      },
+      {
+        "shares": 100,
+        "price": 0.57,
+        "usdc": 57,
+        "ts": 1775015813
+      }
+    ],
+    "totalShares": 200
+  },
+  {
+    "key": "0xbd937b8e260dfeb9272ad26649bc37c2ff4e504701707a7bff01c3295c26ec5f-0",
+    "title": "Will Trump say \"Holy Week\" during the Easter Lunch on Wednesday?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.34,
+        "usdc": 34,
+        "ts": 1775016237
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0x4ddfc2adfc318eba741d6136dd74c4dae7e4583cae24673c7295652e97821757-0",
+    "title": "Will the highest temperature in Toronto be 10°C on April 1?",
+    "lots": [
+      {
+        "shares": 0.004369999999809693,
+        "price": 0.9,
+        "usdc": 56.25,
+        "ts": 1775018107
+      }
+    ],
+    "totalShares": 0.004369999999809693
+  },
+  {
+    "key": "0x959c88f990077233716e9e5bd068f2a457d515000c0fcbe57102154258a2ac74-0",
+    "title": "Will Trump say \"Ceasefire\" or \"Peace Deal\" during Address to the Nation?",
+    "lots": [
+      {
+        "shares": 500,
+        "price": 0.72,
+        "usdc": 360,
+        "ts": 1775056453
+      },
+      {
+        "shares": 100,
+        "price": 0.73,
+        "usdc": 73,
+        "ts": 1775062345
+      }
+    ],
+    "totalShares": 600
+  },
+  {
+    "key": "0x6d0e09d0f04572d9b1adad84703458b0297bc5603b69dccbde93147ee4443246-0",
+    "title": "US forces enter Iran by April 30?",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.82,
+        "usdc": 410,
+        "ts": 1775228157
+      },
+      {
+        "shares": 500,
+        "price": 0.8,
+        "usdc": 400,
+        "ts": 1775228791
+      },
+      {
+        "shares": 222.75,
+        "price": 0.8,
+        "usdc": 178.2,
+        "ts": 1775229221
+      },
+      {
+        "shares": 7.99,
+        "price": 0.8,
+        "usdc": 6.392,
+        "ts": 1775229223
+      },
+      {
+        "shares": 500,
+        "price": 0.85,
+        "usdc": 425,
+        "ts": 1775229835
+      },
+      {
+        "shares": 500,
+        "price": 0.86,
+        "usdc": 430,
+        "ts": 1775229867
+      },
+      {
+        "shares": 71.42857,
+        "price": 0.8600000112000002,
+        "usdc": 61.428571,
+        "ts": 1775229889
+      },
+      {
+        "shares": 0.3,
+        "price": 0.86,
+        "usdc": 0.258,
+        "ts": 1775229889
+      },
+      {
+        "shares": 28.27,
+        "price": 0.86,
+        "usdc": 24.3122,
+        "ts": 1775229897
+      },
+      {
+        "shares": 400,
+        "price": 0.86,
+        "usdc": 344,
+        "ts": 1775229899
+      },
+      {
+        "shares": 133.34,
+        "price": 0.85,
+        "usdc": 113.339,
+        "ts": 1775229953
+      },
+      {
+        "shares": 3.06,
+        "price": 0.85,
+        "usdc": 2.601,
+        "ts": 1775229957
+      },
+      {
+        "shares": 20,
+        "price": 0.85,
+        "usdc": 17,
+        "ts": 1775229957
+      },
+      {
+        "shares": 66.666665,
+        "price": 0.8500000112500002,
+        "usdc": 56.666666,
+        "ts": 1775229965
+      },
+      {
+        "shares": 15.98,
+        "price": 0.85,
+        "usdc": 13.583,
+        "ts": 1775229967
+      },
+      {
+        "shares": 5.54,
+        "price": 0.85,
+        "usdc": 4.709,
+        "ts": 1775229967
+      },
+      {
+        "shares": 40.52,
+        "price": 0.85,
+        "usdc": 34.442,
+        "ts": 1775229967
+      },
+      {
+        "shares": 8.53,
+        "price": 0.85,
+        "usdc": 7.2505,
+        "ts": 1775229967
+      },
+      {
+        "shares": 11.03,
+        "price": 0.85,
+        "usdc": 9.3755,
+        "ts": 1775229967
+      },
+      {
+        "shares": 27.82,
+        "price": 0.85,
+        "usdc": 23.647,
+        "ts": 1775229967
+      },
+      {
+        "shares": 7.19,
+        "price": 0.85,
+        "usdc": 6.1115,
+        "ts": 1775229967
+      },
+      {
+        "shares": 7.39,
+        "price": 0.85,
+        "usdc": 6.2815,
+        "ts": 1775229967
+      },
+      {
+        "shares": 37.93,
+        "price": 0.85,
+        "usdc": 32.2405,
+        "ts": 1775229967
+      },
+      {
+        "shares": 2.78,
+        "price": 0.85,
+        "usdc": 2.363,
+        "ts": 1775229967
+      },
+      {
+        "shares": 52.78,
+        "price": 0.85,
+        "usdc": 44.863,
+        "ts": 1775229969
+      },
+      {
+        "shares": 59.44,
+        "price": 0.85,
+        "usdc": 50.524,
+        "ts": 1775229969
+      },
+      {
+        "shares": 3.41,
+        "price": 0.77,
+        "usdc": 2.6257,
+        "ts": 1775247199
+      },
+      {
+        "shares": 500,
+        "price": 0.81,
+        "usdc": 405,
+        "ts": 1775251945
+      }
+    ],
+    "totalShares": 3434.145235000001
+  },
+  {
+    "key": "0x25f7f252885abdb0547048d1182a7f12f4328f77262dd2a6ad6eeacb898ba784-0",
+    "title": "Will Trump say \"Peace Through Strength\" during Address to the Nation?",
+    "lots": [
+      {
+        "shares": 30,
+        "price": 0.3,
+        "usdc": 9,
+        "ts": 1775071465
+      }
+    ],
+    "totalShares": 30
+  },
+  {
+    "key": "0xc19accb36b88d70eb288963cd3871509b215f60db540f501788e1b4e53716b22-0",
+    "title": "Will the highest temperature in Atlanta be between 84-85°F on April 1?",
+    "lots": [
+      {
+        "shares": 0.004000000000008441,
+        "price": 0.9,
+        "usdc": 18.918,
+        "ts": 1775073219
+      }
+    ],
+    "totalShares": 0.004000000000008441
+  },
+  {
+    "key": "0x60abb89cef025820e9a7e214a2e8d4966ac9099e52aec35b863f4f7be76429b6-0",
+    "title": "Will Trump say \"Bibi\" or \"Netanyahu\" during Address to the Nation?",
+    "lots": [
+      {
+        "shares": 314.41,
+        "price": 0.2,
+        "usdc": 62.882,
+        "ts": 1775090489
+      },
+      {
+        "shares": 185.59,
+        "price": 0.2,
+        "usdc": 37.118,
+        "ts": 1775090581
+      }
+    ],
+    "totalShares": 500
+  },
+  {
+    "key": "0x60b6148de1e78ff5decc780e67f075e225bb9c3e4fa7bc340ecc4f709ac904e5-0",
+    "title": "Will Trump say \"Nuclear\" during Address to the Nation?",
+    "lots": [
+      {
+        "shares": 0.004633000000012544,
+        "price": 0.959,
+        "usdc": 655.97518,
+        "ts": 1775091481
+      }
+    ],
+    "totalShares": 0.004633000000012544
+  },
+  {
+    "key": "0xcca0eacd85ed4ae81e43c987b7716c92a5ce6bb35710e4b367e1308a652c4935-0",
+    "title": "Will Trump say \"Proxy\" or \"Hezbollah\" during Address to the Nation?",
+    "lots": [
+      {
+        "shares": 0.009350999999968579,
+        "price": 0.99,
+        "usdc": 35.5905,
+        "ts": 1775091977
+      }
+    ],
+    "totalShares": 0.009350999999968579
+  },
+  {
+    "key": "0x6fa7cc7efc8cf22bebd0771f38e19785ee53f562216cfa065500ab5e4e94d38d-0",
+    "title": "Will Trump say \"Obama\" during Address to the Nation?",
+    "lots": [
+      {
+        "shares": 10,
+        "price": 0.96,
+        "usdc": 9.6,
+        "ts": 1775092049
+      },
+      {
+        "shares": 337.13,
+        "price": 0.99,
+        "usdc": 333.7587,
+        "ts": 1775092057
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1775092065
+      },
+      {
+        "shares": 3.13,
+        "price": 0.99,
+        "usdc": 3.0987,
+        "ts": 1775092083
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1775092113
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1775092113
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1775092113
+      },
+      {
+        "shares": 59.74,
+        "price": 0.99,
+        "usdc": 59.1426,
+        "ts": 1775092113
+      }
+    ],
+    "totalShares": 2010
+  },
+  {
+    "key": "0x044f2bc7ad15a4f257818c06d52809f657225b33c5f383ba5f69148763284fae-0",
+    "title": "Will Trump say \"Hormuz\" during Address to the Nation?",
+    "lots": [
+      {
+        "shares": 423.62689800000015,
+        "price": 0.98,
+        "usdc": 448.8792,
+        "ts": 1775092475
+      },
+      {
+        "shares": 10.84,
+        "price": 0.99,
+        "usdc": 10.7316,
+        "ts": 1775092475
+      },
+      {
+        "shares": 20.98,
+        "price": 0.98,
+        "usdc": 20.5604,
+        "ts": 1775092475
+      },
+      {
+        "shares": 20.98,
+        "price": 0.98,
+        "usdc": 20.5604,
+        "ts": 1775092475
+      },
+      {
+        "shares": 214.133332,
+        "price": 0.9970000046513077,
+        "usdc": 213.490933,
+        "ts": 1775092477
+      }
+    ],
+    "totalShares": 690.5602300000002
+  },
+  {
+    "key": "0x044f2bc7ad15a4f257818c06d52809f657225b33c5f383ba5f69148763284fae-1",
+    "title": "Will Trump say \"Hormuz\" during Address to the Nation?",
+    "lots": [
+      {
+        "shares": 131.24,
+        "price": 0.23653390734532154,
+        "usdc": 31.04271,
+        "ts": 1775092423
+      },
+      {
+        "shares": 59.29,
+        "price": 0.3752285376960702,
+        "usdc": 22.2473,
+        "ts": 1775092451
+      },
+      {
+        "shares": 500,
+        "price": 0.122,
+        "usdc": 61,
+        "ts": 1775092469
+      }
+    ],
+    "totalShares": 690.53
+  },
+  {
+    "key": "0x7a01245e562fb7e2d155a1bb2e58450b5f0bbc513c98f60dd847935da2e1eabc-0",
+    "title": "Will the highest temperature in Ankara be 17°C on April 2?",
+    "lots": [
+      {
+        "shares": 598.8069,
+        "price": 0.5334244262856583,
+        "usdc": 327.04785,
+        "ts": 1775134523
+      },
+      {
+        "shares": 13.39,
+        "price": 0.9,
+        "usdc": 12.051,
+        "ts": 1775134525
+      },
+      {
+        "shares": 5,
+        "price": 0.9,
+        "usdc": 4.5,
+        "ts": 1775134525
+      },
+      {
+        "shares": 21,
+        "price": 0.9,
+        "usdc": 18.9,
+        "ts": 1775134531
+      },
+      {
+        "shares": 166.67,
+        "price": 0.9,
+        "usdc": 150.003,
+        "ts": 1775134535
+      },
+      {
+        "shares": 71.42,
+        "price": 0.9,
+        "usdc": 64.278,
+        "ts": 1775134545
+      },
+      {
+        "shares": 10.05,
+        "price": 0.9,
+        "usdc": 9.045,
+        "ts": 1775134547
+      },
+      {
+        "shares": 13.69,
+        "price": 0.9,
+        "usdc": 12.321,
+        "ts": 1775134549
+      },
+      {
+        "shares": 6.67,
+        "price": 0.9,
+        "usdc": 6.003,
+        "ts": 1775134557
+      },
+      {
+        "shares": 200,
+        "price": 0.9,
+        "usdc": 180,
+        "ts": 1775134565
+      },
+      {
+        "shares": 79.89,
+        "price": 0.9,
+        "usdc": 71.901,
+        "ts": 1775134579
+      },
+      {
+        "shares": 100,
+        "price": 0.9,
+        "usdc": 90,
+        "ts": 1775134585
+      },
+      {
+        "shares": 9.1,
+        "price": 0.9,
+        "usdc": 8.19,
+        "ts": 1775134595
+      },
+      {
+        "shares": 10.9,
+        "price": 0.9,
+        "usdc": 9.81,
+        "ts": 1775134605
+      }
+    ],
+    "totalShares": 1306.5869
+  },
+  {
+    "key": "0x296551868c5604b169b00c89700c3249b343bcfb1abf347cb5fd6b5b4926a743-0",
+    "title": "Will the highest temperature in Ankara be 18°C on April 2?",
+    "lots": [
+      {
+        "shares": 19.01,
+        "price": 0.9,
+        "usdc": 17.109,
+        "ts": 1775138165
+      },
+      {
+        "shares": 282.03,
+        "price": 0.9,
+        "usdc": 253.827,
+        "ts": 1775138199
+      }
+    ],
+    "totalShares": 301.03999999999996
+  },
+  {
+    "key": "0xc2ec25d4716bc372a7b0eff179a6b28d5a3e1eb4188d5f93edb760a8cc235e9f-0",
+    "title": "Will the highest temperature in Seoul be 17°C on April 3?",
+    "lots": [
+      {
+        "shares": 9.725,
+        "price": 0.45,
+        "usdc": 4.5,
+        "ts": 1775189073
+      }
+    ],
+    "totalShares": 9.725
+  },
+  {
+    "key": "0x2d7ffef1fea187a7a82d1584e25f1a0992fe58409010801a21f3d98d9ffe5984-0",
+    "title": "Will the highest temperature in Seoul be 19°C or higher on April 3?",
+    "lots": [
+      {
+        "shares": 9.75,
+        "price": 0.5,
+        "usdc": 5,
+        "ts": 1775194463
+      }
+    ],
+    "totalShares": 9.75
+  },
+  {
+    "key": "0x1ce8317dfee2f06f341b0e605f5c000c5ef784d6df38b3a1622dd43a5ae58bf5-0",
+    "title": "Will the highest temperature in Ankara be 12°C on April 3?",
+    "lots": [
+      {
+        "shares": 755.7932,
+        "price": 0.5229818148942216,
+        "usdc": 404.9239,
+        "ts": 1775204745
+      },
+      {
+        "shares": 20,
+        "price": 0.7,
+        "usdc": 14,
+        "ts": 1775204749
+      },
+      {
+        "shares": 50,
+        "price": 0.7,
+        "usdc": 35,
+        "ts": 1775204753
+      },
+      {
+        "shares": 19.79,
+        "price": 0.7,
+        "usdc": 13.853,
+        "ts": 1775204753
+      },
+      {
+        "shares": 166.67,
+        "price": 0.7,
+        "usdc": 116.669,
+        "ts": 1775204753
+      },
+      {
+        "shares": 20,
+        "price": 0.7,
+        "usdc": 14,
+        "ts": 1775204755
+      },
+      {
+        "shares": 37.4,
+        "price": 0.7,
+        "usdc": 26.18,
+        "ts": 1775204761
+      },
+      {
+        "shares": 50,
+        "price": 0.7,
+        "usdc": 35,
+        "ts": 1775204761
+      },
+      {
+        "shares": 10,
+        "price": 0.7,
+        "usdc": 7,
+        "ts": 1775204763
+      },
+      {
+        "shares": 28.21,
+        "price": 0.7,
+        "usdc": 19.747,
+        "ts": 1775204769
+      },
+      {
+        "shares": 20,
+        "price": 0.7,
+        "usdc": 14,
+        "ts": 1775204769
+      },
+      {
+        "shares": 28,
+        "price": 0.7,
+        "usdc": 19.6,
+        "ts": 1775204773
+      },
+      {
+        "shares": 1775.67,
+        "price": 0.7,
+        "usdc": 1242.969,
+        "ts": 1775204785
+      }
+    ],
+    "totalShares": 2981.5332
+  },
+  {
+    "key": "0x5db999fad322cea2914535aae5517060c3f80ad6d8c0231cde2124a434d16846-1",
+    "title": "Will the U.S. invade Iran before 2027?",
+    "lots": [
+      {
+        "shares": 0.011863000000005286,
+        "price": 0.44,
+        "usdc": 176,
+        "ts": 1775218087
+      }
+    ],
+    "totalShares": 0.011863000000005286
+  },
+  {
+    "key": "0xfaf6be89099b4fcf19a33e0ab3b5f032c663ebdab03ddfde284cd615869360d8-0",
+    "title": "Will the highest temperature in London be 16°C on April 3?",
+    "lots": [
+      {
+        "shares": 453.397236,
+        "price": 0.7140000010939634,
+        "usdc": 323.725627,
+        "ts": 1775226383
+      }
+    ],
+    "totalShares": 453.397236
+  },
+  {
+    "key": "0x6c3712de41368f3d6ef77e3830c4520d43a0c4793eff21f7d34a79c45bb57e5e-0",
+    "title": "Will the highest temperature in Seoul be 17°C or higher on April 4?",
+    "lots": [
+      {
+        "shares": 9.8845,
+        "price": 0.769,
+        "usdc": 7.69,
+        "ts": 1775271867
+      }
+    ],
+    "totalShares": 9.8845
+  },
+  {
+    "key": "0x8f3cb84572c55b7cb2e35478f73076d0401acd3790ef2060996ce8686b41a91a-0",
+    "title": "Will the highest temperature in Atlanta be between 82-83°F on April 4?",
+    "lots": [
+      {
+        "shares": 177.11898,
+        "price": 0.45720971108425795,
+        "usdc": 83.2396,
+        "ts": 1775325177
+      }
+    ],
+    "totalShares": 177.11898
+  },
+  {
+    "key": "0x3812e00c29adb25dcaf61a62fe28f34bf568ca71df08479880eff3247d822915-0",
+    "title": "Will the highest temperature in Toronto be 9°C on April 5?",
+    "lots": [
+      {
+        "shares": 60.4958,
+        "price": 0.4582824059183017,
+        "usdc": 28.496,
+        "ts": 1775370781
+      }
+    ],
+    "totalShares": 60.4958
+  },
+  {
+    "key": "0x18b77eadfa42c22bd77fa0ff9fa1aff5fc94884296938d1f4cc895ee3b1c8574-0",
+    "title": "Will Trump say \"Easter\" or \"Egg\" during Monday news conference?",
+    "lots": [
+      {
+        "shares": 30.75,
+        "price": 0.8954471544715448,
+        "usdc": 27.535,
+        "ts": 1775495347
+      },
+      {
+        "shares": 50,
+        "price": 0.99,
+        "usdc": 49.5,
+        "ts": 1775495349
+      },
+      {
+        "shares": 162.08,
+        "price": 0.99,
+        "usdc": 160.4592,
+        "ts": 1775495349
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1775495349
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1775495349
+      },
+      {
+        "shares": 0.29,
+        "price": 0.99,
+        "usdc": 0.2871,
+        "ts": 1775495351
+      },
+      {
+        "shares": 0.83,
+        "price": 0.99,
+        "usdc": 0.8217,
+        "ts": 1775495351
+      },
+      {
+        "shares": 0.91,
+        "price": 0.99,
+        "usdc": 0.9009,
+        "ts": 1775495351
+      },
+      {
+        "shares": 81.78,
+        "price": 0.99,
+        "usdc": 80.9622,
+        "ts": 1775495385
+      },
+      {
+        "shares": 3.96,
+        "price": 0.99,
+        "usdc": 3.9204,
+        "ts": 1775495405
+      },
+      {
+        "shares": 3.12,
+        "price": 0.99,
+        "usdc": 3.0888,
+        "ts": 1775495521
+      },
+      {
+        "shares": 73,
+        "price": 0.99,
+        "usdc": 72.27,
+        "ts": 1775495573
+      },
+      {
+        "shares": 30.76,
+        "price": 0.99,
+        "usdc": 30.4524,
+        "ts": 1775495585
+      },
+      {
+        "shares": 93.27,
+        "price": 0.99,
+        "usdc": 92.3373,
+        "ts": 1775495673
+      }
+    ],
+    "totalShares": 1530.7499999999998
+  },
+  {
+    "key": "0x2b607b8163fc863c3a41a24c9d0d90e28ff3c9afb961d3c3f3019b38a6a80773-0",
+    "title": "Will Trump say \"Caine\" during Monday news conference?",
+    "lots": [
+      {
+        "shares": 255,
+        "price": 0.981764705882353,
+        "usdc": 250.35,
+        "ts": 1775495747
+      },
+      {
+        "shares": 162.4,
+        "price": 0.99,
+        "usdc": 160.776,
+        "ts": 1775496469
+      }
+    ],
+    "totalShares": 417.4
+  },
+  {
+    "key": "0x580d59c00fafaa7b842d356fbb8e7cefaefd50fae6289657ffdee6267b2f33ab-0",
+    "title": "Will Trump say \"Obama\" during Monday news conference?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.63,
+        "usdc": 63,
+        "ts": 1775496387
+      },
+      {
+        "shares": 131.03,
+        "price": 0.9871342440662444,
+        "usdc": 129.3442,
+        "ts": 1775498743
+      }
+    ],
+    "totalShares": 231.03
+  },
+  {
+    "key": "0xbc479a0b84cd967d284ed1d4b2d1896839011668ba486d4c5cf03bd5aed12cc2-0",
+    "title": "Will Trump say \"New Regime\" or \"Regime Change\" during Monday news conference?",
+    "lots": [
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1775498083
+      },
+      {
+        "shares": 47.82,
+        "price": 0.99,
+        "usdc": 47.3418,
+        "ts": 1775498085
+      },
+      {
+        "shares": 2.04,
+        "price": 0.99,
+        "usdc": 2.0196,
+        "ts": 1775498085
+      },
+      {
+        "shares": 39.97,
+        "price": 0.99,
+        "usdc": 39.5703,
+        "ts": 1775498085
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1775498093
+      },
+      {
+        "shares": 4.27,
+        "price": 0.99,
+        "usdc": 4.2273,
+        "ts": 1775498105
+      },
+      {
+        "shares": 6,
+        "price": 0.99,
+        "usdc": 5.94,
+        "ts": 1775498271
+      },
+      {
+        "shares": 35.95,
+        "price": 0.99,
+        "usdc": 35.5905,
+        "ts": 1775498311
+      }
+    ],
+    "totalShares": 241.05
+  },
+  {
+    "key": "0x25243cd22225e9336707ddb006d472c47d8a1e156f4bb36a8b3631aa631dc0b5-0",
+    "title": "Will Trump say \"NATO\" during Monday news conference?",
+    "lots": [
+      {
+        "shares": 31.89,
+        "price": 0.49,
+        "usdc": 15.6261,
+        "ts": 1775499007
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1775499401
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1775499401
+      }
+    ],
+    "totalShares": 1031.8899999999999
+  },
+  {
+    "key": "0x3d9912c40c93337ff968bc5c6597e6a535d3a91f386af261e326d73946e04ba0-0",
+    "title": "Will Trump say \"Bridge\" during Monday news conference?",
+    "lots": [
+      {
+        "shares": 2.1,
+        "price": 0.99,
+        "usdc": 2.079,
+        "ts": 1775499263
+      },
+      {
+        "shares": 128.94,
+        "price": 0.99,
+        "usdc": 127.6506,
+        "ts": 1775499263
+      },
+      {
+        "shares": 30.81,
+        "price": 0.99,
+        "usdc": 30.5019,
+        "ts": 1775499283
+      },
+      {
+        "shares": 1.26,
+        "price": 0.99,
+        "usdc": 1.2474,
+        "ts": 1775499375
+      },
+      {
+        "shares": 1.12,
+        "price": 0.99,
+        "usdc": 1.1088,
+        "ts": 1775499479
+      }
+    ],
+    "totalShares": 164.23
+  },
+  {
+    "key": "0x3108051cf3f96ff46a1d30cdacde840eff0feb5ed656077b51bffde0dce013b2-0",
+    "title": "Will Trump say \"Venezuela\" during Monday news conference?",
+    "lots": [
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1775499519
+      }
+    ],
+    "totalShares": 500
+  },
+  {
+    "key": "0x8d8b7e823e5688bf012d77a7220f46faf832ce3176d058e6bf1e6312141cf3e3-0",
+    "title": "Will Trump say \"Biden\" during Monday news conference?",
+    "lots": [
+      {
+        "shares": 419.68,
+        "price": 0.99,
+        "usdc": 415.4832,
+        "ts": 1775500205
+      },
+      {
+        "shares": 51.39,
+        "price": 0.99,
+        "usdc": 50.8761,
+        "ts": 1775500207
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1775505843
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1775505843
+      },
+      {
+        "shares": 28.93,
+        "price": 0.99,
+        "usdc": 28.6407,
+        "ts": 1775505843
+      }
+    ],
+    "totalShares": 1500
+  },
+  {
+    "key": "0x6a3abf455e43e4260dd9545aeb69d544d458728833f7f137440e9f62d04cf256-0",
+    "title": "Will the highest temperature in New York City be between 54-55°F on April 6?",
+    "lots": [
+      {
+        "shares": 298.931,
+        "price": 0.5405281736174663,
+        "usdc": 165.38,
+        "ts": 1775505215
+      },
+      {
+        "shares": 1.99,
+        "price": 0.82,
+        "usdc": 1.6318,
+        "ts": 1775505219
+      }
+    ],
+    "totalShares": 300.921
+  },
+  {
+    "key": "0x38ecd5f6b4864f7a712f0abe76dfec47fc331d8a4a683e135233103f3132075e-0",
+    "title": "Will JD Vance say \"Oil\" 2+ times during meetings with Orbán?",
+    "lots": [
+      {
+        "shares": 90.53,
+        "price": 0.5796752457748813,
+        "usdc": 52.478,
+        "ts": 1775562735
+      },
+      {
+        "shares": 0.57,
+        "price": 0.99,
+        "usdc": 0.5643,
+        "ts": 1775564547
+      },
+      {
+        "shares": 21.26,
+        "price": 0.99,
+        "usdc": 21.0474,
+        "ts": 1775564547
+      },
+      {
+        "shares": 1.51,
+        "price": 0.99,
+        "usdc": 1.4949,
+        "ts": 1775564547
+      },
+      {
+        "shares": 47.91,
+        "price": 0.99,
+        "usdc": 47.4309,
+        "ts": 1775564547
+      },
+      {
+        "shares": 22.71,
+        "price": 0.99,
+        "usdc": 22.4829,
+        "ts": 1775564547
+      },
+      {
+        "shares": 8.07,
+        "price": 0.99,
+        "usdc": 7.9893,
+        "ts": 1775564547
+      },
+      {
+        "shares": 59.85,
+        "price": 0.99,
+        "usdc": 59.2515,
+        "ts": 1775564547
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1775564547
+      },
+      {
+        "shares": 7.61,
+        "price": 0.99,
+        "usdc": 7.5339,
+        "ts": 1775564551
+      },
+      {
+        "shares": 20.04,
+        "price": 0.99,
+        "usdc": 19.8396,
+        "ts": 1775564551
+      },
+      {
+        "shares": 1.02,
+        "price": 0.99,
+        "usdc": 1.0098,
+        "ts": 1775564553
+      }
+    ],
+    "totalShares": 781.0799999999999
+  },
+  {
+    "key": "0xbf3df42b44f35a350e39d9f8c2642fb45deb02f64dd59c4c59067639c6faf77c-0",
+    "title": "Will JD Vance say \"Hungary\" or \"Hungarian\" 8+ times during meetings with Orbán?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.98,
+        "usdc": 98,
+        "ts": 1775562965
+      },
+      {
+        "shares": 100,
+        "price": 0.98,
+        "usdc": 98,
+        "ts": 1775562965
+      },
+      {
+        "shares": 23.52,
+        "price": 0.98,
+        "usdc": 23.0496,
+        "ts": 1775562965
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1775562973
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1775562973
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1775562975
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1775562977
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1775562977
+      },
+      {
+        "shares": 95.75,
+        "price": 0.99,
+        "usdc": 94.7925,
+        "ts": 1775562979
+      },
+      {
+        "shares": 1.02,
+        "price": 0.98,
+        "usdc": 0.9996,
+        "ts": 1775562985
+      },
+      {
+        "shares": 4.595,
+        "price": 0.98,
+        "usdc": 4.5031,
+        "ts": 1775563371
+      }
+    ],
+    "totalShares": 824.885
+  },
+  {
+    "key": "0xe785b97abbe90411a900e65b7072b24635e27a9fec8ee17f88d34f8765aa5020-0",
+    "title": "Will JD Vance say \"Viktor\" or \"Orbán\" 4+ times during meetings with Orbán?",
+    "lots": [
+      {
+        "shares": 114.83,
+        "price": 0.98,
+        "usdc": 112.5334,
+        "ts": 1775562987
+      },
+      {
+        "shares": 1.03,
+        "price": 0.99,
+        "usdc": 1.0197,
+        "ts": 1775563333
+      }
+    ],
+    "totalShares": 115.86
+  },
+  {
+    "key": "0x5f4d14c019e10a045b1e004ac5f56935c5f32941b690e9911051fd0469940499-0",
+    "title": "Will JD Vance say \"Trump\" during meetings with Orbán?",
+    "lots": [
+      {
+        "shares": 500,
+        "price": 0.9837238,
+        "usdc": 491.8619,
+        "ts": 1775563045
+      },
+      {
+        "shares": 4.99,
+        "price": 0.99,
+        "usdc": 4.9401,
+        "ts": 1775563047
+      },
+      {
+        "shares": 377.37,
+        "price": 0.99,
+        "usdc": 373.5963,
+        "ts": 1775563047
+      },
+      {
+        "shares": 500,
+        "price": 0.9896,
+        "usdc": 494.8,
+        "ts": 1775563047
+      },
+      {
+        "shares": 25.53,
+        "price": 0.99,
+        "usdc": 25.2747,
+        "ts": 1775563049
+      },
+      {
+        "shares": 7.51,
+        "price": 0.99,
+        "usdc": 7.4349,
+        "ts": 1775563049
+      },
+      {
+        "shares": 2.49,
+        "price": 0.99,
+        "usdc": 2.4651,
+        "ts": 1775563049
+      },
+      {
+        "shares": 4.98,
+        "price": 0.99,
+        "usdc": 4.9302,
+        "ts": 1775563049
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1775563051
+      },
+      {
+        "shares": 50.5,
+        "price": 0.97,
+        "usdc": 48.985,
+        "ts": 1775563053
+      }
+    ],
+    "totalShares": 1483.3700000000001
+  },
+  {
+    "key": "0xe76bdf23880e8eeb3bc46e4e6aa092f5dba6d43245af293faf85f1de7d523b0f-0",
+    "title": "Will JD Vance say \"Election\" 4+ times during meetings with Orbán?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1775563265
+      },
+      {
+        "shares": 37.517,
+        "price": 0.99,
+        "usdc": 37.14183,
+        "ts": 1775568989
+      },
+      {
+        "shares": 1.31,
+        "price": 0.99,
+        "usdc": 1.2969,
+        "ts": 1775569857
+      },
+      {
+        "shares": 62.48,
+        "price": 0.99,
+        "usdc": 61.8552,
+        "ts": 1775569857
+      },
+      {
+        "shares": 7.62,
+        "price": 0.99,
+        "usdc": 7.5438,
+        "ts": 1775571661
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1775572307
+      }
+    ],
+    "totalShares": 218.927
+  },
+  {
+    "key": "0x6685538b4feab04722b09a2c4d21fa5fe1111bfd9aa8e7560bf1fe5b435b94d7-0",
+    "title": "Will JD Vance say \"Russia\" or \"Ukraine\" 6+ times during meetings with Orbán?",
+    "lots": [
+      {
+        "shares": 13.9,
+        "price": 0.88,
+        "usdc": 12.232,
+        "ts": 1775563619
+      },
+      {
+        "shares": 2.04,
+        "price": 0.9,
+        "usdc": 1.836,
+        "ts": 1775564037
+      },
+      {
+        "shares": 26.29,
+        "price": 0.9,
+        "usdc": 23.661,
+        "ts": 1775564037
+      },
+      {
+        "shares": 81.78,
+        "price": 0.99,
+        "usdc": 80.9622,
+        "ts": 1775564039
+      },
+      {
+        "shares": 18.22,
+        "price": 0.99,
+        "usdc": 18.0378,
+        "ts": 1775564041
+      },
+      {
+        "shares": 58.41,
+        "price": 0.99,
+        "usdc": 57.8259,
+        "ts": 1775565647
+      },
+      {
+        "shares": 7.28,
+        "price": 0.99,
+        "usdc": 7.2072,
+        "ts": 1775566413
+      },
+      {
+        "shares": 8.62,
+        "price": 0.99,
+        "usdc": 8.5338,
+        "ts": 1775569249
+      },
+      {
+        "shares": 46.36,
+        "price": 0.99,
+        "usdc": 45.8964,
+        "ts": 1775570579
+      }
+    ],
+    "totalShares": 262.90000000000003
+  },
+  {
+    "key": "0x2db8504612356515d78e2ca07b0251773143f24d59b2330ad64bc561a8e59db0-0",
+    "title": "Will JD Vance say \"Nuclear\" during meetings with Orbán?",
+    "lots": [
+      {
+        "shares": 194.77,
+        "price": 0.99,
+        "usdc": 192.8223,
+        "ts": 1775564341
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1775564343
+      },
+      {
+        "shares": 26.34,
+        "price": 0.99,
+        "usdc": 26.0766,
+        "ts": 1775564345
+      },
+      {
+        "shares": 305.23,
+        "price": 0.99,
+        "usdc": 302.1777,
+        "ts": 1775564345
+      },
+      {
+        "shares": 7.49,
+        "price": 0.99,
+        "usdc": 7.4151,
+        "ts": 1775564347
+      },
+      {
+        "shares": 2,
+        "price": 0.99,
+        "usdc": 1.98,
+        "ts": 1775564349
+      },
+      {
+        "shares": 2.6,
+        "price": 0.99,
+        "usdc": 2.574,
+        "ts": 1775564349
+      },
+      {
+        "shares": 15,
+        "price": 0.99,
+        "usdc": 14.85,
+        "ts": 1775564349
+      },
+      {
+        "shares": 14.81,
+        "price": 0.99,
+        "usdc": 14.6619,
+        "ts": 1775564845
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1775564845
+      },
+      {
+        "shares": 81.88,
+        "price": 0.99,
+        "usdc": 81.0612,
+        "ts": 1775564845
+      },
+      {
+        "shares": 24.12,
+        "price": 0.99,
+        "usdc": 23.8788,
+        "ts": 1775565021
+      },
+      {
+        "shares": 229.88,
+        "price": 0.99,
+        "usdc": 227.5812,
+        "ts": 1775565077
+      },
+      {
+        "shares": 35.78,
+        "price": 0.99,
+        "usdc": 35.4222,
+        "ts": 1775565669
+      },
+      {
+        "shares": 40,
+        "price": 0.99,
+        "usdc": 39.6,
+        "ts": 1775565967
+      },
+      {
+        "shares": 10.2,
+        "price": 0.99,
+        "usdc": 10.098,
+        "ts": 1775566981
+      },
+      {
+        "shares": 95.1,
+        "price": 0.99,
+        "usdc": 94.149,
+        "ts": 1775567609
+      },
+      {
+        "shares": 4.9,
+        "price": 0.99,
+        "usdc": 4.851,
+        "ts": 1775567609
+      },
+      {
+        "shares": 50,
+        "price": 0.99,
+        "usdc": 49.5,
+        "ts": 1775568171
+      },
+      {
+        "shares": 200,
+        "price": 0.99,
+        "usdc": 198,
+        "ts": 1775568305
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1775569357
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1775569593
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1775569941
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1775570713
+      }
+    ],
+    "totalShares": 1990.1
+  },
+  {
+    "key": "0x78a6c325666a9582261e6ddfa600b8c3144eb1d659a9e0a53c395e9b07fdce82-0",
+    "title": "Will JD Vance say \"Slovakia\" during meetings with Orbán?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.02,
+        "usdc": 2,
+        "ts": 1775592571
+      },
+      {
+        "shares": 100,
+        "price": 0.02,
+        "usdc": 2,
+        "ts": 1775592571
+      },
+      {
+        "shares": 100,
+        "price": 0.02,
+        "usdc": 2,
+        "ts": 1775592571
+      }
+    ],
+    "totalShares": 300
+  },
+  {
+    "key": "0xa1b302e2a0f0852b7b0150659be6dc6123f0a68c57c5ead510b7fb51376a542a-0",
+    "title": "Will the highest temperature in Amsterdam be 15°C or higher on April 8?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.99,
+        "usdc": 990,
+        "ts": 1775647529
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0xd2b12e0f569108295092ea66e4a794359f185a317a3792defba9501d394d261d-0",
+    "title": "Will the highest temperature in London be 24°C or higher on April 8?",
+    "lots": [
+      {
+        "shares": 3000,
+        "price": 0.99,
+        "usdc": 2970,
+        "ts": 1775651229
+      }
+    ],
+    "totalShares": 3000
+  },
+  {
+    "key": "0x8b93580d508f724b2cf593fa286c666d0bfa5107e715af0775332ca381a13d75-0",
+    "title": "Will JD Vance say \"Rigged\" during meetings with Orbán?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.01,
+        "usdc": 1,
+        "ts": 1775707585
+      },
+      {
+        "shares": 100,
+        "price": 0.01,
+        "usdc": 1,
+        "ts": 1775707585
+      },
+      {
+        "shares": 100,
+        "price": 0.01,
+        "usdc": 1,
+        "ts": 1775707585
+      }
+    ],
+    "totalShares": 300
+  },
+  {
+    "key": "0xeb80d6b5f333691d0b214cb41462d34982817bbdc0da4c212050a1e14258b41e-0",
+    "title": "Will JD Vance say \"EU\" or \"European Union\" during meetings with Orbán?",
+    "lots": [
+      {
+        "shares": 51,
+        "price": 0.02,
+        "usdc": 1.02,
+        "ts": 1775719341
+      },
+      {
+        "shares": 100,
+        "price": 0.02,
+        "usdc": 2,
+        "ts": 1775734653
+      },
+      {
+        "shares": 100,
+        "price": 0.02,
+        "usdc": 2,
+        "ts": 1775734653
+      },
+      {
+        "shares": 100,
+        "price": 0.02,
+        "usdc": 2,
+        "ts": 1775734653
+      },
+      {
+        "shares": 49,
+        "price": 0.02,
+        "usdc": 0.98,
+        "ts": 1775734653
+      }
+    ],
+    "totalShares": 400
+  },
+  {
+    "key": "0x7f19386f52c5ceb6eeb55967f25cb6109673bfe16c8b579900f87721a6899af6-0",
+    "title": "Will the highest temperature in Buenos Aires be 24°C on April 10?",
+    "lots": [
+      {
+        "shares": 0.2,
+        "price": 0.9,
+        "usdc": 0.18,
+        "ts": 1775847867
+      },
+      {
+        "shares": 20,
+        "price": 0.9,
+        "usdc": 18,
+        "ts": 1775847877
+      }
+    ],
+    "totalShares": 20.2
+  },
+  {
+    "key": "0x2efc0d151054784af8a4bd5ab1a4d4d33b038760fcf9b3ed2509342187e949b2-0",
+    "title": "Will the highest temperature in Chicago be between 54-55°F on April 10?",
+    "lots": [
+      {
+        "shares": 46.94011,
+        "price": 0.5380249739854318,
+        "usdc": 25.8521,
+        "ts": 1775861525
+      }
+    ],
+    "totalShares": 46.94011
+  },
+  {
+    "key": "0x40f0750d3bd1c163dd82cf52b84340992a6fce5c73fc0d849dcb252dbd482dc6-0",
+    "title": "Will the highest temperature in Seoul be 18°C on April 12?",
+    "lots": [
+      {
+        "shares": 10,
+        "price": 0.299,
+        "usdc": 2.99,
+        "ts": 1775974287
+      }
+    ],
+    "totalShares": 10
+  },
+  {
+    "key": "0x281b216205d45a69ad0abe777df68a68547888e0f6222d44cb0dbad76224f449-0",
+    "title": "Will Tisza win the national list vote in the 2026 Hungarian Parliamentary election by <9%?",
+    "lots": [
+      {
+        "shares": 41.8,
+        "price": 0.27,
+        "usdc": 11.286,
+        "ts": 1776015869
+      },
+      {
+        "shares": 9.301366,
+        "price": 0.27000001935199625,
+        "usdc": 2.511369,
+        "ts": 1776015957
+      },
+      {
+        "shares": 2.054792,
+        "price": 0.27000007786676217,
+        "usdc": 0.554794,
+        "ts": 1776015957
+      },
+      {
+        "shares": 19.89,
+        "price": 0.27,
+        "usdc": 5.3703,
+        "ts": 1776016031
+      }
+    ],
+    "totalShares": 73.04615799999999
+  },
+  {
+    "key": "0xde38c515193b3b7f826f65e85fb50fc77d4fb134e56f3c36e9244ee812d75089-0",
+    "title": "Will Tisza win the national list vote in the 2026 Hungarian Parliamentary election by 9%+?",
+    "lots": [
+      {
+        "shares": 8.57,
+        "price": 0.67,
+        "usdc": 5.7419,
+        "ts": 1776015963
+      },
+      {
+        "shares": 8.72,
+        "price": 0.67,
+        "usdc": 5.8424,
+        "ts": 1776015977
+      },
+      {
+        "shares": 100,
+        "price": 0.708413,
+        "usdc": 70.8413,
+        "ts": 1776016113
+      }
+    ],
+    "totalShares": 117.28999999999999
+  },
+  {
+    "key": "0xfcde02af15efe40e336d67f0ef9aa49e9d40c37b92961fb890afc4afdbfe54d6-0",
+    "title": "Will TISZA – Respect and Freedom Party (TISZA) win the most seats in the next Hungarian parliamentary election?",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.91,
+        "usdc": 182,
+        "ts": 1776017531
+      },
+      {
+        "shares": 143.12,
+        "price": 0.91,
+        "usdc": 130.2392,
+        "ts": 1776017535
+      },
+      {
+        "shares": 56.88,
+        "price": 0.91,
+        "usdc": 51.7608,
+        "ts": 1776017541
+      }
+    ],
+    "totalShares": 400
+  },
+  {
+    "key": "0x46b9703e797f1364a2e581a1fc5566e0b9f57df966b523225e7c306b8b5466d8-0",
+    "title": "Will voter turnout be 80%+ in the 2026 Hungarian parliamentary election?",
+    "lots": [
+      {
+        "shares": 19.9,
+        "price": 0.222,
+        "usdc": 4.4178,
+        "ts": 1776020393
+      },
+      {
+        "shares": 80.1,
+        "price": 0.222,
+        "usdc": 17.7822,
+        "ts": 1776020459
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0xb14c9e59ce83ece5e8ff38cd0b6c64b28f835d8e0bfd47b84ab1504756c059de-0",
+    "title": "Will Leavitt say \"Ceasefire\" during the next White House press briefing?",
+    "lots": [
+      {
+        "shares": 406.36,
+        "price": 0.985737277291072,
+        "usdc": 400.5642,
+        "ts": 1776274892
+      },
+      {
+        "shares": 10.16,
+        "price": 0.99,
+        "usdc": 10.0584,
+        "ts": 1776274892
+      },
+      {
+        "shares": 3.06,
+        "price": 0.99,
+        "usdc": 3.0294,
+        "ts": 1776274892
+      },
+      {
+        "shares": 12.12,
+        "price": 0.99,
+        "usdc": 11.9988,
+        "ts": 1776274894
+      },
+      {
+        "shares": 13.14,
+        "price": 0.99,
+        "usdc": 13.0086,
+        "ts": 1776274896
+      },
+      {
+        "shares": 0.7,
+        "price": 0.99,
+        "usdc": 0.693,
+        "ts": 1776274896
+      },
+      {
+        "shares": 67.16,
+        "price": 0.99,
+        "usdc": 66.4884,
+        "ts": 1776274896
+      },
+      {
+        "shares": 68.3,
+        "price": 0.99,
+        "usdc": 67.617,
+        "ts": 1776274896
+      },
+      {
+        "shares": 47.51,
+        "price": 0.99,
+        "usdc": 47.0349,
+        "ts": 1776274910
+      },
+      {
+        "shares": 29.97,
+        "price": 0.99,
+        "usdc": 29.6703,
+        "ts": 1776274922
+      },
+      {
+        "shares": 10.52,
+        "price": 0.99,
+        "usdc": 10.4148,
+        "ts": 1776274944
+      },
+      {
+        "shares": 99,
+        "price": 0.99,
+        "usdc": 98.01,
+        "ts": 1776274964
+      }
+    ],
+    "totalShares": 768
+  },
+  {
+    "key": "0xb3c526794a0fe45a1a9fa4a3ad748d25097fb35c7348b96e07ae655831cd27a2-0",
+    "title": "Will Leavitt say \"Big Beautiful Bill\" during the next White House press briefing?",
+    "lots": [
+      {
+        "shares": 13.15,
+        "price": 0.14,
+        "usdc": 1.841,
+        "ts": 1776275080
+      },
+      {
+        "shares": 52,
+        "price": 0.25,
+        "usdc": 13,
+        "ts": 1776275092
+      },
+      {
+        "shares": 48,
+        "price": 0.25,
+        "usdc": 12,
+        "ts": 1776275092
+      },
+      {
+        "shares": 46,
+        "price": 0.11,
+        "usdc": 5.06,
+        "ts": 1776275180
+      }
+    ],
+    "totalShares": 159.15
+  },
+  {
+    "key": "0x43d3041daee6b7f0585c2eb76e10da08cc92464621a7bfc3ba8c4ae5ad6e6aec-0",
+    "title": "Will Leavitt say \"China\" during the next White House press briefing?",
+    "lots": [
+      {
+        "shares": 27,
+        "price": 0.33,
+        "usdc": 8.91,
+        "ts": 1776275252
+      },
+      {
+        "shares": 26.13,
+        "price": 0.44,
+        "usdc": 11.4972,
+        "ts": 1776275258
+      }
+    ],
+    "totalShares": 53.129999999999995
+  },
+  {
+    "key": "0xa865b860cb55ef3088d20d10a285009d175691eaf10f1ea71ffae4eb7ddfbb33-0",
+    "title": "Will the highest temperature in Toronto be 19°C on April 15?",
+    "lots": [
+      {
+        "shares": 208.70405,
+        "price": 0.7151001322501417,
+        "usdc": 151.401,
+        "ts": 1776286020
+      },
+      {
+        "shares": 20,
+        "price": 0.81,
+        "usdc": 16.2,
+        "ts": 1776286022
+      },
+      {
+        "shares": 5,
+        "price": 0.81,
+        "usdc": 4.05,
+        "ts": 1776286022
+      },
+      {
+        "shares": 5,
+        "price": 0.81,
+        "usdc": 4.05,
+        "ts": 1776286022
+      },
+      {
+        "shares": 3.99,
+        "price": 0.81,
+        "usdc": 3.2319,
+        "ts": 1776286022
+      },
+      {
+        "shares": 30,
+        "price": 0.81,
+        "usdc": 24.3,
+        "ts": 1776286022
+      },
+      {
+        "shares": 88,
+        "price": 0.81,
+        "usdc": 71.28,
+        "ts": 1776286028
+      },
+      {
+        "shares": 6.61,
+        "price": 0.81,
+        "usdc": 5.3541,
+        "ts": 1776286040
+      },
+      {
+        "shares": 10.37,
+        "price": 0.81,
+        "usdc": 8.3997,
+        "ts": 1776286222
+      },
+      {
+        "shares": 71.67,
+        "price": 0.81,
+        "usdc": 58.0527,
+        "ts": 1776286272
+      },
+      {
+        "shares": 20.14,
+        "price": 0.81,
+        "usdc": 16.3134,
+        "ts": 1776286274
+      },
+      {
+        "shares": 92.27,
+        "price": 0.81,
+        "usdc": 74.7387,
+        "ts": 1776286314
+      },
+      {
+        "shares": 6.76,
+        "price": 0.81,
+        "usdc": 5.4756,
+        "ts": 1776286316
+      },
+      {
+        "shares": 22.9,
+        "price": 0.81,
+        "usdc": 18.549,
+        "ts": 1776286322
+      },
+      {
+        "shares": 43.157893,
+        "price": 0.8100000155243908,
+        "usdc": 34.957894,
+        "ts": 1776286328
+      },
+      {
+        "shares": 13.29,
+        "price": 0.81,
+        "usdc": 10.7649,
+        "ts": 1776286344
+      },
+      {
+        "shares": 62.71,
+        "price": 0.81,
+        "usdc": 50.7951,
+        "ts": 1776286494
+      },
+      {
+        "shares": 5,
+        "price": 0.81,
+        "usdc": 4.05,
+        "ts": 1776286504
+      }
+    ],
+    "totalShares": 715.5719429999999
+  },
+  {
+    "key": "0xa5fe9fbd8b8c45d01abaab3e7c88a38401f7b1675e31d9a05f5af8e7b4c5568a-0",
+    "title": "Will Trump say \"DoorDash\" or \"McDonald's\" during No Tax on Tips Roundtable?",
+    "lots": [
+      {
+        "shares": 80.81472,
+        "price": 0.4330390615552062,
+        "usdc": 35.808,
+        "ts": 1776383886
+      },
+      {
+        "shares": 100,
+        "price": 0.41,
+        "usdc": 41,
+        "ts": 1776383930
+      },
+      {
+        "shares": 100,
+        "price": 0.39,
+        "usdc": 39,
+        "ts": 1776383952
+      },
+      {
+        "shares": 499.17006,
+        "price": 0.9585026,
+        "usdc": 479.2513,
+        "ts": 1776384594
+      },
+      {
+        "shares": 498.61314,
+        "price": 0.9306568,
+        "usdc": 465.3284,
+        "ts": 1776384594
+      },
+      {
+        "shares": 499.6,
+        "price": 0.98,
+        "usdc": 490,
+        "ts": 1776384594
+      },
+      {
+        "shares": 499.6,
+        "price": 0.98,
+        "usdc": 490,
+        "ts": 1776384594
+      },
+      {
+        "shares": 499.6,
+        "price": 0.98,
+        "usdc": 490,
+        "ts": 1776384594
+      },
+      {
+        "shares": 499.6,
+        "price": 0.98,
+        "usdc": 490,
+        "ts": 1776384594
+      },
+      {
+        "shares": 499.6,
+        "price": 0.98,
+        "usdc": 490,
+        "ts": 1776384594
+      },
+      {
+        "shares": 499.6,
+        "price": 0.98,
+        "usdc": 490,
+        "ts": 1776384594
+      },
+      {
+        "shares": 499.6,
+        "price": 0.98,
+        "usdc": 490,
+        "ts": 1776384594
+      },
+      {
+        "shares": 99.94656,
+        "price": 0.986639,
+        "usdc": 98.6639,
+        "ts": 1776384598
+      },
+      {
+        "shares": 99.92,
+        "price": 0.98,
+        "usdc": 98,
+        "ts": 1776384598
+      },
+      {
+        "shares": 99.96,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1776384598
+      },
+      {
+        "shares": 99.96,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1776384598
+      },
+      {
+        "shares": 99.96,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1776384598
+      },
+      {
+        "shares": 99.96,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1776384598
+      },
+      {
+        "shares": 99.96,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1776384598
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1776384602
+      },
+      {
+        "shares": 9.53,
+        "price": 0.99,
+        "usdc": 9.4347,
+        "ts": 1776384624
+      },
+      {
+        "shares": 1.99,
+        "price": 0.99,
+        "usdc": 1.9701,
+        "ts": 1776384658
+      },
+      {
+        "shares": 12.2,
+        "price": 0.99,
+        "usdc": 12.078,
+        "ts": 1776384692
+      }
+    ],
+    "totalShares": 5519.18448
+  },
+  {
+    "key": "0xc2227968c5040102331b36c0d6687354ce9b06bc34c75d6fb4aa9677e2777f73-0",
+    "title": "Will Trump say \"Refund\" during No Tax on Tips Roundtable?",
+    "lots": [
+      {
+        "shares": 17.9,
+        "price": 0.99,
+        "usdc": 17.721,
+        "ts": 1776384242
+      },
+      {
+        "shares": 225.77327,
+        "price": 0.9837623937677054,
+        "usdc": 222.2516,
+        "ts": 1776384242
+      }
+    ],
+    "totalShares": 243.67327
+  },
+  {
+    "key": "0xef3470297b437821f584521a47a48d27daa0a608f59fa0a37d8e483700f304e3-0",
+    "title": "Will Trump say \"Great Big Beautiful Bill\" during No Tax on Tips Roundtable?",
+    "lots": [
+      {
+        "shares": 380.81115,
+        "price": 0.9790850890772177,
+        "usdc": 373.1587,
+        "ts": 1776384266
+      }
+    ],
+    "totalShares": 380.81115
+  },
+  {
+    "key": "0x771ec4cc5663d0717593df67d7556785a511bdd1d31fe990956e24506d8bf577-0",
+    "title": "Will Trump say \"Women's sports\" during No Tax on Tips Roundtable?",
+    "lots": [
+      {
+        "shares": 47.89,
+        "price": 0.99,
+        "usdc": 47.4111,
+        "ts": 1776384384
+      }
+    ],
+    "totalShares": 47.89
+  },
+  {
+    "key": "0x3301b31d93ff9edf5567a911926888ca612956a3b12230c1da35b4bd1edf515a-0",
+    "title": "Will Trump say \"Biden\" during No Tax on Tips Roundtable?",
+    "lots": [
+      {
+        "shares": 191.77772000000002,
+        "price": 0.9840698280354351,
+        "usdc": 188.843,
+        "ts": 1776384452
+      },
+      {
+        "shares": 1.24,
+        "price": 0.99,
+        "usdc": 1.2276,
+        "ts": 1776384502
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1776384512
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1776384556
+      }
+    ],
+    "totalShares": 233.01772000000003
+  },
+  {
+    "key": "0x419dbac4d90f4205771664280a77d7338a97bdfce00ce62a12ce82ae1d420721-0",
+    "title": "Will Trump say \"Hottest\" during No Tax on Tips Roundtable?",
+    "lots": [
+      {
+        "shares": 57.1428,
+        "price": 0.75,
+        "usdc": 43.29,
+        "ts": 1776384800
+      },
+      {
+        "shares": 37.79,
+        "price": 0.75,
+        "usdc": 28.3425,
+        "ts": 1776384800
+      },
+      {
+        "shares": 26.72897,
+        "price": 0.54,
+        "usdc": 14.7042,
+        "ts": 1776385722
+      },
+      {
+        "shares": 18.233332,
+        "price": 0.8200000416819043,
+        "usdc": 14.951333,
+        "ts": 1776385728
+      },
+      {
+        "shares": 1.07914,
+        "price": 0.98,
+        "usdc": 1.0584,
+        "ts": 1776385736
+      },
+      {
+        "shares": 40.56377,
+        "price": 0.99,
+        "usdc": 40.1742,
+        "ts": 1776385742
+      },
+      {
+        "shares": 70.81,
+        "price": 0.82,
+        "usdc": 58.0642,
+        "ts": 1776385746
+      },
+      {
+        "shares": 10.95,
+        "price": 0.82,
+        "usdc": 8.979,
+        "ts": 1776385752
+      },
+      {
+        "shares": 100,
+        "price": 0.8,
+        "usdc": 80,
+        "ts": 1776385756
+      },
+      {
+        "shares": 210.96,
+        "price": 0.99,
+        "usdc": 208.8504,
+        "ts": 1776385780
+      },
+      {
+        "shares": 30.55,
+        "price": 0.99,
+        "usdc": 30.2445,
+        "ts": 1776385822
+      }
+    ],
+    "totalShares": 604.808012
+  },
+  {
+    "key": "0xf9f9cb6e33d304146300f9e9e86d9a5427d9561379c496895426d54ebd324885-0",
+    "title": "Will Trump say \"Trump Account\" during No Tax on Tips Roundtable?",
+    "lots": [
+      {
+        "shares": 129.864,
+        "price": 0.9738461538461538,
+        "usdc": 126.6,
+        "ts": 1776385120
+      }
+    ],
+    "totalShares": 129.864
+  },
+  {
+    "key": "0x95d9ad4b05d970250f3b9c762c5e4d7e1ab0eeee209f9c9a9c2c60858280f1bd-0",
+    "title": "Will Trump say \"Million\" or \"Billion\" or \"Trillion\" 15+ times during No Tax on Tips Roundtable?",
+    "lots": [
+      {
+        "shares": 38.99,
+        "price": 0.72,
+        "usdc": 28.0728,
+        "ts": 1776385184
+      },
+      {
+        "shares": 14.88,
+        "price": 0.8,
+        "usdc": 12,
+        "ts": 1776385224
+      },
+      {
+        "shares": 53.118249999999996,
+        "price": 0.9475145594589517,
+        "usdc": 50.4362,
+        "ts": 1776385456
+      }
+    ],
+    "totalShares": 106.98825
+  },
+  {
+    "key": "0x4843f853a4e9e718c0660449db0c956115aca8e2c20c8e41833a95d7a4d32193-0",
+    "title": "Will Trump say \"Russia\" during No Tax on Tips Roundtable?",
+    "lots": [
+      {
+        "shares": 376.68574,
+        "price": 0.8283463840333254,
+        "usdc": 314.1835,
+        "ts": 1776386158
+      },
+      {
+        "shares": 25.29,
+        "price": 0.99,
+        "usdc": 25.0371,
+        "ts": 1776386162
+      },
+      {
+        "shares": 44.5,
+        "price": 0.99,
+        "usdc": 44.055,
+        "ts": 1776386166
+      },
+      {
+        "shares": 17.97,
+        "price": 0.99,
+        "usdc": 17.7903,
+        "ts": 1776386262
+      }
+    ],
+    "totalShares": 464.44574
+  },
+  {
+    "key": "0x633d3f7aa0dedb172da7e2bd46e82b9f7f52ef0f0ec6d8734e489a79e740dbfe-0",
+    "title": "Will Trump say \"TikTok\" during TPUSA events on April 17?",
+    "lots": [
+      {
+        "shares": 19.37,
+        "price": 0.28,
+        "usdc": 5.4236,
+        "ts": 1776460918
+      },
+      {
+        "shares": 10,
+        "price": 0.28,
+        "usdc": 2.8,
+        "ts": 1776461014
+      },
+      {
+        "shares": 58.830692,
+        "price": 0.28000000407950326,
+        "usdc": 16.472594,
+        "ts": 1776462006
+      }
+    ],
+    "totalShares": 88.200692
+  },
+  {
+    "key": "0x03b4dfd7d8931f708f680e96a61e89f208740b75246aae8f29fb47a40c0b6c7d-0",
+    "title": "Will Trump say \"Charlie\" or \"Kirk\" 5+ times during TPUSA events on April 17?",
+    "lots": [
+      {
+        "shares": 650.82115,
+        "price": 0.7999078689019785,
+        "usdc": 794.4285,
+        "ts": 1776461286
+      },
+      {
+        "shares": 99,
+        "price": 0.75,
+        "usdc": 75,
+        "ts": 1776463010
+      },
+      {
+        "shares": 99.2052,
+        "price": 0.8013,
+        "usdc": 80.13,
+        "ts": 1776463024
+      },
+      {
+        "shares": 22.39077,
+        "price": 0.8124645390070921,
+        "usdc": 18.3292,
+        "ts": 1776463026
+      }
+    ],
+    "totalShares": 871.41712
+  },
+  {
+    "key": "0x8a0da22bb30a5af1376ef39624155bef82e4e2f9a1a3b3ed629a43db15a3a22c-0",
+    "title": "Will Trump say \"Eight Wars\" or \"Eighth War\" during TPUSA events on April 17?",
+    "lots": [
+      {
+        "shares": 641.738,
+        "price": 0.9509331259720062,
+        "usdc": 611.45,
+        "ts": 1776463556
+      },
+      {
+        "shares": 42.75,
+        "price": 0.99,
+        "usdc": 42.3225,
+        "ts": 1776463556
+      }
+    ],
+    "totalShares": 684.488
+  },
+  {
+    "key": "0x89cb9effed5de0fba6a7c80eb7e9e86eab0fd89195876e504a92d0b0ab72ddd5-0",
+    "title": "Will Trump say \"Transgender\" during TPUSA events on April 17?",
+    "lots": [
+      {
+        "shares": 471.60236,
+        "price": 0.9651863380341338,
+        "usdc": 455.8189,
+        "ts": 1776463708
+      },
+      {
+        "shares": 39.97,
+        "price": 0.99,
+        "usdc": 39.5703,
+        "ts": 1776463712
+      },
+      {
+        "shares": 19.31,
+        "price": 0.99,
+        "usdc": 19.1169,
+        "ts": 1776463760
+      },
+      {
+        "shares": 51,
+        "price": 0.99,
+        "usdc": 50.49,
+        "ts": 1776463774
+      },
+      {
+        "shares": 51,
+        "price": 0.99,
+        "usdc": 50.49,
+        "ts": 1776463786
+      },
+      {
+        "shares": 51,
+        "price": 0.99,
+        "usdc": 50.49,
+        "ts": 1776463800
+      },
+      {
+        "shares": 51,
+        "price": 0.99,
+        "usdc": 50.49,
+        "ts": 1776463816
+      },
+      {
+        "shares": 51,
+        "price": 0.99,
+        "usdc": 50.49,
+        "ts": 1776463826
+      }
+    ],
+    "totalShares": 785.88236
+  },
+  {
+    "key": "0xd0393a9d9256c4596f81897b5f3860800d90c45ac4c5b3ca74f435e01eff101a-0",
+    "title": "Will Trump say \"Venezuela\" during TPUSA events on April 17?",
+    "lots": [
+      {
+        "shares": 381.2662,
+        "price": 0.9846788990825688,
+        "usdc": 375.655,
+        "ts": 1776463848
+      },
+      {
+        "shares": 9,
+        "price": 0.99,
+        "usdc": 8.91,
+        "ts": 1776463892
+      }
+    ],
+    "totalShares": 390.2662
+  },
+  {
+    "key": "0x2c2e184041da54c96551667685a3b041412ffe1370bc1159e3d0eedf984496d9-0",
+    "title": "Will Trump say \"Make America Great Again\" during TPUSA events on April 17?",
+    "lots": [
+      {
+        "shares": 24.54018,
+        "price": 0.99,
+        "usdc": 24.3045,
+        "ts": 1776464120
+      },
+      {
+        "shares": 378,
+        "price": 0.99,
+        "usdc": 374.22,
+        "ts": 1776464122
+      }
+    ],
+    "totalShares": 402.54018
+  },
+  {
+    "key": "0xef559614a984fda399e8d5f56d6fc7d0304ae05722930ba3575c9218bd353d1c-0",
+    "title": "Will Trump say \"Million\" or \"Billion\" or \"Trillion\" 30+ times during TPUSA events on April 17?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.24,
+        "usdc": 24,
+        "ts": 1776464154
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0x18374eb17f457a532a6f06a102ee49067c0a1f14f0b1ca174cdac52151690be1-0",
+    "title": "Will Trump say \"Radical Left\" during TPUSA events on April 17?",
+    "lots": [
+      {
+        "shares": 454.53201,
+        "price": 0.9359227561992539,
+        "usdc": 426.5,
+        "ts": 1776464262
+      },
+      {
+        "shares": 11.54,
+        "price": 0.99,
+        "usdc": 11.4246,
+        "ts": 1776464262
+      },
+      {
+        "shares": 12.27,
+        "price": 0.99,
+        "usdc": 12.1473,
+        "ts": 1776464280
+      },
+      {
+        "shares": 35,
+        "price": 0.99,
+        "usdc": 34.65,
+        "ts": 1776464280
+      },
+      {
+        "shares": 35,
+        "price": 0.99,
+        "usdc": 34.65,
+        "ts": 1776464280
+      },
+      {
+        "shares": 4.96,
+        "price": 0.99,
+        "usdc": 4.9104,
+        "ts": 1776464484
+      }
+    ],
+    "totalShares": 553.3020100000001
+  },
+  {
+    "key": "0x27aebff528e77c0f44f9d19e330ab6c58d1282aace461692462a11fb216ddec6-0",
+    "title": "Will Trump say \"Hottest\" during TPUSA events on April 17?",
+    "lots": [
+      {
+        "shares": 69.608,
+        "price": 0.86,
+        "usdc": 60.2,
+        "ts": 1776464302
+      },
+      {
+        "shares": 109.62516,
+        "price": 0.8989633869355864,
+        "usdc": 98.9489,
+        "ts": 1776464308
+      },
+      {
+        "shares": 6.56,
+        "price": 0.99,
+        "usdc": 6.4944,
+        "ts": 1776464378
+      },
+      {
+        "shares": 51,
+        "price": 0.99,
+        "usdc": 50.49,
+        "ts": 1776464392
+      },
+      {
+        "shares": 8.56,
+        "price": 0.99,
+        "usdc": 8.4744,
+        "ts": 1776464406
+      },
+      {
+        "shares": 42.44,
+        "price": 0.99,
+        "usdc": 42.0156,
+        "ts": 1776464406
+      },
+      {
+        "shares": 51,
+        "price": 0.99,
+        "usdc": 50.49,
+        "ts": 1776464420
+      },
+      {
+        "shares": 10.56,
+        "price": 0.99,
+        "usdc": 10.4544,
+        "ts": 1776464430
+      },
+      {
+        "shares": 40.44,
+        "price": 0.99,
+        "usdc": 40.0356,
+        "ts": 1776464430
+      }
+    ],
+    "totalShares": 389.79316
+  },
+  {
+    "key": "0x19bab4b31f723dc80c6e85216765d7865ee304a59cded2544194098e3dbe1513-0",
+    "title": "Will Trump say \"Moon\" or \"Astronaut\" during TPUSA events on April 17?",
+    "lots": [
+      {
+        "shares": 155,
+        "price": 0.99,
+        "usdc": 153.45,
+        "ts": 1776465956
+      },
+      {
+        "shares": 300.12,
+        "price": 0.99,
+        "usdc": 297.1188,
+        "ts": 1776465956
+      },
+      {
+        "shares": 632.88,
+        "price": 0.99,
+        "usdc": 626.5512,
+        "ts": 1776465956
+      },
+      {
+        "shares": 349.96322000000004,
+        "price": 0.9816698075495403,
+        "usdc": 343.8004,
+        "ts": 1776465956
+      },
+      {
+        "shares": 16.9,
+        "price": 0.99,
+        "usdc": 16.731,
+        "ts": 1776465956
+      },
+      {
+        "shares": 998.04179,
+        "price": 0.9510446,
+        "usdc": 951.0446,
+        "ts": 1776465956
+      },
+      {
+        "shares": 999.2,
+        "price": 0.98,
+        "usdc": 980,
+        "ts": 1776465956
+      },
+      {
+        "shares": 999.2,
+        "price": 0.98,
+        "usdc": 980,
+        "ts": 1776465956
+      },
+      {
+        "shares": 544.88,
+        "price": 0.99,
+        "usdc": 539.4312,
+        "ts": 1776465958
+      },
+      {
+        "shares": 135,
+        "price": 0.99,
+        "usdc": 133.65,
+        "ts": 1776465964
+      },
+      {
+        "shares": 28,
+        "price": 0.99,
+        "usdc": 27.72,
+        "ts": 1776465964
+      },
+      {
+        "shares": 350,
+        "price": 0.99,
+        "usdc": 346.5,
+        "ts": 1776465964
+      },
+      {
+        "shares": 77.77,
+        "price": 0.99,
+        "usdc": 76.9923,
+        "ts": 1776465964
+      },
+      {
+        "shares": 32.4,
+        "price": 0.99,
+        "usdc": 32.076,
+        "ts": 1776465992
+      },
+      {
+        "shares": 330.17,
+        "price": 0.99,
+        "usdc": 326.8683,
+        "ts": 1776465998
+      },
+      {
+        "shares": 376.83,
+        "price": 0.99,
+        "usdc": 373.0617,
+        "ts": 1776465998
+      },
+      {
+        "shares": 1.07,
+        "price": 0.99,
+        "usdc": 1.0593,
+        "ts": 1776466000
+      },
+      {
+        "shares": 14.74,
+        "price": 0.99,
+        "usdc": 14.5926,
+        "ts": 1776466016
+      },
+      {
+        "shares": 66.49,
+        "price": 0.99,
+        "usdc": 65.8251,
+        "ts": 1776466102
+      }
+    ],
+    "totalShares": 6408.6550099999995
+  },
+  {
+    "key": "0x22f120bae7790090a4a5eb663c2dbac234520210ae5d169b5750a625673c60a9-0",
+    "title": "Will \"Brexit\" be said during the 2026 Sidemen Charity Match?",
+    "lots": [
+      {
+        "shares": 291.24,
+        "price": 0.99,
+        "usdc": 288.3276,
+        "ts": 1776518508
+      }
+    ],
+    "totalShares": 291.24
+  },
+  {
+    "key": "0xffe18e9366e6175b809c361df72ec9e9eedd12c7283a3dad1b3e18993fccf5c8-0",
+    "title": "Sidemen Charity Match 2026: Winner",
+    "lots": [
+      {
+        "shares": 102.91676199999998,
+        "price": 0.44,
+        "usdc": 79.4112,
+        "ts": 1776526224
+      },
+      {
+        "shares": 150.84,
+        "price": 0.47801113762927605,
+        "usdc": 72.1032,
+        "ts": 1776526226
+      },
+      {
+        "shares": 1670.82,
+        "price": 0.52,
+        "usdc": 868.8264,
+        "ts": 1776526230
+      },
+      {
+        "shares": 569.98,
+        "price": 0.52,
+        "usdc": 296.3896,
+        "ts": 1776526264
+      },
+      {
+        "shares": 20.44,
+        "price": 0.52,
+        "usdc": 10.6288,
+        "ts": 1776526328
+      },
+      {
+        "shares": 20,
+        "price": 0.52,
+        "usdc": 10.4,
+        "ts": 1776526328
+      },
+      {
+        "shares": 219.65,
+        "price": 0.52,
+        "usdc": 114.218,
+        "ts": 1776526340
+      },
+      {
+        "shares": 239.91,
+        "price": 0.52,
+        "usdc": 124.7532,
+        "ts": 1776526356
+      },
+      {
+        "shares": 413.88,
+        "price": 0.41,
+        "usdc": 169.6908,
+        "ts": 1776526448
+      },
+      {
+        "shares": 100,
+        "price": 0.42,
+        "usdc": 42,
+        "ts": 1776526780
+      },
+      {
+        "shares": 241.5,
+        "price": 0.5314886128364389,
+        "usdc": 128.3545,
+        "ts": 1776526828
+      },
+      {
+        "shares": 100,
+        "price": 0.46,
+        "usdc": 46,
+        "ts": 1776526910
+      },
+      {
+        "shares": 118.2,
+        "price": 0.5375296108291032,
+        "usdc": 63.536,
+        "ts": 1776527046
+      },
+      {
+        "shares": 358.41,
+        "price": 0.567991127479702,
+        "usdc": 203.5737,
+        "ts": 1776527048
+      },
+      {
+        "shares": 220.35,
+        "price": 0.648638529611981,
+        "usdc": 142.9275,
+        "ts": 1776527054
+      },
+      {
+        "shares": 521.95,
+        "price": 0.59,
+        "usdc": 307.9505,
+        "ts": 1776527144
+      },
+      {
+        "shares": 133.97,
+        "price": 0.5289572292304248,
+        "usdc": 70.8644,
+        "ts": 1776527426
+      },
+      {
+        "shares": 238.02,
+        "price": 0.5924880262162844,
+        "usdc": 141.024,
+        "ts": 1776527428
+      },
+      {
+        "shares": 27.340424,
+        "price": 0.5300000102412457,
+        "usdc": 14.490425,
+        "ts": 1776527534
+      },
+      {
+        "shares": 100,
+        "price": 0.55,
+        "usdc": 55,
+        "ts": 1776527534
+      },
+      {
+        "shares": 646.26,
+        "price": 0.6483570080153499,
+        "usdc": 419.0072,
+        "ts": 1776527554
+      },
+      {
+        "shares": 38.968366,
+        "price": 0.5100000087250258,
+        "usdc": 19.873867,
+        "ts": 1776527564
+      },
+      {
+        "shares": 72.65,
+        "price": 0.53,
+        "usdc": 38.5045,
+        "ts": 1776527564
+      },
+      {
+        "shares": 100,
+        "price": 0.61,
+        "usdc": 61,
+        "ts": 1776527564
+      },
+      {
+        "shares": 6.120832,
+        "price": 0.6400000849557708,
+        "usdc": 3.917333,
+        "ts": 1776527616
+      },
+      {
+        "shares": 93.87,
+        "price": 0.64,
+        "usdc": 60.0768,
+        "ts": 1776527750
+      },
+      {
+        "shares": 100,
+        "price": 0.67,
+        "usdc": 67,
+        "ts": 1776527750
+      },
+      {
+        "shares": 100,
+        "price": 0.69,
+        "usdc": 69,
+        "ts": 1776527750
+      },
+      {
+        "shares": 18.98,
+        "price": 0.18,
+        "usdc": 3.4164,
+        "ts": 1776528798
+      },
+      {
+        "shares": 25,
+        "price": 0.19,
+        "usdc": 4.75,
+        "ts": 1776528800
+      }
+    ],
+    "totalShares": 6770.026384
+  },
+  {
+    "key": "0x112afb6885a54ffa51f185aaa83fb1a2cb0b0bbd416e4d1a9a046811068866b7-0",
+    "title": "Will the highest temperature in Los Angeles be 72°F or higher on April 18?",
+    "lots": [
+      {
+        "shares": 3.28,
+        "price": 0.99,
+        "usdc": 3.2472,
+        "ts": 1776534858
+      }
+    ],
+    "totalShares": 3.28
+  },
+  {
+    "key": "0xb0d655cd9f3c1ce2c535f17e632da911346342dd0a7999ee37955cf85b61446e-0",
+    "title": "Will the highest temperature in Toronto be 20°C on April 18?",
+    "lots": [
+      {
+        "shares": 109.2317,
+        "price": 0.8404686222868041,
+        "usdc": 92.544,
+        "ts": 1776534954
+      },
+      {
+        "shares": 72.9,
+        "price": 0.9,
+        "usdc": 65.61,
+        "ts": 1776534958
+      },
+      {
+        "shares": 12.57,
+        "price": 0.9,
+        "usdc": 11.313,
+        "ts": 1776534958
+      },
+      {
+        "shares": 107.16,
+        "price": 0.9,
+        "usdc": 96.444,
+        "ts": 1776534966
+      },
+      {
+        "shares": 1.55,
+        "price": 0.9,
+        "usdc": 1.395,
+        "ts": 1776534966
+      },
+      {
+        "shares": 509.85,
+        "price": 0.9,
+        "usdc": 458.865,
+        "ts": 1776534982
+      },
+      {
+        "shares": 75.5,
+        "price": 0.9,
+        "usdc": 67.95,
+        "ts": 1776534992
+      },
+      {
+        "shares": 436.37,
+        "price": 0.9,
+        "usdc": 392.733,
+        "ts": 1776535004
+      },
+      {
+        "shares": 523.56,
+        "price": 0.9,
+        "usdc": 471.204,
+        "ts": 1776535004
+      },
+      {
+        "shares": 523.56,
+        "price": 0.9,
+        "usdc": 471.204,
+        "ts": 1776535010
+      },
+      {
+        "shares": 51.8,
+        "price": 0.9,
+        "usdc": 46.62,
+        "ts": 1776535010
+      },
+      {
+        "shares": 51.88,
+        "price": 0.9,
+        "usdc": 46.692,
+        "ts": 1776535010
+      },
+      {
+        "shares": 46.88,
+        "price": 0.9,
+        "usdc": 42.192,
+        "ts": 1776535016
+      },
+      {
+        "shares": 476.31,
+        "price": 0.9,
+        "usdc": 428.679,
+        "ts": 1776535018
+      }
+    ],
+    "totalShares": 2999.1217
+  },
+  {
+    "key": "0x87f1fef66b86045b19dee091459a4a9c6ac05d338133a005e2273e8b83ecac9a-0",
+    "title": "Will the highest temperature in Manila be 35°C on April 19?",
+    "lots": [
+      {
+        "shares": 195.35,
+        "price": 0.8073510773130546,
+        "usdc": 159.25,
+        "ts": 1776582228
+      }
+    ],
+    "totalShares": 195.35
+  },
+  {
+    "key": "0x78329dfa3008f98b253a8784495369341ada5d8d796030643275c2def72a48e0-0",
+    "title": "Will the highest temperature in Jeddah be 38°C on April 19?",
+    "lots": [
+      {
+        "shares": 175.009,
+        "price": 0.8862556672916312,
+        "usdc": 155.98986,
+        "ts": 1776598426
+      },
+      {
+        "shares": 10,
+        "price": 0.9,
+        "usdc": 9,
+        "ts": 1776598430
+      },
+      {
+        "shares": 4,
+        "price": 0.9,
+        "usdc": 3.6,
+        "ts": 1776598442
+      },
+      {
+        "shares": 15,
+        "price": 0.9,
+        "usdc": 13.5,
+        "ts": 1776598446
+      }
+    ],
+    "totalShares": 204.009
+  },
+  {
+    "key": "0x1abcf8a5ac4f9705700ca40cbcdb52b9cd673aca01b8a996258c670d0de4960d-0",
+    "title": "Will the highest temperature in Singapore be 32°C or higher on April 20?",
+    "lots": [
+      {
+        "shares": 2000,
+        "price": 0.99,
+        "usdc": 1980,
+        "ts": 1776657744
+      }
+    ],
+    "totalShares": 2000
+  },
+  {
+    "key": "0x2df0c903d989b86c64cca5620b0c769f6c4232332c0472a2402f6fb834d00093-0",
+    "title": "Will the highest temperature in Los Angeles be between 70-71°F on April 20?",
+    "lots": [
+      {
+        "shares": 5,
+        "price": 0.9,
+        "usdc": 4.5,
+        "ts": 1776714832
+      },
+      {
+        "shares": 500.16414,
+        "price": 0.5820270534805418,
+        "usdc": 297.3227,
+        "ts": 1776714832
+      },
+      {
+        "shares": 15.1,
+        "price": 0.9,
+        "usdc": 13.59,
+        "ts": 1776714836
+      },
+      {
+        "shares": 3.44,
+        "price": 0.9,
+        "usdc": 3.096,
+        "ts": 1776714888
+      },
+      {
+        "shares": 2.5,
+        "price": 0.9,
+        "usdc": 2.25,
+        "ts": 1776714910
+      },
+      {
+        "shares": 19,
+        "price": 0.9,
+        "usdc": 17.1,
+        "ts": 1776714910
+      },
+      {
+        "shares": 27.28,
+        "price": 0.9,
+        "usdc": 24.552,
+        "ts": 1776714954
+      },
+      {
+        "shares": 54.53,
+        "price": 0.9,
+        "usdc": 49.077,
+        "ts": 1776715002
+      },
+      {
+        "shares": 25.25,
+        "price": 0.9,
+        "usdc": 22.725,
+        "ts": 1776715122
+      }
+    ],
+    "totalShares": 652.26414
+  },
+  {
+    "key": "0x806eacdf6966622b3bb143fa2128263753a41dcbf36fa7e20cacaaeaedbc1bc5-0",
+    "title": "Will the highest temperature in Cape Town be 17°C on April 21?",
+    "lots": [
+      {
+        "shares": 318.14822,
+        "price": 0.8991876407305479,
+        "usdc": 287.52424,
+        "ts": 1776783954
+      }
+    ],
+    "totalShares": 318.14822
+  },
+  {
+    "key": "0xf19ea2e564198628da152ada3049e15f4b5e5f531ec396c7c5702a732e373f74-0",
+    "title": "Will the highest temperature in New York City be between 52-53°F on April 21?",
+    "lots": [
+      {
+        "shares": 128.8944,
+        "price": 0.75,
+        "usdc": 96.6708,
+        "ts": 1776797568
+      }
+    ],
+    "totalShares": 128.8944
+  },
+  {
+    "key": "0xf38e07ea49af41525ccb103537b23099794ac8165a0309875209fc68d2df9fa6-0",
+    "title": "Will the highest temperature in Mexico City be 27°C or higher on April 21?",
+    "lots": [
+      {
+        "shares": 2000,
+        "price": 0.99,
+        "usdc": 1980,
+        "ts": 1776804158
+      }
+    ],
+    "totalShares": 2000
+  }
+]

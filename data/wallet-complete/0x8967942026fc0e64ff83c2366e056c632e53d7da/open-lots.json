@@ -1,0 +1,1480 @@
+[
+  {
+    "key": "0x9dc5a9ef0276845760dbf4fb07185923d4853be3b09b3bf388d01e485250485e-0",
+    "title": "Will the highest temperature in Seoul be 0°C on February 2?",
+    "lots": [
+      {
+        "shares": 963,
+        "price": 0.999,
+        "usdc": 962.037,
+        "ts": 1770044134
+      }
+    ],
+    "totalShares": 963
+  },
+  {
+    "key": "0xbcae0dafbf7d44024a5321bdfe2b54197bfc54899cb108504155a50278eac3ea-0",
+    "title": "Will the highest temperature in Dallas be 58°F or higher on February 5?",
+    "lots": [
+      {
+        "shares": 2140,
+        "price": 0.999,
+        "usdc": 2137.86,
+        "ts": 1770303631
+      }
+    ],
+    "totalShares": 2140
+  },
+  {
+    "key": "0x1aafbce8cbe91725f70983c60e3a43a3d4582b77a0d708970ae4f79bfba74c2c-0",
+    "title": "Will the highest temperature in Seoul be -4°C on February 6?",
+    "lots": [
+      {
+        "shares": 69.83,
+        "price": 0.997,
+        "usdc": 69.62051,
+        "ts": 1770375067
+      },
+      {
+        "shares": 486.63,
+        "price": 0.997,
+        "usdc": 485.17011,
+        "ts": 1770375083
+      },
+      {
+        "shares": 175.33,
+        "price": 0.997,
+        "usdc": 174.80401,
+        "ts": 1770375115
+      },
+      {
+        "shares": 1000,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1770381897
+      },
+      {
+        "shares": 1350,
+        "price": 0.999,
+        "usdc": 1348.65,
+        "ts": 1770383713
+      }
+    ],
+    "totalShares": 3081.79
+  },
+  {
+    "key": "0x7ecffb5292bcab2853fa1864e44d5531f0edbe00cf9baee6b458055109b55641-0",
+    "title": "Will the highest temperature in Toronto be -3°C on February 6?",
+    "lots": [
+      {
+        "shares": 155.04,
+        "price": 0.998,
+        "usdc": 154.72992,
+        "ts": 1770429465
+      },
+      {
+        "shares": 1101.83,
+        "price": 0.999,
+        "usdc": 1100.72817,
+        "ts": 1770429477
+      }
+    ],
+    "totalShares": 1256.87
+  },
+  {
+    "key": "0x201033c595ef657c47b12109954dea0e20add367768c8e12adcdb7bb4ef6aa01-0",
+    "title": "Will the highest temperature in Dallas be 68°F or higher on February 13?",
+    "lots": [
+      {
+        "shares": 1035,
+        "price": 0.999,
+        "usdc": 1033.965,
+        "ts": 1770978595
+      }
+    ],
+    "totalShares": 1035
+  },
+  {
+    "key": "0xb9440e99cc008c2ad2bc6328ba7cc1118de566ae9da6ac62cefdd388baa0cf72-0",
+    "title": "Will the highest temperature in Seattle be between 46-47°F on February 15?",
+    "lots": [
+      {
+        "shares": 87.43,
+        "price": 0.998,
+        "usdc": 87.25514,
+        "ts": 1771225701
+      },
+      {
+        "shares": 285,
+        "price": 0.999,
+        "usdc": 284.715,
+        "ts": 1771225733
+      }
+    ],
+    "totalShares": 372.43
+  },
+  {
+    "key": "0x09f8cfc1b63764098e89aa4fd67ae81fb2fd62462367984273bcaca915af4245-0",
+    "title": "Will the highest temperature in Dallas be between 70-71°F on February 16?",
+    "lots": [
+      {
+        "shares": 59.01,
+        "price": 0.998,
+        "usdc": 58.89198,
+        "ts": 1771291227
+      }
+    ],
+    "totalShares": 59.01
+  },
+  {
+    "key": "0xb58e54bf8c20dcfad51541dd174aa810f3f6d0f60f325b283ab07b904e7d5c46-0",
+    "title": "Will the highest temperature in Wellington be 21°C on February 19?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1771472786
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0x3142ac65e654f1b27f1a54a5b0e8284062d64c3bb0897af27e87d0dd25a23d8f-0",
+    "title": "Will the highest temperature in Sao Paulo be 25°C on February 26?",
+    "lots": [
+      {
+        "shares": 1531,
+        "price": 0.998,
+        "usdc": 1527.938,
+        "ts": 1772155864
+      }
+    ],
+    "totalShares": 1531
+  },
+  {
+    "key": "0xc9be93d0ff6c87db450fa659ad67a12ab7f1268a3722bf5930e913854645ac9a-0",
+    "title": "Will the highest temperature in Dallas be 74°F or higher on February 27?",
+    "lots": [
+      {
+        "shares": 717.2,
+        "price": 0.999,
+        "usdc": 716.4828,
+        "ts": 1772211283
+      }
+    ],
+    "totalShares": 717.2
+  },
+  {
+    "key": "0x1142c859c89530c516a8c9dd08d28e2eee685bea08cca85d8757cbe9f33ee404-0",
+    "title": "Will the highest temperature in Miami be between 82-83°F on February 27?",
+    "lots": [
+      {
+        "shares": 9.96,
+        "price": 0.999,
+        "usdc": 9.95004,
+        "ts": 1772247105
+      }
+    ],
+    "totalShares": 9.96
+  },
+  {
+    "key": "0x0d023f7f73d9fe501118e68f8cc94b269ef111dbc3d2dda43800e2838a8b959d-0",
+    "title": "Will the highest temperature in Toronto be 6°C or higher on February 28?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1772259047
+      },
+      {
+        "shares": 2207,
+        "price": 0.999,
+        "usdc": 2204.793,
+        "ts": 1772259319
+      }
+    ],
+    "totalShares": 3207
+  },
+  {
+    "key": "0x405e17e229c8ad58b25f464f13f345a8d71f29ded8b24f1bce3a192fd9b5b01d-0",
+    "title": "Will the highest temperature in Seattle be between 50-51°F on February 28?",
+    "lots": [
+      {
+        "shares": 10.2,
+        "price": 0.999,
+        "usdc": 10.1898,
+        "ts": 1772333917
+      }
+    ],
+    "totalShares": 10.2
+  },
+  {
+    "key": "0x1ebffbce82c272a042877750d29580b2f8b056b64a8cf888043066b26b380646-0",
+    "title": "Will the highest temperature in New York City be between 42-43°F on March 1?",
+    "lots": [
+      {
+        "shares": 24.16,
+        "price": 0.999,
+        "usdc": 24.13584,
+        "ts": 1772412479
+      }
+    ],
+    "totalShares": 24.16
+  },
+  {
+    "key": "0xaa4e89495fa48358c41d2c436c3ce30f3f24fb6b68f8c21b34f294ef18c83c0c-0",
+    "title": "Will the highest temperature in Buenos Aires be 32°C on March 1?",
+    "lots": [
+      {
+        "shares": 1485.31,
+        "price": 0.999,
+        "usdc": 1483.82469,
+        "ts": 1772413235
+      }
+    ],
+    "totalShares": 1485.31
+  },
+  {
+    "key": "0xfdba07a106ded21678594d30d69bed706f7e20dabc08c9b552762f6969c84b5c-0",
+    "title": "Will the highest temperature in New York City be between 44-45°F on March 5?",
+    "lots": [
+      {
+        "shares": 2428.92,
+        "price": 0.999,
+        "usdc": 2426.49108,
+        "ts": 1772761977
+      }
+    ],
+    "totalShares": 2428.92
+  },
+  {
+    "key": "0x58cfebb3bd33fc298fcef93071491dc6bfac6b50915224fa6a9fb54037f54894-0",
+    "title": "Will the highest temperature in Seoul be 4°C on March 6?",
+    "lots": [
+      {
+        "shares": 2781.25,
+        "price": 0.999,
+        "usdc": 2778.46875,
+        "ts": 1772796757
+      },
+      {
+        "shares": 2438.3,
+        "price": 0.999,
+        "usdc": 2435.8617,
+        "ts": 1772800069
+      },
+      {
+        "shares": 587.3,
+        "price": 0.999,
+        "usdc": 586.7127,
+        "ts": 1772801029
+      }
+    ],
+    "totalShares": 5806.85
+  },
+  {
+    "key": "0x97834fb3471156dd943820014783da4c98e9da286ce7b148bb8cfe063410e86f-0",
+    "title": "Will the highest temperature in Wellington be 21°C on March 7?",
+    "lots": [
+      {
+        "shares": 213.79,
+        "price": 0.999,
+        "usdc": 213.57621,
+        "ts": 1772871551
+      },
+      {
+        "shares": 42.15,
+        "price": 0.999,
+        "usdc": 42.10785,
+        "ts": 1772876077
+      }
+    ],
+    "totalShares": 255.94
+  },
+  {
+    "key": "0x76c012437e3d3a24de4e2180a79a233c6eff2bdaccaa6beaa7c2d12c2ad92318-0",
+    "title": "Will the highest temperature in Wellington be 18°C on March 9?",
+    "lots": [
+      {
+        "shares": 1014.77,
+        "price": 0.999,
+        "usdc": 1013.75523,
+        "ts": 1773034869
+      }
+    ],
+    "totalShares": 1014.77
+  },
+  {
+    "key": "0x50f20b76e7c0991a9f36acfe5cf546e4c2d0995852e2523fe95f855b7bb9e645-0",
+    "title": "Will the highest temperature in Lucknow be 36°C or below on March 9?",
+    "lots": [
+      {
+        "shares": 2002.45,
+        "price": 0.999,
+        "usdc": 2000.44755,
+        "ts": 1773066461
+      }
+    ],
+    "totalShares": 2002.45
+  },
+  {
+    "key": "0x974756e07f9971fabf1c4e767bf46f769bd57ad9056e8ccac1f7eb194baf38fe-0",
+    "title": "Will the highest temperature in Seoul be 7°C on March 10?",
+    "lots": [
+      {
+        "shares": 1181.86,
+        "price": 0.9981681417426768,
+        "usdc": 1179.695,
+        "ts": 1773135271
+      }
+    ],
+    "totalShares": 1181.86
+  },
+  {
+    "key": "0xeeb472dd0b8a10d35cab1358696ee4c484ccbed3d38e93da8f4cebbf0193eb79-0",
+    "title": "Will the highest temperature in Wellington be 16°C on March 10?",
+    "lots": [
+      {
+        "shares": 930,
+        "price": 0.999,
+        "usdc": 929.07,
+        "ts": 1773135423
+      }
+    ],
+    "totalShares": 930
+  },
+  {
+    "key": "0x2b931a62774348fd21acf38bf1c54b81b163c64369fea53574124e9bd39d1ed8-0",
+    "title": "Will the highest temperature in Seoul be 11°C on March 12?",
+    "lots": [
+      {
+        "shares": 125.39,
+        "price": 0.999,
+        "usdc": 125.26461,
+        "ts": 1773315043
+      }
+    ],
+    "totalShares": 125.39
+  },
+  {
+    "key": "0x0165ffda354f86060e25a9099f094de4b8b5064ca6f402abb268362ca615dc4a-0",
+    "title": "Will the highest temperature in Lucknow be 35°C or below on March 12?",
+    "lots": [
+      {
+        "shares": 1500,
+        "price": 0.999,
+        "usdc": 1498.5,
+        "ts": 1773324625
+      }
+    ],
+    "totalShares": 1500
+  },
+  {
+    "key": "0x315bd3c853733fa8463d179f7fde2b677eb3138795dd13b4f5c3cdd6e9dd63bd-0",
+    "title": "Will the highest temperature in New York City be between 56-57°F on March 12?",
+    "lots": [
+      {
+        "shares": 6749.26,
+        "price": 0.999,
+        "usdc": 6742.51074,
+        "ts": 1773354861
+      },
+      {
+        "shares": 1458.66,
+        "price": 0.999,
+        "usdc": 1457.20134,
+        "ts": 1773355643
+      }
+    ],
+    "totalShares": 8207.92
+  },
+  {
+    "key": "0x85177e234fb762fcd10cdfe802677ec9989f921c69ad455d0daaa6effbd7b48c-0",
+    "title": "Will the highest temperature in Seoul be 11°C on March 13?",
+    "lots": [
+      {
+        "shares": 2078.35,
+        "price": 0.999,
+        "usdc": 2076.27165,
+        "ts": 1773398683
+      }
+    ],
+    "totalShares": 2078.35
+  },
+  {
+    "key": "0xea44f130a8a487cb73d7e9a6c9104a8a58990ed6f36f5bcfeef9bf5d505b65ab-0",
+    "title": "Will the highest temperature in Singapore be 32°C on March 13?",
+    "lots": [
+      {
+        "shares": 41,
+        "price": 0.998,
+        "usdc": 40.918,
+        "ts": 1773403057
+      },
+      {
+        "shares": 15,
+        "price": 0.998,
+        "usdc": 14.97,
+        "ts": 1773403117
+      },
+      {
+        "shares": 152,
+        "price": 0.998,
+        "usdc": 151.696,
+        "ts": 1773403143
+      },
+      {
+        "shares": 42,
+        "price": 0.998,
+        "usdc": 41.916,
+        "ts": 1773403175
+      },
+      {
+        "shares": 72.74,
+        "price": 0.999,
+        "usdc": 72.66726,
+        "ts": 1773403207
+      }
+    ],
+    "totalShares": 322.74
+  },
+  {
+    "key": "0x1a59dd5e02867aad791ba4aeaff316d07e1d2568ea92110b583c75d28d2609e3-0",
+    "title": "Will the highest temperature in Wellington be 17°C on March 14?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1773472435
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0x235cdb4b5571ddd5fa8c0787f58eb47e0c3835619e5077b4e73519d500ee7a8a-0",
+    "title": "Will the highest temperature in Singapore be 32°C on March 14?",
+    "lots": [
+      {
+        "shares": 1500,
+        "price": 0.999,
+        "usdc": 1498.5,
+        "ts": 1773483209
+      }
+    ],
+    "totalShares": 1500
+  },
+  {
+    "key": "0xd419d04ab2c87b5b5aae917cfd96c4e141d1624310811a9d850250e26e35508f-0",
+    "title": "Will the highest temperature in New York City be between 54-55°F on March 14?",
+    "lots": [
+      {
+        "shares": 680.7,
+        "price": 0.995,
+        "usdc": 677.2965,
+        "ts": 1773538839
+      }
+    ],
+    "totalShares": 680.7
+  },
+  {
+    "key": "0xd50a3e027171014dea8676b85e5ab0bb34890306f2e11626f7872080c9b0f102-0",
+    "title": "Will the highest temperature in Atlanta be between 76-77°F on March 14?",
+    "lots": [
+      {
+        "shares": 1126.97,
+        "price": 0.996,
+        "usdc": 1122.46212,
+        "ts": 1773538941
+      },
+      {
+        "shares": 144.55,
+        "price": 0.997,
+        "usdc": 144.11635,
+        "ts": 1773538965
+      },
+      {
+        "shares": 114.17,
+        "price": 0.997,
+        "usdc": 113.82749,
+        "ts": 1773538979
+      },
+      {
+        "shares": 271.32,
+        "price": 0.999,
+        "usdc": 271.04868,
+        "ts": 1773539001
+      }
+    ],
+    "totalShares": 1657.01
+  },
+  {
+    "key": "0x026a78742b723f60e6e812eaba7d80512962f765226f198a665ec8d44ae15ea2-0",
+    "title": "Will the highest temperature in Miami be between 84-85°F on March 14?",
+    "lots": [
+      {
+        "shares": 1126.35,
+        "price": 0.998,
+        "usdc": 1124.0973,
+        "ts": 1773539125
+      },
+      {
+        "shares": 303.49,
+        "price": 0.999,
+        "usdc": 303.18651,
+        "ts": 1773539143
+      }
+    ],
+    "totalShares": 1429.84
+  },
+  {
+    "key": "0x943f2cae1c9f352b31fef40f549e2a993bca7d5c90961d5a787feef3638160be-0",
+    "title": "Will the highest temperature in Sao Paulo be 29°C on March 14?",
+    "lots": [
+      {
+        "shares": 171.6,
+        "price": 0.998,
+        "usdc": 171.2568,
+        "ts": 1773539233
+      }
+    ],
+    "totalShares": 171.6
+  },
+  {
+    "key": "0x0f37de94749d1bc8c06f3ae30d4b5fd822c9547bd3b735cbd5fdacd0211650ca-0",
+    "title": "Will the highest temperature in Toronto be 2°C on March 14?",
+    "lots": [
+      {
+        "shares": 1585.66,
+        "price": 0.999,
+        "usdc": 1584.07434,
+        "ts": 1773539803
+      }
+    ],
+    "totalShares": 1585.66
+  },
+  {
+    "key": "0xc9aa1245e3cd7cfe5f999b89c2128b788f21bcd2d490d8057ee0e695e4d0d2fa-0",
+    "title": "Will the highest temperature in Buenos Aires be 29°C on March 14?",
+    "lots": [
+      {
+        "shares": 603.02,
+        "price": 0.996,
+        "usdc": 600.60792,
+        "ts": 1773539997
+      },
+      {
+        "shares": 967.33,
+        "price": 0.997,
+        "usdc": 964.42801,
+        "ts": 1773540011
+      },
+      {
+        "shares": 3443.93,
+        "price": 0.998,
+        "usdc": 3437.04214,
+        "ts": 1773540027
+      }
+    ],
+    "totalShares": 5014.28
+  },
+  {
+    "key": "0xf3b5b404c7b5dbef268283e8e63037330c553bf6129a6658609fa29d792a0b50-0",
+    "title": "Will the highest temperature in Sao Paulo be 30°C on March 15?",
+    "lots": [
+      {
+        "shares": 37.3,
+        "price": 0.999,
+        "usdc": 37.2627,
+        "ts": 1773617449
+      }
+    ],
+    "totalShares": 37.3
+  },
+  {
+    "key": "0x93251cc372bc58e690d9edb8502ce948891169d721278a01f9cfa3b3fcc392c4-0",
+    "title": "Will the highest temperature in Seoul be 10°C on March 16?",
+    "lots": [
+      {
+        "shares": 1747.37,
+        "price": 0.999,
+        "usdc": 1745.62263,
+        "ts": 1773658423
+      }
+    ],
+    "totalShares": 1747.37
+  },
+  {
+    "key": "0x2a3dacd57543976689d688053f7d346f087ddd8048157b20d84a2444c136a8ff-0",
+    "title": "Will the highest temperature in Atlanta be between 68-69°F on March 16?",
+    "lots": [
+      {
+        "shares": 326.36,
+        "price": 0.998,
+        "usdc": 325.70728,
+        "ts": 1773670121
+      },
+      {
+        "shares": 143,
+        "price": 0.998,
+        "usdc": 142.714,
+        "ts": 1773670137
+      },
+      {
+        "shares": 2212,
+        "price": 0.999,
+        "usdc": 2209.788,
+        "ts": 1773670161
+      }
+    ],
+    "totalShares": 2681.36
+  },
+  {
+    "key": "0xdcbcb6633a4e48518bb52d1e67d7ab0b881a05f257a4fd3c89ac4de46e58353f-0",
+    "title": "Will the highest temperature in Chicago be between 30-31°F on March 16?",
+    "lots": [
+      {
+        "shares": 20.15,
+        "price": 0.997,
+        "usdc": 20.08955,
+        "ts": 1773703295
+      },
+      {
+        "shares": 693.58,
+        "price": 0.998,
+        "usdc": 692.19284,
+        "ts": 1773703309
+      },
+      {
+        "shares": 4604.78,
+        "price": 0.999,
+        "usdc": 4600.17522,
+        "ts": 1773703379
+      }
+    ],
+    "totalShares": 5318.51
+  },
+  {
+    "key": "0xadd1440eb24be327f4186cbe7aa4669aef28e1e0b0ec7c4d6268f33de42eac7e-0",
+    "title": "Will the highest temperature in Wellington be 21°C on March 17?",
+    "lots": [
+      {
+        "shares": 2477,
+        "price": 0.999,
+        "usdc": 2474.523,
+        "ts": 1773729347
+      }
+    ],
+    "totalShares": 2477
+  },
+  {
+    "key": "0xc42a16f7ee9ac924bd2e3f5345e39d5e27fcfebc8325a3fbfcd1745b9fdbb7ee-0",
+    "title": "Will the highest temperature in Singapore be 32°C on March 17?",
+    "lots": [
+      {
+        "shares": 5000,
+        "price": 0.999,
+        "usdc": 4995,
+        "ts": 1773741101
+      }
+    ],
+    "totalShares": 5000
+  },
+  {
+    "key": "0x12d2bb794f7a1988f41793427f012121bd31f3cefdd2ad4c10840b74fae9810c-0",
+    "title": "Will the highest temperature in Buenos Aires be 33°C or below on March 17?",
+    "lots": [
+      {
+        "shares": 1125.27,
+        "price": 0.999,
+        "usdc": 1124.14473,
+        "ts": 1773791535
+      }
+    ],
+    "totalShares": 1125.27
+  },
+  {
+    "key": "0x157f2aef23bfb36b5cd989fa23ac515197d16e77d676c7d04cff2b0c3da32545-0",
+    "title": "Will the highest temperature in Shanghai be 13°C on March 18?",
+    "lots": [
+      {
+        "shares": 492.5,
+        "price": 0.998,
+        "usdc": 491.515,
+        "ts": 1773834623
+      }
+    ],
+    "totalShares": 492.5
+  },
+  {
+    "key": "0x37b812ecc8acbd42ecd91c80d13a58462a9519d950b61b30394c8b1d4fa3c1e2-0",
+    "title": "Will the highest temperature in Lucknow be 34°C on March 18?",
+    "lots": [
+      {
+        "shares": 70.56,
+        "price": 0.998,
+        "usdc": 70.41888,
+        "ts": 1773842923
+      },
+      {
+        "shares": 1084,
+        "price": 0.999,
+        "usdc": 1082.916,
+        "ts": 1773847189
+      }
+    ],
+    "totalShares": 1154.56
+  },
+  {
+    "key": "0x6be856600798b03b36fbba59eb3141922e912a361c4578dbbee23f8f44b9bbec-0",
+    "title": "Will the highest temperature in Wellington be 17°C on March 20?",
+    "lots": [
+      {
+        "shares": 439.67,
+        "price": 0.999,
+        "usdc": 439.23033,
+        "ts": 1773993065
+      },
+      {
+        "shares": 1031,
+        "price": 0.999,
+        "usdc": 1029.969,
+        "ts": 1773994091
+      }
+    ],
+    "totalShares": 1470.67
+  },
+  {
+    "key": "0x16d454541c6fcaf1fe19e5cb6437b57d81c4785d78d87af90fe98cea9b5cecbe-0",
+    "title": "Will the highest temperature in Chengdu be 22°C on March 20?",
+    "lots": [
+      {
+        "shares": 2000,
+        "price": 0.999,
+        "usdc": 1998,
+        "ts": 1774013431
+      }
+    ],
+    "totalShares": 2000
+  },
+  {
+    "key": "0x6a577f4852722523afe87970bd5e1196939b42deddd6e940c440a62d0cb7823b-0",
+    "title": "Will the highest temperature in Wuhan be 15°C on March 20?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1774015325
+      },
+      {
+        "shares": 741.59,
+        "price": 0.999,
+        "usdc": 740.84841,
+        "ts": 1774015351
+      }
+    ],
+    "totalShares": 1741.5900000000001
+  },
+  {
+    "key": "0x16debe72e3ee3f972c2a875e3d330242575066300ef23c8a12679412867b2b97-0",
+    "title": "Will the highest temperature in Seoul be 11°C on March 21?",
+    "lots": [
+      {
+        "shares": 1574,
+        "price": 0.998,
+        "usdc": 1570.852,
+        "ts": 1774086117
+      }
+    ],
+    "totalShares": 1574
+  },
+  {
+    "key": "0x641f272c3c0d8824275175e34b6fd6167a93ac7f570fa6363b7e2c3760adde4d-0",
+    "title": "Will the highest temperature in Wellington be 20°C on March 22?",
+    "lots": [
+      {
+        "shares": 2000,
+        "price": 0.999,
+        "usdc": 1998,
+        "ts": 1774154639
+      },
+      {
+        "shares": 71.84,
+        "price": 0.999,
+        "usdc": 71.76816,
+        "ts": 1774157271
+      },
+      {
+        "shares": 10,
+        "price": 0.999,
+        "usdc": 9.99,
+        "ts": 1774157347
+      },
+      {
+        "shares": 364.09,
+        "price": 0.999,
+        "usdc": 363.72591,
+        "ts": 1774160089
+      },
+      {
+        "shares": 29.06,
+        "price": 0.999,
+        "usdc": 29.03094,
+        "ts": 1774161913
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1774167243
+      }
+    ],
+    "totalShares": 2479.9900000000002
+  },
+  {
+    "key": "0xe97839b1f93307ef4adbe8eb61cc485b124559da58c1f21a414e2073b5220c2b-0",
+    "title": "Will the highest temperature in Beijing be 18°C on March 23?",
+    "lots": [
+      {
+        "shares": 1970,
+        "price": 0.999,
+        "usdc": 1968.03,
+        "ts": 1774275289
+      }
+    ],
+    "totalShares": 1970
+  },
+  {
+    "key": "0x050e38cf526c6f57c38bef2cc72c007b4174ceb3437ef28333f55132e1d42b79-0",
+    "title": "Will the highest temperature in Toronto be 2°C on March 23?",
+    "lots": [
+      {
+        "shares": 902.27,
+        "price": 0.999,
+        "usdc": 901.36773,
+        "ts": 1774315887
+      }
+    ],
+    "totalShares": 902.27
+  },
+  {
+    "key": "0x49307bb04c35e9a94f0d5b9f1d052ae96faf927e97d74f6466471c39205e811e-0",
+    "title": "Will the highest temperature in Beijing be 19°C on March 24?",
+    "lots": [
+      {
+        "shares": 12.61,
+        "price": 0.997,
+        "usdc": 12.57217,
+        "ts": 1774361167
+      },
+      {
+        "shares": 50,
+        "price": 0.998,
+        "usdc": 49.9,
+        "ts": 1774361173
+      },
+      {
+        "shares": 1472.8,
+        "price": 0.999,
+        "usdc": 1471.3272,
+        "ts": 1774361185
+      }
+    ],
+    "totalShares": 1535.4099999999999
+  },
+  {
+    "key": "0x58579ca66bf841aa80b8544bf317b8e9a1ea23fcf2831722d371bf8d0669ad9a-0",
+    "title": "Will the highest temperature in New York City be between 48-49°F on March 24?",
+    "lots": [
+      {
+        "shares": 2000,
+        "price": 0.999,
+        "usdc": 1998,
+        "ts": 1774394865
+      },
+      {
+        "shares": 2000,
+        "price": 0.999,
+        "usdc": 1998,
+        "ts": 1774395829
+      },
+      {
+        "shares": 1967,
+        "price": 0.999,
+        "usdc": 1965.033,
+        "ts": 1774397681
+      }
+    ],
+    "totalShares": 5967
+  },
+  {
+    "key": "0x5cc6d485909e1486aa4940f32f6150781773e3d1916bf77cb79daed78d278e59-0",
+    "title": "Will the highest temperature in Miami be between 84-85°F on March 24?",
+    "lots": [
+      {
+        "shares": 112.12,
+        "price": 0.999,
+        "usdc": 112.00788,
+        "ts": 1774395129
+      }
+    ],
+    "totalShares": 112.12
+  },
+  {
+    "key": "0x77f3d311a0f076286d91c2cacbf7bbddc9a5111429bbc8fa3567592d6a8630d7-0",
+    "title": "Will the highest temperature in Chicago be between 66-67°F on March 26?",
+    "lots": [
+      {
+        "shares": 2783.36,
+        "price": 0.999,
+        "usdc": 2780.57664,
+        "ts": 1774568085
+      },
+      {
+        "shares": 350,
+        "price": 0.999,
+        "usdc": 349.65,
+        "ts": 1774568177
+      }
+    ],
+    "totalShares": 3133.36
+  },
+  {
+    "key": "0x88c96ce1e6916bd5b0e7059e62b2dc8f07d86070bd440597c13a41b6b586fb1d-0",
+    "title": "Will the highest temperature in Miami be between 82-83°F on March 26?",
+    "lots": [
+      {
+        "shares": 88.59,
+        "price": 0.999,
+        "usdc": 88.50141,
+        "ts": 1774568455
+      }
+    ],
+    "totalShares": 88.59
+  },
+  {
+    "key": "0xd353459b1d930008335a8ed63188b8d68eafa737e1a23546fe203d41bbe819ec-0",
+    "title": "Will the highest temperature in Denver be between 76-77°F on March 26?",
+    "lots": [
+      {
+        "shares": 17.7,
+        "price": 0.994,
+        "usdc": 17.5938,
+        "ts": 1774568893
+      },
+      {
+        "shares": 831,
+        "price": 0.998,
+        "usdc": 829.338,
+        "ts": 1774568931
+      },
+      {
+        "shares": 1750,
+        "price": 0.999,
+        "usdc": 1748.25,
+        "ts": 1774568945
+      },
+      {
+        "shares": 12.57,
+        "price": 0.999,
+        "usdc": 12.55743,
+        "ts": 1774568949
+      }
+    ],
+    "totalShares": 2611.27
+  },
+  {
+    "key": "0xbe8f52e4157b50d718d2bfd8b4bb6622a1e1418c861d8540951e1625a74ef242-0",
+    "title": "Will the highest temperature in Tokyo be 21°C on March 29?",
+    "lots": [
+      {
+        "shares": 301,
+        "price": 0.999,
+        "usdc": 300.699,
+        "ts": 1774791606
+      }
+    ],
+    "totalShares": 301
+  },
+  {
+    "key": "0xef7ecb624c3f19002cd9a5c5960871906b2cceefd1e95d7516d091d45e0ab2c7-0",
+    "title": "Will the highest temperature in Seoul be 14°C on April 2?",
+    "lots": [
+      {
+        "shares": 1112.5287400000002,
+        "price": 0.998,
+        "usdc": 1110.41472,
+        "ts": 1775122367
+      },
+      {
+        "shares": 704.71477,
+        "price": 0.999,
+        "usdc": 704.04525,
+        "ts": 1775123861
+      }
+    ],
+    "totalShares": 1817.2435100000002
+  },
+  {
+    "key": "0x2829ac7a21f2066e35a2b038a04e45c89ca733a373b929240d661f417bcb1adc-0",
+    "title": "Will the highest temperature in Wellington be 20°C on April 2?",
+    "lots": [
+      {
+        "shares": 1999.9,
+        "price": 0.999,
+        "usdc": 1998,
+        "ts": 1775122995
+      },
+      {
+        "shares": 1999.9,
+        "price": 0.999,
+        "usdc": 1998,
+        "ts": 1775123425
+      }
+    ],
+    "totalShares": 3999.8
+  },
+  {
+    "key": "0x2d7ffef1fea187a7a82d1584e25f1a0992fe58409010801a21f3d98d9ffe5984-0",
+    "title": "Will the highest temperature in Seoul be 19°C or higher on April 3?",
+    "lots": [
+      {
+        "shares": 2999.85,
+        "price": 0.999,
+        "usdc": 2997,
+        "ts": 1775199571
+      },
+      {
+        "shares": 1999.9,
+        "price": 0.999,
+        "usdc": 1998,
+        "ts": 1775199603
+      },
+      {
+        "shares": 9.259079999999999,
+        "price": 0.998,
+        "usdc": 9.24148,
+        "ts": 1775199731
+      },
+      {
+        "shares": 2999.85,
+        "price": 0.999,
+        "usdc": 2997,
+        "ts": 1775199751
+      }
+    ],
+    "totalShares": 8008.85908
+  },
+  {
+    "key": "0xa2a229b796ab29bb5172b81a170b5eba77209b519eca009d9ae88621804f1674-0",
+    "title": "Will the highest temperature in Toronto be 9°C or higher on April 3?",
+    "lots": [
+      {
+        "shares": 999.95,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1775207991
+      }
+    ],
+    "totalShares": 999.95
+  },
+  {
+    "key": "0x6c3712de41368f3d6ef77e3830c4520d43a0c4793eff21f7d34a79c45bb57e5e-0",
+    "title": "Will the highest temperature in Seoul be 17°C or higher on April 4?",
+    "lots": [
+      {
+        "shares": 999.95,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1775277827
+      },
+      {
+        "shares": 999.95,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1775277847
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1775278147
+      },
+      {
+        "shares": 2.07,
+        "price": 0.999,
+        "usdc": 2.06793,
+        "ts": 1775278473
+      },
+      {
+        "shares": 2.13,
+        "price": 0.999,
+        "usdc": 2.12787,
+        "ts": 1775278551
+      },
+      {
+        "shares": 9.56,
+        "price": 0.999,
+        "usdc": 9.55044,
+        "ts": 1775278757
+      },
+      {
+        "shares": 9.66,
+        "price": 0.999,
+        "usdc": 9.65034,
+        "ts": 1775278909
+      }
+    ],
+    "totalShares": 2028.3200000000002
+  },
+  {
+    "key": "0xf2b460d7acfabeceba49906de776f2aef0e8ff46f3f61e3bbeac16178586f1a9-0",
+    "title": "Will the highest temperature in Wellington be 21°C on April 4?",
+    "lots": [
+      {
+        "shares": 118.53815,
+        "price": 0.998,
+        "usdc": 118.3129,
+        "ts": 1775283089
+      },
+      {
+        "shares": 3223.8388,
+        "price": 0.999,
+        "usdc": 3220.776,
+        "ts": 1775283133
+      }
+    ],
+    "totalShares": 3342.37695
+  },
+  {
+    "key": "0x2e1d53f7483d66fd8e39b0e785c1f439e1a0beddb4fd1c0bd64921e14a832f03-0",
+    "title": "Will the highest temperature in Busan be 18°C on April 4?",
+    "lots": [
+      {
+        "shares": 19.52805,
+        "price": 0.998,
+        "usdc": 19.49094,
+        "ts": 1775302385
+      },
+      {
+        "shares": 357.04215,
+        "price": 0.999,
+        "usdc": 356.70294,
+        "ts": 1775302411
+      }
+    ],
+    "totalShares": 376.5702
+  },
+  {
+    "key": "0x1cdd05d8fc3123d7594490eeab0c41070ade99553a8990dda2f19b65429d8aaf-0",
+    "title": "Will the highest temperature in Istanbul be 16°C on April 8?",
+    "lots": [
+      {
+        "shares": 29.997,
+        "price": 0.998,
+        "usdc": 29.94,
+        "ts": 1775658033
+      },
+      {
+        "shares": 843.84781,
+        "price": 0.999,
+        "usdc": 843.04611,
+        "ts": 1775658099
+      }
+    ],
+    "totalShares": 873.8448099999999
+  },
+  {
+    "key": "0xd2c662d490be9fee01c9800fb77238bcc64a50dbf6b1b8b8bb6f6f4e39a98767-1",
+    "title": "Will the highest temperature in Wellington be 19°C on April 11?",
+    "lots": [
+      {
+        "shares": 0.0018499999999903594,
+        "price": 0.664037,
+        "usdc": 664.037,
+        "ts": 1775876025
+      }
+    ],
+    "totalShares": 0.0018499999999903594
+  },
+  {
+    "key": "0xcdce4f18bad7720d8ed540fada460236071dd807d4fbab91074bee2dc0a72bd7-0",
+    "title": "Will the highest temperature in Denver be 60°F or higher on April 11?",
+    "lots": [
+      {
+        "shares": 999.8,
+        "price": 0.996,
+        "usdc": 996,
+        "ts": 1775881483
+      }
+    ],
+    "totalShares": 999.8
+  },
+  {
+    "key": "0x00a6cd6a0a3622f37a3887d2b532beeb4b2955f2f6c705dbf0d83f2c99ef0fe8-0",
+    "title": "Will the highest temperature in Austin be 66°F or higher on April 11?",
+    "lots": [
+      {
+        "shares": 1999.7,
+        "price": 0.997,
+        "usdc": 1994,
+        "ts": 1775881613
+      },
+      {
+        "shares": 678.34824,
+        "price": 0.997,
+        "usdc": 676.41465,
+        "ts": 1775883701
+      }
+    ],
+    "totalShares": 2678.04824
+  },
+  {
+    "key": "0x8d67c66c526dc768e5fbf169dd1e712f91406c3922618569bc5fb55185c0d2a9-0",
+    "title": "Will the highest temperature in Chicago be 44°F or higher on April 12?",
+    "lots": [
+      {
+        "shares": 508.99455,
+        "price": 0.999,
+        "usdc": 508.51098,
+        "ts": 1775912281
+      }
+    ],
+    "totalShares": 508.99455
+  },
+  {
+    "key": "0x3b81d0242f98c8e4ff84a42986ad9d080b37f051981cafca4f181d626459df6b-0",
+    "title": "Will the highest temperature in Chicago be 46°F or higher on April 11?",
+    "lots": [
+      {
+        "shares": 73.9926,
+        "price": 0.998,
+        "usdc": 73.852,
+        "ts": 1775914753
+      },
+      {
+        "shares": 14.65927,
+        "price": 0.999,
+        "usdc": 14.64534,
+        "ts": 1775914781
+      }
+    ],
+    "totalShares": 88.65187
+  },
+  {
+    "key": "0xb5e76e6a0801b8f4c15dfb9f1a98ff92b786fb46a63b83171185088f6e915d80-0",
+    "title": "Will the highest temperature in Chicago be 58°F or higher on April 14?",
+    "lots": [
+      {
+        "shares": 58,
+        "price": 0.994,
+        "usdc": 57.652,
+        "ts": 1776000147
+      },
+      {
+        "shares": 203.87882,
+        "price": 0.994,
+        "usdc": 202.71636,
+        "ts": 1776000147
+      },
+      {
+        "shares": 499.925,
+        "price": 0.997,
+        "usdc": 498.5,
+        "ts": 1776000171
+      },
+      {
+        "shares": 14.9955,
+        "price": 0.994,
+        "usdc": 14.91,
+        "ts": 1776081113
+      },
+      {
+        "shares": 29.9925,
+        "price": 0.995,
+        "usdc": 29.85,
+        "ts": 1776081121
+      },
+      {
+        "shares": 14.99625,
+        "price": 0.995,
+        "usdc": 14.925,
+        "ts": 1776081129
+      },
+      {
+        "shares": 143.65127,
+        "price": 0.996,
+        "usdc": 143.10528,
+        "ts": 1776081171
+      },
+      {
+        "shares": 569.13309,
+        "price": 0.998,
+        "usdc": 568.05162,
+        "ts": 1776092653
+      }
+    ],
+    "totalShares": 1534.5724300000002
+  },
+  {
+    "key": "0x284ee6e0b464c11ba9aa019e7c9e1f2628775419db466dd71f9da30bff4e0a1a-0",
+    "title": "Will the highest temperature in Mexico City be 22°C or higher on April 14?",
+    "lots": [
+      {
+        "shares": 19.35226,
+        "price": 0.992,
+        "usdc": 19.20512,
+        "ts": 1776080877
+      },
+      {
+        "shares": 42.65507,
+        "price": 0.993,
+        "usdc": 42.37131,
+        "ts": 1776080889
+      },
+      {
+        "shares": 21.43357,
+        "price": 0.994,
+        "usdc": 21.31136,
+        "ts": 1776080895
+      },
+      {
+        "shares": 29.991,
+        "price": 0.994,
+        "usdc": 29.82,
+        "ts": 1776080905
+      },
+      {
+        "shares": 142.68431999999999,
+        "price": 0.995,
+        "usdc": 142.0064,
+        "ts": 1776080917
+      },
+      {
+        "shares": 971.9514,
+        "price": 0.999,
+        "usdc": 971.028,
+        "ts": 1776169979
+      }
+    ],
+    "totalShares": 1228.06762
+  },
+  {
+    "key": "0xb53776876bf9d3b087ab861eb37a9f76d2869eb0a66b4f8218ba1d5b5ae9445f-0",
+    "title": "Will the highest temperature in Mexico City be 19°C or higher on April 15?",
+    "lots": [
+      {
+        "shares": 565.4886,
+        "price": 0.995,
+        "usdc": 562.80185,
+        "ts": 1776170197
+      },
+      {
+        "shares": 568.91465,
+        "price": 0.997,
+        "usdc": 567.293,
+        "ts": 1776226582
+      }
+    ],
+    "totalShares": 1134.40325
+  },
+  {
+    "key": "0xc27df2fd3fcdae741b7f6148cb617e8ce296240b7c3222c175db10ef768b2911-0",
+    "title": "Will the highest temperature in Houston be between 82-83°F on April 15?",
+    "lots": [
+      {
+        "shares": 685.8457099999999,
+        "price": 0.999,
+        "usdc": 685.19412,
+        "ts": 1776306260
+      }
+    ],
+    "totalShares": 685.8457099999999
+  },
+  {
+    "key": "0x74db32a0de20aba5939ade47c9605eae70275908b7c252ce185c8ecb0eaf2e04-0",
+    "title": "Will the highest temperature in Lucknow be 40°C on April 16?",
+    "lots": [
+      {
+        "shares": 215.11925,
+        "price": 0.999,
+        "usdc": 214.91487,
+        "ts": 1776350330
+      }
+    ],
+    "totalShares": 215.11925
+  },
+  {
+    "key": "0xcce1915d8e368b16af736d513b00af7754b317f5bfcd5e1c6a5cb752af6b2a6c-0",
+    "title": "Will the highest temperature in Jeddah be 41°C on April 17?",
+    "lots": [
+      {
+        "shares": 193.27034,
+        "price": 0.999,
+        "usdc": 193.08672,
+        "ts": 1776439938
+      }
+    ],
+    "totalShares": 193.27034
+  },
+  {
+    "key": "0xde6e8993f2dab68ae99cef67c1d688bb6f24860a47678513615f5cba138cd52b-0",
+    "title": "Will the highest temperature in Busan be 25°C on April 19?",
+    "lots": [
+      {
+        "shares": 9.999,
+        "price": 0.998,
+        "usdc": 9.98,
+        "ts": 1776590510
+      },
+      {
+        "shares": 715.9642,
+        "price": 0.999,
+        "usdc": 715.284,
+        "ts": 1776593104
+      }
+    ],
+    "totalShares": 725.9632
+  },
+  {
+    "key": "0xc7e740d162b4c1294297c02939d76a4884d75a1e663e5e554f143bb0bed8c457-1",
+    "title": "Will the highest temperature in Wellington be 7°C or below on April 23?",
+    "lots": [
+      {
+        "shares": 1924.90375,
+        "price": 0.999,
+        "usdc": 1923.075,
+        "ts": 1776776580
+      }
+    ],
+    "totalShares": 1924.90375
+  },
+  {
+    "key": "0x1d815cfe0dfad204f2a3d81f93b2b7eb9c5317a82f1e606b8a491ab248f28076-1",
+    "title": "Will the highest temperature in Chicago be 43°F or below on April 23?",
+    "lots": [
+      {
+        "shares": 994.73027,
+        "price": 0.999,
+        "usdc": 993.78522,
+        "ts": 1776866938
+      },
+      {
+        "shares": 300,
+        "price": 0.999,
+        "usdc": 299.7,
+        "ts": 1776872438
+      },
+      {
+        "shares": 1.49,
+        "price": 0.999,
+        "usdc": 1.48851,
+        "ts": 1776878948
+      }
+    ],
+    "totalShares": 1296.22027
+  }
+]

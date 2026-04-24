@@ -1,0 +1,13 @@
+{
+  "wallet": "0x38cc1d1f95d12039324809d8bb6ca6da6cbef88e",
+  "fetchedAt": "2026-04-22T09:35:33.391Z",
+  "activityEventCount": 2500,
+  "truncated": true,
+  "closedTradeCount": 293,
+  "openPositionCount": 0,
+  "realizedPnlUsdc": -1195.8144864106237,
+  "winRate": 0.8191126279863481,
+  "closedWins": 240,
+  "closedLosses": 53,
+  "openPositions": []
+}

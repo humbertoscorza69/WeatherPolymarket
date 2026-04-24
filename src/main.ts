@@ -3,18 +3,59 @@ import { join } from "node:path";
 import { loadConfig } from "./config.js";
 import { Logger } from "./logger.js";
 import { findActiveWeatherEvents } from "./adapters/weatherDiscovery.js";
+import { findGenericEvents, GAMMA_PRESETS } from "./adapters/genericDiscovery.js";
+import type { WeatherEvent } from "./types.js";
 import { fetchOpenMeteoForecast } from "./adapters/weatherFeed.js";
 import { forecastToProbabilities } from "./core/weatherFairValue.js";
 import { buildBuyQuotes } from "./core/multiMarketQuoter.js";
 import { QuoteIntent } from "./types.js";
 import { InventoryEngine } from "./core/inventoryEngine.js";
+import { EventLog } from "./core/eventLog.js";
 import { DryRunBroker } from "./execution/dryRunBroker.js";
 import { fetchOrderBookTop } from "./execution/orderBookClient.js";
 import { createClobDriverFromConfig } from "./execution/clobDriver.js";
 import { WeatherExecutionEngine } from "./execution/weatherExecutionEngine.js";
 import { UserWebSocket } from "./execution/userWebSocket.js";
+import { startDashboard } from "./dashboard/server.js";
 
 const log = new Logger("weather-mm");
+
+/**
+ * Route to the right discovery based on config.discoveryMode.
+ *   - weather: weatherDiscovery (CDF-based fair value, temperature parsing)
+ *   - generic: genericDiscovery (any Polymarket category via tag/URL, forecast bypassed)
+ */
+async function discoverEvents(discoveryConfig: {
+  discoveryMode: string;
+  discoveryPreset: string;
+  gammaEventsUrl?: string;
+  maxEvents: number;
+  maxOutcomesPerEvent: number;
+  minMarketVolumeUsdc: number;
+}): Promise<WeatherEvent[]> {
+  if (discoveryConfig.discoveryMode === "generic") {
+    const presetUrl =
+      GAMMA_PRESETS[discoveryConfig.discoveryPreset as keyof typeof GAMMA_PRESETS];
+    const url = discoveryConfig.gammaEventsUrl || presetUrl;
+    if (!url) {
+      throw new Error(
+        `DISCOVERY_MODE=generic requires either DISCOVERY_PRESET (one of: ${Object.keys(GAMMA_PRESETS).join(", ")}) or GAMMA_EVENTS_URL`
+      );
+    }
+    log.info("using generic discovery", { preset: discoveryConfig.discoveryPreset, url });
+    return findGenericEvents({
+      gammaUrl: url,
+      maxEvents: discoveryConfig.maxEvents,
+      maxOutcomesPerEvent: discoveryConfig.maxOutcomesPerEvent,
+      minMarketVolumeUsdc: discoveryConfig.minMarketVolumeUsdc
+    });
+  }
+  return findActiveWeatherEvents({
+    maxEvents: discoveryConfig.maxEvents,
+    maxOutcomesPerEvent: discoveryConfig.maxOutcomesPerEvent,
+    minMarketVolumeUsdc: discoveryConfig.minMarketVolumeUsdc
+  });
+}
 
 async function main() {
   const config = loadConfig();
@@ -28,16 +69,60 @@ async function main() {
     dryRunLive: config.dryRunLive
   });
 
+  const startTime = Date.now();
+  const eventLog = new EventLog({ filePath: join(config.dataDir, "events.jsonl") });
+  eventLog.record({
+    type: "STARTUP",
+    data: {
+      dryRunLive: config.dryRunLive,
+      maxEvents: config.maxEvents,
+      maxOutcomesPerEvent: config.maxOutcomesPerEvent,
+      orderSizeUsdc: config.orderSizeUsdc,
+      halfSpreadCents: config.halfSpreadCents
+    }
+  });
+
   const discoveryConfig = { ...config, maxOutcomesPerEvent: Math.max(config.maxOutcomesPerEvent, 20) };
-  const events = await findActiveWeatherEvents(discoveryConfig);
+  const events = await discoverEvents(discoveryConfig);
   if (events.length === 0) throw new Error("No active weather temperature events discovered");
+  for (const event of events) {
+    eventLog.record({
+      type: "DISCOVERY",
+      city: event.city,
+      message: event.title,
+      data: {
+        date: event.date,
+        outcomes: event.markets.length
+      }
+    });
+  }
 
   const broker = new DryRunBroker(join(config.dataDir, "dry-run-orders.jsonl"));
-  const execution = config.dryRunLive ? undefined : createLiveExecution(config, events);
+  const execution = config.dryRunLive ? undefined : createLiveExecution(config, events, eventLog);
   if (execution) {
+    await execution.engine.resolveMarketTickSizes();
     await execution.engine.startupCleanup();
     await execution.engine.loadStartupPositions();
     execution.userWs.connect();
+  }
+
+  const dashboardPort = Number(process.env.DASHBOARD_PORT ?? "8787");
+  if (process.env.DASHBOARD_ENABLED !== "false") {
+    startDashboard({
+      port: dashboardPort,
+      eventLog,
+      startTime,
+      engine: execution?.engine,
+      config: {
+        dryRunLive: config.dryRunLive,
+        maxEvents: config.maxEvents,
+        maxOutcomesPerEvent: config.maxOutcomesPerEvent,
+        orderSizeUsdc: config.orderSizeUsdc,
+        halfSpreadCents: config.halfSpreadCents,
+        refreshIntervalMs: config.refreshIntervalMs,
+        maxForecastDivergence: config.maxForecastDivergence
+      }
+    });
   }
   const evidence = {
     generatedAt: new Date().toISOString(),
@@ -51,12 +136,27 @@ async function main() {
     const distribution = forecastToProbabilities(
       forecast.temperatureMaxC,
       config.weatherUncertaintyC,
-      event.markets.map((market) => market.temperatureC)
+      event.markets.map((market) => ({
+        conditionId: market.conditionId,
+        temperatureC: market.temperatureC,
+        binWidthC: market.binWidthC ?? 1,
+        isLowTail: market.isLowTail ?? false,
+        isHighTail: market.isHighTail ?? false
+      }))
     );
     const books = [];
     for (const market of event.markets) {
       try {
-        books.push({ tokenId: market.yesTokenId, outcomeLabel: market.outcomeLabel, ...(await fetchOrderBookTop(market.yesTokenId, config.clobHost)) });
+        const top = await fetchOrderBookTop(market.yesTokenId, config.clobHost);
+        // Populate market.tickSize from the book response so the quoter's
+        // tick-aware spread check uses the real per-market tick. Without this
+        // the 0.001-tick markets all get rejected for "spread_too_tight" by a
+        // 0.02 threshold (2 × config default of 0.01).
+        if (top.tickSize && market.tickSize === undefined) {
+          const parsed = Number.parseFloat(top.tickSize);
+          if (Number.isFinite(parsed) && parsed > 0) market.tickSize = parsed;
+        }
+        books.push({ tokenId: market.yesTokenId, outcomeLabel: market.outcomeLabel, ...top });
       } catch (error) {
         books.push({ tokenId: market.yesTokenId, outcomeLabel: market.outcomeLabel, error: error instanceof Error ? error.message : String(error) });
       }
@@ -108,10 +208,14 @@ async function main() {
   }
 }
 
-function createLiveExecution(config: ReturnType<typeof loadConfig>, events: Awaited<ReturnType<typeof findActiveWeatherEvents>>) {
+function createLiveExecution(
+  config: ReturnType<typeof loadConfig>,
+  events: WeatherEvent[],
+  eventLog: EventLog
+) {
   const driver = createClobDriverFromConfig(config);
   const inventory = new InventoryEngine();
-  const engine = new WeatherExecutionEngine(events, driver, inventory, config);
+  const engine = new WeatherExecutionEngine(events, driver, inventory, config, undefined, eventLog);
   const userWs = new UserWebSocket({
     auth: {
       apiKey: config.polymarketApiKey as string,
@@ -131,20 +235,39 @@ function createLiveExecution(config: ReturnType<typeof loadConfig>, events: Awai
 
 async function refreshLiveQuotes(config: ReturnType<typeof loadConfig>, engine: WeatherExecutionEngine): Promise<void> {
   try {
+    // Stop-loss runs before re-quoting so we don't race our own exits
+    await engine.evaluateStopLosses();
     await engine.cancelActiveBuys();
     const positions = engine.getPositionSnapshots();
-    const events = await findActiveWeatherEvents({ ...config, maxOutcomesPerEvent: Math.max(config.maxOutcomesPerEvent, 20) });
+    const events = await discoverEvents({ ...config, maxOutcomesPerEvent: Math.max(config.maxOutcomesPerEvent, 20) });
     for (const event of events) {
       const forecast = await fetchOpenMeteoForecast(event);
       const books = [];
       for (const market of event.markets) {
         try {
-          books.push({ tokenId: market.yesTokenId, ...(await fetchOrderBookTop(market.yesTokenId, config.clobHost)) });
+          const top = await fetchOrderBookTop(market.yesTokenId, config.clobHost);
+          if (top.tickSize && market.tickSize === undefined) {
+            const parsed = Number.parseFloat(top.tickSize);
+            if (Number.isFinite(parsed) && parsed > 0) market.tickSize = parsed;
+          }
+          books.push({ tokenId: market.yesTokenId, ...top });
+          if (top.bestBid !== undefined && top.bestAsk !== undefined) {
+            engine.recordMid(market.conditionId, (top.bestBid + top.bestAsk) / 2);
+          }
         } catch {
           books.push({ tokenId: market.yesTokenId });
         }
       }
-      const { quotes, skipped } = buildBuyQuotes(event, forecast, config, books, positions);
+      const { quotes, skipped } = buildBuyQuotes(
+        event,
+        forecast,
+        config,
+        books,
+        positions,
+        new Date(),
+        (cid) => engine.volExtraCents(cid),
+        (cid) => engine.driftSignal(cid)
+      );
       if (skipped.length > 0) {
         log.info("skipped outcomes", { event: event.title, skipped });
       }
@@ -171,7 +294,7 @@ async function scheduleRefreshLoop(config: ReturnType<typeof loadConfig>, engine
 
 function selectQuotesClosestToForecast(
   quotes: QuoteIntent[],
-  event: Awaited<ReturnType<typeof findActiveWeatherEvents>>[number],
+  event: WeatherEvent,
   forecastTempC: number,
   limit: number
 ) {

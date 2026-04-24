@@ -14,8 +14,35 @@ const config: Config = {
   minMarketVolumeUsdc: 0,
   weatherApi: "open-meteo",
   weatherUncertaintyC: 1.5,
+  discoveryMode: "weather",
+  discoveryPreset: "weather",
+  gammaEventsUrl: "",
+  bypassForecast: false,
   halfSpreadCents: 1,
+  halfSpreadTicks: 0,
   maxForecastDivergence: 0.15,
+  minOutcomeMid: 0,
+  maxOutcomeMid: 1,
+  enableFairValueCap: false,
+  inventorySkewCents: 0,
+  volWindowSize: 60,
+  volMultiplier: 0,
+  volMaxExtraCents: 3,
+  tpTicksBase: 1,
+  tpVolMultiplier: 0,
+  tpTicksMax: 5,
+  driftFilterEnabled: false,
+  driftFilterMinSamples: 10,
+  driftFilterDownDriftCents: 2,
+  driftFilterRatio: 1.2,
+  stopLossEnabled: false,
+  stopLossCatastrophicDropRatio: 0.3,
+  stopLossDeepDropRatio: 0.6,
+  stopLossDeepDropMaxMinutes: 120,
+  stopLossResolutionHours: 1,
+  stopLossResolutionDropRatio: 0.7,
+  stopLossMaxHoldingHours: 12,
+  stopLossMakerExitWaitSeconds: 90,
   orderSizeUsdc: 2,
   clobMinShares: 5,
   maxSharesPerMarket: 5,
@@ -60,6 +87,8 @@ test("WeatherExecutionEngine maps BUY fill to inventory and immediate SELL", asy
       cancelOrder: async () => ({}),
       getOpenOrders: async () => [],
       fetchTokenBalance: async () => 0,
+      resolveTickSize: async () => 0.01,
+      placeTakerExit: async () => ({ success: true, status: "matched", orderId: "taker", raw: {} }),
       placeQuote: async (quote: QuoteIntent) => {
         placed.push(quote);
         return { success: true, status: "live", orderId: `order-${placed.length}`, raw: {} };
@@ -78,6 +107,59 @@ test("WeatherExecutionEngine maps BUY fill to inventory and immediate SELL", asy
   assert.equal(placed[0]?.postOnly, true);
 });
 
+test("startupCleanup preserves existing SELL orders and cancels stale BUYs", async () => {
+  const cancelled: string[] = [];
+  const inventory = new InventoryEngine();
+  const engine = new WeatherExecutionEngine(
+    [event],
+    {
+      cancelAll: async () => ({}),
+      cancelOrder: async (orderId: string) => {
+        cancelled.push(orderId);
+        return {};
+      },
+      getOpenOrders: async () => [
+        { id: "sell-keep", asset_id: "yes-17", side: "SELL", price: "0.30" },
+        { id: "buy-drop", asset_id: "yes-17", side: "BUY", price: "0.28" }
+      ] as unknown as never,
+      fetchTokenBalance: async () => 0,
+      resolveTickSize: async () => 0.01,
+      placeTakerExit: async () => ({ success: true, status: "matched", orderId: "taker", raw: {} }),
+      placeQuote: async () => ({ success: true, status: "live", orderId: "n/a", raw: {} })
+    },
+    inventory,
+    config
+  );
+
+  await engine.startupCleanup();
+
+  assert.deepEqual(cancelled, ["buy-drop"]);
+  // Trigger onOrderUpdate cancellation path on the preserved SELL to prove it is registered
+  inventory.applyFill({ conditionId: "0x17", tokenId: "yes-17", side: "BUY", price: 0.29, shares: 6 });
+  const placed: string[] = [];
+  const engine2 = new WeatherExecutionEngine(
+    [event],
+    {
+      cancelAll: async () => ({}),
+      cancelOrder: async () => ({}),
+      getOpenOrders: async () => [{ id: "sell-keep", asset_id: "yes-17", side: "SELL", price: "0.30" }] as unknown as never,
+      fetchTokenBalance: async () => 6,
+      resolveTickSize: async () => 0.01,
+      placeTakerExit: async () => ({ success: true, status: "matched", orderId: "taker", raw: {} }),
+      placeQuote: async (quote: QuoteIntent) => {
+        placed.push(quote.side);
+        return { success: true, status: "live", orderId: "x", raw: {} };
+      }
+    },
+    new InventoryEngine(),
+    config
+  );
+  await engine2.startupCleanup();
+  await engine2.loadStartupPositions();
+  // Existing SELL was preserved → do NOT place another SELL for the same position
+  assert.equal(placed.length, 0, "no new SELL should be placed when one already rests on the book");
+});
+
 test("WeatherExecutionEngine requeues cancelled SELL when inventory remains", async () => {
   const placed: QuoteIntent[] = [];
   const inventory = new InventoryEngine();
@@ -89,6 +171,8 @@ test("WeatherExecutionEngine requeues cancelled SELL when inventory remains", as
       cancelOrder: async () => ({}),
       getOpenOrders: async () => [],
       fetchTokenBalance: async () => 0,
+      resolveTickSize: async () => 0.01,
+      placeTakerExit: async () => ({ success: true, status: "matched", orderId: "taker", raw: {} }),
       placeQuote: async (quote: QuoteIntent) => {
         placed.push(quote);
         return { success: true, status: "live", orderId: `order-${placed.length}`, raw: {} };

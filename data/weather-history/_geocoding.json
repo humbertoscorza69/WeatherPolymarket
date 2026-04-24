@@ -1,0 +1,301 @@
+{
+  "Taipei": {
+    "lat": 25.05306,
+    "lon": 121.52639,
+    "country": "Taiwan",
+    "tz": "Asia/Taipei"
+  },
+  "Denver": {
+    "lat": 39.73915,
+    "lon": -104.9847,
+    "country": "United States",
+    "tz": "America/Denver"
+  },
+  "Lagos": {
+    "lat": 6.45407,
+    "lon": 3.39467,
+    "country": "Nigeria",
+    "tz": "Africa/Lagos"
+  },
+  "Kuala Lumpur": {
+    "lat": 3.1412,
+    "lon": 101.68653,
+    "country": "Malaysia",
+    "tz": "Asia/Kuala_Lumpur"
+  },
+  "Milan": {
+    "lat": 45.46427,
+    "lon": 9.18951,
+    "country": "Italy",
+    "tz": "Europe/Rome"
+  },
+  "Toronto": {
+    "lat": 43.70643,
+    "lon": -79.39864,
+    "country": "Canada",
+    "tz": "America/Toronto"
+  },
+  "London": {
+    "lat": 51.50853,
+    "lon": -0.12574,
+    "country": "United Kingdom",
+    "tz": "Europe/London"
+  },
+  "Amsterdam": {
+    "lat": 52.37403,
+    "lon": 4.88969,
+    "country": "The Netherlands",
+    "tz": "Europe/Amsterdam"
+  },
+  "Jakarta": {
+    "lat": -6.21462,
+    "lon": 106.84513,
+    "country": "Indonesia",
+    "tz": "Asia/Jakarta"
+  },
+  "Buenos Aires": {
+    "lat": -34.61315,
+    "lon": -58.37723,
+    "country": "Argentina",
+    "tz": "America/Argentina/Buenos_Aires"
+  },
+  "Singapore": {
+    "lat": 1.28967,
+    "lon": 103.85007,
+    "country": "Singapore",
+    "tz": "Asia/Singapore"
+  },
+  "Tel Aviv": {
+    "lat": 32.08088,
+    "lon": 34.78057,
+    "country": "Israel",
+    "tz": "Asia/Jerusalem"
+  },
+  "Wellington": {
+    "lat": -41.28664,
+    "lon": 174.77557,
+    "country": "New Zealand",
+    "tz": "Pacific/Auckland"
+  },
+  "Shenzhen": {
+    "lat": 22.54554,
+    "lon": 114.0683,
+    "country": "China",
+    "tz": "Asia/Shanghai"
+  },
+  "Chengdu": {
+    "lat": 30.66667,
+    "lon": 104.06667,
+    "country": "China",
+    "tz": "Asia/Shanghai"
+  },
+  "Ankara": {
+    "lat": 39.91987,
+    "lon": 32.85427,
+    "country": "Türkiye",
+    "tz": "Europe/Istanbul"
+  },
+  "Munich": {
+    "lat": 48.13743,
+    "lon": 11.57549,
+    "country": "Germany",
+    "tz": "Europe/Berlin"
+  },
+  "Warsaw": {
+    "lat": 52.22977,
+    "lon": 21.01178,
+    "country": "Poland",
+    "tz": "Europe/Warsaw"
+  },
+  "Chongqing": {
+    "lat": 29.56026,
+    "lon": 106.55771,
+    "country": "China",
+    "tz": "Asia/Shanghai"
+  },
+  "Houston": {
+    "lat": 29.76328,
+    "lon": -95.36327,
+    "country": "United States",
+    "tz": "America/Chicago"
+  },
+  "Cape Town": {
+    "lat": -33.92584,
+    "lon": 18.42322,
+    "country": "South Africa",
+    "tz": "Africa/Johannesburg"
+  },
+  "Helsinki": {
+    "lat": 60.16952,
+    "lon": 24.93545,
+    "country": "Finland",
+    "tz": "Europe/Helsinki"
+  },
+  "Jeddah": {
+    "lat": 21.49012,
+    "lon": 39.18624,
+    "country": "Saudi Arabia",
+    "tz": "Asia/Riyadh"
+  },
+  "Mexico City": {
+    "lat": 19.42847,
+    "lon": -99.12766,
+    "country": "Mexico",
+    "tz": "America/Mexico_City"
+  },
+  "Sao Paulo": {
+    "lat": -23.5475,
+    "lon": -46.63611,
+    "country": "Brazil",
+    "tz": "America/Sao_Paulo"
+  },
+  "Paris": {
+    "lat": 48.85341,
+    "lon": 2.3488,
+    "country": "France",
+    "tz": "Europe/Paris"
+  },
+  "Shanghai": {
+    "lat": 31.22222,
+    "lon": 121.45806,
+    "country": "China",
+    "tz": "Asia/Shanghai"
+  },
+  "New York City": {
+    "lat": 40.71427,
+    "lon": -74.00597,
+    "country": "United States",
+    "tz": "America/New_York"
+  },
+  "Guangzhou": {
+    "lat": 23.11667,
+    "lon": 113.25,
+    "country": "China",
+    "tz": "Asia/Shanghai"
+  },
+  "Chicago": {
+    "lat": 41.85003,
+    "lon": -87.65005,
+    "country": "United States",
+    "tz": "America/Chicago"
+  },
+  "Madrid": {
+    "lat": 40.4165,
+    "lon": -3.70256,
+    "country": "Spain",
+    "tz": "Europe/Madrid"
+  },
+  "Seoul": {
+    "lat": 37.566,
+    "lon": 126.9784,
+    "country": "South Korea",
+    "tz": "Asia/Seoul"
+  },
+  "Wuhan": {
+    "lat": 30.58333,
+    "lon": 114.26667,
+    "country": "China",
+    "tz": "Asia/Shanghai"
+  },
+  "Austin": {
+    "lat": 30.26715,
+    "lon": -97.74306,
+    "country": "United States",
+    "tz": "America/Chicago"
+  },
+  "Busan": {
+    "lat": 35.10168,
+    "lon": 129.03004,
+    "country": "South Korea",
+    "tz": "Asia/Seoul"
+  },
+  "Atlanta": {
+    "lat": 33.749,
+    "lon": -84.38798,
+    "country": "United States",
+    "tz": "America/New_York"
+  },
+  "Lucknow": {
+    "lat": 26.83928,
+    "lon": 80.92313,
+    "country": "India",
+    "tz": "Asia/Kolkata"
+  },
+  "Beijing": {
+    "lat": 39.9075,
+    "lon": 116.39723,
+    "country": "China",
+    "tz": "Asia/Shanghai"
+  },
+  "Tokyo": {
+    "lat": 35.6895,
+    "lon": 139.69171,
+    "country": "Japan",
+    "tz": "Asia/Tokyo"
+  },
+  "Panama City": {
+    "lat": 8.9936,
+    "lon": -79.51973,
+    "country": "Panama",
+    "tz": "America/Panama"
+  },
+  "Seattle": {
+    "lat": 47.60621,
+    "lon": -122.33207,
+    "country": "United States",
+    "tz": "America/Los_Angeles"
+  },
+  "Istanbul": {
+    "lat": 41.01384,
+    "lon": 28.94966,
+    "country": "Türkiye",
+    "tz": "Europe/Istanbul"
+  },
+  "Miami": {
+    "lat": 25.77427,
+    "lon": -80.19366,
+    "country": "United States",
+    "tz": "America/New_York"
+  },
+  "Karachi": {
+    "lat": 24.8608,
+    "lon": 67.0104,
+    "country": "Pakistan",
+    "tz": "Asia/Karachi"
+  },
+  "Manila": {
+    "lat": 14.6042,
+    "lon": 120.9822,
+    "country": "Philippines",
+    "tz": "Asia/Manila"
+  },
+  "Dallas": {
+    "lat": 32.78306,
+    "lon": -96.80667,
+    "country": "United States",
+    "tz": "America/Chicago"
+  },
+  "Moscow": {
+    "lat": 55.75222,
+    "lon": 37.61556,
+    "country": "Russia",
+    "tz": "Europe/Moscow"
+  },
+  "San Francisco": {
+    "lat": 37.77493,
+    "lon": -122.41942,
+    "country": "United States",
+    "tz": "America/Los_Angeles"
+  },
+  "Los Angeles": {
+    "lat": 34.05223,
+    "lon": -118.24368,
+    "country": "United States",
+    "tz": "America/Los_Angeles"
+  },
+  "Hong Kong": {
+    "lat": 22.27832,
+    "lon": 114.17469,
+    "tz": "Asia/Hong_Kong"
+  }
+}

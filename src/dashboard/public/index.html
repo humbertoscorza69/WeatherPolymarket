@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Weather MM — Live Dashboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">WX</span>
+        <div>
+          <h1>WEATHER MM</h1>
+          <p class="subtitle">POLYMARKET · MULTI-OUTCOME · MAKER-ONLY</p>
+        </div>
+      </div>
+      <div class="status-grid">
+        <div class="stat-card">
+          <span class="label">Status</span>
+          <span class="value status-online" id="status-badge">— · —</span>
+        </div>
+        <div class="stat-card">
+          <span class="label">Uptime</span>
+          <span class="value" id="uptime">—</span>
+        </div>
+        <div class="stat-card">
+          <span class="label">Round-trips</span>
+          <span class="value" id="round-trips">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="label">Win Rate</span>
+          <span class="value" id="win-rate">—</span>
+        </div>
+        <div class="stat-card profit-card">
+          <span class="label">Realized P&amp;L</span>
+          <span class="value" id="pnl">$0.00</span>
+          <span class="sub" id="pnl-sub">0 round-trips</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="panel">
+        <header class="panel-header">
+          <h2>System</h2>
+          <span class="muted" id="last-update">—</span>
+        </header>
+        <div class="system-grid">
+          <div class="system-row">
+            <span class="label">Started</span>
+            <span class="value" id="started">—</span>
+          </div>
+          <div class="system-row">
+            <span class="label">BUYs placed</span>
+            <span class="value" id="buys-placed">0</span>
+          </div>
+          <div class="system-row">
+            <span class="label">SELLs placed</span>
+            <span class="value" id="sells-placed">0</span>
+          </div>
+          <div class="system-row">
+            <span class="label">BUY rejects</span>
+            <span class="value" id="buy-rejects">0</span>
+          </div>
+          <div class="system-row">
+            <span class="label">SELL rejects</span>
+            <span class="value" id="sell-rejects">0</span>
+          </div>
+          <div class="system-row">
+            <span class="label">Taker fills</span>
+            <span class="value warn" id="taker-fills">0</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel wide">
+        <header class="panel-header">
+          <h2>Profit &amp; Loss — Cumulative</h2>
+          <span class="muted">every round-trip</span>
+        </header>
+        <canvas id="pnl-chart" height="220"></canvas>
+      </section>
+
+      <section class="panel">
+        <header class="panel-header">
+          <h2>Open Positions</h2>
+          <span class="muted" id="position-count">0</span>
+        </header>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>OUTCOME</th><th>SHARES</th><th>ENTRY</th><th>EXIT ORDER</th><th>P&amp;L (unrl.)</th></tr>
+            </thead>
+            <tbody id="positions-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel wide">
+        <header class="panel-header">
+          <h2>Active Orders</h2>
+          <span class="muted"><span id="buys-count">0</span> BUYs · <span id="sells-count">0</span> SELLs</span>
+        </header>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>SIDE</th><th>OUTCOME</th><th>PRICE</th><th>ORDER ID</th></tr>
+            </thead>
+            <tbody id="orders-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel full">
+        <header class="panel-header">
+          <h2>Event Log — live feed</h2>
+          <span class="muted">latest 200</span>
+        </header>
+        <div class="table-wrap log">
+          <table>
+            <thead>
+              <tr><th>TIME</th><th>EVENT</th><th>OUTCOME</th><th>SIDE</th><th>PRICE</th><th>SHARES</th><th>$ P&amp;L</th><th>MSG</th></tr>
+            </thead>
+            <tbody id="events-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel full">
+        <header class="panel-header">
+          <h2>Configured Markets</h2>
+          <span class="muted" id="market-count">0</span>
+        </header>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>OUTCOME</th><th>TEMP (°C)</th><th>TICK</th><th>VOL 24H</th><th>CONDITION ID</th></tr>
+            </thead>
+            <tbody id="markets-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

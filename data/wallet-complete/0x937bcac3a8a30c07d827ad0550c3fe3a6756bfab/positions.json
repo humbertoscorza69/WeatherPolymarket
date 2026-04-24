@@ -1,0 +1,30 @@
+[
+  {
+    "proxyWallet": "0x937bcac3a8a30c07d827ad0550c3fe3a6756bfab",
+    "asset": "46086660544201483149612297541530183798983726999120932557621496168220093175204",
+    "conditionId": "0x0c750a1eda5b86d13c267964390f78b22c946ccac5e2154733681bda8fde1737",
+    "size": 7912.6506,
+    "avgPrice": 0.995,
+    "initialValue": 7873.5384,
+    "currentValue": 7873.0873,
+    "cashPnl": -0.4511,
+    "percentPnl": -0.0057,
+    "totalBought": 10574.5999,
+    "realizedPnl": 10.6373,
+    "percentRealizedPnl": -25.1773,
+    "curPrice": 0.995,
+    "redeemable": false,
+    "mergeable": false,
+    "title": "Will the highest temperature in Moscow be 9°C or higher on April 23?",
+    "slug": "highest-temperature-in-moscow-on-april-23-2026-9corhigher",
+    "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/moscow-4addd6349b.jpg",
+    "eventId": "401702",
+    "eventSlug": "highest-temperature-in-moscow-on-april-23-2026",
+    "outcome": "Yes",
+    "outcomeIndex": 0,
+    "oppositeOutcome": "No",
+    "oppositeAsset": "48470045870968993910519282866295238349943049381248667966192287537096099886647",
+    "endDate": "2026-04-23",
+    "negativeRisk": true
+  }
+]

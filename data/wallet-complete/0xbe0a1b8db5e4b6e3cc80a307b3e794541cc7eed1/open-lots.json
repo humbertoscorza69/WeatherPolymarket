@@ -1,0 +1,2974 @@
+[
+  {
+    "key": "0x1b2519b51259450f248953a70c77b37efe41e34b4d360f383241511e1fdfce95-1",
+    "title": "Will the highest temperature in NYC be 65°F or higher on March 16?",
+    "lots": [
+      {
+        "shares": 0.00556599999999996,
+        "price": 0.9699999967666662,
+        "usdc": 5.999999,
+        "ts": 1742110352
+      }
+    ],
+    "totalShares": 0.00556599999999996
+  },
+  {
+    "key": "0x6d086ac398b6870de5d95379298aea3f228cc7cecbd8a436dd95df9acf0ce399-1",
+    "title": "Will the highest temperature in NYC be between 60-61°F on March 17?",
+    "lots": [
+      {
+        "shares": 0.009199999999999875,
+        "price": 0.945,
+        "usdc": 5.999994,
+        "ts": 1742197480
+      }
+    ],
+    "totalShares": 0.009199999999999875
+  },
+  {
+    "key": "0x1dc8d90cdd9aa12529c1bb6dc1c8377811f39244698daadbabd062bd6094e80a-1",
+    "title": "Will the highest temperature in NYC be between 55-56°F on March 18?",
+    "lots": [
+      {
+        "shares": 0.006583000000000894,
+        "price": 0.8199999929714267,
+        "usdc": 6.999998,
+        "ts": 1742282905
+      }
+    ],
+    "totalShares": 0.006583000000000894
+  },
+  {
+    "key": "0x9b89795f8cd792b3b811b10ff84c211439d2c3d53a525d11d7e48579c0546e5c-1",
+    "title": "Will the highest temperature in NYC be between 55-56°F on March 24?",
+    "lots": [
+      {
+        "shares": 0.0016009999999937463,
+        "price": 0.9094549499377707,
+        "usdc": 152.999989,
+        "ts": 1742812164
+      }
+    ],
+    "totalShares": 0.0016009999999937463
+  },
+  {
+    "key": "0xb342aa22c48f133a59308ac9482d7138eebc2e4f2ef412690c41ac19801dde32-1",
+    "title": "Will the highest temperature in London be between 54-55°F on March 25?",
+    "lots": [
+      {
+        "shares": 0.006841000000008535,
+        "price": 0.8336295131720254,
+        "usdc": 349.999993,
+        "ts": 1742888743
+      }
+    ],
+    "totalShares": 0.006841000000008535
+  },
+  {
+    "key": "0xde5dc2d6d18c84b3c0cbf3a85015a59327786d7ddb818df88f46617054b0b049-1",
+    "title": "Will the highest temperature in London be 66°F or higher on March 27?",
+    "lots": [
+      {
+        "shares": 0.007818000000042957,
+        "price": 0.9836965910867979,
+        "usdc": 344.999922,
+        "ts": 1743080335
+      }
+    ],
+    "totalShares": 0.007818000000042957
+  },
+  {
+    "key": "0x2d66e68f420e680cbafb6f878b48c8eb7f7b0c2b34f99f08ccd73e5ff2681e12-1",
+    "title": "Will the highest temperature in London be between 58-59°F on March 27?",
+    "lots": [
+      {
+        "shares": 0.009566000000006625,
+        "price": 0.8206548287692629,
+        "usdc": 321.999979,
+        "ts": 1743084128
+      }
+    ],
+    "totalShares": 0.009566000000006625
+  },
+  {
+    "key": "0xaf4f3ec8fafc2e758cad41a140e8f035d3d3ce30d7944cf957f5bdc786283a95-1",
+    "title": "Will the highest temperature in NYC be between 70-71°F on March 31?",
+    "lots": [
+      {
+        "shares": 0.00026700000012169767,
+        "price": 0.8499999992916667,
+        "usdc": 59.999998,
+        "ts": 1743442471
+      }
+    ],
+    "totalShares": 0.00026700000012169767
+  },
+  {
+    "key": "0x105635e6a7e2bb29e89321a9e63dc6105149be8b571ae0603f90354d98d0c35e-1",
+    "title": "Will the highest temperature in NYC be 72°F or higher on March 31?",
+    "lots": [
+      {
+        "shares": 0.0026209999999764477,
+        "price": 0.9786051712648953,
+        "usdc": 140.999998,
+        "ts": 1743437045
+      }
+    ],
+    "totalShares": 0.0026209999999764477
+  },
+  {
+    "key": "0x944184b3cf3ad6615073ec02a1480f57b2991aad9805f9ef370b6218e55caa5a-1",
+    "title": "Will the highest temperature in London be 55°F or below on April 1?",
+    "lots": [
+      {
+        "shares": 0.009273999999962257,
+        "price": 0.5624084964367831,
+        "usdc": 47,
+        "ts": 1743503575
+      }
+    ],
+    "totalShares": 0.009273999999962257
+  },
+  {
+    "key": "0xdeb3f4909ea9f13fdc190afb95d1f60cdd26c1d6524615e6c56b3e51c62ae99b-0",
+    "title": "Will the highest temperature in NYC be between 57-58°F on April 1?",
+    "lots": [
+      {
+        "shares": 25.989666,
+        "price": 0.9619198646108034,
+        "usdc": 24.999976,
+        "ts": 1743500144
+      },
+      {
+        "shares": 54.027166,
+        "price": 0.9809864911292959,
+        "usdc": 52.99992,
+        "ts": 1743514853
+      }
+    ],
+    "totalShares": 80.016832
+  },
+  {
+    "key": "0x77a402546ba6ca64171b665a6406f921b16e3fa39091869e9664e47da6ecce0f-1",
+    "title": "Will the highest temperature in NYC be between 53-54°F on April 10?",
+    "lots": [
+      {
+        "shares": 0.004099999999993997,
+        "price": 0.974392194447459,
+        "usdc": 377.999959,
+        "ts": 1744276593
+      }
+    ],
+    "totalShares": 0.004099999999993997
+  },
+  {
+    "key": "0x02d155e7b8ee2e1ba074c4fad02c94ce4e4d72421413368045f14be73a7c034e-1",
+    "title": "Will the highest temperature in London be 64°F or higher on April 15?",
+    "lots": [
+      {
+        "shares": 0.0015600000000119962,
+        "price": 0.9486543907633076,
+        "usdc": 140.999982,
+        "ts": 1744713969
+      }
+    ],
+    "totalShares": 0.0015600000000119962
+  },
+  {
+    "key": "0x83939b2576a956ba55abef528d9acf298fdbb4947187fea40e422207af071d7c-1",
+    "title": "Will the highest temperature in NYC be 75°F or below on April 19?",
+    "lots": [
+      {
+        "shares": 0.009399999999999409,
+        "price": 0.9803970023353079,
+        "usdc": 99.999906,
+        "ts": 1744961939
+      }
+    ],
+    "totalShares": 0.009399999999999409
+  },
+  {
+    "key": "0x02bf3f3cec0037ecf5ece7ae888ae80d33140a31efc68fbb2b3d215816d91d34-1",
+    "title": "Will the highest temperature in NYC be between 73-74°F on May 3?",
+    "lots": [
+      {
+        "shares": 0.001599999999996271,
+        "price": 0.9374763130921727,
+        "usdc": 59.999984,
+        "ts": 1746176688
+      }
+    ],
+    "totalShares": 0.001599999999996271
+  },
+  {
+    "key": "0x20d4718a08868e49d2f9893aec4717268760ea9d0e2d3f7228b877ccc2191b30-1",
+    "title": "Will the highest temperature in New York City be between 74-75°F on May 13?",
+    "lots": [
+      {
+        "shares": 0.008532999999999902,
+        "price": 0.9625228010317582,
+        "usdc": 179.999977,
+        "ts": 1747120125
+      }
+    ],
+    "totalShares": 0.008532999999999902
+  },
+  {
+    "key": "0x3495fd2624216aed21a9bd38a2b3fc3744a6e5217113a2f19af58dcb97879ba6-1",
+    "title": "Will the highest temperature in New York City be between 76–77°F on May 17?",
+    "lots": [
+      {
+        "shares": 0.007274999999992815,
+        "price": 0.9532830920393729,
+        "usdc": 203.999984,
+        "ts": 1747427033
+      }
+    ],
+    "totalShares": 0.007274999999992815
+  },
+  {
+    "key": "0xe56762dbfd6609ea2f22ae98a1d0774973662041aeebb8c6711a3504da376fab-1",
+    "title": "Will the highest temperature in New York City be between 68–69°F on May 18?",
+    "lots": [
+      {
+        "shares": 0.0071500000000241926,
+        "price": 0.9412483369113757,
+        "usdc": 144.999984,
+        "ts": 1747527831
+      }
+    ],
+    "totalShares": 0.0071500000000241926
+  },
+  {
+    "key": "0x0f41f05748e644cd46d3152153213f9012069f7f1bd9790735bf94cc4ab5e2e5-1",
+    "title": "Will the highest temperature in New York City be 71°F or higher on May 20?",
+    "lots": [
+      {
+        "shares": 0.0010850000000459659,
+        "price": 0.9649999999031125,
+        "usdc": 248.999997,
+        "ts": 1747734206
+      }
+    ],
+    "totalShares": 0.0010850000000459659
+  },
+  {
+    "key": "0x09cb9a54c499b1e9fd701d7376b2a36b25cfe9cbdd606571a98bde3812bb2e0f-1",
+    "title": "Will the highest temperature in New York City be between 60–61°F on May 21?",
+    "lots": [
+      {
+        "shares": 0.004519999999999413,
+        "price": 0.9344319283677472,
+        "usdc": 85.999994,
+        "ts": 1747802219
+      }
+    ],
+    "totalShares": 0.004519999999999413
+  },
+  {
+    "key": "0x66593ed281d1d0076d65025ce463bb2c9157dc21b79e285d2e1a90238388e9aa-0",
+    "title": "Will the highest temperature in New York City be between 58–59°F on May 21?",
+    "lots": [
+      {
+        "shares": 45.055554,
+        "price": 0.88779283459704,
+        "usdc": 39.999998,
+        "ts": 1747808015
+      }
+    ],
+    "totalShares": 45.055554
+  },
+  {
+    "key": "0xff57d9f4431c36ca6792c281a04f5c144fb2b28f0d9a2a833dab85b41ed572f9-0",
+    "title": "Will the highest temperature in New York City be between 71–72°F on May 26?",
+    "lots": [
+      {
+        "shares": 70.58746,
+        "price": 0.6516737958838581,
+        "usdc": 45.999998,
+        "ts": 1748270345
+      }
+    ],
+    "totalShares": 70.58746
+  },
+  {
+    "key": "0x86d8f6eafc71ca45cf4ae95309c667381973878182b378bd3c1cb180014e3ae4-1",
+    "title": "Will the highest temperature in New York City be 69°F or higher on May 28?",
+    "lots": [
+      {
+        "shares": 0.0031400000000303407,
+        "price": 0.949561187604744,
+        "usdc": 263.999983,
+        "ts": 1748342788
+      }
+    ],
+    "totalShares": 0.0031400000000303407
+  },
+  {
+    "key": "0x1d04a278b1861de91d944e79dbb08eea6c8023320c68dea5bd95aa7e2c065f3a-1",
+    "title": "Will the highest temperature in New York City be between 79-80°F on June 6?",
+    "lots": [
+      {
+        "shares": 0.0008250000000060709,
+        "price": 0.9567247259274358,
+        "usdc": 110.999992,
+        "ts": 1749144846
+      }
+    ],
+    "totalShares": 0.0008250000000060709
+  },
+  {
+    "key": "0x084de4066b046d5ff2ea3c67d764f65c570e92cc28e8d11eba2fc2f8c1239928-1",
+    "title": "Will the highest temperature in New York City be between 93-94°F on June 12?",
+    "lots": [
+      {
+        "shares": 0.00931500000000085,
+        "price": 0.9657350613496029,
+        "usdc": 112.999998,
+        "ts": 1749736137
+      }
+    ],
+    "totalShares": 0.00931500000000085
+  },
+  {
+    "key": "0xdda6678966f6c3737df89f7c2db07dd2a84b4965cee931b6032d12aad413b40c-1",
+    "title": "Will the highest temperature in New York City be between 82-83°F on June 13?",
+    "lots": [
+      {
+        "shares": 0.0020999999999844476,
+        "price": 0.9405940593010665,
+        "usdc": 443.999995,
+        "ts": 1749768644
+      }
+    ],
+    "totalShares": 0.0020999999999844476
+  },
+  {
+    "key": "0x608b48b1bb41226952b7f83d3e3fab1e9a03da8fd5547228f69b125ac3d6f920-0",
+    "title": "Will the highest temperature in New York City be between 66-67°F on June 14?",
+    "lots": [
+      {
+        "shares": 0.005966000000000804,
+        "price": 0.95,
+        "usdc": 95,
+        "ts": 1749901999
+      }
+    ],
+    "totalShares": 0.005966000000000804
+  },
+  {
+    "key": "0xc05dac8043467c1e6ddd9a012109ba0e8e8d0d4426a1ae4180ee49859c6f216a-1",
+    "title": "Will the highest temperature in London be between 87-88°F on June 21?",
+    "lots": [
+      {
+        "shares": 0.0031830000000070413,
+        "price": 0.9363178506079065,
+        "usdc": 88.999992,
+        "ts": 1750480707
+      }
+    ],
+    "totalShares": 0.0031830000000070413
+  },
+  {
+    "key": "0xd23b4fcb6ed3217a9b7d7eba4d66de5895f2f19d767eb4f3bb1ac200db3fcbed-1",
+    "title": "Will the highest temperature in New York City be between 94-95°F on June 25?",
+    "lots": [
+      {
+        "shares": 0.004845999999986361,
+        "price": 0.9085167794484583,
+        "usdc": 317.999988,
+        "ts": 1750840083
+      }
+    ],
+    "totalShares": 0.004845999999986361
+  },
+  {
+    "key": "0xe30e344996340a393846b197b507e6d9c3573d790a6c2e3664000da14a8e872f-0",
+    "title": "Will the highest temperature in New York City be between 81-82°F on June 26?",
+    "lots": [
+      {
+        "shares": 0.008978000000013253,
+        "price": 0.8890232822100886,
+        "usdc": 299.999998,
+        "ts": 1750915197
+      }
+    ],
+    "totalShares": 0.008978000000013253
+  },
+  {
+    "key": "0x9be85858735fca3e501982cd19ba2c7db40e6af6a4a4110ce51dc60e12d458ed-1",
+    "title": "Will the highest temperature in London be 75°F or below on June 27?",
+    "lots": [
+      {
+        "shares": 0.0012499999999988631,
+        "price": 0.959392789373814,
+        "usdc": 237,
+        "ts": 1750969910
+      }
+    ],
+    "totalShares": 0.0012499999999988631
+  },
+  {
+    "key": "0xfd3e28906cd85edaa088ed292a8f154edb4adbbcfd346705318ab49a2f210280-1",
+    "title": "Will the highest temperature in New York City be 75°F or higher on June 27?",
+    "lots": [
+      {
+        "shares": 0.004349999999988086,
+        "price": 0.9516926579548468,
+        "usdc": 413.999963,
+        "ts": 1751000200
+      }
+    ],
+    "totalShares": 0.004349999999988086
+  },
+  {
+    "key": "0xbb390f290cab9ddd130c94a813fa0b9b268527b22dec8220590ed4889a90e77f-0",
+    "title": "Will the highest temperature in New York City be between 83-84°F on June 28?",
+    "lots": [
+      {
+        "shares": 2.173912,
+        "price": 0.4599997607998852,
+        "usdc": 0.999999,
+        "ts": 1751130422
+      },
+      {
+        "shares": 2.173912,
+        "price": 0.4599997607998852,
+        "usdc": 0.999999,
+        "ts": 1751130482
+      }
+    ],
+    "totalShares": 4.347824
+  },
+  {
+    "key": "0x04b710a81d7d80fb85fb30104b9b2b67f1a13a37028d6c1029d328801c564458-1",
+    "title": "Will the highest temperature in New York City be between 83-84°F on July 1?",
+    "lots": [
+      {
+        "shares": 0.005450000000024602,
+        "price": 0.9417090759405927,
+        "usdc": 96.99999,
+        "ts": 1751363753
+      }
+    ],
+    "totalShares": 0.005450000000024602
+  },
+  {
+    "key": "0x63231918a5ef2e0718334ae5085f630e35324af39e73148933d1cd32ec4d4c35-1",
+    "title": "Will the highest temperature in New York City be between 87-88°F on July 4?",
+    "lots": [
+      {
+        "shares": 0.004647000000005619,
+        "price": 0.9172744007148136,
+        "usdc": 199.999997,
+        "ts": 1751642401
+      }
+    ],
+    "totalShares": 0.004647000000005619
+  },
+  {
+    "key": "0xe96bf0a82a91caa95e34723fe14c455a3968cbf1295a95110cda09e5ca4582af-1",
+    "title": "Will the highest temperature in London be between 83-84°F on July 10?",
+    "lots": [
+      {
+        "shares": 0.007041000000015174,
+        "price": 0.7479836037805045,
+        "usdc": 192.999996,
+        "ts": 1752084683
+      }
+    ],
+    "totalShares": 0.007041000000015174
+  },
+  {
+    "key": "0x8e075c8ed6dc0cb996a3ba4eeb3baaf6caca64e7c175b713a0d666532539aea9-1",
+    "title": "Will the highest temperature in London be between 83-84°F on July 13?",
+    "lots": [
+      {
+        "shares": 0.0001330000000052678,
+        "price": 0.975,
+        "usdc": 39,
+        "ts": 1752417073
+      }
+    ],
+    "totalShares": 0.0001330000000052678
+  },
+  {
+    "key": "0x9eb596c67e0d7940fe12f63194c073f443a0e285d64c69e7229423d5cd22a11c-1",
+    "title": "Will the highest temperature in London be 82°F or higher on July 16?",
+    "lots": [
+      {
+        "shares": 0.0006200000000262662,
+        "price": 0.9468939756412221,
+        "usdc": 267.999989,
+        "ts": 1752642360
+      }
+    ],
+    "totalShares": 0.0006200000000262662
+  },
+  {
+    "key": "0x0e707d36e0a95acb4a1b70ebd7bea77ed4b69c5b0eae8f61a7181a8ab526bdab-1",
+    "title": "Will the highest temperature in London be between 74-75°F on July 16?",
+    "lots": [
+      {
+        "shares": 614.7769,
+        "price": 0.94668487544018,
+        "usdc": 581.999993,
+        "ts": 1752650789
+      }
+    ],
+    "totalShares": 614.7769
+  },
+  {
+    "key": "0x44b7bd09d9a12dd19218fbdd682b10bb00df2cd9a8e573f0f49b3865253984a4-1",
+    "title": "Will the highest temperature in London be between 80-81°F on July 16?",
+    "lots": [
+      {
+        "shares": 0.001560000000040418,
+        "price": 0.9314877950093441,
+        "usdc": 312.999982,
+        "ts": 1752655171
+      }
+    ],
+    "totalShares": 0.001560000000040418
+  },
+  {
+    "key": "0x038711aff297e3212626c2fe870557c21d9bcd89a70c102169af9446e92c8ee2-1",
+    "title": "Will the highest temperature in London be between 78-79°F on July 16?",
+    "lots": [
+      {
+        "shares": 0.0028179999999977667,
+        "price": 0.7772241966803861,
+        "usdc": 13.999998,
+        "ts": 1752663118
+      }
+    ],
+    "totalShares": 0.0028179999999977667
+  },
+  {
+    "key": "0x2994a6404ba0cb843ca91d9ab628aa126fe28a004c4ff09017804c1bb00bc52c-1",
+    "title": "Will the highest temperature in New York City be between 87-88°F on July 18?",
+    "lots": [
+      {
+        "shares": 0.0007420000000024629,
+        "price": 0.8947070559034226,
+        "usdc": 288.99999,
+        "ts": 1752816822
+      }
+    ],
+    "totalShares": 0.0007420000000024629
+  },
+  {
+    "key": "0x946101939060840b3399384e0b3c8a7b142d250e1e6c403226a1600b05061e9e-1",
+    "title": "Will the highest temperature in New York City be between 84-85°F on July 19?",
+    "lots": [
+      {
+        "shares": 0.0051339999999981956,
+        "price": 0.739999998816,
+        "usdc": 99.999999,
+        "ts": 1752900976
+      }
+    ],
+    "totalShares": 0.0051339999999981956
+  },
+  {
+    "key": "0xa06f076ba0ea9c7db89aae3c490f35a04b16fa99877d1bc37b407bf6081f4c8a-0",
+    "title": "Will the highest temperature in London be between 72-73°F on July 19?",
+    "lots": [
+      {
+        "shares": 74.035155,
+        "price": 0.9049753593411131,
+        "usdc": 66.999991,
+        "ts": 1752908394
+      }
+    ],
+    "totalShares": 74.035155
+  },
+  {
+    "key": "0x8dd105bfb1a0f12b686b59d62fd6ffd47242267148b0bd6e0d14fbb0386b2793-1",
+    "title": "Will the highest temperature in New York City be between 92-93°F on July 20?",
+    "lots": [
+      {
+        "shares": 0.003849999999999909,
+        "price": 0.95,
+        "usdc": 152,
+        "ts": 1753009225
+      }
+    ],
+    "totalShares": 0.003849999999999909
+  },
+  {
+    "key": "0xc3564ac8bbb6234294ca3358be5b3bccbe8145d5d4de87bbaf9fb4fcba56c266-1",
+    "title": "Will the highest temperature in New York City be between 84-85°F on July 22?",
+    "lots": [
+      {
+        "shares": 0.0002000000000066393,
+        "price": 0.9758636232571999,
+        "usdc": 242.999996,
+        "ts": 1753179522
+      }
+    ],
+    "totalShares": 0.0002000000000066393
+  },
+  {
+    "key": "0xfb98bef72a4e2936a23d6eb12e1b5c5d695823a86e601b0be4792536dbc7ab2a-1",
+    "title": "Will the highest temperature in New York City be between 89-90°F on July 24?",
+    "lots": [
+      {
+        "shares": 0.004366000000004533,
+        "price": 0.9320681354125653,
+        "usdc": 260.999987,
+        "ts": 1753365312
+      }
+    ],
+    "totalShares": 0.004366000000004533
+  },
+  {
+    "key": "0x57b9586aabd7a06fe51ef204caf43b5a43aab976b7fbbdf41c174b1044e0269d-1",
+    "title": "Will the highest temperature in New York City be between 87-88°F on July 26?",
+    "lots": [
+      {
+        "shares": 0.0013579999999819847,
+        "price": 0.8644193255727115,
+        "usdc": 490.999995,
+        "ts": 1753518603
+      }
+    ],
+    "totalShares": 0.0013579999999819847
+  },
+  {
+    "key": "0xa42cc61bb511129415f3f8d6d0c882e09434b897bbc7d0d5dd84c7871c860452-1",
+    "title": "Will the highest temperature in New York City be 86°F or higher on July 27?",
+    "lots": [
+      {
+        "shares": 403.01652,
+        "price": 0.9528145074549301,
+        "usdc": 383.999987,
+        "ts": 1753622685
+      },
+      {
+        "shares": 176.053555,
+        "price": 0.9712952913674479,
+        "usdc": 170.999989,
+        "ts": 1753636047
+      }
+    ],
+    "totalShares": 579.070075
+  },
+  {
+    "key": "0x4b02bc800685285b0e73b991a5c8e735419f5ab82392de292961588ac297a88c-1",
+    "title": "Will the highest temperature in New York City be between 89-90°F on July 28?",
+    "lots": [
+      {
+        "shares": 0.0004999999999881766,
+        "price": 0.9691893168754827,
+        "usdc": 597.999985,
+        "ts": 1753658057
+      }
+    ],
+    "totalShares": 0.0004999999999881766
+  },
+  {
+    "key": "0x05b1a23c11869e78cf02c1239918a292985b57da4e762f940f6480b1ff8c7868-1",
+    "title": "Will the highest temperature in New York City be between 79-80°F on August 1?",
+    "lots": [
+      {
+        "shares": 0.00567999999998392,
+        "price": 0.9341623300482396,
+        "usdc": 283.999996,
+        "ts": 1754026596
+      }
+    ],
+    "totalShares": 0.00567999999998392
+  },
+  {
+    "key": "0xd187187ce51e8c5b59a9c434552e193a66de831b27cb187b3b3e35c6ba351dfb-1",
+    "title": "Will the highest temperature in New York City be between 83-84°F on August 2?",
+    "lots": [
+      {
+        "shares": 0.006899000000117894,
+        "price": 0.9396120866581145,
+        "usdc": 217.999995,
+        "ts": 1754107070
+      }
+    ],
+    "totalShares": 0.006899000000117894
+  },
+  {
+    "key": "0x137787c548de2f5365f171c406dc41f0bd5f711866f7cf3bcc8d2816f1a340fa-1",
+    "title": "Will the highest temperature in New York City be between 83-84°F on August 8?",
+    "lots": [
+      {
+        "shares": 0.0009399999999573083,
+        "price": 0.971073289546225,
+        "usdc": 268.999964,
+        "ts": 1754660003
+      }
+    ],
+    "totalShares": 0.0009399999999573083
+  },
+  {
+    "key": "0xe85bc42dec7e2b309c9fe762c507d891aa9f0543db5f4459afc454eac38afa79-1",
+    "title": "Will the highest temperature in New York City be between 89-90°F on August 10?",
+    "lots": [
+      {
+        "shares": 0.0017369999999914398,
+        "price": 0.9184327085523956,
+        "usdc": 292.999998,
+        "ts": 1754810561
+      }
+    ],
+    "totalShares": 0.0017369999999914398
+  },
+  {
+    "key": "0xe78d29f93ef6d2a5c02930911e7a0e3c1e7f76850945784814a1434bf1096c39-1",
+    "title": "Will the highest temperature in New York City be between 88-89°F on August 13?",
+    "lots": [
+      {
+        "shares": 0.0014919999999989386,
+        "price": 0.8690655205517553,
+        "usdc": 92.999998,
+        "ts": 1755096513
+      }
+    ],
+    "totalShares": 0.0014919999999989386
+  },
+  {
+    "key": "0xcd8e5d5fc67ee20dd560b4e20a428cff26d5920bf4cb8dbbfedcbf3e42ff6f4f-1",
+    "title": "Will the highest temperature in New York City be between 83-84°F on August 16?",
+    "lots": [
+      {
+        "shares": 152.307691,
+        "price": 0.6499999990151515,
+        "usdc": 98.999999,
+        "ts": 1755326332
+      }
+    ],
+    "totalShares": 152.307691
+  },
+  {
+    "key": "0x7ed96f3a7d743b4f9f852b960941d70ba5eaf2583973bd3ccb9dbddd2bb74dc3-0",
+    "title": "Will the highest temperature in New York City be between 75-76°F on August 19?",
+    "lots": [
+      {
+        "shares": 197.861,
+        "price": 0.955215934418607,
+        "usdc": 188.99998,
+        "ts": 1755628245
+      }
+    ],
+    "totalShares": 197.861
+  },
+  {
+    "key": "0x2bd7f13c9d3a4e97200c78dbcfcd1fae79359b390cb8067ebd137a00821a9bdf-1",
+    "title": "Will the highest temperature in New York City be between 82-83°F on August 24?",
+    "lots": [
+      {
+        "shares": 0.005560000000002674,
+        "price": 0.9458128078817734,
+        "usdc": 384,
+        "ts": 1756046041
+      }
+    ],
+    "totalShares": 0.005560000000002674
+  },
+  {
+    "key": "0xfa3d087c54f9efccb5ac3a2a012a839b7c66d26db5a460125f9216984a7e280a-1",
+    "title": "Will the highest temperature in New York City be between 74-75°F on August 27?",
+    "lots": [
+      {
+        "shares": 0.0012660000000010996,
+        "price": 0.854545446466115,
+        "usdc": 99.99999,
+        "ts": 1756245493
+      }
+    ],
+    "totalShares": 0.0012660000000010996
+  },
+  {
+    "key": "0x0743ebf2332d21bbab947ffc8bda5a4da0a50943bd53f9bb95d5b67007b2aed2-0",
+    "title": "Will the highest temperature in New York City be between 76-77°F on August 27?",
+    "lots": [
+      {
+        "shares": 0.007360000000005584,
+        "price": 0.6885209177212891,
+        "usdc": 90.999992,
+        "ts": 1756285393
+      }
+    ],
+    "totalShares": 0.007360000000005584
+  },
+  {
+    "key": "0x90c4b358bf6ecc9bec9841c7d14f0b19f193914b0bb06ad61460b4b2075df7e3-1",
+    "title": "Will the highest temperature in New York City be between 74-75°F on August 31?",
+    "lots": [
+      {
+        "shares": 0.009066000000018448,
+        "price": 0.9845528638656458,
+        "usdc": 382.99999,
+        "ts": 1756597663
+      }
+    ],
+    "totalShares": 0.009066000000018448
+  },
+  {
+    "key": "0x3bc65b523cf1c46c512ff3ac94c3f09e4b8ced9177c00fbe37b80fb5baa92fc5-0",
+    "title": "Will the highest temperature in New York City be between 76-77°F on September 2?",
+    "lots": [
+      {
+        "shares": 95,
+        "price": 0.9789473684210527,
+        "usdc": 93,
+        "ts": 1756836898
+      }
+    ],
+    "totalShares": 95
+  },
+  {
+    "key": "0x1c685975f843014517833073ce8de0a7e8f0d473f83ac855317889eb901a7c95-1",
+    "title": "Will the highest temperature in New York City be between 70-71°F on September 8?",
+    "lots": [
+      {
+        "shares": 0.006770000000017262,
+        "price": 0.98,
+        "usdc": 294,
+        "ts": 1757352178
+      }
+    ],
+    "totalShares": 0.006770000000017262
+  },
+  {
+    "key": "0x417644a0822f15072786385058c87e88adb3faaf0fe3899e1661c89adcdc049e-1",
+    "title": "Will the highest temperature in New York City be between 70-71°F on September 9?",
+    "lots": [
+      {
+        "shares": 0.002796999999986838,
+        "price": 0.9403920346980041,
+        "usdc": 694.999987,
+        "ts": 1757364534
+      }
+    ],
+    "totalShares": 0.002796999999986838
+  },
+  {
+    "key": "0xc3a26bdbdbebaf2435a5b7adafab59a3a2587ac609a70b80a8ff068efe2a0852-1",
+    "title": "Will the highest temperature in New York City be 69°F or below on September 9?",
+    "lots": [
+      {
+        "shares": 0.002999999999985903,
+        "price": 0.989,
+        "usdc": 269.999967,
+        "ts": 1757419734
+      }
+    ],
+    "totalShares": 0.002999999999985903
+  },
+  {
+    "key": "0xf4072a86b322dae3ff82a0c7fb7bf7680d6b3770032054c5cf19d10a63c9fab5-0",
+    "title": "Will the highest temperature in New York City be between 72-73°F on September 9?",
+    "lots": [
+      {
+        "shares": 300,
+        "price": 0.96,
+        "usdc": 288,
+        "ts": 1757448560
+      }
+    ],
+    "totalShares": 300
+  },
+  {
+    "key": "0x0b7e49734f41ce300002cfba0cecc0193400a711e26a16567ef8c1bbdbac63fd-1",
+    "title": "Will the highest temperature in New York City be between 80-81°F on September 11?",
+    "lots": [
+      {
+        "shares": 0.007999999999981355,
+        "price": 0.953412482108194,
+        "usdc": 388.99992,
+        "ts": 1757622451
+      }
+    ],
+    "totalShares": 0.007999999999981355
+  },
+  {
+    "key": "0x3932212bd904b2e5f26e80dff0a620d1768f38cd15c896da4063ad50cb85fb02-0",
+    "title": "Will the highest temperature in New York City be between 74-75°F on September 16?",
+    "lots": [
+      {
+        "shares": 141.66444,
+        "price": 0.6705987472932515,
+        "usdc": 94.999996,
+        "ts": 1758038202
+      },
+      {
+        "shares": 78.001918,
+        "price": 0.987155187645514,
+        "usdc": 76.999998,
+        "ts": 1758053368
+      }
+    ],
+    "totalShares": 219.666358
+  },
+  {
+    "key": "0x81a8ea34c72a90d35f9a4c4af8d3632fa05d85747d85a12749a80eea096afefe-1",
+    "title": "Will the highest temperature in New York City be between 72-73°F on September 17?",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.96,
+        "usdc": 192,
+        "ts": 1758107054
+      },
+      {
+        "shares": 391.992,
+        "price": 0.9847128410783893,
+        "usdc": 385.999556,
+        "ts": 1758129678
+      },
+      {
+        "shares": 480,
+        "price": 0.975,
+        "usdc": 468,
+        "ts": 1758129798
+      }
+    ],
+    "totalShares": 1071.992
+  },
+  {
+    "key": "0x0a0f353410cfe3b244ccc7e939a952c67571f42e3ca0ce734868b5e077ad7732-1",
+    "title": "Will the highest temperature in New York City be between 70-71°F on September 20?",
+    "lots": [
+      {
+        "shares": 0.0013410000000249056,
+        "price": 0.9615262608049453,
+        "usdc": 499.999969,
+        "ts": 1758363830
+      }
+    ],
+    "totalShares": 0.0013410000000249056
+  },
+  {
+    "key": "0xc3804bd4930a07d2b251567e2fd8862b16522741c16c061335e388da5ba1a562-1",
+    "title": "Will the highest temperature in New York City be between 71-72°F on September 22?",
+    "lots": [
+      {
+        "shares": 459.04255,
+        "price": 0.871378910299274,
+        "usdc": 399.999997,
+        "ts": 1758467144
+      },
+      {
+        "shares": 200,
+        "price": 0.95,
+        "usdc": 190,
+        "ts": 1758524920
+      }
+    ],
+    "totalShares": 659.04255
+  },
+  {
+    "key": "0x6a4466943cfc6da66dbd3dd0bf7a7c113a4e8d9014ec9df5ddc5b9cdc96a07d8-1",
+    "title": "Will the highest temperature in New York City be between 68-69°F on September 21?",
+    "lots": [
+      {
+        "shares": 0.0020999999999844476,
+        "price": 0.9426688388389759,
+        "usdc": 295.999995,
+        "ts": 1758467944
+      }
+    ],
+    "totalShares": 0.0020999999999844476
+  },
+  {
+    "key": "0x07e9ff561a2b6ac453f816481b1b639895909a87700804b71e88ce3686b73ac7-1",
+    "title": "Will the highest temperature in New York City be between 82-83°F on September 23?",
+    "lots": [
+      {
+        "shares": 465.025908,
+        "price": 0.8537158729659423,
+        "usdc": 396.999999,
+        "ts": 1758564206
+      }
+    ],
+    "totalShares": 465.025908
+  },
+  {
+    "key": "0xc8cedb6a42b872712c73e75c2e9613ea683a5e4b8fd8b44f3380ff07781a3ec2-1",
+    "title": "Will the highest temperature in New York City be between 75-76°F on September 24?",
+    "lots": [
+      {
+        "shares": 166.0153,
+        "price": 0.9697900976596735,
+        "usdc": 160.999994,
+        "ts": 1758723255
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1758729619
+      }
+    ],
+    "totalShares": 266.0153
+  },
+  {
+    "key": "0x363259ecb3cffe8e407a94d198529c34e968532b30a211c6833267198af906e4-1",
+    "title": "Will the highest temperature in New York City be between 81-82°F on September 27?",
+    "lots": [
+      {
+        "shares": 0.007516000000009626,
+        "price": 0.9689999999950435,
+        "usdc": 781.999973,
+        "ts": 1758952615
+      }
+    ],
+    "totalShares": 0.007516000000009626
+  },
+  {
+    "key": "0x186f8ff28e630c627c3fc7e7c470059df65cfe4f35b34475fd18c623a409896a-1",
+    "title": "Will the highest temperature in New York City be 74°F or below on September 29?",
+    "lots": [
+      {
+        "shares": 400,
+        "price": 0.985,
+        "usdc": 394,
+        "ts": 1759123709
+      }
+    ],
+    "totalShares": 400
+  },
+  {
+    "key": "0xa9dd7139ab05a750daf3e50010ea7d0e97266511b64e38969a16ac0f6fa6f052-1",
+    "title": "Will the highest temperature in New York City be between 82-83°F on October 4?",
+    "lots": [
+      {
+        "shares": 117.972969,
+        "price": 0.7120274899583141,
+        "usdc": 83.999997,
+        "ts": 1759558653
+      }
+    ],
+    "totalShares": 117.972969
+  },
+  {
+    "key": "0x2837436a57a7b817710adc9d3bfa0ad39e160c6261200d6a9e45508f90f81dcb-1",
+    "title": "Will the highest temperature in New York City be between 79-80°F on October 5?",
+    "lots": [
+      {
+        "shares": 0.006975000000011278,
+        "price": 0.9,
+        "usdc": 594,
+        "ts": 1759654008
+      }
+    ],
+    "totalShares": 0.006975000000011278
+  },
+  {
+    "key": "0x0fb48acfe9a46579b457c6db24023f038e3c82264130cc68d8d86e4475b7c96c-0",
+    "title": "Will the highest temperature in New York City be between 80-81°F on October 6?",
+    "lots": [
+      {
+        "shares": 99.020617,
+        "price": 0.9593961427244995,
+        "usdc": 94.999998,
+        "ts": 1759776764
+      }
+    ],
+    "totalShares": 99.020617
+  },
+  {
+    "key": "0xb49a784075862f78d2f36f368837b21d224145fa2bdb5d951bbd79e9e64c3324-1",
+    "title": "Will the highest temperature in New York City be between 77-78°F on October 7?",
+    "lots": [
+      {
+        "shares": 110,
+        "price": 0.8090909090909091,
+        "usdc": 89,
+        "ts": 1759835008
+      }
+    ],
+    "totalShares": 110
+  },
+  {
+    "key": "0x417c5e6c05cc71fe5a63a9fd57ea48bbb9ac23ca9481ff9fcdf91e406d8ae88c-0",
+    "title": "Will the highest temperature in New York City be between 71-72°F on October 8?",
+    "lots": [
+      {
+        "shares": 68,
+        "price": 0.9411764705882353,
+        "usdc": 64,
+        "ts": 1759902134
+      },
+      {
+        "shares": 155,
+        "price": 0.9741935483870968,
+        "usdc": 151,
+        "ts": 1759927690
+      }
+    ],
+    "totalShares": 223
+  },
+  {
+    "key": "0xa83e4741b99f7245d4a8f9c45ee8af0270f574bcbdd3fa1dc06c031e51529064-1",
+    "title": "Will the highest temperature in New York City be between 62-63°F on October 9?",
+    "lots": [
+      {
+        "shares": 0.0011250000000586624,
+        "price": 0.9892183288409704,
+        "usdc": 367,
+        "ts": 1760030613
+      }
+    ],
+    "totalShares": 0.0011250000000586624
+  },
+  {
+    "key": "0xa508f21f1ed60d4c2c69ab4d73cbea151aac0a13fa80d43c5bde66069dd24b2e-1",
+    "title": "Will the highest temperature in New York City be 59°F or below on October 10?",
+    "lots": [
+      {
+        "shares": 0.0005250000000387445,
+        "price": 0.9466885608119945,
+        "usdc": 479.999998,
+        "ts": 1760030743
+      }
+    ],
+    "totalShares": 0.0005250000000387445
+  },
+  {
+    "key": "0xf561310ff3764a79bed724ce0f329b74e1ffeeca0fe9eb342f88475876a53959-0",
+    "title": "Will the highest temperature in New York City be between 58-59°F on October 9?",
+    "lots": [
+      {
+        "shares": 84.0206,
+        "price": 0.9640490784402873,
+        "usdc": 80.999982,
+        "ts": 1760037163
+      }
+    ],
+    "totalShares": 84.0206
+  },
+  {
+    "key": "0x1438f4c37cace8f8950325a1645ce70e7386ee85b3e548a785400187437d1ad9-0",
+    "title": "Will the highest temperature in New York City be between 62-63°F on October 12?",
+    "lots": [
+      {
+        "shares": 197.014675,
+        "price": 0.8933344077033856,
+        "usdc": 175.999988,
+        "ts": 1760252923
+      },
+      {
+        "shares": 200,
+        "price": 0.97,
+        "usdc": 194,
+        "ts": 1760271173
+      },
+      {
+        "shares": 100,
+        "price": 0.97,
+        "usdc": 97,
+        "ts": 1760271371
+      }
+    ],
+    "totalShares": 497.014675
+  },
+  {
+    "key": "0x02bee46e8a520cade5005cce1b2d6fced8afd49691c165f585c1e0812172f4b8-0",
+    "title": "Will the highest temperature in New York City be between 59-60°F on October 13?",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.97,
+        "usdc": 194,
+        "ts": 1760388479
+      }
+    ],
+    "totalShares": 200
+  },
+  {
+    "key": "0x051ba78851e3eb0c6175bcb8ec75d932d694b4a24aafaf7beed214785a46a5a6-1",
+    "title": "Will the highest temperature in New York City be between 61-62°F on October 16?",
+    "lots": [
+      {
+        "shares": 305.01852,
+        "price": 0.9343694736962201,
+        "usdc": 284.999994,
+        "ts": 1760629175
+      }
+    ],
+    "totalShares": 305.01852
+  },
+  {
+    "key": "0x03e1b9a83d25e8ae35dd7576ce48efaabd6a2dbbf54e1018b88865503205415a-0",
+    "title": "Will the highest temperature in New York City be between 63-64°F on October 22?",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.99,
+        "usdc": 198,
+        "ts": 1761162434
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1761162452
+      }
+    ],
+    "totalShares": 300
+  },
+  {
+    "key": "0xb647b35de3084276661ed5a22acb6f07f332ee0a7ef9886f77342aff114237d5-0",
+    "title": "Will the highest temperature in New York City be between 59-60°F on October 24?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1761340564
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0xaf0a6b579453d299ddaae1ba7b50d5fc1a161948def783e212f17b8883a34f5c-0",
+    "title": "Will the highest temperature in New York City be 57°F or higher on October 26?",
+    "lots": [
+      {
+        "shares": 276.153526,
+        "price": 0.7242348120516122,
+        "usdc": 199.999997,
+        "ts": 1761396235
+      },
+      {
+        "shares": 34.020617,
+        "price": 0.969999985596969,
+        "usdc": 32.999998,
+        "ts": 1761480977
+      }
+    ],
+    "totalShares": 310.174143
+  },
+  {
+    "key": "0x90455f0998ee2042ed7bc0fc56ee3eef0b12c0100ed2a5dda7751ee8c1cb85b6-0",
+    "title": "Will the highest temperature in New York City be between 59-60°F on October 25?",
+    "lots": [
+      {
+        "shares": 87,
+        "price": 0.9770114942528736,
+        "usdc": 85,
+        "ts": 1761417403
+      },
+      {
+        "shares": 119,
+        "price": 0.9831932773109243,
+        "usdc": 117,
+        "ts": 1761417449
+      },
+      {
+        "shares": 100.005,
+        "price": 0.989950002499875,
+        "usdc": 98.99995,
+        "ts": 1761420443
+      }
+    ],
+    "totalShares": 306.005
+  },
+  {
+    "key": "0xec6954987adc00c4bbf36ba7b387e2e8cbfaa1488539a90724c171b80c226a53-1",
+    "title": "Will the highest temperature in New York City be between 53-54°F on October 28?",
+    "lots": [
+      {
+        "shares": 0.0017799999999397187,
+        "price": 0.9256646839474015,
+        "usdc": 497.999991,
+        "ts": 1761560563
+      }
+    ],
+    "totalShares": 0.0017799999999397187
+  },
+  {
+    "key": "0x7438253a366f750c59461d3d1e5cf1584632a4e86fbef35a36a28cb25dcde7bf-0",
+    "title": "Will the highest temperature in New York City be between 55-56°F on October 27?",
+    "lots": [
+      {
+        "shares": 94,
+        "price": 0.9468085106382979,
+        "usdc": 89,
+        "ts": 1761594427
+      },
+      {
+        "shares": 54,
+        "price": 0.9444444444444444,
+        "usdc": 51,
+        "ts": 1761594443
+      }
+    ],
+    "totalShares": 148
+  },
+  {
+    "key": "0xb4ad12a46d73988c1ab3fe7fc9f71857736aa34e24c21a52132b022809e0fa3a-1",
+    "title": "Will the highest temperature in New York City be between 54-55°F on October 29?",
+    "lots": [
+      {
+        "shares": 0.004210999999997966,
+        "price": 0.7992153480226896,
+        "usdc": 198.999995,
+        "ts": 1761651761
+      }
+    ],
+    "totalShares": 0.004210999999997966
+  },
+  {
+    "key": "0x7d4d6916fa50ad0be01c1c065a6b3ad95f5d444c18fc6b766a99d31173469303-0",
+    "title": "Will the Party for Freedom win the most seats in the 2025 Netherlands parliamentary election?",
+    "lots": [
+      {
+        "shares": 0.0020499999999969987,
+        "price": 0.38999999024999976,
+        "usdc": 19.999999,
+        "ts": 1761694177
+      }
+    ],
+    "totalShares": 0.0020499999999969987
+  },
+  {
+    "key": "0xc0dbb878d861154a6c0629c8bfca126295c2f3fc4765d4206734c90fb07b65e3-0",
+    "title": "Will the highest temperature in New York City be between 59-60°F on October 31?",
+    "lots": [
+      {
+        "shares": 400,
+        "price": 0.99,
+        "usdc": 396,
+        "ts": 1761890775
+      }
+    ],
+    "totalShares": 400
+  },
+  {
+    "key": "0x134758b06fa7f539eccd3a10b5838635079050889e8fd45945302daccb432fd7-0",
+    "title": "Will the highest temperature in New York City be between 60-61°F on November 2?",
+    "lots": [
+      {
+        "shares": 407.003504,
+        "price": 0.9508517597430808,
+        "usdc": 386.999998,
+        "ts": 1762114153
+      }
+    ],
+    "totalShares": 407.003504
+  },
+  {
+    "key": "0xd53066929b12476e4d57d6cfde379f14993bd0cc722adcd52c4297854396450c-0",
+    "title": "Will the highest temperature in New York City be between 58-59°F on November 3?",
+    "lots": [
+      {
+        "shares": 300,
+        "price": 0.95,
+        "usdc": 285,
+        "ts": 1762198261
+      },
+      {
+        "shares": 304.005049,
+        "price": 0.9802468708340433,
+        "usdc": 297.999998,
+        "ts": 1762200551
+      }
+    ],
+    "totalShares": 604.005049
+  },
+  {
+    "key": "0x8058184700cb7626df3e63a41f52d32c755bdb575d98c13d5be79399339f1b12-1",
+    "title": "Will the highest temperature in London be between 63-64°F on November 4?",
+    "lots": [
+      {
+        "shares": 497.0155,
+        "price": 0.9697886484425536,
+        "usdc": 481.99999,
+        "ts": 1762254069
+      },
+      {
+        "shares": 200,
+        "price": 0.99,
+        "usdc": 198,
+        "ts": 1762264661
+      },
+      {
+        "shares": 394,
+        "price": 0.9796954314720813,
+        "usdc": 386,
+        "ts": 1762267971
+      }
+    ],
+    "totalShares": 1091.0155
+  },
+  {
+    "key": "0x8d521878e62beeea6d33e86c60ce114269ad09eee6a6f6e0fa76805a7e31746f-1",
+    "title": "Will the highest temperature in New York City be between 60-61°F on November 5?",
+    "lots": [
+      {
+        "shares": 0.0002000000000066393,
+        "price": 0.9708417262601687,
+        "usdc": 299.999996,
+        "ts": 1762254179
+      }
+    ],
+    "totalShares": 0.0002000000000066393
+  },
+  {
+    "key": "0xb19fe589004d851ba4c7a48bb2dae75150dc93906501001fca991674ff7e3ed1-1",
+    "title": "Will the highest temperature in New York City be between 66-67°F on November 5?",
+    "lots": [
+      {
+        "shares": 330.076922,
+        "price": 0.9088790491084379,
+        "usdc": 299.999999,
+        "ts": 1762265191
+      }
+    ],
+    "totalShares": 330.076922
+  },
+  {
+    "key": "0x73eb40a408996a4bbea5c021a5a80c03112c26e3ddc6b8d5426a26f7c0ec9c78-0",
+    "title": "Will the highest temperature in New York City be between 59-60°F on November 4?",
+    "lots": [
+      {
+        "shares": 157.99795,
+        "price": 0.974696133715659,
+        "usdc": 153.999991,
+        "ts": 1762291339
+      }
+    ],
+    "totalShares": 157.99795
+  },
+  {
+    "key": "0x8acfed66e23fa16f276688c6ca1adc9801d2006870b0134f121a7e97e121ae70-1",
+    "title": "Will the highest temperature in New York City be between 52-53°F on November 6?",
+    "lots": [
+      {
+        "shares": 0.0018749999999840838,
+        "price": 0.9515151515151515,
+        "usdc": 314,
+        "ts": 1762367131
+      }
+    ],
+    "totalShares": 0.0018749999999840838
+  },
+  {
+    "key": "0x9067d5720ff4638cb544f59be5265754a6838857183254b6332ff8e80ee47004-1",
+    "title": "Will the highest temperature in New York City be between 57-58°F on November 7?",
+    "lots": [
+      {
+        "shares": 0.009000000000014552,
+        "price": 0.7994673782550221,
+        "usdc": 299,
+        "ts": 1762418405
+      }
+    ],
+    "totalShares": 0.009000000000014552
+  },
+  {
+    "key": "0x5c53e9b1746a6df09a38ad18936612c6ca6220f5812d586caaa38d139d50f9f2-1",
+    "title": "Will the highest temperature in New York City be between 55-56°F on November 7?",
+    "lots": [
+      {
+        "shares": 0.0012330000000133623,
+        "price": 0.96516148761452,
+        "usdc": 470.999996,
+        "ts": 1762418453
+      }
+    ],
+    "totalShares": 0.0012330000000133623
+  },
+  {
+    "key": "0xfdd8ab482789d906e17f7f205504f56ebc98a58931265334cabab397c1bb89ca-1",
+    "title": "Will the highest temperature in New York City be between 47-48°F on November 14?",
+    "lots": [
+      {
+        "shares": 0.0003849999998237763,
+        "price": 0.92,
+        "usdc": 977.999997,
+        "ts": 1763105196
+      }
+    ],
+    "totalShares": 0.0003849999998237763
+  },
+  {
+    "key": "0x506e6421d2a401a3afc4f7d497348938b3c80653f5396c1a72ae127af81f56cb-1",
+    "title": "Will the highest temperature in New York City be between 44-45°F on November 18?",
+    "lots": [
+      {
+        "shares": 0.0058799999999905594,
+        "price": 0.8330841555073867,
+        "usdc": 294.999998,
+        "ts": 1763369731
+      }
+    ],
+    "totalShares": 0.0058799999999905594
+  },
+  {
+    "key": "0x6a50302ed5c94c0ae9671686b55379496aa07d94bfb8b6432018dc2a380205e9-1",
+    "title": "Will the highest temperature in New York City be between 59-60°F on November 26?",
+    "lots": [
+      {
+        "shares": 124.04875,
+        "price": 0.7738892975543888,
+        "usdc": 96,
+        "ts": 1764101557
+      }
+    ],
+    "totalShares": 124.04875
+  },
+  {
+    "key": "0xd67dc868e3ebf0d1d7e304eee727a6707de0b0283062b7244ee5de0bdd5fe7d1-1",
+    "title": "Will the highest temperature in New York City be between 47-48°F on November 27?",
+    "lots": [
+      {
+        "shares": 0.008407999999974436,
+        "price": 0.8280327753849446,
+        "usdc": 293.999999,
+        "ts": 1764158825
+      }
+    ],
+    "totalShares": 0.008407999999974436
+  },
+  {
+    "key": "0x21521915fa31e1e85caab1bc70e6657d54f83f358c60114c2d2efc8e569c8ee9-1",
+    "title": "Will the highest temperature in New York City be between 31-32°F on December 5?",
+    "lots": [
+      {
+        "shares": 249.147671,
+        "price": 0.7987230874014472,
+        "usdc": 198.999997,
+        "ts": 1764919137
+      }
+    ],
+    "totalShares": 249.147671
+  },
+  {
+    "key": "0xa02e9435176c924a3fae21978260d9c7d80b01650b6f1f1b71b8217fb2e9fd48-1",
+    "title": "Will the highest temperature in New York City be between 38-39°F on December 7?",
+    "lots": [
+      {
+        "shares": 0.0001890000002049419,
+        "price": 0.9775637957503113,
+        "usdc": 479.999976,
+        "ts": 1765097067
+      }
+    ],
+    "totalShares": 0.0001890000002049419
+  },
+  {
+    "key": "0xd0420ca5077e9fd7247d0e8377f9f30f98c88b81b040f0c5dab63915ea98ebf7-1",
+    "title": "Will the highest temperature in New York City be between 40-41°F on December 10?",
+    "lots": [
+      {
+        "shares": 0.008474999999975807,
+        "price": 0.913588702823058,
+        "usdc": 496.999997,
+        "ts": 1765306486
+      }
+    ],
+    "totalShares": 0.008474999999975807
+  },
+  {
+    "key": "0xe0baf9aafd45f0159432d16a0282af04c5d713edf968f72b3773ccf069bdf9a9-1",
+    "title": "Will the highest temperature in New York City be between 40-41°F on December 17?",
+    "lots": [
+      {
+        "shares": 0.004351999999926193,
+        "price": 0.9896724080320033,
+        "usdc": 286.999951,
+        "ts": 1765962347
+      }
+    ],
+    "totalShares": 0.004351999999926193
+  },
+  {
+    "key": "0x026555145c8c4f4791df52d0832088dc542d3ad78fd54cacf024775d0c9a9b90-0",
+    "title": "Will the highest temperature in New York City be between 58-59°F on December 19?",
+    "lots": [
+      {
+        "shares": 804.014419,
+        "price": 0.9688880616953214,
+        "usdc": 778.999972,
+        "ts": 1766158150
+      }
+    ],
+    "totalShares": 804.014419
+  },
+  {
+    "key": "0x365eee5f424708fd861ea3f0d4d03d515e34b513303a30d097f2b35867f11dcd-0",
+    "title": "Will Anthony Joshua win his boxing match against Jake Paul?",
+    "lots": [
+      {
+        "shares": 62.921345,
+        "price": 0.8899999992053571,
+        "usdc": 55.999997,
+        "ts": 1766179259
+      }
+    ],
+    "totalShares": 62.921345
+  },
+  {
+    "key": "0x25a906ac4eccf5b0dd967e2272d4d094be02cef41d4e50e489571b2dfda79f53-0",
+    "title": "Will the highest temperature in New York City be 38°F or higher on December 20?",
+    "lots": [
+      {
+        "shares": 220.011875,
+        "price": 0.9090418414915103,
+        "usdc": 200,
+        "ts": 1766244331
+      }
+    ],
+    "totalShares": 220.011875
+  },
+  {
+    "key": "0x8087d42ddd24c2779611958906e8fe371bca1ccbd80247763266bd05e35d69e1-0",
+    "title": "Will the highest temperature in New York City be 44°F or higher on December 25?",
+    "lots": [
+      {
+        "shares": 372.128,
+        "price": 0.6879353340785966,
+        "usdc": 256,
+        "ts": 1766577087
+      },
+      {
+        "shares": 45.99388,
+        "price": 0.847938856213044,
+        "usdc": 38.999998,
+        "ts": 1766586621
+      },
+      {
+        "shares": 212.01052,
+        "price": 0.9386326395501506,
+        "usdc": 198.999994,
+        "ts": 1766606571
+      },
+      {
+        "shares": 575.0011,
+        "price": 0.9895632704007001,
+        "usdc": 568.999969,
+        "ts": 1766663213
+      }
+    ],
+    "totalShares": 1205.1335
+  },
+  {
+    "key": "0xe18d56efc7a91d5f2f75a6030f03309f980195f30632fb8434be4909c8d6ad13-1",
+    "title": "Will the highest temperature in Seoul be 0°C on January 3?",
+    "lots": [
+      {
+        "shares": 1.0204,
+        "price": 0.98,
+        "usdc": 0.999992,
+        "ts": 1767379041
+      }
+    ],
+    "totalShares": 1.0204
+  },
+  {
+    "key": "0xf7e1442b90f5324884c5dc241142cd4df9a1b203f4e0f7ee444651bd7ff998ae-0",
+    "title": "Will the highest temperature in Buenos Aires be 24°C or below on January 3?",
+    "lots": [
+      {
+        "shares": 1.075257,
+        "price": 0.9299999906998978,
+        "usdc": 0.999989,
+        "ts": 1767379443
+      }
+    ],
+    "totalShares": 1.075257
+  },
+  {
+    "key": "0xd7604f289adb5f63b9dff58545b4b02ca835e72837e07180a62f74f9deb30432-0",
+    "title": "Will the highest temperature in Atlanta be 59°F or below on January 3?",
+    "lots": [
+      {
+        "shares": 1.162785,
+        "price": 0.8599999139995786,
+        "usdc": 0.999995,
+        "ts": 1767379591
+      }
+    ],
+    "totalShares": 1.162785
+  },
+  {
+    "key": "0xcee9f36be697ba84add47065661ad3115276d3e8df163af96da34340491190c4-1",
+    "title": "Will the highest temperature in Dallas be 61°F or below on January 4?",
+    "lots": [
+      {
+        "shares": 0.0008999999999999009,
+        "price": 0.97,
+        "usdc": 0.999973,
+        "ts": 1767469343
+      }
+    ],
+    "totalShares": 0.0008999999999999009
+  },
+  {
+    "key": "0x648820dedcda0dd0d5cf65d1e9b1735b64a92f02089cba069f7bdd88a92a49c0-1",
+    "title": "Will the highest temperature in Toronto be -3°C on January 5?",
+    "lots": [
+      {
+        "shares": 0.00039999999999995595,
+        "price": 0.98,
+        "usdc": 0.999992,
+        "ts": 1767565519
+      }
+    ],
+    "totalShares": 0.00039999999999995595
+  },
+  {
+    "key": "0x867213621521a9903f17862fe69cb4abe7451b0cb8cbf6f2663e391cd668fa25-0",
+    "title": "Will the highest temperature in New York City be 34°F or higher on January 5?",
+    "lots": [
+      {
+        "shares": 99.0015,
+        "price": 0.9898832340924127,
+        "usdc": 97.999925,
+        "ts": 1767602481
+      }
+    ],
+    "totalShares": 99.0015
+  },
+  {
+    "key": "0x661abf1a9af4196a3549bfb307f7957b4e97e0ba70f0be63f811c37f669cc1c9-0",
+    "title": "Will the highest temperature in Atlanta be 60°F or higher on January 6?",
+    "lots": [
+      {
+        "shares": 1.007,
+        "price": 0.992759682224429,
+        "usdc": 0.999709,
+        "ts": 1767646231
+      }
+    ],
+    "totalShares": 1.007
+  },
+  {
+    "key": "0x51068b9f47fc2ca751469d44a9d2f69d3ee454bd440e4bef1302ea9995d5d08a-1",
+    "title": "Will the highest temperature in New York City be between 38-39°F on January 6?",
+    "lots": [
+      {
+        "shares": 0.0013659999999617867,
+        "price": 0.99,
+        "usdc": 1287,
+        "ts": 1767706163
+      }
+    ],
+    "totalShares": 0.0013659999999617867
+  },
+  {
+    "key": "0xf48038820ad1b9710708393cf3d300c0d32ffe5f6c6cc1ca04e6630801d2eadf-1",
+    "title": "Will the highest temperature in New York City be between 46-47°F on January 7?",
+    "lots": [
+      {
+        "shares": 0.00899999999998613,
+        "price": 0.8049825932887689,
+        "usdc": 194,
+        "ts": 1767712749
+      }
+    ],
+    "totalShares": 0.00899999999998613
+  },
+  {
+    "key": "0x36952929ef8c3efeb292e24c1e835737329f63ae27313094cfb6a262dd43995b-0",
+    "title": "Will the highest temperature in Buenos Aires be 33°C or below on January 7?",
+    "lots": [
+      {
+        "shares": 1.012083,
+        "price": 0.987999996047755,
+        "usdc": 0.999938,
+        "ts": 1767727639
+      }
+    ],
+    "totalShares": 1.012083
+  },
+  {
+    "key": "0xcb1789117b0449954bbd5a9bf0950f5994086f6094b87a76b2fe297828ab0d03-0",
+    "title": "Will the highest temperature in Atlanta be 68°F or higher on January 7?",
+    "lots": [
+      {
+        "shares": 1.031967,
+        "price": 0.9689999777124656,
+        "usdc": 0.999976,
+        "ts": 1767727833
+      }
+    ],
+    "totalShares": 1.031967
+  },
+  {
+    "key": "0x9cc098d6c802e3ed81e5175febd1d369167a9c11ffc4b65c52e199e9592500a7-0",
+    "title": "Will the highest temperature in Atlanta be 66°F or higher on January 8?",
+    "lots": [
+      {
+        "shares": 1.0204,
+        "price": 0.98,
+        "usdc": 0.999992,
+        "ts": 1767824151
+      }
+    ],
+    "totalShares": 1.0204
+  },
+  {
+    "key": "0x59bad86a54f921373789b52df2cdad5235a0f31ad7c9d1a12829c3625ef221a1-0",
+    "title": "Will the highest temperature in Toronto be 10°C or higher on January 9?",
+    "lots": [
+      {
+        "shares": 33.913037,
+        "price": 0.8846153766765271,
+        "usdc": 29.999994,
+        "ts": 1767900830
+      }
+    ],
+    "totalShares": 33.913037
+  },
+  {
+    "key": "0xdd1d720bdc46731795a4a4ddbba1c8a8af8dbff3474cb1a8d63c9a2fdecc09df-0",
+    "title": "Will the highest temperature in New York City be 48°F or higher on January 9?",
+    "lots": [
+      {
+        "shares": 30.8565,
+        "price": 0.9722415050313549,
+        "usdc": 29.99997,
+        "ts": 1767902274
+      }
+    ],
+    "totalShares": 30.8565
+  },
+  {
+    "key": "0x2da7048bb49c652fe25bfc7c8ae54f7d4d4c2694bb8892d34bec2641f589397f-1",
+    "title": "Will the highest temperature in Seattle be between 44-45°F on January 9?",
+    "lots": [
+      {
+        "shares": 0.0045000000000001705,
+        "price": 0.9850746195143575,
+        "usdc": 29.999955,
+        "ts": 1767902508
+      }
+    ],
+    "totalShares": 0.0045000000000001705
+  },
+  {
+    "key": "0xe5dc9a5c5199161cd17ced7e9ed9e42f67737885a90dd7ae4ff3224433db0be0-1",
+    "title": "Will the highest temperature in London be 3°C on January 10?",
+    "lots": [
+      {
+        "shares": 41.84945,
+        "price": 0.9558061336528915,
+        "usdc": 39.999961,
+        "ts": 1767986136
+      }
+    ],
+    "totalShares": 41.84945
+  },
+  {
+    "key": "0xa29b518ac57e56392b296d3072978ea78cd68d7c547cf4be58e2c3febd5cba13-0",
+    "title": "Will the highest temperature in Buenos Aires be 26°C or below on January 10?",
+    "lots": [
+      {
+        "shares": 0.003583000000006109,
+        "price": 0.9759999998047999,
+        "usdc": 39.999977,
+        "ts": 1767986204
+      }
+    ],
+    "totalShares": 0.003583000000006109
+  },
+  {
+    "key": "0xc9adb9cfe18933eea6de25828b38605faf9caa2f1a9060f528e2b63dbbed67f4-0",
+    "title": "Will the highest temperature in Buenos Aires be 33°C or below on January 11?",
+    "lots": [
+      {
+        "shares": 46.477271,
+        "price": 0.8606356857742358,
+        "usdc": 39.999998,
+        "ts": 1768075744
+      }
+    ],
+    "totalShares": 46.477271
+  },
+  {
+    "key": "0x0729d7f7e8e0dd76634f04cc14b63369e7769751e4d9035a0efa13fc89a6857a-1",
+    "title": "Will the highest temperature in Dallas be 55°F or below on January 11?",
+    "lots": [
+      {
+        "shares": 0.006839999999996849,
+        "price": 0.9492880339389475,
+        "usdc": 39.999998,
+        "ts": 1768076068
+      }
+    ],
+    "totalShares": 0.006839999999996849
+  },
+  {
+    "key": "0xe8763fc09863262d7b5e921c9565fa8e320e7097efcd608bf8b1c24f3b722dc8-1",
+    "title": "Will the highest temperature in Seoul be 2°C or below on January 12?",
+    "lots": [
+      {
+        "shares": 0.0040000000000048885,
+        "price": 0.99,
+        "usdc": 39.99996,
+        "ts": 1768138230
+      }
+    ],
+    "totalShares": 0.0040000000000048885
+  },
+  {
+    "key": "0x68e6f0d193feb3c9217cbb3dd968996ddc47b52a4dc7c3cb5974cde0ca515331-1",
+    "title": "Will the highest temperature in Atlanta be 47°F or below on January 12?",
+    "lots": [
+      {
+        "shares": 0.0016210000000000946,
+        "price": 0.8599999987099998,
+        "usdc": 39.999994,
+        "ts": 1768158348
+      }
+    ],
+    "totalShares": 0.0016210000000000946
+  },
+  {
+    "key": "0x5752a1cbb3713d1424bce4ea8fd395607319d5c1649c2f50974922de25b72610-1",
+    "title": "Will the highest temperature in Buenos Aires be 31°C or below on January 13?",
+    "lots": [
+      {
+        "shares": 0.002220000000001221,
+        "price": 0.8964143424509134,
+        "usdc": 39.999998,
+        "ts": 1768247105
+      }
+    ],
+    "totalShares": 0.002220000000001221
+  },
+  {
+    "key": "0xac52005c60289c853b3eb00e79565b11b704d198d346a568def8f22e13a8b5cb-1",
+    "title": "Will the highest temperature in Atlanta be between 56-57°F on January 13?",
+    "lots": [
+      {
+        "shares": 0.0040530000000060795,
+        "price": 0.7399999959299999,
+        "usdc": 39.999999,
+        "ts": 1768247257
+      }
+    ],
+    "totalShares": 0.0040530000000060795
+  },
+  {
+    "key": "0xa4bbb1fe3c7a9d945c9339e1828165287b7f2c360600f7a8fa22e6c3f118654c-1",
+    "title": "Will the highest temperature in Toronto be 1°C on January 13?",
+    "lots": [
+      {
+        "shares": 0.005099999999998772,
+        "price": 0.9882606590224607,
+        "usdc": 39.999949,
+        "ts": 1768247333
+      }
+    ],
+    "totalShares": 0.005099999999998772
+  },
+  {
+    "key": "0x8e522aca20aa3918e0045af573e584e5c173ee6fd7eb5fc4998c2d19a604eba4-1",
+    "title": "Will the highest temperature in New York City be between 42-43°F on January 13?",
+    "lots": [
+      {
+        "shares": 0.004440000000002442,
+        "price": 0.9,
+        "usdc": 39.999996,
+        "ts": 1768248013
+      }
+    ],
+    "totalShares": 0.004440000000002442
+  },
+  {
+    "key": "0x741e4017c9e47be50ea032287fd09ec6ec3375c2a8ddb96c4888ac472659c17e-1",
+    "title": "Will the highest temperature in Atlanta be between 52-53°F on January 14?",
+    "lots": [
+      {
+        "shares": 0.008549999999999613,
+        "price": 0.9271522968817074,
+        "usdc": 49.999979,
+        "ts": 1768331248
+      }
+    ],
+    "totalShares": 0.008549999999999613
+  },
+  {
+    "key": "0x9873ec0d2fc3cbbb9b3c63e844b8fba972fd2d24a56e5be338414bedb3f2d3f9-1",
+    "title": "Will the highest temperature in New York City be between 32-33°F on January 16?",
+    "lots": [
+      {
+        "shares": 0.002563000000009197,
+        "price": 0.7799999978159999,
+        "usdc": 49.999999,
+        "ts": 1768508224
+      }
+    ],
+    "totalShares": 0.002563000000009197
+  },
+  {
+    "key": "0x0db661e9a6688856ab6cbecdde758a3bc1593c45fd7439d6c229a8f50b76c1b9-1",
+    "title": "Will the highest temperature in Atlanta be between 46-47°F on January 16?",
+    "lots": [
+      {
+        "shares": 0.0094659999999962,
+        "price": 0.9680638711734212,
+        "usdc": 49.999982,
+        "ts": 1768508410
+      }
+    ],
+    "totalShares": 0.0094659999999962
+  },
+  {
+    "key": "0xf0035f396cda70ece4d0c6fcb438d9c96ab7db68f229203ef015fd316c4c8581-1",
+    "title": "Will the highest temperature in Dallas be 43°F or below on January 17?",
+    "lots": [
+      {
+        "shares": 51.097666,
+        "price": 0.978517492364524,
+        "usdc": 49.99996,
+        "ts": 1768591948
+      }
+    ],
+    "totalShares": 51.097666
+  },
+  {
+    "key": "0x6f4b09676a653b81d5e0515c3db3f0ce48d6d751672c4ce068130cda7a685bc0-1",
+    "title": "Will the highest temperature in Seattle be between 40-41°F on January 23?",
+    "lots": [
+      {
+        "shares": 0.00039999999999906777,
+        "price": 0.98,
+        "usdc": 49.999992,
+        "ts": 1769153888
+      }
+    ],
+    "totalShares": 0.00039999999999906777
+  },
+  {
+    "key": "0x35c268a9ba1b27115c9b42415a667177d9959310d2c9b3131bca9e7942a13f3a-1",
+    "title": "Will the highest temperature in New York City be between 26-27°F on January 26?",
+    "lots": [
+      {
+        "shares": 53.832257,
+        "price": 0.92881112155487,
+        "usdc": 49.999999,
+        "ts": 1769383360
+      }
+    ],
+    "totalShares": 53.832257
+  },
+  {
+    "key": "0xab326ba1db6cdfe0c99aeedce484888dc07baed0a74c855c3abca21c180293ed-1",
+    "title": "Will the highest temperature in Atlanta be 33°F or below on January 27?",
+    "lots": [
+      {
+        "shares": 0.0072499999999990905,
+        "price": 0.988,
+        "usdc": 49.999963,
+        "ts": 1769456165
+      }
+    ],
+    "totalShares": 0.0072499999999990905
+  },
+  {
+    "key": "0xf298df42aba04cb09086ce3268df1794a17c15b4ee7983f6de523d6b84260883-1",
+    "title": "Will the highest temperature in Atlanta be between 42-43°F on January 28?",
+    "lots": [
+      {
+        "shares": 0.0010539999999963356,
+        "price": 0.96299999996148,
+        "usdc": 49.999975,
+        "ts": 1769544495
+      }
+    ],
+    "totalShares": 0.0010539999999963356
+  },
+  {
+    "key": "0x12fe26bb322b45e42e92474ab2e7d9debd78908bef3ec68b91fd00147b26fa21-1",
+    "title": "Will the highest temperature in Seattle be between 46-47°F on January 28?",
+    "lots": [
+      {
+        "shares": 0.006365999999999872,
+        "price": 0.9699999996119998,
+        "usdc": 49.999975,
+        "ts": 1769544591
+      }
+    ],
+    "totalShares": 0.006365999999999872
+  },
+  {
+    "key": "0x2afd45742ca70f7ee197bc25b1b928530049dd8224b10e664afdafae345c7bb5-1",
+    "title": "Will the highest temperature in Miami be between 64-65°F on January 29?",
+    "lots": [
+      {
+        "shares": 0.000886000000003051,
+        "price": 0.9869999744202465,
+        "usdc": 11.999998,
+        "ts": 1769627070
+      }
+    ],
+    "totalShares": 0.000886000000003051
+  },
+  {
+    "key": "0x79fcd4e51041b88ef3b47bf804bf4fe3da0890b486cdbb1f626d16a69cb575b6-1",
+    "title": "Will the highest temperature in Atlanta be between 42-43°F on January 29?",
+    "lots": [
+      {
+        "shares": 0.0019999999999988916,
+        "price": 0.9849780021341213,
+        "usdc": 11.999987,
+        "ts": 1769627094
+      }
+    ],
+    "totalShares": 0.0019999999999988916
+  },
+  {
+    "key": "0xb433efb0e053caf8a1b5e9b7489b7b5919b18659ebceea0bc3d445eaefee4875-0",
+    "title": "Will the highest temperature in Dallas be 46°F or higher on January 29?",
+    "lots": [
+      {
+        "shares": 20.345823,
+        "price": 0.9829999995576487,
+        "usdc": 19.999944,
+        "ts": 1769626418
+      },
+      {
+        "shares": 12.219944,
+        "price": 0.9819999993453326,
+        "usdc": 11.999985,
+        "ts": 1769626886
+      }
+    ],
+    "totalShares": 32.565767
+  },
+  {
+    "key": "0x7b6111c9161a30fa9c1e676714889893283fb0df0367cab26026072d069775bf-1",
+    "title": "Will the highest temperature in Chicago be 11°F or below on January 29?",
+    "lots": [
+      {
+        "shares": 0.003231999999997015,
+        "price": 0.9469999962119968,
+        "usdc": 11.99999,
+        "ts": 1769627140
+      }
+    ],
+    "totalShares": 0.003231999999997015
+  },
+  {
+    "key": "0x329570fa64fe45484c0a339a02f62b2ad164560b8e76379eb6c75298804eff76-1",
+    "title": "Will the highest temperature in Toronto be -15°C on January 30?",
+    "lots": [
+      {
+        "shares": 0.002300000000001301,
+        "price": 0.99,
+        "usdc": 2.999997,
+        "ts": 1769714710
+      }
+    ],
+    "totalShares": 0.002300000000001301
+  },
+  {
+    "key": "0xe99f9fe35f7c7426433c4efb775b1f99e15af6a3aa8ffd27735c4cf7a498fc1d-1",
+    "title": "Will the highest temperature in Atlanta be between 46-47°F on January 30?",
+    "lots": [
+      {
+        "shares": 0.0070099999999988505,
+        "price": 0.982999997050943,
+        "usdc": 2.999942,
+        "ts": 1769714728
+      }
+    ],
+    "totalShares": 0.0070099999999988505
+  },
+  {
+    "key": "0xf6e20b0ad4de8127e1646278dede73cf330f9d8b3d0e975141601823514ee4a5-1",
+    "title": "Will the highest temperature in Seattle be 49°F or below on January 30?",
+    "lots": [
+      {
+        "shares": 0.001890999999999643,
+        "price": 0.8899999732999563,
+        "usdc": 2.999995,
+        "ts": 1769714822
+      }
+    ],
+    "totalShares": 0.001890999999999643
+  },
+  {
+    "key": "0x595df81636116dde9f8d8aa400557fe253e1f0596eb7a145a8f9430d98737211-1",
+    "title": "Will the highest temperature in Toronto be -14°C on January 31?",
+    "lots": [
+      {
+        "shares": 0.009159999999999613,
+        "price": 0.9789998869954093,
+        "usdc": 6.999998,
+        "ts": 1769801402
+      }
+    ],
+    "totalShares": 0.009159999999999613
+  },
+  {
+    "key": "0x921287e87b67aa33aa51b88984102b04050f78b4b232aeb017e1627d92a8fcea-1",
+    "title": "Will the highest temperature in Chicago be 19°F or below on January 31?",
+    "lots": [
+      {
+        "shares": 0.0031380000000007513,
+        "price": 0.9569999963087075,
+        "usdc": 6.999987,
+        "ts": 1769801740
+      }
+    ],
+    "totalShares": 0.0031380000000007513
+  },
+  {
+    "key": "0x5c9d6ec4bd96f28a5bd6b9e545bbe19d70dcd082b28f4f2c8fb263f00bfba3f7-1",
+    "title": "Will the highest temperature in Seattle be 53°F or below on January 31?",
+    "lots": [
+      {
+        "shares": 0.006175999999999071,
+        "price": 0.9489999967462815,
+        "usdc": 6.999991,
+        "ts": 1769801760
+      }
+    ],
+    "totalShares": 0.006175999999999071
+  },
+  {
+    "key": "0xd13cec198a173e0428c33f368c26809b48f47b002374c8d38399c6734c94debf-1",
+    "title": "Will the highest temperature in Toronto be -9°C on February 1?",
+    "lots": [
+      {
+        "shares": 0.0016500000000014836,
+        "price": 0.96,
+        "usdc": 25.999992,
+        "ts": 1769888688
+      }
+    ],
+    "totalShares": 0.0016500000000014836
+  },
+  {
+    "key": "0xe0aac0f5daf4613ecf234654b0d4c0faff3d8d72ace003614765ef66e73fe70e-1",
+    "title": "Will the highest temperature in Chicago be 23°F or below on February 1?",
+    "lots": [
+      {
+        "shares": 0.0016500000000050363,
+        "price": 0.988,
+        "usdc": 25.999961,
+        "ts": 1769888794
+      }
+    ],
+    "totalShares": 0.0016500000000050363
+  },
+  {
+    "key": "0xaa17f9891b178973160bd1dad1c886cfa743d207d45336fecdc3f857517f2a70-1",
+    "title": "Will the highest temperature in Seattle be between 48-49°F on February 1?",
+    "lots": [
+      {
+        "shares": 0.00891499999999823,
+        "price": 0.9885908620965451,
+        "usdc": 25.999998,
+        "ts": 1769888826
+      }
+    ],
+    "totalShares": 0.00891499999999823
+  },
+  {
+    "key": "0xf3923bb81bfe92928c737fa243e102151d95ef5caf6767885e11af55ec3dffb5-0",
+    "title": "Will the highest temperature in Ankara be 8°C or higher on February 2?",
+    "lots": [
+      {
+        "shares": 299.0027,
+        "price": 0.989957324800077,
+        "usdc": 295.999913,
+        "ts": 1769972142
+      }
+    ],
+    "totalShares": 299.0027
+  },
+  {
+    "key": "0xd4bf5d7656a154457de98525948f58bcc65545c0dd1f7e4dd93e8fdc98f83a3c-0",
+    "title": "Will the highest temperature in Dallas be 54°F or higher on February 4?",
+    "lots": [
+      {
+        "shares": 278.005333,
+        "price": 0.956816080215267,
+        "usdc": 265.999973,
+        "ts": 1770144670
+      }
+    ],
+    "totalShares": 278.005333
+  },
+  {
+    "key": "0x7024dbc45a5b4b17797fbb2b56d0c383c9722b13e85461a5832a4cc2112b853d-0",
+    "title": "Will the highest temperature in Toronto be -12°C or below on February 8?",
+    "lots": [
+      {
+        "shares": 245.002447,
+        "price": 0.9510109015360161,
+        "usdc": 232.999998,
+        "ts": 1770493501
+      }
+    ],
+    "totalShares": 245.002447
+  },
+  {
+    "key": "0x1e3b30022f14c3a4c399d1d25e4c7cbe9fdd283507cc0e447d29299e5ce41533-0",
+    "title": "Will the highest temperature in Miami be 70°F or higher on February 8?",
+    "lots": [
+      {
+        "shares": 299.98815,
+        "price": 0.9667048081732562,
+        "usdc": 289.999987,
+        "ts": 1770493631
+      }
+    ],
+    "totalShares": 299.98815
+  },
+  {
+    "key": "0xc4111c68005d522aa24c96655e92e014ccc9a8266b05a7f6802b4037520551e5-1",
+    "title": "Will the highest temperature in Wellington be 19°C on February 9?",
+    "lots": [
+      {
+        "shares": 300,
+        "price": 0.99,
+        "usdc": 297,
+        "ts": 1770559845
+      }
+    ],
+    "totalShares": 300
+  },
+  {
+    "key": "0x9b587d44c278447d745e0365f574ca483dc751306ad2182192470d1a1053ee9e-0",
+    "title": "Will the highest temperature in Atlanta be 66°F or higher on February 10?",
+    "lots": [
+      {
+        "shares": 307.012681,
+        "price": 0.9771582431801897,
+        "usdc": 299.999972,
+        "ts": 1770702133
+      }
+    ],
+    "totalShares": 307.012681
+  },
+  {
+    "key": "0x1f061dd6dc11cee88ffc482941b02d16b64bc427187fd98250203de9b174c97c-1",
+    "title": "Will the highest temperature in Chicago be 29°F or below on February 21?",
+    "lots": [
+      {
+        "shares": 0.007749999999987267,
+        "price": 0.9932727066114138,
+        "usdc": 294.999759,
+        "ts": 1771623594
+      }
+    ],
+    "totalShares": 0.007749999999987267
+  },
+  {
+    "key": "0xc9be93d0ff6c87db450fa659ad67a12ab7f1268a3722bf5930e913854645ac9a-0",
+    "title": "Will the highest temperature in Dallas be 74°F or higher on February 27?",
+    "lots": [
+      {
+        "shares": 280.005241,
+        "price": 0.9892671901809152,
+        "usdc": 276.999998,
+        "ts": 1772138752
+      }
+    ],
+    "totalShares": 280.005241
+  },
+  {
+    "key": "0x81e8c3cff950b82957a2ff4204aec987af1cd9c5d210eccc3f34392326e78008-0",
+    "title": "Will the highest temperature in Atlanta be 72°F or higher on March 4?",
+    "lots": [
+      {
+        "shares": 489.996785,
+        "price": 0.9836798827159652,
+        "usdc": 481.99998,
+        "ts": 1772567311
+      }
+    ],
+    "totalShares": 489.996785
+  },
+  {
+    "key": "0xb716bf71dda0c6b52a5c12176a7af2bb9673feb7a34922ad9d2b77ba23b739b5-0",
+    "title": "Will the highest temperature in Dallas be 74°F or higher on March 4?",
+    "lots": [
+      {
+        "shares": 450.003046,
+        "price": 0.9822155692697244,
+        "usdc": 441.999998,
+        "ts": 1772567387
+      }
+    ],
+    "totalShares": 450.003046
+  },
+  {
+    "key": "0xe3fc2b4c3f7d28f08981b55cb140d91509c3eb6c3e31bd34b2ab8ff63d59ceec-0",
+    "title": "Will the highest temperature in Dallas be 64°F or higher on March 7?",
+    "lots": [
+      {
+        "shares": 488.993285,
+        "price": 0.9897885857471438,
+        "usdc": 483.999972,
+        "ts": 1772824509
+      }
+    ],
+    "totalShares": 488.993285
+  },
+  {
+    "key": "0xc6a50a6482d79a87c55db29bef567ebad5403704f8def88c93150eeec0def45b-0",
+    "title": "Will the highest temperature in New York City be 56°F or higher on March 11?",
+    "lots": [
+      {
+        "shares": 500.9032,
+        "price": 0.976236502382097,
+        "usdc": 488.999988,
+        "ts": 1773171817
+      }
+    ],
+    "totalShares": 500.9032
+  },
+  {
+    "key": "0x19287e98bbf9456686ef6d47e4a50331b4a66649207e83bc3b1b01c92627de7f-1",
+    "title": "Will the highest temperature in Seattle be between 36-37°F on March 13?",
+    "lots": [
+      {
+        "shares": 0.006416000000001532,
+        "price": 0.9858806396287941,
+        "usdc": 417.999999,
+        "ts": 1773349731
+      }
+    ],
+    "totalShares": 0.006416000000001532
+  },
+  {
+    "key": "0xb0a5d9c7aab6a9bebb917e89ea45d269504463f8c5561450facb060fd1175c7e-0",
+    "title": "Will the highest temperature in Atlanta be 58°F or higher on March 25?",
+    "lots": [
+      {
+        "shares": 300,
+        "price": 0.99,
+        "usdc": 297,
+        "ts": 1774380319
+      }
+    ],
+    "totalShares": 300
+  },
+  {
+    "key": "0x4d6a21e4adfaf57da58956ea8091bc736061f845d1956c6cabebdfcd1748b9dd-1",
+    "title": "Will the highest temperature in Ankara be 10°C on March 26?",
+    "lots": [
+      {
+        "shares": 0.008199999999987995,
+        "price": 0.9880273382219736,
+        "usdc": 494.999918,
+        "ts": 1774454931
+      }
+    ],
+    "totalShares": 0.008199999999987995
+  },
+  {
+    "key": "0xe1d05a1b89f41ba2c7f264c7cbcd7d41f98505e01be2f97f095a1f7a56ef3742-1",
+    "title": "Will the highest temperature in Dallas be between 56-57°F on March 28?",
+    "lots": [
+      {
+        "shares": 414.995818,
+        "price": 0.9831422783156817,
+        "usdc": 407.999934,
+        "ts": 1774639805
+      }
+    ],
+    "totalShares": 414.995818
+  },
+  {
+    "key": "0x074ea45b8bd85331f65c145257f3a4f927c79aa5b215b7e71f5760311b93ad24-1",
+    "title": "Will the highest temperature in Denver be between 54-55°F on April 1?",
+    "lots": [
+      {
+        "shares": 0.0022710000000287778,
+        "price": 0.9849917640062561,
+        "usdc": 494.999998,
+        "ts": 1774980461
+      }
+    ],
+    "totalShares": 0.0022710000000287778
+  },
+  {
+    "key": "0x672dd75f278147d9c410a415fb170be521f7297fd48723867298f0e45babf112-1",
+    "title": "Will the highest temperature in Tel Aviv be 18°C on April 5?",
+    "lots": [
+      {
+        "shares": 0.004789999999957217,
+        "price": 0.9865355477393767,
+        "usdc": 385.999988,
+        "ts": 1775312191
+      }
+    ],
+    "totalShares": 0.004789999999957217
+  },
+  {
+    "key": "0x284641e9ae8ec743cbd7bf47f89cf95872838ffada96b29e48610d68758147a6-1",
+    "title": "Will the highest temperature in Wuhan be 21°C on April 6?",
+    "lots": [
+      {
+        "shares": 0.005530000000000257,
+        "price": 0.9789999999334014,
+        "usdc": 146.999973,
+        "ts": 1775393231
+      }
+    ],
+    "totalShares": 0.005530000000000257
+  },
+  {
+    "key": "0xb370113f53b5bd17fa0eb69dcae3f3c9452dbe3cbffa836685517642a0b5e39c-0",
+    "title": "Will the highest temperature in Houston be 76°F or higher on April 9?",
+    "lots": [
+      {
+        "shares": 177.00707,
+        "price": 0.9880710587100756,
+        "usdc": 174.999933,
+        "ts": 1775674199
+      }
+    ],
+    "totalShares": 177.00707
+  },
+  {
+    "key": "0x306752ab6e3e9ea183dae35f74537f22361506dce3c7575765c53b1e17a22512-0",
+    "title": "Will the highest temperature in Denver be 62°F or higher on April 10?",
+    "lots": [
+      {
+        "shares": 0.0032699999999863394,
+        "price": 0.9877023424194182,
+        "usdc": 422.999924,
+        "ts": 1775767087
+      }
+    ],
+    "totalShares": 0.0032699999999863394
+  },
+  {
+    "key": "0x145d2b560302dc7e82ef4cb285333ae45795152a9bddd2759b1179acc2874bad-1",
+    "title": "Will the highest temperature in Seattle be between 64-65°F on April 10?",
+    "lots": [
+      {
+        "shares": 0.0012800000000083855,
+        "price": 0.9877644913768159,
+        "usdc": 424.999995,
+        "ts": 1775767497
+      }
+    ],
+    "totalShares": 0.0012800000000083855
+  },
+  {
+    "key": "0xcdce4f18bad7720d8ed540fada460236071dd807d4fbab91074bee2dc0a72bd7-0",
+    "title": "Will the highest temperature in Denver be 60°F or higher on April 11?",
+    "lots": [
+      {
+        "shares": 454.994473,
+        "price": 0.9884518367549282,
+        "usdc": 449.999947,
+        "ts": 1775844851
+      }
+    ],
+    "totalShares": 454.994473
+  },
+  {
+    "key": "0x3b81d0242f98c8e4ff84a42986ad9d080b37f051981cafca4f181d626459df6b-0",
+    "title": "Will the highest temperature in Chicago be 46°F or higher on April 11?",
+    "lots": [
+      {
+        "shares": 421.00152,
+        "price": 0.9899999981007194,
+        "usdc": 416.999998,
+        "ts": 1775844955
+      }
+    ],
+    "totalShares": 421.00152
+  },
+  {
+    "key": "0x535e3bfcc57ac13684d2a8c36057110bd42aa2c72a6af4fcd47f311a67537bf9-0",
+    "title": "Will the highest temperature in Denver be 68°F or higher on April 12?",
+    "lots": [
+      {
+        "shares": 386.99706000000003,
+        "price": 0.991851130348894,
+        "usdc": 383.999926,
+        "ts": 1775937765
+      }
+    ],
+    "totalShares": 386.99706000000003
+  },
+  {
+    "key": "0xf8ef14f20ea673853b6843c7cba8a1fcfd571209d7216b9ca2c74e282433cc89-0",
+    "title": "Will the highest temperature in Houston be 74°F or higher on April 12?",
+    "lots": [
+      {
+        "shares": 249.99174000000002,
+        "price": 0.9874103455058021,
+        "usdc": 246.999908,
+        "ts": 1775937831
+      }
+    ],
+    "totalShares": 249.99174000000002
+  },
+  {
+    "key": "0x62d677236d62751c60ac9cac1a73f27c89e4163f334838ffa9e2a8f72932c36b-0",
+    "title": "Will the highest temperature in Busan be 20°C or higher on April 13?",
+    "lots": [
+      {
+        "shares": 479.013019,
+        "price": 0.9802134917090278,
+        "usdc": 469.999998,
+        "ts": 1775991441
+      }
+    ],
+    "totalShares": 479.013019
+  },
+  {
+    "key": "0xb64d2695d8354a20d3db512882d7e2b442fdf0c02c4ebad67bf862ef898ac075-0",
+    "title": "Will the highest temperature in Denver be 64°F or higher on April 13?",
+    "lots": [
+      {
+        "shares": 421.0015,
+        "price": 0.99,
+        "usdc": 416.999979,
+        "ts": 1776018771
+      }
+    ],
+    "totalShares": 421.0015
+  },
+  {
+    "key": "0xea9966b36f4b48f8d361fec3b247f3a23f186eb9af1d1259fd01891f38970143-0",
+    "title": "Will the highest temperature in Mexico City be 26°C or higher on April 18?",
+    "lots": [
+      {
+        "shares": 354.002636,
+        "price": 0.9910753951428362,
+        "usdc": 350.999922,
+        "ts": 1776450462
+      }
+    ],
+    "totalShares": 354.002636
+  },
+  {
+    "key": "0x9f0af19f8bd23822c1533b7804d10781a979b73334ac337ea98626d5605dcd17-1",
+    "title": "Will the highest temperature in Atlanta be between 82-83°F on April 18?",
+    "lots": [
+      {
+        "shares": 0.0012499999999704414,
+        "price": 0.9862765015681582,
+        "usdc": 453.999939,
+        "ts": 1776456794
+      }
+    ],
+    "totalShares": 0.0012499999999704414
+  },
+  {
+    "key": "0x112afb6885a54ffa51f185aaa83fb1a2cb0b0bbd416e4d1a9a046811068866b7-0",
+    "title": "Will the highest temperature in Los Angeles be 72°F or higher on April 18?",
+    "lots": [
+      {
+        "shares": 525.037634,
+        "price": 0.9299999999620409,
+        "usdc": 489.999994,
+        "ts": 1776457178
+      }
+    ],
+    "totalShares": 525.037634
+  },
+  {
+    "key": "0xbe8cba6d15069ae54a2531c7d486b017a1fa858f9a83358404d1c6b5ec975c68-0",
+    "title": "Will the highest temperature in Seattle be 62°F or higher on April 20?",
+    "lots": [
+      {
+        "shares": 597.99404,
+        "price": 0.9964899322687382,
+        "usdc": 595.999632,
+        "ts": 1776621964
+      }
+    ],
+    "totalShares": 597.99404
+  },
+  {
+    "key": "0x559dc764d76e2dbbf5e0fb79345e384f2feabe15ce04c6d3cfca1878e2b5e988-0",
+    "title": "Will the highest temperature in Chicago be 54°F or higher on April 21?",
+    "lots": [
+      {
+        "shares": 523.995695,
+        "price": 0.9979999984543403,
+        "usdc": 522.999998,
+        "ts": 1776710342
+      }
+    ],
+    "totalShares": 523.995695
+  },
+  {
+    "key": "0x7b3b8419f317638c89998ab4e1f6f5cd19845f4a0d3a1f9259d878779c9f7413-0",
+    "title": "Will the highest temperature in Denver be 56°F or higher on April 21?",
+    "lots": [
+      {
+        "shares": 980.2676499999999,
+        "price": 0.9975652329131252,
+        "usdc": 977.999986,
+        "ts": 1776710438
+      }
+    ],
+    "totalShares": 980.2676499999999
+  },
+  {
+    "key": "0xccd40af3c0ae030419ee7ddf39c0a17d665b71d0971f1766bb8f7b2809e5bf94-0",
+    "title": "Will the highest temperature in Denver be 64°F or higher on April 22?",
+    "lots": [
+      {
+        "shares": 699.995289,
+        "price": 0.9969999998528782,
+        "usdc": 697.999998,
+        "ts": 1776796466
+      }
+    ],
+    "totalShares": 699.995289
+  },
+  {
+    "key": "0xd823d88292134e5cab90467094dcd04ce0078d58ba558b4dcfdfab3e36102eee-0",
+    "title": "Will the highest temperature in Chicago be 50°F or higher on April 22?",
+    "lots": [
+      {
+        "shares": 669.9994,
+        "price": 0.9984298949932244,
+        "usdc": 668.999948,
+        "ts": 1776796662
+      }
+    ],
+    "totalShares": 669.9994
+  },
+  {
+    "key": "0xfdfa9260fe96616c13e6e115f19e1cb76af972de400eb993def3ecd44976217a-1",
+    "title": "Will the highest temperature in Manila be 33°C on April 23?",
+    "lots": [
+      {
+        "shares": 248.0014,
+        "price": 0.9830305061802008,
+        "usdc": 243.999968,
+        "ts": 1776853070
+      }
+    ],
+    "totalShares": 248.0014
+  },
+  {
+    "key": "0xfc340731150e5452090f7ddecf4b587e33123eefe0bc2e5207dba2ecce958fc5-1",
+    "title": "Will the highest temperature in Beijing be 23°C on April 23?",
+    "lots": [
+      {
+        "shares": 496.00708000000003,
+        "price": 0.9766678507506448,
+        "usdc": 484.999972,
+        "ts": 1776853156
+      }
+    ],
+    "totalShares": 496.00708000000003
+  },
+  {
+    "key": "0x3ca59da1d6ab99b89911ea425a1bad4b053e8d8bb435440cf9088614387af16e-1",
+    "title": "Will the highest temperature in Wuhan be 16°C on April 23?",
+    "lots": [
+      {
+        "shares": 469.99257,
+        "price": 0.9843511488844942,
+        "usdc": 462.999997,
+        "ts": 1776853208
+      }
+    ],
+    "totalShares": 469.99257
+  },
+  {
+    "key": "0x30810e672f02b2a784579885abe3beda0fdff44b2fc4763ba372a5d583bbc1b9-1",
+    "title": "Will the highest temperature in Tel Aviv be 22°C on April 23?",
+    "lots": [
+      {
+        "shares": 395.00780000000003,
+        "price": 0.9840028432374457,
+        "usdc": 388.99994,
+        "ts": 1776871488
+      }
+    ],
+    "totalShares": 395.00780000000003
+  },
+  {
+    "key": "0xa303480d96700b9fea17399de84be27fe51c91aae4c1a63f238292c7902bbdb6-1",
+    "title": "Will the highest temperature in Jeddah be 30°C on April 23?",
+    "lots": [
+      {
+        "shares": 116.99584,
+        "price": 0.9910442403026103,
+        "usdc": 115.999994,
+        "ts": 1776871548
+      }
+    ],
+    "totalShares": 116.99584
+  },
+  {
+    "key": "0xa7fb96bb09401ac2a5cd3120adb8fd0235a607ce85d58e2315b5baf3c11230ef-1",
+    "title": "Will the highest temperature in Karachi be 30°C on April 23?",
+    "lots": [
+      {
+        "shares": 421.0015,
+        "price": 0.99,
+        "usdc": 416.999979,
+        "ts": 1776871588
+      }
+    ],
+    "totalShares": 421.0015
+  },
+  {
+    "key": "0x909198b048a6275bf45affa78f22044c9cc1929ad9ca0d50d28b09824756c4e7-1",
+    "title": "Will the highest temperature in Paris be 19°C on April 23?",
+    "lots": [
+      {
+        "shares": 465.00438,
+        "price": 0.9932011393867735,
+        "usdc": 461.999925,
+        "ts": 1776871646
+      }
+    ],
+    "totalShares": 465.00438
+  },
+  {
+    "key": "0x3968730363f8269bddce32cd55c3d9422ba62b3d43bd55c14000d09b3df2a3db-1",
+    "title": "Will the highest temperature in Amsterdam be 12°C on April 23?",
+    "lots": [
+      {
+        "shares": 285.99595,
+        "price": 0.9926562787267433,
+        "usdc": 283.999954,
+        "ts": 1776871692
+      }
+    ],
+    "totalShares": 285.99595
+  },
+  {
+    "key": "0xca8d3f082e319dcd12b7d7ea51954a65166adf0025e252ae2ec1a578936e0474-1",
+    "title": "Will the highest temperature in Milan be 19°C on April 23?",
+    "lots": [
+      {
+        "shares": 480.002506,
+        "price": 0.9912262318105622,
+        "usdc": 475.999887,
+        "ts": 1776871830
+      }
+    ],
+    "totalShares": 480.002506
+  },
+  {
+    "key": "0x340ebb0ac2edf57cc787d1d23f9cd17c7d35c947a0bb089d001047f25fb87cd9-1",
+    "title": "Will the highest temperature in Munich be 15°C on April 23?",
+    "lots": [
+      {
+        "shares": 339.99994000000004,
+        "price": 0.9938100152541037,
+        "usdc": 337.999954,
+        "ts": 1776872002
+      }
+    ],
+    "totalShares": 339.99994000000004
+  },
+  {
+    "key": "0x4f1811b525f359cf90f377b01ce858a1448bb11d76151c0d9404c8987ffb200d-1",
+    "title": "Will the highest temperature in Buenos Aires be 19°C on April 23?",
+    "lots": [
+      {
+        "shares": 290.99519,
+        "price": 0.9927852952351115,
+        "usdc": 288.999998,
+        "ts": 1776883844
+      }
+    ],
+    "totalShares": 290.99519
+  },
+  {
+    "key": "0x7a3c263196f75f3e8b064d99fbd3c0a254820ddb44c27a45101e165a84e9e087-1",
+    "title": "Will the highest temperature in Sao Paulo be 25°C on April 23?",
+    "lots": [
+      {
+        "shares": 498.99868,
+        "price": 0.9873537314365458,
+        "usdc": 492.999936,
+        "ts": 1776883914
+      }
+    ],
+    "totalShares": 498.99868
+  },
+  {
+    "key": "0xd52807bcc0da000281f1a03214caeac135ea90422dba0943e01e2758f5bd626c-1",
+    "title": "Will the highest temperature in Toronto be 12°C or below on April 23?",
+    "lots": [
+      {
+        "shares": 326.997213,
+        "price": 0.9935722042068101,
+        "usdc": 324.999786,
+        "ts": 1776883972
+      }
+    ],
+    "totalShares": 326.997213
+  },
+  {
+    "key": "0x0ee50a31419a490a97038caeda27ebe88f36d10fd3d79547bf02946cfb3b36c6-1",
+    "title": "Will the highest temperature in New York City be between 66-67°F on April 23?",
+    "lots": [
+      {
+        "shares": 338.992776,
+        "price": 0.9938135138918945,
+        "usdc": 336.999843,
+        "ts": 1776884026
+      }
+    ],
+    "totalShares": 338.992776
+  },
+  {
+    "key": "0xc9725ff972e7b21619210addd509aaeaeb83b7ace373f9aa6257b34edd5dbbab-1",
+    "title": "Will the highest temperature in Miami be between 74-75°F on April 23?",
+    "lots": [
+      {
+        "shares": 452.99678,
+        "price": 0.9930386281058667,
+        "usdc": 449.999923,
+        "ts": 1776884124
+      }
+    ],
+    "totalShares": 452.99678
+  },
+  {
+    "key": "0xacfd274d63836001ac608487c4ec1cc6004b622c65d494f4a07bd7d9c1da1922-1",
+    "title": "Will the highest temperature in Denver be between 58-59°F on April 23?",
+    "lots": [
+      {
+        "shares": 196.99204,
+        "price": 0.9947000381893915,
+        "usdc": 195.999923,
+        "ts": 1776884290
+      }
+    ],
+    "totalShares": 196.99204
+  },
+  {
+    "key": "0x740293cb41c80157da850b2d3c029adc645f6e519b73120a0a6d6bd6d945e8c2-1",
+    "title": "Will the highest temperature in San Francisco be between 60-61°F on April 23?",
+    "lots": [
+      {
+        "shares": 327.99787499999996,
+        "price": 0.9871778130159024,
+        "usdc": 323.999937,
+        "ts": 1776884362
+      }
+    ],
+    "totalShares": 327.99787499999996
+  },
+  {
+    "key": "0x71b206fe8443c9f8c446fed5cfa283e7cef6294c9e661a15a94c210d05ae0f91-0",
+    "title": "Will the highest temperature in Dallas be 76°F or higher on April 23?",
+    "lots": [
+      {
+        "shares": 447.9946,
+        "price": 0.9788881124182773,
+        "usdc": 438.999994,
+        "ts": 1776884618
+      }
+    ],
+    "totalShares": 447.9946
+  }
+]

@@ -1,0 +1,1722 @@
+[
+  {
+    "key": "0x6143ee4f3f0b4d5d617041d0a376d55eac0c397c0adf7fe4e318cb4e42dacf37-0",
+    "title": "Will the total number of TSA passengers for February 26 be between 2,600,000 and 2,800,000?",
+    "lots": [
+      {
+        "shares": 2500,
+        "price": 0.99,
+        "usdc": 2475,
+        "ts": 1772197845
+      },
+      {
+        "shares": 1460,
+        "price": 0.99,
+        "usdc": 1445.4,
+        "ts": 1772197953
+      }
+    ],
+    "totalShares": 3960
+  },
+  {
+    "key": "0x15aa3c1259a716915e068a0d63c3885d2301d29e8982cbb1717ecb9b63d02d95-0",
+    "title": "US strikes Iran by March 1, 2026?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.2894212,
+        "usdc": 289.4212,
+        "ts": 1772226963
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0x0d023f7f73d9fe501118e68f8cc94b269ef111dbc3d2dda43800e2838a8b959d-0",
+    "title": "Will the highest temperature in Toronto be 6°C or higher on February 28?",
+    "lots": [
+      {
+        "shares": 0.03557999999972239,
+        "price": 0.998,
+        "usdc": 11.71652,
+        "ts": 1772258761
+      }
+    ],
+    "totalShares": 0.03557999999972239
+  },
+  {
+    "key": "0xb85834a1972298c72784e8fc952520a60871b5bc8362bee30a2dedcfdfc44e40-0",
+    "title": "Will the highest temperature in New York City be 50°F or higher on February 28?",
+    "lots": [
+      {
+        "shares": 0.009999999999976694,
+        "price": 0.99,
+        "usdc": 81.873,
+        "ts": 1772296989
+      }
+    ],
+    "totalShares": 0.009999999999976694
+  },
+  {
+    "key": "0x0796efc477374eb9890e8d53ae1c3e218373c4953a43b750cdb52e526cfb52f2-0",
+    "title": "Will the total number of TSA passengers for February 23 - March 1 be between 16,000,000 and 16,500,000?",
+    "lots": [
+      {
+        "shares": 368.68,
+        "price": 0.9829426603016166,
+        "usdc": 362.3913,
+        "ts": 1772457283
+      }
+    ],
+    "totalShares": 368.68
+  },
+  {
+    "key": "0x664323dce9d46f37bcf7b5948f4add2901eb86fe13d7a65f2338f7326aa7995f-0",
+    "title": "Will the total number of TSA passengers for March 2 be between 2,400,000 and 2,600,000?",
+    "lots": [
+      {
+        "shares": 4.59,
+        "price": 0.99,
+        "usdc": 4.5441,
+        "ts": 1772543373
+      },
+      {
+        "shares": 2481,
+        "price": 0.99,
+        "usdc": 2456.19,
+        "ts": 1772543427
+      }
+    ],
+    "totalShares": 2485.59
+  },
+  {
+    "key": "0x150fd45bff5ba0d51034f679e09e5ff2b67a0c6bd80422436bc5becca18fcefd-0",
+    "title": "Will \"The Night Agent: Season 3\" be the #2 US Netflix show this week?",
+    "lots": [
+      {
+        "shares": 32.5,
+        "price": 0.99,
+        "usdc": 32.175,
+        "ts": 1772567651
+      },
+      {
+        "shares": 5.01,
+        "price": 0.99,
+        "usdc": 4.9599,
+        "ts": 1772567651
+      },
+      {
+        "shares": 9.69,
+        "price": 0.99,
+        "usdc": 9.5931,
+        "ts": 1772567651
+      }
+    ],
+    "totalShares": 47.199999999999996
+  },
+  {
+    "key": "0xfe236f87291a17903acf3fa6a498b64fb35103549db74d8ad50c9f723921424c-0",
+    "title": "Will \"KPop Demon Hunters\" be the #2 global Netflix movie this week?",
+    "lots": [
+      {
+        "shares": 178,
+        "price": 0.99,
+        "usdc": 176.22,
+        "ts": 1772567651
+      },
+      {
+        "shares": 26.33,
+        "price": 0.99,
+        "usdc": 26.0667,
+        "ts": 1772567651
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1772567653
+      }
+    ],
+    "totalShares": 214.32999999999998
+  },
+  {
+    "key": "0x3581171cf5dc69f9b37ab1a49b7681dd5a7063e3b5c48617208e46a436cb9fdc-0",
+    "title": "Will \"The Night Agent: Season 3\" be the #2 global Netflix show this week?",
+    "lots": [
+      {
+        "shares": 5.72,
+        "price": 0.99,
+        "usdc": 5.6628,
+        "ts": 1772567653
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1772567653
+      },
+      {
+        "shares": 4.22,
+        "price": 0.99,
+        "usdc": 4.1778,
+        "ts": 1772567653
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1772567653
+      }
+    ],
+    "totalShares": 29.939999999999998
+  },
+  {
+    "key": "0xf7c770ae9f2d9aec5a8424e54aa09d7b8c231a2ce04bc5f4d1f8cf1114c4714e-0",
+    "title": "Will the highest temperature in New York City be between 34-35°F on March 3?",
+    "lots": [
+      {
+        "shares": 0.01,
+        "price": 0.998,
+        "usdc": 0.00998,
+        "ts": 1772603177
+      },
+      {
+        "shares": 0.01,
+        "price": 0.998,
+        "usdc": 0.00998,
+        "ts": 1772603177
+      }
+    ],
+    "totalShares": 0.02
+  },
+  {
+    "key": "0xc6106a4509567734bf81dda53b949014346622ebb10fad34d9a253c5a1cb0ff8-0",
+    "title": "Will the total number of TSA passengers for March 4 be between 2,000,000 and 2,200,000?",
+    "lots": [
+      {
+        "shares": 10.86,
+        "price": 0.99,
+        "usdc": 10.7514,
+        "ts": 1772716921
+      }
+    ],
+    "totalShares": 10.86
+  },
+  {
+    "key": "0xfe6e6d9017a2c84c2f2fa8ce54bfeb42244f2ff843f16da2cc139977446b95b8-0",
+    "title": "Will the highest temperature in Buenos Aires be 28°C or higher on March 5?",
+    "lots": [
+      {
+        "shares": 0.009713000000044048,
+        "price": 0.998,
+        "usdc": 3992,
+        "ts": 1772725641
+      }
+    ],
+    "totalShares": 0.009713000000044048
+  },
+  {
+    "key": "0xec0de2ac6b29de420cc7154f1cf47559fc610ce5c0b7faf7f02bf3ffc6e2fb52-0",
+    "title": "Will the total number of TSA passengers for March 5 be between 2,600,000 and 2,800,000?",
+    "lots": [
+      {
+        "shares": 2000,
+        "price": 0.99847071,
+        "usdc": 1996.94142,
+        "ts": 1772807011
+      }
+    ],
+    "totalShares": 2000
+  },
+  {
+    "key": "0x8d1156dd4c72fed707d74a1c3d89ee46eda44a0ff3da9812036ea8bdc73e8123-0",
+    "title": "Will the highest temperature in Chicago be 60°F or higher on March 7?",
+    "lots": [
+      {
+        "shares": 0.002992999999605672,
+        "price": 0.998,
+        "usdc": 3649.686,
+        "ts": 1772866437
+      }
+    ],
+    "totalShares": 0.002992999999605672
+  },
+  {
+    "key": "0xfa4f22bfc4b6518e62397e69aa454e3281c018a80af6f342507037ccd0f917ce-0",
+    "title": "Will the highest temperature in New York City be 48°F or higher on March 7?",
+    "lots": [
+      {
+        "shares": 0.00027499999848146217,
+        "price": 0.99,
+        "usdc": 213.4143,
+        "ts": 1772956755
+      }
+    ],
+    "totalShares": 0.00027499999848146217
+  },
+  {
+    "key": "0xfc78a5c51067c17f89752017a363495db0b324047c45a9f6822b5b9e80fe2870-0",
+    "title": "Will the total number of TSA passengers for March 2 - March 8 be between 16,500,000 and 17,000,000?",
+    "lots": [
+      {
+        "shares": 544.02,
+        "price": 0.9566326605639498,
+        "usdc": 520.4273,
+        "ts": 1773058091
+      }
+    ],
+    "totalShares": 544.02
+  },
+  {
+    "key": "0xc92e90a4da7787ccab6f5310474f60e6f705eabf24e168e1f131cab35983cf67-0",
+    "title": "Will the total number of TSA passengers for March 6 be between 2,600,000 and 2,800,000?",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.99,
+        "usdc": 198,
+        "ts": 1773058091
+      },
+      {
+        "shares": 200,
+        "price": 0.99,
+        "usdc": 198,
+        "ts": 1773058097
+      }
+    ],
+    "totalShares": 400
+  },
+  {
+    "key": "0x7770b2903566756b9df065bd1c9677bd5eafe2310b4061919f72ac4fc99e96d2-0",
+    "title": "Will the total number of TSA passengers for March 7 be between 2,200,000 and 2,400,000?",
+    "lots": [
+      {
+        "shares": 7.47,
+        "price": 0.99,
+        "usdc": 7.3953,
+        "ts": 1773058101
+      }
+    ],
+    "totalShares": 7.47
+  },
+  {
+    "key": "0x478c351b2860724ee063c057223310e11a366db139dc59d1984f470f16a6655c-0",
+    "title": "Will the total number of TSA passengers for March 8 be between 2,600,000 and 2,800,000?",
+    "lots": [
+      {
+        "shares": 1579,
+        "price": 0.99,
+        "usdc": 1563.21,
+        "ts": 1773060259
+      }
+    ],
+    "totalShares": 1579
+  },
+  {
+    "key": "0xc09fb75e2b8fda0591c0d054133684e6b1451ba223332266d467c87aba507cdf-0",
+    "title": "Will \"Bridgerton: Season 4\" be the top global Netflix show this week?",
+    "lots": [
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1773168857
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1773168857
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1773168857
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1773168857
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1773168857
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1773168859
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1773168859
+      }
+    ],
+    "totalShares": 70
+  },
+  {
+    "key": "0xf4c2e44f2e617136a89bb1b841e8ae9e88d106f058287f00884b75c3760256e7-0",
+    "title": "Will \"Jurassic World Rebirth\" be the #2 global Netflix movie this week?",
+    "lots": [
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1773168861
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1773168861
+      },
+      {
+        "shares": 0.31,
+        "price": 0.99,
+        "usdc": 0.3069,
+        "ts": 1773168861
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1773168863
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1773168863
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1773168863
+      }
+    ],
+    "totalShares": 50.31
+  },
+  {
+    "key": "0xe1146dcd3451dc0bad54066d20fa14fb5d99aa9976cc8bae77d38f0302741170-0",
+    "title": "Will the highest temperature in London be 12°C or higher on March 13?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.8631644,
+        "usdc": 863.1644,
+        "ts": 1773361285
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0x1c17a5b3153ff3bac1462d6198703d4bead2f756f8643179600351b8850817b1-0",
+    "title": "Will the highest temperature in Seoul be 11°C or higher on March 14?",
+    "lots": [
+      {
+        "shares": 576.77,
+        "price": 0.9838960070738769,
+        "usdc": 567.4817,
+        "ts": 1773460827
+      },
+      {
+        "shares": 300,
+        "price": 0.99,
+        "usdc": 297,
+        "ts": 1773460833
+      },
+      {
+        "shares": 0.38,
+        "price": 0.99,
+        "usdc": 0.3762,
+        "ts": 1773460839
+      },
+      {
+        "shares": 122.85,
+        "price": 0.99,
+        "usdc": 121.6215,
+        "ts": 1773460861
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0x02c795ff200ab431a892dfda4232aec3818f9c505a97d258786d803fb871626b-0",
+    "title": "Will the highest temperature in Atlanta be 72°F or higher on March 15?",
+    "lots": [
+      {
+        "shares": 19.23,
+        "price": 0.99,
+        "usdc": 19.0377,
+        "ts": 1773611695
+      },
+      {
+        "shares": 95.82,
+        "price": 0.99,
+        "usdc": 94.8618,
+        "ts": 1773611701
+      },
+      {
+        "shares": 845.7,
+        "price": 0.99,
+        "usdc": 837.243,
+        "ts": 1773611793
+      }
+    ],
+    "totalShares": 960.75
+  },
+  {
+    "key": "0x31d716dcd279c3765594ae3f6efe3cbae9198010355e9391146e459929688288-0",
+    "title": "HYPE Up or Down - March 8, 3PM ET",
+    "lots": [
+      {
+        "shares": 19.8,
+        "price": 0.9,
+        "usdc": 17.82,
+        "ts": 1773619663
+      }
+    ],
+    "totalShares": 19.8
+  },
+  {
+    "key": "0x113a175638c1871bb60512e7733cb954be3d48f470ba3c418f48bcf04c177258-0",
+    "title": "Will the total number of TSA passengers for March 9 - March 15 be between 17,500,000 and 18,000,000?",
+    "lots": [
+      {
+        "shares": 183.87,
+        "price": 0.9847723935389133,
+        "usdc": 181.0701,
+        "ts": 1773663219
+      }
+    ],
+    "totalShares": 183.87
+  },
+  {
+    "key": "0xfc4d9dd361f27358af9cca37f43730b601a2238f25bbd6fdbc9218c25f42ff31-0",
+    "title": "BNB Up or Down - March 8, 3PM ET",
+    "lots": [
+      {
+        "shares": 49.99999,
+        "price": 0.999,
+        "usdc": 49.95,
+        "ts": 1773683979
+      }
+    ],
+    "totalShares": 49.99999
+  },
+  {
+    "key": "0x51ead284df1da44e06e16b886f351c4f2e54d622a6bf0fc1b1bf641cbce2bf5b-0",
+    "title": "BNB Up or Down - March 8, 8PM ET",
+    "lots": [
+      {
+        "shares": 527.7895,
+        "price": 0.9980454915780897,
+        "usdc": 526.75843,
+        "ts": 1773684207
+      }
+    ],
+    "totalShares": 527.7895
+  },
+  {
+    "key": "0xc973b20ae98a3d31b151aa4c13713cac6447de6d404da90ae00cb3e9a201cfcf-0",
+    "title": "BNB Up or Down - March 8, 2PM ET",
+    "lots": [
+      {
+        "shares": 984.1496599999999,
+        "price": 0.9988226185032769,
+        "usdc": 982.99128,
+        "ts": 1773684333
+      },
+      {
+        "shares": 499.98988,
+        "price": 0.999,
+        "usdc": 499.49001,
+        "ts": 1773684373
+      },
+      {
+        "shares": 112.91998,
+        "price": 0.999,
+        "usdc": 112.80708,
+        "ts": 1773684391
+      },
+      {
+        "shares": 112.91998,
+        "price": 0.999,
+        "usdc": 112.80708,
+        "ts": 1773684409
+      }
+    ],
+    "totalShares": 1709.9794999999997
+  },
+  {
+    "key": "0x0b842caaf8b64eb3ee847ca02d6538fb84391245d36cabe0f5ad071fdd939868-0",
+    "title": "Will the highest temperature in Tel Aviv be 19°C on March 16?",
+    "lots": [
+      {
+        "shares": 0.013999999999896318,
+        "price": 0.99,
+        "usdc": 885.1194,
+        "ts": 1773699783
+      }
+    ],
+    "totalShares": 0.013999999999896318
+  },
+  {
+    "key": "0x4b55778c6d7c76c5e2488ccc8e810b7ea2d243fe843757a110fe8a906071f215-0",
+    "title": "Will the highest temperature in Tel Aviv be 20°C on March 16?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.014772,
+        "usdc": 14.772,
+        "ts": 1773703039
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0x1f34b4cc73c3b5e9240d27732783abb50253cf109d2cb026506c2bdfbf87eff9-0",
+    "title": "Will \"Louis Theroux: Inside The Manosphere\" be the #2 global Netflix movie this week?",
+    "lots": [
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1773773641
+      },
+      {
+        "shares": 10,
+        "price": 0.99,
+        "usdc": 9.9,
+        "ts": 1773773641
+      },
+      {
+        "shares": 0.37,
+        "price": 0.99,
+        "usdc": 0.3663,
+        "ts": 1773773641
+      },
+      {
+        "shares": 112,
+        "price": 0.99,
+        "usdc": 110.88,
+        "ts": 1773773657
+      },
+      {
+        "shares": 1.5,
+        "price": 0.99,
+        "usdc": 1.485,
+        "ts": 1773773735
+      },
+      {
+        "shares": 866.13,
+        "price": 0.99,
+        "usdc": 857.4687,
+        "ts": 1773778763
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0xc611a804906751019519fdd26308f3dc4d178af7292df0bf254e25b9796d2685-0",
+    "title": "Will \"Love is Blind: The Reunion\" be the top US Netflix show this week?",
+    "lots": [
+      {
+        "shares": 15.96,
+        "price": 0.99,
+        "usdc": 15.8004,
+        "ts": 1773773669
+      }
+    ],
+    "totalShares": 15.96
+  },
+  {
+    "key": "0x58cfffaacd746a17aa306f0546b81ddc23ab1016577465f22a767a44803cb745-0",
+    "title": "Will the highest temperature in Milan be 18°C or higher on March 19?",
+    "lots": [
+      {
+        "shares": 51.16,
+        "price": 0.99,
+        "usdc": 50.6484,
+        "ts": 1773928587
+      },
+      {
+        "shares": 30.5,
+        "price": 0.99,
+        "usdc": 30.195,
+        "ts": 1773928621
+      },
+      {
+        "shares": 6.36,
+        "price": 0.99,
+        "usdc": 6.2964,
+        "ts": 1773928673
+      }
+    ],
+    "totalShares": 88.02
+  },
+  {
+    "key": "0xa06af34956171afca3403437fbfcf0382f21b07089cab4ff3a77170ee877d9a9-0",
+    "title": "Will the highest temperature in Chicago be 56°F or higher on March 19?",
+    "lots": [
+      {
+        "shares": 16.093,
+        "price": 0.99,
+        "usdc": 15.93207,
+        "ts": 1773939187
+      }
+    ],
+    "totalShares": 16.093
+  },
+  {
+    "key": "0x1b06d4858ee5418d8390c8bc21dd293e8cfd3f0128afb1530ae31c774a0ded94-0",
+    "title": "Will \"One Piece: Season 2\" be the top global Netflix show this week?",
+    "lots": [
+      {
+        "shares": 17,
+        "price": 0.99,
+        "usdc": 16.83,
+        "ts": 1774380297
+      },
+      {
+        "shares": 39,
+        "price": 0.99,
+        "usdc": 38.61,
+        "ts": 1774380341
+      }
+    ],
+    "totalShares": 56
+  },
+  {
+    "key": "0x2acdd73bcbe2a6be50264f68b753c15c914cfa70812bc033ef3ed635a6a68d86-0",
+    "title": "Will \"Virgin River: Season 7\" be the #2 global Netflix show this week?",
+    "lots": [
+      {
+        "shares": 17,
+        "price": 0.99,
+        "usdc": 16.83,
+        "ts": 1774380297
+      }
+    ],
+    "totalShares": 17
+  },
+  {
+    "key": "0x6f87a56538d5b5f0883cecc0eac7a7f6090ec2749e2d282a8b1f98c3f9447334-0",
+    "title": "Will \"Peaky Blinders: The Immortal Man\" be the top global Netflix movie this week?",
+    "lots": [
+      {
+        "shares": 749.47,
+        "price": 0.99,
+        "usdc": 741.9753,
+        "ts": 1774384351
+      }
+    ],
+    "totalShares": 749.47
+  },
+  {
+    "key": "0x47f8f15f19d580a613cf3f3b6ed5de4354d9982b33b61c99b2c033409c70b4df-0",
+    "title": "Will the highest temperature in San Francisco be 74°F or higher on March 24?",
+    "lots": [
+      {
+        "shares": 3.12,
+        "price": 0.99,
+        "usdc": 3.0888,
+        "ts": 1774385771
+      }
+    ],
+    "totalShares": 3.12
+  },
+  {
+    "key": "0x7d3c640c86be9163eea43a2b64dcb8546ee0b9f56012f5905e167a5387b66085-0",
+    "title": "Will the total number of TSA passengers for March 25 be between 2,200,000 and 2,400,000?",
+    "lots": [
+      {
+        "shares": 30,
+        "price": 0.99,
+        "usdc": 29.7,
+        "ts": 1774525915
+      }
+    ],
+    "totalShares": 30
+  },
+  {
+    "key": "0xe3f73e073f88fbcc33764ed06ec6f8ad0b61ab4ce54f231091a7d54f68af45ff-0",
+    "title": "Will the highest temperature in Toronto be 1°C on March 28?",
+    "lots": [
+      {
+        "shares": 712.26,
+        "price": 0.998,
+        "usdc": 710.83548,
+        "ts": 1774757260
+      }
+    ],
+    "totalShares": 712.26
+  },
+  {
+    "key": "0x211c21b3bbae07708f7b27137ff314b3d32a81b53fdb40b9a5ffabe78c489f54-0",
+    "title": "Will the highest temperature in Wellington be 19°C on March 29?",
+    "lots": [
+      {
+        "shares": 599.73,
+        "price": 0.9974572557650943,
+        "usdc": 598.20504,
+        "ts": 1774782264
+      },
+      {
+        "shares": 28.94,
+        "price": 0.998,
+        "usdc": 28.88212,
+        "ts": 1774782270
+      }
+    ],
+    "totalShares": 628.6700000000001
+  },
+  {
+    "key": "0x7418e14107e4194220716a5284e17b5c8137d30837817b82d38bc0eb179dd003-0",
+    "title": "Will the highest temperature in Chongqing be 18°C on March 29?",
+    "lots": [
+      {
+        "shares": 74.89,
+        "price": 0.998,
+        "usdc": 74.74022,
+        "ts": 1774800334
+      }
+    ],
+    "totalShares": 74.89
+  },
+  {
+    "key": "0xee601a97e4c09da0b2540d22ffb78268355710e5cd9b8821a200a62cc6ff412e-0",
+    "title": "Will the highest temperature in Shenzhen be 27°C on March 29?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.998,
+        "usdc": 99.8,
+        "ts": 1774805420
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0x49c67b8b491306c50a7a0766d2c727b0cd4b9844a02726746c86528536376ebf-0",
+    "title": "Will the total number of TSA passengers for March 23 - March 29 be between 17,500,000 and 18,000,000?",
+    "lots": [
+      {
+        "shares": 150,
+        "price": 0.99,
+        "usdc": 148.5,
+        "ts": 1774873640
+      }
+    ],
+    "totalShares": 150
+  },
+  {
+    "key": "0xdd331fae641e184cc59c4cc267ad31c464ddc3dea78a9c7823a1d0e4c31d0a9b-0",
+    "title": "Will the total number of TSA passengers for March 31 be less than 2,400,000?",
+    "lots": [
+      {
+        "shares": 199.99,
+        "price": 0.99,
+        "usdc": 197.9901,
+        "ts": 1775044439
+      }
+    ],
+    "totalShares": 199.99
+  },
+  {
+    "key": "0x2d7ffef1fea187a7a82d1584e25f1a0992fe58409010801a21f3d98d9ffe5984-0",
+    "title": "Will the highest temperature in Seoul be 19°C or higher on April 3?",
+    "lots": [
+      {
+        "shares": 999.19264,
+        "price": 0.98385267,
+        "usdc": 983.85267,
+        "ts": 1775195917
+      }
+    ],
+    "totalShares": 999.19264
+  },
+  {
+    "key": "0x84ca5f4dba40ee62c06126c38a21e959f0fb77b8bc593a8a3e9e82419a760c33-0",
+    "title": "Will the highest temperature in Los Angeles be 78°F or higher on April 3?",
+    "lots": [
+      {
+        "shares": 50.57723,
+        "price": 0.991,
+        "usdc": 50.1446,
+        "ts": 1775246059
+      }
+    ],
+    "totalShares": 50.57723
+  },
+  {
+    "key": "0xeede3287a911236795025295864650bd8a7ff47fd2772e350de5920c90943bf8-0",
+    "title": "Will the highest temperature in Atlanta be 82°F or higher on April 3?",
+    "lots": [
+      {
+        "shares": 243.39262,
+        "price": 0.9706761025641025,
+        "usdc": 236.6023,
+        "ts": 1775249607
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1775249609
+      },
+      {
+        "shares": 110,
+        "price": 0.99,
+        "usdc": 108.9,
+        "ts": 1775249609
+      },
+      {
+        "shares": 46.25,
+        "price": 0.99,
+        "usdc": 45.7875,
+        "ts": 1775249609
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1775249609
+      }
+    ],
+    "totalShares": 999.64262
+  },
+  {
+    "key": "0x6c3712de41368f3d6ef77e3830c4520d43a0c4793eff21f7d34a79c45bb57e5e-0",
+    "title": "Will the highest temperature in Seoul be 17°C or higher on April 4?",
+    "lots": [
+      {
+        "shares": 999.74347,
+        "price": 0.99486931,
+        "usdc": 994.86931,
+        "ts": 1775273379
+      }
+    ],
+    "totalShares": 999.74347
+  },
+  {
+    "key": "0x6fc27e55a3ad62d1ba93e0fc478fbe8bd179dfbb4d2dff33c21b07645c5cefc4-0",
+    "title": "Will the highest temperature in San Francisco be 78°F or higher on April 4?",
+    "lots": [
+      {
+        "shares": 10,
+        "price": 0.998,
+        "usdc": 9.98,
+        "ts": 1775351307
+      }
+    ],
+    "totalShares": 10
+  },
+  {
+    "key": "0xd0ee220e3ed95736b09926971f09137071377c4a50ece460231da3b6a445e301-0",
+    "title": "Will the highest temperature in Dallas be between 74-75°F on April 4?",
+    "lots": [
+      {
+        "shares": 35.2,
+        "price": 0.998,
+        "usdc": 35.1296,
+        "ts": 1775376299
+      },
+      {
+        "shares": 105,
+        "price": 0.998,
+        "usdc": 104.79,
+        "ts": 1775376303
+      },
+      {
+        "shares": 1.16,
+        "price": 0.998,
+        "usdc": 1.15768,
+        "ts": 1775384001
+      },
+      {
+        "shares": 22.68,
+        "price": 0.998,
+        "usdc": 22.63464,
+        "ts": 1775384001
+      },
+      {
+        "shares": 10.31,
+        "price": 0.998,
+        "usdc": 10.28938,
+        "ts": 1775384001
+      },
+      {
+        "shares": 10.31,
+        "price": 0.998,
+        "usdc": 10.28938,
+        "ts": 1775384001
+      },
+      {
+        "shares": 15.37,
+        "price": 0.998,
+        "usdc": 15.33926,
+        "ts": 1775384001
+      },
+      {
+        "shares": 10.19,
+        "price": 0.998,
+        "usdc": 10.16962,
+        "ts": 1775384001
+      },
+      {
+        "shares": 5.09,
+        "price": 0.998,
+        "usdc": 5.07982,
+        "ts": 1775384001
+      },
+      {
+        "shares": 5.09,
+        "price": 0.998,
+        "usdc": 5.07982,
+        "ts": 1775384001
+      },
+      {
+        "shares": 23.8,
+        "price": 0.998,
+        "usdc": 23.7524,
+        "ts": 1775384003
+      },
+      {
+        "shares": 20.38,
+        "price": 0.998,
+        "usdc": 20.33924,
+        "ts": 1775384003
+      },
+      {
+        "shares": 15.55,
+        "price": 0.998,
+        "usdc": 15.5189,
+        "ts": 1775384003
+      },
+      {
+        "shares": 110.74,
+        "price": 0.998,
+        "usdc": 110.51852,
+        "ts": 1775388569
+      }
+    ],
+    "totalShares": 390.87000000000006
+  },
+  {
+    "key": "0x624f7b4f92944751b3070cf8e04768d816a2400fe7ee04ec6c609f63ed2f61b5-0",
+    "title": "Will the highest temperature in San Francisco be 78°F or higher on April 5?",
+    "lots": [
+      {
+        "shares": 221.56655999999998,
+        "price": 0.9717468902109249,
+        "usdc": 215.6112,
+        "ts": 1775426231
+      }
+    ],
+    "totalShares": 221.56655999999998
+  },
+  {
+    "key": "0x5b0c060e84693e8aa4c102fb0ef6384654b454da8b50d1144fdf801a1c19caa3-0",
+    "title": "Will the total number of TSA passengers for April 3 be less than 3,000,000?",
+    "lots": [
+      {
+        "shares": 151,
+        "price": 0.9860198675496689,
+        "usdc": 148.889,
+        "ts": 1775471907
+      }
+    ],
+    "totalShares": 151
+  },
+  {
+    "key": "0x13394eecd3d582e2c4340cdcae9c95adef5258119371395bff1ee49078be4775-0",
+    "title": "Will the total number of TSA passengers for March 30 - April 5 be between 17,000,000 and 17,500,000?",
+    "lots": [
+      {
+        "shares": 167,
+        "price": 0.9817365269461078,
+        "usdc": 163.95,
+        "ts": 1775478387
+      }
+    ],
+    "totalShares": 167
+  },
+  {
+    "key": "0x0d9b354a63022338e07454258e8a2130039ce09ed2fdec40b37d46b3b6a955db-0",
+    "title": "Will the highest temperature in Ankara be 16°C on April 6?",
+    "lots": [
+      {
+        "shares": 111.73883,
+        "price": 0.998,
+        "usdc": 111.5265,
+        "ts": 1775510729
+      }
+    ],
+    "totalShares": 111.73883
+  },
+  {
+    "key": "0x55d50a7f70fc5610f3c6a91ae25c5c412cc10dc74b1831ed36c9aef20468115e-0",
+    "title": "Will the total number of TSA passengers for April 6 be between 2,600,000 and 2,800,000?",
+    "lots": [
+      {
+        "shares": 2.35,
+        "price": 0.99,
+        "usdc": 2.3265,
+        "ts": 1775563181
+      },
+      {
+        "shares": 18.03,
+        "price": 0.99,
+        "usdc": 17.8497,
+        "ts": 1775563191
+      }
+    ],
+    "totalShares": 20.380000000000003
+  },
+  {
+    "key": "0x378c0ecfb8f9ad325f15e267b5eff170d5f3172b5741a34d99fd045d4aca02e1-0",
+    "title": "Will the highest temperature in Atlanta be 76°F or higher on April 7?",
+    "lots": [
+      {
+        "shares": 256.73157000000003,
+        "price": 0.99,
+        "usdc": 254.2914,
+        "ts": 1775591613
+      }
+    ],
+    "totalShares": 256.73157000000003
+  },
+  {
+    "key": "0xa1b302e2a0f0852b7b0150659be6dc6123f0a68c57c5ead510b7fb51376a542a-0",
+    "title": "Will the highest temperature in Amsterdam be 15°C or higher on April 8?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.998,
+        "usdc": 99.8,
+        "ts": 1775647529
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0xd2b12e0f569108295092ea66e4a794359f185a317a3792defba9501d394d261d-0",
+    "title": "Will the highest temperature in London be 24°C or higher on April 8?",
+    "lots": [
+      {
+        "shares": 999.16215,
+        "price": 0.98324294,
+        "usdc": 983.24294,
+        "ts": 1775650857
+      }
+    ],
+    "totalShares": 999.16215
+  },
+  {
+    "key": "0xc871a4c5b762308beb88878afa928c91b3f0a13da18d15e9506381c31c584253-0",
+    "title": "Will the highest temperature in Mexico City be 26°C or higher on April 8?",
+    "lots": [
+      {
+        "shares": 99.95,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1775674221
+      }
+    ],
+    "totalShares": 99.95
+  },
+  {
+    "key": "0x7d0eb21d9e910d7874f6f95d66ec136862fc54374c0656a132c9187547f01265-0",
+    "title": "Will the total number of TSA passengers for April 9 be between 2,600,000 and 2,800,000?",
+    "lots": [
+      {
+        "shares": 389.47,
+        "price": 0.99,
+        "usdc": 385.5753,
+        "ts": 1775824107
+      }
+    ],
+    "totalShares": 389.47
+  },
+  {
+    "key": "0xe0332336f8f34a763e3244f270f9d21ee9bc08ffc512b771c413f8500d48213f-0",
+    "title": "Will the highest temperature in Seoul be 12°C on April 11?",
+    "lots": [
+      {
+        "shares": 859.561,
+        "price": 0.99,
+        "usdc": 850.96539,
+        "ts": 1775919607
+      }
+    ],
+    "totalShares": 859.561
+  },
+  {
+    "key": "0x81424c7182cafb266946fbf522e54266735423e0ec54e01d863ce4a416c31c13-0",
+    "title": "Will the highest temperature in Austin be 76°F or higher on April 12?",
+    "lots": [
+      {
+        "shares": 6.67,
+        "price": 0.99,
+        "usdc": 6.6033,
+        "ts": 1776015909
+      },
+      {
+        "shares": 47.51,
+        "price": 0.99,
+        "usdc": 47.0349,
+        "ts": 1776015911
+      },
+      {
+        "shares": 380,
+        "price": 0.99,
+        "usdc": 376.2,
+        "ts": 1776015911
+      },
+      {
+        "shares": 110,
+        "price": 0.99,
+        "usdc": 108.9,
+        "ts": 1776015911
+      },
+      {
+        "shares": 76.02,
+        "price": 0.99,
+        "usdc": 75.2598,
+        "ts": 1776015911
+      },
+      {
+        "shares": 3.78,
+        "price": 0.99,
+        "usdc": 3.7422,
+        "ts": 1776015911
+      },
+      {
+        "shares": 190,
+        "price": 0.99,
+        "usdc": 188.1,
+        "ts": 1776015911
+      },
+      {
+        "shares": 76.02,
+        "price": 0.99,
+        "usdc": 75.2598,
+        "ts": 1776015911
+      },
+      {
+        "shares": 110,
+        "price": 0.99,
+        "usdc": 108.9,
+        "ts": 1776015911
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0xbf46ad3b49bb1e98d47b996d00f1bdfcbda51e120b87c4d2834d6314e577f9d4-0",
+    "title": "Will the total number of TSA passengers for April 10 be between 2,600,000 and 2,800,000?",
+    "lots": [
+      {
+        "shares": 36.44,
+        "price": 0.9864023051591657,
+        "usdc": 35.9445,
+        "ts": 1776080207
+      }
+    ],
+    "totalShares": 36.44
+  },
+  {
+    "key": "0x6163cab3ab7ed8e21ef133ba6cb9cbde65d86f0504692219837adfd78a50c554-0",
+    "title": "Will the total number of TSA passengers for April 6 - April 12 be between 17,500,000 and 18,000,000?",
+    "lots": [
+      {
+        "shares": 107.98,
+        "price": 0.99,
+        "usdc": 106.9002,
+        "ts": 1776082017
+      }
+    ],
+    "totalShares": 107.98
+  },
+  {
+    "key": "0xdadd8ddf5fae0b9afa9c255456cc9441ce3f1da3cffecb2dcf56c9cdc74d6c75-0",
+    "title": "Will the highest temperature in Chicago be 74°F or higher on April 13?",
+    "lots": [
+      {
+        "shares": 999.3648,
+        "price": 0.98729589,
+        "usdc": 987.29589,
+        "ts": 1776106397
+      }
+    ],
+    "totalShares": 999.3648
+  },
+  {
+    "key": "0xc2ea86d189444669753b18fa47b20cc03a22780893d6f3f4948cd108ac7e086a-0",
+    "title": "Will the highest temperature in Dallas be 82°F or higher on April 13?",
+    "lots": [
+      {
+        "shares": 4.9975,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1776106443
+      }
+    ],
+    "totalShares": 4.9975
+  },
+  {
+    "key": "0x9cef7e2e78e3af6d08cb37297b098fa91e7039a59cfe2bbd594afa410ef76134-0",
+    "title": "Will the highest temperature in Milan be 19°C or higher on April 14?",
+    "lots": [
+      {
+        "shares": 937,
+        "price": 0.99,
+        "usdc": 927.63,
+        "ts": 1776176889
+      },
+      {
+        "shares": 3.38,
+        "price": 0.99,
+        "usdc": 3.3462,
+        "ts": 1776176927
+      }
+    ],
+    "totalShares": 940.38
+  },
+  {
+    "key": "0x21015ea3e0bf021523328bf6ebee10eafa9ca51080b061edead4939f864dd56e-0",
+    "title": "Will the highest temperature in Panama City be 33°C or higher on April 14?",
+    "lots": [
+      {
+        "shares": 307.32086,
+        "price": 0.9636774067818631,
+        "usdc": 296.697,
+        "ts": 1776185736
+      }
+    ],
+    "totalShares": 307.32086
+  },
+  {
+    "key": "0xc4fb37dafebd7f921ca73361d11c1c7451285b103a3919bd77d42b6dbd8737e2-0",
+    "title": "Will the highest temperature in Seoul be 21°C or higher on April 15?",
+    "lots": [
+      {
+        "shares": 12.06,
+        "price": 0.998,
+        "usdc": 12.03588,
+        "ts": 1776227368
+      },
+      {
+        "shares": 2,
+        "price": 0.998,
+        "usdc": 1.996,
+        "ts": 1776227388
+      },
+      {
+        "shares": 985.94,
+        "price": 0.998,
+        "usdc": 983.96812,
+        "ts": 1776227394
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0x005b73c5d325bdbca8503a2d125976ec4ce0e99805d42000dc960b16666150bf-0",
+    "title": "Will the highest temperature in Toronto be 23°C on April 14?",
+    "lots": [
+      {
+        "shares": 828.791,
+        "price": 0.99,
+        "usdc": 820.50309,
+        "ts": 1776231190
+      }
+    ],
+    "totalShares": 828.791
+  },
+  {
+    "key": "0xe88a9df0ae261a35332a4e226218a8cfcca8079b3a6d5cc0416f9b3480ed2ce2-0",
+    "title": "Will the highest temperature in Moscow be 10°C on April 15?",
+    "lots": [
+      {
+        "shares": 263.34,
+        "price": 0.99,
+        "usdc": 260.7066,
+        "ts": 1776324852
+      },
+      {
+        "shares": 254.7,
+        "price": 0.99,
+        "usdc": 252.153,
+        "ts": 1776325032
+      },
+      {
+        "shares": 457.2,
+        "price": 0.99,
+        "usdc": 452.628,
+        "ts": 1776325334
+      },
+      {
+        "shares": 24.76,
+        "price": 0.99,
+        "usdc": 24.5124,
+        "ts": 1776325590
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0x18cdb144a39b3a7fc95df2a823c27c03bd62e9fc29ec51ca7d8c8ce58f49075a-0",
+    "title": "Will the highest temperature in Lagos be 35°C on April 15?",
+    "lots": [
+      {
+        "shares": 6.5564,
+        "price": 0.989,
+        "usdc": 6.48784,
+        "ts": 1776335818
+      }
+    ],
+    "totalShares": 6.5564
+  },
+  {
+    "key": "0xfd64c883137197013ea27400cfffce8cf13fbb3e016a56c6d0a434bd82ca6aaa-0",
+    "title": "Will the highest temperature in New York City be between 86-87°F on April 16?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.99,
+        "usdc": 990,
+        "ts": 1776409552
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0xaf5fe1e3117c9c0df1611cbdc4ec463beffb2bb76c0c3d261b1c73756e8657e2-0",
+    "title": "Will the highest temperature in Denver be 54°F or higher on April 17?",
+    "lots": [
+      {
+        "shares": 990.70534,
+        "price": 0.8141068,
+        "usdc": 814.1068,
+        "ts": 1776410126
+      }
+    ],
+    "totalShares": 990.70534
+  },
+  {
+    "key": "0xf3936bd8a002df37806ea3b7b773d9547c5289575fad758d921ac960bd3190e1-0",
+    "title": "Will the highest temperature in Seoul be 21°C or higher on April 18?",
+    "lots": [
+      {
+        "shares": 232.39,
+        "price": 0.99,
+        "usdc": 230.0661,
+        "ts": 1776488306
+      },
+      {
+        "shares": 38.93,
+        "price": 0.99,
+        "usdc": 38.5407,
+        "ts": 1776488350
+      },
+      {
+        "shares": 500,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1776488392
+      }
+    ],
+    "totalShares": 771.3199999999999
+  },
+  {
+    "key": "0x4c296cc73c02622fd1836730219983a95be4428d64407e1b9379537bfd7543b0-0",
+    "title": "Will the highest temperature in San Francisco be 68°F or higher on April 18?",
+    "lots": [
+      {
+        "shares": 467.4535,
+        "price": 0.9886039297015309,
+        "usdc": 462.38983,
+        "ts": 1776549432
+      }
+    ],
+    "totalShares": 467.4535
+  },
+  {
+    "key": "0x60ab425708c0c525700c3d260a0a7c67054b03c71b3bdaa838164056e1e6f822-0",
+    "title": "Will the highest temperature in Buenos Aires be 28°C on April 18?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.998,
+        "usdc": 998,
+        "ts": 1776570250
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0x1cd07f0e0c24992bd20edc094f32967c30cc420573f3640b58c9e2b65ea4d8e6-0",
+    "title": "Will the highest temperature in Taipei be 28°C on April 19?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.998,
+        "usdc": 998,
+        "ts": 1776618164
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0x92eb9a38338fbbeaca6f6ca179e54bf6b7837eab3dfbf0abeeab5eca83016b20-0",
+    "title": "Will the highest temperature in Ankara be 10°C on April 19?",
+    "lots": [
+      {
+        "shares": 19.997,
+        "price": 0.997,
+        "usdc": 19.94,
+        "ts": 1776633918
+      }
+    ],
+    "totalShares": 19.997
+  },
+  {
+    "key": "0xee338fd017c9fa045525a81927197716f00a3018db8a822a8ef522da0145aa7d-0",
+    "title": "Will the highest temperature in Munich be 17°C on April 19?",
+    "lots": [
+      {
+        "shares": 236.11639,
+        "price": 0.998,
+        "usdc": 235.66772,
+        "ts": 1776637418
+      },
+      {
+        "shares": 763.86,
+        "price": 0.998,
+        "usdc": 762.33228,
+        "ts": 1776642144
+      }
+    ],
+    "totalShares": 999.97639
+  },
+  {
+    "key": "0x8571597013046477495fe6fb5c9d9bfb97791ce9310d8dae5f79cdb0676faf33-0",
+    "title": "Will the highest temperature in Warsaw be 19°C on April 19?",
+    "lots": [
+      {
+        "shares": 751.845,
+        "price": 0.998,
+        "usdc": 750.34131,
+        "ts": 1776638690
+      },
+      {
+        "shares": 248.15,
+        "price": 0.998,
+        "usdc": 247.6537,
+        "ts": 1776639422
+      }
+    ],
+    "totalShares": 999.995
+  },
+  {
+    "key": "0x565108e212f3aef8b3ec57526666d3ee512e415e5db3823d069c98e07db9d2b4-0",
+    "title": "Will the highest temperature in Lagos be 32°C on April 19?",
+    "lots": [
+      {
+        "shares": 218.21818000000002,
+        "price": 0.998,
+        "usdc": 217.80352,
+        "ts": 1776646842
+      }
+    ],
+    "totalShares": 218.21818000000002
+  },
+  {
+    "key": "0x1abcf8a5ac4f9705700ca40cbcdb52b9cd673aca01b8a996258c670d0de4960d-0",
+    "title": "Will the highest temperature in Singapore be 32°C or higher on April 20?",
+    "lots": [
+      {
+        "shares": 814.32264,
+        "price": 0.99,
+        "usdc": 806.5827,
+        "ts": 1776657666
+      },
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1776657674
+      },
+      {
+        "shares": 85.27,
+        "price": 0.99,
+        "usdc": 84.4173,
+        "ts": 1776657674
+      }
+    ],
+    "totalShares": 999.59264
+  },
+  {
+    "key": "0x08147c21a39169df6cc80a87312aa3ca37c45352089af661c1db6c78a62f96c3-0",
+    "title": "Will the highest temperature in Lagos be 28°C or below on April 20?",
+    "lots": [
+      {
+        "shares": 996.62613,
+        "price": 0.93252254,
+        "usdc": 932.52254,
+        "ts": 1776769838
+      }
+    ],
+    "totalShares": 996.62613
+  },
+  {
+    "key": "0x799e1a923170a64cd1e18ebda90fc0af23c6e0b561aa8bd6b0de3037d52ab7ec-0",
+    "title": "Will the highest temperature in Wellington be 12°C on April 21?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.998,
+        "usdc": 998,
+        "ts": 1776782090
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0x272f5d459ba85adc257a4b556ec0a8e605d7356cb463694ef5df90d4b4025b83-0",
+    "title": "Will \"Big Mistakes: Season 1\" be the #2 US Netflix show this week?",
+    "lots": [
+      {
+        "shares": 9.98,
+        "price": 0.99,
+        "usdc": 9.8802,
+        "ts": 1776802516
+      }
+    ],
+    "totalShares": 9.98
+  },
+  {
+    "key": "0x869bfaa8736b3b7628b0e412b17f69a57776cbee1bd8c8ef1d42be0dd23edd85-0",
+    "title": "Will \"Thrash\" be the top US Netflix movie this week?",
+    "lots": [
+      {
+        "shares": 12.98,
+        "price": 0.99,
+        "usdc": 12.8502,
+        "ts": 1776802518
+      },
+      {
+        "shares": 1.39,
+        "price": 0.99,
+        "usdc": 1.3761,
+        "ts": 1776802518
+      },
+      {
+        "shares": 13.97,
+        "price": 0.99,
+        "usdc": 13.8303,
+        "ts": 1776802518
+      }
+    ],
+    "totalShares": 28.340000000000003
+  },
+  {
+    "key": "0xf38e07ea49af41525ccb103537b23099794ac8165a0309875209fc68d2df9fa6-0",
+    "title": "Will the highest temperature in Mexico City be 27°C or higher on April 21?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.99,
+        "usdc": 990,
+        "ts": 1776804158
+      },
+      {
+        "shares": 10,
+        "price": 0.9,
+        "usdc": 9,
+        "ts": 1776804446
+      },
+      {
+        "shares": 50.473332,
+        "price": 0.7000000118874656,
+        "usdc": 35.331333,
+        "ts": 1776804548
+      },
+      {
+        "shares": 400,
+        "price": 0.95,
+        "usdc": 380,
+        "ts": 1776804786
+      }
+    ],
+    "totalShares": 1460.473332
+  },
+  {
+    "key": "0x3d0a9dd8c7d54025fc8b57c043e8ef17023aa5d2a5936e215dcc7a46d363bc9b-1",
+    "title": "Will the highest temperature in Karachi be 25°C or below on April 23?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.998,
+        "usdc": 99.8,
+        "ts": 1776884108
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0x27400283750799fbc1fd6fafe105d7cacfc29401b7ac16d229e3b2041337f22e-1",
+    "title": "Will the highest temperature in Dallas be between 70-71°F on April 22?",
+    "lots": [
+      {
+        "shares": 1.5,
+        "price": 0.998,
+        "usdc": 1.497,
+        "ts": 1776889938
+      }
+    ],
+    "totalShares": 1.5
+  },
+  {
+    "key": "0x4ba42d4e8635601369f4f22033ae187f25c58a26cd0e2e41f1500ca0fe5fd4ae-0",
+    "title": "Will the highest temperature in Dallas be 72°F or higher on April 22?",
+    "lots": [
+      {
+        "shares": 1,
+        "price": 0.998,
+        "usdc": 0.998,
+        "ts": 1776889942
+      }
+    ],
+    "totalShares": 1
+  },
+  {
+    "key": "0x0c750a1eda5b86d13c267964390f78b22c946ccac5e2154733681bda8fde1737-0",
+    "title": "Will the highest temperature in Moscow be 9°C or higher on April 23?",
+    "lots": [
+      {
+        "shares": 511.779,
+        "price": 0.99,
+        "usdc": 506.66121,
+        "ts": 1776892120
+      },
+      {
+        "shares": 488.22,
+        "price": 0.99,
+        "usdc": 483.3378,
+        "ts": 1776893016
+      }
+    ],
+    "totalShares": 999.999
+  }
+]

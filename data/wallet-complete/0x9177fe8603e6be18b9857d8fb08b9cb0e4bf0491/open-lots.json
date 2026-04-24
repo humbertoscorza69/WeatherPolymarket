@@ -1,0 +1,167 @@
+[
+  {
+    "key": "0x2855748adf26b28d44b698b390599dbe7015923f40599d6301ed07776ccffbbe-1",
+    "title": "Will the highest temperature in London be 54°F or below on May 22?",
+    "lots": [
+      {
+        "shares": 0.006714000000005882,
+        "price": 0.97899999958923,
+        "usdc": 14.299973,
+        "ts": 1747895749
+      }
+    ],
+    "totalShares": 0.006714000000005882
+  },
+  {
+    "key": "0xfb9ddd9fbeebe9727e5850ce1d714618d0939d62747e8f74f9e24a02f65cf58f-1",
+    "title": "Will the highest temperature in London be between 63–64°F on May 24?",
+    "lots": [
+      {
+        "shares": 0.001999999999995339,
+        "price": 0.999,
+        "usdc": 122.459418,
+        "ts": 1748083409
+      }
+    ],
+    "totalShares": 0.001999999999995339
+  },
+  {
+    "key": "0xaba4b5fbd25560a47648f6bc30e2bd30d629c494edd2dc6eb9afb7dd6ea3e58e-0",
+    "title": "Will \"Sentimental Value\" win in the Non-English Language Film category at the 2026 BAFTA Awards?",
+    "lots": [
+      {
+        "shares": 8,
+        "price": 0.999,
+        "usdc": 7.992,
+        "ts": 1771787932
+      }
+    ],
+    "totalShares": 8
+  },
+  {
+    "key": "0x6ff5e7d8d399b5bab51f11b2e0c0f543cbfbf314c9de3750bdd6452ad126be66-1",
+    "title": "Will the highest temperature in London be 15°C on April 8?",
+    "lots": [
+      {
+        "shares": 0.003409999999973934,
+        "price": 0.998,
+        "usdc": 265.4181,
+        "ts": 1775470397
+      }
+    ],
+    "totalShares": 0.003409999999973934
+  },
+  {
+    "key": "0x2ced5faaa1625ec6681806c36f6c59373c8c3d601b1bbfab8938b5bd4085f7ae-0",
+    "title": "Will the highest temperature in London be 16°C or below on April 10?",
+    "lots": [
+      {
+        "shares": 19.93,
+        "price": 0.93,
+        "usdc": 18.6,
+        "ts": 1775654981
+      }
+    ],
+    "totalShares": 19.93
+  },
+  {
+    "key": "0x8c036ee3eb0eb21ea606c7f15b576377540bb6c38d2a9cc76cffbf5f9b5178ed-0",
+    "title": "Will the highest temperature in London be 17°C on April 18?",
+    "lots": [
+      {
+        "shares": 66.745,
+        "price": 0.07,
+        "usdc": 4.9,
+        "ts": 1776530810
+      }
+    ],
+    "totalShares": 66.745
+  },
+  {
+    "key": "0xb98358c324d1e0538ba754895b6620100647fe204b099da3f27cfdf4b57d53c6-1",
+    "title": "Will the highest temperature in London be 13°C or below on April 23?",
+    "lots": [
+      {
+        "shares": 971.29026,
+        "price": 0.9958877806256369,
+        "usdc": 967.49502,
+        "ts": 1776765366
+      },
+      {
+        "shares": 31.9936,
+        "price": 0.996,
+        "usdc": 31.872,
+        "ts": 1776770524
+      },
+      {
+        "shares": 105,
+        "price": 0.995,
+        "usdc": 104.475,
+        "ts": 1776774952
+      },
+      {
+        "shares": 10.74,
+        "price": 0.995,
+        "usdc": 10.6863,
+        "ts": 1776845010
+      },
+      {
+        "shares": 3363.63361,
+        "price": 0.998,
+        "usdc": 3357.24206,
+        "ts": 1776850908
+      },
+      {
+        "shares": 1000,
+        "price": 0.998,
+        "usdc": 998,
+        "ts": 1776854076
+      },
+      {
+        "shares": 500,
+        "price": 0.998,
+        "usdc": 499,
+        "ts": 1776861728
+      },
+      {
+        "shares": 1500,
+        "price": 0.998,
+        "usdc": 1497,
+        "ts": 1776867534
+      },
+      {
+        "shares": 1319.5140299999998,
+        "price": 0.999,
+        "usdc": 1318.26042,
+        "ts": 1776885588
+      }
+    ],
+    "totalShares": 8802.1715
+  },
+  {
+    "key": "0x3e744ec7771d8d07fd4c0774a5103ce0c642a634cbe07de9f98402d2495ffeac-1",
+    "title": "Will the highest temperature in London be 23°C or higher on April 23?",
+    "lots": [
+      {
+        "shares": 433.43513,
+        "price": 0.9970069204152249,
+        "usdc": 432.2025,
+        "ts": 1776765442
+      }
+    ],
+    "totalShares": 433.43513
+  },
+  {
+    "key": "0x50aaf5a549a23f87df3b2a191ae7573e4ff6c194e2702b1cb85bf278527dc56b-1",
+    "title": "Will the highest temperature in London be 13°C or below on April 24?",
+    "lots": [
+      {
+        "shares": 607.3335199999999,
+        "price": 0.9968231401149104,
+        "usdc": 605.50028,
+        "ts": 1776885630
+      }
+    ],
+    "totalShares": 607.3335199999999
+  }
+]

@@ -1,0 +1,651 @@
+#!/usr/bin/env node
+/**
+ * Verify whether a list of "winning wallets" has a real, copyable edge on
+ * Polymarket. The public /activity endpoint doesn't return PnL fields, so
+ * we compute realized PnL ourselves by FIFO-matching BUY against SELL and
+ * REDEEM events per (conditionId, outcome). We also fetch current /positions
+ * for unrealized mark-to-market.
+ *
+ * Public endpoints (no auth):
+ *   GET /activity?user=<addr>&limit=500&offset=<n>   (offset capped at 3000)
+ *   GET /positions?user=<addr>
+ *
+ * Usage:
+ *   npm run analyze-wallets
+ *   npm run analyze-wallets -- --days=30
+ *   npm run analyze-wallets -- --wallet=0xabc...
+ *   npm run analyze-wallets -- --dump=0xabc...   # per-trade dump
+ */
+
+import fs from "node:fs";
+import path from "node:path";
+
+// First batch: weather-focused wallets (claimed 80-98% win rates).
+const WEATHER_WALLETS = [
+  "0x594edb9112f526fa6a80b8f858a6379c8a2c1c11",
+  "0x15ceffed7bf820cd2d90f90ea24ae9909f5cd5fa",
+  "0x38cc1d1f95d12039324809d8bb6ca6da6cbef88e",
+  "0xd28021317c1be36239e8d930dee7d6c3a40082b3",
+  "0x937bcac3a8a30c07d827ad0550c3fe3a6756bfab",
+  "0xeb258a5ba5cec11981a2619894824103e1a12fde",
+  "0xf39349b4ac2d7a46b2b286e21f388d4533e9d509",
+  "0x7bd9019211677f5db6e221d6a6da030ebcd0bd75",
+  "0x8796b01a723066063eba805833778c276162eb9f",
+  "0x875e974594985283c999765461bf2e15b4dee6b5",
+  "0x104171232971a6db8cf938f76fdbebbb81c5f452"
+];
+
+// Second batch: top-leaderboard wallets (>=90% win rate across all markets,
+// not only weather). These may reveal strategies beyond the scalper pattern.
+const LEADERBOARD_WALLETS = [
+  "0x1521b47bf0c41f6b7fd3ad41cdec566812c8f23e",
+  "0x9b979a065641e8cfde3022a30ed2d9415cf55e12",
+  "0x6ffb4354cbe6e0f9989e3b55564ec5fb8646a834",
+  "0xfc25f141ed27bb1787338d2c4e7f51e3a15e1f7f",
+  "0xe40ea00e74059c76c0035c919ef6b99c3e25a94d",
+  "0xcae693bcf9696a2ebf0a62de767719b45f354f85",
+  "0x2e0b70d482e6b389e81dea528be57d825dd48070",
+  "0xa9b44dca52ed35e59ac2a6f49d1203b8155464ed",
+  "0x2785e7022dc20757108204b13c08cea8613b70ae",
+  "0x7e97bd09c2ccc632fb728d91b7c37d8ec5f34d54",
+  "0xf9151529abce6aa8357b99707ec06607cf238720",
+  "0x2d99e29c4f066ba32098c65e4c7454b277d94ca3"
+];
+
+const WALLETS = [...WEATHER_WALLETS, ...LEADERBOARD_WALLETS];
+
+const DATA_API = "https://data-api.polymarket.com";
+const MAX_OFFSET = 2500; // API hard-caps at 3000
+
+const args = Object.fromEntries(
+  process.argv.slice(2).map((a) => {
+    const [k, v] = a.replace(/^--/, "").split("=");
+    return [k, v ?? "true"];
+  })
+);
+const lookbackDays = Number(args.days ?? "90");
+const cutoffTs = Math.floor(Date.now() / 1000) - lookbackDays * 86400;
+const wallets = args.wallet ? [args.wallet] : args.dump ? [args.dump] : WALLETS;
+const dumpMode = Boolean(args.dump);
+const patternMode = Boolean(args.pattern);
+
+function num(x, d = 0) { const n = Number(x); return Number.isFinite(n) ? n : d; }
+
+async function fetchJson(url) {
+  const r = await fetch(url, { headers: { accept: "application/json" } });
+  if (!r.ok) {
+    const txt = await r.text().catch(() => "");
+    throw new Error(`HTTP ${r.status} ${url}: ${txt.slice(0, 200)}`);
+  }
+  return r.json();
+}
+
+async function fetchActivity(user) {
+  const all = [];
+  let offset = 0;
+  const limit = 500;
+  let truncated = false;
+  while (offset <= MAX_OFFSET) {
+    const url = `${DATA_API}/activity?user=${user}&limit=${limit}&offset=${offset}`;
+    let batch;
+    try { batch = await fetchJson(url); } catch (e) {
+      console.error(`    fetch failed at offset=${offset}: ${e.message}`);
+      break;
+    }
+    if (!Array.isArray(batch)) batch = batch?.data ?? batch?.activity ?? [];
+    if (!Array.isArray(batch) || batch.length === 0) break;
+    all.push(...batch);
+    if (batch.length < limit) break;
+    const oldest = num(batch[batch.length - 1]?.timestamp);
+    if (oldest && oldest < cutoffTs) break;
+    offset += limit;
+    if (offset > MAX_OFFSET) { truncated = true; break; }
+    await new Promise((r) => setTimeout(r, 120));
+  }
+  return { events: all.filter((a) => num(a?.timestamp) >= cutoffTs), truncated };
+}
+
+async function fetchPositions(user) {
+  try {
+    const data = await fetchJson(`${DATA_API}/positions?user=${user}`);
+    return Array.isArray(data) ? data : data?.data ?? [];
+  } catch (_) { return []; }
+}
+
+function classify(title) {
+  const t = String(title || "").toLowerCase();
+  if (/\b(high|low|temperature|degrees|°f|°c|rain|snow|snowfall|hurricane|storm|weather|tornado|heatwave|freeze|precipitation|nyc|lax|chicago|miami|boston|sfo|atlanta|phoenix|denver|seattle|houston|dallas|vegas)\b/.test(t)) return "weather";
+  if (/\b(nfl|nba|mlb|nhl|soccer|epl|premier league|champions league|game|match|win.*(series|title)|super bowl|world cup|championship|stanley cup|f1|grand prix|ufc|tennis|open|masters)\b/.test(t)) return "sports";
+  if (/\b(president|election|senate|congress|governor|primary|trump|biden|harris|desantis|vote|inaugur|cabinet)\b/.test(t)) return "politics";
+  if (/\b(bitcoin|btc|ethereum|eth|solana|sol|doge|crypto|token|altcoin)\b/.test(t)) return "crypto";
+  return "other";
+}
+
+function median(arr) {
+  if (arr.length === 0) return 0;
+  const s = [...arr].sort((a, b) => a - b);
+  return s[Math.floor(s.length / 2)];
+}
+
+/**
+ * FIFO-match BUY lots against SELL/REDEEM to compute realized PnL per
+ * (conditionId, outcome). Returns an array of closed-position records.
+ * Losing shares at resolution simply expire (no REDEEM event) — we detect
+ * them by checking whether inventory is still > 0 after all events for a
+ * market whose resolution is in our activity window.
+ */
+function computeRealizedPnl(activity) {
+  const events = activity
+    .filter((a) => {
+      const type = a?.type ?? "TRADE";
+      return type === "TRADE" || type === "REDEEM" || type === "REWARD";
+    })
+    .sort((a, b) => num(a.timestamp) - num(b.timestamp)); // oldest first
+
+  const inv = new Map(); // key → { lots: [{shares, price, ts}], title, cat }
+  const closed = [];
+
+  for (const ev of events) {
+    const key = `${ev.conditionId ?? ev.market}:${ev.outcome ?? ev.outcomeIndex ?? "0"}`;
+    if (!inv.has(key)) {
+      inv.set(key, { lots: [], title: ev.title ?? ev.eventTitle ?? ev.slug ?? key, cat: classify(ev.title) });
+    }
+    const book = inv.get(key);
+    const type = ev?.type ?? "TRADE";
+    const side = ev?.side;
+
+    if (type === "TRADE" && side === "BUY") {
+      book.lots.push({ shares: num(ev.size), price: num(ev.price), usdc: num(ev.usdcSize), ts: num(ev.timestamp) });
+    } else if (type === "TRADE" && side === "SELL") {
+      let remaining = num(ev.size);
+      let cost = 0, matched = 0;
+      const openTs = book.lots[0]?.ts ?? num(ev.timestamp);
+      while (remaining > 1e-9 && book.lots.length > 0) {
+        const lot = book.lots[0];
+        const m = Math.min(lot.shares, remaining);
+        cost += m * lot.price;
+        matched += m;
+        lot.shares -= m;
+        remaining -= m;
+        if (lot.shares < 1e-9) book.lots.shift();
+      }
+      if (matched > 0) {
+        const pnl = matched * num(ev.price) - cost;
+        closed.push({
+          pnl, shares: matched,
+          entryAvg: cost / matched, exitPrice: num(ev.price),
+          market: book.title, cat: book.cat,
+          openTs, closeTs: num(ev.timestamp),
+          type: "sell"
+        });
+      }
+    } else if (type === "REDEEM") {
+      // Winning shares redeemed at $1 each. Payout = usdcSize.
+      const totalShares = book.lots.reduce((s, l) => s + l.shares, 0);
+      if (totalShares < 1e-9) continue;
+      const totalCost = book.lots.reduce((s, l) => s + l.shares * l.price, 0);
+      const payout = num(ev.usdcSize) || totalShares; // fallback: $1/share
+      const pnl = payout - totalCost;
+      closed.push({
+        pnl, shares: totalShares,
+        entryAvg: totalCost / totalShares, exitPrice: payout / totalShares,
+        market: book.title, cat: book.cat,
+        openTs: book.lots[0]?.ts, closeTs: num(ev.timestamp),
+        type: "redeem"
+      });
+      book.lots = [];
+    }
+  }
+
+  // Leftover open shares (unsettled in window)
+  const openPositions = [];
+  for (const [key, book] of inv.entries()) {
+    const shares = book.lots.reduce((s, l) => s + l.shares, 0);
+    if (shares > 1e-6) {
+      const cost = book.lots.reduce((s, l) => s + l.shares * l.price, 0);
+      openPositions.push({ key, title: book.title, cat: book.cat, shares, cost });
+    }
+  }
+
+  return { closed, openPositions };
+}
+
+function summarize(activity, positions, user, truncated) {
+  const trades = activity.filter((a) => (a?.type ?? "TRADE") === "TRADE" && a.side);
+  const buys = trades.filter((t) => t.side === "BUY");
+  const sells = trades.filter((t) => t.side === "SELL");
+
+  const { closed, openPositions } = computeRealizedPnl(activity);
+  const realized = closed.reduce((s, c) => s + c.pnl, 0);
+  const wins = closed.filter((c) => c.pnl > 0).length;
+  const losses = closed.filter((c) => c.pnl < 0).length;
+  const winRate = wins + losses > 0 ? wins / (wins + losses) : 0;
+
+  const unrealized = positions.reduce((s, p) => s + num(p.cashPnl), 0);
+  const currentValue = positions.reduce((s, p) => s + num(p.currentValue ?? p.size * p.curPrice), 0);
+
+  const volume = trades.reduce((s, t) => s + num(t.usdcSize), 0);
+  const sizes = trades.map((t) => num(t.usdcSize)).filter((x) => x > 0);
+  const medSize = median(sizes);
+  const maxSize = sizes.reduce((m, x) => Math.max(m, x), 0);
+
+  const catPnl = {};
+  const catCount = {};
+  for (const c of closed) {
+    catPnl[c.cat] = (catPnl[c.cat] || 0) + c.pnl;
+  }
+  for (const t of trades) {
+    const c = classify(t.title);
+    catCount[c] = (catCount[c] || 0) + 1;
+  }
+  const catPct = {};
+  for (const c of Object.keys(catCount)) catPct[c] = catCount[c] / trades.length;
+
+  const ts = trades.map((t) => num(t.timestamp)).filter((x) => x > 0);
+  const firstTs = ts.length ? Math.min(...ts) : 0;
+  const lastTs = ts.length ? Math.max(...ts) : 0;
+  const daysSinceLast = lastTs ? (Date.now() / 1000 - lastTs) / 86400 : 9999;
+
+  const byMarket = new Map();
+  for (const c of closed) {
+    byMarket.set(c.market, (byMarket.get(c.market) || 0) + c.pnl);
+  }
+  const topWinners = [...byMarket.entries()].sort((a, b) => b[1] - a[1]).slice(0, 5);
+  const topLosers = [...byMarket.entries()].sort((a, b) => a[1] - b[1]).slice(0, 3);
+
+  // Per-closed-position PnL distribution
+  const pnlValues = closed.map((c) => c.pnl);
+  const sortedPnl = [...pnlValues].sort((a, b) => a - b);
+  const p05 = sortedPnl.length ? sortedPnl[Math.floor(sortedPnl.length * 0.05)] : 0;
+  const p95 = sortedPnl.length ? sortedPnl[Math.floor(sortedPnl.length * 0.95)] : 0;
+  const avgWin = wins ? closed.filter((c) => c.pnl > 0).reduce((s, c) => s + c.pnl, 0) / wins : 0;
+  const avgLoss = losses ? closed.filter((c) => c.pnl < 0).reduce((s, c) => s + c.pnl, 0) / losses : 0;
+
+  return {
+    user, truncated,
+    trades: trades.length, buys: buys.length, sells: sells.length,
+    closed: closed.length, redeemed: closed.filter((c) => c.type === "redeem").length,
+    openPositions: openPositions.length,
+    realized, unrealized, currentValue,
+    wins, losses, winRate,
+    avgWin, avgLoss, p05, p95,
+    volume, medSize, maxSize,
+    catPct, catCount, catPnl,
+    firstTs, lastTs, daysSinceLast,
+    topWinners, topLosers
+  };
+}
+
+/**
+ * Extract a compact "strategy fingerprint" for a wallet. Answers:
+ *   - What side do they enter (YES vs NO)?
+ *   - What price range do they enter at?
+ *   - What price do they exit at?
+ *   - How long do they hold?
+ *   - Is the edge coming from small-spread scalping or large-delta directional bets?
+ * We FIFO-match BUYs with SELLs on the same market to produce round-trip
+ * pairs, then aggregate distributions across all pairs.
+ */
+function extractPattern(activity) {
+  const trades = activity
+    .filter((a) => (a?.type ?? "TRADE") === "TRADE" && a.side)
+    .sort((a, b) => num(a.timestamp) - num(b.timestamp));
+
+  const byMarket = new Map();
+  for (const t of trades) {
+    const key = `${t.conditionId ?? "?"}:${t.outcome ?? t.outcomeIndex ?? "0"}`;
+    if (!byMarket.has(key)) byMarket.set(key, []);
+    byMarket.get(key).push(t);
+  }
+
+  const pairs = [];
+  for (const [, mtrades] of byMarket) {
+    const lots = [];
+    for (const t of mtrades) {
+      const shares = num(t.size);
+      const price = num(t.price);
+      if (t.side === "BUY") {
+        lots.push({ shares, price, ts: num(t.timestamp), outcome: String(t.outcome ?? "") });
+      } else if (t.side === "SELL") {
+        let remaining = shares;
+        while (remaining > 1e-9 && lots.length > 0) {
+          const lot = lots[0];
+          const m = Math.min(lot.shares, remaining);
+          pairs.push({
+            buyPrice: lot.price,
+            sellPrice: price,
+            buySide: lot.outcome,
+            holdMinutes: (num(t.timestamp) - lot.ts) / 60,
+            shares: m,
+            delta: price - lot.price,
+            profit: m * (price - lot.price)
+          });
+          lot.shares -= m; remaining -= m;
+          if (lot.shares < 1e-9) lots.shift();
+        }
+      }
+    }
+  }
+
+  if (pairs.length === 0) return null;
+
+  const bucketPrice = (p) => {
+    if (p < 0.05) return "0.00-0.05";
+    if (p < 0.10) return "0.05-0.10";
+    if (p < 0.30) return "0.10-0.30";
+    if (p < 0.50) return "0.30-0.50";
+    if (p < 0.70) return "0.50-0.70";
+    if (p < 0.90) return "0.70-0.90";
+    if (p < 0.95) return "0.90-0.95";
+    if (p < 0.99) return "0.95-0.99";
+    return "0.99-1.00";
+  };
+  const bucketHold = (m) => {
+    if (m < 1) return "<1min";
+    if (m < 10) return "1-10min";
+    if (m < 60) return "10-60min";
+    if (m < 360) return "1-6h";
+    if (m < 1440) return "6-24h";
+    return ">24h";
+  };
+  const bucketCount = (arr, fn) => {
+    const out = {};
+    for (const x of arr) out[fn(x)] = (out[fn(x)] || 0) + 1;
+    return out;
+  };
+
+  const buyDist = bucketCount(pairs.map((p) => p.buyPrice), bucketPrice);
+  const sellDist = bucketCount(pairs.map((p) => p.sellPrice), bucketPrice);
+  const holdDist = bucketCount(pairs.map((p) => p.holdMinutes), bucketHold);
+  const deltaDist = bucketCount(pairs.map((p) => p.delta), (d) => {
+    if (d < -0.05) return "<-0.05";
+    if (d < -0.01) return "-0.05..-0.01";
+    if (d < 0.005) return "-0.01..0.005";
+    if (d < 0.02) return "0.005..0.02";
+    if (d < 0.05) return "0.02..0.05";
+    return ">0.05";
+  });
+
+  let buyYes = 0, buyNo = 0;
+  for (const p of pairs) {
+    if (p.buySide.toLowerCase().startsWith("y")) buyYes++;
+    else buyNo++;
+  }
+
+  const holds = pairs.map((p) => p.holdMinutes).sort((a, b) => a - b);
+  const deltas = pairs.map((p) => p.delta).sort((a, b) => a - b);
+  const profits = pairs.map((p) => p.profit).sort((a, b) => a - b);
+
+  const pick = (a, q) => a[Math.max(0, Math.min(a.length - 1, Math.floor(a.length * q)))];
+
+  return {
+    pairsMatched: pairs.length,
+    uniqueMarkets: byMarket.size,
+    buyYes, buyNo,
+    buyDist, sellDist, holdDist, deltaDist,
+    holdMedianMin: pick(holds, 0.5),
+    holdP05Min: pick(holds, 0.05),
+    holdP95Min: pick(holds, 0.95),
+    deltaMedian: pick(deltas, 0.5),
+    deltaAvg: deltas.reduce((s, d) => s + d, 0) / deltas.length,
+    profitablePct: pairs.filter((p) => p.profit > 0).length / pairs.length,
+    profitMedian: pick(profits, 0.5),
+    profitTotal: profits.reduce((s, x) => s + x, 0)
+  };
+}
+
+/** Auto-classify a wallet's strategy from its fingerprint distributions. */
+function classifyStrategy(p) {
+  if (!p || p.pairsMatched < 10) return "INSUFFICIENT_DATA";
+  const total = p.pairsMatched;
+  const pct = (dist, keys) =>
+    keys.reduce((s, k) => s + (dist[k] || 0), 0) / total;
+  const entryHigh = pct(p.buyDist, ["0.95-0.99", "0.99-1.00"]);
+  const exitHigh = pct(p.sellDist, ["0.99-1.00"]);
+  const entryLow = pct(p.buyDist, ["0.00-0.05", "0.05-0.10", "0.10-0.30"]);
+  const entryMid = pct(p.buyDist, ["0.30-0.50", "0.50-0.70"]);
+  const exitMid = pct(p.sellDist, ["0.30-0.50", "0.50-0.70", "0.70-0.90"]);
+  const shortHold = pct(p.holdDist, ["<1min", "1-10min"]);
+  const longHold = pct(p.holdDist, ["6-24h", ">24h"]);
+  const bigLossRate = pct(p.deltaDist, ["<-0.05"]);
+  const noHeavy = p.buyNo / total >= 0.70;
+
+  // Losing strategies first
+  if (p.profitablePct < 0.40 || p.deltaAvg < -0.01 || p.profitTotal < -50) {
+    return "LOSER";
+  }
+
+  // Hidden loser: looks like scalper but bleeds via tail losses
+  if (entryHigh >= 0.70 && exitHigh >= 0.70 && bigLossRate >= 0.05 && p.profitTotal < 50) {
+    return "SCALPER_NO_RISKMGMT";
+  }
+
+  // Clean scalper: enter at 0.95+, exit at 0.99+, short hold, positive avg delta
+  if (entryHigh >= 0.65 && exitHigh >= 0.70 && shortHold >= 0.50 && p.deltaAvg > 0 && noHeavy) {
+    return "SCALPER_NO";
+  }
+
+  // Deep-OTM buy-and-hold for resolution: buy <=0.30, exit near 1.00 or 0.00
+  if (entryLow >= 0.40 && longHold >= 0.30) {
+    return "DEEP_OTM_HOLD";
+  }
+
+  // Directional swing: mid-priced entries, decent deltas, 1h-24h holds
+  if (entryMid >= 0.30 && p.deltaMedian > 0.01 && p.profitablePct >= 0.55) {
+    return "DIRECTIONAL_SWING";
+  }
+
+  // Mixed / swing: balanced entries, medium hold
+  if (p.deltaMedian > 0.01 && p.profitablePct >= 0.55) {
+    return "MIXED_SWING";
+  }
+
+  return "UNCLEAR";
+}
+
+function printPattern(wallet, p) {
+  const label = (name, dist, total) => {
+    const sorted = Object.entries(dist).sort((a, b) => b[1] - a[1]);
+    const parts = sorted.slice(0, 6).map(([k, v]) => `${k}=${((v / total) * 100).toFixed(0)}%`);
+    return `${name}: ${parts.join("  ")}`;
+  };
+  const total = p.pairsMatched;
+  console.log(`\n  ${wallet}`);
+  console.log(`    ${p.pairsMatched} round-trips across ${p.uniqueMarkets} markets`);
+  console.log(`    Side mix:  BUY NO=${((p.buyNo / total) * 100).toFixed(0)}%   BUY YES=${((p.buyYes / total) * 100).toFixed(0)}%`);
+  console.log(`    ${label("Entry price", p.buyDist, total)}`);
+  console.log(`    ${label("Exit price ", p.sellDist, total)}`);
+  console.log(`    ${label("Hold time  ", p.holdDist, total)}`);
+  console.log(`    ${label("Delta      ", p.deltaDist, total)}`);
+  console.log(
+    `    Hold (min): p05=${p.holdP05Min.toFixed(1)}  med=${p.holdMedianMin.toFixed(1)}  p95=${p.holdP95Min.toFixed(1)}   ` +
+    `Delta: med=$${p.deltaMedian.toFixed(4)}  avg=$${p.deltaAvg.toFixed(4)}   ` +
+    `profitable=${(p.profitablePct * 100).toFixed(0)}%`
+  );
+  console.log(`    Realized from paired trades: $${p.profitTotal.toFixed(0)}   median per pair: $${p.profitMedian.toFixed(2)}`);
+}
+
+function dumpTrades(activity, wallet) {
+  const trades = activity.filter((a) => (a?.type ?? "TRADE") === "TRADE");
+  trades.sort((a, b) => num(b.timestamp) - num(a.timestamp));
+  console.log(`\nAll trades for ${wallet} (${trades.length} in last ${lookbackDays}d):\n`);
+  for (const t of trades) {
+    const dt = new Date(num(t.timestamp) * 1000).toISOString().slice(0, 16);
+    const cat = classify(t.title);
+    console.log(
+      `  ${dt}  ${(t.side || "?").padEnd(4)} ${String(t.outcome ?? "").slice(0, 4).padEnd(4)} ` +
+      `@${num(t.price).toFixed(3)} sz=$${num(t.usdcSize).toFixed(0).padStart(5)}  ` +
+      `[${cat}] ${String(t.title || "").slice(0, 60)}`
+    );
+  }
+}
+
+async function main() {
+  console.log(`\nAnalyzing ${wallets.length} wallet(s) over last ${lookbackDays} days...\n`);
+
+  const results = [];
+  const patterns = [];
+  for (const w of wallets) {
+    process.stdout.write(`  ${w.slice(0, 12)}... `);
+    const { events, truncated } = await fetchActivity(w);
+    process.stdout.write(`${events.length} events${truncated ? " [truncated at 3000 cap]" : ""}`);
+    if (events.length === 0) { console.log(" (inactive or blocked)"); continue; }
+    if (dumpMode) { console.log(""); dumpTrades(events, w); return; }
+    if (patternMode) {
+      const p = extractPattern(events);
+      if (!p) { console.log(" (no paired trades)"); continue; }
+      const strat = classifyStrategy(p);
+      console.log(` ${p.pairsMatched} pairs → ${strat}`);
+      printPattern(w, p);
+      patterns.push({ wallet: w, strat, p });
+      continue;
+    }
+    const positions = await fetchPositions(w);
+    const s = summarize(events, positions, w, truncated);
+    console.log(
+      ` real=${s.realized >= 0 ? "+" : ""}$${s.realized.toFixed(0)} ` +
+      `unreal=${s.unrealized >= 0 ? "+" : ""}$${s.unrealized.toFixed(0)} ` +
+      `wr=${(s.winRate * 100).toFixed(0)}% closed=${s.closed}`
+    );
+    results.push(s);
+  }
+
+  if (patternMode) {
+    // Compact cross-wallet comparison so 23 signatures are scannable at a glance.
+    patterns.sort((a, b) => b.p.profitTotal - a.p.profitTotal);
+    console.log(`\n\n=== SUMMARY (${patterns.length} wallets, sorted by paired-trade PnL) ===\n`);
+    console.log(
+      "wallet".padEnd(14),
+      "strategy".padEnd(24),
+      "pairs".padStart(6),
+      "mkts".padStart(5),
+      "PnL".padStart(9),
+      "profit%".padStart(8),
+      "medDelta".padStart(10),
+      "medHold".padStart(10),
+      "BUY NO%".padStart(8)
+    );
+    console.log("-".repeat(105));
+    for (const { wallet, strat, p } of patterns) {
+      const holdStr = p.holdMedianMin < 60
+        ? `${p.holdMedianMin.toFixed(1)}m`
+        : p.holdMedianMin < 1440
+          ? `${(p.holdMedianMin / 60).toFixed(1)}h`
+          : `${(p.holdMedianMin / 1440).toFixed(1)}d`;
+      console.log(
+        `${wallet.slice(0, 12)}..`.padEnd(14),
+        strat.padEnd(24),
+        String(p.pairsMatched).padStart(6),
+        String(p.uniqueMarkets).padStart(5),
+        `${p.profitTotal >= 0 ? "+" : ""}$${p.profitTotal.toFixed(0)}`.padStart(9),
+        `${(p.profitablePct * 100).toFixed(0)}%`.padStart(8),
+        `$${p.deltaMedian.toFixed(4)}`.padStart(10),
+        holdStr.padStart(10),
+        `${((p.buyNo / p.pairsMatched) * 100).toFixed(0)}%`.padStart(8)
+      );
+    }
+
+    // Group by strategy so we see how many examples of each exist.
+    const byStrat = {};
+    for (const { strat, p } of patterns) {
+      if (!byStrat[strat]) byStrat[strat] = { count: 0, pnl: 0, pairs: 0 };
+      byStrat[strat].count++;
+      byStrat[strat].pnl += p.profitTotal;
+      byStrat[strat].pairs += p.pairsMatched;
+    }
+    console.log(`\n=== Strategy clusters ===\n`);
+    console.log("strategy".padEnd(26), "wallets".padStart(8), "total PnL".padStart(12), "total pairs".padStart(13));
+    console.log("-".repeat(65));
+    const order = Object.entries(byStrat).sort((a, b) => b[1].pnl - a[1].pnl);
+    for (const [strat, s] of order) {
+      console.log(
+        strat.padEnd(26),
+        String(s.count).padStart(8),
+        `${s.pnl >= 0 ? "+" : ""}$${s.pnl.toFixed(0)}`.padStart(12),
+        String(s.pairs).padStart(13)
+      );
+    }
+    return;
+  }
+  if (results.length === 0) {
+    console.log("\nNo activity found.");
+    return;
+  }
+
+  results.sort((a, b) => b.realized + b.unrealized - (a.realized + a.unrealized));
+
+  console.log(`\n=== Ranked by total PnL (realized + unrealized, last ${lookbackDays}d) ===\n`);
+  console.log(
+    "wallet".padEnd(14),
+    "tr".padStart(5),
+    "closed".padStart(7),
+    "rdm".padStart(4),
+    "win%".padStart(6),
+    "realized".padStart(10),
+    "unreal".padStart(9),
+    "avgW/L".padStart(14),
+    "medSz".padStart(7),
+    "top cat".padStart(14),
+    "idle".padStart(5)
+  );
+  console.log("-".repeat(115));
+  for (const s of results) {
+    const topCat = Object.entries(s.catPct).sort((a, b) => b[1] - a[1])[0];
+    const catStr = topCat ? `${topCat[0]}(${(topCat[1] * 100).toFixed(0)}%)` : "-";
+    console.log(
+      `${s.user.slice(0, 12)}..`.padEnd(14),
+      String(s.trades).padStart(5),
+      String(s.closed).padStart(7),
+      String(s.redeemed).padStart(4),
+      `${(s.winRate * 100).toFixed(0)}%`.padStart(6),
+      `${s.realized >= 0 ? "+" : ""}$${s.realized.toFixed(0)}`.padStart(10),
+      `${s.unrealized >= 0 ? "+" : ""}$${s.unrealized.toFixed(0)}`.padStart(9),
+      `+${s.avgWin.toFixed(1)}/${s.avgLoss.toFixed(1)}`.padStart(14),
+      `$${s.medSize.toFixed(0)}`.padStart(7),
+      catStr.padStart(14),
+      s.daysSinceLast.toFixed(0).padStart(5)
+    );
+  }
+
+  const copyable = results.filter((s) =>
+    s.daysSinceLast < 14 &&
+    s.winRate >= 0.60 &&
+    s.realized + s.unrealized > 0 &&
+    s.medSize < 1000 &&
+    s.closed >= 20
+  );
+
+  console.log(`\n=== Copy-trade candidates (${copyable.length}/${results.length}) ===`);
+  console.log("Filters: active ≤14d, win rate ≥60%, total PnL > 0, median < $1000, ≥20 closed positions\n");
+  for (const s of copyable) {
+    console.log(`  ${s.user}`);
+    console.log(`    ${s.trades} trades (${s.buys}B/${s.sells}S), ${s.closed} closed (${s.redeemed} redeemed), ${s.openPositions} open`);
+    console.log(`    Win rate: ${(s.winRate * 100).toFixed(0)}%  (${s.wins}W/${s.losses}L)   avgW=+$${s.avgWin.toFixed(1)}  avgL=$${s.avgLoss.toFixed(1)}   p05/p95=$${s.p05.toFixed(1)}/$${s.p95.toFixed(1)}`);
+    console.log(`    Realized: ${s.realized >= 0 ? "+" : ""}$${s.realized.toFixed(0)}   Unrealized: ${s.unrealized >= 0 ? "+" : ""}$${s.unrealized.toFixed(0)}   Volume: $${s.volume.toFixed(0)}`);
+    console.log(`    Median order: $${s.medSize.toFixed(0)}   Max: $${s.maxSize.toFixed(0)}`);
+    console.log(`    PnL by category:`, Object.entries(s.catPnl).sort((a, b) => b[1] - a[1]).map(([c, p]) => `${c}:${p >= 0 ? "+" : ""}$${p.toFixed(0)}`).join("  "));
+    console.log(`    Last active: ${new Date(s.lastTs * 1000).toISOString().slice(0, 10)} (${s.daysSinceLast.toFixed(0)}d ago)`);
+    console.log(`    Top winning markets:`);
+    for (const [m, p] of s.topWinners) {
+      console.log(`      +$${p.toFixed(0).padStart(5)}  ${String(m).slice(0, 75)}`);
+    }
+    if (s.topLosers.length > 0 && s.topLosers[0][1] < -10) {
+      console.log(`    Top losing markets:`);
+      for (const [m, p] of s.topLosers) {
+        if (p < 0) console.log(`      $${p.toFixed(0).padStart(6)}  ${String(m).slice(0, 75)}`);
+      }
+    }
+    console.log("");
+  }
+
+  const outPath = path.join("data", "wallet-analysis.json");
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
+  fs.writeFileSync(outPath, JSON.stringify(results, null, 2));
+  console.log(`Full detail → ${outPath}`);
+  console.log(`\nFor a per-trade dump on a promising wallet: npm run analyze-wallets -- --dump=0x...`);
+}
+
+main().catch((e) => {
+  console.error("analyze-wallets failed:", e);
+  process.exit(1);
+});

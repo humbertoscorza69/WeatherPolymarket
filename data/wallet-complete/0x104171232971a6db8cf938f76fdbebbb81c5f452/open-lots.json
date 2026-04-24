@@ -1,0 +1,1483 @@
+[
+  {
+    "key": "0x13259f608d77dfcb55a901c3867287d93fc6afd9bba2af0a3dca66273b37d590-0",
+    "title": "Will the highest temperature in Shenzhen be 29°C on April 12?",
+    "lots": [
+      {
+        "shares": 6.03,
+        "price": 0.999,
+        "usdc": 6.02397,
+        "ts": 1776005817
+      },
+      {
+        "shares": 2.42,
+        "price": 0.999,
+        "usdc": 2.41758,
+        "ts": 1776008191
+      },
+      {
+        "shares": 3.9,
+        "price": 0.999,
+        "usdc": 3.8961,
+        "ts": 1776011465
+      },
+      {
+        "shares": 1.58,
+        "price": 0.999,
+        "usdc": 1.57842,
+        "ts": 1776011675
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1776012739
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1776012739
+      },
+      {
+        "shares": 5.41,
+        "price": 0.999,
+        "usdc": 5.40459,
+        "ts": 1776013131
+      },
+      {
+        "shares": 30.97,
+        "price": 0.999,
+        "usdc": 30.93903,
+        "ts": 1776014167
+      },
+      {
+        "shares": 286.69,
+        "price": 0.999,
+        "usdc": 286.40331,
+        "ts": 1776015169
+      }
+    ],
+    "totalShares": 347
+  },
+  {
+    "key": "0xd6cadd12fc0becd918998c62abfc270fb1701645915cf588fcc2f92a7d1560fb-0",
+    "title": "Will the highest temperature in Seoul be 19°C on April 12?",
+    "lots": [
+      {
+        "shares": 5.37,
+        "price": 0.999,
+        "usdc": 5.36463,
+        "ts": 1776006803
+      },
+      {
+        "shares": 13.95,
+        "price": 0.999,
+        "usdc": 13.93605,
+        "ts": 1776007795
+      }
+    ],
+    "totalShares": 19.32
+  },
+  {
+    "key": "0xefc672b65c91cde18a9e16bb51a578963444db9654a90cb47c530516fec80a5c-0",
+    "title": "Pistons vs. Pacers: O/U 230.5",
+    "lots": [
+      {
+        "shares": 11.152470000000001,
+        "price": 0.9775,
+        "usdc": 10.9089,
+        "ts": 1776038009
+      }
+    ],
+    "totalShares": 11.152470000000001
+  },
+  {
+    "key": "0x64ee71660d28e072e2858f0c3595f8ed6bd7d084cf5c974cbaa944504f6ece1e-0",
+    "title": "Pistons vs. Pacers: O/U 229.5",
+    "lots": [
+      {
+        "shares": 535.46753,
+        "price": 0.993,
+        "usdc": 531.83094,
+        "ts": 1776038025
+      }
+    ],
+    "totalShares": 535.46753
+  },
+  {
+    "key": "0x32754ad95e25a4c806609f4de968c3a90e414348e090b12a56d58adff65d82c4-0",
+    "title": "Wizards vs. Cavaliers: O/U 235.5",
+    "lots": [
+      {
+        "shares": 522.79529,
+        "price": 0.9856785591373178,
+        "usdc": 515.5296,
+        "ts": 1776038201
+      }
+    ],
+    "totalShares": 522.79529
+  },
+  {
+    "key": "0x7371452a836f74a45276870cfb6694cad4fabb381e2a679d4ce77dd5d3fa50d2-0",
+    "title": "Wizards vs. Cavaliers: O/U 233.5",
+    "lots": [
+      {
+        "shares": 59.982,
+        "price": 0.99,
+        "usdc": 59.4,
+        "ts": 1776038237
+      }
+    ],
+    "totalShares": 59.982
+  },
+  {
+    "key": "0xb5e76e6a0801b8f4c15dfb9f1a98ff92b786fb46a63b83171185088f6e915d80-0",
+    "title": "Will the highest temperature in Chicago be 58°F or higher on April 14?",
+    "lots": [
+      {
+        "shares": 49.9975,
+        "price": 0.999,
+        "usdc": 49.95,
+        "ts": 1776125369
+      }
+    ],
+    "totalShares": 49.9975
+  },
+  {
+    "key": "0x52b6e6b50e6dac42ec222e88aa45a2cc142a672ffdb4f8bd65f4c6aa6d29ed63-0",
+    "title": "LoL: Invictus Gaming vs Top Esports - Game 2 Winner",
+    "lots": [
+      {
+        "shares": 499.85,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1776167489
+      }
+    ],
+    "totalShares": 499.85
+  },
+  {
+    "key": "0x84e5de56c51c16698acb0d6d279ebf0d05efc119dded423a569455139627453c-0",
+    "title": "Will the highest temperature in Lagos be 28°C or below on April 16?",
+    "lots": [
+      {
+        "shares": 175.1256,
+        "price": 0.15615806169328375,
+        "usdc": 28.55194,
+        "ts": 1776328370
+      },
+      {
+        "shares": 107.92469,
+        "price": 0.15256166814551908,
+        "usdc": 17.1937,
+        "ts": 1776332324
+      }
+    ],
+    "totalShares": 283.05029
+  },
+  {
+    "key": "0x954e8a8d9ba0d3f055cbe3032efdeae98ab7940cbea09266a249e067c32bcc86-0",
+    "title": "Will the highest temperature in Lagos be 29°C on April 16?",
+    "lots": [
+      {
+        "shares": 107.61783,
+        "price": 0.002,
+        "usdc": 0.22654,
+        "ts": 1776329780
+      },
+      {
+        "shares": 1.53,
+        "price": 0.002,
+        "usdc": 0.00306,
+        "ts": 1776329782
+      },
+      {
+        "shares": 9.018,
+        "price": 0.002,
+        "usdc": 0.018036,
+        "ts": 1776330328
+      },
+      {
+        "shares": 124.50208,
+        "price": 0.00794969465648855,
+        "usdc": 1.04141,
+        "ts": 1776330854
+      }
+    ],
+    "totalShares": 242.66791
+  },
+  {
+    "key": "0xe530253097a9034a4cc56566e038cb0cecafa48414594ff0f84b47eff266f425-0",
+    "title": "Will the highest temperature in Seoul be 20°C on April 15?",
+    "lots": [
+      {
+        "shares": 5.784269999999999,
+        "price": 0.09,
+        "usdc": 0.5454,
+        "ts": 1776226356
+      },
+      {
+        "shares": 63.94,
+        "price": 0.1,
+        "usdc": 6.394,
+        "ts": 1776226358
+      }
+    ],
+    "totalShares": 69.72426999999999
+  },
+  {
+    "key": "0x4aaedcfb9a2a54ffbe977bceb138cd2aeea25bb17a277d04e9c0defaf2677041-0",
+    "title": "Will the highest temperature in Lagos be 28°C on April 17?",
+    "lots": [
+      {
+        "shares": 232.9221,
+        "price": 0.014048979591836736,
+        "usdc": 3.442,
+        "ts": 1776332466
+      },
+      {
+        "shares": 206.59551,
+        "price": 0.041059907834101385,
+        "usdc": 8.91,
+        "ts": 1776332732
+      }
+    ],
+    "totalShares": 439.51761
+  },
+  {
+    "key": "0x51fa6f5bd0b3f1210163a3cee4eb74442f3b14dc230d80f7ddbbc5c37ad8e822-0",
+    "title": "Will the highest temperature in Lagos be 29°C on April 17?",
+    "lots": [
+      {
+        "shares": 0.006770000000017262,
+        "price": 0.00827052,
+        "usdc": 4.13526,
+        "ts": 1776332456
+      }
+    ],
+    "totalShares": 0.006770000000017262
+  },
+  {
+    "key": "0xdb992948445653e6a40582ce4f4bd1c70c97c6c5395509bc05d6b2d372807595-0",
+    "title": "Will the highest temperature in Lagos be 27°C or below on April 17?",
+    "lots": [
+      {
+        "shares": 0.0012500000000166267,
+        "price": 0.04,
+        "usdc": 1,
+        "ts": 1776332516
+      }
+    ],
+    "totalShares": 0.0012500000000166267
+  },
+  {
+    "key": "0x282a7b27aa344ac16219a19254f36af87c0f026c69350df31b73c24d6329a8b4-0",
+    "title": "Will the highest temperature in Lagos be 28°C on April 18?",
+    "lots": [
+      {
+        "shares": 0.00023000000004458343,
+        "price": 0.065,
+        "usdc": 13,
+        "ts": 1776514424
+      }
+    ],
+    "totalShares": 0.00023000000004458343
+  },
+  {
+    "key": "0x9b90cb90730a99d2af6af271623b895f44a7c535485987a2ca3cb8c1458f8371-0",
+    "title": "Will the highest temperature in Lagos be 29°C on April 18?",
+    "lots": [
+      {
+        "shares": 334.923,
+        "price": 0.09916719890510949,
+        "usdc": 34.77992,
+        "ts": 1776514318
+      },
+      {
+        "shares": 97.87,
+        "price": 0.03,
+        "usdc": 2.9361,
+        "ts": 1776514586
+      },
+      {
+        "shares": 14.83,
+        "price": 0.03,
+        "usdc": 0.4449,
+        "ts": 1776514586
+      },
+      {
+        "shares": 57.3,
+        "price": 0.03,
+        "usdc": 1.719,
+        "ts": 1776514586
+      }
+    ],
+    "totalShares": 504.923
+  },
+  {
+    "key": "0x65a2078041060029bec522da2c8c329702392274228016c657d34051ac281548-0",
+    "title": "Will the highest temperature in Chicago be between 58-59°F on April 19?",
+    "lots": [
+      {
+        "shares": 80,
+        "price": 0.011,
+        "usdc": 0.88,
+        "ts": 1776420694
+      },
+      {
+        "shares": 17,
+        "price": 0.011,
+        "usdc": 0.187,
+        "ts": 1776444644
+      }
+    ],
+    "totalShares": 97
+  },
+  {
+    "key": "0x5211384e2fab60523eeb39ecd80eb5ee19375a0fb1bf5e919ff9ac13e21a401c-0",
+    "title": "Dota 2: Team Spirit vs Vici Gaming (BO3) - PGL Wallachia Group Stage",
+    "lots": [
+      {
+        "shares": 99.79,
+        "price": 0.93,
+        "usdc": 93,
+        "ts": 1776507088
+      }
+    ],
+    "totalShares": 99.79
+  },
+  {
+    "key": "0xf83d147eeaa386c0cc66cb6408d231d97a70fa3fd3741e609e9a1c08e17ecef8-0",
+    "title": "Will the highest temperature in Cape Town be 17°C on April 18?",
+    "lots": [
+      {
+        "shares": 175,
+        "price": 0.995,
+        "usdc": 174.125,
+        "ts": 1776538314
+      }
+    ],
+    "totalShares": 175
+  },
+  {
+    "key": "0x954ef2c1b010c7150fb5bfa763855f9bb0925b63954e776432555aa67ce0d950-0",
+    "title": "Spread: Knicks (-4.5)",
+    "lots": [
+      {
+        "shares": 22.82932,
+        "price": 0.999,
+        "usdc": 22.80717,
+        "ts": 1776559768
+      }
+    ],
+    "totalShares": 22.82932
+  },
+  {
+    "key": "0x55a193f65e2d3cb8ef080edf92a298cdbfb0488042a2403270aa1d049283dc8d-0",
+    "title": "Will Cruzeiro EC win on 2026-04-18?",
+    "lots": [
+      {
+        "shares": 304.19246000000004,
+        "price": 0.9958862702560562,
+        "usdc": 302.97848,
+        "ts": 1776561624
+      },
+      {
+        "shares": 8.45,
+        "price": 0.993,
+        "usdc": 8.39085,
+        "ts": 1776561644
+      },
+      {
+        "shares": 10,
+        "price": 0.998,
+        "usdc": 9.98,
+        "ts": 1776562116
+      }
+    ],
+    "totalShares": 322.64246
+  },
+  {
+    "key": "0x559dc764d76e2dbbf5e0fb79345e384f2feabe15ce04c6d3cfca1878e2b5e988-0",
+    "title": "Will the highest temperature in Chicago be 54°F or higher on April 21?",
+    "lots": [
+      {
+        "shares": 347.99213,
+        "price": 0.969707620796511,
+        "usdc": 337.9625,
+        "ts": 1776574342
+      }
+    ],
+    "totalShares": 347.99213
+  },
+  {
+    "key": "0xe6e1107d3db0318205fac2a2be5b36a9f1aeaf89d89ee9b3a7f31142b794c6d5-0",
+    "title": "Dota 2: Xtreme Gaming vs Aurora - Game 1 Winner",
+    "lots": [
+      {
+        "shares": 99.7,
+        "price": 0.9,
+        "usdc": 90,
+        "ts": 1776584796
+      }
+    ],
+    "totalShares": 99.7
+  },
+  {
+    "key": "0xaa626a7ead74a5ad8dd678eecc6572fed73c9622b26a58377ec7cd9118f49dd9-0",
+    "title": "Will the highest temperature in Tokyo be 23°C on April 19?",
+    "lots": [
+      {
+        "shares": 563.33282,
+        "price": 0.9979698255205097,
+        "usdc": 562.24622,
+        "ts": 1776586640
+      }
+    ],
+    "totalShares": 563.33282
+  },
+  {
+    "key": "0x93fbb4ef7eb5833fff225861cad4d43485bfcde8aa1057cf6b0cb0d785699cac-0",
+    "title": "LoL: Top Esports vs Invictus Gaming (BO3) - LPL Group Ascend",
+    "lots": [
+      {
+        "shares": 33.48,
+        "price": 0.94,
+        "usdc": 31.4712,
+        "ts": 1776594826
+      },
+      {
+        "shares": 25,
+        "price": 0.94,
+        "usdc": 23.5,
+        "ts": 1776594828
+      },
+      {
+        "shares": 46.666665,
+        "price": 0.940000019285715,
+        "usdc": 43.866666,
+        "ts": 1776594842
+      },
+      {
+        "shares": 41.87,
+        "price": 0.94,
+        "usdc": 39.3578,
+        "ts": 1776594858
+      },
+      {
+        "shares": 51.51,
+        "price": 0.98,
+        "usdc": 50.4798,
+        "ts": 1776594958
+      },
+      {
+        "shares": 51.51,
+        "price": 0.98,
+        "usdc": 50.4798,
+        "ts": 1776594960
+      },
+      {
+        "shares": 1.96,
+        "price": 0.98,
+        "usdc": 1.9208,
+        "ts": 1776594974
+      },
+      {
+        "shares": 95.02,
+        "price": 0.98,
+        "usdc": 93.1196,
+        "ts": 1776594984
+      }
+    ],
+    "totalShares": 347.016665
+  },
+  {
+    "key": "0x8a0a9a1e4232967f5914c0fac53c00b030d947ff61959a4053726cb175f505e0-0",
+    "title": "Will the highest temperature in Hong Kong be 28°C on April 18?",
+    "lots": [
+      {
+        "shares": 754.56,
+        "price": 0.997,
+        "usdc": 752.29632,
+        "ts": 1776597482
+      },
+      {
+        "shares": 1,
+        "price": 0.997,
+        "usdc": 0.997,
+        "ts": 1776598198
+      },
+      {
+        "shares": 1.23,
+        "price": 0.997,
+        "usdc": 1.22631,
+        "ts": 1776599150
+      },
+      {
+        "shares": 3.81,
+        "price": 0.997,
+        "usdc": 3.79857,
+        "ts": 1776602196
+      },
+      {
+        "shares": 10.07,
+        "price": 0.997,
+        "usdc": 10.03979,
+        "ts": 1776604746
+      },
+      {
+        "shares": 1.97,
+        "price": 0.99,
+        "usdc": 1.9503,
+        "ts": 1776607186
+      }
+    ],
+    "totalShares": 772.64
+  },
+  {
+    "key": "0x074bbefae690c20ba56c772adbda29597eeeb36adc21c708b4a1483cadee8298-0",
+    "title": "Will the highest temperature in Hong Kong be 28°C on April 17?",
+    "lots": [
+      {
+        "shares": 73.09,
+        "price": 0.99,
+        "usdc": 72.3591,
+        "ts": 1776602466
+      },
+      {
+        "shares": 1000,
+        "price": 0.99,
+        "usdc": 990,
+        "ts": 1776606082
+      },
+      {
+        "shares": 31.13,
+        "price": 0.99,
+        "usdc": 30.8187,
+        "ts": 1776606206
+      },
+      {
+        "shares": 29.85,
+        "price": 0.99,
+        "usdc": 29.5515,
+        "ts": 1776606234
+      },
+      {
+        "shares": 29.33,
+        "price": 0.99,
+        "usdc": 29.0367,
+        "ts": 1776606272
+      },
+      {
+        "shares": 29.3,
+        "price": 0.99,
+        "usdc": 29.007,
+        "ts": 1776606296
+      },
+      {
+        "shares": 29.02,
+        "price": 0.99,
+        "usdc": 28.7298,
+        "ts": 1776606322
+      },
+      {
+        "shares": 50,
+        "price": 0.99,
+        "usdc": 49.5,
+        "ts": 1776606610
+      },
+      {
+        "shares": 7.76,
+        "price": 0.99,
+        "usdc": 7.6824,
+        "ts": 1776608196
+      },
+      {
+        "shares": 150.33,
+        "price": 0.99,
+        "usdc": 148.8267,
+        "ts": 1776610872
+      },
+      {
+        "shares": 720.52,
+        "price": 0.99,
+        "usdc": 713.3148,
+        "ts": 1776610872
+      },
+      {
+        "shares": 5,
+        "price": 0.99,
+        "usdc": 4.95,
+        "ts": 1776610988
+      },
+      {
+        "shares": 81.996,
+        "price": 0.99,
+        "usdc": 81.17604,
+        "ts": 1776616130
+      }
+    ],
+    "totalShares": 2237.326
+  },
+  {
+    "key": "0xcc7cb65419d004efb42bd9aaca6d4856979179f46596b5b6fd241d652b1b2d10-0",
+    "title": "Dota 2: Team Spirit vs Team Falcons - Game 1 Winner",
+    "lots": [
+      {
+        "shares": 0.009500000000002728,
+        "price": 0.95,
+        "usdc": 95,
+        "ts": 1776604602
+      }
+    ],
+    "totalShares": 0.009500000000002728
+  },
+  {
+    "key": "0xd4dd443ed9d80267e7f929626566c4f9451d80d9b9f2ec9fd4d40401268e5019-0",
+    "title": "Will Red Bull Bragantino win on 2026-04-19?",
+    "lots": [
+      {
+        "shares": 186.85319,
+        "price": 0.997,
+        "usdc": 186.30939,
+        "ts": 1776640740
+      },
+      {
+        "shares": 141.36,
+        "price": 0.992,
+        "usdc": 140.22912,
+        "ts": 1776640836
+      },
+      {
+        "shares": 3.58,
+        "price": 0.999,
+        "usdc": 3.57642,
+        "ts": 1776647452
+      },
+      {
+        "shares": 15.45,
+        "price": 0.999,
+        "usdc": 15.43455,
+        "ts": 1776647582
+      },
+      {
+        "shares": 13.91,
+        "price": 0.999,
+        "usdc": 13.89609,
+        "ts": 1776648390
+      },
+      {
+        "shares": 1.22,
+        "price": 0.999,
+        "usdc": 1.21878,
+        "ts": 1776648430
+      },
+      {
+        "shares": 1.54,
+        "price": 0.999,
+        "usdc": 1.53846,
+        "ts": 1776648582
+      },
+      {
+        "shares": 5.68,
+        "price": 0.999,
+        "usdc": 5.67432,
+        "ts": 1776649086
+      },
+      {
+        "shares": 5.59,
+        "price": 0.999,
+        "usdc": 5.58441,
+        "ts": 1776650134
+      },
+      {
+        "shares": 8.65,
+        "price": 0.999,
+        "usdc": 8.64135,
+        "ts": 1776652842
+      },
+      {
+        "shares": 7.18,
+        "price": 0.999,
+        "usdc": 7.17282,
+        "ts": 1776652882
+      }
+    ],
+    "totalShares": 391.01319000000007
+  },
+  {
+    "key": "0x4ea35416569073ec35995c279e43f2b00233f421cd55dc5a1766b82c8bf954ff-1",
+    "title": "Spread: San Jose Earthquakes (-1.5)",
+    "lots": [
+      {
+        "shares": 0.000010999999949135031,
+        "price": 0.94,
+        "usdc": 140.9906,
+        "ts": 1776643050
+      }
+    ],
+    "totalShares": 0.000010999999949135031
+  },
+  {
+    "key": "0xef92c7d1cb46adedd5c0c2b915afb873b7f5387308791ce00981e6e39b8012e1-0",
+    "title": "Will San Jose Earthquakes win on 2026-04-19?",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.979875,
+        "usdc": 195.975,
+        "ts": 1776645470
+      }
+    ],
+    "totalShares": 200
+  },
+  {
+    "key": "0xaa204287b4459f475b133f867b53059094ded0a33f68d51095be17906d6e038e-0",
+    "title": "Magic vs. Pistons: O/U 206.5",
+    "lots": [
+      {
+        "shares": 5.57833,
+        "price": 0.99,
+        "usdc": 5.5242,
+        "ts": 1776646854
+      }
+    ],
+    "totalShares": 5.57833
+  },
+  {
+    "key": "0xd823d88292134e5cab90467094dcd04ce0078d58ba558b4dcfdfab3e36102eee-0",
+    "title": "Will the highest temperature in Chicago be 50°F or higher on April 22?",
+    "lots": [
+      {
+        "shares": 656.22583,
+        "price": 0.9919520327803927,
+        "usdc": 651.20659,
+        "ts": 1776695168
+      },
+      {
+        "shares": 420,
+        "price": 0.99,
+        "usdc": 415.8,
+        "ts": 1776696708
+      },
+      {
+        "shares": 25,
+        "price": 0.99,
+        "usdc": 24.75,
+        "ts": 1776702564
+      },
+      {
+        "shares": 555,
+        "price": 0.99,
+        "usdc": 549.45,
+        "ts": 1776727528
+      }
+    ],
+    "totalShares": 1656.2258299999999
+  },
+  {
+    "key": "0x7b3b8419f317638c89998ab4e1f6f5cd19845f4a0d3a1f9259d878779c9f7413-0",
+    "title": "Will the highest temperature in Denver be 56°F or higher on April 21?",
+    "lots": [
+      {
+        "shares": 1082.22938,
+        "price": 0.995,
+        "usdc": 1077.0875,
+        "ts": 1776695484
+      },
+      {
+        "shares": 2.01,
+        "price": 0.995,
+        "usdc": 1.99995,
+        "ts": 1776710438
+      },
+      {
+        "shares": 135.92,
+        "price": 0.995,
+        "usdc": 135.2404,
+        "ts": 1776712320
+      }
+    ],
+    "totalShares": 1220.15938
+  },
+  {
+    "key": "0xccd40af3c0ae030419ee7ddf39c0a17d665b71d0971f1766bb8f7b2809e5bf94-0",
+    "title": "Will the highest temperature in Denver be 64°F or higher on April 22?",
+    "lots": [
+      {
+        "shares": 337.86025,
+        "price": 0.987,
+        "usdc": 333.68496,
+        "ts": 1776695506
+      },
+      {
+        "shares": 758.19,
+        "price": 0.988,
+        "usdc": 749.09172,
+        "ts": 1776696360
+      }
+    ],
+    "totalShares": 1096.05025
+  },
+  {
+    "key": "0x2150894e5830e270cabf521983c73b7fccef2aac8b34e3cf917fa02098893045-0",
+    "title": "Will the highest temperature in Shanghai be 19°C on April 20?",
+    "lots": [
+      {
+        "shares": 1115.44423,
+        "price": 0.999,
+        "usdc": 1114.3845,
+        "ts": 1776696492
+      },
+      {
+        "shares": 199.99,
+        "price": 0.999,
+        "usdc": 199.8,
+        "ts": 1776696532
+      },
+      {
+        "shares": 19.99,
+        "price": 0.999,
+        "usdc": 19.97001,
+        "ts": 1776696536
+      },
+      {
+        "shares": 371,
+        "price": 0.999,
+        "usdc": 370.629,
+        "ts": 1776702390
+      },
+      {
+        "shares": 2,
+        "price": 0.999,
+        "usdc": 1.998,
+        "ts": 1776702830
+      },
+      {
+        "shares": 2.25,
+        "price": 0.999,
+        "usdc": 2.24775,
+        "ts": 1776704850
+      }
+    ],
+    "totalShares": 1710.67423
+  },
+  {
+    "key": "0x68c6d4c37c22e4d617041a0b4224b139c31bd9b8534cd1def9958d85cd4908f3-0",
+    "title": "Will the highest temperature in Chicago be 62°F or higher on April 23?",
+    "lots": [
+      {
+        "shares": 3.99,
+        "price": 0.992,
+        "usdc": 3.95808,
+        "ts": 1776750654
+      },
+      {
+        "shares": 5.02,
+        "price": 0.992,
+        "usdc": 4.97984,
+        "ts": 1776758858
+      },
+      {
+        "shares": 23.07,
+        "price": 0.992,
+        "usdc": 22.88544,
+        "ts": 1776777110
+      },
+      {
+        "shares": 1.12,
+        "price": 0.992,
+        "usdc": 1.11104,
+        "ts": 1776778380
+      },
+      {
+        "shares": 25,
+        "price": 0.992,
+        "usdc": 24.8,
+        "ts": 1776780044
+      },
+      {
+        "shares": 2.74,
+        "price": 0.992,
+        "usdc": 2.71808,
+        "ts": 1776781680
+      },
+      {
+        "shares": 125,
+        "price": 0.992,
+        "usdc": 124,
+        "ts": 1776782966
+      },
+      {
+        "shares": 125,
+        "price": 0.992,
+        "usdc": 124,
+        "ts": 1776785126
+      },
+      {
+        "shares": 6.53,
+        "price": 0.992,
+        "usdc": 6.47776,
+        "ts": 1776787622
+      },
+      {
+        "shares": 125,
+        "price": 0.992,
+        "usdc": 124,
+        "ts": 1776788916
+      },
+      {
+        "shares": 156.8125,
+        "price": 0.992,
+        "usdc": 155.558,
+        "ts": 1776792050
+      },
+      {
+        "shares": 76.25,
+        "price": 0.992,
+        "usdc": 75.64,
+        "ts": 1776794764
+      },
+      {
+        "shares": 5.02,
+        "price": 0.992,
+        "usdc": 4.97984,
+        "ts": 1776795732
+      },
+      {
+        "shares": 1.39,
+        "price": 0.992,
+        "usdc": 1.37888,
+        "ts": 1776807752
+      },
+      {
+        "shares": 351.47452999999996,
+        "price": 0.994,
+        "usdc": 349.47052,
+        "ts": 1776818744
+      },
+      {
+        "shares": 99.975,
+        "price": 0.995,
+        "usdc": 99.5,
+        "ts": 1776818808
+      },
+      {
+        "shares": 360.833332,
+        "price": 0.9940000027491916,
+        "usdc": 358.668333,
+        "ts": 1776823428
+      },
+      {
+        "shares": 166.666665,
+        "price": 0.99400000594,
+        "usdc": 165.666666,
+        "ts": 1776829970
+      }
+    ],
+    "totalShares": 1660.8920269999999
+  },
+  {
+    "key": "0x82b05f7569098e2003e79d5a330e6627df5c6d269c1efd7f51ab7686abe2725d-1",
+    "title": "Will the lowest temperature in New York City be 58°F or higher on April 23?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.99,
+        "usdc": 990,
+        "ts": 1776847134
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0x81cddb9f7c7c17e33223a3f3ac277b7cd61c10c047a2ee509f4b5dc64a032644-0",
+    "title": "Will the highest temperature in Seoul be 14°C on April 21?",
+    "lots": [
+      {
+        "shares": 1138.49,
+        "price": 0.996,
+        "usdc": 1133.93604,
+        "ts": 1776762412
+      },
+      {
+        "shares": 163.17,
+        "price": 0.996,
+        "usdc": 162.51732,
+        "ts": 1776762476
+      },
+      {
+        "shares": 253.15,
+        "price": 0.998,
+        "usdc": 252.6437,
+        "ts": 1776766760
+      },
+      {
+        "shares": 19.15,
+        "price": 0.998,
+        "usdc": 19.1117,
+        "ts": 1776767058
+      },
+      {
+        "shares": 213.66,
+        "price": 0.998,
+        "usdc": 213.23268,
+        "ts": 1776767092
+      },
+      {
+        "shares": 23.5,
+        "price": 0.998,
+        "usdc": 23.453,
+        "ts": 1776767138
+      },
+      {
+        "shares": 4490.54,
+        "price": 0.998,
+        "usdc": 4481.55892,
+        "ts": 1776767262
+      },
+      {
+        "shares": 48.73,
+        "price": 0.994,
+        "usdc": 48.43762,
+        "ts": 1776770776
+      },
+      {
+        "shares": 3800.32,
+        "price": 0.994,
+        "usdc": 3777.51808,
+        "ts": 1776772000
+      },
+      {
+        "shares": 1150.95,
+        "price": 0.994,
+        "usdc": 1144.0443,
+        "ts": 1776775564
+      }
+    ],
+    "totalShares": 11301.66
+  },
+  {
+    "key": "0x0fc73fcf972a65387c83b3c88c33a681675fa7e2ed067b8d65b31018db021e23-1",
+    "title": "Will the highest temperature in Austin be between 64-65°F on April 22?",
+    "lots": [
+      {
+        "shares": 36.798159999999996,
+        "price": 0.999,
+        "usdc": 36.7632,
+        "ts": 1776819456
+      },
+      {
+        "shares": 191.49,
+        "price": 0.999,
+        "usdc": 191.29851,
+        "ts": 1776819544
+      },
+      {
+        "shares": 110.65,
+        "price": 0.999,
+        "usdc": 110.53935,
+        "ts": 1776832208
+      },
+      {
+        "shares": 661.06,
+        "price": 0.999,
+        "usdc": 660.39894,
+        "ts": 1776834010
+      }
+    ],
+    "totalShares": 999.99816
+  },
+  {
+    "key": "0xe37f1d2d918090f8399eaa8eeb3789c0c78fe76e26a655e35a98dc3d3e6dc086-0",
+    "title": "Will the highest temperature in Hong Kong be 28°C on April 21?",
+    "lots": [
+      {
+        "shares": 500,
+        "price": 0.998,
+        "usdc": 499,
+        "ts": 1776821084
+      },
+      {
+        "shares": 28.21,
+        "price": 0.998,
+        "usdc": 28.15358,
+        "ts": 1776822538
+      },
+      {
+        "shares": 19.11,
+        "price": 0.998,
+        "usdc": 19.07178,
+        "ts": 1776824108
+      },
+      {
+        "shares": 22.09,
+        "price": 0.998,
+        "usdc": 22.04582,
+        "ts": 1776824574
+      }
+    ],
+    "totalShares": 569.4100000000001
+  },
+  {
+    "key": "0x3fa424464cf2477061ecbfcdce70bc197547de8e87691c10e3abf3a9d45abc71-1",
+    "title": "Will the highest temperature in Chicago be between 60-61°F on April 23?",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.995,
+        "usdc": 199,
+        "ts": 1776823436
+      },
+      {
+        "shares": 200,
+        "price": 0.995,
+        "usdc": 199,
+        "ts": 1776825860
+      },
+      {
+        "shares": 200,
+        "price": 0.995,
+        "usdc": 199,
+        "ts": 1776854200
+      },
+      {
+        "shares": 200,
+        "price": 0.995,
+        "usdc": 199,
+        "ts": 1776868550
+      }
+    ],
+    "totalShares": 800
+  },
+  {
+    "key": "0x3b73ab4f5d2f2713fdcd3850ea07d8f3cdd0c796603161e246197552f24f260e-0",
+    "title": "Will the highest temperature in Austin be 70°F or higher on April 23?",
+    "lots": [
+      {
+        "shares": 5,
+        "price": 0.988,
+        "usdc": 4.94,
+        "ts": 1776823442
+      },
+      {
+        "shares": 5,
+        "price": 0.988,
+        "usdc": 4.94,
+        "ts": 1776823442
+      },
+      {
+        "shares": 5,
+        "price": 0.988,
+        "usdc": 4.94,
+        "ts": 1776823442
+      },
+      {
+        "shares": 5,
+        "price": 0.988,
+        "usdc": 4.94,
+        "ts": 1776823442
+      },
+      {
+        "shares": 5,
+        "price": 0.988,
+        "usdc": 4.94,
+        "ts": 1776823442
+      },
+      {
+        "shares": 1.37,
+        "price": 0.988,
+        "usdc": 1.35356,
+        "ts": 1776823442
+      },
+      {
+        "shares": 5,
+        "price": 0.988,
+        "usdc": 4.94,
+        "ts": 1776823444
+      },
+      {
+        "shares": 83.333332,
+        "price": 0.9880000118080002,
+        "usdc": 82.333333,
+        "ts": 1776831494
+      },
+      {
+        "shares": 3000,
+        "price": 0.992,
+        "usdc": 2976,
+        "ts": 1776846992
+      }
+    ],
+    "totalShares": 3114.703332
+  },
+  {
+    "key": "0xd87f99c107a5861ad3f9078984f97ad152a9abc43447396de674e57aa6206724-0",
+    "title": "LoL: KT Rolster vs Kiwoom DRX - Game 1 Winner",
+    "lots": [
+      {
+        "shares": 99.91,
+        "price": 0.97,
+        "usdc": 97,
+        "ts": 1776846970
+      },
+      {
+        "shares": 119.928,
+        "price": 0.98,
+        "usdc": 117.6,
+        "ts": 1776847252
+      }
+    ],
+    "totalShares": 219.838
+  },
+  {
+    "key": "0xbbc6689d0f6d57ea42168836712237c7308b3e0118c8914d31b6126d0f3254c5-1",
+    "title": "US x Iran permanent peace deal by April 22, 2026?",
+    "lots": [
+      {
+        "shares": 4794.97,
+        "price": 0.994,
+        "usdc": 4766.20018,
+        "ts": 1776862336
+      },
+      {
+        "shares": 100,
+        "price": 0.994,
+        "usdc": 99.4,
+        "ts": 1776862436
+      },
+      {
+        "shares": 2335.64,
+        "price": 0.994,
+        "usdc": 2321.62616,
+        "ts": 1776862510
+      },
+      {
+        "shares": 100.03,
+        "price": 0.994,
+        "usdc": 99.42982,
+        "ts": 1776862510
+      },
+      {
+        "shares": 5,
+        "price": 0.994,
+        "usdc": 4.97,
+        "ts": 1776862510
+      },
+      {
+        "shares": 248.87,
+        "price": 0.994,
+        "usdc": 247.37678,
+        "ts": 1776862678
+      },
+      {
+        "shares": 11.9,
+        "price": 0.994,
+        "usdc": 11.8286,
+        "ts": 1776862940
+      },
+      {
+        "shares": 100,
+        "price": 0.994,
+        "usdc": 99.4,
+        "ts": 1776862996
+      },
+      {
+        "shares": 138.06,
+        "price": 0.994,
+        "usdc": 137.23164,
+        "ts": 1776863076
+      },
+      {
+        "shares": 166.666665,
+        "price": 0.99400000594,
+        "usdc": 165.666666,
+        "ts": 1776863078
+      }
+    ],
+    "totalShares": 8001.136665
+  },
+  {
+    "key": "0xa7a577a6dcdce06b04d493c8435f2bfc65d791a365b3a93a599dc925dbdcb1e9-0",
+    "title": "Will the highest temperature in Moscow be 14°C on April 22?",
+    "lots": [
+      {
+        "shares": 55.66104,
+        "price": 0.062,
+        "usdc": 3.6208,
+        "ts": 1776863716
+      }
+    ],
+    "totalShares": 55.66104
+  },
+  {
+    "key": "0xf79ce7b01bfc593154194057ceff7d19ac5539b4c2327ef4c408b95f2b6ce303-0",
+    "title": "Will the highest temperature in Hong Kong be 29°C on April 22?",
+    "lots": [
+      {
+        "shares": 79.66,
+        "price": 0.998,
+        "usdc": 79.50068,
+        "ts": 1776865158
+      },
+      {
+        "shares": 1.47,
+        "price": 0.998,
+        "usdc": 1.46706,
+        "ts": 1776865254
+      },
+      {
+        "shares": 20.09,
+        "price": 0.998,
+        "usdc": 20.04982,
+        "ts": 1776865314
+      },
+      {
+        "shares": 500,
+        "price": 0.998,
+        "usdc": 499,
+        "ts": 1776866442
+      },
+      {
+        "shares": 500,
+        "price": 0.998,
+        "usdc": 499,
+        "ts": 1776869514
+      },
+      {
+        "shares": 10.01,
+        "price": 0.998,
+        "usdc": 9.98998,
+        "ts": 1776869556
+      },
+      {
+        "shares": 4.09,
+        "price": 0.998,
+        "usdc": 4.08182,
+        "ts": 1776870264
+      },
+      {
+        "shares": 12.72,
+        "price": 0.998,
+        "usdc": 12.69456,
+        "ts": 1776871164
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776871272
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776871272
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776871272
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776871272
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776871272
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776871272
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776871272
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776871272
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776871272
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776871272
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776871272
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776871272
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776871272
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776871436
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776871436
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776871436
+      },
+      {
+        "shares": 10.2,
+        "price": 0.998,
+        "usdc": 10.1796,
+        "ts": 1776871518
+      },
+      {
+        "shares": 522.75,
+        "price": 0.998,
+        "usdc": 521.7045,
+        "ts": 1776871656
+      },
+      {
+        "shares": 55.02,
+        "price": 0.998,
+        "usdc": 54.90996,
+        "ts": 1776872050
+      }
+    ],
+    "totalShares": 1796.01
+  }
+]

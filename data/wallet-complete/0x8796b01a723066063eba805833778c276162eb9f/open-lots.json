@@ -1,0 +1,416 @@
+[
+  {
+    "key": "0x22b8ce490f921e35d07c5b57cebf57dcd2b2c8bf780fa64d31d72d250497abaf-0",
+    "title": "Will the highest temperature in Helsinki be 15°C or higher on April 15?",
+    "lots": [
+      {
+        "shares": 41.47,
+        "price": 0.99,
+        "usdc": 41.0553,
+        "ts": 1776253954
+      }
+    ],
+    "totalShares": 41.47
+  },
+  {
+    "key": "0xa94575b4f7816d1ee29b901725b1a8744ee8487873c39162578df9cce8a73e61-1",
+    "title": "Will the highest temperature in Moscow be 7°C or below on April 17?",
+    "lots": [
+      {
+        "shares": 0.1,
+        "price": 0.999,
+        "usdc": 0.0999,
+        "ts": 1776415194
+      }
+    ],
+    "totalShares": 0.1
+  },
+  {
+    "key": "0x112afb6885a54ffa51f185aaa83fb1a2cb0b0bbd416e4d1a9a046811068866b7-0",
+    "title": "Will the highest temperature in Los Angeles be 72°F or higher on April 18?",
+    "lots": [
+      {
+        "shares": 543.6528199999999,
+        "price": 0.999,
+        "usdc": 543.13632,
+        "ts": 1776534944
+      },
+      {
+        "shares": 2.99,
+        "price": 0.999,
+        "usdc": 2.98701,
+        "ts": 1776535008
+      },
+      {
+        "shares": 2.2,
+        "price": 0.999,
+        "usdc": 2.1978,
+        "ts": 1776535244
+      },
+      {
+        "shares": 23.12,
+        "price": 0.999,
+        "usdc": 23.09688,
+        "ts": 1776535318
+      }
+    ],
+    "totalShares": 571.96282
+  },
+  {
+    "key": "0x30ee98909391615d417e950971d784751e1bd6ce0a8015d54d1ae8944c50b1ff-0",
+    "title": "Bitcoin Up or Down - April 20, 8:50AM-8:55AM ET",
+    "lots": [
+      {
+        "shares": 0.0035999999999996035,
+        "price": 0.51,
+        "usdc": 2.55,
+        "ts": 1776604054
+      }
+    ],
+    "totalShares": 0.0035999999999996035
+  },
+  {
+    "key": "0x1f9aad07cb9a4c5454fd6c4358c21d76e0d8149414b7b280086aaf4e657bf0ff-0",
+    "title": "Will the highest temperature in Seattle be 62°F or higher on April 19?",
+    "lots": [
+      {
+        "shares": 15.15,
+        "price": 0.999,
+        "usdc": 15.13485,
+        "ts": 1776623934
+      }
+    ],
+    "totalShares": 15.15
+  },
+  {
+    "key": "0xb363691f30d26e76f81edb2aa2cdb72ab3663c90edcdacdda79a58d0ea7b3b9a-0",
+    "title": "Will the highest temperature in San Francisco be 70°F or higher on April 19?",
+    "lots": [
+      {
+        "shares": 38,
+        "price": 0.999,
+        "usdc": 37.962,
+        "ts": 1776639528
+      },
+      {
+        "shares": 598.48,
+        "price": 0.999,
+        "usdc": 597.88152,
+        "ts": 1776639542
+      },
+      {
+        "shares": 803.48,
+        "price": 0.999,
+        "usdc": 802.67652,
+        "ts": 1776639554
+      },
+      {
+        "shares": 696.52,
+        "price": 0.999,
+        "usdc": 695.82348,
+        "ts": 1776639554
+      },
+      {
+        "shares": 35.72,
+        "price": 0.999,
+        "usdc": 35.68428,
+        "ts": 1776639562
+      },
+      {
+        "shares": 3.35,
+        "price": 0.999,
+        "usdc": 3.34665,
+        "ts": 1776639588
+      },
+      {
+        "shares": 32.7,
+        "price": 0.999,
+        "usdc": 32.6673,
+        "ts": 1776639636
+      },
+      {
+        "shares": 1230,
+        "price": 0.999,
+        "usdc": 1228.77,
+        "ts": 1776639680
+      },
+      {
+        "shares": 35.07,
+        "price": 0.999,
+        "usdc": 35.03493,
+        "ts": 1776639688
+      },
+      {
+        "shares": 1.18,
+        "price": 0.999,
+        "usdc": 1.17882,
+        "ts": 1776639708
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1776642040
+      },
+      {
+        "shares": 4.18,
+        "price": 0.999,
+        "usdc": 4.17582,
+        "ts": 1776642984
+      },
+      {
+        "shares": 14,
+        "price": 0.999,
+        "usdc": 13.986,
+        "ts": 1776644110
+      },
+      {
+        "shares": 13.25,
+        "price": 0.999,
+        "usdc": 13.23675,
+        "ts": 1776644494
+      },
+      {
+        "shares": 35.36,
+        "price": 0.999,
+        "usdc": 35.32464,
+        "ts": 1776644652
+      },
+      {
+        "shares": 1.31,
+        "price": 0.999,
+        "usdc": 1.30869,
+        "ts": 1776645006
+      }
+    ],
+    "totalShares": 3547.5999999999995
+  },
+  {
+    "key": "0xbe8cba6d15069ae54a2531c7d486b017a1fa858f9a83358404d1c6b5ec975c68-0",
+    "title": "Will the highest temperature in Seattle be 62°F or higher on April 20?",
+    "lots": [
+      {
+        "shares": 5.08,
+        "price": 0.999,
+        "usdc": 5.07492,
+        "ts": 1776713022
+      },
+      {
+        "shares": 5.86,
+        "price": 0.999,
+        "usdc": 5.85414,
+        "ts": 1776720262
+      },
+      {
+        "shares": 1.02,
+        "price": 0.999,
+        "usdc": 1.01898,
+        "ts": 1776733684
+      }
+    ],
+    "totalShares": 11.96
+  },
+  {
+    "key": "0xd921d9532a574f32c7289f5d6e168f838bb04684c5c4eb9e48b6df538fa5f83b-0",
+    "title": "Will the highest temperature in Austin be 62°F or higher on April 21?",
+    "lots": [
+      {
+        "shares": 23.99,
+        "price": 0.999,
+        "usdc": 23.96601,
+        "ts": 1776801932
+      },
+      {
+        "shares": 5309.01,
+        "price": 0.999,
+        "usdc": 5303.70099,
+        "ts": 1776805052
+      }
+    ],
+    "totalShares": 5333
+  },
+  {
+    "key": "0x90dc42c810dfb36bfb7021883e68e54332f0facca76d73b531ad112411a503ca-0",
+    "title": "Will the highest temperature in Milan be 17°C or higher on April 22?",
+    "lots": [
+      {
+        "shares": 977.8811099999999,
+        "price": 0.999,
+        "usdc": 976.95207,
+        "ts": 1776858938
+      },
+      {
+        "shares": 0.18,
+        "price": 0.999,
+        "usdc": 0.17982,
+        "ts": 1776858942
+      },
+      {
+        "shares": 1.94,
+        "price": 0.999,
+        "usdc": 1.93806,
+        "ts": 1776858942
+      },
+      {
+        "shares": 427.57,
+        "price": 0.999,
+        "usdc": 427.14243,
+        "ts": 1776858944
+      },
+      {
+        "shares": 9.84,
+        "price": 0.999,
+        "usdc": 9.83016,
+        "ts": 1776858948
+      },
+      {
+        "shares": 1258.38,
+        "price": 0.999,
+        "usdc": 1257.12162,
+        "ts": 1776858948
+      },
+      {
+        "shares": 12.02,
+        "price": 0.999,
+        "usdc": 12.00798,
+        "ts": 1776858952
+      },
+      {
+        "shares": 103.03,
+        "price": 0.999,
+        "usdc": 102.92697,
+        "ts": 1776858952
+      },
+      {
+        "shares": 0.02,
+        "price": 0.999,
+        "usdc": 0.01998,
+        "ts": 1776858978
+      },
+      {
+        "shares": 80.15,
+        "price": 0.999,
+        "usdc": 80.06985,
+        "ts": 1776858984
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1776859090
+      },
+      {
+        "shares": 29.99,
+        "price": 0.999,
+        "usdc": 29.96001,
+        "ts": 1776859112
+      },
+      {
+        "shares": 1000,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1776859248
+      },
+      {
+        "shares": 9.94,
+        "price": 0.999,
+        "usdc": 9.93006,
+        "ts": 1776859548
+      },
+      {
+        "shares": 43.12,
+        "price": 0.999,
+        "usdc": 43.07688,
+        "ts": 1776859568
+      },
+      {
+        "shares": 666,
+        "price": 0.999,
+        "usdc": 665.334,
+        "ts": 1776859574
+      },
+      {
+        "shares": 39.89,
+        "price": 0.999,
+        "usdc": 39.85011,
+        "ts": 1776859574
+      }
+    ],
+    "totalShares": 4664.951110000001
+  },
+  {
+    "key": "0x724e2ed1e7de5ff4f052364da45d03430ab69172794d12f48e21442f60085363-1",
+    "title": "Will the highest temperature in Dallas be between 68-69°F on April 22?",
+    "lots": [
+      {
+        "shares": 149.95251000000002,
+        "price": 0.999,
+        "usdc": 149.81004,
+        "ts": 1776884146
+      },
+      {
+        "shares": 10.07,
+        "price": 0.999,
+        "usdc": 10.05993,
+        "ts": 1776884374
+      },
+      {
+        "shares": 1000,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1776884466
+      },
+      {
+        "shares": 8.92,
+        "price": 0.999,
+        "usdc": 8.91108,
+        "ts": 1776884562
+      }
+    ],
+    "totalShares": 1168.94251
+  },
+  {
+    "key": "0xc8bc96fcaec45bf7cc35ce74a60b20aa022d430ea85392f5ffae47729b03e2c5-1",
+    "title": "Will the highest temperature in San Francisco be between 58-59°F on April 22?",
+    "lots": [
+      {
+        "shares": 227.71862,
+        "price": 0.999,
+        "usdc": 227.50227,
+        "ts": 1776884314
+      }
+    ],
+    "totalShares": 227.71862
+  },
+  {
+    "key": "0x0c750a1eda5b86d13c267964390f78b22c946ccac5e2154733681bda8fde1737-0",
+    "title": "Will the highest temperature in Moscow be 9°C or higher on April 23?",
+    "lots": [
+      {
+        "shares": 666,
+        "price": 0.999,
+        "usdc": 665.334,
+        "ts": 1776892112
+      },
+      {
+        "shares": 1333,
+        "price": 0.999,
+        "usdc": 1331.667,
+        "ts": 1776892112
+      },
+      {
+        "shares": 2666,
+        "price": 0.999,
+        "usdc": 2663.334,
+        "ts": 1776892112
+      },
+      {
+        "shares": 5333,
+        "price": 0.999,
+        "usdc": 5327.667,
+        "ts": 1776892112
+      }
+    ],
+    "totalShares": 9998
+  }
+]

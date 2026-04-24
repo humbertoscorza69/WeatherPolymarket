@@ -1,0 +1,1031 @@
+[
+  {
+    "key": "0x2d7ffef1fea187a7a82d1584e25f1a0992fe58409010801a21f3d98d9ffe5984-0",
+    "title": "Will the highest temperature in Seoul be 19°C or higher on April 3?",
+    "lots": [
+      {
+        "shares": 689.85,
+        "price": 0.998,
+        "usdc": 998,
+        "ts": 1775196005
+      },
+      {
+        "shares": 314.90851,
+        "price": 0.998,
+        "usdc": 314.31012,
+        "ts": 1775197931
+      }
+    ],
+    "totalShares": 1004.75851
+  },
+  {
+    "key": "0x84ca5f4dba40ee62c06126c38a21e959f0fb77b8bc593a8a3e9e82419a760c33-0",
+    "title": "Will the highest temperature in Los Angeles be 78°F or higher on April 3?",
+    "lots": [
+      {
+        "shares": 949.9525,
+        "price": 0.999,
+        "usdc": 949.05,
+        "ts": 1775246153
+      }
+    ],
+    "totalShares": 949.9525
+  },
+  {
+    "key": "0x6c3712de41368f3d6ef77e3830c4520d43a0c4793eff21f7d34a79c45bb57e5e-0",
+    "title": "Will the highest temperature in Seoul be 17°C or higher on April 4?",
+    "lots": [
+      {
+        "shares": 999.704629,
+        "price": 0.998,
+        "usdc": 998,
+        "ts": 1775273479
+      },
+      {
+        "shares": 584.44065,
+        "price": 0.9966005577034933,
+        "usdc": 582.55289,
+        "ts": 1775273659
+      },
+      {
+        "shares": 36.47271,
+        "price": 0.996,
+        "usdc": 36.33408,
+        "ts": 1775273725
+      },
+      {
+        "shares": 177.50449999999998,
+        "price": 0.996,
+        "usdc": 176.82984,
+        "ts": 1775273957
+      },
+      {
+        "shares": 199.95,
+        "price": 0.995,
+        "usdc": 199,
+        "ts": 1775274115
+      },
+      {
+        "shares": 274.61507,
+        "price": 0.996,
+        "usdc": 273.57132,
+        "ts": 1775274157
+      },
+      {
+        "shares": 930.28044,
+        "price": 0.997,
+        "usdc": 927.62874,
+        "ts": 1775274251
+      }
+    ],
+    "totalShares": 3202.967999
+  },
+  {
+    "key": "0x9f4db6e42187f3f896eabf92aab927c9365c4c8d394a50e694f1b0c0692c3ad4-0",
+    "title": "Will the highest temperature in Ankara be 12°C or higher on April 4?",
+    "lots": [
+      {
+        "shares": 999.9227,
+        "price": 0.99845392,
+        "usdc": 998.45392,
+        "ts": 1775289239
+      }
+    ],
+    "totalShares": 999.9227
+  },
+  {
+    "key": "0x0b7ec8a058f9e73d442f1c7dc2c680a0eb3d8c106a816549d88acb0d4e0122d6-0",
+    "title": "Will the highest temperature in Moscow be 14°C or higher on April 4?",
+    "lots": [
+      {
+        "shares": 999.95,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1775304325
+      }
+    ],
+    "totalShares": 999.95
+  },
+  {
+    "key": "0x25a4167244115703e67fcee3cd2bfbcd23dbae7be86856ffebd6af81afbf0a8a-0",
+    "title": "Will the highest temperature in Milan be 23°C or higher on April 4?",
+    "lots": [
+      {
+        "shares": 8.899560000000001,
+        "price": 0.999,
+        "usdc": 8.8911,
+        "ts": 1775307587
+      }
+    ],
+    "totalShares": 8.899560000000001
+  },
+  {
+    "key": "0x6fc27e55a3ad62d1ba93e0fc478fbe8bd179dfbb4d2dff33c21b07645c5cefc4-0",
+    "title": "Will the highest temperature in San Francisco be 78°F or higher on April 4?",
+    "lots": [
+      {
+        "shares": 999.95,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1775350731
+      }
+    ],
+    "totalShares": 999.95
+  },
+  {
+    "key": "0x8f7a4aff0a18a2a292825ae02b0739761d293bc8a0f566059211bb6a057e6e4d-0",
+    "title": "Will the highest temperature in Tokyo be 23°C or higher on April 5?",
+    "lots": [
+      {
+        "shares": 99.995,
+        "price": 0.999,
+        "usdc": 99.9,
+        "ts": 1775356707
+      }
+    ],
+    "totalShares": 99.995
+  },
+  {
+    "key": "0x95e7c17e6b55b55856445a3a0e999966076d3adbdeca80392db18ff65607009e-0",
+    "title": "Will the highest temperature in Shanghai be 27°C or higher on April 6?",
+    "lots": [
+      {
+        "shares": 999.95,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1775451929
+      }
+    ],
+    "totalShares": 999.95
+  },
+  {
+    "key": "0x61a404cd3cfcbfd0f7c9458073e28f7f3d683ab7c1fb2c4410dc6f34ac53f4b0-0",
+    "title": "Will the highest temperature in Chongqing be 24°C or higher on April 8?",
+    "lots": [
+      {
+        "shares": 999.95,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1775621143
+      }
+    ],
+    "totalShares": 999.95
+  },
+  {
+    "key": "0xdd581a062feddbd9bc6eb340fb0e0059f0cf219a6e37795eaa6babadafad384a-0",
+    "title": "Will the highest temperature in Madrid be 14°C or higher on April 8?",
+    "lots": [
+      {
+        "shares": 20,
+        "price": 0.999,
+        "usdc": 19.98,
+        "ts": 1775640919
+      }
+    ],
+    "totalShares": 20
+  },
+  {
+    "key": "0xa1b302e2a0f0852b7b0150659be6dc6123f0a68c57c5ead510b7fb51376a542a-0",
+    "title": "Will the highest temperature in Amsterdam be 15°C or higher on April 8?",
+    "lots": [
+      {
+        "shares": 7.0159069999998565,
+        "price": 0.999,
+        "usdc": 586.45296,
+        "ts": 1775641961
+      },
+      {
+        "shares": 997.9485,
+        "price": 0.95897,
+        "usdc": 958.97,
+        "ts": 1775647529
+      }
+    ],
+    "totalShares": 1004.9644069999998
+  },
+  {
+    "key": "0xc7a78b33fb99d8cadc4006b39421796659c7154084c0ccea230a2810feae657c-0",
+    "title": "Will the highest temperature in Helsinki be 8°C or higher on April 8?",
+    "lots": [
+      {
+        "shares": 66.26684999999999,
+        "price": 0.99,
+        "usdc": 65.637,
+        "ts": 1775649079
+      }
+    ],
+    "totalShares": 66.26684999999999
+  },
+  {
+    "key": "0xd2b12e0f569108295092ea66e4a794359f185a317a3792defba9501d394d261d-0",
+    "title": "Will the highest temperature in London be 24°C or higher on April 8?",
+    "lots": [
+      {
+        "shares": 818.2490899999999,
+        "price": 0.999,
+        "usdc": 817.47171,
+        "ts": 1775651291
+      },
+      {
+        "shares": 29.55421,
+        "price": 0.8350335570469799,
+        "usdc": 24.884,
+        "ts": 1775660825
+      }
+    ],
+    "totalShares": 847.8032999999999
+  },
+  {
+    "key": "0x66ee794d5dd21181069c34dba02ff2e268bb4d15aadb91b6001e19a939fba42e-0",
+    "title": "Will the highest temperature in Denver be 56°F or higher on April 8?",
+    "lots": [
+      {
+        "shares": 65.56672999999999,
+        "price": 0.999,
+        "usdc": 65.50443,
+        "ts": 1775661217
+      }
+    ],
+    "totalShares": 65.56672999999999
+  },
+  {
+    "key": "0xc871a4c5b762308beb88878afa928c91b3f0a13da18d15e9506381c31c584253-0",
+    "title": "Will the highest temperature in Mexico City be 26°C or higher on April 8?",
+    "lots": [
+      {
+        "shares": 74.75261,
+        "price": 0.99,
+        "usdc": 74.0421,
+        "ts": 1775674221
+      },
+      {
+        "shares": 0.3,
+        "price": 0.99,
+        "usdc": 0.297,
+        "ts": 1775674227
+      }
+    ],
+    "totalShares": 75.05261
+  },
+  {
+    "key": "0x31bfd5ae81c3f92f466e3c11169bda08a2801986668ade067a6be1b3e8dc54ad-0",
+    "title": "Will the highest temperature in Helsinki be 8°C or higher on April 9?",
+    "lots": [
+      {
+        "shares": 12.5,
+        "price": 0.99,
+        "usdc": 12.375,
+        "ts": 1775737287
+      },
+      {
+        "shares": 11.26,
+        "price": 0.99,
+        "usdc": 11.1474,
+        "ts": 1775737327
+      },
+      {
+        "shares": 15.22,
+        "price": 0.99,
+        "usdc": 15.0678,
+        "ts": 1775737359
+      }
+    ],
+    "totalShares": 38.98
+  },
+  {
+    "key": "0x5b09700dda720dc036864809f8d4da42899b338ced62526d44265be40a3bba68-0",
+    "title": "Will the highest temperature in Amsterdam be 20°C or higher on April 9?",
+    "lots": [
+      {
+        "shares": 999.88834,
+        "price": 0.99776674,
+        "usdc": 997.76674,
+        "ts": 1775740841
+      }
+    ],
+    "totalShares": 999.88834
+  },
+  {
+    "key": "0x6632d9dec7b85e5d4cd70ed0abbb1ce05daa215bc1deead7da2d4df6b2686567-0",
+    "title": "Will the highest temperature in Busan be 18°C or higher on April 9?",
+    "lots": [
+      {
+        "shares": 999.335,
+        "price": 0.9967,
+        "usdc": 996.7,
+        "ts": 1775743483
+      }
+    ],
+    "totalShares": 999.335
+  },
+  {
+    "key": "0xb370113f53b5bd17fa0eb69dcae3f3c9452dbe3cbffa836685517642a0b5e39c-0",
+    "title": "Will the highest temperature in Houston be 76°F or higher on April 9?",
+    "lots": [
+      {
+        "shares": 9.99,
+        "price": 0.999,
+        "usdc": 9.98001,
+        "ts": 1775750157
+      }
+    ],
+    "totalShares": 9.99
+  },
+  {
+    "key": "0x3d1dc001473aef6955066a603231168da39be4824fc3e4e92bf0082cb83df2cc-0",
+    "title": "Will the highest temperature in Mexico City be 23°C or higher on April 9?",
+    "lots": [
+      {
+        "shares": 419.979,
+        "price": 0.999,
+        "usdc": 419.58,
+        "ts": 1775757161
+      }
+    ],
+    "totalShares": 419.979
+  },
+  {
+    "key": "0xe948103861ea713d2b8e7aaa2caf760eda75630be4dd300bfcbf9de0138690e0-0",
+    "title": "Will the highest temperature in Seattle be 64°F or higher on April 9?",
+    "lots": [
+      {
+        "shares": 868.75887,
+        "price": 0.9985925738357773,
+        "usdc": 867.5972,
+        "ts": 1775771759
+      }
+    ],
+    "totalShares": 868.75887
+  },
+  {
+    "key": "0xb35aff04d0b09d2e8767d0076d5a802dd2eb6592a77891252282418fa654f075-0",
+    "title": "Will the highest temperature in Lagos be 34°C on April 9?",
+    "lots": [
+      {
+        "shares": 14.90508,
+        "price": 0.98,
+        "usdc": 14.6216,
+        "ts": 1775774873
+      },
+      {
+        "shares": 14.89509,
+        "price": 0.98,
+        "usdc": 14.6118,
+        "ts": 1775774883
+      },
+      {
+        "shares": 15.09489,
+        "price": 0.98,
+        "usdc": 14.8078,
+        "ts": 1775774899
+      },
+      {
+        "shares": 81.91901999999999,
+        "price": 0.99,
+        "usdc": 81.1404,
+        "ts": 1775774959
+      },
+      {
+        "shares": 57.971,
+        "price": 0.99,
+        "usdc": 57.42,
+        "ts": 1775776135
+      }
+    ],
+    "totalShares": 184.78508
+  },
+  {
+    "key": "0xdde1c2abb6fb67d0a512c2c87db2b1b8e5a53d4814b1d829acc907a2339efa8a-0",
+    "title": "Will the highest temperature in Cape Town be 27°C or higher on April 9?",
+    "lots": [
+      {
+        "shares": 73.90303,
+        "price": 0.99,
+        "usdc": 73.2006,
+        "ts": 1775775099
+      },
+      {
+        "shares": 66.11391,
+        "price": 0.9890872260015117,
+        "usdc": 65.42812,
+        "ts": 1775775701
+      },
+      {
+        "shares": 75.34156999999999,
+        "price": 0.9898010082249934,
+        "usdc": 74.6112,
+        "ts": 1775775731
+      }
+    ],
+    "totalShares": 215.35851
+  },
+  {
+    "key": "0x27cd51041610d1cb9b7995ae8cbabebdd5e931031ea941db8488c3144fcbedc1-0",
+    "title": "Will the highest temperature in Jakarta be 34°C or higher on April 10?",
+    "lots": [
+      {
+        "shares": 199.98928,
+        "price": 0.9989279,
+        "usdc": 199.78558,
+        "ts": 1775801135
+      }
+    ],
+    "totalShares": 199.98928
+  },
+  {
+    "key": "0x5a100987a48fd3b1f986e0f33b273dd52f09a06e51454c2fbf45306fcf1bd166-0",
+    "title": "Will the highest temperature in Austin be 64°F or higher on April 10?",
+    "lots": [
+      {
+        "shares": 999.95,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1775804123
+      }
+    ],
+    "totalShares": 999.95
+  },
+  {
+    "key": "0x99eacd5757f06311cc12cfddc291e9b601501e8745b6cebe299bc17727ff164e-0",
+    "title": "Will the highest temperature in Helsinki be 8°C or higher on April 10?",
+    "lots": [
+      {
+        "shares": 20,
+        "price": 0.999,
+        "usdc": 19.98,
+        "ts": 1775814695
+      },
+      {
+        "shares": 480,
+        "price": 0.999,
+        "usdc": 479.52,
+        "ts": 1775814715
+      }
+    ],
+    "totalShares": 500
+  },
+  {
+    "key": "0xb7ddbb06da00ef35affe99d975a2f6e36d8f05a6b0f2f9a3dadb6e37162fe45b-0",
+    "title": "Will the highest temperature in Houston be 74°F or higher on April 10?",
+    "lots": [
+      {
+        "shares": 241.04795000000001,
+        "price": 0.999,
+        "usdc": 240.81894,
+        "ts": 1775832929
+      },
+      {
+        "shares": 41.97,
+        "price": 0.999,
+        "usdc": 41.92803,
+        "ts": 1775832957
+      }
+    ],
+    "totalShares": 283.01795000000004
+  },
+  {
+    "key": "0xe2cf959db323b6ed382e854e14529e03c95557daf37c90ee54a8526a46cbb992-0",
+    "title": "Will the highest temperature in Panama City be 32°C or higher on April 10?",
+    "lots": [
+      {
+        "shares": 379.981,
+        "price": 0.999,
+        "usdc": 379.62,
+        "ts": 1775833027
+      }
+    ],
+    "totalShares": 379.981
+  },
+  {
+    "key": "0xbfbea3ea4f30fc839d0f05b337d9c1b1cd326e7da8b2fd43e26f63baf0b2d98c-0",
+    "title": "Will the highest temperature in Mexico City be 23°C or higher on April 10?",
+    "lots": [
+      {
+        "shares": 976.4032900000001,
+        "price": 0.9986335166466968,
+        "usdc": 975.13567,
+        "ts": 1775843969
+      }
+    ],
+    "totalShares": 976.4032900000001
+  },
+  {
+    "key": "0x57201e925b7e08ad731c31881ebc270f329effc58669244d93b0d2fdb9b23a25-0",
+    "title": "Will the highest temperature in Houston be 76°F or higher on April 11?",
+    "lots": [
+      {
+        "shares": 999.95,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1775919337
+      }
+    ],
+    "totalShares": 999.95
+  },
+  {
+    "key": "0xcdce4f18bad7720d8ed540fada460236071dd807d4fbab91074bee2dc0a72bd7-0",
+    "title": "Will the highest temperature in Denver be 60°F or higher on April 11?",
+    "lots": [
+      {
+        "shares": 8.109599999999999,
+        "price": 0.999,
+        "usdc": 8.10189,
+        "ts": 1775923875
+      }
+    ],
+    "totalShares": 8.109599999999999
+  },
+  {
+    "key": "0x61c3242f1dee8c32c3b95cf41f926967201bd480f52608090b3b30cc3d98958b-0",
+    "title": "Will the highest temperature in Mexico City be 23°C or higher on April 11?",
+    "lots": [
+      {
+        "shares": 445.77771,
+        "price": 0.999,
+        "usdc": 445.3542,
+        "ts": 1775929419
+      },
+      {
+        "shares": 20.38,
+        "price": 0.999,
+        "usdc": 20.35962,
+        "ts": 1775929433
+      },
+      {
+        "shares": 13.54,
+        "price": 0.999,
+        "usdc": 13.52646,
+        "ts": 1775929433
+      },
+      {
+        "shares": 52.56,
+        "price": 0.999,
+        "usdc": 52.50744,
+        "ts": 1775929433
+      },
+      {
+        "shares": 17.72,
+        "price": 0.999,
+        "usdc": 17.70228,
+        "ts": 1775929433
+      }
+    ],
+    "totalShares": 549.9777100000001
+  },
+  {
+    "key": "0x9d6172f0f2759185c79107e0a8504f24d80cd96f637ad8dec437cabf05c2791a-0",
+    "title": "Will the highest temperature in Panama City be 32°C or higher on April 11?",
+    "lots": [
+      {
+        "shares": 88.50892999999999,
+        "price": 0.9862097775770577,
+        "usdc": 87.3486,
+        "ts": 1775933801
+      },
+      {
+        "shares": 110,
+        "price": 0.99,
+        "usdc": 108.9,
+        "ts": 1775933803
+      },
+      {
+        "shares": 110,
+        "price": 0.99,
+        "usdc": 108.9,
+        "ts": 1775933805
+      },
+      {
+        "shares": 21,
+        "price": 0.99,
+        "usdc": 20.79,
+        "ts": 1775933807
+      },
+      {
+        "shares": 150.43,
+        "price": 0.99,
+        "usdc": 148.9257,
+        "ts": 1775933833
+      }
+    ],
+    "totalShares": 479.93892999999997
+  },
+  {
+    "key": "0x760e4e3a1ea77942cef927a27148ef65bb43451eafe6e51c616b59bebf739e62-0",
+    "title": "Will the highest temperature in Panama City be 32°C or higher on April 12?",
+    "lots": [
+      {
+        "shares": 7.15929,
+        "price": 0.998,
+        "usdc": 7.14568,
+        "ts": 1776013361
+      }
+    ],
+    "totalShares": 7.15929
+  },
+  {
+    "key": "0x9b235f3d755b0058f2837440788a7c5d5e8c155f94f69ee078398d148631d73b-0",
+    "title": "Will the highest temperature in Mexico City be 23°C or higher on April 12?",
+    "lots": [
+      {
+        "shares": 72.57374000000004,
+        "price": 0.998,
+        "usdc": 561.50474,
+        "ts": 1776019351
+      }
+    ],
+    "totalShares": 72.57374000000004
+  },
+  {
+    "key": "0x62d677236d62751c60ac9cac1a73f27c89e4163f334838ffa9e2a8f72932c36b-0",
+    "title": "Will the highest temperature in Busan be 20°C or higher on April 13?",
+    "lots": [
+      {
+        "shares": 49.995,
+        "price": 0.998,
+        "usdc": 49.9,
+        "ts": 1776042275
+      }
+    ],
+    "totalShares": 49.995
+  },
+  {
+    "key": "0xb6d7993aa1b76f27070826457eddda472e562e4762d9a05b606d5805f5096357-0",
+    "title": "Will the highest temperature in Helsinki be 12°C or higher on April 13?",
+    "lots": [
+      {
+        "shares": 1.32987,
+        "price": 0.998,
+        "usdc": 1.32734,
+        "ts": 1776073875
+      }
+    ],
+    "totalShares": 1.32987
+  },
+  {
+    "key": "0x1c07448b8d07fb483a2770cc4040d58e01f4f38a2926e2ceeee090ba60362127-0",
+    "title": "Will the highest temperature in Mexico City be 25°C or higher on April 13?",
+    "lots": [
+      {
+        "shares": 69.60286000000008,
+        "price": 0.9973523766666667,
+        "usdc": 2992.05713,
+        "ts": 1776113365
+      }
+    ],
+    "totalShares": 69.60286000000008
+  },
+  {
+    "key": "0xebf5891afae02a3ee29d2c0d5a3de3a3e66bcf49ad4e7ca61bdf36b3ffe0ce7d-1",
+    "title": "Will the highest temperature in Tel Aviv be 29°C on April 14?",
+    "lots": [
+      {
+        "shares": 0.007999999999995566,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776172825
+      }
+    ],
+    "totalShares": 0.007999999999995566
+  },
+  {
+    "key": "0x21015ea3e0bf021523328bf6ebee10eafa9ca51080b061edead4939f864dd56e-0",
+    "title": "Will the highest temperature in Panama City be 33°C or higher on April 14?",
+    "lots": [
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776185742
+      },
+      {
+        "shares": 0.2,
+        "price": 0.998,
+        "usdc": 0.1996,
+        "ts": 1776185742
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776185742
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776185742
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776185742
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776185742
+      },
+      {
+        "shares": 4.99,
+        "price": 0.998,
+        "usdc": 4.98002,
+        "ts": 1776185750
+      }
+    ],
+    "totalShares": 30.189999999999998
+  },
+  {
+    "key": "0x91414a9456e606eea824a44dc202488950bf66f79acb224d9fb85f71a9a5ec78-0",
+    "title": "Will the highest temperature in Austin be 84°F or higher on April 14?",
+    "lots": [
+      {
+        "shares": 74.35523,
+        "price": 0.9973696811528424,
+        "usdc": 263.69457,
+        "ts": 1776196548
+      }
+    ],
+    "totalShares": 74.35523
+  },
+  {
+    "key": "0xc26786e844eb6b46050fbe2827037ea27e5d772280eecebb9d76e94449a34c44-1",
+    "title": "Will the highest temperature in Karachi be 26°C or below on April 15?",
+    "lots": [
+      {
+        "shares": 0.006930000000000547,
+        "price": 0.998,
+        "usdc": 30.71844,
+        "ts": 1776215870
+      }
+    ],
+    "totalShares": 0.006930000000000547
+  },
+  {
+    "key": "0xc4fb37dafebd7f921ca73361d11c1c7451285b103a3919bd77d42b6dbd8737e2-0",
+    "title": "Will the highest temperature in Seoul be 21°C or higher on April 15?",
+    "lots": [
+      {
+        "shares": 74.9925,
+        "price": 0.998,
+        "usdc": 74.85,
+        "ts": 1776231462
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1776231468
+      },
+      {
+        "shares": 141.9787,
+        "price": 0.997,
+        "usdc": 141.574,
+        "ts": 1776232958
+      }
+    ],
+    "totalShares": 221.9712
+  },
+  {
+    "key": "0xb53776876bf9d3b087ab861eb37a9f76d2869eb0a66b4f8218ba1d5b5ae9445f-0",
+    "title": "Will the highest temperature in Mexico City be 19°C or higher on April 15?",
+    "lots": [
+      {
+        "shares": 11.84823,
+        "price": 0.997,
+        "usdc": 11.81445,
+        "ts": 1776265166
+      }
+    ],
+    "totalShares": 11.84823
+  },
+  {
+    "key": "0xdb8d12c38bb10135ee8b344deccfcf3a93abfc8427b5da2474e6c1eadff65b01-0",
+    "title": "Will the highest temperature in Paris be 22°C on April 15?",
+    "lots": [
+      {
+        "shares": 0.00909999999998945,
+        "price": 0.012,
+        "usdc": 0.744,
+        "ts": 1776281694
+      }
+    ],
+    "totalShares": 0.00909999999998945
+  },
+  {
+    "key": "0xd762ed263691d8bb5893977755eba0b04e902bf532e682e91e83f156924c4e7a-0",
+    "title": "Will the highest temperature in Seoul be 24°C or higher on April 16?",
+    "lots": [
+      {
+        "shares": 79.992,
+        "price": 0.998,
+        "usdc": 79.84,
+        "ts": 1776318604
+      },
+      {
+        "shares": 24.9975,
+        "price": 0.998,
+        "usdc": 24.95,
+        "ts": 1776318612
+      }
+    ],
+    "totalShares": 104.9895
+  },
+  {
+    "key": "0xaf5fe1e3117c9c0df1611cbdc4ec463beffb2bb76c0c3d261b1c73756e8657e2-0",
+    "title": "Will the highest temperature in Denver be 54°F or higher on April 17?",
+    "lots": [
+      {
+        "shares": 66.26082999999994,
+        "price": 0.9700271604607913,
+        "usdc": 2175.024,
+        "ts": 1776410126
+      }
+    ],
+    "totalShares": 66.26082999999994
+  },
+  {
+    "key": "0x1d67b3fb85ac5e90dc3667e32c3f4bec6c1bf77596875347f19889382fc1b230-1",
+    "title": "Will the highest temperature in Ankara be 13°C on April 18?",
+    "lots": [
+      {
+        "shares": 0.002230000000004395,
+        "price": 0.998,
+        "usdc": 17.74444,
+        "ts": 1776497432
+      }
+    ],
+    "totalShares": 0.002230000000004395
+  },
+  {
+    "key": "0x264e8c0e6abb75189603708463c4322a72299bd2d21df0fe5c75f7cb6066e708-0",
+    "title": "Will the highest temperature in Houston be 84°F or higher on April 18?",
+    "lots": [
+      {
+        "shares": 56.89648,
+        "price": 0.99,
+        "usdc": 284.1696,
+        "ts": 1776538548
+      },
+      {
+        "shares": 4.57,
+        "price": 0.99,
+        "usdc": 4.5243,
+        "ts": 1776538552
+      },
+      {
+        "shares": 8.39,
+        "price": 0.99,
+        "usdc": 8.3061,
+        "ts": 1776538552
+      }
+    ],
+    "totalShares": 69.85648
+  },
+  {
+    "key": "0x3c80c9656d049e2b3c5df0405165885b1bea5d2dacee7822a7310c6bdee71929-0",
+    "title": "Will the highest temperature in Seoul be 24°C or higher on April 19?",
+    "lots": [
+      {
+        "shares": 659.65951,
+        "price": 0.998,
+        "usdc": 2994,
+        "ts": 1776569382
+      },
+      {
+        "shares": 343.03557,
+        "price": 0.991,
+        "usdc": 340.10129,
+        "ts": 1776569406
+      }
+    ],
+    "totalShares": 1002.69508
+  },
+  {
+    "key": "0x58bc5e9ecd8cafcc4e292881d3bd3bb6bd47ac84345a80301827ed199d03a375-1",
+    "title": "Will the highest temperature in Atlanta be between 70-71°F on April 19?",
+    "lots": [
+      {
+        "shares": 0.007760000000004652,
+        "price": 0.52,
+        "usdc": 23.6652,
+        "ts": 1776574426
+      }
+    ],
+    "totalShares": 0.007760000000004652
+  },
+  {
+    "key": "0x1abcf8a5ac4f9705700ca40cbcdb52b9cd673aca01b8a996258c670d0de4960d-0",
+    "title": "Will the highest temperature in Singapore be 32°C or higher on April 20?",
+    "lots": [
+      {
+        "shares": 74.68999999999997,
+        "price": 0.98,
+        "usdc": 98,
+        "ts": 1776657746
+      }
+    ],
+    "totalShares": 74.68999999999997
+  },
+  {
+    "key": "0x47ce347abbb25bdeb2e93afdb36f8395c6a3277c0a6df1f4bd97cbb592ae321f-0",
+    "title": "Will the highest temperature in Milan be 21°C or higher on April 20?",
+    "lots": [
+      {
+        "shares": 63.18288999999993,
+        "price": 0.9915421114141021,
+        "usdc": 509.05772,
+        "ts": 1776687932
+      },
+      {
+        "shares": 1.01,
+        "price": 0.998,
+        "usdc": 1.00798,
+        "ts": 1776687936
+      },
+      {
+        "shares": 6.96,
+        "price": 0.998,
+        "usdc": 6.94608,
+        "ts": 1776687938
+      }
+    ],
+    "totalShares": 71.15288999999993
+  },
+  {
+    "key": "0xd8eccc515129bbcfa96734f734bc653211e0d333cfa9c4b9e67f48dc3e312ca9-0",
+    "title": "Will the highest temperature in Panama City be 31°C or higher on April 20?",
+    "lots": [
+      {
+        "shares": 69.94279,
+        "price": 0.9895967272727273,
+        "usdc": 108.85564,
+        "ts": 1776702348
+      }
+    ],
+    "totalShares": 69.94279
+  },
+  {
+    "key": "0xf38e07ea49af41525ccb103537b23099794ac8165a0309875209fc68d2df9fa6-0",
+    "title": "Will the highest temperature in Mexico City be 27°C or higher on April 21?",
+    "lots": [
+      {
+        "shares": 102.86702,
+        "price": 0.9888494557040446,
+        "usdc": 111.7301,
+        "ts": 1776804284
+      }
+    ],
+    "totalShares": 102.86702
+  },
+  {
+    "key": "0x0c750a1eda5b86d13c267964390f78b22c946ccac5e2154733681bda8fde1737-0",
+    "title": "Will the highest temperature in Moscow be 9°C or higher on April 23?",
+    "lots": [
+      {
+        "shares": 0.005932000000029802,
+        "price": 0.995,
+        "usdc": 1323.35,
+        "ts": 1776892916
+      },
+      {
+        "shares": 1329.6675,
+        "price": 0.995,
+        "usdc": 1323.35,
+        "ts": 1776894096
+      },
+      {
+        "shares": 1329.6675,
+        "price": 0.995,
+        "usdc": 1323.35,
+        "ts": 1776894108
+      },
+      {
+        "shares": 4053.08648,
+        "price": 0.995,
+        "usdc": 4033.8295,
+        "ts": 1776894160
+      },
+      {
+        "shares": 819.58555,
+        "price": 0.9969634016908419,
+        "usdc": 817.22087,
+        "ts": 1776894462
+      },
+      {
+        "shares": 369.852,
+        "price": 0.992,
+        "usdc": 367.04,
+        "ts": 1776894702
+      },
+      {
+        "shares": 10.785689999999999,
+        "price": 0.992,
+        "usdc": 10.70368,
+        "ts": 1776894766
+      }
+    ],
+    "totalShares": 7912.650651999999
+  }
+]

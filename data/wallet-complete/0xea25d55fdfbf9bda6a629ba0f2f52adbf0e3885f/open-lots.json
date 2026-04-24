@@ -1,0 +1,4663 @@
+[
+  {
+    "key": "0x229fb5b7a630bc2e71c06d95c5977c5dea3e82d93dc039cc956a00d0153b9a12-0",
+    "title": "Will the highest temperature in London be between 55-56°F on November 28?",
+    "lots": [
+      {
+        "shares": 113.75,
+        "price": 0.992,
+        "usdc": 291.4,
+        "ts": 1764345455
+      },
+      {
+        "shares": 1.12,
+        "price": 0.992,
+        "usdc": 1.11104,
+        "ts": 1764346201
+      },
+      {
+        "shares": 100,
+        "price": 0.992,
+        "usdc": 99.2,
+        "ts": 1764346463
+      },
+      {
+        "shares": 1.66,
+        "price": 0.992,
+        "usdc": 1.64672,
+        "ts": 1764346713
+      },
+      {
+        "shares": 331.08,
+        "price": 0.998,
+        "usdc": 330.41784,
+        "ts": 1764352897
+      },
+      {
+        "shares": 200,
+        "price": 0.999,
+        "usdc": 199.8,
+        "ts": 1764353001
+      },
+      {
+        "shares": 3.1,
+        "price": 0.998,
+        "usdc": 3.0938,
+        "ts": 1764355071
+      },
+      {
+        "shares": 325.02,
+        "price": 0.998,
+        "usdc": 324.36996,
+        "ts": 1764357619
+      },
+      {
+        "shares": 165.82,
+        "price": 0.998,
+        "usdc": 165.48836,
+        "ts": 1764357619
+      },
+      {
+        "shares": 109.28,
+        "price": 0.998,
+        "usdc": 109.06144,
+        "ts": 1764360445
+      },
+      {
+        "shares": 65.7,
+        "price": 0.998,
+        "usdc": 65.5686,
+        "ts": 1764369839
+      },
+      {
+        "shares": 50,
+        "price": 0.999,
+        "usdc": 49.95,
+        "ts": 1764370149
+      }
+    ],
+    "totalShares": 1466.53
+  },
+  {
+    "key": "0x6570687600d312e349ddd1df958cac36717b4e7f81e677979b951e7816d66d9c-0",
+    "title": "Will the highest temperature in London be between 54-55°F on November 29?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.993,
+        "usdc": 99.3,
+        "ts": 1764428679
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0x43ccd89e4e56ffc01df683bb13595bead993ff8f8afd7614677cc14d72380147-0",
+    "title": "Genoa CFC vs. Hellas Verona FC: O/U 1.5",
+    "lots": [
+      {
+        "shares": 40,
+        "price": 0.998,
+        "usdc": 39.92,
+        "ts": 1764430399
+      },
+      {
+        "shares": 11,
+        "price": 0.998,
+        "usdc": 10.978,
+        "ts": 1764431969
+      },
+      {
+        "shares": 23.25,
+        "price": 0.998,
+        "usdc": 23.2035,
+        "ts": 1764432027
+      }
+    ],
+    "totalShares": 74.25
+  },
+  {
+    "key": "0xdee072af7d027b46779e9faea78b906fbb955de9b287013ab03b3243a8280c5c-0",
+    "title": "Genoa CFC vs. Hellas Verona FC: O/U 2.5",
+    "lots": [
+      {
+        "shares": 32.58,
+        "price": 0.99,
+        "usdc": 32.2542,
+        "ts": 1764430597
+      }
+    ],
+    "totalShares": 32.58
+  },
+  {
+    "key": "0x1de7013cbbacf21753a0dd6c4aef7788695b3ffcac642fc6119b702eea5796aa-0",
+    "title": "Werder Bremen vs. 1. FC Köln: O/U 1.5",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.99,
+        "usdc": 990,
+        "ts": 1764431161
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0xf0fbde43958cd2aaf8e515552f0ec52a9645ee98aa6fe58c32dacabade651434-0",
+    "title": "Odds Nasralla wins Honduras presidential election Sunday over 30%?",
+    "lots": [
+      {
+        "shares": 90.25999999999999,
+        "price": 0.975,
+        "usdc": 195,
+        "ts": 1764523738
+      }
+    ],
+    "totalShares": 90.25999999999999
+  },
+  {
+    "key": "0xd237a5c2126c544f7ccb9bc969190ecd2b205e95c62cf193766e0b5db9899191-0",
+    "title": "Will the highest temperature in London be between 48-49°F on November 30?",
+    "lots": [
+      {
+        "shares": 50,
+        "price": 0.999,
+        "usdc": 99.9,
+        "ts": 1764523130
+      }
+    ],
+    "totalShares": 50
+  },
+  {
+    "key": "0x88c51c29d1fb96987be3d5cce94c3878a8f261f12d773db44a2827adb136cd26-0",
+    "title": "Will Shayne say \"Polymarket\" 2+ times during 60 Minutes?",
+    "lots": [
+      {
+        "shares": 64.22938900000001,
+        "price": 0.995,
+        "usdc": 173.27925,
+        "ts": 1764535238
+      },
+      {
+        "shares": 4.62,
+        "price": 0.986,
+        "usdc": 4.55532,
+        "ts": 1764537828
+      },
+      {
+        "shares": 40,
+        "price": 0.994,
+        "usdc": 39.76,
+        "ts": 1764537828
+      },
+      {
+        "shares": 35.38,
+        "price": 0.986,
+        "usdc": 34.88468,
+        "ts": 1764537918
+      },
+      {
+        "shares": 9.57,
+        "price": 0.984,
+        "usdc": 9.41688,
+        "ts": 1764541514
+      },
+      {
+        "shares": 10.43,
+        "price": 0.984,
+        "usdc": 10.26312,
+        "ts": 1764547536
+      },
+      {
+        "shares": 50,
+        "price": 0.973,
+        "usdc": 48.65,
+        "ts": 1764547786
+      }
+    ],
+    "totalShares": 214.22938900000003
+  },
+  {
+    "key": "0x2ebd49e38af283231d983d5847ee8471e19ffae2ceb7c50b71d18635e5a07f7e-1",
+    "title": "Will the highest temperature in New York City be between 45-46°F on December 1?",
+    "lots": [
+      {
+        "shares": 0.010000000000019327,
+        "price": 0.985,
+        "usdc": 98.5,
+        "ts": 1764612944
+      }
+    ],
+    "totalShares": 0.010000000000019327
+  },
+  {
+    "key": "0xaeb190c9a31c5e7f8ac193393ab05e55a9de86f0a945aac59feac0576aa86fc8-0",
+    "title": "Will Nasry Juan Asfura Zablah win the 2025 Honduras presidential election?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.77,
+        "usdc": 77,
+        "ts": 1764578016
+      },
+      {
+        "shares": 50,
+        "price": 0.76,
+        "usdc": 38,
+        "ts": 1764578122
+      },
+      {
+        "shares": 50,
+        "price": 0.74,
+        "usdc": 37,
+        "ts": 1764578262
+      }
+    ],
+    "totalShares": 200
+  },
+  {
+    "key": "0x288210995023c1d6e80102b897f45e5aa8dee7b2ba838f9e8e0508c6ec7aeb21-0",
+    "title": "Will the highest temperature in New York City be between 43-44°F on December 1?",
+    "lots": [
+      {
+        "shares": 25,
+        "price": 0.11,
+        "usdc": 2.75,
+        "ts": 1764592452
+      },
+      {
+        "shares": 12.24,
+        "price": 0.996,
+        "usdc": 12.19104,
+        "ts": 1764634078
+      },
+      {
+        "shares": 2.08,
+        "price": 0.996,
+        "usdc": 2.07168,
+        "ts": 1764637722
+      }
+    ],
+    "totalShares": 39.32
+  },
+  {
+    "key": "0x895671a84a579b2e9adca7f5082a195aea9971b023b0c016c8e86de58a45eb3a-0",
+    "title": "Will the highest temperature in London be between 53-54°F on December 1?",
+    "lots": [
+      {
+        "shares": 443.99,
+        "price": 0.997,
+        "usdc": 997,
+        "ts": 1764616976
+      }
+    ],
+    "totalShares": 443.99
+  },
+  {
+    "key": "0xc8f8816fd8768496362d8997efc1bae640eee4325a11e82d77c6b74b3bd84f69-0",
+    "title": "Over 7000 ETH committed to the Aztec public sale?",
+    "lots": [
+      {
+        "shares": 461.10810200000003,
+        "price": 0.997,
+        "usdc": 1449.59812,
+        "ts": 1764667298
+      },
+      {
+        "shares": 100,
+        "price": 0.998,
+        "usdc": 99.8,
+        "ts": 1764682034
+      }
+    ],
+    "totalShares": 561.108102
+  },
+  {
+    "key": "0x2cb1cce2fd3ef01ea39d9a68d3d303127d2ac048a4a0c7837cdbc80915e97e49-0",
+    "title": "Will the highest temperature in London be between 50-51°F on December 2?",
+    "lots": [
+      {
+        "shares": 74.62,
+        "price": 0.12,
+        "usdc": 12,
+        "ts": 1764667192
+      },
+      {
+        "shares": 90,
+        "price": 0.111,
+        "usdc": 9.99,
+        "ts": 1764667554
+      },
+      {
+        "shares": 100,
+        "price": 0.127,
+        "usdc": 12.7,
+        "ts": 1764668638
+      },
+      {
+        "shares": 100,
+        "price": 0.103,
+        "usdc": 10.3,
+        "ts": 1764668712
+      }
+    ],
+    "totalShares": 364.62
+  },
+  {
+    "key": "0x56c9f6658cd77dd9de2a539e2736f6f059ca34fbb2ae2d49602bda7d0ef397c5-0",
+    "title": "Over 10,000 ETH committed to the Aztec public sale?",
+    "lots": [
+      {
+        "shares": 0.006615000000010696,
+        "price": 0.998,
+        "usdc": 1184.626,
+        "ts": 1764668198
+      }
+    ],
+    "totalShares": 0.006615000000010696
+  },
+  {
+    "key": "0x532c93957ff38cb6c58c9585dc46bd75784ee3aa0a43c401b137e691f102a546-0",
+    "title": "Will the highest temperature in New York City be between 41-42°F on December 2?",
+    "lots": [
+      {
+        "shares": 50,
+        "price": 0.93,
+        "usdc": 46.5,
+        "ts": 1764698310
+      }
+    ],
+    "totalShares": 50
+  },
+  {
+    "key": "0xb0015d22af95bd3ce48c4cedfb6c59ad6c71ab6a9d2008d0975039c9257553ef-1",
+    "title": "Will the highest temperature in London be 56°F or higher on December 3?",
+    "lots": [
+      {
+        "shares": 0.003331999999772961,
+        "price": 0.998,
+        "usdc": 1996,
+        "ts": 1764762871
+      }
+    ],
+    "totalShares": 0.003331999999772961
+  },
+  {
+    "key": "0xfb14cf7611cba32b426e638f1e82bb674db6d1902ef811948b5f474adb1ae007-0",
+    "title": "Will Manchester City win on 2025-12-02?",
+    "lots": [
+      {
+        "shares": 0.0012079999999947688,
+        "price": 0.961,
+        "usdc": 16.27934,
+        "ts": 1764709513
+      }
+    ],
+    "totalShares": 0.0012079999999947688
+  },
+  {
+    "key": "0x436b51a06c3d5c762269ce7ff7f41848fd1be054d6b266be7dcb2dabef2a547c-0",
+    "title": "Over 20,000 ETH committed to the Aztec public sale?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.793,
+        "usdc": 79.3,
+        "ts": 1764787663
+      },
+      {
+        "shares": 100,
+        "price": 0.781,
+        "usdc": 78.1,
+        "ts": 1764788857
+      },
+      {
+        "shares": 100,
+        "price": 0.828,
+        "usdc": 82.8,
+        "ts": 1764837703
+      },
+      {
+        "shares": 100,
+        "price": 0.828,
+        "usdc": 82.8,
+        "ts": 1764838051
+      }
+    ],
+    "totalShares": 400
+  },
+  {
+    "key": "0xc91dd9a39f6d2b681615e03de16231b55f509bbb7a8b932fcc37c44f43e620df-0",
+    "title": "Athletic Club vs. Real Madrid: O/U 2.5",
+    "lots": [
+      {
+        "shares": 5.39,
+        "price": 0.999,
+        "usdc": 5.38461,
+        "ts": 1764790971
+      },
+      {
+        "shares": 0.75,
+        "price": 0.999,
+        "usdc": 0.74925,
+        "ts": 1764791299
+      },
+      {
+        "shares": 200,
+        "price": 0.999,
+        "usdc": 199.8,
+        "ts": 1764791349
+      },
+      {
+        "shares": 138.88,
+        "price": 0.999,
+        "usdc": 138.74112,
+        "ts": 1764791525
+      },
+      {
+        "shares": 41.66,
+        "price": 0.999,
+        "usdc": 41.61834,
+        "ts": 1764791677
+      },
+      {
+        "shares": 481.92,
+        "price": 0.999,
+        "usdc": 481.43808,
+        "ts": 1764792049
+      },
+      {
+        "shares": 0.56,
+        "price": 0.999,
+        "usdc": 0.55944,
+        "ts": 1764792203
+      },
+      {
+        "shares": 8.62,
+        "price": 0.999,
+        "usdc": 8.61138,
+        "ts": 1764792723
+      },
+      {
+        "shares": 0.42,
+        "price": 0.999,
+        "usdc": 0.41958,
+        "ts": 1764793103
+      },
+      {
+        "shares": 43.85,
+        "price": 0.999,
+        "usdc": 43.80615,
+        "ts": 1764793333
+      },
+      {
+        "shares": 276.55,
+        "price": 0.999,
+        "usdc": 276.27345,
+        "ts": 1764793347
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1764793369
+      },
+      {
+        "shares": 1.75,
+        "price": 0.999,
+        "usdc": 1.74825,
+        "ts": 1764793777
+      },
+      {
+        "shares": 52.08,
+        "price": 0.999,
+        "usdc": 52.02792,
+        "ts": 1764793937
+      },
+      {
+        "shares": 0.31,
+        "price": 0.999,
+        "usdc": 0.30969,
+        "ts": 1764794003
+      },
+      {
+        "shares": 5.88,
+        "price": 0.999,
+        "usdc": 5.87412,
+        "ts": 1764794643
+      },
+      {
+        "shares": 233,
+        "price": 0.999,
+        "usdc": 232.767,
+        "ts": 1764795699
+      },
+      {
+        "shares": 386.23,
+        "price": 0.999,
+        "usdc": 385.84377,
+        "ts": 1764795753
+      },
+      {
+        "shares": 27.77,
+        "price": 0.999,
+        "usdc": 27.74223,
+        "ts": 1764796209
+      },
+      {
+        "shares": 3.09,
+        "price": 0.999,
+        "usdc": 3.08691,
+        "ts": 1764796941
+      },
+      {
+        "shares": 175.43,
+        "price": 0.999,
+        "usdc": 175.25457,
+        "ts": 1764797237
+      }
+    ],
+    "totalShares": 2089.14
+  },
+  {
+    "key": "0x1dbf07620d17418fc25c47f7f1cdf7ff56149a8e4fefceeb68f12616874960c5-0",
+    "title": "Will the highest temperature in New York City be between 41-42°F on December 3?",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.998,
+        "usdc": 199.6,
+        "ts": 1764806143
+      }
+    ],
+    "totalShares": 200
+  },
+  {
+    "key": "0x95b631ae7a746276fec914b6a154096c6c8bdb15dc6b1c96ff08f8c2b6c97c3b-0",
+    "title": "Will the highest temperature in London be between 46-47°F on December 4?",
+    "lots": [
+      {
+        "shares": 17.099999999999994,
+        "price": 0.999,
+        "usdc": 72.0279,
+        "ts": 1764871055
+      }
+    ],
+    "totalShares": 17.099999999999994
+  },
+  {
+    "key": "0x772db666aafad534feac60a758c82d93771b000d7b0f3c9a30e129bdc43acc82-0",
+    "title": "Games Total: O/U 2.5",
+    "lots": [
+      {
+        "shares": 1171,
+        "price": 0.999,
+        "usdc": 1169.829,
+        "ts": 1764917909
+      },
+      {
+        "shares": 234,
+        "price": 0.999,
+        "usdc": 233.766,
+        "ts": 1764917931
+      }
+    ],
+    "totalShares": 1405
+  },
+  {
+    "key": "0x98d22c241d0bf64ea66827361f7d8fdb1556da0499ae1dd266f1549418fbe007-0",
+    "title": "Valorant: SLT vs Gen.G Esports - Map 2 Winner",
+    "lots": [
+      {
+        "shares": 858.65,
+        "price": 0.999,
+        "usdc": 857.79135,
+        "ts": 1764917941
+      },
+      {
+        "shares": 121,
+        "price": 0.999,
+        "usdc": 120.879,
+        "ts": 1764917951
+      },
+      {
+        "shares": 405.25,
+        "price": 0.999,
+        "usdc": 404.84475,
+        "ts": 1764917999
+      },
+      {
+        "shares": 1211.53,
+        "price": 0.999,
+        "usdc": 1210.31847,
+        "ts": 1764918335
+      }
+    ],
+    "totalShares": 2596.4300000000003
+  },
+  {
+    "key": "0x4a2d5589f3d260170b2d52b81d21f774e076a80ceaf2f436fe6403f48058008a-0",
+    "title": "1. FC Heidenheim vs. SC Freiburg: O/U 1.5",
+    "lots": [
+      {
+        "shares": 15,
+        "price": 0.999,
+        "usdc": 14.985,
+        "ts": 1765037965
+      },
+      {
+        "shares": 0.28,
+        "price": 0.999,
+        "usdc": 0.27972,
+        "ts": 1765038577
+      }
+    ],
+    "totalShares": 15.28
+  },
+  {
+    "key": "0x5b43df717ec9c93381181999bd93140fe5ae4c6e866e500de901ed484343c980-0",
+    "title": "Everton vs. Nottingham Forest: O/U 1.5",
+    "lots": [
+      {
+        "shares": 1.38,
+        "price": 0.999,
+        "usdc": 1.37862,
+        "ts": 1765038385
+      },
+      {
+        "shares": 277.77,
+        "price": 0.999,
+        "usdc": 277.49223,
+        "ts": 1765038513
+      }
+    ],
+    "totalShares": 279.15
+  },
+  {
+    "key": "0xb2572ced2a24fc6521752719ae978bdf5f92bee1179d06307c5f46fb7e83d1ae-0",
+    "title": "VfL Wolfsburg vs. Union Berlin: O/U 2.5",
+    "lots": [
+      {
+        "shares": 15,
+        "price": 0.999,
+        "usdc": 14.985,
+        "ts": 1765038489
+      },
+      {
+        "shares": 26.66,
+        "price": 0.999,
+        "usdc": 26.63334,
+        "ts": 1765039829
+      }
+    ],
+    "totalShares": 41.66
+  },
+  {
+    "key": "0x9db8f266b2f3cb88dc8ac0403992c414d9f0aedc9d1408b496422fa06219d090-0",
+    "title": "Spread: Everton (-1.5)",
+    "lots": [
+      {
+        "shares": 30,
+        "price": 0.9766666666666667,
+        "usdc": 29.3,
+        "ts": 1765039719
+      }
+    ],
+    "totalShares": 30
+  },
+  {
+    "key": "0x7a5649070c28fe8770ce7d6ec8c4ea4312e60d27481c667a82d72625032971e5-0",
+    "title": "VfL Wolfsburg vs. Union Berlin: O/U 1.5",
+    "lots": [
+      {
+        "shares": 51.26,
+        "price": 0.999,
+        "usdc": 51.20874,
+        "ts": 1765039817
+      }
+    ],
+    "totalShares": 51.26
+  },
+  {
+    "key": "0xbd68ad924c9da1fc028b3e6f299fa7f64e9cf71ca3a4c05c9d7668223bbb2142-0",
+    "title": "Accrington Stanley FC vs. Mansfield Town FC: O/U 1.5",
+    "lots": [
+      {
+        "shares": 15,
+        "price": 0.999,
+        "usdc": 14.985,
+        "ts": 1765039951
+      }
+    ],
+    "totalShares": 15
+  },
+  {
+    "key": "0x3692b099b4dc6af164f06fac890e99ab5921d708c3579b7233e90689157dc358-0",
+    "title": "Cheltenham Town FC vs. Buxton FC: O/U 3.5",
+    "lots": [
+      {
+        "shares": 15,
+        "price": 0.999,
+        "usdc": 14.985,
+        "ts": 1765039963
+      }
+    ],
+    "totalShares": 15
+  },
+  {
+    "key": "0x037f2afdefc1ef60d6ca1f504c550748332f277b206276c686d296a8c9166b0d-0",
+    "title": "Fleetwood Town FC vs. Luton Town FC: Both Teams to Score",
+    "lots": [
+      {
+        "shares": 15,
+        "price": 0.999,
+        "usdc": 14.985,
+        "ts": 1765039981
+      }
+    ],
+    "totalShares": 15
+  },
+  {
+    "key": "0x009abd4adf1f2604e4cced78b37ee31bf940b57ac649891844277264535fb4ec-0",
+    "title": "Spread: Tottenham (-1.5)",
+    "lots": [
+      {
+        "shares": 10,
+        "price": 0.95,
+        "usdc": 9.5,
+        "ts": 1765040005
+      }
+    ],
+    "totalShares": 10
+  },
+  {
+    "key": "0xea5fb474ae0644b5dc1566e2f19c13fa31f7c5bb3d1c65f8b2e89bffea961518-0",
+    "title": "Will Tottenham win on 2025-12-06?",
+    "lots": [
+      {
+        "shares": 0.96,
+        "price": 0.999,
+        "usdc": 0.95904,
+        "ts": 1765040019
+      },
+      {
+        "shares": 169,
+        "price": 0.999,
+        "usdc": 168.831,
+        "ts": 1765040023
+      },
+      {
+        "shares": 30,
+        "price": 0.999,
+        "usdc": 29.97,
+        "ts": 1765040031
+      },
+      {
+        "shares": 48.78,
+        "price": 0.999,
+        "usdc": 48.73122,
+        "ts": 1765040041
+      },
+      {
+        "shares": 1.95,
+        "price": 0.999,
+        "usdc": 1.94805,
+        "ts": 1765040075
+      },
+      {
+        "shares": 3.06,
+        "price": 0.999,
+        "usdc": 3.05694,
+        "ts": 1765040107
+      },
+      {
+        "shares": 460.18,
+        "price": 0.999,
+        "usdc": 459.71982,
+        "ts": 1765040129
+      },
+      {
+        "shares": 10,
+        "price": 0.999,
+        "usdc": 9.99,
+        "ts": 1765040137
+      },
+      {
+        "shares": 1276.07,
+        "price": 0.999,
+        "usdc": 1274.79393,
+        "ts": 1765040155
+      }
+    ],
+    "totalShares": 2000
+  },
+  {
+    "key": "0xdcb183ebd43592ceb4b0e2a92071840f7d67e80ab4c8fbad83a7736f762ef91c-0",
+    "title": "Will Newcastle win on 2025-12-06?",
+    "lots": [
+      {
+        "shares": 467.11,
+        "price": 0.999,
+        "usdc": 466.64289,
+        "ts": 1765040053
+      },
+      {
+        "shares": 1.33,
+        "price": 0.998,
+        "usdc": 1.32734,
+        "ts": 1765040177
+      },
+      {
+        "shares": 398.67,
+        "price": 0.998,
+        "usdc": 397.87266,
+        "ts": 1765040311
+      },
+      {
+        "shares": 1600,
+        "price": 0.998,
+        "usdc": 1596.8,
+        "ts": 1765040327
+      },
+      {
+        "shares": 7.79,
+        "price": 0.998,
+        "usdc": 7.77442,
+        "ts": 1765040379
+      },
+      {
+        "shares": 5,
+        "price": 0.998,
+        "usdc": 4.99,
+        "ts": 1765040403
+      },
+      {
+        "shares": 100,
+        "price": 0.999,
+        "usdc": 99.9,
+        "ts": 1765040435
+      }
+    ],
+    "totalShares": 2579.9
+  },
+  {
+    "key": "0x6ea695bf4cf38b06a6c7d66e539242b4f7d6c1ec443c46e4ddd2b1ab47ab79d7-0",
+    "title": "Will the highest temperature in New York City be between 42-43°F on December 6?",
+    "lots": [
+      {
+        "shares": 1301.6016,
+        "price": 0.9989999996926863,
+        "usdc": 1300.299998,
+        "ts": 1765061691
+      }
+    ],
+    "totalShares": 1301.6016
+  },
+  {
+    "key": "0x277db27fa42f6d1dc8ae6528ebe4e6a482dc9c2f5c61aca7c26eaced2fd207b6-0",
+    "title": "Will Elche CF win on 2025-12-07?",
+    "lots": [
+      {
+        "shares": 138.33,
+        "price": 0.99,
+        "usdc": 136.9467,
+        "ts": 1765117075
+      },
+      {
+        "shares": 425.53,
+        "price": 0.99,
+        "usdc": 421.2747,
+        "ts": 1765117255
+      },
+      {
+        "shares": 106.82,
+        "price": 0.99,
+        "usdc": 105.7518,
+        "ts": 1765117277
+      }
+    ],
+    "totalShares": 670.6800000000001
+  },
+  {
+    "key": "0xe4e2e7185d5bcdf5bc8c323902886b87efc85a0f100bc7c47bbb1fc1efe49d2e-0",
+    "title": "AZ vs. Go Ahead Eagles: O/U 1.5",
+    "lots": [
+      {
+        "shares": 432.71,
+        "price": 0.999,
+        "usdc": 432.27729,
+        "ts": 1765117343
+      },
+      {
+        "shares": 5.33,
+        "price": 0.999,
+        "usdc": 5.32467,
+        "ts": 1765117361
+      },
+      {
+        "shares": 20.4,
+        "price": 0.999,
+        "usdc": 20.3796,
+        "ts": 1765118389
+      },
+      {
+        "shares": 45.45,
+        "price": 0.999,
+        "usdc": 45.40455,
+        "ts": 1765118823
+      },
+      {
+        "shares": 18,
+        "price": 0.999,
+        "usdc": 17.982,
+        "ts": 1765120595
+      }
+    ],
+    "totalShares": 521.8899999999999
+  },
+  {
+    "key": "0x42bcef46d08a04c7b0b1740a2351443ca6ada0f26370669bb3e3c31787e3884e-0",
+    "title": "FC Volendam vs. NEC: O/U 2.5",
+    "lots": [
+      {
+        "shares": 78.23,
+        "price": 0.999,
+        "usdc": 78.15177,
+        "ts": 1765121043
+      },
+      {
+        "shares": 600,
+        "price": 0.999,
+        "usdc": 599.4,
+        "ts": 1765121563
+      },
+      {
+        "shares": 2.7,
+        "price": 0.999,
+        "usdc": 2.6973,
+        "ts": 1765121935
+      }
+    ],
+    "totalShares": 680.9300000000001
+  },
+  {
+    "key": "0x4c37c6d3178f1541d695ee27c2605d75b64332a84f5a45f62a84e80dc8dc4ce8-0",
+    "title": "FC Volendam vs. NEC: O/U 3.5",
+    "lots": [
+      {
+        "shares": 44.96,
+        "price": 0.999,
+        "usdc": 44.91504,
+        "ts": 1765121547
+      },
+      {
+        "shares": 10.86,
+        "price": 0.999,
+        "usdc": 10.84914,
+        "ts": 1765121745
+      }
+    ],
+    "totalShares": 55.82
+  },
+  {
+    "key": "0xef25dbf8ce79e9e34847325d69f12b9b8aa47a84c8d76478f9f0df58a0e98c08-0",
+    "title": "Boreham Wood FC vs. Newport County AFC: O/U 1.5",
+    "lots": [
+      {
+        "shares": 156.9,
+        "price": 0.999,
+        "usdc": 156.7431,
+        "ts": 1765121569
+      }
+    ],
+    "totalShares": 156.9
+  },
+  {
+    "key": "0x3bf543e050508019397a594f6983d0a5c3dc9f2847d27b1ce83d8a62ed38fd1e-0",
+    "title": "Will Pisa SC win on 2025-12-08?",
+    "lots": [
+      {
+        "shares": 60.06,
+        "price": 0.001,
+        "usdc": 0.06006,
+        "ts": 1765208735
+      }
+    ],
+    "totalShares": 60.06
+  },
+  {
+    "key": "0x78c807d2d6b018013288e892f46cf702d18ce8cd2740a7d565c6a5723745223b-0",
+    "title": "Will the highest temperature in London be between 58-59°F on December 8?",
+    "lots": [
+      {
+        "shares": 740.96,
+        "price": 0.998,
+        "usdc": 739.47808,
+        "ts": 1765227151
+      },
+      {
+        "shares": 1136.04,
+        "price": 0.999,
+        "usdc": 1134.90396,
+        "ts": 1765227657
+      },
+      {
+        "shares": 6.15,
+        "price": 0.999,
+        "usdc": 6.14385,
+        "ts": 1765229631
+      },
+      {
+        "shares": 36,
+        "price": 0.999,
+        "usdc": 35.964,
+        "ts": 1765232081
+      }
+    ],
+    "totalShares": 1919.15
+  },
+  {
+    "key": "0xca6c682196e624fb388ff831cdfa56f1907a89ecec22eac45238ea4a10065543-0",
+    "title": "Will Osasuna win on 2025-12-08?",
+    "lots": [
+      {
+        "shares": 8.77,
+        "price": 0.998,
+        "usdc": 8.75246,
+        "ts": 1765230615
+      }
+    ],
+    "totalShares": 8.77
+  },
+  {
+    "key": "0xbef1b6a00964100048f1b76c03b5f1cba5454345a67e4718df6e991bcd324534-0",
+    "title": "Will Manchester United win on 2025-12-08?",
+    "lots": [
+      {
+        "shares": 395.97,
+        "price": 0.999,
+        "usdc": 395.57403,
+        "ts": 1765232221
+      },
+      {
+        "shares": 50.72,
+        "price": 0.999,
+        "usdc": 50.66928,
+        "ts": 1765232275
+      },
+      {
+        "shares": 100,
+        "price": 0.999,
+        "usdc": 99.9,
+        "ts": 1765232313
+      },
+      {
+        "shares": 1.69,
+        "price": 0.999,
+        "usdc": 1.68831,
+        "ts": 1765232321
+      },
+      {
+        "shares": 16.39,
+        "price": 0.999,
+        "usdc": 16.37361,
+        "ts": 1765232365
+      },
+      {
+        "shares": 33.33,
+        "price": 0.999,
+        "usdc": 33.29667,
+        "ts": 1765232417
+      },
+      {
+        "shares": 445.55,
+        "price": 0.999,
+        "usdc": 445.10445,
+        "ts": 1765232437
+      },
+      {
+        "shares": 401.9,
+        "price": 0.999,
+        "usdc": 401.4981,
+        "ts": 1765232437
+      },
+      {
+        "shares": 377.35,
+        "price": 0.999,
+        "usdc": 376.97265,
+        "ts": 1765232511
+      },
+      {
+        "shares": 8.47,
+        "price": 0.999,
+        "usdc": 8.46153,
+        "ts": 1765232521
+      },
+      {
+        "shares": 50,
+        "price": 0.999,
+        "usdc": 49.95,
+        "ts": 1765232531
+      },
+      {
+        "shares": 16.39,
+        "price": 0.999,
+        "usdc": 16.37361,
+        "ts": 1765232541
+      },
+      {
+        "shares": 474.42,
+        "price": 0.999,
+        "usdc": 473.94558,
+        "ts": 1765232609
+      },
+      {
+        "shares": 102.24,
+        "price": 0.999,
+        "usdc": 102.13776,
+        "ts": 1765232609
+      },
+      {
+        "shares": 4.7,
+        "price": 0.999,
+        "usdc": 4.6953,
+        "ts": 1765232651
+      },
+      {
+        "shares": 51.01,
+        "price": 0.999,
+        "usdc": 50.95899,
+        "ts": 1765232651
+      },
+      {
+        "shares": 3.5,
+        "price": 0.999,
+        "usdc": 3.4965,
+        "ts": 1765232711
+      },
+      {
+        "shares": 72.27,
+        "price": 0.999,
+        "usdc": 72.19773,
+        "ts": 1765232719
+      },
+      {
+        "shares": 17.85,
+        "price": 0.999,
+        "usdc": 17.83215,
+        "ts": 1765232723
+      },
+      {
+        "shares": 3.65,
+        "price": 0.999,
+        "usdc": 3.64635,
+        "ts": 1765232781
+      },
+      {
+        "shares": 11.66,
+        "price": 0.999,
+        "usdc": 11.64834,
+        "ts": 1765232795
+      },
+      {
+        "shares": 6.55,
+        "price": 0.999,
+        "usdc": 6.54345,
+        "ts": 1765232821
+      },
+      {
+        "shares": 9,
+        "price": 0.999,
+        "usdc": 8.991,
+        "ts": 1765232895
+      },
+      {
+        "shares": 14.52,
+        "price": 0.999,
+        "usdc": 14.50548,
+        "ts": 1765232901
+      },
+      {
+        "shares": 4.91,
+        "price": 0.999,
+        "usdc": 4.90509,
+        "ts": 1765232915
+      },
+      {
+        "shares": 166.66,
+        "price": 0.999,
+        "usdc": 166.49334,
+        "ts": 1765232939
+      },
+      {
+        "shares": 120.48,
+        "price": 0.999,
+        "usdc": 120.35952,
+        "ts": 1765232945
+      },
+      {
+        "shares": 38.82,
+        "price": 0.999,
+        "usdc": 38.78118,
+        "ts": 1765232995
+      },
+      {
+        "shares": 1000,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1765238599
+      },
+      {
+        "shares": 1000,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1765238599
+      }
+    ],
+    "totalShares": 5000
+  },
+  {
+    "key": "0x7c7f0ad0269337f051cb2c65abe214a1cd0c3329733eb08cc13a8676f4872ad0-0",
+    "title": "Games Total: O/U 2.5",
+    "lots": [
+      {
+        "shares": 236.08,
+        "price": 0.98,
+        "usdc": 231.3584,
+        "ts": 1765264983
+      },
+      {
+        "shares": 54.84,
+        "price": 0.999,
+        "usdc": 54.78516,
+        "ts": 1765268351
+      }
+    ],
+    "totalShares": 290.92
+  },
+  {
+    "key": "0x37d9f9e69149cffa6dff52f96a73bfca6ce7a1e881bb868913b7caf45e5bd1c9-1",
+    "title": "Will the highest temperature in New York City be 39°F or higher on December 9?",
+    "lots": [
+      {
+        "shares": 0.023767000000049165,
+        "price": 0.99,
+        "usdc": 495,
+        "ts": 1765276825
+      }
+    ],
+    "totalShares": 0.023767000000049165
+  },
+  {
+    "key": "0x2ce346a22d94e172a992cb06c2ac5440b64c556ced61c6fbcdebb7b24705a449-0",
+    "title": "Will the price of Ethereum be above $3,200 on December 9?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.999,
+        "usdc": 99.9,
+        "ts": 1765299464
+      },
+      {
+        "shares": 12.5,
+        "price": 0.999,
+        "usdc": 12.4875,
+        "ts": 1765299868
+      }
+    ],
+    "totalShares": 112.5
+  },
+  {
+    "key": "0x7b7773da5ed98060e01ee6a435f5e24e7fafbfdf5ba986af1e2040288ed81f4f-0",
+    "title": "Will the price of Ethereum be above $3,300 on December 9?",
+    "lots": [
+      {
+        "shares": 2499.13,
+        "price": 0.999,
+        "usdc": 2496.63087,
+        "ts": 1765299554
+      }
+    ],
+    "totalShares": 2499.13
+  },
+  {
+    "key": "0x3494392387996ccc90e9dd1eb237ac261a4af485f425b35c59f9b37cd7b2f456-0",
+    "title": "Will the price of Ethereum be above $2,600 on December 10?",
+    "lots": [
+      {
+        "shares": 160,
+        "price": 0.997,
+        "usdc": 159.52,
+        "ts": 1765299652
+      }
+    ],
+    "totalShares": 160
+  },
+  {
+    "key": "0xc44e3fba077c422bee7b79128fa624424e6bfa3bfdc49f98d20f2b09a6787c00-0",
+    "title": "Will Tottenham Hotspur FC win on 2025-12-09?",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.999,
+        "usdc": 199.8,
+        "ts": 1765316252
+      }
+    ],
+    "totalShares": 200
+  },
+  {
+    "key": "0xe6b8227c775d54f34bb19c82b636b5c3d3a5561b1f185c69f60ca07c895f23a3-0",
+    "title": "Spread: Tottenham Hotspur FC (-1.5)",
+    "lots": [
+      {
+        "shares": 27.9,
+        "price": 0.97,
+        "usdc": 27.063,
+        "ts": 1765316268
+      },
+      {
+        "shares": 5.81,
+        "price": 0.97,
+        "usdc": 5.6357,
+        "ts": 1765316298
+      }
+    ],
+    "totalShares": 33.71
+  },
+  {
+    "key": "0x0850988db474f6a1dedb5f4d6e43554812c585f8aaf7782c87c470cdcbea84a7-0",
+    "title": "Will the highest temperature in London be between 57-58°F on December 10?",
+    "lots": [
+      {
+        "shares": 33.250000000000014,
+        "price": 0.999,
+        "usdc": 320.15952,
+        "ts": 1765377170
+      },
+      {
+        "shares": 79.88,
+        "price": 0.999,
+        "usdc": 79.80012,
+        "ts": 1765380456
+      },
+      {
+        "shares": 50,
+        "price": 0.999,
+        "usdc": 49.95,
+        "ts": 1765385794
+      },
+      {
+        "shares": 50,
+        "price": 0.999,
+        "usdc": 49.95,
+        "ts": 1765385880
+      },
+      {
+        "shares": 50,
+        "price": 0.999,
+        "usdc": 49.95,
+        "ts": 1765385954
+      },
+      {
+        "shares": 51,
+        "price": 0.999,
+        "usdc": 50.949,
+        "ts": 1765393564
+      }
+    ],
+    "totalShares": 314.13
+  },
+  {
+    "key": "0x5a9328d92fe2d32ff7edb99a0a923e8b730f95d916c95de4b5c3d001943504f1-1",
+    "title": "Spread: Real Madrid CF (-1.5)",
+    "lots": [
+      {
+        "shares": 0.012014999999992781,
+        "price": 0.8800001008000161,
+        "usdc": 7.333333,
+        "ts": 1765399100
+      }
+    ],
+    "totalShares": 0.012014999999992781
+  },
+  {
+    "key": "0x2b1537ed02b9e18424722f48a32ee5723fb5c1b56b4d314e7a17e5dc1fd44c6a-0",
+    "title": "Real Madrid CF vs. Manchester City FC: O/U 2.5",
+    "lots": [
+      {
+        "shares": 53.26,
+        "price": 0.9771836274877957,
+        "usdc": 52.0448,
+        "ts": 1765399406
+      }
+    ],
+    "totalShares": 53.26
+  },
+  {
+    "key": "0x1e57504c4336afa96d323491632848cd79a89b33cbff0a32a204fab94dd708ee-0",
+    "title": "Club Brugge KV vs. Arsenal FC: O/U 1.5",
+    "lots": [
+      {
+        "shares": 8,
+        "price": 0.99,
+        "usdc": 7.92,
+        "ts": 1765400836
+      },
+      {
+        "shares": 1000,
+        "price": 0.99,
+        "usdc": 990,
+        "ts": 1765401060
+      }
+    ],
+    "totalShares": 1008
+  },
+  {
+    "key": "0x29cad4c5f5403141b2a7ff9759ce4fc37f8ca92d081f724b3986a05391775235-0",
+    "title": "Bayer 04 Leverkusen vs. Newcastle United FC: O/U 1.5",
+    "lots": [
+      {
+        "shares": 12,
+        "price": 0.9,
+        "usdc": 10.8,
+        "ts": 1765400958
+      },
+      {
+        "shares": 14.99,
+        "price": 0.999,
+        "usdc": 14.97501,
+        "ts": 1765401300
+      },
+      {
+        "shares": 22.98,
+        "price": 0.999,
+        "usdc": 22.95702,
+        "ts": 1765401360
+      }
+    ],
+    "totalShares": 49.97
+  },
+  {
+    "key": "0xaba39e1c5ea2052147dc68e554eb0d08536357e3553c1b54fd52da4a0045c689-0",
+    "title": "Bayer 04 Leverkusen vs. Newcastle United FC: Both Teams to Score",
+    "lots": [
+      {
+        "shares": 29.21,
+        "price": 0.999,
+        "usdc": 29.18079,
+        "ts": 1765401520
+      },
+      {
+        "shares": 33.33,
+        "price": 0.999,
+        "usdc": 33.29667,
+        "ts": 1765401600
+      },
+      {
+        "shares": 63,
+        "price": 0.999,
+        "usdc": 62.937,
+        "ts": 1765401622
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1765401740
+      },
+      {
+        "shares": 4.53,
+        "price": 0.999,
+        "usdc": 4.52547,
+        "ts": 1765402022
+      },
+      {
+        "shares": 3.12,
+        "price": 0.999,
+        "usdc": 3.11688,
+        "ts": 1765402042
+      },
+      {
+        "shares": 24.71,
+        "price": 0.999,
+        "usdc": 24.68529,
+        "ts": 1765402190
+      },
+      {
+        "shares": 156.59,
+        "price": 0.999,
+        "usdc": 156.43341,
+        "ts": 1765402300
+      },
+      {
+        "shares": 76.74,
+        "price": 0.999,
+        "usdc": 76.66326,
+        "ts": 1765402332
+      },
+      {
+        "shares": 3.77,
+        "price": 0.999,
+        "usdc": 3.76623,
+        "ts": 1765402484
+      }
+    ],
+    "totalShares": 400
+  },
+  {
+    "key": "0x520ff34fb330c1e3506cb9d76dece935247c326bfc9fd40e9815277b15931fd7-0",
+    "title": "Sport Lisboa e Benfica vs. SSC Napoli: O/U 1.5",
+    "lots": [
+      {
+        "shares": 0.57,
+        "price": 0.999,
+        "usdc": 0.56943,
+        "ts": 1765402572
+      }
+    ],
+    "totalShares": 0.57
+  },
+  {
+    "key": "0x03ece76f6cc0f838495fd2bd3ba6f4a48cfa849c592a920b97ac412952727c90-0",
+    "title": "Will Juventus FC win on 2025-12-10?",
+    "lots": [
+      {
+        "shares": 1072.8288759999998,
+        "price": 0.999,
+        "usdc": 1458.54,
+        "ts": 1765402698
+      },
+      {
+        "shares": 179.9,
+        "price": 0.998,
+        "usdc": 179.5402,
+        "ts": 1765402770
+      }
+    ],
+    "totalShares": 1252.728876
+  },
+  {
+    "key": "0x3451910e20322373bd8479ea00f3ea3aab6dea8ac4fdbb4cccec3d20893098d7-0",
+    "title": "Juventus FC vs. Páfos FC: O/U 1.5",
+    "lots": [
+      {
+        "shares": 29.86,
+        "price": 0.999,
+        "usdc": 29.83014,
+        "ts": 1765402738
+      },
+      {
+        "shares": 50,
+        "price": 0.999,
+        "usdc": 49.95,
+        "ts": 1765402812
+      },
+      {
+        "shares": 3.27,
+        "price": 0.999,
+        "usdc": 3.26673,
+        "ts": 1765403118
+      }
+    ],
+    "totalShares": 83.13
+  },
+  {
+    "key": "0x8b4a10d94937aa96c136421e76cf62a0723d34072791b72f29e65949e598eaba-0",
+    "title": "Will the highest temperature in Seoul be 8°C on December 11?",
+    "lots": [
+      {
+        "shares": 2000,
+        "price": 0.999,
+        "usdc": 1998,
+        "ts": 1765446631
+      },
+      {
+        "shares": 16,
+        "price": 0.999,
+        "usdc": 15.984,
+        "ts": 1765449463
+      },
+      {
+        "shares": 3.01,
+        "price": 0.999,
+        "usdc": 3.00699,
+        "ts": 1765452761
+      },
+      {
+        "shares": 16.45,
+        "price": 0.999,
+        "usdc": 16.43355,
+        "ts": 1765454205
+      }
+    ],
+    "totalShares": 2035.46
+  },
+  {
+    "key": "0xc518916d74bd08acc8a987969a3e824b770a478b0b14311d2ecdbb69b2b1249d-0",
+    "title": "Counter-Strike: Spirit vs Team Falcons (BO3)",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.98,
+        "usdc": 98,
+        "ts": 1765476199
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0xaa7df9ab53521c7c861eb3c8b7de182d6ed309908587e0474681609150118869-0",
+    "title": "GNK Dinamo Zagreb vs. Real Betis Balompié: O/U 1.5",
+    "lots": [
+      {
+        "shares": 15,
+        "price": 0.98,
+        "usdc": 14.7,
+        "ts": 1765477165
+      }
+    ],
+    "totalShares": 15
+  },
+  {
+    "key": "0x3ff6a487ac6cc1167eb752422ba71bb976abc6d319e035c838a2bae8b6c06332-0",
+    "title": "VfB Stuttgart vs. MH Maccabi Tel Aviv: O/U 1.5",
+    "lots": [
+      {
+        "shares": 523.06,
+        "price": 0.999,
+        "usdc": 522.53694,
+        "ts": 1765479349
+      },
+      {
+        "shares": 34.28,
+        "price": 0.999,
+        "usdc": 34.24572,
+        "ts": 1765481363
+      }
+    ],
+    "totalShares": 557.3399999999999
+  },
+  {
+    "key": "0x017da80568a1c2b1f17cf3c27b872018f832a9ef4e8e532f91a24155b5abdd3d-0",
+    "title": "VfB Stuttgart vs. MH Maccabi Tel Aviv: Both Teams to Score",
+    "lots": [
+      {
+        "shares": 50,
+        "price": 0.98,
+        "usdc": 49,
+        "ts": 1765479437
+      }
+    ],
+    "totalShares": 50
+  },
+  {
+    "key": "0x1acc5c5d2659a5e22ae8b4bb1748ba307ff3d893d7575455336c3d7672e5dd17-0",
+    "title": "PFK Ludogorets 1945 Razgrad vs. PAOK: O/U 1.5",
+    "lots": [
+      {
+        "shares": 420.23,
+        "price": 0.999,
+        "usdc": 419.80977,
+        "ts": 1765479499
+      }
+    ],
+    "totalShares": 420.23
+  },
+  {
+    "key": "0x9d5c632ddad5cd2e78443332fa1bdb965d084fd49c2459d4faa8e6e4b69764cd-0",
+    "title": "Ferencvárosi TC vs. Rangers FC: Both Teams to Score",
+    "lots": [
+      {
+        "shares": 48.27,
+        "price": 0.999,
+        "usdc": 48.22173,
+        "ts": 1765480189
+      },
+      {
+        "shares": 20,
+        "price": 0.999,
+        "usdc": 19.98,
+        "ts": 1765480567
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1765481201
+      }
+    ],
+    "totalShares": 73.27000000000001
+  },
+  {
+    "key": "0xf4fc8422210fff4057f5b3ac28d3478a221bf7f48755d7fe795cb71c1c7cba3d-0",
+    "title": "Ferencvárosi TC vs. Rangers FC: O/U 1.5",
+    "lots": [
+      {
+        "shares": 6.17,
+        "price": 0.999,
+        "usdc": 6.16383,
+        "ts": 1765480453
+      },
+      {
+        "shares": 50,
+        "price": 0.999,
+        "usdc": 49.95,
+        "ts": 1765480571
+      }
+    ],
+    "totalShares": 56.17
+  },
+  {
+    "key": "0x6527baaaa2ae823fa14591cc377caf17e83b097b0c6c958b8a3d0c5d5ce6b277-0",
+    "title": "FC Utrecht vs. Nottingham Forest FC: O/U 1.5",
+    "lots": [
+      {
+        "shares": 1255.04,
+        "price": 0.999,
+        "usdc": 1253.78496,
+        "ts": 1765481279
+      },
+      {
+        "shares": 1300.78,
+        "price": 0.999,
+        "usdc": 1299.47922,
+        "ts": 1765481321
+      },
+      {
+        "shares": 50,
+        "price": 0.999,
+        "usdc": 49.95,
+        "ts": 1765481459
+      },
+      {
+        "shares": 87.61,
+        "price": 0.999,
+        "usdc": 87.52239,
+        "ts": 1765481529
+      },
+      {
+        "shares": 15.87,
+        "price": 0.999,
+        "usdc": 15.85413,
+        "ts": 1765481613
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1765481927
+      },
+      {
+        "shares": 422.7,
+        "price": 0.999,
+        "usdc": 422.2773,
+        "ts": 1765481951
+      },
+      {
+        "shares": 898.76,
+        "price": 0.999,
+        "usdc": 897.86124,
+        "ts": 1765482217
+      },
+      {
+        "shares": 1118.04,
+        "price": 0.999,
+        "usdc": 1116.92196,
+        "ts": 1765482217
+      },
+      {
+        "shares": 20,
+        "price": 0.999,
+        "usdc": 19.98,
+        "ts": 1765482317
+      },
+      {
+        "shares": 10.52,
+        "price": 0.999,
+        "usdc": 10.50948,
+        "ts": 1765482505
+      },
+      {
+        "shares": 10.41,
+        "price": 0.999,
+        "usdc": 10.39959,
+        "ts": 1765482759
+      },
+      {
+        "shares": 28.3,
+        "price": 0.999,
+        "usdc": 28.2717,
+        "ts": 1765483207
+      },
+      {
+        "shares": 7,
+        "price": 0.999,
+        "usdc": 6.993,
+        "ts": 1765483225
+      },
+      {
+        "shares": 81.96,
+        "price": 0.999,
+        "usdc": 81.87804,
+        "ts": 1765483523
+      },
+      {
+        "shares": 9.21,
+        "price": 0.999,
+        "usdc": 9.20079,
+        "ts": 1765484997
+      },
+      {
+        "shares": 39.47,
+        "price": 0.999,
+        "usdc": 39.43053,
+        "ts": 1765485079
+      },
+      {
+        "shares": 300,
+        "price": 0.999,
+        "usdc": 299.7,
+        "ts": 1765486307
+      }
+    ],
+    "totalShares": 5660.67
+  },
+  {
+    "key": "0x34e733e68b43020e7ce223b839023bbe97579afff7bcfb98ef030654d2aa169e-0",
+    "title": "FC Utrecht vs. Nottingham Forest FC: Both Teams to Score",
+    "lots": [
+      {
+        "shares": 29.99,
+        "price": 0.9984998332777593,
+        "usdc": 29.94501,
+        "ts": 1765481307
+      }
+    ],
+    "totalShares": 29.99
+  },
+  {
+    "key": "0x4bd385f1ce138a69bcc7ade2f0dd151183b3590196ecda40ed2c92f15c73ecf1-0",
+    "title": "FC Utrecht vs. Nottingham Forest FC: O/U 2.5",
+    "lots": [
+      {
+        "shares": 757.64,
+        "price": 0.999,
+        "usdc": 756.88236,
+        "ts": 1765482133
+      },
+      {
+        "shares": 285.71,
+        "price": 0.999,
+        "usdc": 285.42429,
+        "ts": 1765482163
+      }
+    ],
+    "totalShares": 1043.35
+  },
+  {
+    "key": "0x9ebf2dbf334489430b279ae395ad381a5d3fe1e044aa178cf5039dbf63a93b59-0",
+    "title": "Olympique Lyonnais vs. Go Ahead Eagles: Both Teams to Score",
+    "lots": [
+      {
+        "shares": 10.06,
+        "price": 0.999,
+        "usdc": 10.04994,
+        "ts": 1765485437
+      }
+    ],
+    "totalShares": 10.06
+  },
+  {
+    "key": "0x24933f674d043c405fcf3228d345be0f7470692fcbae5e9b77916c209216a541-0",
+    "title": "Games Total: O/U 2.5",
+    "lots": [
+      {
+        "shares": 1207.077,
+        "price": 0.999,
+        "usdc": 1205.869923,
+        "ts": 1765486335
+      }
+    ],
+    "totalShares": 1207.077
+  },
+  {
+    "key": "0x2d029d58c2afc6abfdfc2d2a655cce2fa41bbbde6258804cd8f39c024b575493-1",
+    "title": "Will the highest temperature in Dallas be between 61-62°F on December 12?",
+    "lots": [
+      {
+        "shares": 0.0046459999999974855,
+        "price": 0.999,
+        "usdc": 54.945,
+        "ts": 1765494714
+      }
+    ],
+    "totalShares": 0.0046459999999974855
+  },
+  {
+    "key": "0xadfccd00305fa5ac1d962bfef798fe3f9540bb16cf72cf3626bc067a7c1cdfe7-0",
+    "title": "Will the price of Bitcoin be above $78,000 on December 12?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.998,
+        "usdc": 998,
+        "ts": 1765530418
+      },
+      {
+        "shares": 1000,
+        "price": 0.998,
+        "usdc": 998,
+        "ts": 1765530418
+      }
+    ],
+    "totalShares": 2000
+  },
+  {
+    "key": "0x0813765b13da10d583cc2fe2a11631ba41ecaf4cf22fb0253740a35da7277e12-0",
+    "title": "Will the highest temperature in Seoul be 5°C on December 12?",
+    "lots": [
+      {
+        "shares": 16.66,
+        "price": 0.997,
+        "usdc": 16.61002,
+        "ts": 1765532054
+      },
+      {
+        "shares": 16.65,
+        "price": 0.997,
+        "usdc": 16.60005,
+        "ts": 1765532260
+      },
+      {
+        "shares": 43.73,
+        "price": 0.9965714612394238,
+        "usdc": 43.58007,
+        "ts": 1765535288
+      }
+    ],
+    "totalShares": 77.03999999999999
+  },
+  {
+    "key": "0x152d988777066111f587a4903127b56a03973e3d6606342195cac226ea2c876d-0",
+    "title": "Dota 2: Team Nemesis vs Nigma Galaxy - Game 1 Winner",
+    "lots": [
+      {
+        "shares": 29.99,
+        "price": 0.9984998332777593,
+        "usdc": 29.94501,
+        "ts": 1765566909
+      },
+      {
+        "shares": 10,
+        "price": 0.999,
+        "usdc": 9.99,
+        "ts": 1765566975
+      },
+      {
+        "shares": 1440,
+        "price": 0.999,
+        "usdc": 1438.56,
+        "ts": 1765566995
+      },
+      {
+        "shares": 98.38,
+        "price": 0.999,
+        "usdc": 98.28162,
+        "ts": 1765567277
+      },
+      {
+        "shares": 70,
+        "price": 0.999,
+        "usdc": 69.93,
+        "ts": 1765567491
+      },
+      {
+        "shares": 56.66,
+        "price": 0.999,
+        "usdc": 56.60334,
+        "ts": 1765567497
+      },
+      {
+        "shares": 330,
+        "price": 0.999,
+        "usdc": 329.67,
+        "ts": 1765567625
+      },
+      {
+        "shares": 320,
+        "price": 0.999,
+        "usdc": 319.68,
+        "ts": 1765567823
+      },
+      {
+        "shares": 695.66,
+        "price": 0.999,
+        "usdc": 694.96434,
+        "ts": 1765567951
+      },
+      {
+        "shares": 644.97,
+        "price": 0.999,
+        "usdc": 644.32503,
+        "ts": 1765567951
+      },
+      {
+        "shares": 1000,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1765567969
+      },
+      {
+        "shares": 5.5,
+        "price": 0.999,
+        "usdc": 5.4945,
+        "ts": 1765568183
+      },
+      {
+        "shares": 235.29,
+        "price": 0.999,
+        "usdc": 235.05471,
+        "ts": 1765568781
+      },
+      {
+        "shares": 2.18,
+        "price": 0.999,
+        "usdc": 2.17782,
+        "ts": 1765568837
+      }
+    ],
+    "totalShares": 4938.63
+  },
+  {
+    "key": "0x931e94a723e4fffedf1d4302abc9ff35d96edc04e1db6e8ed38a4d4e1a3ae62c-0",
+    "title": "Dota 2: Tundra Esports vs Aurora - Game 1 Winner",
+    "lots": [
+      {
+        "shares": 127.72,
+        "price": 0.999,
+        "usdc": 127.59228,
+        "ts": 1765568793
+      },
+      {
+        "shares": 21.66,
+        "price": 0.999,
+        "usdc": 21.63834,
+        "ts": 1765570491
+      }
+    ],
+    "totalShares": 149.38
+  },
+  {
+    "key": "0x4dcbec89c52811a3af15935513d0aca216bca056b04167c3289f9a2c9d9eb98e-0",
+    "title": "Games Total: O/U 2.5",
+    "lots": [
+      {
+        "shares": 29.99,
+        "price": 0.9984998332777593,
+        "usdc": 29.94501,
+        "ts": 1765571535
+      },
+      {
+        "shares": 4.68,
+        "price": 0.999,
+        "usdc": 4.67532,
+        "ts": 1765572569
+      }
+    ],
+    "totalShares": 34.67
+  },
+  {
+    "key": "0x593443fea60581d5fdc26cc8ddcdaad428b5ce62c9e8195b3bc49ac43b947dad-0",
+    "title": "Counter-Strike: BetBoom Team vs Johnny Speeds - Map 2 Winner",
+    "lots": [
+      {
+        "shares": 58.87,
+        "price": 0.999,
+        "usdc": 58.81113,
+        "ts": 1765572499
+      },
+      {
+        "shares": 103.06,
+        "price": 0.999,
+        "usdc": 102.95694,
+        "ts": 1765572647
+      }
+    ],
+    "totalShares": 161.93
+  },
+  {
+    "key": "0xedbfbc56730fc4e6cc15761381140a468f6285220259de6281fb1d95fa191449-0",
+    "title": "1. FC Union Berlin vs. RB Leipzig: O/U 1.5",
+    "lots": [
+      {
+        "shares": 977.66,
+        "price": 0.999,
+        "usdc": 976.68234,
+        "ts": 1765573105
+      },
+      {
+        "shares": 702.89,
+        "price": 0.999,
+        "usdc": 702.18711,
+        "ts": 1765573113
+      },
+      {
+        "shares": 4.05,
+        "price": 0.999,
+        "usdc": 4.04595,
+        "ts": 1765573135
+      },
+      {
+        "shares": 31.95,
+        "price": 0.999,
+        "usdc": 31.91805,
+        "ts": 1765573231
+      }
+    ],
+    "totalShares": 1716.55
+  },
+  {
+    "key": "0x1b9c66ef33075dd93b68d9c3badbddbf1fc0311ffc0274cf039f881ef4c9bed0-0",
+    "title": "Games Total: O/U 2.5",
+    "lots": [
+      {
+        "shares": 29.99,
+        "price": 0.9984998332777593,
+        "usdc": 29.94501,
+        "ts": 1765574095
+      },
+      {
+        "shares": 10.42,
+        "price": 0.999,
+        "usdc": 10.40958,
+        "ts": 1765574463
+      }
+    ],
+    "totalShares": 40.41
+  },
+  {
+    "key": "0xc484c5e3e229d598e789e75b8c7c9994abded6de92cc500330958675d39a67a5-0",
+    "title": "Dota 2: Team Falcons vs PARIVISION - Game 2 Winner",
+    "lots": [
+      {
+        "shares": 25,
+        "price": 0.999,
+        "usdc": 24.975,
+        "ts": 1765574189
+      }
+    ],
+    "totalShares": 25
+  },
+  {
+    "key": "0x4e48babdf0b061692d615117616ee758547973becc93fdbf7b234e827e4edd78-0",
+    "title": "Games Total: O/U 2.5",
+    "lots": [
+      {
+        "shares": 3408.108,
+        "price": 0.999,
+        "usdc": 3404.699892,
+        "ts": 1765574529
+      }
+    ],
+    "totalShares": 3408.108
+  },
+  {
+    "key": "0x113233f6513786f7e91f31b1fff1aa214c881f2f94b64521389da2a42cb4443f-0",
+    "title": "Will the highest temperature in Seoul be 5°C on December 13?",
+    "lots": [
+      {
+        "shares": 1502.19,
+        "price": 0.999,
+        "usdc": 1658.52981,
+        "ts": 1765612000
+      },
+      {
+        "shares": 53,
+        "price": 0.999,
+        "usdc": 52.947,
+        "ts": 1765614448
+      },
+      {
+        "shares": 52,
+        "price": 0.999,
+        "usdc": 51.948,
+        "ts": 1765615304
+      },
+      {
+        "shares": 102,
+        "price": 0.999,
+        "usdc": 101.898,
+        "ts": 1765617106
+      },
+      {
+        "shares": 2,
+        "price": 0.999,
+        "usdc": 1.998,
+        "ts": 1765637337
+      }
+    ],
+    "totalShares": 1711.19
+  },
+  {
+    "key": "0xd8167b2f4f2f4e29fb902fbc6101027af11c1eeb4603dcce18ba6a04112e2b9e-0",
+    "title": "Will the highest temperature in Seattle be between 53-54°F on December 12?",
+    "lots": [
+      {
+        "shares": 50,
+        "price": 0.999,
+        "usdc": 49.95,
+        "ts": 1765612230
+      },
+      {
+        "shares": 50,
+        "price": 0.999,
+        "usdc": 49.95,
+        "ts": 1765615166
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0x4727d97735723f607655c58e9c5626c478b84ce404220477f70110eb3636c930-0",
+    "title": "Dota 2: Nigma Galaxy vs 1win - Game 1 Winner",
+    "lots": [
+      {
+        "shares": 673,
+        "price": 0.9989777117384844,
+        "usdc": 672.312,
+        "ts": 1765654551
+      },
+      {
+        "shares": 29.85,
+        "price": 0.999,
+        "usdc": 29.82015,
+        "ts": 1765654695
+      },
+      {
+        "shares": 95.28,
+        "price": 0.999,
+        "usdc": 95.18472,
+        "ts": 1765654705
+      },
+      {
+        "shares": 798.09,
+        "price": 0.999,
+        "usdc": 797.29191,
+        "ts": 1765654971
+      },
+      {
+        "shares": 4201.87,
+        "price": 0.999,
+        "usdc": 4197.66813,
+        "ts": 1765654971
+      },
+      {
+        "shares": 145.84,
+        "price": 0.999,
+        "usdc": 145.69416,
+        "ts": 1765655271
+      },
+      {
+        "shares": 67.54,
+        "price": 0.999,
+        "usdc": 67.47246,
+        "ts": 1765655663
+      },
+      {
+        "shares": 1764.91,
+        "price": 0.999,
+        "usdc": 1763.14509,
+        "ts": 1765656359
+      }
+    ],
+    "totalShares": 7776.38
+  },
+  {
+    "key": "0x78232a863bbe937a343da79719280ffadb94bd3bbe2e9e6d69d6455afc9a6c52-0",
+    "title": "FC Groningen vs. FC Volendam: O/U 1.5",
+    "lots": [
+      {
+        "shares": 750,
+        "price": 0.999,
+        "usdc": 749.25,
+        "ts": 1765654855
+      },
+      {
+        "shares": 54.3,
+        "price": 0.999,
+        "usdc": 54.2457,
+        "ts": 1765654881
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1765655145
+      },
+      {
+        "shares": 60,
+        "price": 0.999,
+        "usdc": 59.94,
+        "ts": 1765655321
+      }
+    ],
+    "totalShares": 869.3
+  },
+  {
+    "key": "0x5a45db4685ea3847c296a361122ca5fcd6203232f9bdda94b13dd15f23f2e31f-0",
+    "title": "Northern Illinois Huskies vs. Elon Phoenix: O/U 157.5",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.99,
+        "usdc": 198,
+        "ts": 1765655763
+      },
+      {
+        "shares": 6.11,
+        "price": 0.999,
+        "usdc": 6.10389,
+        "ts": 1765665657
+      }
+    ],
+    "totalShares": 206.11
+  },
+  {
+    "key": "0xb37e05d63bc70fb809d7f81410677469b7c6d6b95673367e670de7ad7aa22bc2-0",
+    "title": "PSV vs. Heracles Almelo: O/U 1.5",
+    "lots": [
+      {
+        "shares": 51.54,
+        "price": 0.999,
+        "usdc": 51.48846,
+        "ts": 1765656137
+      }
+    ],
+    "totalShares": 51.54
+  },
+  {
+    "key": "0x25ab1b3227d5393ff993a29304548c3b5e903c973b8353b9df26a7a30b200fca-0",
+    "title": "Northern Illinois Huskies vs. Elon Phoenix: O/U 160.5",
+    "lots": [
+      {
+        "shares": 50,
+        "price": 0.99,
+        "usdc": 49.5,
+        "ts": 1765656229
+      },
+      {
+        "shares": 200,
+        "price": 0.999,
+        "usdc": 199.8,
+        "ts": 1765665525
+      }
+    ],
+    "totalShares": 250
+  },
+  {
+    "key": "0x740ffd8e01282d176c52f304ed16548429c666cb3d4d4b5b402400e7cd3c33ee-0",
+    "title": "Northern Illinois Huskies vs. Elon Phoenix: O/U 158.5",
+    "lots": [
+      {
+        "shares": 1.11,
+        "price": 0.99,
+        "usdc": 1.0989,
+        "ts": 1765656331
+      },
+      {
+        "shares": 49.02,
+        "price": 0.999,
+        "usdc": 48.97098,
+        "ts": 1765665511
+      }
+    ],
+    "totalShares": 50.13
+  },
+  {
+    "key": "0x8c002907155c3c8b954eba49919a134faefba6ce41a221b362748c1ec138df99-0",
+    "title": "Providence Friars vs. Butler Bulldogs: O/U 164.5",
+    "lots": [
+      {
+        "shares": 75,
+        "price": 0.9988,
+        "usdc": 74.91,
+        "ts": 1765661335
+      },
+      {
+        "shares": 67.01,
+        "price": 0.999,
+        "usdc": 66.94299,
+        "ts": 1765663715
+      }
+    ],
+    "totalShares": 142.01
+  },
+  {
+    "key": "0x5e03757824a0737672c207d3d2f2c0aca5b05ae334547ff6065560ed4313c3df-0",
+    "title": "Spread: Arkansas State Red Wolves (-3.5)",
+    "lots": [
+      {
+        "shares": 300,
+        "price": 0.99,
+        "usdc": 297,
+        "ts": 1765662027
+      }
+    ],
+    "totalShares": 300
+  },
+  {
+    "key": "0xc17814af7cff75847141ae7458c8568cb4ab218a33ae9129c8f925de5a8aad52-0",
+    "title": "Providence Friars vs. Butler Bulldogs: O/U 169.5",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.999,
+        "usdc": 199.8,
+        "ts": 1765663411
+      }
+    ],
+    "totalShares": 200
+  },
+  {
+    "key": "0x43f87bc03fe3dc17073490f157728fed11d6a79fea68ee3f9696224c882858cb-0",
+    "title": "Providence Friars vs. Butler Bulldogs: O/U 168.5",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.999,
+        "usdc": 199.8,
+        "ts": 1765663421
+      }
+    ],
+    "totalShares": 200
+  },
+  {
+    "key": "0x2ebea977cad35214c09d0d91cc45412aebfe13297d02c318d78b836f4fcd3e5f-0",
+    "title": "Providence Friars vs. Butler Bulldogs: O/U 170.5",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.999,
+        "usdc": 199.8,
+        "ts": 1765663429
+      }
+    ],
+    "totalShares": 200
+  },
+  {
+    "key": "0xc8514ab28725695c0bbbf025ee19ae37eb626465f0a92bf9c61b299c70ce490f-0",
+    "title": "Games Total: O/U 2.5",
+    "lots": [
+      {
+        "shares": 20,
+        "price": 0.999,
+        "usdc": 19.98,
+        "ts": 1765664033
+      },
+      {
+        "shares": 49.41,
+        "price": 0.999,
+        "usdc": 49.36059,
+        "ts": 1765664145
+      },
+      {
+        "shares": 13.72,
+        "price": 0.999,
+        "usdc": 13.70628,
+        "ts": 1765664449
+      },
+      {
+        "shares": 140,
+        "price": 0.999,
+        "usdc": 139.86,
+        "ts": 1765665373
+      },
+      {
+        "shares": 600,
+        "price": 0.999,
+        "usdc": 599.4,
+        "ts": 1765665413
+      }
+    ],
+    "totalShares": 823.13
+  },
+  {
+    "key": "0x1b4f2bcbfc012662e4e19eb47114773ccaaf20999e23e1bb9be9bb6e88d7c6fd-0",
+    "title": "Kansas State Wildcats vs. Creighton Bluejays",
+    "lots": [
+      {
+        "shares": 1.25,
+        "price": 0.99,
+        "usdc": 1.2375,
+        "ts": 1765664063
+      },
+      {
+        "shares": 17,
+        "price": 0.99,
+        "usdc": 16.83,
+        "ts": 1765664449
+      },
+      {
+        "shares": 20,
+        "price": 0.99,
+        "usdc": 19.8,
+        "ts": 1765664537
+      }
+    ],
+    "totalShares": 38.25
+  },
+  {
+    "key": "0x900e2c5a80f44c172b7332baff30c3cc566497db58d300a587d0681752903ab5-0",
+    "title": "Games Total: O/U 3.5",
+    "lots": [
+      {
+        "shares": 6.66,
+        "price": 0.999,
+        "usdc": 6.65334,
+        "ts": 1765664099
+      }
+    ],
+    "totalShares": 6.66
+  },
+  {
+    "key": "0xdc74f827ed6a2eccfabb2efdbbb4b2e0833c330c9dd7828853cec104cf128e81-0",
+    "title": "Call of Duty: OpTic Texas vs Miami Heretics - Game 2 Winner",
+    "lots": [
+      {
+        "shares": 6.62,
+        "price": 0.999,
+        "usdc": 6.61338,
+        "ts": 1765664129
+      }
+    ],
+    "totalShares": 6.62
+  },
+  {
+    "key": "0xd5d427bf4e1864ebaed0e8eb7cea5b28f48f6eeb67ab4d8c8e48737d4dac2a18-0",
+    "title": "Northern Illinois Huskies vs. Elon Phoenix: O/U 156.5",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.999,
+        "usdc": 199.8,
+        "ts": 1765665517
+      }
+    ],
+    "totalShares": 200
+  },
+  {
+    "key": "0x17c5bfdeb7228eb025fea106320c6aae25b0a68d50ea2a687bd83a2077411e4f-0",
+    "title": "Northern Illinois Huskies vs. Elon Phoenix: O/U 159.5",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.999,
+        "usdc": 199.8,
+        "ts": 1765665531
+      }
+    ],
+    "totalShares": 200
+  },
+  {
+    "key": "0x1db9df7f60f16712a2b4f98953c6d118c1718e31b2e6c271d59c8f4b4e97f869-0",
+    "title": "Call of Duty: OpTic Texas vs Miami Heretics - Game 3 Winner",
+    "lots": [
+      {
+        "shares": 30,
+        "price": 0.999,
+        "usdc": 29.97,
+        "ts": 1765667499
+      }
+    ],
+    "totalShares": 30
+  },
+  {
+    "key": "0xa1ac775064dc065b433b98723c714bf81cb61070c1dbbd621b56ab0919308e42-0",
+    "title": "Will the highest temperature in New York City be between 34-35°F on December 14?",
+    "lots": [
+      {
+        "shares": 722.67,
+        "price": 0.9975392641177855,
+        "usdc": 720.8917,
+        "ts": 1765706083
+      },
+      {
+        "shares": 500,
+        "price": 0.998,
+        "usdc": 499,
+        "ts": 1765706341
+      },
+      {
+        "shares": 56.83,
+        "price": 0.998,
+        "usdc": 56.71634,
+        "ts": 1765706689
+      },
+      {
+        "shares": 1000,
+        "price": 0.998,
+        "usdc": 998,
+        "ts": 1765709705
+      },
+      {
+        "shares": 2.85,
+        "price": 0.998,
+        "usdc": 2.8443,
+        "ts": 1765710113
+      },
+      {
+        "shares": 2.85,
+        "price": 0.998,
+        "usdc": 2.8443,
+        "ts": 1765710551
+      },
+      {
+        "shares": 437.47,
+        "price": 0.998,
+        "usdc": 436.59506,
+        "ts": 1765713271
+      }
+    ],
+    "totalShares": 2722.67
+  },
+  {
+    "key": "0x850307c4a99914011f5bd91511887f402feb361d3a4d73d5c7df67878536ef03-0",
+    "title": "AC Milan vs. US Sassuolo Calcio: O/U 1.5",
+    "lots": [
+      {
+        "shares": 394.08,
+        "price": 0.99,
+        "usdc": 390.1392,
+        "ts": 1765714213
+      }
+    ],
+    "totalShares": 394.08
+  },
+  {
+    "key": "0x16050d75ad815fb8e5ce109ccae4ba5081a078001ba07fc3b42543078662f0bb-0",
+    "title": "Nottingham Forest FC vs. Tottenham Hotspur FC: O/U 1.5",
+    "lots": [
+      {
+        "shares": 962.9,
+        "price": 0.999,
+        "usdc": 961.9371,
+        "ts": 1765725373
+      },
+      {
+        "shares": 50,
+        "price": 0.999,
+        "usdc": 49.95,
+        "ts": 1765725495
+      },
+      {
+        "shares": 13.33,
+        "price": 0.999,
+        "usdc": 13.31667,
+        "ts": 1765725927
+      },
+      {
+        "shares": 13.33,
+        "price": 0.999,
+        "usdc": 13.31667,
+        "ts": 1765725967
+      },
+      {
+        "shares": 9.21,
+        "price": 0.999,
+        "usdc": 9.20079,
+        "ts": 1765726039
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1765726117
+      },
+      {
+        "shares": 2.7,
+        "price": 0.999,
+        "usdc": 2.6973,
+        "ts": 1765726553
+      },
+      {
+        "shares": 117.63,
+        "price": 0.999,
+        "usdc": 117.51237,
+        "ts": 1765726659
+      }
+    ],
+    "totalShares": 1174.1
+  },
+  {
+    "key": "0xc590886fca9ec657f77a73b9903f619a3b2ec665c7ab43977706a79c35a695fd-0",
+    "title": "Counter-Strike: 9INE vs BIG - Map 1 Winner",
+    "lots": [
+      {
+        "shares": 12.05,
+        "price": 0.999,
+        "usdc": 12.03795,
+        "ts": 1765726115
+      },
+      {
+        "shares": 200,
+        "price": 0.999,
+        "usdc": 199.8,
+        "ts": 1765726659
+      }
+    ],
+    "totalShares": 212.05
+  },
+  {
+    "key": "0xea902b7f1adc7fbfae3a16dbcbd7ac23a86b167ed4e796afe82b9c804eaac875-0",
+    "title": "ACF Fiorentina vs. Hellas Verona FC: O/U 1.5",
+    "lots": [
+      {
+        "shares": 61.05,
+        "price": 0.999,
+        "usdc": 60.98895,
+        "ts": 1765727065
+      },
+      {
+        "shares": 20,
+        "price": 0.999,
+        "usdc": 19.98,
+        "ts": 1765727137
+      },
+      {
+        "shares": 31.74,
+        "price": 0.999,
+        "usdc": 31.70826,
+        "ts": 1765727927
+      },
+      {
+        "shares": 34,
+        "price": 0.999,
+        "usdc": 33.966,
+        "ts": 1765728051
+      },
+      {
+        "shares": 853.21,
+        "price": 0.999,
+        "usdc": 852.35679,
+        "ts": 1765728167
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0x4e85a53c51624e59f865fee2a5e8cf89f8a8d8904733d25b1064c5d6f602f714-0",
+    "title": "Spread: Manchester City FC (-1.5)",
+    "lots": [
+      {
+        "shares": 0.93,
+        "price": 0.999,
+        "usdc": 0.92907,
+        "ts": 1765727681
+      },
+      {
+        "shares": 90,
+        "price": 0.999,
+        "usdc": 89.91,
+        "ts": 1765727749
+      },
+      {
+        "shares": 500,
+        "price": 0.999,
+        "usdc": 499.5,
+        "ts": 1765727773
+      },
+      {
+        "shares": 409.07,
+        "price": 0.999,
+        "usdc": 408.66093,
+        "ts": 1765727773
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0xbc01dcaabdaadd356fcf5a36397872978d12e7ee950c16542842b224159b7744-0",
+    "title": "Games Total: O/U 2.5",
+    "lots": [
+      {
+        "shares": 1500,
+        "price": 0.999,
+        "usdc": 1498.5,
+        "ts": 1765734015
+      },
+      {
+        "shares": 137,
+        "price": 0.999,
+        "usdc": 136.863,
+        "ts": 1765734035
+      }
+    ],
+    "totalShares": 1637
+  },
+  {
+    "key": "0x1269d20d4b3ab9f84bdf5b87a5c1026453bb7d92b2e061e57c5281108d2a83b7-0",
+    "title": "AJ Auxerre vs. Lille OSC: O/U 3.5",
+    "lots": [
+      {
+        "shares": 200,
+        "price": 0.98,
+        "usdc": 196,
+        "ts": 1765734599
+      }
+    ],
+    "totalShares": 200
+  },
+  {
+    "key": "0xc1508edb959e5ef37275f12010c0c56e89af1f7bcf24f6efa9edd191e9d3962a-0",
+    "title": "Will the highest temperature in Dallas be between 44-45°F on December 14?",
+    "lots": [
+      {
+        "shares": 100,
+        "price": 0.99,
+        "usdc": 99,
+        "ts": 1765736253
+      }
+    ],
+    "totalShares": 100
+  },
+  {
+    "key": "0xcafe3591597b85d0e80f9805def9015adf5102588ffb3b70964a5e54a687d842-1",
+    "title": "Will the highest temperature in Buenos Aires be 32°C or higher on December 15?",
+    "lots": [
+      {
+        "shares": 0.0010859999999865977,
+        "price": 0.998,
+        "usdc": 998,
+        "ts": 1765803627
+      }
+    ],
+    "totalShares": 0.0010859999999865977
+  },
+  {
+    "key": "0x76a5bc3c46720ae8a759657d2a587035b13225fadbc0d193903e2e91df6d64fd-1",
+    "title": "Will the highest temperature in Buenos Aires be 31°C on December 15?",
+    "lots": [
+      {
+        "shares": 0.001852999999982785,
+        "price": 0.997,
+        "usdc": 1994,
+        "ts": 1765792037
+      }
+    ],
+    "totalShares": 0.001852999999982785
+  },
+  {
+    "key": "0x46580f5e4dce425bc5e416c0de31d5f10f7162ac0f32f6fb947c40c737345666-1",
+    "title": "Will the highest temperature in Dallas be 56°F or higher on December 15?",
+    "lots": [
+      {
+        "shares": 0.00023200000009637733,
+        "price": 0.997,
+        "usdc": 1993.003,
+        "ts": 1765799317
+      }
+    ],
+    "totalShares": 0.00023200000009637733
+  },
+  {
+    "key": "0xd62ebb86605d35a712f79f34beff80b8b4fa0d3fa0e7f5e630c1562c1e001cc8-0",
+    "title": "Will the highest temperature in Seoul be 6°C on December 15?",
+    "lots": [
+      {
+        "shares": 50,
+        "price": 0.998,
+        "usdc": 49.9,
+        "ts": 1765807767
+      }
+    ],
+    "totalShares": 50
+  },
+  {
+    "key": "0x2c2e71bbfb1dc39b54c53be4a08980222bad38206892bccc3190ce5fe5b9e62f-0",
+    "title": "Dota 2: Team Liquid vs GamerLegion (BO3)",
+    "lots": [
+      {
+        "shares": 22.5,
+        "price": 0.9986666666666667,
+        "usdc": 22.47,
+        "ts": 1765832007
+      },
+      {
+        "shares": 207.38,
+        "price": 0.999,
+        "usdc": 207.17262,
+        "ts": 1765832095
+      },
+      {
+        "shares": 135.13,
+        "price": 0.999,
+        "usdc": 134.99487,
+        "ts": 1765832213
+      },
+      {
+        "shares": 331,
+        "price": 0.999,
+        "usdc": 330.669,
+        "ts": 1765832253
+      },
+      {
+        "shares": 1.35,
+        "price": 0.999,
+        "usdc": 1.34865,
+        "ts": 1765832257
+      },
+      {
+        "shares": 118.84,
+        "price": 0.999,
+        "usdc": 118.72116,
+        "ts": 1765832263
+      },
+      {
+        "shares": 27.39,
+        "price": 0.999,
+        "usdc": 27.36261,
+        "ts": 1765832283
+      },
+      {
+        "shares": 75.51,
+        "price": 0.999,
+        "usdc": 75.43449,
+        "ts": 1765832327
+      },
+      {
+        "shares": 134.81,
+        "price": 0.999,
+        "usdc": 134.67519,
+        "ts": 1765832523
+      },
+      {
+        "shares": 40.64,
+        "price": 0.999,
+        "usdc": 40.59936,
+        "ts": 1765832623
+      },
+      {
+        "shares": 156.41,
+        "price": 0.999,
+        "usdc": 156.25359,
+        "ts": 1765832721
+      },
+      {
+        "shares": 10,
+        "price": 0.999,
+        "usdc": 9.99,
+        "ts": 1765832799
+      },
+      {
+        "shares": 0.16,
+        "price": 0.999,
+        "usdc": 0.15984,
+        "ts": 1765832839
+      },
+      {
+        "shares": 9.85,
+        "price": 0.999,
+        "usdc": 9.84015,
+        "ts": 1765832887
+      },
+      {
+        "shares": 148.44,
+        "price": 0.999,
+        "usdc": 148.29156,
+        "ts": 1765833571
+      },
+      {
+        "shares": 12.98,
+        "price": 0.999,
+        "usdc": 12.96702,
+        "ts": 1765834827
+      },
+      {
+        "shares": 2728.8,
+        "price": 0.999,
+        "usdc": 2726.0712,
+        "ts": 1765835011
+      },
+      {
+        "shares": 25.97,
+        "price": 0.999,
+        "usdc": 25.94403,
+        "ts": 1765835497
+      },
+      {
+        "shares": 2.25,
+        "price": 0.999,
+        "usdc": 2.24775,
+        "ts": 1765836723
+      },
+      {
+        "shares": 10,
+        "price": 0.999,
+        "usdc": 9.99,
+        "ts": 1765836775
+      },
+      {
+        "shares": 6.84,
+        "price": 0.999,
+        "usdc": 6.83316,
+        "ts": 1765839345
+      },
+      {
+        "shares": 26.8,
+        "price": 0.999,
+        "usdc": 26.7732,
+        "ts": 1765839453
+      },
+      {
+        "shares": 2186.36,
+        "price": 0.999,
+        "usdc": 2184.17364,
+        "ts": 1765839947
+      }
+    ],
+    "totalShares": 6419.410000000002
+  },
+  {
+    "key": "0x1e27150af53f4626f39975012c313eb518a67b92a1e31ba189d0ed22423c810e-0",
+    "title": "Games Total: O/U 2.5",
+    "lots": [
+      {
+        "shares": 106.256,
+        "price": 0.999,
+        "usdc": 106.149744,
+        "ts": 1767595231
+      }
+    ],
+    "totalShares": 106.256
+  },
+  {
+    "key": "0xcb01e4a8e65fa0fa212a109c682b5cc68854547364d58c8bf2ffaf1c5e88605d-0",
+    "title": "Dota 2: Team Rostikfacekid vs Team 9pasha - Game 1 Winner",
+    "lots": [
+      {
+        "shares": 1199.749,
+        "price": 0.999,
+        "usdc": 1198.549251,
+        "ts": 1769978238
+      }
+    ],
+    "totalShares": 1199.749
+  },
+  {
+    "key": "0x5f073e6ef26ec4816fd10deac53f509d2f113fc282272ceb67d80585ad6966c3-0",
+    "title": "Total Kills Over/Under 48.5 in Game 2?",
+    "lots": [
+      {
+        "shares": 47,
+        "price": 0.999,
+        "usdc": 46.953,
+        "ts": 1772196553
+      }
+    ],
+    "totalShares": 47
+  },
+  {
+    "key": "0x67f34ac71b95b9bfe674819ed3b0993e9269d82751015f1f8733e73bcc327fbb-0",
+    "title": "Total Kills Over/Under 47.5 in Game 2?",
+    "lots": [
+      {
+        "shares": 32,
+        "price": 0.99884375,
+        "usdc": 31.963,
+        "ts": 1772196563
+      }
+    ],
+    "totalShares": 32
+  },
+  {
+    "key": "0xa5c4c36ce8c1f57bcc1316acf379544b27a791825c1eb2ede01ac009e136e53a-0",
+    "title": "Total Kills Over/Under 49.5 in Game 2?",
+    "lots": [
+      {
+        "shares": 62.63,
+        "price": 0.999,
+        "usdc": 62.56737,
+        "ts": 1772196595
+      }
+    ],
+    "totalShares": 62.63
+  },
+  {
+    "key": "0xdcbf04e6585d6ace1419f5b4f9ec1d72a8fe23da5065bbeb39a2f25dd19fd6a3-0",
+    "title": "Total Kills Over/Under 48.5 in Game 2?",
+    "lots": [
+      {
+        "shares": 32,
+        "price": 0.999,
+        "usdc": 31.968,
+        "ts": 1772196647
+      }
+    ],
+    "totalShares": 32
+  },
+  {
+    "key": "0xa980ea26bcaa8e2b6dc550c270426cb9bbc8184550cb8eaa904afcad1c8aa0e6-0",
+    "title": "Total Kills Over/Under 73.5 in Game 1?",
+    "lots": [
+      {
+        "shares": 663.98,
+        "price": 0.9899348323744691,
+        "usdc": 657.29693,
+        "ts": 1772209247
+      },
+      {
+        "shares": 33.27,
+        "price": 0.99,
+        "usdc": 32.9373,
+        "ts": 1772209261
+      },
+      {
+        "shares": 15,
+        "price": 0.8666666666666667,
+        "usdc": 13,
+        "ts": 1772264161
+      },
+      {
+        "shares": 25,
+        "price": 0.96,
+        "usdc": 24,
+        "ts": 1772264405
+      }
+    ],
+    "totalShares": 737.25
+  },
+  {
+    "key": "0xb985c92e30be060031f454777025848fa73efafcc2df38c0fd6d588a910c0cf6-0",
+    "title": "Total Kills Over/Under 64.5 in Game 1?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1772211001
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0xe830a6419f9e503c0b4194328664337d8b55c9991bd65016bcd2fe00b436ab8b-0",
+    "title": "Total Kills Over/Under 61.5 in Game 1?",
+    "lots": [
+      {
+        "shares": 978,
+        "price": 0.999,
+        "usdc": 977.022,
+        "ts": 1772211019
+      }
+    ],
+    "totalShares": 978
+  },
+  {
+    "key": "0x01082a8318dbe68b9cffc95e4605dda7d9205e7a6311b00d6bfbba9e5fe72348-0",
+    "title": "Total Kills Over/Under 65.5 in Game 1?",
+    "lots": [
+      {
+        "shares": 999.99,
+        "price": 0.999,
+        "usdc": 998.99001,
+        "ts": 1772211053
+      }
+    ],
+    "totalShares": 999.99
+  },
+  {
+    "key": "0x315c04aa7fe9a5aa5f8ae5ea54c538c416b8620bbea64ff466f9e4b0c51cf779-0",
+    "title": "Total Kills Over/Under 67.5 in Game 1?",
+    "lots": [
+      {
+        "shares": 222.062,
+        "price": 0.999,
+        "usdc": 221.839938,
+        "ts": 1772211153
+      }
+    ],
+    "totalShares": 222.062
+  },
+  {
+    "key": "0xac11f0d8d88a006cc3df2bb1cd545dd3e17d21036adad887d5035530a3780669-0",
+    "title": "Counter-Strike: Legion vs THUNDER dOWNUNDER - Map 2 Winner",
+    "lots": [
+      {
+        "shares": 9.88,
+        "price": 0.5,
+        "usdc": 4.94,
+        "ts": 1772268643
+      },
+      {
+        "shares": 2.02,
+        "price": 0.5,
+        "usdc": 1.01,
+        "ts": 1772276465
+      }
+    ],
+    "totalShares": 11.9
+  },
+  {
+    "key": "0xbdc0e0a41b5970227c11c48c588a6c6f3bbf4b127f6ea5f0574a3f144a647ce7-1",
+    "title": "Will the highest temperature in Paris be 17°C or higher on March 1?",
+    "lots": [
+      {
+        "shares": 0.0033319999999434913,
+        "price": 0.999,
+        "usdc": 282.44727,
+        "ts": 1772371109
+      }
+    ],
+    "totalShares": 0.0033319999999434913
+  },
+  {
+    "key": "0x204c994c8036ce8d50190e50e386779e69cd8b247fdcc64a2bf023555380de99-0",
+    "title": "Will the highest temperature in Dallas be 72°F or higher on March 1?",
+    "lots": [
+      {
+        "shares": 1135.68,
+        "price": 0.999,
+        "usdc": 1134.54432,
+        "ts": 1772384435
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1772387649
+      },
+      {
+        "shares": 10,
+        "price": 0.999,
+        "usdc": 9.99,
+        "ts": 1772388019
+      },
+      {
+        "shares": 299.16,
+        "price": 0.999,
+        "usdc": 298.86084,
+        "ts": 1772389503
+      }
+    ],
+    "totalShares": 1449.8400000000001
+  },
+  {
+    "key": "0xf5d7236bc24a7be4549f6398797b70ac6e57a81ce51ffda78f170e0123e542a9-0",
+    "title": "Total Kills Over/Under 44.5 in Game 3?",
+    "lots": [
+      {
+        "shares": 1000,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1772390075
+      }
+    ],
+    "totalShares": 1000
+  },
+  {
+    "key": "0x1ab97b794337ef1e56bdc171cdefa150a13b010b14a6f9f6026cbf9ef5e80368-0",
+    "title": "Total Kills Over/Under 19.5 in Game 1?",
+    "lots": [
+      {
+        "shares": 212.202,
+        "price": 0.999,
+        "usdc": 211.989798,
+        "ts": 1772390331
+      }
+    ],
+    "totalShares": 212.202
+  },
+  {
+    "key": "0xe0258a98fd9913308f0123f92864fac693b0cf0bca8534aa9cbc1987124fcf89-0",
+    "title": "Total Kills Over/Under 15.5 in Game 2?",
+    "lots": [
+      {
+        "shares": 868.138,
+        "price": 0.999,
+        "usdc": 867.269862,
+        "ts": 1772390483
+      }
+    ],
+    "totalShares": 868.138
+  },
+  {
+    "key": "0x9bce0c9e6df525a888c75aeca7325d37cf265d0e576b9907e1ce5b6a7b1d08d3-0",
+    "title": "Will the highest temperature in Atlanta be 66°F or higher on March 2?",
+    "lots": [
+      {
+        "shares": 1289.79,
+        "price": 0.9975779700571411,
+        "usdc": 1286.66609,
+        "ts": 1772452415
+      },
+      {
+        "shares": 16.33,
+        "price": 0.997,
+        "usdc": 16.28101,
+        "ts": 1772453079
+      },
+      {
+        "shares": 500,
+        "price": 0.997,
+        "usdc": 498.5,
+        "ts": 1772459843
+      }
+    ],
+    "totalShares": 1806.12
+  },
+  {
+    "key": "0x9cdd759b290a3eed60216d541a9e1efa66ecd5241b0d57739db99bd3ac65f71f-0",
+    "title": "Will the highest temperature in Ankara be 12°C on March 2?",
+    "lots": [
+      {
+        "shares": 40,
+        "price": 0.999,
+        "usdc": 39.96,
+        "ts": 1772473591
+      }
+    ],
+    "totalShares": 40
+  },
+  {
+    "key": "0xd4bbf7f6707c67beb736135ad32a41f6db41f8ae52d3ac4919650de9eeb94ed8-0",
+    "title": "Khamenei out as Supreme Leader of Iran by February 28?",
+    "lots": [
+      {
+        "shares": 4312.702,
+        "price": 0.999,
+        "usdc": 4308.389298,
+        "ts": 1772476433
+      },
+      {
+        "shares": 5031.601,
+        "price": 0.999,
+        "usdc": 5026.569399,
+        "ts": 1772518021
+      }
+    ],
+    "totalShares": 9344.303
+  },
+  {
+    "key": "0x9cd30f80ecd24186b99cc57153b494e50519ee2137a7825260d69fcbf54e0926-1",
+    "title": "Will Elon Musk post 100-119 tweets from March 3 to March 10, 2026?",
+    "lots": [
+      {
+        "shares": 0.08830599999998867,
+        "price": 0.9968670190666726,
+        "usdc": 1559.60842,
+        "ts": 1772700353
+      }
+    ],
+    "totalShares": 0.08830599999998867
+  },
+  {
+    "key": "0xa28773b49a707991bba1e31500e5975392fb5a49c3b7712aaafffe5c7300e4cd-0",
+    "title": "LoL: Orzeł Barcząca Esports vs Orbit Anonymo (BO5) - Rift Legends Playoffs",
+    "lots": [
+      {
+        "shares": 14.35,
+        "price": 0.999,
+        "usdc": 14.33565,
+        "ts": 1772744941
+      },
+      {
+        "shares": 27.48,
+        "price": 0.999,
+        "usdc": 27.45252,
+        "ts": 1772744955
+      },
+      {
+        "shares": 6,
+        "price": 0.999,
+        "usdc": 5.994,
+        "ts": 1772744995
+      },
+      {
+        "shares": 302.89,
+        "price": 0.999,
+        "usdc": 302.58711,
+        "ts": 1772745001
+      },
+      {
+        "shares": 80,
+        "price": 0.999,
+        "usdc": 79.92,
+        "ts": 1772745039
+      },
+      {
+        "shares": 14.28,
+        "price": 0.999,
+        "usdc": 14.26572,
+        "ts": 1772745209
+      },
+      {
+        "shares": 1.02,
+        "price": 0.999,
+        "usdc": 1.01898,
+        "ts": 1772745271
+      },
+      {
+        "shares": 103.28,
+        "price": 0.999,
+        "usdc": 103.17672,
+        "ts": 1772745275
+      },
+      {
+        "shares": 49.98,
+        "price": 0.999,
+        "usdc": 49.93002,
+        "ts": 1772745413
+      },
+      {
+        "shares": 5,
+        "price": 0.999,
+        "usdc": 4.995,
+        "ts": 1772745475
+      },
+      {
+        "shares": 1016.63,
+        "price": 0.999,
+        "usdc": 1015.61337,
+        "ts": 1772745947
+      },
+      {
+        "shares": 10.82,
+        "price": 0.999,
+        "usdc": 10.80918,
+        "ts": 1772745969
+      },
+      {
+        "shares": 1.02,
+        "price": 0.999,
+        "usdc": 1.01898,
+        "ts": 1772746179
+      },
+      {
+        "shares": 1000,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1772746367
+      },
+      {
+        "shares": 2.24,
+        "price": 0.999,
+        "usdc": 2.23776,
+        "ts": 1772746675
+      },
+      {
+        "shares": 3.49,
+        "price": 0.999,
+        "usdc": 3.48651,
+        "ts": 1772746909
+      },
+      {
+        "shares": 1.17,
+        "price": 0.999,
+        "usdc": 1.16883,
+        "ts": 1772747259
+      },
+      {
+        "shares": 248.84,
+        "price": 0.999,
+        "usdc": 248.59116,
+        "ts": 1772747283
+      },
+      {
+        "shares": 1.16,
+        "price": 0.999,
+        "usdc": 1.15884,
+        "ts": 1772747497
+      },
+      {
+        "shares": 8.26,
+        "price": 0.999,
+        "usdc": 8.25174,
+        "ts": 1772747709
+      },
+      {
+        "shares": 1.94,
+        "price": 0.999,
+        "usdc": 1.93806,
+        "ts": 1772750783
+      }
+    ],
+    "totalShares": 2899.85
+  },
+  {
+    "key": "0x3642a11c43a9860be03fcd810d75c0e74b3a49fb6b98cdb9ef6ba4b77ad3b052-0",
+    "title": "Will the highest temperature in Paris be 18°C on March 5?",
+    "lots": [
+      {
+        "shares": 110,
+        "price": 0.999,
+        "usdc": 109.89,
+        "ts": 1772747659
+      },
+      {
+        "shares": 109.11,
+        "price": 0.999,
+        "usdc": 109.00089,
+        "ts": 1772750635
+      },
+      {
+        "shares": 102.1,
+        "price": 0.999,
+        "usdc": 101.9979,
+        "ts": 1772751455
+      }
+    ],
+    "totalShares": 321.21000000000004
+  },
+  {
+    "key": "0x0e65e653716e925d21aa99f78cc8768fc28467c0409af98d1f64d021be379f67-0",
+    "title": "Will the highest temperature in London be 18°C on March 5?",
+    "lots": [
+      {
+        "shares": 2000,
+        "price": 0.999,
+        "usdc": 1998,
+        "ts": 1772752071
+      },
+      {
+        "shares": 2000,
+        "price": 0.999,
+        "usdc": 1998,
+        "ts": 1772752071
+      },
+      {
+        "shares": 2000,
+        "price": 0.999,
+        "usdc": 1998,
+        "ts": 1772752071
+      }
+    ],
+    "totalShares": 6000
+  },
+  {
+    "key": "0x58cfebb3bd33fc298fcef93071491dc6bfac6b50915224fa6a9fb54037f54894-0",
+    "title": "Will the highest temperature in Seoul be 4°C on March 6?",
+    "lots": [
+      {
+        "shares": 6301.83183,
+        "price": 0.9989999999730237,
+        "usdc": 6295.529998,
+        "ts": 1772793739
+      }
+    ],
+    "totalShares": 6301.83183
+  },
+  {
+    "key": "0xb81e0dcec010410cb983db6fd9a2e60e83e4c0c871d4bd8e23d3e878aa0166f2-0",
+    "title": "Will the highest temperature in Ankara be 9°C on March 6?",
+    "lots": [
+      {
+        "shares": 8,
+        "price": 0.999,
+        "usdc": 7.992,
+        "ts": 1772834363
+      },
+      {
+        "shares": 16.89,
+        "price": 0.999,
+        "usdc": 16.87311,
+        "ts": 1772835909
+      },
+      {
+        "shares": 0.39,
+        "price": 0.999,
+        "usdc": 0.38961,
+        "ts": 1772839199
+      },
+      {
+        "shares": 130,
+        "price": 0.999,
+        "usdc": 129.87,
+        "ts": 1772843097
+      }
+    ],
+    "totalShares": 155.28
+  },
+  {
+    "key": "0x0dd8f4eee419e9102aab575e59644f7bd86f82b2406421f6e90c707d31b88649-0",
+    "title": "Dota 2: PARIVISION vs Yellow Submarine - Game 2 Winner",
+    "lots": [
+      {
+        "shares": 1087.52,
+        "price": 0.999,
+        "usdc": 1086.43248,
+        "ts": 1772879929
+      },
+      {
+        "shares": 135.68,
+        "price": 0.999,
+        "usdc": 135.54432,
+        "ts": 1772879949
+      },
+      {
+        "shares": 1724.06,
+        "price": 0.999,
+        "usdc": 1722.33594,
+        "ts": 1772880035
+      },
+      {
+        "shares": 29,
+        "price": 0.999,
+        "usdc": 28.971,
+        "ts": 1772880143
+      },
+      {
+        "shares": 71.92,
+        "price": 0.999,
+        "usdc": 71.84808,
+        "ts": 1772880171
+      },
+      {
+        "shares": 194.17,
+        "price": 0.999,
+        "usdc": 193.97583,
+        "ts": 1772880223
+      },
+      {
+        "shares": 105.26,
+        "price": 0.999,
+        "usdc": 105.15474,
+        "ts": 1772880233
+      },
+      {
+        "shares": 75.04,
+        "price": 0.999,
+        "usdc": 74.96496,
+        "ts": 1772880255
+      },
+      {
+        "shares": 60.97,
+        "price": 0.999,
+        "usdc": 60.90903,
+        "ts": 1772880791
+      },
+      {
+        "shares": 64.67,
+        "price": 0.999,
+        "usdc": 64.60533,
+        "ts": 1772880821
+      },
+      {
+        "shares": 91.88,
+        "price": 0.999,
+        "usdc": 91.78812,
+        "ts": 1772880859
+      },
+      {
+        "shares": 259.15,
+        "price": 0.999,
+        "usdc": 258.89085,
+        "ts": 1772883737
+      },
+      {
+        "shares": 1.29,
+        "price": 0.999,
+        "usdc": 1.28871,
+        "ts": 1772885865
+      },
+      {
+        "shares": 50.6,
+        "price": 0.999,
+        "usdc": 50.5494,
+        "ts": 1772886341
+      },
+      {
+        "shares": 99.39,
+        "price": 0.999,
+        "usdc": 99.29061,
+        "ts": 1772886341
+      },
+      {
+        "shares": 50,
+        "price": 0.999,
+        "usdc": 49.95,
+        "ts": 1772887923
+      }
+    ],
+    "totalShares": 4100.6
+  },
+  {
+    "key": "0x3b4108f272ec269e6281f5b3e6ea58fd213b7f1ccd62689b03cbcf5a48d4c3b1-0",
+    "title": "Dota 2: Aurora vs MOUZ - Game 2 Winner",
+    "lots": [
+      {
+        "shares": 40,
+        "price": 0.999,
+        "usdc": 39.96,
+        "ts": 1772892899
+      },
+      {
+        "shares": 10.37,
+        "price": 0.999,
+        "usdc": 10.35963,
+        "ts": 1772894409
+      },
+      {
+        "shares": 220,
+        "price": 0.999,
+        "usdc": 219.78,
+        "ts": 1772895433
+      },
+      {
+        "shares": 1000,
+        "price": 0.999,
+        "usdc": 999,
+        "ts": 1772895433
+      },
+      {
+        "shares": 949.63,
+        "price": 0.999,
+        "usdc": 948.68037,
+        "ts": 1772895433
+      }
+    ],
+    "totalShares": 2220
+  },
+  {
+    "key": "0x5ef994dd7253405ba7b13123443c6eb8fb5c1c66862d58a3896df32d80aa9374-0",
+    "title": "SC Freiburg vs. Bayer 04 Leverkusen: O/U 4.5",
+    "lots": [
+      {
+        "shares": 490.9,
+        "price": 0.999,
+        "usdc": 490.4091,
+        "ts": 1772900855
+      }
+    ],
+    "totalShares": 490.9
+  },
+  {
+    "key": "0x0541dedfdc41830c88093c2c363b3797334b40bf7f9700cf4863e37638640bac-0",
+    "title": "LoL: FURIA Esports vs Cloud9 - Game 1 Winner",
+    "lots": [
+      {
+        "shares": 105.87,
+        "price": 0.999,
+        "usdc": 105.76413,
+        "ts": 1772999255
+      },
+      {
+        "shares": 6.06,
+        "price": 0.999,
+        "usdc": 6.05394,
+        "ts": 1772999311
+      },
+      {
+        "shares": 370.01,
+        "price": 0.999,
+        "usdc": 369.63999,
+        "ts": 1772999393
+      },
+      {
+        "shares": 110.9,
+        "price": 0.999,
+        "usdc": 110.7891,
+        "ts": 1772999429
+      },
+      {
+        "shares": 0.78,
+        "price": 0.999,
+        "usdc": 0.77922,
+        "ts": 1772999479
+      },
+      {
+        "shares": 3,
+        "price": 0.999,
+        "usdc": 2.997,
+        "ts": 1772999509
+      },
+      {
+        "shares": 108.69,
+        "price": 0.999,
+        "usdc": 108.58131,
+        "ts": 1772999533
+      },
+      {
+        "shares": 40.8,
+        "price": 0.999,
+        "usdc": 40.7592,
+        "ts": 1772999607
+      },
+      {
+        "shares": 166.66,
+        "price": 0.999,
+        "usdc": 166.49334,
+        "ts": 1772999623
+      },
+      {
+        "shares": 804.23,
+        "price": 0.999,
+        "usdc": 803.42577,
+        "ts": 1772999623
+      }
+    ],
+    "totalShares": 1717
+  },
+  {
+    "key": "0x09b23c1cd4c45736485262ef718131d09b4aaf93978283f316590c670e0c8c9b-0",
+    "title": "Counter-Strike: FaZe vs TYLOO - Map 2 Winner",
+    "lots": [
+      {
+        "shares": 493.91,
+        "price": 0.999,
+        "usdc": 493.41609,
+        "ts": 1774020777
+      },
+      {
+        "shares": 15,
+        "price": 0.999,
+        "usdc": 14.985,
+        "ts": 1774020779
+      },
+      {
+        "shares": 1.13,
+        "price": 0.999,
+        "usdc": 1.12887,
+        "ts": 1774020789
+      },
+      {
+        "shares": 10.73,
+        "price": 0.999,
+        "usdc": 10.71927,
+        "ts": 1774020789
+      },
+      {
+        "shares": 71.62,
+        "price": 0.999,
+        "usdc": 71.54838,
+        "ts": 1774020827
+      },
+      {
+        "shares": 293.97,
+        "price": 0.999,
+        "usdc": 293.67603,
+        "ts": 1774020849
+      },
+      {
+        "shares": 3.1,
+        "price": 0.999,
+        "usdc": 3.0969,
+        "ts": 1774020855
+      },
+      {
+        "shares": 102.77,
+        "price": 0.999,
+        "usdc": 102.66723,
+        "ts": 1774020857
+      },
+      {
+        "shares": 500,
+        "price": 0.999,
+        "usdc": 499.5,
+        "ts": 1774020871
+      },
+      {
+        "shares": 3000,
+        "price": 0.999,
+        "usdc": 2997,
+        "ts": 1774020879
+      },
+      {
+        "shares": 300,
+        "price": 0.999,
+        "usdc": 299.7,
+        "ts": 1774020879
+      },
+      {
+        "shares": 1507.77,
+        "price": 0.999,
+        "usdc": 1506.26223,
+        "ts": 1774020879
+      },
+      {
+        "shares": 400,
+        "price": 0.999,
+        "usdc": 399.6,
+        "ts": 1774021189
+      },
+      {
+        "shares": 1400,
+        "price": 0.999,
+        "usdc": 1398.6,
+        "ts": 1774021189
+      }
+    ],
+    "totalShares": 8100
+  },
+  {
+    "key": "0x07c0b603c19203e32954bdf23de719010e9f4f67791c2d438d9b98b994647f47-0",
+    "title": "Thunder vs. Lakers",
+    "lots": [
+      {
+        "shares": 305.73,
+        "price": 0.999,
+        "usdc": 305.42427,
+        "ts": 1775624367
+      },
+      {
+        "shares": 1.06,
+        "price": 0.999,
+        "usdc": 1.05894,
+        "ts": 1775624431
+      },
+      {
+        "shares": 5.25,
+        "price": 0.999,
+        "usdc": 5.24475,
+        "ts": 1775624571
+      },
+      {
+        "shares": 1.06,
+        "price": 0.999,
+        "usdc": 1.05894,
+        "ts": 1775624703
+      },
+      {
+        "shares": 106.38,
+        "price": 0.999,
+        "usdc": 106.27362,
+        "ts": 1775624745
+      },
+      {
+        "shares": 10.51,
+        "price": 0.999,
+        "usdc": 10.49949,
+        "ts": 1775624943
+      },
+      {
+        "shares": 32.97,
+        "price": 0.999,
+        "usdc": 32.93703,
+        "ts": 1775625213
+      },
+      {
+        "shares": 43.37,
+        "price": 0.999,
+        "usdc": 43.32663,
+        "ts": 1775625263
+      },
+      {
+        "shares": 5.25,
+        "price": 0.999,
+        "usdc": 5.24475,
+        "ts": 1775625299
+      },
+      {
+        "shares": 2.1,
+        "price": 0.999,
+        "usdc": 2.0979,
+        "ts": 1775625499
+      },
+      {
+        "shares": 5.36,
+        "price": 0.999,
+        "usdc": 5.35464,
+        "ts": 1775625499
+      },
+      {
+        "shares": 2.1,
+        "price": 0.999,
+        "usdc": 2.0979,
+        "ts": 1775625551
+      },
+      {
+        "shares": 6,
+        "price": 0.999,
+        "usdc": 5.994,
+        "ts": 1775625555
+      },
+      {
+        "shares": 10,
+        "price": 0.999,
+        "usdc": 9.99,
+        "ts": 1775625609
+      },
+      {
+        "shares": 105.1,
+        "price": 0.999,
+        "usdc": 104.9949,
+        "ts": 1775625639
+      },
+      {
+        "shares": 10,
+        "price": 0.999,
+        "usdc": 9.99,
+        "ts": 1775625749
+      },
+      {
+        "shares": 41,
+        "price": 0.999,
+        "usdc": 40.959,
+        "ts": 1775625757
+      },
+      {
+        "shares": 10,
+        "price": 0.999,
+        "usdc": 9.99,
+        "ts": 1775625823
+      },
+      {
+        "shares": 216.61,
+        "price": 0.999,
+        "usdc": 216.39339,
+        "ts": 1775625843
+      }
+    ],
+    "totalShares": 919.8500000000001
+  },
+  {
+    "key": "0xd6cadd12fc0becd918998c62abfc270fb1701645915cf588fcc2f92a7d1560fb-0",
+    "title": "Will the highest temperature in Seoul be 19°C on April 12?",
+    "lots": [
+      {
+        "shares": 2997.78,
+        "price": 0.999,
+        "usdc": 2994.78222,
+        "ts": 1775995949
+      },
+      {
+        "shares": 3000,
+        "price": 0.999,
+        "usdc": 2997,
+        "ts": 1775995949
+      },
+      {
+        "shares": 3000,
+        "price": 0.999,
+        "usdc": 2997,
+        "ts": 1775995971
+      },
+      {
+        "shares": 20,
+        "price": 0.999,
+        "usdc": 19.98,
+        "ts": 1775996371
+      },
+      {
+        "shares": 5.63,
+        "price": 0.999,
+        "usdc": 5.62437,
+        "ts": 1775997273
+      },
+      {
+        "shares": 10,
+        "price": 0.999,
+        "usdc": 9.99,
+        "ts": 1775997591
+      },
+      {
+        "shares": 17.69,
+        "price": 0.999,
+        "usdc": 17.67231,
+        "ts": 1775997917
+      },
+      {
+        "shares": 140,
+        "price": 0.999,
+        "usdc": 139.86,
+        "ts": 1775997927
+      },
+      {
+        "shares": 2.92,
+        "price": 0.999,
+        "usdc": 2.91708,
+        "ts": 1775999017
+      },
+      {
+        "shares": 432.76,
+        "price": 0.999,
+        "usdc": 432.32724,
+        "ts": 1776000371
+      }
+    ],
+    "totalShares": 9626.78
+  },
+  {
+    "key": "0x758bf350cc277ea48894b6c9637d6a341974078098baa10c3d99cca6c593c42c-0",
+    "title": "Will the highest temperature in New York City be between 78-79°F on April 13?",
+    "lots": [
+      {
+        "shares": 5.52973,
+        "price": 0.999,
+        "usdc": 5.52447,
+        "ts": 1776139373
+      },
+      {
+        "shares": 99.14,
+        "price": 0.999,
+        "usdc": 99.04086,
+        "ts": 1776139897
+      },
+      {
+        "shares": 5.45,
+        "price": 0.999,
+        "usdc": 5.44455,
+        "ts": 1776140483
+      },
+      {
+        "shares": 143.33,
+        "price": 0.999,
+        "usdc": 143.18667,
+        "ts": 1776140773
+      },
+      {
+        "shares": 10,
+        "price": 0.999,
+        "usdc": 9.99,
+        "ts": 1776141303
+      },
+      {
+        "shares": 40.27,
+        "price": 0.999,
+        "usdc": 40.22973,
+        "ts": 1776141815
+      },
+      {
+        "shares": 446.36,
+        "price": 0.999,
+        "usdc": 445.91364,
+        "ts": 1776142255
+      },
+      {
+        "shares": 79.95,
+        "price": 0.999,
+        "usdc": 79.87005,
+        "ts": 1776142855
+      },
+      {
+        "shares": 3.9,
+        "price": 0.999,
+        "usdc": 3.8961,
+        "ts": 1776143099
+      },
+      {
+        "shares": 15,
+        "price": 0.999,
+        "usdc": 14.985,
+        "ts": 1776143309
+      },
+      {
+        "shares": 15.96,
+        "price": 0.999,
+        "usdc": 15.94404,
+        "ts": 1776143323
+      },
+      {
+        "shares": 6434.7,
+        "price": 0.999,
+        "usdc": 6428.2653,
+        "ts": 1776143729
+      },
+      {
+        "shares": 75.46,
+        "price": 0.999,
+        "usdc": 75.38454,
+        "ts": 1776143991
+      },
+      {
+        "shares": 20,
+        "price": 0.999,
+        "usdc": 19.98,
+        "ts": 1776144231
+      },
+      {
+        "shares": 2234.19,
+        "price": 0.999,
+        "usdc": 2231.95581,
+        "ts": 1776144533
+      }
+    ],
+    "totalShares": 9629.23973
+  },
+  {
+    "key": "0xddbfffed3078bc556ff8fabc7ff92515c092b5f38db97e557b5f8ee8af8b2597-0",
+    "title": "Will Javokhir Sindarov win the 2026 FIDE Candidates Tournament?",
+    "lots": [
+      {
+        "shares": 980.97,
+        "price": 0.9973058197498395,
+        "usdc": 978.32709,
+        "ts": 1776179185
+      },
+      {
+        "shares": 8375.605,
+        "price": 0.999,
+        "usdc": 8367.229395,
+        "ts": 1776179631
+      }
+    ],
+    "totalShares": 9356.574999999999
+  },
+  {
+    "key": "0x005b73c5d325bdbca8503a2d125976ec4ce0e99805d42000dc960b16666150bf-0",
+    "title": "Will the highest temperature in Toronto be 23°C on April 14?",
+    "lots": [
+      {
+        "shares": 1999.9,
+        "price": 0.999,
+        "usdc": 1998,
+        "ts": 1776231904
+      }
+    ],
+    "totalShares": 1999.9
+  },
+  {
+    "key": "0xa865b860cb55ef3088d20d10a285009d175691eaf10f1ea71ffae4eb7ddfbb33-0",
+    "title": "Will the highest temperature in Toronto be 19°C on April 15?",
+    "lots": [
+      {
+        "shares": 1373.81131,
+        "price": 0.999,
+        "usdc": 1372.50612,
+        "ts": 1776303266
+      }
+    ],
+    "totalShares": 1373.81131
+  },
+  {
+    "key": "0x37c29aaa67df614429aaf2240070b2de88fa2eab63d7fab3ea6a0cdd7cb0549e-0",
+    "title": "Will the highest temperature in Sao Paulo be 27°C on April 15?",
+    "lots": [
+      {
+        "shares": 30.72847,
+        "price": 0.999,
+        "usdc": 30.69927,
+        "ts": 1776303678
+      }
+    ],
+    "totalShares": 30.72847
+  },
+  {
+    "key": "0x2feab656931b576f38cb43123a22bc3c44fccb8b23784b5e5256aad5c21b023c-0",
+    "title": "Tampa Bay Rays vs. Chicago White Sox: O/U 5.5",
+    "lots": [
+      {
+        "shares": 81.01741,
+        "price": 0.9989311281165144,
+        "usdc": 80.9334,
+        "ts": 1776304616
+      }
+    ],
+    "totalShares": 81.01741
+  },
+  {
+    "key": "0x426c84766d0691144e1ac7674e9a74ca3a0bd562010c6897e44923837e420b07-0",
+    "title": "Tampa Bay Rays vs. Chicago White Sox: O/U 6.5",
+    "lots": [
+      {
+        "shares": 146.03546,
+        "price": 0.9989617912900575,
+        "usdc": 145.88838,
+        "ts": 1776304624
+      }
+    ],
+    "totalShares": 146.03546
+  },
+  {
+    "key": "0x11402aeadcbf18b852e70cbfbd869a46013121028a781461fc52c3c51e4240d3-0",
+    "title": "Will the highest temperature in Seattle be between 48-49°F on April 15?",
+    "lots": [
+      {
+        "shares": 2338.0131,
+        "price": 0.999,
+        "usdc": 2335.79187,
+        "ts": 1776312092
+      }
+    ],
+    "totalShares": 2338.0131
+  },
+  {
+    "key": "0x02cc6619c99fe4ed8fc83a5e04d31888dd5d57d97f3f1773ec0272c22ca757d8-0",
+    "title": "Will the highest temperature in Chicago be between 72-73°F on April 15?",
+    "lots": [
+      {
+        "shares": 415.9468,
+        "price": 0.996,
+        "usdc": 414.36588,
+        "ts": 1776312328
+      },
+      {
+        "shares": 457.20714000000004,
+        "price": 0.999,
+        "usdc": 456.77277,
+        "ts": 1776312354
+      },
+      {
+        "shares": 9.9995,
+        "price": 0.999,
+        "usdc": 9.99,
+        "ts": 1776312378
+      }
+    ],
+    "totalShares": 883.15344
+  },
+  {
+    "key": "0xd5803519f4578b1a1be2cd15a80275c7138d3bab4ba7e7a270e7a84d61b38851-0",
+    "title": "Will the highest temperature in San Francisco be between 62-63°F on April 15?",
+    "lots": [
+      {
+        "shares": 732.82336,
+        "price": 0.999,
+        "usdc": 732.12714,
+        "ts": 1776319864
+      }
+    ],
+    "totalShares": 732.82336
+  },
+  {
+    "key": "0xc475f39be300e17360af03cc5c2d45f824193f2b8546843dddc987f065b9cb47-0",
+    "title": "Will the highest temperature in Jeddah be 39°C on April 16?",
+    "lots": [
+      {
+        "shares": 1044.46778,
+        "price": 0.999,
+        "usdc": 1043.47548,
+        "ts": 1776352832
+      }
+    ],
+    "totalShares": 1044.46778
+  },
+  {
+    "key": "0xc1502a61a189d4c9b7f602eed746fbb12a085d12e8db56c5af0c804afea36636-0",
+    "title": "Will the highest temperature in Munich be 18°C on April 16?",
+    "lots": [
+      {
+        "shares": 707.95461,
+        "price": 0.999,
+        "usdc": 707.28201,
+        "ts": 1776377882
+      }
+    ],
+    "totalShares": 707.95461
+  },
+  {
+    "key": "0x51a524cf9130caf2c2abdb5ff73b65b7278bff155e1325624eb950e4a37dbdaa-0",
+    "title": "Will the highest temperature in Milan be 24°C on April 16?",
+    "lots": [
+      {
+        "shares": 501.74492,
+        "price": 0.999,
+        "usdc": 501.26823,
+        "ts": 1776378036
+      }
+    ],
+    "totalShares": 501.74492
+  },
+  {
+    "key": "0x6e4c1cd85ebcaba3fec9f6c882ad8f8426b2c6c2f6b7d38c0cac1d2877948fdb-0",
+    "title": "Will the highest temperature in Helsinki be 15°C on April 17?",
+    "lots": [
+      {
+        "shares": 1212.5693700000002,
+        "price": 0.999,
+        "usdc": 1211.41737,
+        "ts": 1776450442
+      }
+    ],
+    "totalShares": 1212.5693700000002
+  },
+  {
+    "key": "0x07a47b2480fa064f12a331af69c7ba28cf058fb2fd5231c3c7fdfaa8003a2f73-0",
+    "title": "Will the highest temperature in Milan be 24°C on April 17?",
+    "lots": [
+      {
+        "shares": 1405.67972,
+        "price": 0.999,
+        "usdc": 1404.34425,
+        "ts": 1776450632
+      }
+    ],
+    "totalShares": 1405.67972
+  },
+  {
+    "key": "0x88617d500f26db94ab3099583cf5475e5ad91783e6a8db7963e0cb114a03a2db-0",
+    "title": "Will the highest temperature in Toronto be 16°C on April 17?",
+    "lots": [
+      {
+        "shares": 24.1788,
+        "price": 0.999,
+        "usdc": 24.15582,
+        "ts": 1776473428
+      }
+    ],
+    "totalShares": 24.1788
+  },
+  {
+    "key": "0x986c9eb0620e7cd09c87900dd65e2071d83a245b3420a8e6ec4bfd1c4799c204-0",
+    "title": "Will the highest temperature in Chicago be between 62-63°F on April 18?",
+    "lots": [
+      {
+        "shares": 373.84542,
+        "price": 0.9944064447118599,
+        "usdc": 371.85829,
+        "ts": 1776512956
+      }
+    ],
+    "totalShares": 373.84542
+  },
+  {
+    "key": "0x95d4e613cf33999478c30e2e1c883968dca399b1f32002724459e4c27ea9d111-0",
+    "title": "Will the highest temperature in Karachi be 33°C on April 18?",
+    "lots": [
+      {
+        "shares": 320.11924,
+        "price": 0.998078057160706,
+        "usdc": 319.53469,
+        "ts": 1776528088
+      }
+    ],
+    "totalShares": 320.11924
+  },
+  {
+    "key": "0x6680ba7a5756e17e4a11547104c7b6d035b504a3004218953645bca53e867c79-0",
+    "title": "O/U 2.5 Rounds",
+    "lots": [
+      {
+        "shares": 599.97601,
+        "price": 0.9986666666666667,
+        "usdc": 599.2,
+        "ts": 1776563458
+      }
+    ],
+    "totalShares": 599.97601
+  },
+  {
+    "key": "0x60ab425708c0c525700c3d260a0a7c67054b03c71b3bdaa838164056e1e6f822-0",
+    "title": "Will the highest temperature in Buenos Aires be 28°C on April 18?",
+    "lots": [
+      {
+        "shares": 1617.55126,
+        "price": 0.9984082327778052,
+        "usdc": 1615.10503,
+        "ts": 1776574264
+      }
+    ],
+    "totalShares": 1617.55126
+  },
+  {
+    "key": "0xa5563dc3b3f6e606e031366772b8963c6538d42ed5d9628de11204d9fd4df21d-0",
+    "title": "Will the highest temperature in San Francisco be between 64-65°F on April 20?",
+    "lots": [
+      {
+        "shares": 4670.89645,
+        "price": 0.999,
+        "usdc": 4666.45887,
+        "ts": 1776736684
+      }
+    ],
+    "totalShares": 4670.89645
+  },
+  {
+    "key": "0x253d8b8efb76e235c8255c4c509f30c81558f0ee53eb776f97f6f191484cb44e-0",
+    "title": "Will the highest temperature in Jeddah be 35°C on April 21?",
+    "lots": [
+      {
+        "shares": 2439.60802,
+        "price": 0.999,
+        "usdc": 2437.29027,
+        "ts": 1776789314
+      }
+    ],
+    "totalShares": 2439.60802
+  },
+  {
+    "key": "0xd151446c85d1c132c926defd21d13658a70dc0a82a5de4fe11664231ae2e8f42-0",
+    "title": "Will the highest temperature in Istanbul be 18°C on April 21?",
+    "lots": [
+      {
+        "shares": 1193.7703099999999,
+        "price": 0.999,
+        "usdc": 1192.63617,
+        "ts": 1776789468
+      }
+    ],
+    "totalShares": 1193.7703099999999
+  },
+  {
+    "key": "0x238e4427bdd10f8f1469f76f01734a4fe0ed78d0a7d41bcf6128a0316fb12b6f-0",
+    "title": "Will the highest temperature in Warsaw be 14°C on April 21?",
+    "lots": [
+      {
+        "shares": 34.056250000000006,
+        "price": 0.9977974163241339,
+        "usdc": 33.98498,
+        "ts": 1776796528
+      }
+    ],
+    "totalShares": 34.056250000000006
+  },
+  {
+    "key": "0x17a5417448eb2c394d6cb599ceb78ca337d70f9bd53abd2840b0e5f22d51d9db-0",
+    "title": "Will the highest temperature in Ankara be 17°C on April 21?",
+    "lots": [
+      {
+        "shares": 656.22438,
+        "price": 0.998,
+        "usdc": 654.97742,
+        "ts": 1776796640
+      }
+    ],
+    "totalShares": 656.22438
+  },
+  {
+    "key": "0x95410cfcd90884bd0c232d16f66b47375909867836bfad1e126541ec24c4d944-0",
+    "title": "Will the highest temperature in Munich be 10°C on April 21?",
+    "lots": [
+      {
+        "shares": 199.96997000000002,
+        "price": 0.997996399819991,
+        "usdc": 199.5893,
+        "ts": 1776796776
+      }
+    ],
+    "totalShares": 199.96997000000002
+  },
+  {
+    "key": "0xa1bc2e28d17111b36d8bbcd6697346e5552290a6354706fc9774eb7a25758993-1",
+    "title": "Will the lowest temperature in Tokyo be 11°C on April 22?",
+    "lots": [
+      {
+        "shares": 335.44322999999997,
+        "price": 0.999,
+        "usdc": 335.12454,
+        "ts": 1776830228
+      }
+    ],
+    "totalShares": 335.44322999999997
+  },
+  {
+    "key": "0xc4f3f9203661a37965d45cf7229843f54f386b5033a7f9b41ae4c10f2ec98cff-1",
+    "title": "Will the lowest temperature in London be 2°C or below on April 22?",
+    "lots": [
+      {
+        "shares": 213.84792,
+        "price": 0.997,
+        "usdc": 213.23836,
+        "ts": 1776830610
+      }
+    ],
+    "totalShares": 213.84792
+  },
+  {
+    "key": "0x904c8754cbf31092e3526782e72859655ab61d378bdf0489fd58788e4ba383a8-1",
+    "title": "Will the lowest temperature in London be 3°C on April 22?",
+    "lots": [
+      {
+        "shares": 109.89352,
+        "price": 0.997,
+        "usdc": 109.58027,
+        "ts": 1776830628
+      }
+    ],
+    "totalShares": 109.89352
+  },
+  {
+    "key": "0x6d0ac972bc928097c4bbaa2b11e86bd97150873c472a85e6e3129b2f0e4f8e1c-1",
+    "title": "Will the lowest temperature in New York City be between 38-39°F on April 22?",
+    "lots": [
+      {
+        "shares": 179.03315,
+        "price": 0.997,
+        "usdc": 178.52282,
+        "ts": 1776835516
+      }
+    ],
+    "totalShares": 179.03315
+  },
+  {
+    "key": "0xbedff36bd3f3e2166d5198d671fc71c90fbc09dfe1c288a0c00d32999ca484bb-1",
+    "title": "Will the highest temperature in Tokyo be 14°C on April 23?",
+    "lots": [
+      {
+        "shares": 2146.29686,
+        "price": 0.9988525824395971,
+        "usdc": 2143.95716,
+        "ts": 1776865132
+      },
+      {
+        "shares": 53.68732,
+        "price": 0.999,
+        "usdc": 53.63631,
+        "ts": 1776865148
+      }
+    ],
+    "totalShares": 2199.98418
+  },
+  {
+    "key": "0xe1192ae27f070ebbd9728f0f8ea4dea5fbc061b3c7d611816c43a9cd72aaee7d-1",
+    "title": "Will the highest temperature in Wellington be 11°C on April 23?",
+    "lots": [
+      {
+        "shares": 479.77644000000004,
+        "price": 0.9944336021337334,
+        "usdc": 477.23863,
+        "ts": 1776866494
+      }
+    ],
+    "totalShares": 479.77644000000004
+  },
+  {
+    "key": "0x87767ea9843dbef7845dc216e2805040cf37c4a38149d13825fbccb447564ac0-1",
+    "title": "Will the highest temperature in Jeddah be 34°C on April 22?",
+    "lots": [
+      {
+        "shares": 221.74783000000002,
+        "price": 0.998,
+        "usdc": 221.32646,
+        "ts": 1776866676
+      },
+      {
+        "shares": 154.99225,
+        "price": 0.999,
+        "usdc": 154.845,
+        "ts": 1776873104
+      }
+    ],
+    "totalShares": 376.74008000000003
+  }
+]
