@@ -48,11 +48,11 @@ const CFG = {
   // v31-distance defaults match 937's observed behavior with no added
   // safety rails. Flags below are for dialing in extra filters the user
   // may want — the out-of-the-box run is pure 937 mimicry.
-  ALLOW_YES:        argv["allow-yes"] !== "false",       // 937 does ~3% YES; ON by default
+  ALLOW_YES:        argv["allow-yes"] === "true",         // v32-metar: YES is off (overnight disaster source)
   ALLOW_NON_HIGHEST_BETWEEN: argv["allow-non-hb"] === "true",  // 937 is 100% HIGHEST+between
-  MIN_ASK_ENTRY:    Number(argv["min-ask"] ?? "0.80"),   // 937's NO entries: 99% at 0.80+ (full range 0.50-0.999)
-  MAX_ASK_ENTRY:    Number(argv["max-ask"] ?? "0.999"),  // 937's sell target
-  MIN_DIST_C:       Number(argv["min-dist"] ?? "0.1"),   // 937's rule (tuned against fresh 797 trades): 0.1°C gives max recall (71%) at 100% non-loss; tightening to 0.5 costs $550 PnL
+  MIN_ASK_ENTRY:    Number(argv["min-ask"] ?? "0.95"),    // v32-metar: tightened from 0.80 — sub-0.95 NO entries bleed (v5-wide backtest: -$619 in 0.5-0.7, -$551 in 0.7-0.85)
+  MAX_ASK_ENTRY:    Number(argv["max-ask"] ?? "0.998"),   // v32-metar: room for 1 tick of profit to SELL_TARGET=0.999; 0.999 entry + 0.999 exit = $0 PnL (that bug caused the filled-999 pnl=$0.00 lines)
+  MIN_DIST_C:       Number(argv["min-dist"] ?? "1.0"),    // v32-metar: raised from 0.1 to give margin against METAR rounding (backtest: 0.1-1.0°C band had data-mismatch losses; 1°C floor eliminated all tape-ended catastrophes)
   MAX_DIST_C:       Number(argv["max-dist"] ?? "5"),     // beyond 5°C the book is at 0.9999+, no spread
   MIN_DEPTH_SHARES: Number(argv["min-depth"] ?? "1"),    // 937 takes tiny trades ($0.03 min seen); floor = Polymarket's 5-share minimum via MIN_SHARES
   BOOK_CONCURRENCY: Number(argv["book-concurrency"] ?? "8"),
@@ -69,7 +69,7 @@ const CFG = {
   BANKROLL:         Number(argv.bankroll ?? "100"),
   TRADE_SIZE:       Number(argv.tradesize ?? "5"),
   MIN_SHARES:       Number(argv.minshares ?? "5"),     // Polymarket minimum
-  MAX_HOLD_MIN:     Number(argv.maxhold ?? "60"),    // v29-empirical: 937 p99 hold is 59min; cut at 60
+  MAX_HOLD_MIN:     Number(argv.maxhold ?? "720"),   // v32-metar: raised from 60 to 12h. Overnight Apr-24 run lost -$3,214 on 127 scalp-maxhold cuts at taker mid; positions that don't hit 0.999 should RIDE TO RESOLUTION (PATH 1), not dump at intraday book. Scalp-maxhold disabled in practice because PATH 1 handles everything before 12h
   SELL_TARGET:      Number(argv.selltarget ?? "0.999"),  // profit-take when our-side mid hits this
   RESET:            argv.reset === "true",
   NO_CAP:           argv.nocap === "true",           // disable "insufficient bankroll" gate
@@ -555,16 +555,21 @@ async function resolvePositions() {
   const nowSec = Math.floor(Date.now() / 1000);
   let settled = 0, checked = 0, profitTake = 0, gammaResolved = 0, lagTaker = 0, maxholdTaker = 0, stillOpen = 0;
 
-  // Batch-fetch CLOB midpoints for all open positions up-front (one parallel
-  // pass, concurrency-bounded). Positions without clobTokenIds stored on them
-  // get their midpoint as null → skip PATH 0 for those.
+  // v32-metar: batch-fetch FULL top-of-book (not just mid) for each open
+  // position, so PATH 0 can read the actual book BID and fill there instead
+  // of hardcoding SELL_TARGET. The old `exitPrice = CFG.SELL_TARGET` was the
+  // reason the overnight run logged "filled-999 pnl=$0.00" on every trade
+  // where entry was also at 0.999 — exiting at the same price as entry is
+  // guaranteed $0 PnL before fees.
   const openPositions = state.positions.filter(p => !p.closed);
-  const midByCond = new Map();
+  const bookByCond = new Map();   // conditionId -> {bid, ask, mid, bidDepth}
   if (openPositions.length) {
     const toFetch = openPositions.filter(p => Array.isArray(p.clobTokenIds) && p.clobTokenIds.length >= 2);
     await runParallel(toFetch, async (p) => {
-      const mid = await fetchBookMidpoint(p.clobTokenIds[1]);
-      if (mid != null) midByCond.set(p.conditionId, mid);
+      // For NO positions, fetch the NO-token book (tokens[1]); for YES, tokens[0].
+      const ourToken = p.side === "NO" ? p.clobTokenIds[1] : p.clobTokenIds[0];
+      const book = await fetchTopOfBook(ourToken);
+      if (book) bookByCond.set(p.conditionId, book);
     }, 6);
   }
 
@@ -587,17 +592,17 @@ async function resolvePositions() {
     let exitPrice = null;
     let status = null;
 
-    // PATH 0: profit-take at SELL_TARGET (0.999). If the CLOB midpoint for
-    // our side reaches the target, simulate a maker-sell fill at that price.
-    // Matches backtest v15's filled-999 path (70% of wins exit this way).
-    const noMid = midByCond.get(pos.conditionId);
-    if (noMid != null) {
-      const ourMid = pos.side === "NO" ? noMid : (1 - noMid);
-      if (ourMid >= CFG.SELL_TARGET) {
-        exitPrice = CFG.SELL_TARGET;
-        status = "filled-999";
-        profitTake++;
-      }
+    // PATH 0: profit-take when the book BID on our side is at/above
+    // SELL_TARGET. We "sell" by matching the bid — the fill price IS the
+    // bid, not a hardcoded target. This is the correct maker-equivalent:
+    // if someone is bidding 0.999, we hit them at 0.999. If the bid is
+    // 0.998, waiting. Old code hardcoded exitPrice = SELL_TARGET, which
+    // meant entering at 0.999 and "exiting" at 0.999 = guaranteed $0 PnL.
+    const book = bookByCond.get(pos.conditionId);
+    if (book && Number.isFinite(book.bid) && book.bid >= CFG.SELL_TARGET) {
+      exitPrice = book.bid;
+      status = "filled-bid";
+      profitTake++;
     }
 
     // PATH 1: past endDate + 5min → check events-derived outcomePrices for
@@ -634,9 +639,16 @@ async function resolvePositions() {
       }
     }
 
-    // PATH 3: scalp max-hold timeout (v28: 90min default) → taker cut.
-    // 937 typically rotates capital in <30min — past 90min the trade has
-    // either failed to pop or the signal is stale. Cut at CLOB mid.
+    // PATH 3 REMOVED (v32-metar): scalp-maxhold at 60min was dumping positions
+    // at whatever the intraday book-mid happened to be, which lost -$3,214 on
+    // the Apr-24 overnight run (127 cuts, many at 0.50-0.85 when the NO was
+    // supposed to ride to 0.999). The v16 backtest showed that holding through
+    // to resolution (12h timeout) produced 98% WR with zero catastrophic
+    // taker-cut losses. MAX_HOLD_MIN default is now 720min (12h), well past
+    // any market's end time, so PATH 1 (Gamma settlement) handles everything
+    // before a max-hold trigger could fire. If a position survives to 12h it
+    // means Gamma didn't resolve and PATH 2 (lag-taker after endDate+6h) will
+    // have caught it. Kept the MAX_HOLD_MIN flag for emergency manual cuts.
     if (exitPrice == null && holdMin >= CFG.MAX_HOLD_MIN) {
       const tokens = pos.clobTokenIds;
       if (Array.isArray(tokens) && tokens.length >= 2) {
@@ -644,7 +656,7 @@ async function resolvePositions() {
           const mid = await fetchBookMidpoint(tokens[1]);
           if (mid != null) {
             exitPrice = pos.side === "NO" ? mid : (1 - mid);
-            status = "scalp-maxhold";
+            status = "emergency-maxhold";
             maxholdTaker++;
           }
         } catch {}
@@ -824,7 +836,7 @@ async function scanOnce() {
 }
 
 async function main() {
-  console.log(`=== Detect engine + simulator (v31-distance · pure 0x937 mimicry, no safety rails) ===`);
+  console.log(`=== Detect engine + simulator (v32-metar · 937 NO-scalp on METAR, 98% WR backtest) ===`);
   console.log(`Bankroll: $${state.bankroll.toFixed(2)} (CLI=$${CFG.BANKROLL}${CFG.RESET ? ", --reset" : ""}${CFG.NO_CAP ? ", --nocap (no bankroll gate)" : ""})  Trade scale: $${CFG.TRADE_SIZE} (sampled from 937's empirical bucket distribution; larger buckets favored when ask≥0.999; min ${CFG.MIN_SHARES} shares enforced)`);
   console.log(`Trigger: CLOB book-scan · ask∈[${CFG.MIN_ASK_ENTRY},${CFG.MAX_ASK_ENTRY}] · min-depth ${CFG.MIN_DEPTH_SHARES}sh · YES-side ${CFG.ALLOW_YES ? "ON" : "OFF"}`);
   console.log(`Selectivity: bucket_distance ∈ [${CFG.MIN_DIST_C},${CFG.MAX_DIST_C}]°C from observed max (the 937 rule, reverse-engineered from 1028 entries)`);
