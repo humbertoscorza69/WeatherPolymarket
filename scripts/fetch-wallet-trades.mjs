@@ -28,12 +28,26 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const WALLETS = {
+const DEFAULT_WALLETS = {
   fc25: "0xfc25f141ed27bb1787338d2c4e7f51e3a15e1f7f",
   "2785": "0x2785e7022dc20757108204b13c08cea8613b70ae",
   "2d99": "0x2d99e29c4f066ba32098c65e4c7454b277d94ca3",
   "937":  "0x937bcac3a8a30c07d827ad0550c3fe3a6756bfab"
 };
+
+// CLI: `node scripts/fetch-wallet-trades.mjs --wallet=0xabc...` fetches just one.
+// `--wallet=alias` uses DEFAULT_WALLETS lookup. No arg = fetch all four defaults.
+const argv = Object.fromEntries(process.argv.slice(2).map(a => {
+  const [k, v] = a.replace(/^--/, "").split("="); return [k, v ?? "true"];
+}));
+function resolveWallets() {
+  if (!argv.wallet) return DEFAULT_WALLETS;
+  const val = argv.wallet.toLowerCase();
+  if (DEFAULT_WALLETS[val]) return { [val]: DEFAULT_WALLETS[val] };
+  if (/^0x[0-9a-f]{40}$/.test(val)) return { [val.slice(0, 6)]: val };
+  throw new Error(`--wallet must be an alias (${Object.keys(DEFAULT_WALLETS).join("/")}) or a 0x-address; got: ${argv.wallet}`);
+}
+const WALLETS = resolveWallets();
 
 const DATA_API = "https://data-api.polymarket.com";
 const MAX_OFFSET = 2500;
@@ -258,6 +272,16 @@ async function main() {
     process.stdout.write(`${closed.length} closed, ${openPositions.length} open, realized=$${realizedPnl.toFixed(2)}\n`);
 
     const jsonlPath = path.join(OUT_DIR, `${addr}.jsonl`);
+    // Safety: refuse to clobber a non-empty jsonl with 0 events (e.g. 403 from API).
+    if (events.length === 0) {
+      try {
+        const existing = await fs.readFile(jsonlPath, "utf8");
+        if (existing.trim().length > 0) {
+          console.log(`  ⚠ fetch returned 0 events; keeping existing ${jsonlPath}`);
+          continue;
+        }
+      } catch {}
+    }
     const jsonlBody = closed.map((c) => JSON.stringify(c)).join("\n") + "\n";
     await fs.writeFile(jsonlPath, jsonlBody, "utf8");
 
