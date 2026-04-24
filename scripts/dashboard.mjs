@@ -34,6 +34,33 @@ const PRICE_BATCH = Number(argv.pricebatch ?? "20");
 const WEATHER_TTL_MS = Number(argv.weatherttl ?? "300000");  // 5min cache
 
 const STATIONS = existsSync(STATIONS_FILE) ? JSON.parse(await fs.readFile(STATIONS_FILE, "utf8")) : {};
+const CITY_TZ_FILE = path.resolve("data/city-tz.json");
+const CITY_TZ = existsSync(CITY_TZ_FILE) ? JSON.parse(await fs.readFile(CITY_TZ_FILE, "utf8")) : {};
+
+// IANA-timezone-aware local-day window (mirrors detect.mjs). Replaces the
+// prior ±12h UTC buffer, which wrongly admitted previous-day afternoon
+// samples for cities with negative UTC offsets (NYC, LA, Toronto, Sao Paulo).
+function tzOffsetMin(utcMs, tz) {
+  const dtf = new Intl.DateTimeFormat("en-US", {
+    timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false,
+  });
+  const parts = Object.fromEntries(dtf.formatToParts(new Date(utcMs)).map(p => [p.type, p.value]));
+  const asUtc = Date.UTC(
+    Number(parts.year), Number(parts.month) - 1, Number(parts.day),
+    Number(parts.hour) % 24, Number(parts.minute), Number(parts.second)
+  );
+  return Math.round((asUtc - utcMs) / 60_000);
+}
+
+function localDayStartUtcSec(dateStr, tz) {
+  if (!tz || !dateStr) return null;
+  const [y, m, d] = dateStr.split("-").map(Number);
+  if (!y || !m || !d) return null;
+  const utcMidday = Date.UTC(y, m - 1, d, 12, 0, 0);
+  const offMin = tzOffsetMin(utcMidday, tz);
+  return Math.floor((utcMidday - 12 * 3600_000 - offMin * 60_000) / 1000);
+}
 
 const num = (x, d = 0) => { const n = Number(x); return Number.isFinite(n) ? n : d; };
 
@@ -383,13 +410,23 @@ async function getWeatherFor(city, date) {
     return miss;
   }
   const metar = await fetchMetar(icao, 36);
-  // Filter to observations on this calendar date (UTC) — cheapest approximation for
-  // "the day" since Polymarket titles reference local date. A ±12h window around
-  // the date is more than enough for our diagnostic.
-  const d0 = Math.floor(new Date(date + "T00:00:00Z").getTime() / 1000) - 12 * 3600;
-  const d1 = d0 + 48 * 3600;
+  // Filter to the market's LOCAL calendar day via IANA timezone. Samples
+  // outside the [localMidnight, localMidnight+24h] window are discarded so
+  // yesterday's peaks can't contaminate today's observed-max. If tz is
+  // unknown (new city), fall back to the old ±12h UTC buffer rather than
+  // returning nothing — the old behavior was wrong but never empty.
+  const tz = CITY_TZ[city];
+  let d0, d1;
+  if (tz) {
+    d0 = localDayStartUtcSec(date, tz);
+    d1 = d0 != null ? d0 + 86400 : null;
+  }
+  if (d0 == null) {
+    d0 = Math.floor(new Date(date + "T00:00:00Z").getTime() / 1000) - 12 * 3600;
+    d1 = d0 + 48 * 3600;
+  }
   const scoped = metar.filter(o => o.t >= d0 && o.t <= d1);
-  const fresh = { metar: scoped, fetchedAt: Date.now(), icao };
+  const fresh = { metar: scoped, fetchedAt: Date.now(), icao, localDayStartUtc: d0, localDayEndUtc: d1, tz };
   weatherCache.set(key, fresh);
   return fresh;
 }

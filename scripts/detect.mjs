@@ -54,6 +54,7 @@ const CFG = {
   MAX_ASK_ENTRY:    Number(argv["max-ask"] ?? "0.998"),   // v32-metar: room for 1 tick of profit to SELL_TARGET=0.999; 0.999 entry + 0.999 exit = $0 PnL (that bug caused the filled-999 pnl=$0.00 lines)
   MIN_DIST_C:       Number(argv["min-dist"] ?? "1.0"),    // v32-metar: raised from 0.1 to give margin against METAR rounding (backtest: 0.1-1.0°C band had data-mismatch losses; 1°C floor eliminated all tape-ended catastrophes)
   MAX_DIST_C:       Number(argv["max-dist"] ?? "5"),     // beyond 5°C the book is at 0.9999+, no spread
+  MIN_LOCAL_HOURS:  Number(argv["min-local-hours"] ?? "4"),  // require >=4h elapsed in the market's local day before we trust obs_max. Below this, pre-dawn samples don't reflect the day's peak trajectory and "below-max" entries can silently flip as the afternoon climbs.
   MIN_DEPTH_SHARES: Number(argv["min-depth"] ?? "1"),    // 937 takes tiny trades ($0.03 min seen); floor = Polymarket's 5-share minimum via MIN_SHARES
   BOOK_CONCURRENCY: Number(argv["book-concurrency"] ?? "8"),
   METAR_VETO:       argv["metar-veto"] === "true",       // 937 does NOT use METAR; OFF by default, opt-in only
@@ -80,11 +81,44 @@ const LOG = path.resolve("data/detect-log.jsonl");
 const POSITIONS_FILE = path.resolve("data/detect-positions.json");
 const BANKROLL_FILE = path.resolve("data/detect-bankroll.json");
 const STATIONS_FILE = path.resolve("data/metar-stations.json");
+const CITY_TZ_FILE = path.resolve("data/city-tz.json");
 await fs.mkdir(path.dirname(LOG), { recursive: true });
 
 const STATIONS = existsSync(STATIONS_FILE)
   ? JSON.parse(await fs.readFile(STATIONS_FILE, "utf8"))
   : {};
+const CITY_TZ = existsSync(CITY_TZ_FILE)
+  ? JSON.parse(await fs.readFile(CITY_TZ_FILE, "utf8"))
+  : {};
+
+// IANA-timezone-aware local-day window. The ±12h UTC buffer we used before
+// was wrong for cities with negative UTC offsets (NYC, LA, Chicago, Toronto,
+// Atlanta, Sao Paulo, ...): the window admitted up to 16h of the PREVIOUS
+// local day, letting yesterday's afternoon peak masquerade as today's
+// observed max. Confirmed against Polymarket's live pricing — our 13.9°C
+// "observed" for NYC April 25 was April 24 data; the market priced April 25
+// highs around 10°C.
+function tzOffsetMin(utcMs, tz) {
+  const dtf = new Intl.DateTimeFormat("en-US", {
+    timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false,
+  });
+  const parts = Object.fromEntries(dtf.formatToParts(new Date(utcMs)).map(p => [p.type, p.value]));
+  const asUtc = Date.UTC(
+    Number(parts.year), Number(parts.month) - 1, Number(parts.day),
+    Number(parts.hour) % 24, Number(parts.minute), Number(parts.second)
+  );
+  return Math.round((asUtc - utcMs) / 60_000);
+}
+
+function localDayStartUtcSec(dateStr, tz) {
+  if (!tz || !dateStr) return null;
+  const [y, m, d] = dateStr.split("-").map(Number);
+  if (!y || !m || !d) return null;
+  const utcMidday = Date.UTC(y, m - 1, d, 12, 0, 0);
+  const offMin = tzOffsetMin(utcMidday, tz);
+  return Math.floor((utcMidday - 12 * 3600_000 - offMin * 60_000) / 1000);
+}
 
 const GAMMA = "https://gamma-api.polymarket.com";
 const CLOB  = "https://clob.polymarket.com";
@@ -716,31 +750,30 @@ async function resolvePositions() {
 //   6. pay ask, size from price-proximity bucket
 function computeObservedMaxC(market, metarObs, omObs, nowSec) {
   const primary = (metarObs?.length ? metarObs : omObs) || [];
-  if (!primary.length) return null;
-  // v32-metar CRITICAL FIX: restrict samples to the market's LOCAL DAY.
-  // Previously this took the max over ALL samples <= nowSec, which for
-  // a 48h METAR buffer meant YESTERDAY's peak leaked into TODAY's obs_max
-  // computation. That broke the core rule: "bucket is below today's peak
-  // → bucket is dead → enter NO." With yesterday's peak, we were entering
-  // tomorrow's markets based on data that says nothing about tomorrow's
-  // temperature trajectory.
-  //
-  // Uses a ±12h UTC window around market.date as a tz approximation,
-  // matching what scripts/dashboard.mjs does (line 389). Exact tz would
-  // require a per-city lookup — the ±12h buffer comfortably covers every
-  // city's local midnight-to-midnight without admitting the prior day's
-  // afternoon peak.
-  if (!market?.date) return null;
-  const dayStartUtc = Math.floor(new Date(market.date + "T00:00:00Z").getTime() / 1000);
-  const windowStart = dayStartUtc - 12 * 3600;
-  const windowEnd   = dayStartUtc + 36 * 3600;
+  if (!primary.length) return { obsMaxC: null, hoursElapsed: null, reason: "no-obs" };
+  if (!market?.date) return { obsMaxC: null, hoursElapsed: null, reason: "no-date" };
+  const tz = CITY_TZ[market.city];
+  if (!tz) return { obsMaxC: null, hoursElapsed: null, reason: "no-tz" };
+  const dayStartUtc = localDayStartUtcSec(market.date, tz);
+  if (dayStartUtc == null) return { obsMaxC: null, hoursElapsed: null, reason: "tz-error" };
+  const dayEndUtc = dayStartUtc + 86400;
+  // If the market's local day has not started yet, we have no valid
+  // observations for that day. Return null — the caller will skip.
+  if (nowSec < dayStartUtc) {
+    return { obsMaxC: null, hoursElapsed: (nowSec - dayStartUtc) / 3600, reason: "day-not-started" };
+  }
+  const windowEnd = Math.min(nowSec, dayEndUtc);
   let maxC = -Infinity;
   for (const o of primary) {
-    if (o.t > nowSec) break;
-    if (o.t < windowStart || o.t >= windowEnd) continue;
+    if (o.t < dayStartUtc) continue;
+    if (o.t > windowEnd) break;
     if (o.tempC > maxC) maxC = o.tempC;
   }
-  return Number.isFinite(maxC) ? maxC : null;
+  const hoursElapsed = (windowEnd - dayStartUtc) / 3600;
+  if (!Number.isFinite(maxC)) {
+    return { obsMaxC: null, hoursElapsed, reason: "no-samples-in-window" };
+  }
+  return { obsMaxC: maxC, hoursElapsed, reason: "ok" };
 }
 
 // Distance from observed max to bucket [loC, hiC]. Returns
@@ -787,11 +820,20 @@ async function scanOnce() {
   // Cuts the universe by 80-90% before any expensive book calls.
   const eligible = [];
   let distSkipTooClose = 0, distSkipTooFar = 0, distSkipContains = 0, distSkipNoObs = 0;
+  let distSkipDayNotStarted = 0, distSkipTooEarly = 0, distSkipNoTz = 0;
   for (const u of universe) {
     const { metar, openMeteo } = await getObservationsForMarket(u.parsed);
     if (!metar?.length && !openMeteo?.length) { distSkipNoObs++; continue; }
-    const obsMaxC = computeObservedMaxC(u.parsed, metar, openMeteo, nowSec);
+    const { obsMaxC, hoursElapsed, reason } = computeObservedMaxC(u.parsed, metar, openMeteo, nowSec);
+    if (reason === "no-tz") { distSkipNoTz++; continue; }
+    if (reason === "day-not-started") { distSkipDayNotStarted++; continue; }
     if (obsMaxC == null) { distSkipNoObs++; continue; }
+    // Gate: require enough of the local day to have elapsed that obs_max is
+    // a meaningful anchor. Below the threshold, a "below-max" NO is a pre-dawn
+    // artifact — the afternoon could easily climb past the bucket and flip
+    // the bet. This is what bit us on the Apr-24 overnight run when NYC /
+    // Lagos entries fired on previous-day contaminated samples.
+    if (hoursElapsed != null && hoursElapsed < CFG.MIN_LOCAL_HOURS) { distSkipTooEarly++; continue; }
     const bucketLoC = toC(u.parsed.threshold, u.parsed.unit);
     const bucketHiC = toC(u.parsed.thresholdHigh ?? u.parsed.threshold, u.parsed.unit);
     const { distance, relation } = bucketDistanceToMax(bucketLoC, bucketHiC, obsMaxC);
@@ -805,9 +847,9 @@ async function scanOnce() {
     // a 42% WR coin flip (v5/v6 backtest confirmed). --allow-speculative
     // overrides.
     if (relation === "above-max" && !CFG.ALLOW_SPECULATIVE) { distSkipTooFar++; continue; }
-    eligible.push({ ...u, obsMaxC, distance, relation });
+    eligible.push({ ...u, obsMaxC, distance, relation, hoursElapsed });
   }
-  console.log(`  distance-filter: ${eligible.length} eligible · skipped ${distSkipTooClose} too-close (<${CFG.MIN_DIST_C}°C) · ${distSkipTooFar} too-far (>${CFG.MAX_DIST_C}°C) · ${distSkipContains} contains-max · ${distSkipNoObs} no-obs`);
+  console.log(`  distance-filter: ${eligible.length} eligible · skipped ${distSkipTooClose} too-close (<${CFG.MIN_DIST_C}°C) · ${distSkipTooFar} too-far (>${CFG.MAX_DIST_C}°C) · ${distSkipContains} contains-max · ${distSkipNoObs} no-obs · ${distSkipDayNotStarted} local-day-not-started · ${distSkipTooEarly} too-early (<${CFG.MIN_LOCAL_HOURS}h elapsed) · ${distSkipNoTz} no-tz`);
 
   // ---- 3. book scan — only for eligible markets ----
   const byCid = new Map();  // conditionId → candidate (dedupe)
@@ -850,13 +892,14 @@ async function scanOnce() {
   // ---- 4. enter ----
   let opened = 0;
   for (const c of candidates) {
+    const elapsedTag = c.hoursElapsed != null ? `/${c.hoursElapsed.toFixed(1)}h` : "";
     const pos = await simulateEntry({
       side: c.side,
       entryPrice: c.book.ask,
       book: c.book,
       market: c.parsed,
       mkt: c.mk,
-      metarSig: { reason: `dist-${c.relation}`, cushion: c.distance },
+      metarSig: { reason: `dist-${c.relation}${elapsedTag}`, cushion: c.distance },
       strategyVersion: "v31-distance",
     });
     if (pos) opened++;
@@ -870,7 +913,7 @@ async function main() {
   console.log(`=== Detect engine + simulator (v32-metar · 937 NO-scalp on METAR, 98% WR backtest) ===`);
   console.log(`Bankroll: $${state.bankroll.toFixed(2)} (CLI=$${CFG.BANKROLL}${CFG.RESET ? ", --reset" : ""}${CFG.NO_CAP ? ", --nocap (no bankroll gate)" : ""})  Trade scale: $${CFG.TRADE_SIZE} (sampled from 937's empirical bucket distribution; larger buckets favored when ask≥0.999; min ${CFG.MIN_SHARES} shares enforced)`);
   console.log(`Trigger: CLOB book-scan · ask∈[${CFG.MIN_ASK_ENTRY},${CFG.MAX_ASK_ENTRY}] · min-depth ${CFG.MIN_DEPTH_SHARES}sh · YES-side ${CFG.ALLOW_YES ? "ON" : "OFF"}`);
-  console.log(`Selectivity: bucket_distance ∈ [${CFG.MIN_DIST_C},${CFG.MAX_DIST_C}]°C from observed max (the 937 rule, reverse-engineered from 1028 entries)`);
+  console.log(`Selectivity: bucket_distance ∈ [${CFG.MIN_DIST_C},${CFG.MAX_DIST_C}]°C from observed max (the 937 rule, reverse-engineered from 1028 entries) · local-day elapsed ≥ ${CFG.MIN_LOCAL_HOURS}h`);
   console.log(`Safety: HIGHEST + (exact|between) only (--allow-non-hb to override) · dedupe by conditionId · max-hold ${CFG.MAX_HOLD_MIN}min · take-profit ${CFG.SELL_TARGET}`);
   console.log(`Scan intervals: market scan=${CFG.INTERVAL_SEC}s, position check=${CFG.POS_CHECK_SEC}s, weather cache=${CFG.WEATHER_TTL_SEC}s`);
   console.log(`TTR=[${CFG.TTR_MIN_SEC/3600}h, ${CFG.TTR_MAX_SEC/3600}h]`);
