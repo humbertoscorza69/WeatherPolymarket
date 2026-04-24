@@ -1,0 +1,49 @@
+=== METAR vs Open-Meteo agreement report ===
+resolved city-date groups compared: 387
+  no-city-map: 66   no-open-meteo: 759   no-metar: 0   unresolved-market: 275
+
+OM agrees with market:    65  (16.8%)
+METAR agrees with market: 292  (75.5%)
+Both agree:               57
+Only OM agrees:           8
+Only METAR agrees:        235  ← these are the ones the METAR pivot would rescue
+Neither agrees:           87  ← data source unknown
+
+OM - METAR daily-max delta (°C):
+  min=-4.53  p10=-1.40  p25=-0.20  p50=1.10  p75=2.90  p90=4.80  max=14.00
+
+=== METAR-rescue candidates (first 20) — Only METAR agrees ===
+  Karachi          2026-04-20  bucket=34     OM=31.6(rounds 32) · METAR=34.0(rounds 34)  delta=-2.40°C
+  Munich           2026-04-18  bucket=22     OM=19.9(rounds 20) · METAR=22.0(rounds 22)  delta=-2.10°C
+  Toronto          2026-04-14  bucket=23     OM=21.4(rounds 21) · METAR=23.0(rounds 23)  delta=-1.60°C
+  Munich           2026-03-28  bucket=8      OM=7.0(rounds 7) · METAR=8.0(rounds 8)  delta=-1.00°C
+  Toronto          2026-04-21  bucket=11     OM=14.5(rounds 15) · METAR=11.0(rounds 11)  delta=3.50°C
+  Munich           2026-04-15  bucket=13     OM=16.2(rounds 16) · METAR=13.0(rounds 13)  delta=3.20°C
+  Ankara           2026-04-19  bucket=10     OM=15.3(rounds 15) · METAR=10.0(rounds 10)  delta=5.30°C
+  Seoul            2026-03-25  bucket=13     OM=17.9(rounds 18) · METAR=13.0(rounds 13)  delta=4.90°C
+  Mexico City      2026-04-17  bucket=29     OM=30.2(rounds 30) · METAR=29.0(rounds 29)  delta=1.20°C
+  Tokyo            2026-03-29  bucket=21     OM=20.2(rounds 20) · METAR=21.0(rounds 21)  delta=-0.80°C
+  Toronto          2026-04-06  bucket=5      OM=9.2(rounds 9) · METAR=5.0(rounds 5)  delta=4.20°C
+  Tel Aviv         2026-04-14  bucket=30     OM=34.0(rounds 34) · METAR=30.0(rounds 30)  delta=4.00°C
+  Lagos            2026-04-14  bucket=35     OM=32.2(rounds 32) · METAR=35.0(rounds 35)  delta=-2.80°C
+  London           2026-04-02  bucket=12     OM=15.9(rounds 16) · METAR=12.0(rounds 12)  delta=3.90°C
+  Busan            2026-04-21  bucket=21     OM=20.3(rounds 20) · METAR=21.0(rounds 21)  delta=-0.70°C
+  Istanbul         2026-04-16  bucket=12     OM=18.4(rounds 18) · METAR=12.0(rounds 12)  delta=6.40°C
+  Munich           2026-03-30  bucket=7      OM=5.6(rounds 6) · METAR=7.0(rounds 7)  delta=-1.40°C
+  Moscow           2026-04-11  bucket=5      OM=10.2(rounds 10) · METAR=5.0(rounds 5)  delta=5.20°C
+  Singapore        2026-04-19  bucket=32     OM=33.4(rounds 33) · METAR=32.0(rounds 32)  delta=1.40°C
+  Tokyo            2026-03-24  bucket=16     OM=16.8(rounds 17) · METAR=16.0(rounds 16)  delta=0.80°C
+
+=== Cases where neither agrees (first 10) — could indicate wrong ICAO mapping ===
+  Buenos Aires     2026-04-12  bucket=26     OM=25.2(rounds 25) · METAR=23.0(rounds 23)
+  Taipei           2026-04-18  bucket=27     OM=28.9(rounds 29) · METAR=28.0(rounds 28)
+  Taipei           2026-04-20  bucket=32     OM=29.7(rounds 30) · METAR=30.0(rounds 30)
+  Seoul            2026-03-29  bucket=16     OM=18.6(rounds 19) · METAR=17.0(rounds 17)
+  Wellington       2026-04-05  bucket=17     OM=19.7(rounds 20) · METAR=21.0(rounds 21)
+  Amsterdam        2026-04-08  bucket=15     OM=20.1(rounds 20) · METAR=20.0(rounds 20)
+  Panama City      2026-04-20  bucket=31     OM=33.8(rounds 34) · METAR=33.0(rounds 33)
+  Toronto          2026-04-04  bucket=7      OM=22.0(rounds 22) · METAR=9.0(rounds 9)
+  Buenos Aires     2026-04-15  bucket=23     OM=24.4(rounds 24) · METAR=22.0(rounds 22)
+  Buenos Aires     2026-03-23  bucket=27     OM=24.5(rounds 25) · METAR=25.0(rounds 25)
+
+output CSV: /home/user/WeatherPolymarket/data/analysis/metar-vs-open-meteo.csv

@@ -46,6 +46,9 @@ const argv = Object.fromEntries(process.argv.slice(2).map(a => {
 const UNIVERSE = path.resolve("data/analysis/universe-markets.jsonl");
 const TICK_DIR = path.resolve("data/tick-history");
 const WX_DIR = path.resolve("data/weather-history");
+const METAR_DIR = path.resolve("data/metar-history");
+const CITY_ICAO_MAP = path.resolve("scripts/metar/city-icao-map.json");
+const WEATHER_SOURCE = (argv["weather-source"] ?? "om").toLowerCase();   // "om" | "metar"
 const NINE_HUNDRED_E = "0x900e2ba4b715e8e5088899948355d74c796ff6bf";
 const TRADES_900E = path.resolve(`data/wallet-trades/${NINE_HUNDRED_E}.jsonl`);
 const SUMMARY_900E = path.resolve(`data/wallet-trades/${NINE_HUNDRED_E}.summary.json`);
@@ -77,6 +80,12 @@ const ALLOW_CONTAINS = argv["no-contains"] === "true" ? false : true;
 const FORECAST_MODE = argv["forecast"] ?? "none";  // "none" | "oracle" | "noisy"
 const FORECAST_NOISE_C = Number(argv["forecast-noise"] ?? "2.0");
 const FORECAST_TOL_C = Number(argv["forecast-tol"] ?? "1.0");  // min margin for NO entry
+// Per-side entry-price bands. Defaults broad; v6 narrows YES to [0, 0.20]
+// where the edge concentrates on METAR.
+const YES_MIN_ENTRY = Number(argv["yes-min-entry"] ?? "0.0");
+const YES_MAX_ENTRY = Number(argv["yes-max-entry"] ?? "1.0");
+const NO_MIN_ENTRY  = Number(argv["no-min-entry"]  ?? "0.0");
+const NO_MAX_ENTRY  = Number(argv["no-max-entry"]  ?? "1.0");
 const TAG = argv.tag ?? (EXCLUDE_900E ? "excl900e" : STRIP_900E_TICKS ? "strip900e" : "full");
 
 const OUT = path.resolve(`data/analysis/universe-backtest-${TAG}.csv`);
@@ -181,8 +190,14 @@ async function main() {
     console.log(`900e traded ${groups900e.size} groups`);
   }
 
+  // Load city->ICAO mapping when running on METAR source.
+  let cityIcaoMap = null;
+  if (WEATHER_SOURCE === "metar") {
+    cityIcaoMap = JSON.parse(await fs.readFile(CITY_ICAO_MAP, "utf8")).cities;
+  }
+
   // Config banner
-  console.log(`tag=${TAG}  excl900e=${EXCLUDE_900E}  strip900eTicks=${STRIP_900E_TICKS}`);
+  console.log(`tag=${TAG}  excl900e=${EXCLUDE_900E}  strip900eTicks=${STRIP_900E_TICKS}  weather=${WEATHER_SOURCE}`);
   console.log(`rule: |dist|<=${MAX_DIST}  no∈[${NO_MIN},${NO_MAX}]  fresh<=${FRESH}s  total<=${MAX_TOTAL_TICKS}  snap=${SNAP_MIN/60}min  obsAge>=${MIN_OBS_AGE_H}h  ttr<=${MAX_TTR_H}h  stop=${STOP_FRAC}  contains=${ALLOW_CONTAINS}`);
   console.log(`exit: profit>=${PROFIT}  no-stop  timeout=${TIMEOUT/60}min  bet=$${BET}`);
 
@@ -198,10 +213,21 @@ async function main() {
     if (EXCLUDE_900E && groups900e.has(gkey)) { groupsSkipped900e++; continue; }
 
     const [city, date] = gkey.split("|");
+    // Always pull Open-Meteo for its tz metadata (METAR files are UTC-only).
     const wxFile = path.join(WX_DIR, `${city}__${date}.json`);
     if (!existsSync(wxFile)) { groupsNoWx++; continue; }
     const wx = JSON.parse(await fs.readFile(wxFile, "utf8"));
-    const eod = endOfDayUtc(date, wx.tz);
+    let samplesSource = wx;
+    if (WEATHER_SOURCE === "metar") {
+      const icaoEntry = cityIcaoMap[city];
+      if (!icaoEntry) { groupsNoWx++; continue; }
+      const metarFile = path.join(METAR_DIR, `${icaoEntry.icao}__${date}.json`);
+      if (!existsSync(metarFile)) { groupsNoWx++; continue; }
+      const metar = JSON.parse(await fs.readFile(metarFile, "utf8"));
+      if (!metar.samples || metar.samples.length < 3) { groupsNoWx++; continue; }
+      samplesSource = { samples: metar.samples, tz: wx.tz };    // METAR samples, OM tz
+    }
+    const eod = endOfDayUtc(date, samplesSource.tz);
     const markets = byGroup.get(gkey);
 
     // Load ticks once per market, sort, optionally strip 900e's own fills
@@ -230,7 +256,7 @@ async function main() {
     // and only valid for upper-bound analysis, never live.
     let forecastPeakC = null;
     if (FORECAST_MODE === "oracle" || FORECAST_MODE === "noisy") {
-      forecastPeakC = finalMaxOracle(wx.samples);
+      forecastPeakC = finalMaxOracle(samplesSource.samples);
       if (forecastPeakC != null && FORECAST_MODE === "noisy") {
         forecastPeakC += seededNoise(`${city}|${date}`, FORECAST_NOISE_C);
       }
@@ -242,13 +268,13 @@ async function main() {
     const scanEnd = Math.min(groupLastTs, eod);
     const firedInSnapshot = new Set();   // conditionIds already entered in this group
     for (let ts = scanStart; ts <= scanEnd; ts += SNAP_MIN) {
-      const obsMax = obsMaxUpTo(wx.samples, ts);
+      const obsMax = obsMaxUpTo(samplesSource.samples, ts);
       if (obsMax == null) continue;
 
       // Temporal safety filters — compute once per snapshot
       // obs_max age: find the last sample where tempC == obs_max
       let obsMaxTs = null;
-      for (const s of wx.samples) { if (s.t > ts) break; if (s.tempC === obsMax) obsMaxTs = s.t; }
+      for (const s of samplesSource.samples) { if (s.t > ts) break; if (s.tempC === obsMax) obsMaxTs = s.t; }
       const obsMaxAgeH = obsMaxTs ? (ts - obsMaxTs) / 3600 : null;
       const ttrH = (eod - ts) / 3600;
       if (obsMaxAgeH == null || obsMaxAgeH < MIN_OBS_AGE_H) continue;
@@ -315,6 +341,9 @@ async function main() {
         const entrySideTick = side === "NO" ? noTick : yesTick;
         if (!entrySideTick) continue;
         const entryPrice = entrySideTick.price;
+        // Per-side entry-price band
+        if (side === "YES" && (entryPrice < YES_MIN_ENTRY || entryPrice > YES_MAX_ENTRY)) continue;
+        if (side === "NO"  && (entryPrice < NO_MIN_ENTRY  || entryPrice > NO_MAX_ENTRY))  continue;
         // Reject entries where our-side price is already above the profit
         // target — no room to make money.
         if (entryPrice >= PROFIT) continue;
