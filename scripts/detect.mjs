@@ -421,9 +421,14 @@ async function simulateEntry(ctx) {
 
   // v31-distance sizing: driven by the ask price's proximity to certainty (0.999+).
   // Bucket midpoint scaled by TRADE_SIZE/50 so user can tune absolute size.
+  // v32-metar: TRADE_SIZE is also treated as a HARD CAP on per-entry $. This
+  // protects small paper accounts from a single "whale"-bucket pick eating
+  // the whole bankroll (on $100 @ tradesize=5, the 6% whale pick is a $99
+  // position that starves the next 20+ candidates). Set --nocap to disable.
   const bucket = pickSizeBucketUsdc({ ask: entryPrice });
   const scale  = CFG.TRADE_SIZE / 50;
   let dollarSize = bucket.mid * scale;
+  if (!CFG.NO_CAP) dollarSize = Math.min(dollarSize, CFG.TRADE_SIZE);
   let shares = Math.max(CFG.MIN_SHARES, Math.floor(dollarSize / entryPrice));
 
   // Cap to available book depth at this ask — we can't buy more than is
