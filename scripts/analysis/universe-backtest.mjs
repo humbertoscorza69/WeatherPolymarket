@@ -77,6 +77,9 @@ const ALLOW_CONTAINS = argv["no-contains"] === "true" ? false : true;
 // no real forecast will. --forecast=noisy adds N(0, sigma) noise to the
 // oracle to simulate imperfect forecasts. --forecast-noise=<sigma>
 // controls the sigma (default 2.0 °C).
+// Relative-to-entry profit/stop — matches 900e's empirical 1.4x/0.35x.
+const REL_PROFIT = Number(argv["rel-profit"] ?? "0");   // 0=disabled; 1.4=take at +40%
+const REL_STOP   = Number(argv["rel-stop"]   ?? "0");   // 0=disabled; 0.35=cut at -65%
 const FORECAST_MODE = argv["forecast"] ?? "none";  // "none" | "oracle" | "noisy"
 const FORECAST_NOISE_C = Number(argv["forecast-noise"] ?? "2.0");
 const FORECAST_TOL_C = Number(argv["forecast-tol"] ?? "1.0");  // min margin for NO entry
@@ -156,9 +159,16 @@ function simulateExit(ticks, side, entryTs, entryPrice) {
   if (!forward.length) return { reason: "no-ticks-after", exitPrice: null, exitTs: null };
   const timeoutTs = entryTs + TIMEOUT;
   const stopPrice = STOP_FRAC > 0 ? entryPrice * (1 - STOP_FRAC) : null;
+  // 900e-style relative targets expressed as multipliers of entry price.
+  // REL_PROFIT=1.40 matches their p50 winner exit (take at +40%); REL_STOP=0.35
+  // matches their p50 loser exit (cut at -65%).
+  const relProfitPrice = REL_PROFIT > 0 ? entryPrice * REL_PROFIT : null;
+  const relStopPrice   = REL_STOP   > 0 ? entryPrice * REL_STOP   : null;
   for (const t of forward) {
     if (t.price >= PROFIT) return { reason: "profit-take", exitPrice: t.price, exitTs: t.timestamp };
+    if (relProfitPrice != null && t.price >= relProfitPrice) return { reason: "rel-profit", exitPrice: t.price, exitTs: t.timestamp };
     if (stopPrice != null && t.price <= stopPrice) return { reason: "stop-loss", exitPrice: t.price, exitTs: t.timestamp };
+    if (relStopPrice != null && t.price <= relStopPrice) return { reason: "rel-stop", exitPrice: t.price, exitTs: t.timestamp };
     if (t.timestamp >= timeoutTs) return { reason: "timeout", exitPrice: t.price, exitTs: t.timestamp };
   }
   const last = forward[forward.length - 1];

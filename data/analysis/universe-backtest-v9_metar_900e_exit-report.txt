@@ -1,0 +1,51 @@
+=== universe-backtest report · tag=v9_metar_900e_exit ===
+rule: |dist|<=2  no∈[0.05,0.97]  fresh<=300s  total<=250  snap=15min  obsAge>=0h  ttr<=99h  stop=0  contains=true
+exit: profit>=0.99  no-stop  timeout=90min  bet=$100
+scanned: 662 groups (no-wx=825 skip900e=0 limit=none)
+snapshots: 42507   unique markets entered: 315
+
+=== trades ===
+n=315  wins=161  losses=149  WR=51.1%
+total PnL: $-1300.48   avg: $-4.129/trade
+bet size:  $100  per trade  (total risk = $31500)
+
+=== by side ===
+  YES: n=263  WR=48.7%  pnl=$-1286.94  avg=$-4.893
+  NO: n=52  WR=63.5%  pnl=$-13.54  avg=$-0.260
+
+=== by exit reason ===
+  rel-profit      n=  123  WR=100.0%  pnl=$9170.87
+  rel-stop        n=  123  WR=0.0%  pnl=$-10282.24
+  timeout         n=   45  WR=42.2%  pnl=$-204.16
+  profit-take     n=   16  WR=100.0%  pnl=$125.64
+  tape-ended      n=    8  WR=37.5%  pnl=$-110.59
+
+=== PnL distribution ===
+  min=$-99.47  p10=$-95.76  p50=$0.85  p90=$80.00  p99=$229.41  max=$302.70
+
+=== top 10 losses ===
+  YES Mexico City      2026-04-21  dist=0°C  contains  entry=0.19  exit=0.001 (rel-stop)  pnl=$-99.47
+  YES Guangzhou        2026-04-21  dist=0°C  contains  entry=0.19  exit=0.001 (rel-stop)  pnl=$-99.47
+  YES Chongqing        2026-04-18  dist=0°C  contains  entry=0.1418  exit=0.001 (rel-stop)  pnl=$-99.29
+  YES Busan            2026-04-17  dist=0°C  contains  entry=0.13  exit=0.001 (rel-stop)  pnl=$-99.23
+  YES Taipei           2026-04-17  dist=0°C  contains  entry=0.121  exit=0.001 (rel-stop)  pnl=$-99.17
+  YES Karachi          2026-04-19  dist=0°C  contains  entry=0.12  exit=0.001 (rel-stop)  pnl=$-99.17
+  NO Toronto          2026-03-07  dist=-1°C  above_obs  entry=0.11  exit=0.001 (rel-stop)  pnl=$-99.09
+  YES Toronto          2026-04-21  dist=0°C  contains  entry=0.096  exit=0.001 (rel-stop)  pnl=$-98.96
+  YES Amsterdam        2026-04-15  dist=0°C  contains  entry=0.107  exit=0.0012 (rel-stop)  pnl=$-98.89
+  YES Warsaw           2026-04-12  dist=0°C  contains  entry=0.079  exit=0.001 (rel-stop)  pnl=$-98.73
+
+=== top 10 wins ===
+  YES Guangzhou        2026-04-20  dist=0°C  contains  entry=0.08  exit=0.3222 (rel-profit)  pnl=$302.70
+  YES Guangzhou        2026-04-16  dist=0°C  contains  entry=0.04  exit=0.14 (rel-profit)  pnl=$250.00
+  YES Karachi          2026-04-21  dist=0°C  contains  entry=0.08  exit=0.2774 (rel-profit)  pnl=$246.73
+  YES Amsterdam        2026-04-12  dist=0°C  contains  entry=0.17  exit=0.56 (rel-profit)  pnl=$229.41
+  YES Tel Aviv         2026-04-10  dist=0°C  contains  entry=0.15  exit=0.4757 (rel-profit)  pnl=$217.15
+  NO Seoul            2026-03-24  dist=-1°C  above_obs  entry=0.14  exit=0.44 (rel-profit)  pnl=$214.29
+  YES Ankara           2026-03-11  dist=0°C  contains  entry=0.065  exit=0.19 (rel-profit)  pnl=$192.31
+  YES Kuala Lumpur     2026-04-22  dist=0°C  contains  entry=0.049  exit=0.129 (rel-profit)  pnl=$163.27
+  YES Jakarta          2026-04-18  dist=0°C  contains  entry=0.1429  exit=0.3759 (rel-profit)  pnl=$163.11
+  YES Helsinki         2026-04-20  dist=0°C  contains  entry=0.2  exit=0.4806 (rel-profit)  pnl=$140.30
+
+elapsed: 16s
+output: /home/user/WeatherPolymarket/data/analysis/universe-backtest-v9_metar_900e_exit.csv
