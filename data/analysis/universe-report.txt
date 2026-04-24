@@ -1,0 +1,9 @@
+=== build-universe report ===
+scanned:        14615 tick files
+parsed:         11439 HIGHEST-temp markets
+skipped:        noTitle=0 titleFail=3176 empty=0
+city-date groups: 1487
+markets per group: min=1 p25=2 p50=11 p75=11 p90=11 max=11
+by kind: or_below=1346 exact=10093
+elapsed: 218.3s
+output: /home/user/WeatherPolymarket/data/analysis/universe-markets.jsonl

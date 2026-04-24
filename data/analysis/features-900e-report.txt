@@ -1,0 +1,9 @@
+=== extract-features report ===
+groups processed:    196
+groups no-weather:   57
+snapshots made:      241
+markets snapshotted: 1907
+total rows:          1907
+label=1 rows:        241  (12.64%)
+elapsed:             4.7s
+output:              /home/user/WeatherPolymarket/data/analysis/features-900e.csv

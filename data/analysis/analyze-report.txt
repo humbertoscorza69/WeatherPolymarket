@@ -1,0 +1,211 @@
+=== analyze-900e ===
+input: data/analysis/features-900e.csv   rows: 1907   label=1: 241
+groups (snapshot_ts,city,date): 231
+date range: 2026-02-11 → 2026-04-22
+
+=== UNIVARIATE (entered=1 vs passed=0) ===
+
+  obs_max_c
+    entered: n=  241  mean= 22.849  p10= 15.100  p50= 22.900  p90= 32.000
+    passed : n= 1666  mean= 23.586  p10= 16.300  p50= 24.100  p90= 32.000
+
+  obs_max_age_h
+    entered: n=  241  mean= 13.203  p10=  0.050  p50= 19.030  p90= 25.120
+    passed : n= 1666  mean= 13.293  p10=  0.060  p50= 19.040  p90= 25.950
+
+  current_temp_c
+    entered: n=  241  mean= 21.377  p10= 13.400  p50= 21.500  p90= 29.800
+    passed : n= 1666  mean= 22.165  p10= 14.000  p50= 22.600  p90= 29.800
+
+  ttr_h
+    entered: n=  241  mean= 10.732  p10=  7.650  p50=  9.970  p90= 13.960
+    passed : n= 1666  mean= 10.567  p10=  7.430  p50=  9.940  p90= 13.510
+
+  signed_dist_c
+    entered: n=  241  mean= -0.906  p10= -3.800  p50= -0.500  p90=  1.800
+    passed : n= 1666  mean= -2.101  p10= -7.500  p50= -2.200  p90=  3.600
+
+  abs_dist_c
+    entered: n=  241  mean=  1.816  p10=  0.200  p50=  1.200  p90=  4.100
+    passed : n= 1666  mean=  3.877  p10=  0.800  p50=  3.300  p90=  7.700
+
+  yes_price
+    entered: n=  240  mean=  0.285  p10=  0.010  p50=  0.177  p90=  0.760
+    passed : n= 1618  mean=  0.072  p10=  0.001  p50=  0.002  p90=  0.285
+
+  no_price
+    entered: n=  240  mean=  0.765  p10=  0.320  p50=  0.900  p90=  0.992
+    passed : n= 1617  mean=  0.938  p10=  0.770  p50=  0.999  p90=  0.999
+
+  yes_price_age_s
+    entered: n=  240  mean=1439.404  p10=  9.800  p50=119.000  p90=1027.200
+    passed : n= 1618  mean=17237.350  p10= 51.400  p50=3488.000  p90=58417.200
+
+  no_price_age_s
+    entered: n=  240  mean=1549.808  p10=  5.800  p50=113.000  p90=1240.800
+    passed : n= 1617  mean=17775.232  p10= 64.000  p50=2112.000  p90=57703.600
+
+  n_ticks_1h
+    entered: n=  241  mean= 49.855  p10=  6.000  p50= 36.000  p90=110.000
+    passed : n= 1666  mean= 15.791  p10=  0.000  p50=  3.000  p90= 51.000
+
+  n_ticks_total
+    entered: n=  241  mean=187.411  p10= 26.000  p50=112.000  p90=462.000
+    passed : n= 1666  mean=232.935  p10= 32.000  p50=166.000  p90=515.500
+
+  group_size
+    entered: n=  241  mean=  7.913  p10=  1.000  p50= 11.000  p90= 11.000
+    passed : n= 1666  mean= 10.624  p10= 11.000  p50= 11.000  p90= 11.000
+
+  rank_by_abs_dist
+    entered: n=  241  mean=  2.722  p10=  1.000  p50=  2.000  p90=  6.000
+    passed : n= 1666  mean=  6.719  p10=  2.000  p50=  7.000  p90= 11.000
+
+  rank_by_yes_price
+    entered: n=  240  mean=  7.321  p10=  1.000  p50=  8.000  p90= 11.000
+    passed : n= 1618  mean=  5.925  p10=  1.000  p50=  5.000  p90= 11.000
+
+  rank_by_no_price
+    entered: n=  240  mean=  2.271  p10=  1.000  p50=  2.000  p90=  4.100
+    passed : n= 1617  mean=  6.671  p10=  2.000  p50=  6.000  p90= 11.000
+
+  bucket_rel (crosstab):
+    label          0    1   All
+    bucket_rel                 
+    above_obs   1107  150  1257
+    below_obs    549   85   634
+    contains      10    6    16
+    All         1666  241  1907
+    ← P(entered | bucket_rel) ranked:
+       contains        37.5%
+       below_obs       13.4%
+       above_obs       11.9%
+
+  bucket_kind (crosstab):
+    label           0    1   All
+    bucket_kind                 
+    exact        1502  230  1732
+    or_below      164   11   175
+    All          1666  241  1907
+    ← P(entered | bucket_kind) ranked:
+       exact           13.3%
+       or_below         6.3%
+
+=== MATCHED-PAIR RANK (how selective is 900e?) ===
+
+  rank of chosen market by |dist to obs_max|  (n=241)
+    rank  1:   90  ( 37.3%)  ███████████████
+    rank  2:   49  ( 20.3%)  ████████
+    rank  3:   34  ( 14.1%)  ██████
+    rank  4:   20  (  8.3%)  ███
+    rank  5:   21  (  8.7%)  ███
+    rank  6:   15  (  6.2%)  ██
+    rank  7:    7  (  2.9%)  █
+    rank  8:    3  (  1.2%)  
+    rank  9:    2  (  0.8%)  
+
+  rank of chosen market by YES price (low→high)  (n=240)
+    rank  1:   50  ( 20.8%)  ████████
+    rank  2:   24  ( 10.0%)  ████
+    rank  3:    7  (  2.9%)  █
+    rank  4:    2  (  0.8%)  
+    rank  5:    7  (  2.9%)  █
+    rank  6:    8  (  3.3%)  █
+    rank  7:   10  (  4.2%)  ██
+    rank  8:   18  (  7.5%)  ███
+    rank  9:   16  (  6.7%)  ███
+    rank 10:   42  ( 17.5%)  ███████
+    rank>10: 56
+
+  rank of chosen market by NO price (low→high)  (n=240)
+    rank  1:  101  ( 42.1%)  █████████████████
+    rank  2:   68  ( 28.3%)  ███████████
+    rank  3:   26  ( 10.8%)  ████
+    rank  4:   21  (  8.8%)  ████
+    rank  5:   10  (  4.2%)  ██
+    rank  6:    7  (  2.9%)  █
+    rank  7:    5  (  2.1%)  █
+    rank  9:    1  (  0.4%)  
+    rank 10:    1  (  0.4%)  
+
+  top-1 hit rates:
+    closest to obs_max       : top-1= 37.3%  top-3= 71.8%
+    lowest YES price         : top-1= 20.8%  top-3= 33.8%
+    lowest NO price          : top-1= 42.1%  top-3= 81.2%
+
+  rank-by-abs-dist by entered_side:
+    NO: n=152  top-1= 40.8%  top-3= 71.7%  median=2.0
+    YES: n=89  top-1= 31.5%  top-3= 71.9%  median=2.0
+
+=== MODEL (logistic + tree, chronological 70/30 split) ===
+  train rows: 1334  (entered: 188)
+  test  rows: 573   (entered: 53)
+
+  LOGISTIC REGRESSION
+    ROC-AUC: train=0.906  test=0.944
+    precision=0.418  recall=0.962  F1=0.583
+    confusion (test):
+      [[449  71]
+ [  2  51]]
+    top coefficients (sign shows direction):
+      rank_by_no_price              -0.9330
+      rank_by_abs_dist              -0.8862
+      n_ticks_1h                    +0.8162
+      n_ticks_total                 -0.7075
+      group_size                    -0.5412
+      rank_by_yes_price             +0.4748
+      no_price                      +0.4605
+      signed_dist_c                 -0.3954
+      yes_price                     +0.3324
+      obs_max_age_h                 -0.2379
+      ttr_h                         +0.1349
+      abs_dist_c                    -0.1295
+      rel_above_obs                 +0.1100
+      rel_below_obs                 -0.1039
+      rel_contains                  -0.0367
+
+  DECISION TREE (max_depth=4)
+    ROC-AUC test: 0.910
+    precision=0.351  recall=0.981  F1=0.517
+    tree (indent is depth):
+      |--- no_price <= 1.00
+      |   |--- signed_dist_c <= 0.85
+      |   |   |--- group_size <= 2.50
+      |   |   |   |--- rank_by_yes_price <= 3.50
+      |   |   |   |   |--- class: 1
+      |   |   |   |--- rank_by_yes_price >  3.50
+      |   |   |   |   |--- class: 0
+      |   |   |--- group_size >  2.50
+      |   |   |   |--- rank_by_abs_dist <= 9.50
+      |   |   |   |   |--- class: 1
+      |   |   |   |--- rank_by_abs_dist >  9.50
+      |   |   |   |   |--- class: 0
+      |   |--- signed_dist_c >  0.85
+      |   |   |--- n_ticks_total <= 200.50
+      |   |   |   |--- obs_max_c <= 30.25
+      |   |   |   |   |--- class: 1
+      |   |   |   |--- obs_max_c >  30.25
+      |   |   |   |   |--- class: 0
+      |   |   |--- n_ticks_total >  200.50
+      |   |   |   |--- abs_dist_c <= 1.55
+      |   |   |   |   |--- class: 1
+      |   |   |   |--- abs_dist_c >  1.55
+      |   |   |   |   |--- class: 0
+      |--- no_price >  1.00
+      |   |--- rank_by_no_price <= 3.50
+      |   |   |--- n_ticks_1h <= 11.00
+      |   |   |   |--- class: 0
+      |   |   |--- n_ticks_1h >  11.00
+      |   |   |   |--- abs_dist_c <= 0.40
+      |   |   |   |   |--- class: 0
+      |   |   |   |--- abs_dist_c >  0.40
+      |   |   |   |   |--- class: 1
+      |   |--- rank_by_no_price >  3.50
+      |   |   |--- n_ticks_total <= 31.50
+      |   |   |   |--- n_ticks_1h <= 1.50
+      |   |   |   |   |--- class: 0
+      |   |   |   |--- n_ticks_1h >  1.50
+      |   |   |   |   |--- class: 1
+      |   |   |--- n_ticks_total >  31.50
+      |   |   |   |--- class: 0
+      
