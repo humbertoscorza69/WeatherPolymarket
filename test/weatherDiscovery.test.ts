@@ -3,8 +3,8 @@ import test from "node:test";
 import { parseWeatherEvents, parseWeatherTitle } from "../src/adapters/weatherDiscovery.js";
 
 test("parseWeatherTitle extracts city and current-year date", () => {
-  const parsed = parseWeatherTitle("Highest temperature in Shanghai on April 21?");
-  assert.deepEqual(parsed, { city: "Shanghai", date: "2026-04-21" });
+  const parsed = parseWeatherTitle("Highest temperature in Shanghai on April 30?");
+  assert.deepEqual(parsed, { city: "Shanghai", date: "2026-04-30" });
 });
 
 test("parseWeatherEvents parses binary outcome markets from Gamma shape", () => {
@@ -13,7 +13,7 @@ test("parseWeatherEvents parses binary outcome markets from Gamma shape", () => 
       {
         id: "event-1",
         title: "Highest temperature in Shanghai on April 21?",
-        eventDate: "2026-04-21",
+        eventDate: "2026-04-30",
         markets: [
           {
             conditionId: "0xabc",
@@ -44,7 +44,7 @@ test("parseWeatherEvents excludes resolved and closed markets", () => {
       {
         id: "event-1",
         title: "Highest temperature in Seoul on April 21?",
-        eventDate: "2026-04-21",
+        eventDate: "2026-04-30",
         markets: [
           {
             conditionId: "0xclosed",

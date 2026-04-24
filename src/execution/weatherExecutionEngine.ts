@@ -162,20 +162,43 @@ export class WeatherExecutionEngine {
       if (!market) continue;
       if (this.inventory.hasPosition(conditionId)) continue; // WS already handled it
 
+      // Verify we actually received tokens — a postOnly order can be cancelled
+      // by the exchange without a WS notification (e.g. when the spread tightens
+      // and the order would cross). In that case we must NOT register a fill.
+      let actualShares = 0;
+      try {
+        actualShares = Math.floor((await this.driver.fetchTokenBalance(market.yesTokenId)) * 10000) / 10000;
+      } catch (err) {
+        this.logger.error("[REST-DETECT-BALANCE-ERROR]", { outcome: market.outcomeLabel, error: String(err) });
+        this.activeBuys.delete(conditionId);
+        continue;
+      }
+
+      if (actualShares < this.config.clobMinShares) {
+        this.logger.error("[FILL-DETECTED-REST-CANCEL] order gone but no tokens — likely postOnly cancelled", {
+          outcome: market.outcomeLabel,
+          conditionId,
+          orderId: buyOrder.orderId,
+          actualShares
+        });
+        this.activeBuys.delete(conditionId);
+        continue;
+      }
+
       this.logger.error("[FILL-DETECTED-REST]", {
         outcome: market.outcomeLabel,
         conditionId,
         orderId: buyOrder.orderId,
-        price: buyOrder.price
+        price: buyOrder.price,
+        actualShares
       });
 
-      const shares = Math.floor((this.config.orderSizeUsdc / buyOrder.price) * 10000) / 10000;
       const fillEvent: FillEvent = {
         conditionId,
         tokenId: market.yesTokenId,
         side: "BUY",
         price: buyOrder.price,
-        shares
+        shares: actualShares
       };
       this.inventory.applyFill(fillEvent);
       this.activeBuys.delete(conditionId);
