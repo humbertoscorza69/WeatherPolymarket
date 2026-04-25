@@ -82,6 +82,7 @@ const POSITIONS_FILE = path.resolve("data/detect-positions.json");
 const BANKROLL_FILE = path.resolve("data/detect-bankroll.json");
 const STATIONS_FILE = path.resolve("data/metar-stations.json");
 const CITY_TZ_FILE = path.resolve("data/city-tz.json");
+const CITY_WU_FILE = path.resolve("data/city-wu.json");
 await fs.mkdir(path.dirname(LOG), { recursive: true });
 
 const STATIONS = existsSync(STATIONS_FILE)
@@ -89,6 +90,9 @@ const STATIONS = existsSync(STATIONS_FILE)
   : {};
 const CITY_TZ = existsSync(CITY_TZ_FILE)
   ? JSON.parse(await fs.readFile(CITY_TZ_FILE, "utf8"))
+  : {};
+const CITY_WU = existsSync(CITY_WU_FILE)
+  ? JSON.parse(await fs.readFile(CITY_WU_FILE, "utf8"))
   : {};
 
 // IANA-timezone-aware local-day window. The ±12h UTC buffer we used before
@@ -321,6 +325,31 @@ async function fetchMetar(icao, hours = 24) {
   } catch { return []; }
 }
 
+// Wunderground = the SAME source Polymarket actually resolves on. We use it
+// as the binding observed-max source for cities where it's the resolver, and
+// fall back to METAR when WU is unavailable / not the resolver. The METAR-vs-WU
+// disagreement on Seoul Apr 25 (METAR said 21 C, WU said 20 C, market resolved
+// to 20 C bucket -> our NO lost) is the exact failure mode this closes.
+//
+// API: api.weather.com is the same endpoint Wunderground's own daily-history
+// page uses; the apiKey here is the public client-side key embedded in their JS.
+const WU_API_KEY = "e1f10a1e78da46f5b10a1e78da96f525";
+const WU_API_BASE = "https://api.weather.com/v1/location";
+async function fetchWundergroundDay(icao, country, dateStr) {
+  if (!icao || !country || !dateStr) return [];
+  const yyyymmdd = dateStr.replace(/-/g, "");
+  const url = `${WU_API_BASE}/${icao}:9:${country.toUpperCase()}/observations/historical.json?apiKey=${WU_API_KEY}&units=m&startDate=${yyyymmdd}`;
+  try {
+    const data = await fetchJson(url);
+    const obs = Array.isArray(data?.observations) ? data.observations : [];
+    return obs
+      .map(o => ({ t: typeof o.valid_time_gmt === "number" ? o.valid_time_gmt : null,
+                   tempC: typeof o.temp === "number" ? o.temp : null }))
+      .filter(o => o.t != null && o.tempC != null)
+      .sort((a, b) => a.t - b.t);
+  } catch { return []; }
+}
+
 // Open-Meteo = forecast for future hours (needed for YES signal)
 async function fetchOpenMeteo(city, tz) {
   try {
@@ -348,13 +377,19 @@ async function getObservationsForMarket(market) {
   const nowMs = Date.now();
   const cached = _weatherCache.get(key);
   if (cached && nowMs - cached.at < CFG.WEATHER_TTL_SEC * 1000) {
-    return { metar: cached.metar, openMeteo: cached.openMeteo };
+    return { metar: cached.metar, openMeteo: cached.openMeteo, wunder: cached.wunder, wuSource: cached.wuSource };
   }
   const icao = STATIONS[market.city];
-  const metarObs = icao ? await fetchMetar(icao, 48) : [];
-  const om = await fetchOpenMeteo(market.city, null);
-  _weatherCache.set(key, { at: nowMs, metar: metarObs, openMeteo: om.samples });
-  return { metar: metarObs, openMeteo: om.samples };
+  const wuInfo = CITY_WU[market.city] ?? null;
+  const fetchWu = wuInfo && wuInfo.source === "wunderground" && icao && market.date;
+  const [metarObs, om, wunderObs] = await Promise.all([
+    icao ? fetchMetar(icao, 48) : Promise.resolve([]),
+    fetchOpenMeteo(market.city, null),
+    fetchWu ? fetchWundergroundDay(icao, wuInfo.country, market.date) : Promise.resolve([]),
+  ]);
+  const wuSource = wuInfo?.source ?? null;
+  _weatherCache.set(key, { at: nowMs, metar: metarObs, openMeteo: om.samples, wunder: wunderObs, wuSource });
+  return { metar: metarObs, openMeteo: om.samples, wunder: wunderObs, wuSource };
 }
 
 /**
@@ -461,7 +496,7 @@ function pickSizeBucketUsdc(ctx) {
 //   ctx.metarSig     : optional METAR cross-check signal (reason, cushion)
 //   ctx.strategyVersion
 async function simulateEntry(ctx) {
-  const { side, entryPrice, book, market, mkt, metarSig } = ctx;
+  const { side, entryPrice, book, market, mkt, metarSig, obsAttribution } = ctx;
   const strategyVersion = ctx.strategyVersion || "v31-distance";
 
   // v31-distance sizing: driven by the ask price's proximity to certainty (0.999+).
@@ -513,13 +548,20 @@ async function simulateEntry(ctx) {
     endDate: mkt.endDate,
     clobTokenIds: mkt.clobTokenIds,
     strategyVersion,
+    obsAttribution: obsAttribution ?? null,
     closed: false,
   };
   state.positions.push(position);
   await fs.appendFile(LOG, JSON.stringify({ type: "OPEN", ...position }) + "\n");
   const metarTag = metarSig ? ` metar=${metarSig.reason}/${position.cushion}°C` : "";
   const depthTag = book?.askDepth != null ? ` depth=${book.askDepth.toFixed(0)}` : "";
-  console.log(`  🎯 ENTRY  ${side.padEnd(3)} ${market.city.padEnd(15)} ${market.date}  ask=${entryPrice.toFixed(4)}  size=$${positionSize.toFixed(2)} [${bucket.label}]${depthTag}${metarTag}`);
+  const srcTag = obsAttribution
+    ? ` src=${obsAttribution.obsSource ?? "?"}` +
+      (obsAttribution.deltaMetarMinusWunderC != null
+        ? ` Δ(M-W)=${obsAttribution.deltaMetarMinusWunderC}°C`
+        : "")
+    : "";
+  console.log(`  🎯 ENTRY  ${side.padEnd(3)} ${market.city.padEnd(15)} ${market.date}  ask=${entryPrice.toFixed(4)}  size=$${positionSize.toFixed(2)} [${bucket.label}]${depthTag}${metarTag}${srcTag}`);
   return position;
 }
 
@@ -756,32 +798,62 @@ async function resolvePositions() {
 //   4. ask-price gate (ask in [MIN_ASK, MAX_ASK], depth ≥ MIN_DEPTH)
 //   5. dedupe by conditionId — 937 trades 0 / 855 markets on both sides
 //   6. pay ask, size from price-proximity bucket
-function computeObservedMaxC(market, metarObs, omObs, nowSec) {
-  const primary = (metarObs?.length ? metarObs : omObs) || [];
-  if (!primary.length) return { obsMaxC: null, hoursElapsed: null, reason: "no-obs" };
-  if (!market?.date) return { obsMaxC: null, hoursElapsed: null, reason: "no-date" };
-  const tz = CITY_TZ[market.city];
-  if (!tz) return { obsMaxC: null, hoursElapsed: null, reason: "no-tz" };
-  const dayStartUtc = localDayStartUtcSec(market.date, tz);
-  if (dayStartUtc == null) return { obsMaxC: null, hoursElapsed: null, reason: "tz-error" };
-  const dayEndUtc = dayStartUtc + 86400;
-  // If the market's local day has not started yet, we have no valid
-  // observations for that day. Return null — the caller will skip.
-  if (nowSec < dayStartUtc) {
-    return { obsMaxC: null, hoursElapsed: (nowSec - dayStartUtc) / 3600, reason: "day-not-started" };
-  }
-  const windowEnd = Math.min(nowSec, dayEndUtc);
-  let maxC = -Infinity;
-  for (const o of primary) {
+function _runningMaxInWindow(obs, dayStartUtc, windowEnd) {
+  if (!obs?.length) return null;
+  let mx = -Infinity;
+  for (const o of obs) {
     if (o.t < dayStartUtc) continue;
     if (o.t > windowEnd) break;
-    if (o.tempC > maxC) maxC = o.tempC;
+    if (o.tempC > mx) mx = o.tempC;
   }
+  return Number.isFinite(mx) ? mx : null;
+}
+
+// Source priority: Wunderground (matches Polymarket's resolver) > METAR > Open-Meteo.
+// We compute all three running maxes restricted to the market's local day and
+// return the binding obsMaxC plus the others for logging / monitoring. The Seoul
+// Apr 25 NO-20C loss was the case METAR said 21 C while WU said 20 C — using
+// WU as primary closes that hole.
+function computeObservedMaxC(market, metarObs, omObs, wunderObs, wuSource, nowSec) {
+  if (!market?.date) return { obsMaxC: null, hoursElapsed: null, reason: "no-date", obsSource: null };
+  const tz = CITY_TZ[market.city];
+  if (!tz) return { obsMaxC: null, hoursElapsed: null, reason: "no-tz", obsSource: null };
+  const dayStartUtc = localDayStartUtcSec(market.date, tz);
+  if (dayStartUtc == null) return { obsMaxC: null, hoursElapsed: null, reason: "tz-error", obsSource: null };
+  const dayEndUtc = dayStartUtc + 86400;
+  if (nowSec < dayStartUtc) {
+    return { obsMaxC: null, hoursElapsed: (nowSec - dayStartUtc) / 3600, reason: "day-not-started", obsSource: null };
+  }
+  const windowEnd = Math.min(nowSec, dayEndUtc);
   const hoursElapsed = (windowEnd - dayStartUtc) / 3600;
-  if (!Number.isFinite(maxC)) {
-    return { obsMaxC: null, hoursElapsed, reason: "no-samples-in-window" };
+
+  const wunderMaxC = _runningMaxInWindow(wunderObs, dayStartUtc, windowEnd);
+  const metarMaxC  = _runningMaxInWindow(metarObs,  dayStartUtc, windowEnd);
+  const omMaxC     = _runningMaxInWindow(omObs,     dayStartUtc, windowEnd);
+
+  // Pick binding source: WU if present and resolver=wunderground; else METAR; else Open-Meteo.
+  let obsMaxC = null;
+  let obsSource = null;
+  if (wuSource === "wunderground" && wunderMaxC != null) {
+    obsMaxC = wunderMaxC;
+    obsSource = "wunderground";
+  } else if (metarMaxC != null) {
+    obsMaxC = metarMaxC;
+    obsSource = "metar";
+  } else if (omMaxC != null) {
+    obsMaxC = omMaxC;
+    obsSource = "open-meteo";
   }
-  return { obsMaxC: maxC, hoursElapsed, reason: "ok" };
+  if (obsMaxC == null) {
+    return { obsMaxC: null, hoursElapsed, reason: "no-samples-in-window", obsSource: null,
+             wunderMaxC, metarMaxC };
+  }
+  return {
+    obsMaxC, obsSource, hoursElapsed, reason: "ok",
+    wunderMaxC, metarMaxC,
+    deltaMetarMinusWunderC:
+      (metarMaxC != null && wunderMaxC != null) ? Math.round((metarMaxC - wunderMaxC) * 10) / 10 : null,
+  };
 }
 
 // Distance from observed max to bucket [loC, hiC]. Returns
@@ -830,9 +902,10 @@ async function scanOnce() {
   let distSkipTooClose = 0, distSkipTooFar = 0, distSkipContains = 0, distSkipNoObs = 0;
   let distSkipDayNotStarted = 0, distSkipTooEarly = 0, distSkipNoTz = 0;
   for (const u of universe) {
-    const { metar, openMeteo } = await getObservationsForMarket(u.parsed);
-    if (!metar?.length && !openMeteo?.length) { distSkipNoObs++; continue; }
-    const { obsMaxC, hoursElapsed, reason } = computeObservedMaxC(u.parsed, metar, openMeteo, nowSec);
+    const { metar, openMeteo, wunder, wuSource } = await getObservationsForMarket(u.parsed);
+    if (!metar?.length && !openMeteo?.length && !wunder?.length) { distSkipNoObs++; continue; }
+    const obsResult = computeObservedMaxC(u.parsed, metar, openMeteo, wunder, wuSource, nowSec);
+    const { obsMaxC, hoursElapsed, reason, obsSource, wunderMaxC, metarMaxC, deltaMetarMinusWunderC } = obsResult;
     if (reason === "no-tz") { distSkipNoTz++; continue; }
     if (reason === "day-not-started") { distSkipDayNotStarted++; continue; }
     if (obsMaxC == null) { distSkipNoObs++; continue; }
@@ -855,7 +928,7 @@ async function scanOnce() {
     // a 42% WR coin flip (v5/v6 backtest confirmed). --allow-speculative
     // overrides.
     if (relation === "above-max" && !CFG.ALLOW_SPECULATIVE) { distSkipTooFar++; continue; }
-    eligible.push({ ...u, obsMaxC, distance, relation, hoursElapsed });
+    eligible.push({ ...u, obsMaxC, distance, relation, hoursElapsed, obsSource, wunderMaxC, metarMaxC, deltaMetarMinusWunderC });
   }
   console.log(`  distance-filter: ${eligible.length} eligible · skipped ${distSkipTooClose} too-close (<${CFG.MIN_DIST_C}°C) · ${distSkipTooFar} too-far (>${CFG.MAX_DIST_C}°C) · ${distSkipContains} contains-max · ${distSkipNoObs} no-obs · ${distSkipDayNotStarted} local-day-not-started · ${distSkipTooEarly} too-early (<${CFG.MIN_LOCAL_HOURS}h elapsed) · ${distSkipNoTz} no-tz`);
 
@@ -908,7 +981,14 @@ async function scanOnce() {
       market: c.parsed,
       mkt: c.mk,
       metarSig: { reason: `dist-${c.relation}${elapsedTag}`, cushion: c.distance },
-      strategyVersion: "v31-distance",
+      strategyVersion: "v33-wunder",
+      obsAttribution: {
+        obsSource: c.obsSource,
+        obsMaxC: c.obsMaxC,
+        wunderMaxC: c.wunderMaxC,
+        metarMaxC: c.metarMaxC,
+        deltaMetarMinusWunderC: c.deltaMetarMinusWunderC,
+      },
     });
     if (pos) opened++;
   }
@@ -918,10 +998,13 @@ async function scanOnce() {
 }
 
 async function main() {
-  console.log(`=== Detect engine + simulator (v32-metar · 937 NO-scalp on METAR, 98% WR backtest) ===`);
+  console.log(`=== Detect engine + simulator (v33-wunder · 937 NO-scalp on Wunderground primary + METAR fallback, local-day-gated) ===`);
   console.log(`Bankroll: $${state.bankroll.toFixed(2)} (CLI=$${CFG.BANKROLL}${CFG.RESET ? ", --reset" : ""}${CFG.NO_CAP ? ", --nocap (no bankroll gate)" : ""})  Trade scale: $${CFG.TRADE_SIZE} (sampled from 937's empirical bucket distribution; larger buckets favored when ask≥0.999; min ${CFG.MIN_SHARES} shares enforced)`);
   console.log(`Trigger: CLOB book-scan · ask∈[${CFG.MIN_ASK_ENTRY},${CFG.MAX_ASK_ENTRY}] · min-depth ${CFG.MIN_DEPTH_SHARES}sh · YES-side ${CFG.ALLOW_YES ? "ON" : "OFF"}`);
   console.log(`Selectivity: bucket_distance ∈ [${CFG.MIN_DIST_C},${CFG.MAX_DIST_C}]°C from observed max (the 937 rule, reverse-engineered from 1028 entries) · local-day elapsed ≥ ${CFG.MIN_LOCAL_HOURS}h`);
+  const wuCities = Object.values(CITY_WU).filter(v => v?.source === "wunderground").length;
+  const nonWuCities = Object.values(CITY_WU).filter(v => v?.source && v.source !== "wunderground").length;
+  console.log(`obs_max source: Wunderground primary (${wuCities} cities) · METAR fallback (${nonWuCities} non-WU cities + missing-WU days). Δ(METAR-WU) logged on every entry.`);
   console.log(`Safety: HIGHEST + (exact|between) only (--allow-non-hb to override) · dedupe by conditionId · max-hold ${CFG.MAX_HOLD_MIN}min (emergency-only; PATH 1 Gamma resolution handles normal exits) · take-profit ${CFG.SELL_TARGET}`);
   console.log(`Scan intervals: market scan=${CFG.INTERVAL_SEC}s, position check=${CFG.POS_CHECK_SEC}s, weather cache=${CFG.WEATHER_TTL_SEC}s`);
   console.log(`TTR=[${CFG.TTR_MIN_SEC/3600}h, ${CFG.TTR_MAX_SEC/3600}h]`);
