@@ -80,6 +80,7 @@ const CFG = {
 const LOG = path.resolve("data/detect-log.jsonl");
 const POSITIONS_FILE = path.resolve("data/detect-positions.json");
 const BANKROLL_FILE = path.resolve("data/detect-bankroll.json");
+const SOURCE_DELTAS_FILE = path.resolve("data/source-deltas.jsonl");
 const STATIONS_FILE = path.resolve("data/metar-stations.json");
 const CITY_TZ_FILE = path.resolve("data/city-tz.json");
 const CITY_WU_FILE = path.resolve("data/city-wu.json");
@@ -901,11 +902,42 @@ async function scanOnce() {
   const eligible = [];
   let distSkipTooClose = 0, distSkipTooFar = 0, distSkipContains = 0, distSkipNoObs = 0;
   let distSkipDayNotStarted = 0, distSkipTooEarly = 0, distSkipNoTz = 0;
+  // v33-wunder Δ stream: collect (city, date) where METAR and Wunderground
+  // disagree by ≥0.5°C. These are the cases v33 is "doing real work" on —
+  // either blocking a Seoul-Apr-25-style false-confirm, or letting a trade
+  // through that metar-only would have missed. Dedupe per scan by city|date.
+  const deltaSeen = new Set();
+  const deltaEvents = [];
   for (const u of universe) {
     const { metar, openMeteo, wunder, wuSource } = await getObservationsForMarket(u.parsed);
     if (!metar?.length && !openMeteo?.length && !wunder?.length) { distSkipNoObs++; continue; }
     const obsResult = computeObservedMaxC(u.parsed, metar, openMeteo, wunder, wuSource, nowSec);
     const { obsMaxC, hoursElapsed, reason, obsSource, wunderMaxC, metarMaxC, deltaMetarMinusWunderC } = obsResult;
+    // Record the Δ even on markets that get filtered out — every (city, date)
+    // pair where the two feeds disagree is interesting, regardless of whether
+    // a trade fires on it this scan.
+    if (wunderMaxC != null && metarMaxC != null && Math.abs(metarMaxC - wunderMaxC) >= 0.5) {
+      const key = `${u.parsed.city}|${u.parsed.date}`;
+      if (!deltaSeen.has(key)) {
+        deltaSeen.add(key);
+        deltaEvents.push({
+          ts: tScan,
+          city: u.parsed.city,
+          date: u.parsed.date,
+          icao: STATIONS[u.parsed.city] ?? null,
+          metarMaxC,
+          wunderMaxC,
+          delta: Math.round((metarMaxC - wunderMaxC) * 10) / 10,
+          obsSource,                     // which one v33 picked
+          hoursElapsed: hoursElapsed != null ? Math.round(hoursElapsed * 10) / 10 : null,
+          // direction: "metar-hotter" → METAR sees a higher peak (the Seoul case
+          //   that bit us; v33 protects by using WU's lower number).
+          // direction: "wunder-hotter" → WU sees a higher peak (METAR is missing
+          //   data; v33 picks it up).
+          direction: metarMaxC > wunderMaxC ? "metar-hotter" : "wunder-hotter",
+        });
+      }
+    }
     if (reason === "no-tz") { distSkipNoTz++; continue; }
     if (reason === "day-not-started") { distSkipDayNotStarted++; continue; }
     if (obsMaxC == null) { distSkipNoObs++; continue; }
@@ -931,6 +963,15 @@ async function scanOnce() {
     eligible.push({ ...u, obsMaxC, distance, relation, hoursElapsed, obsSource, wunderMaxC, metarMaxC, deltaMetarMinusWunderC });
   }
   console.log(`  distance-filter: ${eligible.length} eligible · skipped ${distSkipTooClose} too-close (<${CFG.MIN_DIST_C}°C) · ${distSkipTooFar} too-far (>${CFG.MAX_DIST_C}°C) · ${distSkipContains} contains-max · ${distSkipNoObs} no-obs · ${distSkipDayNotStarted} local-day-not-started · ${distSkipTooEarly} too-early (<${CFG.MIN_LOCAL_HOURS}h elapsed) · ${distSkipNoTz} no-tz`);
+
+  // v33-wunder Δ stream: persist + print this scan's source disagreements.
+  if (deltaEvents.length) {
+    const lines = deltaEvents.map(d => JSON.stringify(d)).join("\n") + "\n";
+    fs.appendFile(SOURCE_DELTAS_FILE, lines).catch(() => {});
+    const tag = (d) => `${d.city} ${d.date.slice(5)} M${d.metarMaxC}/W${d.wunderMaxC}${d.delta > 0 ? "+" : ""}${d.delta}`;
+    const top = deltaEvents.slice().sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta)).slice(0, 5);
+    console.log(`  Δ-stream:        ${deltaEvents.length} pair(s) METAR≠WU ≥0.5°C · ${top.map(tag).join(" · ")}`);
+  }
 
   // ---- 3. book scan — only for eligible markets ----
   const byCid = new Map();  // conditionId → candidate (dedupe)

@@ -190,6 +190,9 @@
   <button title="Quant" onclick="switchTab('quant')" data-tab="quant">
     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>
   </button>
+  <button title="Δ Stream (METAR vs Wunderground)" onclick="switchTab('deltastream')" data-tab="deltastream">
+    <svg viewBox="0 0 24 24"><path d="M12 3l8 14H4L12 3z"/><path d="M12 9v4"/><circle cx="12" cy="16" r="0.8"/></svg>
+  </button>
   <div class="spacer"></div>
   <button title="Settings">
     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33h.01a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82v.01a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
@@ -413,6 +416,46 @@
         <div class="chart-card">
           <div class="chart-title">Edge Decay · expanding-window WR vs trade #</div>
           <canvas id="edgeDecayChart"></canvas>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ Δ STREAM TAB ============ -->
+  <!-- v33-wunder source-disagreement stream. Each row is a (city, date) where
+       METAR and Wunderground disagreed by ≥0.5°C at scan time. metar-hotter
+       (red) is the Seoul-Apr-25 case v33 protects against; wunder-hotter
+       (blue) is METAR underreporting.  -->
+  <div class="tab-panel" id="tab-deltastream">
+    <section>
+      <div class="chart-card">
+        <div class="chart-title">
+          <span>v33 Δ Stream · METAR ≠ Wunderground (≥0.5°C, last 200 events)</span>
+          <span class="pill" id="deltaStreamPill">—</span>
+        </div>
+        <div style="font-size:12px;color:var(--muted);padding:0 12px 8px;">
+          Every (city, date) where the two feeds disagreed at scan time. <b style="color:#f87171">metar-hotter</b> = METAR overshoots WU (the Seoul-Apr-25 case v33 protects against — bot picks WU and skips). <b style="color:#60a5fa">wunder-hotter</b> = METAR underreports (bot picks WU and may enter where metar-only would have skipped). Refreshes every 30s.
+        </div>
+        <div style="overflow-x:auto;padding:0 4px 8px;">
+          <table id="deltaStreamTable" style="width:100%;border-collapse:collapse;font-size:12px;">
+            <thead style="position:sticky;top:0;background:var(--bg);">
+              <tr style="text-align:left;color:var(--muted);">
+                <th style="padding:6px 8px;">When (UTC)</th>
+                <th style="padding:6px 8px;">City</th>
+                <th style="padding:6px 8px;">Date</th>
+                <th style="padding:6px 8px;">ICAO</th>
+                <th style="padding:6px 8px;text-align:right;">METAR °C</th>
+                <th style="padding:6px 8px;text-align:right;">Wunder °C</th>
+                <th style="padding:6px 8px;text-align:right;">Δ (M−W)</th>
+                <th style="padding:6px 8px;">v33 picked</th>
+                <th style="padding:6px 8px;">Direction</th>
+                <th style="padding:6px 8px;text-align:right;">Local h</th>
+              </tr>
+            </thead>
+            <tbody id="deltaStreamBody">
+              <tr><td colspan="10" style="padding:14px;color:var(--muted);text-align:center;">loading…</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
@@ -1332,6 +1375,57 @@ function tick() {
 refresh();
 setInterval(refresh, REFRESH_MS);
 tickTimer = setInterval(tick, 500);
+
+// ============ v33 Δ STREAM (METAR vs Wunderground disagreements) ============
+async function refreshDeltaStream() {
+  try {
+    const r = await fetch("/api/source-deltas?limit=200", { cache: "no-store" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const { count, events } = await r.json();
+    const pill = document.getElementById("deltaStreamPill");
+    const body = document.getElementById("deltaStreamBody");
+    if (!body) return;
+    if (!events?.length) {
+      pill.textContent = "0 events";
+      body.innerHTML = '<tr><td colspan="10" style="padding:14px;color:var(--muted);text-align:center;">No source disagreements yet — waiting for first scan with both feeds.</td></tr>';
+      return;
+    }
+    const metarHotter = events.filter(e => e.direction === "metar-hotter").length;
+    const wunderHotter = events.length - metarHotter;
+    pill.textContent = `${count} events · ${metarHotter} metar-hotter · ${wunderHotter} wunder-hotter`;
+    const fmt = (v) => v == null ? "—" : (typeof v === "number" ? v.toFixed(1) : String(v));
+    const fmtTs = (ts) => {
+      if (!ts) return "—";
+      try {
+        const d = new Date(ts);
+        return d.toISOString().slice(11, 19);
+      } catch { return ts; }
+    };
+    const rows = events.map(e => {
+      const dirColor = e.direction === "metar-hotter" ? "#f87171" : "#60a5fa";
+      const deltaSign = e.delta > 0 ? "+" : "";
+      const sourceColor = e.obsSource === "wunderground" ? "#4ade80" : "#fbbf24";
+      return `<tr style="border-top:1px solid var(--border);">
+        <td style="padding:6px 8px;font-family:monospace;color:var(--muted);">${fmtTs(e.ts)}</td>
+        <td style="padding:6px 8px;"><b>${e.city}</b></td>
+        <td style="padding:6px 8px;color:var(--muted);">${e.date.slice(5)}</td>
+        <td style="padding:6px 8px;font-family:monospace;color:var(--muted);">${e.icao ?? "—"}</td>
+        <td style="padding:6px 8px;text-align:right;font-family:monospace;">${fmt(e.metarMaxC)}</td>
+        <td style="padding:6px 8px;text-align:right;font-family:monospace;">${fmt(e.wunderMaxC)}</td>
+        <td style="padding:6px 8px;text-align:right;font-family:monospace;color:${dirColor};font-weight:600;">${deltaSign}${fmt(e.delta)}</td>
+        <td style="padding:6px 8px;color:${sourceColor};font-family:monospace;">${e.obsSource ?? "—"}</td>
+        <td style="padding:6px 8px;color:${dirColor};">${e.direction}</td>
+        <td style="padding:6px 8px;text-align:right;font-family:monospace;color:var(--muted);">${fmt(e.hoursElapsed)}</td>
+      </tr>`;
+    }).join("");
+    body.innerHTML = rows;
+  } catch (e) {
+    const body = document.getElementById("deltaStreamBody");
+    if (body) body.innerHTML = `<tr><td colspan="10" style="padding:14px;color:#f87171;text-align:center;">Δ stream load error: ${e.message}</td></tr>`;
+  }
+}
+refreshDeltaStream();
+setInterval(refreshDeltaStream, 30000);
 </script>
 </body>
 </html>

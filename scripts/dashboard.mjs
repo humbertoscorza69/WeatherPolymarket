@@ -892,6 +892,32 @@ const server = http.createServer(async (req, res) => {
       res.end(JSON.stringify({ conditionId: cid, rawGamma: raw, parsed, cached }, null, 2));
       return;
     }
+    if (u.pathname === "/api/source-deltas") {
+      // v33-wunder Δ stream — every (city, date) where METAR and Wunderground
+      // disagreed by ≥0.5°C this scan, written by detect.mjs to
+      // data/source-deltas.jsonl. Tail the last N entries (default 200).
+      const limit = Math.max(1, Math.min(2000, Number(u.query.limit ?? "200") || 200));
+      const sinceMs = u.query.since ? new Date(u.query.since).getTime() : 0;
+      const path = "data/source-deltas.jsonl";
+      let events = [];
+      if (existsSync(path)) {
+        const raw = await fs.readFile(path, "utf8");
+        const lines = raw.split("\n");
+        // tail-read: walk backward, parse, stop at limit
+        for (let i = lines.length - 1; i >= 0 && events.length < limit; i--) {
+          const line = lines[i];
+          if (!line) continue;
+          try {
+            const d = JSON.parse(line);
+            if (sinceMs && new Date(d.ts).getTime() < sinceMs) break;
+            events.push(d);
+          } catch {}
+        }
+      }
+      res.writeHead(200, { "content-type": "application/json", "cache-control": "no-store" });
+      res.end(JSON.stringify({ count: events.length, events }));
+      return;
+    }
     if (u.pathname === "/api/diagnostics") {
       res.writeHead(200, { "content-type": "application/json" });
       res.end(JSON.stringify({
