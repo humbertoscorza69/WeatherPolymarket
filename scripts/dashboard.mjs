@@ -392,7 +392,12 @@ async function fetchMetar(icao, hours = 36) {
     if (!r.ok) return [];
     const data = await r.json();
     if (!Array.isArray(data)) return [];
+    // Filter to scheduled METAR only (mirrors detect.mjs); SPECI reports
+    // can show transient temperatures Polymarket's Wunderground source
+    // doesn't see, making the dashboard's OBSERVED column disagree with
+    // the eventual resolution.
     return data
+      .filter(m => (m.metarType ?? "METAR") === "METAR")
       .map(m => ({ t: typeof m.obsTime === "number" ? m.obsTime : Math.floor(new Date(m.obsTime).getTime()/1000), tempC: m.temp }))
       .filter(o => Number.isFinite(o.t) && o.tempC != null)
       .sort((a, b) => a.t - b.t);

@@ -306,7 +306,17 @@ async function fetchMetar(icao, hours = 24) {
   try {
     const data = await fetchJson(url);
     if (!Array.isArray(data)) return [];
-    return data.map(m => ({ t: m.obsTime, tempC: m.temp }))
+    // CRITICAL: filter to scheduled METAR reports only — exclude SPECI.
+    // aviationweather.gov returns BOTH METAR (hourly scheduled) and SPECI
+    // (unscheduled "special" reports triggered by sudden change). Polymarket
+    // resolves via Wunderground's daily history page, which only consumes
+    // the hourly METAR feed. Including SPECI gave us obs_max readings 1-2°C
+    // higher than Polymarket's resolver — exactly the gap that lost the
+    // 2026-04-25 Seoul (RKSI) NO-20°C trade (we observed 21°C; Polymarket
+    // settled 20°C YES because the 21°C peak only appeared in a SPECI).
+    return data
+      .filter(m => (m.metarType ?? "METAR") === "METAR")
+      .map(m => ({ t: m.obsTime, tempC: m.temp }))
       .filter(o => o.t && o.tempC != null).sort((a,b) => a.t - b.t);
   } catch { return []; }
 }
