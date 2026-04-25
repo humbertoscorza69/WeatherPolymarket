@@ -87,8 +87,45 @@ function parseCityDate(title) {
 
 // ---- file loaders --------------------------------------------------------
 const stations = JSON.parse(await fs.readFile("data/metar-stations.json", "utf8"));
+const cityTz = JSON.parse(await fs.readFile("data/city-tz.json", "utf8"));
 const metarCache = new Map();
 const wuCache = new Map();
+
+// ---- local-day window (CRITICAL: obs must be IN the market's local day) --
+// The market resolves on the highest temperature in the city's local
+// timezone for date D. We must restrict the running-max computation to
+// observations whose timestamp falls inside [local_midnight_D, local_midnight_D+1)
+// in that city's tz - otherwise the previous local day's hot afternoon
+// leaks in (e.g. Atlanta KATL Apr 18 28 C bleeding into the Apr 19 max).
+function tzOffsetSecondsAt(tz, unixSec) {
+  const d = new Date(unixSec * 1000);
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: tz, hourCycle: "h23",
+      year: "numeric", month: "2-digit", day: "2-digit",
+      hour: "2-digit", minute: "2-digit", second: "2-digit",
+    }).formatToParts(d).map(p => [p.type, p.value]),
+  );
+  const asUtc = Date.UTC(+parts.year, +parts.month - 1, +parts.day,
+                         +parts.hour, +parts.minute, +parts.second);
+  return Math.round((asUtc - unixSec * 1000) / 1000);
+}
+const localDayCache = new Map();
+function localDayWindowUnix(city, dateStr) {
+  const tz = cityTz[city];
+  if (!tz) return null;
+  const k = `${tz}|${dateStr}`;
+  if (localDayCache.has(k)) return localDayCache.get(k);
+  const [y, m, d] = dateStr.split("-").map(Number);
+  // Anchor at UTC noon of date D so DST flips at midnight don't bite us.
+  const anchor = Math.floor(Date.UTC(y, m - 1, d, 12, 0, 0) / 1000);
+  const off = tzOffsetSecondsAt(tz, anchor);
+  const startSec = Math.floor((Date.UTC(y, m - 1, d, 0, 0, 0) - off * 1000) / 1000);
+  const endSec = startSec + 86400;
+  const win = [startSec, endSec];
+  localDayCache.set(k, win);
+  return win;
+}
 
 async function loadMetar(icao, date) {
   const k = `${icao}|${date}`;
@@ -111,25 +148,28 @@ async function loadWu(icao, date) {
   return v;
 }
 
-// ---- running-max computation (NO LOOKAHEAD) -----------------------------
-function metarRunningMaxC(metar, openTs) {
+// ---- running-max computation (NO LOOKAHEAD + LOCAL-DAY GATED) -----------
+// `dayWin` = [start_sec, end_sec) in UTC for the market's local day. Obs
+// outside this window are ignored even if they happen to be earlier than
+// openTs - they belong to a different resolution day.
+function metarRunningMaxC(metar, openTs, dayWin) {
   if (!metar) return null;
   let mx = -Infinity;
   for (const o of metar.observations || []) {
     if (typeof o.t !== "number" || typeof o.tempC !== "number") continue;
-    if (o.t <= openTs) {
-      if (o.tempC > mx) mx = o.tempC;
-    }
+    if (dayWin && (o.t < dayWin[0] || o.t >= dayWin[1])) continue;
+    if (o.t <= openTs && o.tempC > mx) mx = o.tempC;
   }
   return mx === -Infinity ? null : mx;
 }
 
-function wunderRunningMax(wu, openTs, unit) {
+function wunderRunningMax(wu, openTs, unit, dayWin) {
   if (!wu) return null;
   let mx = -Infinity;
   for (const o of wu.observations || []) {
     if (typeof o.t_unix !== "number") continue;
-    if (o.t_unix > openTs) continue;          // <= NO LOOKAHEAD
+    if (dayWin && (o.t_unix < dayWin[0] || o.t_unix >= dayWin[1])) continue;
+    if (o.t_unix > openTs) continue;
     const v = unit === "F" ? o.tempF : o.tempC;
     if (typeof v !== "number") continue;
     if (v > mx) mx = v;
@@ -219,9 +259,10 @@ async function main() {
 
     const metar = await loadMetar(icao, cd.date);
     const wu = await loadWu(icao, cd.date);
+    const dayWin = localDayWindowUnix(cd.city, cd.date);
 
-    const metarMaxC = metarRunningMaxC(metar, t.openTs);
-    const wunderMax = wunderRunningMax(wu, t.openTs, bucket.unit);
+    const metarMaxC = metarRunningMaxC(metar, t.openTs, dayWin);
+    const wunderMax = wunderRunningMax(wu, t.openTs, bucket.unit, dayWin);
     const metarMaxInUnit = metarMaxInUnit_(metarMaxC, bucket.unit);
 
     if (metar == null && wu == null) noData.bothMissing++;
@@ -234,6 +275,8 @@ async function main() {
 
     const traceRow = {
       city: cd.city, date: cd.date, icao, openTs: t.openTs,
+      openIso: new Date(t.openTs * 1000).toISOString(),
+      localDayUtc: dayWin ? [new Date(dayWin[0]*1000).toISOString(), new Date(dayWin[1]*1000).toISOString()] : null,
       title: t.title, side: t.side, pnl: Math.round(pnl * 1000) / 1000,
       bucket, metarMaxC, metarMaxInUnit, wunderMax,
       decisions: {},
